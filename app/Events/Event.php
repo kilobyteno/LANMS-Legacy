@@ -1,4 +1,4 @@
-<?php namespace App\Events;
+<?php namespace LANMS\Events;
 
 abstract class Event {
 
