@@ -6,12 +6,26 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'igaster\\laravelTheme\\' => array($vendorDir . '/igaster/laravel-theme/src'),
+    'anlutro\\LaravelSettings\\' => array($vendorDir . '/anlutro/l4-settings/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
+    'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),
+    'Symfony\\Polyfill\\Php56\\' => array($vendorDir . '/symfony/polyfill-php56'),
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
+    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
+    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Membra\\' => array($baseDir . '/app'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
-    'LANMS\\' => array($baseDir . '/app'),
+    'Intervention\\Image\\' => array($vendorDir . '/intervention/imagecache/src/Intervention/Image', $vendorDir . '/intervention/image/src/Intervention/Image'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
+    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
+    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Cartalyst\\Support\\' => array($vendorDir . '/cartalyst/support/src'),
+    'Cartalyst\\Sentinel\\' => array($vendorDir . '/cartalyst/sentinel/src'),
+    'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );

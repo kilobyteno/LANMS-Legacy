@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://membra.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Oslo',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -139,11 +139,20 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'LANMS\Providers\AppServiceProvider',
-		'LANMS\Providers\BusServiceProvider',
-		'LANMS\Providers\ConfigServiceProvider',
-		'LANMS\Providers\EventServiceProvider',
-		'LANMS\Providers\RouteServiceProvider',
+		'Membra\Providers\AppServiceProvider',
+		'Membra\Providers\BusServiceProvider',
+		'Membra\Providers\ConfigServiceProvider',
+		'Membra\Providers\EventServiceProvider',
+		'Membra\Providers\RouteServiceProvider',
+
+		/*
+		 * Third-party
+		 */
+		'Intervention\Image\ImageServiceProvider',
+		'igaster\laravelTheme\themeServiceProvider',
+		'Membra\Providers\ThemeSelectServiceProvider',
+		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
+		'anlutro\LaravelSettings\ServiceProvider',
 
 	],
 
@@ -192,6 +201,21 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		//Hehe
+		'User'			=> 'Membra\User',
+		'News'			=> 'Membra\News',
+		'NewsCategory'	=> 'Membra\NewsCategory',
+		
+		/*
+		 * Third-party
+		 */
+		'Image' 		=> 'Intervention\Image\Facades\Image',
+		'Theme'  		=> 'igaster\laravelTheme\Facades\Theme',
+		'Activation'	=> 'Cartalyst\Sentinel\Laravel\Facades\Activation',
+		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
+		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
+		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
 
 	],
 

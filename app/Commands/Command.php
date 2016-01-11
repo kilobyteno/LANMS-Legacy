@@ -1,4 +1,4 @@
-<?php namespace LANMS\Commands;
+<?php namespace Membra\Commands;
 
 abstract class Command {
 

@@ -1,4 +1,4 @@
-<?php namespace LANMS\Providers;
+<?php namespace Membra\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,4 +1,4 @@
-<?php namespace LANMS\Exceptions;
+<?php namespace Membra\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -36,6 +36,10 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $e)
 	{
+		if($e instanceof NotFoundHttpException)
+		{
+			return view('errors.404');
+		}
 		return parent::render($request, $e);
 	}
 

@@ -1,6 +1,6 @@
-<?php namespace LANMS\Services;
+<?php namespace Membra\Services;
 
-use LANMS\User;
+use Membra\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 

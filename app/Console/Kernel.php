@@ -1,4 +1,4 @@
-<?php namespace LANMS\Console;
+<?php namespace Membra\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'LANMS\Console\Commands\Inspire',
+		'Membra\Console\Commands\Inspire',
 	];
 
 	/**
