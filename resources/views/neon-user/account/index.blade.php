@@ -61,7 +61,7 @@
 					<hr>
 					<p>
 						<strong>Your referral link:</strong><br>
-						<input class="form-control" type="text" name="referrallink" id="referrallink" value="{{ Config::get('infihex.appprotocol') }}://{{ Config::get('infihex.appdomain') }}/r/{{ $referral_code }}">
+						<input class="form-control" type="text" name="referrallink" id="referrallink" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ $referral_code }}">
 					</p>
 					<p>You have referred <strong>{{ 0 }}</strong> user(s).</p>
 				</div>
