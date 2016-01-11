@@ -24,8 +24,8 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('WEB_DOMAIN', 'lanms.dev');
 		Setting::set('WEB_PORT', 80);
 		Setting::set('WEB_NAME', 'LANMS');
-		Setting::set('WEB_LOGO', 'images/lanms.png');
-		Setting::set('WEB_LOGO_ALT', 'images/lanms_dark.png');
+		Setting::set('WEB_LOGO', '/images/lanms.png');
+		Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
 		Setting::set('WEB_COPYRIGHT', '2015-2016, Infihex');
 
 		Setting::save();
