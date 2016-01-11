@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://membra.dev',
+	'url' => 'http://lanms.dev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -203,9 +203,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 		//Hehe
-		'User'			=> 'Membra\User',
-		'News'			=> 'Membra\News',
-		'NewsCategory'	=> 'Membra\NewsCategory',
+		'User'			=> 'LANMS\User',
+		'News'			=> 'LANMS\News',
+		'NewsCategory'	=> 'LANMS\NewsCategory',
 		
 		/*
 		 * Third-party
