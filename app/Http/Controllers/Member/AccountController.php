@@ -1,21 +1,21 @@
 <?php
 
-namespace Membra\Http\Controllers\Member;
+namespace LANMS\Http\Controllers\Member;
 
-use Membra\Http\Controllers\Controller;
+use LANMS\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
 use Intervention\Image\Facades\Image;
 use Regulus\ActivityLog\Models\Activity;
 
-use Membra\Http\Requests\Member\SettingsRequest;
-use Membra\Http\Requests\Member\PasswordRequest;
-use Membra\Http\Requests\Member\ProfileImageRequest;
-use Membra\Http\Requests\Member\ProfileCoverRequest;
+use LANMS\Http\Requests\Member\SettingsRequest;
+use LANMS\Http\Requests\Member\PasswordRequest;
+use LANMS\Http\Requests\Member\ProfileImageRequest;
+use LANMS\Http\Requests\Member\ProfileCoverRequest;
 
-use Membra\User;
-use Membra\News;
+use LANMS\User;
+use LANMS\News;
 
 class AccountController extends Controller {
 

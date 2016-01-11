@@ -1,6 +1,6 @@
 <?php
 
-namespace Membra;
+namespace LANMS;
 
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;

@@ -1,15 +1,15 @@
 <?php
 
-namespace Membra\Http\Controllers\Member;
+namespace LANMS\Http\Controllers\Member;
 
-use Membra\Http\Controllers\Controller;
+use LANMS\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Registrar;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use Illuminate\Support\Facades\Redirect;
 
-use Membra\Act;
+use LANMS\Act;
 
 class AuthController extends Controller {
  

@@ -1,9 +1,9 @@
 <?php
 
-namespace Membra\Http\Controllers\Member;
+namespace LANMS\Http\Controllers\Member;
 
-use Membra\Http\Controllers\Controller;
-use Membra\User;
+use LANMS\Http\Controllers\Controller;
+use LANMS\User;
 
 class ProfileController extends Controller {
 

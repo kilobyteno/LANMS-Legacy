@@ -1,4 +1,4 @@
-<?php namespace Membra\Events;
+<?php namespace LANMS\Events;
 
 abstract class Event {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Membra\Http\Requests\News;
+namespace LANMS\Http\Requests\News;
  
 use Illuminate\Foundation\Http\FormRequest;
  

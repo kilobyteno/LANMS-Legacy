@@ -30,7 +30,7 @@ return [
 	],
 
 	'stripe' => [
-		'model'  => 'Membra\User',
+		'model'  => 'LANMS\User',
 		'secret' => '',
 	],
 

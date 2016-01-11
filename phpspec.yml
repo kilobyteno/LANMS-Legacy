@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: Membra
-        psr4_prefix: Membra
+        namespace: LANMS
+        psr4_prefix: LANMS
         src_path: app

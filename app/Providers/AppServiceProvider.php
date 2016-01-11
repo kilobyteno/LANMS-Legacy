@@ -1,4 +1,4 @@
-<?php namespace Membra\Providers;
+<?php namespace LANMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'Membra\Services\Registrar'
+			'LANMS\Services\Registrar'
 		);
 	}
 

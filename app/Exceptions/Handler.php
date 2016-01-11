@@ -1,4 +1,4 @@
-<?php namespace Membra\Exceptions;
+<?php namespace LANMS\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

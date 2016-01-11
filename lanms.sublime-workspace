@@ -1,0 +1,790 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Cat",
+				"Category"
+			],
+			[
+				"cate",
+				"category"
+			],
+			[
+				"cl",
+				"cleanup_slug"
+			],
+			[
+				"date",
+				"datepicker"
+			],
+			[
+				"last",
+				"last_activity"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"file",
+				"fileinput"
+			],
+			[
+				"activation",
+				"activation_code"
+			],
+			[
+				"resp",
+				"responseText"
+			],
+			[
+				"jq",
+				"jqXHR"
+			],
+			[
+				"login",
+				"login_msg"
+			],
+			[
+				"Re",
+				"Request"
+			],
+			[
+				"border-ra",
+				"border-top-left-radius"
+			],
+			[
+				"border-rad",
+				"border-top-left-radius"
+			],
+			[
+				"account-change",
+				"account-change-details"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"m",
+				"margin-bottom"
+			],
+			[
+				"fontw",
+				"font-weight"
+			],
+			[
+				"max-",
+				"max-height"
+			],
+			[
+				"top",
+				"topcardsub"
+			],
+			[
+				"C",
+				"Card"
+			],
+			[
+				"set",
+				"setcode"
+			],
+			[
+				"ex",
+				"excardcode"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"card-",
+				"card-submitted"
+			],
+			[
+				"r",
+				"rgba()"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"card",
+				"cardsetnr"
+			],
+			[
+				"par",
+				"participantsinput"
+			],
+			[
+				"v",
+				"view"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"part",
+				"participants"
+			],
+			[
+				"convo",
+				"convoid"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"arr",
+				"arrslice"
+			],
+			[
+				"ta",
+				"target	Attr"
+			],
+			[
+				"end",
+				"endif"
+			],
+			[
+				"on",
+				"onclick	Attr"
+			],
+			[
+				"html",
+				"htmlcode"
+			],
+			[
+				"t",
+				"text-decoration"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"form_",
+				"form_email"
+			],
+			[
+				"profile",
+				"profilepicture"
+			],
+			[
+				"setcateg",
+				"setcategory"
+			],
+			[
+				"setcate",
+				"setcategories"
+			],
+			[
+				"delete",
+				"deleteCategories"
+			],
+			[
+				"Forum",
+				"ForumCategory"
+			],
+			[
+				"cat",
+				"categories"
+			],
+			[
+				"ac",
+				"action	Attr"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 408.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Users/RTRD/Bitbucket/lanms"
+	],
+	"file_history":
+	[
+		"/D/Users/RTRD/Bitbucket/membra/.env.example",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/norsk.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/voucher.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/review.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/order.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/forgotten.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/customer.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/mail/affiliate.php",
+		"/C/xampp/htdocs/reptilutstyr.net/config.php",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.632/config.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/news/index.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/changeimages.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/layouts/main.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/layouts/main.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/layouts/main.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/seeds/SettingsTableSeeder.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/resetpassword.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/register.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/activate.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/forgot-password.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/login.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/layouts/auth.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/news/create.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/News/NewsController.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/layouts/auth.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/routes.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/seeds/DatabaseSeeder.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Admin/SettingsController.php",
+		"/D/Users/RTRD/Bitbucket/membra/vendor/anlutro/l4-settings/src/SettingsManager.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/settings/index.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/infihex.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/app.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/seeds/NewsTableSeeder.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2014_07_02_230147_migration_cartalyst_sentinel.php",
+		"/D/Users/RTRD/Bitbucket/membra/.env",
+		"/D/Users/RTRD/Bitbucket/membra/database/seeds/UserTableSeeder.php",
+		"/D/Users/RTRD/Bitbucket/membra/vendor/anlutro/l4-settings/src/DatabaseSettingStore.php",
+		"/D/Users/RTRD/Bitbucket/membra/vendor/anlutro/l4-settings/src/Facade.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/settings.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Member/AccountController.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/newscategory/edit.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/newscategory/create.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/newscategory/index.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Requests/News/NewsCategoryCreateRequest.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/News/NewsCategoryController.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Requests/News/NewsCategoryEditRequest.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/User.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Requests/News/NewsCreateRequest.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Requests/News/NewsEditRequest.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/NewsCategory.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2015_12_28_213631_create_news_categories_table.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Middleware/SentinelAdmin.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/News.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2015_12_28_212731_create_news_table.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/index.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/news/edit.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Member/AuthController.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/NewsController.php",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.605/bootstrap-datepicker.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/bootstrap-datepicker.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/bootstrap-timepicker.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/wysihtml5/wysihtml5-0.4.0pre.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/jquery-1.11.3.min.js",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.773/jquery-ui.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/jquery-ui/js/jquery-ui-1.11.4.minimal.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/bootstrap-datetimepicker.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/css/boostrap-datetimepicker.min.css",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.622/bootstrap-timepicker.js",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-admin/home.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/js/bootstrap-timepicker.min.js",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.764/pygments.css",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.081/bootstrap-responsive.css",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/jquery.inputmask.bundle.min.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/bootstrap-datepicker.js",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/profile.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-admin/css/custom.css",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/changedetails.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/EXAMPLES/admin/tables-datatable.html",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Kernel.php",
+		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/register.tpl",
+		"/C/Users/Daniel'RTRD'/Downloads/opencart-2.1.0.1(1)/opencart-2.1.0.1/upload/config-dist.php",
+		"/D/Users/RTRD/Dropbox/INFIHEX/CODE/OpenCart/2.x/norsk/common/maintenance.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Middleware/SentinelGuest.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Middleware/SentinelAuth.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/home.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Member/ReferralController.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-forgotpassword.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-login.js",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Member/RecoverController.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-resetpassword.js",
+		"/D/Users/RTRD/Bitbucket/membra/app/Providers/ThemeSelectServiceProvider.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Act.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Rem.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/emails/auth/forgot.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-activateaccount.js",
+		"/D/Users/RTRD/Bitbucket/membra/app/Activation.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/Member/ProfileController.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/cartalyst.sentinel.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/EloquentUser.php",
+		"/D/Users/RTRD/Bitbucket/membra/vendor/cartalyst/sentinel/src/Users/EloquentUser.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Controllers/HomeController.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2014_10_12_000000_create_old_users_table.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Middleware/RedirectIfAuthenticated.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Http/Middleware/Authenticate.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/usrlastly.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/Providers/AppServiceProvider.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2015_03_14_132119_usrlastly_database.php",
+		"/D/Users/RTRD/Bitbucket/membra/app/UsrLastly/SentryUserProvider.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/settings.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/members.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/EXAMPLES/admin/extra-members.html",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/changepassword.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/css/custom.css",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/css/css/neon-theme.css",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/EXAMPLES/admin/forms-file-upload.html",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/EXAMPLES/admin/extra-settings.html",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/EXAMPLES/admin/extra-profile.html",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/errors/404.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-register.js",
+		"/D/Users/RTRD/Bitbucket/membra/public/neon-user/js/neon-recoveraccount.js",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/recover.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/forgot.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/account/recover.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon/layouts/emails/main.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/resources/views/neon-user/auth/forgotpassword.blade.php",
+		"/D/Users/RTRD/Bitbucket/membra/config/entrust.php"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"&aring;",
+			"&oslash;",
+			"&aring;",
+			"&aelig;",
+			"&oslash;",
+			"&aring;",
+			"Your account has now been created and you can log in by using your e-mail address and password by visiting our website or at the following URL:",
+			"&aring;",
+			"&oslash;",
+			"{{ Setting::get('WEB_NAME') }}",
+			"$article",
+			"Article",
+			"route('admin-news",
+			"hasAccess(['admin.newscategories.",
+			"view('newscategories.",
+			"article",
+			"admin-news",
+			"$user->hasAccess(['",
+			"entinel::getUser()->hasAccess(['",
+			"Sentinel::getUser()->hasAccess['",
+			"		$user = Sentinel::findById(Sentinel::getUser()->id);",
+			"$user->hasAccess(",
+			"admin.news.",
+			"return Redirect::route('account')\n								->with('messagetype', 'warning')\n								->with('message', 'You do not have access to this page!');",
+			"view('admin",
+			"'news.",
+			"NewsCategoryController",
+			"NewsController",
+			"console.log",
+			"getElementById",
+			"id",
+			"<div class=\"panel-options\">\n								<a href=\"#\" data-rel=\"collapse\"><i class=\"entypo-down-open\"></i></a>\n							</div>",
+			"assets/",
+			"title",
+			"edit",
+			"'author_id'		=> 1,",
+			"default",
+			"creator_id",
+			"root-level ",
+			" class=\"root-level\"",
+			"global",
+			"		$",
+			"Sentinel $auth, ",
+			"$auth->",
+			";\n",
+			"recover_status",
+			"recover_msg",
+			"neonRecoverAccount",
+			"');\n",
+			"recover_msg",
+			"recover_status",
+			"neonRecoverAccount",
+			"Sentinel::user()",
+			"Auth::",
+			"$auth->user()",
+			"entypo",
+			".profile-env > header .profile-info-sections .profile-name ",
+			" data-collapsed=\"0\"",
+			" for=\"field-3\"",
+			"user->",
+			"global",
+			"referral",
+			"forgot_status",
+			"forgot_msg",
+			"neonForgotPassword",
+			"Y",
+			"$steps.slideUp",
+			"form-register-success",
+			".form-register-success",
+			"resetProgressBar",
+			"&oslash;",
+			"&aring;",
+			"();",
+			"toast",
+			"toastr",
+			"account-activate",
+			"login",
+			"entypo",
+			"assets/js/",
+			".css\">",
+			"assets/css/",
+			"/neon-user/images/",
+			"{{ asset('/neon-user/js/",
+			"{{ asset('/neon-user/css/",
+			"{{ asset('js/",
+			"js//",
+			"{{ asset('/neon/images",
+			"{{ asset('/neon/js",
+			"{{ asset('/neon/css/",
+			"logo",
+			"assets/",
+			".js\"></script>",
+			".css\">",
+			"assets/",
+			"asset('",
+			"{{ Theme::js('",
+			"{{ Theme::css('",
+			".js\"></script>",
+			"assets/js",
+			"assets/css",
+			"appdomain",
+			"asset('/js/",
+			"asset('/css/",
+			"' }}",
+			"	",
+			"	\n",
+			"href",
+			"css",
+			"'}}",
+			"jpg",
+			"CreateActivityLogTable",
+			"material-light-blue",
+			"nav-tabs",
+			"navbar-material-light-blue",
+			"-material-light-blue",
+			"hr{",
+			"fileinput",
+			"Auth::user()->",
+			"http://lorempixel.com/output/people-q-c-1320-463-3.jpg",
+			"endif",
+			"Auth::user()->",
+			"Input::",
+			"\\Input::",
+			"user->",
+			"{{'class=\"active\"'}}",
+			"URL::",
+			"index",
+			"-->\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"å",
+			"ø",
+			"å",
+			"æ",
+			"ø",
+			"å",
+			"ø",
+			"$category",
+			"Category",
+			"route('admin-news-category",
+			"hasAccess(['admin.newscategory.",
+			"view('newscategory.",
+			"category",
+			"admin-news-category",
+			"Sentinel::getUser()->hasAccess(['",
+			"",
+			"Sentinel::getUser()->hasAccess",
+			"admin.newscategories.",
+			"return Redirect::back()->with('messagetype', 'warning')\n								->with('message', 'You do not have access to this page!');",
+			"'admin.news.",
+			"News\\NewsCategoryController",
+			"News\\NewsController",
+			"",
+			"{{ Theme::url('",
+			"'author_id'		=> 1,\n			'category_id'	=> 1,",
+			"author_id",
+			"",
+			"message",
+			"",
+			"Sentinel::",
+			"resetpw_status",
+			"resetpw_msg",
+			"neonResetPassword",
+			"activation_msg",
+			"activation_status",
+			"neonActivateAccount",
+			"Sentinel::getUser()",
+			"Sentinel::",
+			"$auth->getUser()",
+			"fa fa",
+			"",
+			"message",
+			"recover_status",
+			"recover_msg",
+			"neonRecoverAccount",
+			"ø",
+			"å",
+			"fa fa-",
+			"{{ Theme::url('js/",
+			".css') }}\">",
+			"{{ Theme::url('css/",
+			"{{ Theme::url('images/",
+			"{{ Theme::url('js/",
+			"{{ Theme::url('css/",
+			"{{ Theme::url('js/",
+			"js/",
+			"{{ Theme::url('images/",
+			"{{ Theme::url('js/",
+			"{{ Theme::url('css/",
+			"/neon-user/",
+			".js') }}\"></script>",
+			".css') }}\"></script>",
+			".css') }}\">",
+			".css') }}",
+			"{{ asset('/neon-user/",
+			"asset('/neon-user/",
+			"{{ asset('",
+			".js') }}\"></script>",
+			".js\"></script>') }}",
+			"{{ Theme::js('js",
+			"{{ Theme::css('css/",
+			"Theme::js('",
+			"Theme::css('",
+			"') }}",
+			"' }}",
+			"$",
+			"$request->",
+			"",
+			"class=\"active\" ",
+			"",
+			"form-login",
+			"image",
+			"merch",
+			"Merch",
+			"merch",
+			"Merch",
+			"merch",
+			"Merch",
+			"merch",
+			"Merch",
+			"merch",
+			"Merch",
+			"setid",
+			"find",
+			"packdeck",
+			"description",
+			"name",
+			"packdeck",
+			"PackDeck",
+			"errorcard",
+			"$errorcard",
+			"admin-errorcard",
+			"errorcard",
+			"ErrorCard",
+			"admin-card-error",
+			"ErrorCards::",
+			"AdminErrorCard",
+			"card",
+			"Artist::",
+			"'setreleasedate'",
+			"$card",
+			"$set",
+			"'regex:/^[A-Za-z0-9\\-! ,\\'\\\"\\/@\\.:\\(\\)]+$/'",
+			"col-md-12",
+			"</p>",
+			"<p>",
+			"fa fa-",
+			"theset",
+			"'creator_id' 	=> 1,\n			'author_id' 	=> 1",
+			"'creator_id' 			=> 1,\n			'author_id' 			=> 1",
+			"title",
+			"article",
+			"News",
+			"article",
+			"news",
+			"News",
+			"$card->",
+			"#22A7F0"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "lanms.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\Users\\RTRD\\Documents\\BitBucket\\lanms\\lanms.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 400.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

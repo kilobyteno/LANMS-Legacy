@@ -1,17 +1,17 @@
-<?php namespace Membra\Http\Controllers\News;
+<?php namespace LANMS\Http\Controllers\News;
 
-use Membra\Http\Requests;
-use Membra\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
-use Membra\News;
-use Membra\NewsCategory;
+use LANMS\News;
+use LANMS\NewsCategory;
 
-use Membra\Http\Requests\News\NewsCreateRequest;
-use Membra\Http\Requests\News\NewsEditRequest;
+use LANMS\Http\Requests\News\NewsCreateRequest;
+use LANMS\Http\Requests\News\NewsEditRequest;
 
 class NewsController extends Controller {
 

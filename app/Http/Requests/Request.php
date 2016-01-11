@@ -1,4 +1,4 @@
-<?php namespace Membra\Http\Requests;
+<?php namespace LANMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

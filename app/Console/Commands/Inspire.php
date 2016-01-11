@@ -1,4 +1,4 @@
-<?php namespace Membra\Console\Commands;
+<?php namespace LANMS\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

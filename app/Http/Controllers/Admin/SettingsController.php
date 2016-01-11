@@ -1,7 +1,7 @@
-<?php namespace Membra\Http\Controllers\Admin;
+<?php namespace LANMS\Http\Controllers\Admin;
 
-use Membra\Http\Requests;
-use Membra\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;

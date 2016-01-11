@@ -1,4 +1,4 @@
-<?php namespace Membra\Http;
+<?php namespace LANMS\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -15,7 +15,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'Membra\Http\Middleware\VerifyCsrfToken',
+		'LANMS\Http\Middleware\VerifyCsrfToken',
 	];
 
 	/**
@@ -24,9 +24,9 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'sentinel.auth' => 'Membra\Http\Middleware\SentinelAuth',
-		'sentinel.guest' => 'Membra\Http\Middleware\SentinelGuest',
-		'sentinel.admin' => 'Membra\Http\Middleware\SentinelAdmin',
+		'sentinel.auth' => 'LANMS\Http\Middleware\SentinelAuth',
+		'sentinel.guest' => 'LANMS\Http\Middleware\SentinelGuest',
+		'sentinel.admin' => 'LANMS\Http\Middleware\SentinelAdmin',
 	];
 
 }

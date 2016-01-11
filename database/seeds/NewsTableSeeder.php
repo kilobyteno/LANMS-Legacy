@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Membra\News;
-use Membra\NewsCategory;
+use LANMS\News;
+use LANMS\NewsCategory;
 
 class NewsSeeder extends Seeder  {
 

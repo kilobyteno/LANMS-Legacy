@@ -139,18 +139,18 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'Membra\Providers\AppServiceProvider',
-		'Membra\Providers\BusServiceProvider',
-		'Membra\Providers\ConfigServiceProvider',
-		'Membra\Providers\EventServiceProvider',
-		'Membra\Providers\RouteServiceProvider',
+		'LANMS\Providers\AppServiceProvider',
+		'LANMS\Providers\BusServiceProvider',
+		'LANMS\Providers\ConfigServiceProvider',
+		'LANMS\Providers\EventServiceProvider',
+		'LANMS\Providers\RouteServiceProvider',
 
 		/*
 		 * Third-party
 		 */
 		'Intervention\Image\ImageServiceProvider',
 		'igaster\laravelTheme\themeServiceProvider',
-		'Membra\Providers\ThemeSelectServiceProvider',
+		'LANMS\Providers\ThemeSelectServiceProvider',
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
 		'anlutro\LaravelSettings\ServiceProvider',
 
