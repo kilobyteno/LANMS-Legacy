@@ -5,6 +5,9 @@ use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use LANMS\SeatRows;
+use LANMS\Seats;
+
 class UserSeatingController extends Controller {
 
 	/**
@@ -14,7 +17,8 @@ class UserSeatingController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$rows = SeatRows::all();
+		return view('seating.index')->withRows($rows);
 	}
 
 	/**

@@ -206,6 +206,8 @@ return [
 		'User'			=> 'LANMS\User',
 		'News'			=> 'LANMS\News',
 		'NewsCategory'	=> 'LANMS\NewsCategory',
+		'Seats'			=> 'LANMS\Seats',
+		'SeatRows'			=> 'LANMS\SeatRows',
 		
 		/*
 		 * Third-party
