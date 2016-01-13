@@ -51,7 +51,7 @@
 						</a>
 
 						<ul class="desktop-menu hide-on-med-and-down">
-							<li class="active"><a href="{{ url('/') }}"><span>Home</span></a></li>
+							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 							@else
@@ -60,7 +60,7 @@
 						</ul>
 
 						<ul class="side-nav" id="nav-mobile">
-							<li class="active"><a href="{{ url('/') }}"><span>Home</span></a></li>
+							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 							@else
@@ -80,30 +80,26 @@
 	@yield('content')
 </div>
 
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text"><a class="white-text" href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a class="white-text" href="https://infihex.com/" target="_blank">Infihex</a></h5>
+<footer class="white z-depth-1 center">
+	<div class="container">
 
-      </div>
-      <div class="col l4 offset-l2 s12">
-				@if(Config::get('app.debug'))
-					<b><span class="white-text">DEBUG MODE</span></b>
-				@endif
-				@if(Setting::get('APP_SHOW_RESETDB'))
-					<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
-				@endif
-      </div>
-    </div><br>
-  </div>
-	<a class="back-to-top btn-floating btn-large waves-effect waves-light blue-grey darken-1" href="#header"><i class="mdi-navigation-expand-less"></i></a>
-  <div class="footer-copyright">
-    <div class="container">
-    &copy; {{ Setting::get('WEB_COPYRIGHT') }}
-    <p class="grey-text text-lighten-4 right muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
-    </div>
-  </div>
+		<div class="row">
+			<div class="col s12">
+					<p class="text-muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+						<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+						@if(Config::get('app.debug'))
+							<b><span class="text-danger">DEBUG MODE</span></b>
+						@endif
+						@if(Setting::get('APP_SHOW_RESETDB'))
+							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
+						@endif
+
+				</div>
+			</div>
+
+		<a class="back-to-top btn-floating btn-large waves-effect waves-light blue-grey darken-1" href="#header"><i class="mdi-navigation-expand-less"></i></a>
+
+	</div>
 </footer>
 
 </div>
@@ -116,6 +112,7 @@
 	<script src="{{ Theme::url('js/jquery.smooth-scroll.min.js') }}"></script>
 	<script src="{{ Theme::url('js/app.js') }}"></script>
 	<script src="{{ Theme::url('js/custom.js') }}"></script>
+	<script src="{{ Theme::url('js/toastr.js') }}"></script>
 
 	<script type="text/javascript">
 

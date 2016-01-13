@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title') Home @stop
+@section('title') News @stop
 
 @section('content')
 
@@ -29,12 +29,11 @@
 				</div>
 			@endforeach
 
-			<br>
-			<div class="row">
-				<div class="col s12">
-					<a href="{{ URL::route('news') }}" class="btn btn-primary"><span class="fa fa-long-arrow-left"></span> Les eldre nyheter</a>
-				</div>
-			</div>
+      <div class="row">
+        <div class="col s12">
+          {!! $news->render() !!}
+        </div>
+      </div>
 
 		</div>
 	</div>

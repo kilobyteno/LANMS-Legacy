@@ -495,6 +495,7 @@ footer p {
   font-size: inherit;
   line-height: 32px;
   vertical-align: middle;
+  color: #FFFFFF;
 }
 
 .pagination li:first-child {
