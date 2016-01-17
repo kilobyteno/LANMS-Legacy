@@ -45,11 +45,11 @@
 
 				</div>
 				<div class="col-md-4">
-					<p>Hello</p>
+					<h3>Seats you have reserved:</h3>
 				</div>
 
 				<div class="col-md-4">
-					<p>world!</p>
+					<h3>Seats you administer:</h3>
 				</div>
 			</div>
 
