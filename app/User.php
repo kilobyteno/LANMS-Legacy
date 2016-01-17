@@ -605,8 +605,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 
 	public function scopeHasAdminAccess () {
-		$user = Sentinel::findById(Sentinel::getUser()->id);
-		return $user->hasAccess(['admin']);
+		return Sentinel::getUser()->hasAccess('admin');
 	}
 
 	public function scopeGetUsernameByID($query, $id) {
