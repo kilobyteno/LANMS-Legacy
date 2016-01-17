@@ -23,17 +23,38 @@
 					<div class="seatmap">
 						<ul>
 							<li class="scene">Scene</li>
-							<li class="entrance"><p><span class="fa fa-sign-in"></span></p></li>
+							<li class="entrance" id="entrance"><p><span class="fa fa-sign-in"></span></p></li>
 							@foreach($rows as $row)
 								<li class="seat-row">
 									<ul class="seat-row-{{$row->slug}}">
 										@if($row->slug == 'a')
-											<li class="seat kiosk"><p><span class="fa fa-coffee"></span></p></li>
+											<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
 										@endif
 										@foreach($row->seats as $seat)
 											<li class="seat">
 												<p>
-													{{ $seat->name }}
+													@if($seat->status == 2)
+														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
+														<div class="popover-content hidden">
+															<p>Reserved for: {{ User::getUsernameByID($seat->used_by) }}</p>
+														</div>
+													@elseif($seat->status == 1)
+														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
+														<div class="popover-content hidden">
+															<p>Temporary Reserved By: {{ User::getUsernameByID($seat->reserved_by) }}</p>
+														</div>
+													@elseif($seat->status == 0)
+														@if(Setting::get('APP_SEATING_OPEN') && $seat->row_id <> 1)
+															<a href="javascript:void(0)" class="popper" data-toggle="popover">{{ $seat->name }}</a>
+															<div class="popper-content hidden">
+																<p><a href="{{ URL::route('seating-reserve', $seat->name) }}">Reserver</a></p>
+															</div>
+														@else
+															{{ $seat->name }}
+														@endif
+													@else
+														{{ $seat->name }}
+													@endif
 												</p>
 											</li>
 										@endforeach
@@ -50,10 +71,29 @@
 
 				<div class="col-md-4">
 					<h3>Seats you administer:</h3>
+					<button class="popper" data-toggle="popover">Pop me</button>
+					<div class="popper-content hide">My third popover content goes here.</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
+@stop
+
+@section('javascript')
+
+	<script type="text/javascript">
+		jQuery(function ($) {
+			$('.popper').popover({
+				placement: 'bottom',
+				container: 'body',
+				html: true,
+				content: function () {
+				    return $(this).next('.popper-content').html();
+				}
+			});
+		});
+	</script>
+
 @stop

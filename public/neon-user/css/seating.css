@@ -55,7 +55,7 @@ SEATMAP by Infihex
 	vertical-align: middle;
 }
 
-.seatmap ul > .seat-row li.seat > a {
+.seatmap ul > .seat-row li.seat > p > a {
 	color:#fff;
 	border-bottom: 1px dotted #fff;
 }
