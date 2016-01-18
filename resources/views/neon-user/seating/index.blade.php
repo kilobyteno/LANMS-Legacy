@@ -71,8 +71,6 @@
 
 				<div class="col-md-4">
 					<h3>Seats you administer:</h3>
-					<button class="popper" data-toggle="popover">Pop me</button>
-					<div class="popper-content hide">My third popover content goes here.</div>
 				</div>
 			</div>
 
@@ -83,17 +81,5 @@
 
 @section('javascript')
 
-	<script type="text/javascript">
-		jQuery(function ($) {
-			$('.popper').popover({
-				placement: 'bottom',
-				container: 'body',
-				html: true,
-				content: function () {
-				    return $(this).next('.popper-content').html();
-				}
-			});
-		});
-	</script>
 
 @stop
