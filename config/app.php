@@ -206,6 +206,7 @@ return [
 		'User'			=> 'LANMS\User',
 		'News'			=> 'LANMS\News',
 		'NewsCategory'	=> 'LANMS\NewsCategory',
+		'Address'		=> 'LANMS\Address',
 		
 		/*
 		 * Third-party
