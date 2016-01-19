@@ -156,6 +156,7 @@ Route::group([
 				get('/{id}/destroy', [
 					'as' => 'account-addressbook-destroy',
 					'uses' => 'Member\AddressBookController@destroy'
+				]);
 		});
 		Route::group([
 			'prefix' => 'seating'
