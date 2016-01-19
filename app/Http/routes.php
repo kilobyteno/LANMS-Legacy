@@ -131,6 +131,34 @@ Route::group([
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
 		Route::group([
+			'prefix' => 'addressbook'
+			], function() {
+				get('/', [
+					'as' => 'account-addressbook',
+					'uses' => 'Member\AddressBookController@index'
+				]);
+				get('/create', [
+					'as' => 'account-addressbook-create',
+					'uses' => 'Member\AddressBookController@create'
+				]);
+				post('/store', [
+					'as' => 'account-addressbook-store',
+					'uses' => 'Member\AddressBookController@store'
+				]);
+				get('/{id}/edit', [
+					'as' => 'account-addressbook-edit',
+					'uses' => 'Member\AddressBookController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'account-addressbook-update',
+					'uses' => 'Member\AddressBookController@update'
+				]);
+				get('/{id}/destroy', [
+					'as' => 'account-addressbook-destroy',
+					'uses' => 'Member\AddressBookController@destroy'
+				]);
+		});
+		Route::group([
 			'prefix' => 'seating'
 			], function() {
 				get('/', [
