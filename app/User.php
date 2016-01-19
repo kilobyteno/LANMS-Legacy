@@ -449,6 +449,10 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return new static::$permissionsClass($userPermissions, $rolePermissions);
 	}
 
+	public function addresses() {
+		return $this->hasMany('Address', 'user_id');
+	}
+
 	public function scopeGetLastActivity($query, $id, $short = false) {
 
 		$user 		= $query->where('id', '=', $id)->first();
