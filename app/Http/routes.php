@@ -156,6 +156,37 @@ Route::group([
 				get('/{id}/destroy', [
 					'as' => 'account-addressbook-destroy',
 					'uses' => 'Member\AddressBookController@destroy'
+		});
+		Route::group([
+			'prefix' => 'seating'
+			], function() {
+				get('/', [
+					'as' => 'seating',
+					'uses' => 'Seating\UserSeatingController@index'
+				]);
+				get('/{id}/edit', [
+					'as' => 'seating-edit',
+					'uses' => 'Seating\UserSeatingController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'seating-update',
+					'uses' => 'Seating\UserSeatingController@update'
+				]);
+				get('/{id}/pay', [
+					'as' => 'seating-pay',
+					'uses' => 'Seating\UserSeatingController@pay'
+				]);
+				post('/{id}/checkout', [
+					'as' => 'seating-checkout',
+					'uses' => 'Seating\UserSeatingController@checkout'
+				]);
+				get('/{id}/reserve', [
+					'as' => 'seating-reserve',
+					'uses' => 'Seating\UserSeatingController@reserve'
+				]);
+				post('/{id}/reserved', [
+					'as' => 'seating-reserved',
+					'uses' => 'Seating\UserSeatingController@reserved'
 				]);
 		});
 });

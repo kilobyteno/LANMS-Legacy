@@ -28,6 +28,9 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
 		Setting::set('WEB_COPYRIGHT', '2015-2016, Infihex');
 
+		Setting::set('APP_SEATING_OPEN', true);
+		Setting::set('APP_SEATING_SHOW_MAP', true);
+
 		Setting::save();
 	}
 
