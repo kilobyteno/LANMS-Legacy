@@ -78,6 +78,7 @@ class AddressBookController extends Controller {
 				//give user rights to edit address
 				$user = Sentinel::getUser();
 				$user->addPermission('address.'.$address->id.'.edit');
+				$user->addPermission('address.'.$address->id.'.destroy');
 				$user->save();
 
 				return Redirect::route('account-addressbook')
@@ -181,7 +182,26 @@ class AddressBookController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['address.'.$id.'.destroy'])) {
+			$address = Address::find($id);
+			if($address->delete()) {
+				return Redirect::route('account-addressbook')
+						->with('messagetype', 'success')
+						->with('message', 'The address has now been deleted!');
+			} else {
+				return Redirect::route('account-addressbook')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while deleting the address.');
+			}
+			//Remove User Permissions
+			$user = Sentinel::getUser();
+			$user->removePermission('address.'.$id.'.destroy');
+			$user->removePermission('address.'.$id.'.destroy');
+			$user->save();
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 }
