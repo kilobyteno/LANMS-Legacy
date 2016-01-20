@@ -276,6 +276,21 @@ Route::group([
 });
 
 Route::group(['prefix' => 'ajax',], function() {
+	Route::get('/usernames', function () {
+		/*if(!Request::ajax()) {
+			abort(403);
+		}*/
+		$users = User::all();
+		$usernames = array();
+		foreach($users as $user) {
+			if($user->showname) {
+				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.' '.$user->lastname.')'));
+			} else {
+				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.')'));
+			}
+		}
+		return Response::json($usernames);
+	});
 	Route::post('/account/register', function () {
 
 		if(!Request::ajax()) {
