@@ -71,6 +71,7 @@
 
 				<div class="col-md-4">
 					<h3>Seats you administer:</h3>
+					<input type="text" id="ac" />
 				</div>
 			</div>
 
@@ -80,6 +81,24 @@
 @stop
 
 @section('javascript')
-
-
+	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready( function() { 
+				$('#ac').typeahead({
+					onSelect: function(item) {
+				        console.log(item);
+				    },
+				    ajax: {
+				        url: "/ajax/usernames",
+				        timeout: 500,
+				        displayField: "name",
+				        triggerLength: 1,
+				        method: "get",
+				        loadingClass: "loading-circle",
+				    }
+				});
+			 });
+		})(jQuery);
+	</script>
 @stop
