@@ -314,6 +314,8 @@ Route::group(['prefix' => 'ajax',], function() {
 		$referral			= Request::get('referral');
 		$referral_code 		= str_random(15);
 
+		$uid 				= mt_rand(1000000000, 2147483647);
+
 		$user = Sentinel::register(array(
 			'email' 			=> $email,
 			'username'			=> $username,
@@ -323,6 +325,7 @@ Route::group(['prefix' => 'ajax',], function() {
 			'password'			=> $password,
 			'referral'			=> $referral,
 			'referral_code'		=> $referral_code,
+			'uid'				=> $uid,
 		));
 
 		if($user) {
