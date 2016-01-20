@@ -31,6 +31,8 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('APP_SEATING_OPEN', true);
 		Setting::set('APP_SEATING_SHOW_MAP', true);
 
+		Setting::set('APP_GOOGLE_MAPS_API_KEY', 'AIzaSyCJDbjolbvN7mYY3SiV6A7SLPCBlHlE-Ow');
+
 		Setting::save();
 	}
 
