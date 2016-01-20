@@ -20,16 +20,8 @@ class Seats extends Model {
 		return $this->hasOne('SeatStatus', 'id', 'status_id');
 	}
 
-	function scopeStatusReserved($query) {
-		return $query->status->name == 'Reserved';
-	}
-
-	function scopeStatusOpen($query) {
-		return $query->status->name == 'Open';
-	}
-
-	function scopeStatusTemporaryReserved($query) {
-		return $query->status->name == 'Temporary Reserved';
+	function reservedfor() {
+		return $this->hasOne('User', 'id', 'reservedfor_id');
 	}
 
 }

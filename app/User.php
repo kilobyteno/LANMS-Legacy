@@ -453,6 +453,10 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $this->hasMany('Address', 'user_id');
 	}
 
+	public function reservedseats() {
+		return $this->hasMany('Seats', 'reservedfor_id');
+	}
+
 	public function scopeGetLastActivity($query, $id, $short = false) {
 
 		$user 		= $query->where('id', '=', $id)->first();
