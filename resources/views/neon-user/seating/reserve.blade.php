@@ -31,7 +31,7 @@
 											<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
 										@endif
 										@foreach($row->seats as $seat)
-											<li class="seat">
+											<li class="seat @if(Request::is('user/seating/'.$seat->name.'/reserve'))active @endif">
 												<p>
 													@if($seat->status == 2)
 														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
@@ -65,16 +65,36 @@
 					</div>
 
 				</div>
-				<div class="col-md-4">
-					<h3>Seats you have reserved:</h3>
-				</div>
-
-				<div class="col-md-4">
-					<h3>Seats you administer:</h3>
+				<div class="col-md-8">
+					<p>Username</p>
+					<input type="text" id="ac" class="form-control" />
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
+@stop
+
+@section('javascript')
+	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready( function() { 
+				$('#ac').typeahead({
+					onSelect: function(item) {
+				        console.log(item);
+				    },
+				    ajax: {
+				        url: "/ajax/usernames",
+				        timeout: 500,
+				        displayField: "name",
+				        triggerLength: 1,
+				        method: "get",
+				        loadingClass: "loading-circle",
+				    }
+				});
+			 });
+		})(jQuery);
+	</script>
 @stop

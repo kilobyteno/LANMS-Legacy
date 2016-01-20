@@ -34,6 +34,10 @@ SEATMAP by Infihex
 	margin-left: -4px;
 }
 
+.seatmap ul > .seat-row li.seat.active {
+	background-color: #f1c40f;
+}
+
 .seatmap ul > .seat-row:nth-child(even)  > :not(.seat-row-a) .seat {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;

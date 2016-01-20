@@ -26,9 +26,10 @@ class UserSeatingController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function reserve()
 	{
-		//
+		$rows = SeatRows::all();
+		return view('seating.reserve')->withRows($rows);
 	}
 
 	/**
