@@ -627,4 +627,5 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 
 		return $full;
 	}
+
 }
