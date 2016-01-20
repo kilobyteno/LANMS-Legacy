@@ -209,6 +209,7 @@ return [
 		'Address'		=> 'LANMS\Address',
 		'Seats'			=> 'LANMS\Seats',
 		'SeatRows'		=> 'LANMS\SeatRows',
+		'SeatStatus'	=> 'LANMS\SeatStatus',
 		
 		/*
 		 * Third-party

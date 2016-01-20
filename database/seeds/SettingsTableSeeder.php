@@ -31,6 +31,12 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('APP_SEATING_OPEN', true);
 		Setting::set('APP_SEATING_SHOW_MAP', true);
 
+		Setting::set('STRIPE_TEST_SECRET_KEY', 'sk_test_pOqqSRPoUVK52CFMkg7uLxMm');
+		Setting::set('STRIPE_TEST_PUBLIC_KEY', 'pk_test_2JLudoJmBqRpvCOwtlaR8QdH');
+
+		Setting::set('STRIPE_LIVE_SECRET_KEY', 'sk_live_r6atfFMnEDQs2QkEMv4x2LNh');
+		Setting::set('STRIPE_LIVE_PUBLIC_KEY', 'pk_live_fCK6at9DkHxflHS9Efcp9D35');
+
 		Setting::save();
 	}
 

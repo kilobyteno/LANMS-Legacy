@@ -19,8 +19,7 @@ class CreateSeatsTable extends Migration {
 			$table->string('name');
 			$table->string('slug');
 			$table->integer('row_id');
-			
-			$table->integer('status');
+			$table->integer('status_id')->default(0);
 
 			$table->integer('used_by'); //who sits here?
             $table->integer('reserved_by'); //who reserved this seat?
