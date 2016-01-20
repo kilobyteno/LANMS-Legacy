@@ -15,8 +15,12 @@ class ReferralController extends Controller {
 	 */
 	public function store(Request $request, $code)
 	{
-		$request->session()->put('referral', $code);
-		return Redirect::route('account-register');
+		if(Setting::get('APP_REFERRAL_ACTIVE')) {
+			$request->session()->put('referral', $code);
+			return Redirect::route('account-register');
+		} else {
+			return Redirect::route('home');
+		}
 	}
 
 }
