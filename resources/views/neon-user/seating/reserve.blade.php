@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Seating')
+@section('title', 'Reserve Seat - '.Request::segment(3))
 @section('css')
 	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
 @stop
@@ -9,12 +9,13 @@
 	<div class="row-fluid">
 		<div class="col-md-12">
 
-			<h1>Seating</h1>
+			<h1>Reserve Seat - {{ Request::segment(3) }}</h1>
 
 			<ol class="breadcrumb 2" >
 				<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 				<li><a href="{{ route('account') }}">Dashboard</a></li>
-				<li class="active"><strong>Seating</strong></li>
+				<li><a href="{{ route('seating') }}">Seating</a></li>
+				<li class="active"><strong>Reserve Seat - {{ Request::segment(3) }}</strong></li>
 			</ol>
 
 			<div class="row">	
@@ -45,10 +46,7 @@
 														</div>
 													@elseif($seat->status == 0)
 														@if(Setting::get('APP_SEATING_OPEN') && $seat->row_id <> 1)
-															<a href="javascript:void(0)" class="popper" data-toggle="popover">{{ $seat->name }}</a>
-															<div class="popper-content hidden">
-																<p><a href="{{ URL::route('seating-reserve', $seat->name) }}">Reserver</a></p>
-															</div>
+															<a href="{{ URL::route('seating-reserve', $seat->name) }}">{{ $seat->name }}</a>
 														@else
 															{{ $seat->name }}
 														@endif
@@ -66,8 +64,23 @@
 
 				</div>
 				<div class="col-md-8">
-					<p>Username</p>
-					<input type="text" id="ac" class="form-control" />
+					@if($seat->reserved)
+						<div class="alert alert-warning" role="alert">
+							<strong>Warning!</strong> This seat has already been reserved.
+						</div>
+					@else
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">
+									Reserved for
+								</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="username" value="{{ Sentinel::getUser()->username.' ('.Sentinel::getUser()->firstname.')' }}">
+									<input type="text" class="hidden" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}">
+								</div>
+							</div>
+						</form>
+					@endif
 				</div>
 			</div>
 
@@ -81,18 +94,17 @@
 	<script type="text/javascript">
 		(function($) {
 			$(document).ready( function() { 
-				$('#ac').typeahead({
+				$('#username').typeahead({
 					onSelect: function(item) {
-				        console.log(item);
-				    },
-				    ajax: {
-				        url: "/ajax/usernames",
-				        timeout: 500,
-				        displayField: "name",
-				        triggerLength: 1,
-				        method: "get",
-				        loadingClass: "loading-circle",
-				    }
+						document.getElementById("reservedfor").value = item.value;
+					},
+					ajax: {
+						url: "/ajax/usernames",
+						timeout: 500,
+						displayField: "name",
+						triggerLength: 1,
+						method: "get",
+					}
 				});
 			 });
 		})(jQuery);

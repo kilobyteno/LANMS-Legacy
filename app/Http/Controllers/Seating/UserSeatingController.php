@@ -4,6 +4,8 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\Redirect;
 
 use LANMS\SeatRows;
 use LANMS\Seats;
@@ -26,10 +28,15 @@ class UserSeatingController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function reserve()
+	public function reserve($id)
 	{
+		if(substr($id, 0, 1) == 'A' || substr($id, 0, 1) == 'a') {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'It is not possible to reserve seats on the A-row.');
+		}
 		$rows = SeatRows::all();
-		return view('seating.reserve')->withRows($rows);
+		$seat = Seats::find($id);
+		return view('seating.reserve')->withRows($rows)->withSeat($seat);
 	}
 
 	/**

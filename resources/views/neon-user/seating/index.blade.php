@@ -31,24 +31,23 @@
 											<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
 										@endif
 										@foreach($row->seats as $seat)
+
+											{{$seat->statusReserved}}
 											<li class="seat">
 												<p>
-													@if($seat->status == 2)
+													@if($seat->statusreserved)
 														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
 														<div class="popover-content hidden">
 															<p>Reserved for: {{ User::getUsernameByID($seat->used_by) }}</p>
 														</div>
-													@elseif($seat->status == 1)
+													@elseif($seat->statusTemporaryReserved)
 														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
 														<div class="popover-content hidden">
 															<p>Temporary Reserved By: {{ User::getUsernameByID($seat->reserved_by) }}</p>
 														</div>
-													@elseif($seat->status == 0)
+													@elseif($seat->statusOpen)
 														@if(Setting::get('APP_SEATING_OPEN') && $seat->row_id <> 1)
-															<a href="javascript:void(0)" class="popper" data-toggle="popover">{{ $seat->name }}</a>
-															<div class="popper-content hidden">
-																<p><a href="{{ URL::route('seating-reserve', $seat->name) }}">Reserver</a></p>
-															</div>
+															<a href="{{ URL::route('seating-reserve', $seat->name) }}">{{ $seat->name }}</a>
 														@else
 															{{ $seat->name }}
 														@endif
@@ -71,34 +70,10 @@
 
 				<div class="col-md-4">
 					<h3>Seats you administer:</h3>
-					<input type="text" id="ac" />
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
-@stop
-
-@section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
-	<script type="text/javascript">
-		(function($) {
-			$(document).ready( function() { 
-				$('#ac').typeahead({
-					onSelect: function(item) {
-				        console.log(item);
-				    },
-				    ajax: {
-				        url: "/ajax/usernames",
-				        timeout: 500,
-				        displayField: "name",
-				        triggerLength: 1,
-				        method: "get",
-				        loadingClass: "loading-circle",
-				    }
-				});
-			 });
-		})(jQuery);
-	</script>
 @stop
