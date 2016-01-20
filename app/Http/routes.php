@@ -29,6 +29,7 @@ if(Config::get('app.debug')) {
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/tos', ['as' => 'account-tos', 'uses' => 'HomeController@index']);
 Route::get('/privacy', ['as' => 'account-privacy', 'uses' => 'HomeController@index']);
+Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
 
 Route::group([
 	'prefix' => 'news'
@@ -72,6 +73,7 @@ Route::group([
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
+		
 });
 
 Route::group([
@@ -311,7 +313,7 @@ Route::group(['prefix' => 'ajax',], function() {
 		$originalDate 		= Request::input('birthdate');
 		$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
 
-		$referral			= Request::get('referral');
+		$referral			= Session::get('referral');
 		$referral_code 		= str_random(15);
 
 		$uid 				= mt_rand(1000000000, 2147483647);
