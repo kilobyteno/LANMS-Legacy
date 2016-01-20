@@ -22,11 +22,12 @@ class AddressCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'address1' 		=> 'required',
-			'postalcode' 	=> 'required',
-			'city' 			=> 'required',
-			'county' 		=> 'required',
-			'country' 		=> 'required',
+			'address1' 		=> 'required|alpha_dash|max:100',
+			'address2' 		=> 'alpha_dash',
+			'postalcode' 	=> 'required|alpha_dash|min:4',
+			'city' 			=> 'required|alpha',
+			'county' 		=> 'required|alpha',
+			'country' 		=> 'required|alpha',
 		];
 	}
 
