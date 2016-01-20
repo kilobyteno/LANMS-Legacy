@@ -83,3 +83,7 @@
 .user-status.is-busy {
   background-color: #ee4749;
 }
+
+.page-container.horizontal-menu header.navbar .navbar-brand {
+	padding: 16.5px 15px;
+}
