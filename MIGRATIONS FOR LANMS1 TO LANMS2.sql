@@ -65,27 +65,13 @@ ALTER TABLE `users` CHANGE `showonline` `showonline` ENUM('0','1') CHARACTER SET
 */
 /* ADD AND UPDATE COLUMNS */
 ALTER TABLE `news` CHANGE `title` `title` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `id`;
-ALTER TABLE `news` CHANGE `slug` `slug` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `title`;
+ALTER TABLE `news` ADD `slug` VARCHAR(255) NOT NULL AFTER `title`;
 ALTER TABLE `news` CHANGE `content` `content` LONGTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `slug`;
 ALTER TABLE `news` ADD `category_id` INT NOT NULL DEFAULT '1' AFTER `content`;
 ALTER TABLE `news` ADD `creator_id` INT NOT NULL AFTER `category_id`;
 ALTER TABLE `news` CHANGE `author_id` `author_id` INT(11) NOT NULL AFTER `creator_id`;
 ALTER TABLE `news` CHANGE `active` `active` ENUM('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' AFTER `author_id`;
-ALTER TABLE `news` CHANGE `published_at` `published_at` DATETIME NOT NULL AFTER `active`;
+ALTER TABLE `news` ADD `published_at` DATETIME NOT NULL AFTER `active`;
 ALTER TABLE `news` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `published_at`;
 ALTER TABLE `news` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `created_at`;
 ALTER TABLE `news` CHANGE `deleted_at` `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `updated_at`;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
