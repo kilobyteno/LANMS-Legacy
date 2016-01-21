@@ -456,5 +456,6 @@ return array(
     'SettingsTableSeeder' => $baseDir . '/database/seeds/SettingsTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UpgradeUsersTable' => $baseDir . '/database/migrations/2016_01_21_114434_upgrade_users_table.php',
     'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );
