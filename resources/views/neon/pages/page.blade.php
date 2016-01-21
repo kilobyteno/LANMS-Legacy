@@ -9,7 +9,7 @@
 			<div class="col-sm-12">
 				<h1>{{ $title }}</h1>
 				<ol class="breadcrumb bc-3">
-					<li class="active"><a href=""><i class="fa fa-home"></i> Home</a></li>
+					<li class="active"><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a></li>
 					<li>{{ $title }}</li>
 				</ol>
 			</div>
