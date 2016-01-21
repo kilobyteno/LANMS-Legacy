@@ -555,3 +555,6 @@ Route::group(['prefix' => 'ajax',], function() {
 		
 	});
 });
+
+// THIS NEEDS TO BE AT THE BOTTOM TO MAKE ALL OTHER ROUTES WORK
+Route::get('/{slug}', ['as' => 'page', 'uses' => 'Page\PagesController@show']);
