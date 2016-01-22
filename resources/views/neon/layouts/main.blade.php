@@ -76,7 +76,7 @@
 					@if(Config::get('app.debug'))
 						<b><span class="text-danger">DEBUG MODE</span></b>
 					@endif
-					@if(Setting::get('APP_SHOW_RESETDB'))
+					@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
 						<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 					@endif 
 				</p>
