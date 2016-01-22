@@ -83,6 +83,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.newscategory.destroy');
 		$role->addPermission('admin.newscategory.restore');
 
+		$role->addPermission('admin.pages.create');
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy');
+		$role->addPermission('admin.pages.restore');
+
 		$role->addPermission('admin.settings.update');
 
 		$role->save();
@@ -102,6 +107,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.newscategory.destroy');
 		$role->addPermission('admin.newscategory.restore', false);
 
+		$role->addPermission('admin.pages.create');
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy');
+		$role->addPermission('admin.pages.restore', false);
+
 		$role->addPermission('admin.settings.update', false);
 
 		$role->save();
@@ -115,6 +125,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy', false);
 		$role->addPermission('admin.news.restore', false);
+
+		$role->addPermission('admin.pages.create', false);
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy', false);
+		$role->addPermission('admin.pages.restore', false);
 
 		$role->addPermission('admin.newscategory.create', false);
 		$role->addPermission('admin.newscategory.update', false);

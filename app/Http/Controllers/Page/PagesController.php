@@ -4,8 +4,13 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\Redirect;
 
 use LANMS\Page;
+
+use LANMS\Http\Requests\Page\PageCreateRequest;
+use LANMS\Http\Requests\Page\PageEditRequest;
 
 class PagesController extends Controller {
 
@@ -20,13 +25,35 @@ class PagesController extends Controller {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function admin()
+	{
+		if (Sentinel::getUser()->hasAccess(['admin.pages.*'])){
+			$pages = Page::all();
+			return view('pages.index')
+						->withPages($pages);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.pages.create'])){
+			return view('pages.create');
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -34,9 +61,51 @@ class PagesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(PageCreateRequest $request)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.pages.create'])){
+			
+			$active = 0;
+			if($request->get('active') == "on") {
+				$active = 1;
+			}
+
+			$showinmenu = 0;
+			if($request->get('showinmenu') == "on") {
+				$showinmenu = 1;
+			}
+
+			$slug 	= $request->get('slug');
+
+			if($slug == null) {
+				$slugarr = explode(' ',trim($slug));
+				$slug = strtolower($slugarr[0]);
+			}
+
+			$page 				= new News;
+			$page->title 		= $request->get('title');
+			$page->slug 		= $slug;
+			$page->content 		= $request->get('content');
+			$page->active 		= $active;
+			$page->creator_id	= Sentinel::getUser()->id;
+			$page->author_id	= Sentinel::getUser()->id;
+
+			$pagesave 		= $page->save();
+
+			if($pagesave) {
+				return Redirect::route('admin-page')
+						->with('messagetype', 'success')
+						->with('message', 'The page has now been saved and published!');
+			} else {
+				return Redirect::route('admin-page-create')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while saving the page.');
+			}
+
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -63,7 +132,13 @@ class PagesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.pages.update'])){
+			$page = Page::find($id);
+			return view('pages.edit')->withPage($page);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -72,9 +147,42 @@ class PagesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, PageEditRequest $request)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.pages.update'])){
+
+			$active = 0;
+			if($request->get('active') == "on") {
+				$active = 1;
+			}
+
+			$showinmenu = 0;
+			if($request->get('showinmenu') == "on") {
+				$showinmenu = 1;
+			}
+			
+			$page 				= Page::find($id);
+			$page->title 		= $request->get('title');
+			$page->content 		= $request->get('content');
+			$page->slug 		= $request->get('slug');
+			$page->active 		= $active;
+			$page->showinmenu 	= $showinmenu;
+			$page->author_id	= Sentinel::getUser()->id;
+
+			if($page->save()) {
+				return Redirect::route('admin-pages-edit', $id)
+						->with('messagetype', 'success')
+						->with('message', 'The page has now been saved!');
+			} else {
+				return Redirect::route('admin-pages-edit', $id)
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while saving the page.');
+			}
+
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -85,7 +193,21 @@ class PagesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.pages.destroy'])){
+			$page = Page::find($id);
+			if($page->delete()) {
+				return Redirect::route('admin-pages')
+						->with('messagetype', 'success')
+						->with('message', 'The article has now been deleted!');
+			} else {
+				return Redirect::route('admin-pages')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while deleting the page.');
+			}
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 }

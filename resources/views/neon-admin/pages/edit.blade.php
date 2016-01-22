@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Edit Article - '.$article->title.' - Admin')
+@section('title', 'Edit Page - '.$page->title.' - Admin')
 @section('css')
 	<style>
 		.ms-container .ms-list {
@@ -28,17 +28,17 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Edit Article: <small>{{ $article->title }}</small></h1>
+		<h1 class="margin-bottom">Edit Page: <small>{{ $page->title }}</small></h1>
 		<ol class="breadcrumb 2">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
 			<li><a href="{{ route('admin-news') }}">News</a></li>
-			<li class="active"><strong>Edit Article #{{ $article->id }}</strong></li>
+			<li class="active"><strong>Edit Page #{{ $page->id }}</strong></li>
 		</ol>
 					
 		<br />
 		
-		<form action="{{ route('admin-news-update', $article->id) }}" method="post">
+		<form action="{{ route('admin-pages-update', $page->id) }}" method="post">
 
 			<!-- Title and Publish Buttons -->
 			<div class="row">
@@ -50,7 +50,7 @@
 				</div>
 				
 				<div class="col-sm-10 @if($errors->has('title')) has-error @endif">
-					<input type="text" class="form-control input-lg" name="title" placeholder="Article title" value="{{ (old('title')) ? old('title') : $article->title }}" />
+					<input type="text" class="form-control input-lg" name="title" placeholder="Article title" value="{{ (old('title')) ? old('title') : $page->title }}" />
 				</div>
 			</div>
 			
@@ -60,7 +60,7 @@
 			<div class="row">
 				<div class="col-sm-12 @if($errors->has('content')) has-error @endif">
 					<textarea class="form-control wysihtml5" rows="18" data-stylesheet-url="{{ Theme::url('css/wysihtml5-color.css ') }}" name="content">
-						{{ (old('content')) ? old('content') : $article->content }}
+						{{ (old('content')) ? old('content') : $page->content }}
 					</textarea>
 				</div>
 			</div>
@@ -85,32 +85,17 @@
 						<div class="panel-body">
 							
 							<div class="checkbox checkbox-replace @if($errors->has('active')) text-danger @endif">
-								<input type="checkbox" name="active" @if($article->active) checked @endif>
+								<input type="checkbox" name="active" @if($page->active) checked @endif>
 								<label>Show on frontpage</label>
-								<p><small><em>Will be visible on the users dashboard if checked or not</em></small></p>
+								<p><small><em>If unchecked the page won't be visible anywhere or accessible</em></small></p>
 							</div>
 							
 							<br />
 
-							<div class="row">
-								<div class="col-md-6">
-									<p>Publish Date</p>
-									<div class="input-group">
-										<input type="text" class="form-control datepicker @if($errors->has('published_at_date')) has-error @endif" value="{{ (old('published_at_date')) ? old('published_at_date') : date('D, d F Y', strtotime($article->published_at)) }}" data-format="D, dd MM yyyy" name="published_at_date">
-										<div class="input-group-addon">
-											<a href="javascript:void(0);"><i class="fa fa-calendar"></i></a>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<p>Publish Time</p>
-									<div class="input-group">
-										<input type="text" class="form-control @if($errors->has('published_at_time')) has-error @endif" value="{{ (old('published_at_time')) ? old('published_at_time') : date('H:i', strtotime($article->published_at)) }}" data-mask="h:s" name="published_at_time">
-										<div class="input-group-addon">
-											<i class="fa fa-clock-o"></i>
-										</div>
-									</div>
-								</div>
+							<div class="checkbox checkbox-replace @if($errors->has('showinmenu')) text-danger @endif">
+								<input type="checkbox" name="showinmenu" @if($page->showinmenu) checked @endif>
+								<label>Show in Menu</label>
+								<p><small><em>If checked the page will be visible in the menu on the frontend</em></small></p>
 							</div>
 									
 						</div>
@@ -118,66 +103,27 @@
 					</div>
 					
 				</div>
-				
-				<div class="col-sm-4">
-					
-					<div class="panel panel-primary @if($errors->has('image')) panel-danger @endif" data-collapsed="0">
-				
-						<div class="panel-heading">
-							<div class="panel-title">
-								Featured Image
-							</div>
-							
-							
-						</div>
-						
-						<div class="panel-body">
-							
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="max-width: 310px; height: 160px;" data-trigger="fileinput">
-									<img src="http://placehold.it/320x160" alt="...">
-								</div>
-								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px"></div>
-								<div>
-									<span class="btn btn-white btn-file">
-										<span class="fileinput-new">Select image</span>
-										<span class="fileinput-exists">Change</span>
-										<input type="file" name="..." accept="image/*">
-									</span>
-									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
-								</div>
-							</div>
-							
-						</div>
-					
-					</div>
-					
-				</div>
 
 				<div class="col-sm-4">
-					
-					<div class="panel panel-primary @if($errors->has('category_id')) panel-danger @endif" data-collapsed="0">
-				
+
+					<div class="panel panel-primary @if($errors->has('slug')) panel-danger @endif" data-collapsed="0">
 						<div class="panel-heading">
-							<div class="panel-title">
-								Category
-							</div>
-							
+							<div class="panel-title">Slug</div>
 						</div>
-						
 						<div class="panel-body">
-							
-							<select name="category_id" class="selectboxit">
-								@foreach($categories as $category)
-									<option value="{{ $category->id }}" @if($category->id == $article->category->id) selected @endif>{{ $category->name }}</option>
-								@endforeach
-							</select>
-							
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-header"></i>
+								</div>
+								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : $page->slug }}" name="slug">
+							</div>
+							<br>
+							<p><em>Example: info</em></p>
 						</div>
-					
 					</div>
 					
 				</div>
+				
 				
 			</div>
 

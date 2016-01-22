@@ -44,6 +44,7 @@ class PagesTableSeeder extends Seeder  {
 
 		',
 		'showinmenu'	=> 1,
+		'author_id'		=> 1,
 		]);
 
 		Page::create([
@@ -64,6 +65,7 @@ class PagesTableSeeder extends Seeder  {
 			</ul>
 			',
 			'showinmenu'	=> 0,
+			'author_id'		=> 1,
 		]);
 		
 

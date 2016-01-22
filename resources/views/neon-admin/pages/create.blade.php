@@ -50,7 +50,7 @@
 				</div>
 				
 				<div class="col-sm-10 @if($errors->has('title')) has-error @endif">
-					<input type="text" class="form-control input-lg" name="title" placeholder="Article title" value="{{ (old('title')) ? old('title') : '' }}" />
+					<input type="text" class="form-control input-lg" name="title" placeholder="Page title" value="{{ (old('title')) ? old('title') : '' }}" />
 				</div>
 			</div>
 			
@@ -87,7 +87,7 @@
 							<div class="checkbox checkbox-replace @if($errors->has('active')) text-danger @endif">
 								<input type="checkbox" name="active">
 								<label>Show on frontpage</label>
-								<p><small><em>Will be visible on the users dashboard if checked or not</em></small></p>
+								<p><small><em>If unchecked the page won't be visible anywhere or accessible</em></small></p>
 							</div>
 							
 							<br />
@@ -95,6 +95,7 @@
 							<div class="checkbox checkbox-replace @if($errors->has('showinmenu')) text-danger @endif">
 								<input type="checkbox" name="showinmenu">
 								<label>Show in Menu</label>
+								<p><small><em>If checked the page will be visible in the menu on the frontend</em></small></p>
 							</div>
 									
 						</div>
@@ -116,6 +117,8 @@
 								</div>
 								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
 							</div>
+							<br>
+							<p><em>Example: info</em></p>
 						</div>
 					</div>
 					
