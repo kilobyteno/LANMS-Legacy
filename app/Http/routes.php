@@ -260,6 +260,34 @@ Route::group([
 				});
 		});
 		Route::group([
+			'prefix' => 'pages'
+			], function() {
+				get('/', [
+					'as' => 'admin-pages',
+					'uses' => 'Page\PagesController@admin'
+				]);
+				get('/create', [
+					'as' => 'admin-pages-create',
+					'uses' => 'Page\PagesController@create'
+				]);
+				post('/store', [
+					'as' => 'admin-pages-store',
+					'uses' => 'Page\PagesController@store'
+				]);
+				get('/{id}/edit', [
+					'as' => 'admin-pages-edit',
+					'uses' => 'Page\PagesController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'admin-pages-update',
+					'uses' => 'Page\PagesController@update'
+				]);
+				get('/{id}/destroy', [
+					'as' => 'admin-pages-destroy',
+					'uses' => 'Page\PagesController@destroy'
+				]);
+		});
+		Route::group([
 			'prefix' => 'settings'
 			], function() {
 				get('/', [
@@ -555,3 +583,6 @@ Route::group(['prefix' => 'ajax',], function() {
 		
 	});
 });
+
+// THIS NEEDS TO BE AT THE BOTTOM TO MAKE ALL OTHER ROUTES WORK
+Route::get('/{slug}', ['as' => 'page', 'uses' => 'Page\PagesController@show']);

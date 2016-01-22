@@ -39,7 +39,10 @@
 				</section>
 				<nav class="site-nav">
 					<ul class="main-menu hidden-xs" id="main-menu">
-						<li class="active"><a href="{{ url('/') }}"><span>Home</span></a></li>
+						<li class="@if(Request::is('/')){{'active'}} @endif"><a href="{{ url('/') }}"><span>Home</span></a></li>
+						@foreach($pagesinmenu as $page)
+							<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
+						@endforeach
 						@if(Sentinel::Guest())
 							<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 						@else
