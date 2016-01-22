@@ -44,7 +44,7 @@
 															<p>Temporary Reserved By: {{ User::getUsernameByID($seat->reserved_by) }}</p>
 														</div>
 													@elseif($seat->status == 0)
-														@if(Setting::get('APP_SEATING_OPEN') && $seat->row_id <> 1)
+														@if(Setting::get('SEATING_OPEN') && $seat->row_id <> 1)
 															<a href="javascript:void(0)" class="popper" data-toggle="popover">{{ $seat->name }}</a>
 															<div class="popper-content hidden">
 																<p><a href="{{ URL::route('seating-reserve', $seat->name) }}">Reserver</a></p>

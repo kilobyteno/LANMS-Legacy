@@ -59,7 +59,7 @@
 						<a href="{{ route('account-change-password') }}" class="list-group-item"><i class="fa fa-asterisk"></i> Change Password</a>
 						<a href="{{ route('account-settings') }}" class="list-group-item"><i class="fa fa-cog"></i> Edit Profile Settings</a>
 					</div>
-					@if(Setting::get('APP_REFERRAL_ACTIVE'))
+					@if(Setting::get('REFERRAL_ACTIVE'))
 						<hr>
 						<p>
 							<strong>Your referral link:</strong><br>
