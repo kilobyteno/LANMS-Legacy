@@ -48,8 +48,8 @@
 			<ul class="navbar-nav">
 				<li class="@if(Request::is('user')){{'active'}} @endif"><a href="{{ route('account') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 				<li class="@if(Request::is('user/members')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
-				<li class="@if(Request::is('user/seting')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>
+				<li class="@if(Request::is('user/seating')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
+				<!--<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>-->
 			</ul>
 			
 			<ul class="nav navbar-right pull-right">
