@@ -38,7 +38,7 @@
 						</div>
 
 						<div class="row">
-							<label class="col-sm-5 control-label">Address 2</label>
+							<label class="col-sm-5 control-label">Address 2<br><small>This field is used for house numbers</small></label>
 							<div class="col-sm-5 form-group @if($errors->has('address2')) has-error @endif">
 								<input class="form-control" type="text" name="address2">
 								@if($errors->has('address2'))
