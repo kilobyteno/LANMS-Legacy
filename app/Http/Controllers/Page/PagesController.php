@@ -93,11 +93,11 @@ class PagesController extends Controller {
 			$pagesave 		= $page->save();
 
 			if($pagesave) {
-				return Redirect::route('admin-page')
+				return Redirect::route('admin-pages')
 						->with('messagetype', 'success')
 						->with('message', 'The page has now been saved and published!');
 			} else {
-				return Redirect::route('admin-page-create')
+				return Redirect::route('admin-pages-create')
 					->with('messagetype', 'danger')
 					->with('message', 'Something went wrong while saving the page.');
 			}
