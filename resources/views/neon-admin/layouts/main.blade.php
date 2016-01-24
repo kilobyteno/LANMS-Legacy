@@ -52,7 +52,7 @@
 			</header>
 			<div id="main-menu" class="main-menu">
 				<li class="@if(Request::is('admin')){{'active'}} @endif">
-					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Dashboard</span></a>
+					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Admin Dashboard</span></a>
 				</li>
 				<li class="@if(Request::is('admin/members')){{'active'}} @endif">
 					<a href="{{ route('admin') }}"><i class="fa fa-users"></i> <span class="title">Members</span></a>
