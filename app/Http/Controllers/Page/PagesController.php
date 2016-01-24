@@ -87,6 +87,7 @@ class PagesController extends Controller {
 			$page->slug 		= $slug;
 			$page->content 		= $request->get('content');
 			$page->active 		= $active;
+			$page->showinmenu 	= $showinmenu;
 			$page->creator_id	= Sentinel::getUser()->id;
 			$page->author_id	= Sentinel::getUser()->id;
 
