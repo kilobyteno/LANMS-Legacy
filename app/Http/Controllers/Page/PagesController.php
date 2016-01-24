@@ -82,22 +82,23 @@ class PagesController extends Controller {
 				$slug = strtolower($slugarr[0]);
 			}
 
-			$page 				= new News;
+			$page 				= new Page;
 			$page->title 		= $request->get('title');
 			$page->slug 		= $slug;
 			$page->content 		= $request->get('content');
 			$page->active 		= $active;
+			$page->showinmenu 	= $showinmenu;
 			$page->creator_id	= Sentinel::getUser()->id;
 			$page->author_id	= Sentinel::getUser()->id;
 
 			$pagesave 		= $page->save();
 
 			if($pagesave) {
-				return Redirect::route('admin-page')
+				return Redirect::route('admin-pages')
 						->with('messagetype', 'success')
 						->with('message', 'The page has now been saved and published!');
 			} else {
-				return Redirect::route('admin-page-create')
+				return Redirect::route('admin-pages-create')
 					->with('messagetype', 'danger')
 					->with('message', 'Something went wrong while saving the page.');
 			}
