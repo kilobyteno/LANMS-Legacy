@@ -82,7 +82,7 @@ class PagesController extends Controller {
 				$slug = strtolower($slugarr[0]);
 			}
 
-			$page 				= new News;
+			$page 				= new Page;
 			$page->title 		= $request->get('title');
 			$page->slug 		= $slug;
 			$page->content 		= $request->get('content');
