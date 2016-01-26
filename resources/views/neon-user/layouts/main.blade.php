@@ -54,7 +54,7 @@
 			
 			<ul class="nav navbar-right pull-right">
 				
-				@if(Sentinel::getUser()->hasAccess('admin'))
+				@if(Sentinel::hasAccess('admin'))
 					<li><a href="{{ URL::Route('admin') }}"><i class="fa fa-user-secret"></i> Admin Panel</a></li>
 				@endif
 				<li><a href="{{ URL::Route('logout') }}">Log Out <i class="fa fa-sign-out right"></i></a></li>
