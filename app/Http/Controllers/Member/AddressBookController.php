@@ -184,6 +184,11 @@ class AddressBookController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['address.'.$id.'.destroy'])) {
 			$address = Address::find($id);
+			
+			if($address->primary) {
+				Address::where('user_id', '=', Sentinel::getUser()->id)->first()->update(['primary' => 1]);
+			}
+
 			if($address->delete()) {
 				return Redirect::route('account-addressbook')
 						->with('messagetype', 'success')
