@@ -32,7 +32,7 @@
 		<ol class="breadcrumb 2">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
-			<li><a href="{{ route('admin-news') }}">News</a></li>
+			<li><a href="{{ route('admin-pages') }}">Pages</a></li>
 			<li class="active"><strong>Edit Page #{{ $page->id }}</strong></li>
 		</ol>
 					
