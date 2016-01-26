@@ -51,6 +51,9 @@
 				
 				<div class="col-sm-5 @if($errors->has('name')) has-error @endif">
 					<input type="text" class="form-control input-lg" name="name" placeholder="Category name" value="{{ (old('name')) ? old('name') : $category->name }}" />
+					@if($errors->has('name'))
+						<p class="text-danger">{{ $errors->first('name') }}</p>
+					@endif
 				</div>
 
 				<div class="col-sm-5 @if($errors->has('slug')) has-error @endif">
@@ -60,6 +63,9 @@
 						</div>
 						<input type="text" class="form-control input-lg" placeholder="Slug (Optional)" value="{{ (old('slug')) ? old('slug') : $category->slug }}" name="slug">
 					</div>
+					@if($errors->has('slug'))
+						<p class="text-danger">{{ $errors->first('slug') }}</p>
+					@endif
 				</div>
 			</div>
 

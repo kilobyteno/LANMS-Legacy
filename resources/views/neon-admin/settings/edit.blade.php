@@ -51,6 +51,9 @@
 				
 				<div class="col-sm-10 @if($errors->has('value')) has-error @endif">
 					<input type="text" class="form-control input-lg" name="value" placeholder="Setting Value" value="{{ (old('value')) ? old('value') : $value }}" />
+					@if($errors->has('value'))
+						<p class="text-danger">{{ $errors->first('value') }}</p>
+					@endif
 				</div>
 			</div>
 

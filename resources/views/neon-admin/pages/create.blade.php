@@ -51,6 +51,9 @@
 				
 				<div class="col-sm-10 @if($errors->has('title')) has-error @endif">
 					<input type="text" class="form-control input-lg" name="title" placeholder="Page title" value="{{ (old('title')) ? old('title') : '' }}" />
+					@if($errors->has('title'))
+						<p class="text-danger">{{ $errors->first('title') }}</p>
+					@endif
 				</div>
 			</div>
 			
@@ -62,6 +65,9 @@
 					<textarea class="form-control wysihtml5" rows="18" data-stylesheet-url="{{ Theme::url('css/wysihtml5-color.css ') }}" name="content">
 						{{ (old('content')) ? old('content') : '' }}
 					</textarea>
+					@if($errors->has('content'))
+						<p class="text-danger">{{ $errors->first('content') }}</p>
+					@endif
 				</div>
 			</div>
 			
@@ -88,6 +94,9 @@
 								<input type="checkbox" name="active">
 								<label>Show on frontpage</label>
 								<p><small><em>If unchecked the page won't be visible anywhere or accessible</em></small></p>
+								@if($errors->has('active'))
+									<p class="text-danger">{{ $errors->first('active') }}</p>
+								@endif
 							</div>
 							
 							<br />
@@ -96,6 +105,9 @@
 								<input type="checkbox" name="showinmenu">
 								<label>Show in Menu</label>
 								<p><small><em>If checked the page will be visible in the menu on the frontend</em></small></p>
+								@if($errors->has('showinmenu'))
+									<p class="text-danger">{{ $errors->first('showinmenu') }}</p>
+								@endif
 							</div>
 									
 						</div>
@@ -119,6 +131,9 @@
 							</div>
 							<br>
 							<p><em>Example: info</em></p>
+							@if($errors->has('slug'))
+								<p class="text-danger">{{ $errors->first('slug') }}</p>
+							@endif
 						</div>
 					</div>
 					
