@@ -187,8 +187,10 @@ class AddressBookController extends Controller {
 			
 			if($address->primary) {
 				$uaddress = Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->first();
-				$uaddress->primary = 1;
-				$uaddress->save();
+				if($uaddress <> null) {
+					$uaddress->primary = 1;
+					$uaddress->save();
+				}
 			}
 
 			if($address->delete()) {
