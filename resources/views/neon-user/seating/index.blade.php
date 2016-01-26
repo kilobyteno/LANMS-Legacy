@@ -17,6 +17,10 @@
 				<li class="active"><strong>Seating</strong></li>
 			</ol>
 
+			@if(Sentinel::getUser()->addresses->count() == 0)
+				<div class="alert alert-warning" role="alert"> <strong>WARNING!</strong> It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.</div>
+			@endif
+
 			<div class="row">	
 				<div class="col-md-4">
 					@if(Setting::get('APP_SEATING_SHOW_MAP'))
@@ -36,7 +40,7 @@
 														@if($seat->status->name == "Reserved")
 															<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
 															<div class="popover-content hidden">
-																<p>Reserved for: {{ $seat->reservedfor->username }}</p>
+																<p>Reserved for: {{ $seat->reservedfor }}</p>
 															</div>
 														@elseif($seat->status->name == "Temporary Reserved")
 															<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>

@@ -132,6 +132,7 @@ class SeatsTableSeeder extends Seeder  {
 			'slug' 		=> 'b6',
 			'row_id'	=> '2',
 			'status_id'	=> '2',
+			'reservedfor_id' => 1,
 		]);
 
 		Seats::create([
@@ -139,6 +140,7 @@ class SeatsTableSeeder extends Seeder  {
 			'slug' 		=> 'b7',
 			'row_id'	=> '2',
 			'status_id'	=> '3',
+			'reservedfor_id' => 2,
 		]);
 
 		Seats::create([
