@@ -8,9 +8,7 @@
 
 	<title>@yield('title') - {{ Setting::get('WEB_NAME') }}</title>
 
-	<link href="{{ Theme::url('css/materialize.min.css') }}" rel="stylesheet">
-	<link href="{{ Theme::url('css/style.css') }}" rel="stylesheet">
-	<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet">
+	<link href="{{ Theme::url('css/bootstrap.css') }}" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link href="{{ Theme::url('css/neon.css') }}" rel="stylesheet">
@@ -30,89 +28,76 @@
 <body>
 
 <div class="wrap">
-
-<div class="highlighted parallax-container">
-	<a class="logo" href="{{ url('/') }}">
-		<img src="{{ asset('images/downlink.png') }}" alt="logo" width="600">
-	</a>
-	<div class="parallax"><img src="{{ asset('images/lan.jpg') }}" alt="mountain fog" /></div>
-</div>
-
-<header class="white z-depth-1">
-	<div class="container">
-
-		<div class="row">
-
-			<div class="col s12">
-				<nav>
-					<div class="nav-wrapper">
-						<a class="button-collapse" href="#" data-activates="nav-mobile">
-							<i class="mdi-navigation-menu"></i>
-						</a>
-
-						<ul class="desktop-menu hide-on-med-and-down">
-							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
-							@if(Sentinel::Guest())
-								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
-							@else
-								<li><a href="{{ route('account') }}"><span>Go to Dashboard</span></a></li>
-							@endif
-						</ul>
-
-						<ul class="side-nav" id="nav-mobile">
-							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
-							@if(Sentinel::Guest())
-								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
-							@else
-								<li><a href="{{ route('account') }}"><span>Go to Dashboard</span></a></li>
-							@endif
-						</ul>
-
+	
+<!-- Logo and Navigation -->
+<div class="site-header-container container">
+	<div class="row">
+		<div class="col-md-12">
+			<header class="site-header">
+				<section class="site-logo">
+					<a href="{{ url('/') }}"><img src="{{ Setting::get('WEB_LOGO_ALT') }}" width="120" /></a>
+				</section>
+				<nav class="site-nav">
+					<ul class="main-menu hidden-xs" id="main-menu">
+						<li class="@if(Request::is('/')){{'active'}} @endif"><a href="{{ url('/') }}"><span>Home</span></a></li>
+						@foreach($pagesinmenu as $page)
+							<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
+						@endforeach
+						@if(Sentinel::Guest())
+							<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
+						@else
+							<li><a href="{{ route('account') }}"><span>Go to Dashboard</span></a></li>
+						@endif
+					</ul>
+					<div class="visible-xs">
+						<a href="#" class="menu-trigger"><i class="entypo-menu"></i></a>
 					</div>
 				</nav>
+			</header>
+		</div>
+	</div>
+</div>
+	
+@yield('content')
+
+<!-- Site Footer -->
+<footer class="site-footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p>&copy; {{ Setting::get('WEB_COPYRIGHT') }}</p>
+				<p class="text-muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+			</div>
+			<div class="col-md-6 text-right">
+				<p>
+					<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+				</p>
+				<p>
+					@if(Config::get('app.debug'))
+						<b><span class="text-danger">DEBUG MODE</span></b>
+					@endif
+					@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+						<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
+					@endif 
+				</p>
 			</div>
 		</div>
-
 	</div>
-</header>
-
-<div class="main-content">
-	@yield('content')
-</div>
-
-<footer class="white z-depth-1 center">
-	<div class="container">
-
-		<div class="row">
-			<div class="col s12">
-					<p class="text-muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
-						<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
-						@if(Config::get('app.debug'))
-							<b><span class="text-danger">DEBUG MODE</span></b>
-						@endif
-						@if(Setting::get('APP_SHOW_RESETDB'))
-							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
-						@endif
-
-				</div>
-			</div>
-
-		<a class="back-to-top btn-floating btn-large waves-effect waves-light blue-grey darken-1" href="#header"><i class="mdi-navigation-expand-less"></i></a>
-
-	</div>
-</footer>
-
+</footer>	
 </div>
 
 
 	<!-- Bottom scripts (common) -->
-	<script src="{{ Theme::url('js/jquery-2.1.1.min.js') }}"></script>
-	<script src="{{ Theme::url('js/materialize.min.js') }}"></script>
-	<script src="{{ Theme::url('js/retina.min.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.smooth-scroll.min.js') }}"></script>
-	<script src="{{ Theme::url('js/app.js') }}"></script>
-	<script src="{{ Theme::url('js/custom.js') }}"></script>
+	<script src="{{ Theme::url('js/gsap/main-gsap.js') }}"></script>
+	<script src="{{ Theme::url('js/bootstrap.js') }}"></script>
+	<script src="{{ Theme::url('js/joinable.js') }}"></script>
+	<script src="{{ Theme::url('js/resizeable.js') }}"></script>
+	<script src="{{ Theme::url('js/neon-slider.js') }}"></script>
 	<script src="{{ Theme::url('js/toastr.js') }}"></script>
+
+
+	<!-- JavaScripts initializations and stuff -->
+	<script src="{{ Theme::url('js/neon-custom.js') }}"></script>
 
 	<script type="text/javascript">
 

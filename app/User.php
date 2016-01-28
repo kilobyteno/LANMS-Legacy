@@ -25,6 +25,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 * {@inheritDoc}
 	 */
 	protected $fillable = [
+		'uid',
 		'email',
 		'username',
 		'password',
@@ -449,6 +450,10 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return new static::$permissionsClass($userPermissions, $rolePermissions);
 	}
 
+	public function addresses() {
+		return $this->hasMany('Address', 'user_id');
+	}
+
 	public function scopeGetLastActivity($query, $id, $short = false) {
 
 		$user 		= $query->where('id', '=', $id)->first();
@@ -603,12 +608,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 
 		return $format;
 	}
-
-	public function scopeHasAdminAccess () {
-		$user = Sentinel::findById(Sentinel::getUser()->id);
-		return $user->hasAccess(['admin']);
-	}
-
+	
 	public function scopeGetUsernameByID($query, $id) {
 		$user 		= $query->where('id', '=', $id)->first();
 		return $user->username;
@@ -623,4 +623,5 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 
 		return $full;
 	}
+
 }

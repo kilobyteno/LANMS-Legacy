@@ -1,5 +1,6 @@
 <?php namespace LANMS\Http\Controllers;
 
+use LANMS\Page;
 use LANMS\News;
 
 class HomeController extends Controller {

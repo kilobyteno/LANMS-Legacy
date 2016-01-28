@@ -52,7 +52,7 @@
 			</header>
 			<div id="main-menu" class="main-menu">
 				<li class="@if(Request::is('admin')){{'active'}} @endif">
-					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Dashboard</span></a>
+					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Admin Dashboard</span></a>
 				</li>
 				<li class="@if(Request::is('admin/members')){{'active'}} @endif">
 					<a href="{{ route('admin') }}"><i class="fa fa-users"></i> <span class="title">Members</span></a>
@@ -67,6 +67,9 @@
 				<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>
 				<li><a href="#"><i class="fa fa-street-view"></i> <span class="title">Seating</span></a></li>
 				<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>
+				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
+					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
+				</li>
 				<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">
 					<a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a>
 				</li>
@@ -127,7 +130,7 @@
 								@if(Config::get('app.debug'))
 									<b><span class="text-danger">DEBUG MODE</span></b>
 								@endif
-								@if(Setting::get('APP_SHOW_RESETDB'))
+								@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
 									<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 								@endif 
 							</p>

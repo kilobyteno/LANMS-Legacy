@@ -29,6 +29,7 @@ if(Config::get('app.debug')) {
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/tos', ['as' => 'account-tos', 'uses' => 'HomeController@index']);
 Route::get('/privacy', ['as' => 'account-privacy', 'uses' => 'HomeController@index']);
+Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
 
 Route::group([
 	'prefix' => 'news'
@@ -72,6 +73,7 @@ Route::group([
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
+		
 });
 
 Route::group([
@@ -130,6 +132,66 @@ Route::group([
 			'as' => 'members',
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
+		Route::group([
+			'prefix' => 'addressbook'
+			], function() {
+				get('/', [
+					'as' => 'account-addressbook',
+					'uses' => 'Member\AddressBookController@index'
+				]);
+				get('/create', [
+					'as' => 'account-addressbook-create',
+					'uses' => 'Member\AddressBookController@create'
+				]);
+				post('/store', [
+					'as' => 'account-addressbook-store',
+					'uses' => 'Member\AddressBookController@store'
+				]);
+				get('/{id}/edit', [
+					'as' => 'account-addressbook-edit',
+					'uses' => 'Member\AddressBookController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'account-addressbook-update',
+					'uses' => 'Member\AddressBookController@update'
+				]);
+				get('/{id}/destroy', [
+					'as' => 'account-addressbook-destroy',
+					'uses' => 'Member\AddressBookController@destroy'
+				]);
+		});
+		Route::group([
+			'prefix' => 'seating'
+			], function() {
+				get('/', [
+					'as' => 'seating',
+					'uses' => 'Seating\UserSeatingController@index'
+				]);
+				get('/{id}/edit', [
+					'as' => 'seating-edit',
+					'uses' => 'Seating\UserSeatingController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'seating-update',
+					'uses' => 'Seating\UserSeatingController@update'
+				]);
+				get('/{id}/pay', [
+					'as' => 'seating-pay',
+					'uses' => 'Seating\UserSeatingController@pay'
+				]);
+				post('/{id}/checkout', [
+					'as' => 'seating-checkout',
+					'uses' => 'Seating\UserSeatingController@checkout'
+				]);
+				get('/{id}/reserve', [
+					'as' => 'seating-reserve',
+					'uses' => 'Seating\UserSeatingController@reserve'
+				]);
+				post('/{id}/reserved', [
+					'as' => 'seating-reserved',
+					'uses' => 'Seating\UserSeatingController@reserved'
+				]);
+		});
 });
 
 // ADMIN PANEL
@@ -198,6 +260,34 @@ Route::group([
 				});
 		});
 		Route::group([
+			'prefix' => 'pages'
+			], function() {
+				get('/', [
+					'as' => 'admin-pages',
+					'uses' => 'Page\PagesController@admin'
+				]);
+				get('/create', [
+					'as' => 'admin-pages-create',
+					'uses' => 'Page\PagesController@create'
+				]);
+				post('/store', [
+					'as' => 'admin-pages-store',
+					'uses' => 'Page\PagesController@store'
+				]);
+				get('/{id}/edit', [
+					'as' => 'admin-pages-edit',
+					'uses' => 'Page\PagesController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'admin-pages-update',
+					'uses' => 'Page\PagesController@update'
+				]);
+				get('/{id}/destroy', [
+					'as' => 'admin-pages-destroy',
+					'uses' => 'Page\PagesController@destroy'
+				]);
+		});
+		Route::group([
 			'prefix' => 'settings'
 			], function() {
 				get('/', [
@@ -216,6 +306,21 @@ Route::group([
 });
 
 Route::group(['prefix' => 'ajax',], function() {
+	Route::get('/usernames', function () {
+		/*if(!Request::ajax()) {
+			abort(403);
+		}*/
+		$users = User::all();
+		$usernames = array();
+		foreach($users as $user) {
+			if($user->showname) {
+				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.' '.$user->lastname.')'));
+			} else {
+				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.')'));
+			}
+		}
+		return Response::json($usernames);
+	});
 	Route::post('/account/register', function () {
 
 		if(!Request::ajax()) {
@@ -236,8 +341,10 @@ Route::group(['prefix' => 'ajax',], function() {
 		$originalDate 		= Request::input('birthdate');
 		$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
 
-		$referral			= Request::get('referral');
+		$referral			= Session::get('referral');
 		$referral_code 		= str_random(15);
+
+		$uid 				= mt_rand(1000000000, 2147483647);
 
 		$user = Sentinel::register(array(
 			'email' 			=> $email,
@@ -248,6 +355,7 @@ Route::group(['prefix' => 'ajax',], function() {
 			'password'			=> $password,
 			'referral'			=> $referral,
 			'referral_code'		=> $referral_code,
+			'uid'				=> $uid,
 		));
 
 		if($user) {
@@ -475,3 +583,6 @@ Route::group(['prefix' => 'ajax',], function() {
 		
 	});
 });
+
+// THIS NEEDS TO BE AT THE BOTTOM TO MAKE ALL OTHER ROUTES WORK
+Route::get('/{slug}', ['as' => 'page', 'uses' => 'Page\PagesController@show']);
