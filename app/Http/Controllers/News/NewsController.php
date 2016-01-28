@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use LANMS\News;
 use LANMS\NewsCategory;
+use LANMS\Page;
 
 use LANMS\Http\Requests\News\NewsCreateRequest;
 use LANMS\Http\Requests\News\NewsEditRequest;
@@ -23,9 +24,11 @@ class NewsController extends Controller {
 	public function index()
 	{
   	$news = News::isPublished()->paginate(5);
+		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
 
 		return view('news.news')
-					->withNews($news);
+					->withNews($news)
+					->with('pagesinmenu', $pagesinmenu);
 	}
 
 	/**
@@ -131,9 +134,11 @@ class NewsController extends Controller {
 	public function show($id)
 	{
 		$article = News::where('slug', '=', $id)->first();
+		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
 
 		return view('news.article')
-				->with($article->toArray());
+				->with($article->toArray())
+				->with('pagesinmenu', $pagesinmenu);
 	}
 
 	/**
