@@ -39,7 +39,10 @@
 				</section>
 				<nav class="site-nav">
 					<ul class="main-menu hidden-xs" id="main-menu">
-						<li class="active"><a href="{{ url('/') }}"><span>Home</span></a></li>
+						<li class="@if(Request::is('/')){{'active'}} @endif"><a href="{{ url('/') }}"><span>Home</span></a></li>
+						@foreach($pagesinmenu as $page)
+							<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
+						@endforeach
 						@if(Sentinel::Guest())
 							<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 						@else
@@ -73,7 +76,7 @@
 					@if(Config::get('app.debug'))
 						<b><span class="text-danger">DEBUG MODE</span></b>
 					@endif
-					@if(Setting::get('APP_SHOW_RESETDB'))
+					@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
 						<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 					@endif 
 				</p>

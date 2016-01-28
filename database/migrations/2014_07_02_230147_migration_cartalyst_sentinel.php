@@ -93,6 +93,9 @@ class MigrationCartalystSentinel extends Migration
 
 		Schema::create('users', function (Blueprint $table) {
 			$table->increments('id');
+
+			$table->integer('uid');
+
 			$table->string('email');
 			$table->string('password');
 			$table->text('permissions')->nullable();
@@ -101,15 +104,12 @@ class MigrationCartalystSentinel extends Migration
 			$table->string('lastname')->nullable();
 			$table->timestamps();
 
-
 			$table->string('username');
 			$table->string('gender');
 			$table->string('location');
 			$table->string('occupation');
 			$table->date('birthdate')->default('1970-01-01'); //YYYY-MM-DD
 			$table->timestamp('last_activity')->nullable();
-
-			$table->string('address'); // Google Maps location
 
 			$table->string('profilepicture')->nullable();
 			$table->string('profilepicturesmall')->nullable();
@@ -122,7 +122,6 @@ class MigrationCartalystSentinel extends Migration
 			$table->enum('showemail', array(0, 1))->default(0);
 			$table->enum('showname', array(0, 1))->default(1);
 			$table->enum('showonline', array(0, 1))->default(1);
-
 
 			$table->engine = 'InnoDB';
 			$table->unique('email');

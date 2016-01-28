@@ -59,12 +59,14 @@
 						<a href="{{ route('account-change-password') }}" class="list-group-item"><i class="fa fa-asterisk"></i> Change Password</a>
 						<a href="{{ route('account-settings') }}" class="list-group-item"><i class="fa fa-cog"></i> Edit Profile Settings</a>
 					</div>
-					<hr>
-					<p>
-						<strong>Your referral link:</strong><br>
-						<input class="form-control" type="text" name="referrallink" id="referrallink" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ $referral_code }}">
-					</p>
-					<p>You have referred <strong>{{ 0 }}</strong> user(s).</p>
+					@if(Setting::get('REFERRAL_ACTIVE'))
+						<hr>
+						<p>
+							<strong>Your referral link:</strong><br>
+							<input class="form-control" type="text" name="referrallink" id="referrallink" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ $referral_code }}">
+						</p>
+						<p>You have referred <strong>{{ User::where('referral', '=', Sentinel::getUser()->referral_code)->count() }}</strong> user(s).</p>
+					@endif
 				</div>
 			</div>
 

@@ -51,6 +51,9 @@
 				
 				<div class="col-sm-10 @if($errors->has('title')) has-error @endif">
 					<input type="text" class="form-control input-lg" name="title" placeholder="Article title" value="{{ (old('title')) ? old('title') : '' }}" />
+					@if($errors->has('title'))
+						<p class="text-danger">{{ $errors->first('title') }}</p>
+					@endif
 				</div>
 			</div>
 			
@@ -62,6 +65,9 @@
 					<textarea class="form-control wysihtml5" rows="18" data-stylesheet-url="{{ Theme::url('css/wysihtml5-color.css ') }}" name="content">
 						{{ (old('content')) ? old('content') : '' }}
 					</textarea>
+					@if($errors->has('content'))
+						<p class="text-danger">{{ $errors->first('content') }}</p>
+					@endif
 				</div>
 			</div>
 			
@@ -88,6 +94,9 @@
 								<input type="checkbox" name="active">
 								<label>Show on frontpage</label>
 								<p><small><em>Will be visible on the users dashboard if checked or not</em></small></p>
+								@if($errors->has('active'))
+									<p class="text-danger">{{ $errors->first('active') }}</p>
+								@endif
 							</div>
 							
 							<br />
@@ -96,19 +105,25 @@
 								<div class="col-md-6">
 									<p>Publish Date</p>
 									<div class="input-group @if($errors->has('published_at_date')) has-error @endif">
-										<input type="text" class="form-control datepicker" value="{{ (old('published_at_date')) ? old('published_at_date') : '' }}" data-format="D, dd MM yyyy" name="published_at_date">
+										<input type="text" class="form-control datepicker" value="{{ (old('published_at_date')) ? old('published_at_date') : date('D, d F Y') }}" data-format="D, dd MM yyyy" name="published_at_date" id="published_at_date">
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
+										@if($errors->has('published_at_date'))
+											<p class="text-danger">{{ $errors->first('published_at_date') }}</p>
+										@endif
 									</div>
 								</div>
 								<div class="col-md-6">
 									<p>Publish Time</p>
 									<div class="input-group @if($errors->has('published_at_time')) has-error @endif">
-										<input type="text" class="form-control" value="{{ (old('published_at_time')) ? old('published_at_time') : '' }}" data-mask="h:s" name="published_at_time">
+										<input type="text" class="form-control" value="{{ (old('published_at_time')) ? old('published_at_time') : date('h:i') }}" data-mask="h:s" name="published_at_time" id="published_at_time">
 										<div class="input-group-addon">
 											<i class="fa fa-clock-o"></i>
 										</div>
+										@if($errors->has('published_at_time'))
+											<p class="text-danger">{{ $errors->first('published_at_time') }}</p>
+										@endif
 									</div>
 								</div>
 							</div>
@@ -147,6 +162,9 @@
 									<a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
 								</div>
 							</div>
+							@if($errors->has('image'))
+								<p class="text-danger">{{ $errors->first('image') }}</p>
+							@endif
 							
 						</div>
 					
@@ -166,6 +184,9 @@
 									<option value="{{ $category->id }}">{{ $category->name }}</option>
 								@endforeach
 							</select>
+							@if($errors->has('category_id'))
+								<p class="text-danger">{{ $errors->first('category_id') }}</p>
+							@endif
 						</div>
 					</div>
 
@@ -180,6 +201,9 @@
 								</div>
 								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
 							</div>
+							@if($errors->has('slug'))
+								<p class="text-danger">{{ $errors->first('slug') }}</p>
+							@endif
 						</div>
 					</div>
 					

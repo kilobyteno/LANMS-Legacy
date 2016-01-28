@@ -48,13 +48,13 @@
 			<ul class="navbar-nav">
 				<li class="@if(Request::is('user')){{'active'}} @endif"><a href="{{ route('account') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 				<li class="@if(Request::is('user/members')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
-				<li class="@if(Request::is('user/seting')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>
+				<li class="@if(Request::is('user/seating')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
+				<!--<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>-->
 			</ul>
 			
 			<ul class="nav navbar-right pull-right">
 				
-				@if(User::hasAdminAccess())
+				@if(Sentinel::hasAccess('admin'))
 					<li><a href="{{ URL::Route('admin') }}"><i class="fa fa-user-secret"></i> Admin Panel</a></li>
 				@endif
 				<li><a href="{{ URL::Route('logout') }}">Log Out <i class="fa fa-sign-out right"></i></a></li>
@@ -92,7 +92,7 @@
 								@if(Config::get('app.debug'))
 									<b><span class="text-danger">DEBUG MODE</span></b>
 								@endif
-								@if(Setting::get('APP_SHOW_RESETDB'))
+								@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
 									<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 								@endif 
 							</p>

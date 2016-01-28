@@ -11,6 +11,7 @@ return array(
     'CreateNewsTable' => $baseDir . '/database/migrations/2015_12_28_212731_create_news_table.php',
     'CreateSeatPaymentsTable' => $baseDir . '/database/migrations/2016_01_27_174422_create_seat_payments_table.php',
     'CreateSeatReservationsTable' => $baseDir . '/database/migrations/2016_01_27_174407_create_seat_reservations_table.php',
+    'CreatePagesTable' => $baseDir . '/database/migrations/2016_01_21_170955_create_pages_table.php',
     'CreateSeatRowsTable' => $baseDir . '/database/migrations/2016_01_13_195024_create_seat_rows_table.php',
     'CreateSeatStatusesTable' => $baseDir . '/database/migrations/2016_01_20_204823_create_seat_statuses_table.php',
     'CreateSeatTicketsTable' => $baseDir . '/database/migrations/2016_01_27_174438_create_seat_tickets_table.php',
@@ -418,6 +419,7 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PagesTableSeeder' => $baseDir . '/database/seeds/PagesTableSeeder.php',
     'SeatRowsTableSeeder' => $baseDir . '/database/seeds/SeatRowsTableSeeder.php',
     'SeatStatusesTableSeeder' => $baseDir . '/database/seeds/SeatStatusesTableSeeder.php',
     'SeatsTableSeeder' => $baseDir . '/database/seeds/SeatsTableSeeder.php',
@@ -461,5 +463,6 @@ return array(
     'SettingsTableSeeder' => $baseDir . '/database/seeds/SettingsTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UpgradeUsersTable' => $baseDir . '/database/migrations/2016_01_21_114434_upgrade_users_table.php',
     'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );

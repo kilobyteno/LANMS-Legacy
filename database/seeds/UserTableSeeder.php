@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder {
 			'firstname' 	=> 'Daniel',
 			'lastname'	 	=> 'SADMIN',
 			'username' 		=> 'sadmin',
+			'referral_code'	=> str_random(15),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test@rtrdt.ch',
@@ -21,6 +22,7 @@ class UserTableSeeder extends Seeder {
 			'firstname' 	=> 'John',
 			'lastname'	 	=> 'ADMIN',
 			'username' 		=> 'admin',
+			'referral_code'	=> str_random(15),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test2@rtrdt.ch',
@@ -28,6 +30,7 @@ class UserTableSeeder extends Seeder {
 			'firstname' 	=> 'John',
 			'lastname'	 	=> 'MOD',
 			'username' 		=> 'mod',
+			'referral_code'	=> str_random(15),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test3@rtrdt.ch',
@@ -35,6 +38,7 @@ class UserTableSeeder extends Seeder {
 			'firstname' 	=> 'John',
 			'lastname'	 	=> 'USER',
 			'username' 		=> 'user',
+			'referral_code'	=> str_random(15),
 		]);
 
 		//Create Roles
@@ -79,6 +83,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.newscategory.destroy');
 		$role->addPermission('admin.newscategory.restore');
 
+		$role->addPermission('admin.pages.create');
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy');
+		$role->addPermission('admin.pages.restore');
+
 		$role->addPermission('admin.settings.update');
 
 		$role->save();
@@ -98,6 +107,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.newscategory.destroy');
 		$role->addPermission('admin.newscategory.restore', false);
 
+		$role->addPermission('admin.pages.create');
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy');
+		$role->addPermission('admin.pages.restore', false);
+
 		$role->addPermission('admin.settings.update', false);
 
 		$role->save();
@@ -111,6 +125,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy', false);
 		$role->addPermission('admin.news.restore', false);
+
+		$role->addPermission('admin.pages.create', false);
+		$role->addPermission('admin.pages.update');
+		$role->addPermission('admin.pages.destroy', false);
+		$role->addPermission('admin.pages.restore', false);
 
 		$role->addPermission('admin.newscategory.create', false);
 		$role->addPermission('admin.newscategory.update', false);
