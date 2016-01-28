@@ -15,6 +15,12 @@ class CreateSeatPaymentsTable extends Migration {
 		Schema::create('seat_payments', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->string('stripecode');
+
+			$table->integer('user_id');
+			$table->integer('reservation_id');
+
 			$table->timestamps();
 		});
 	}

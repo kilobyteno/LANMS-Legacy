@@ -20,13 +20,8 @@ class CreateSeatsTable extends Migration {
 			$table->string('slug');
 
 			$table->integer('row_id');
-			$table->integer('status_id')->default(0);
-			$table->integer('reservedfor_id')->default(0);
-            
-            $table->integer('reserved_by'); //who reserved this seat?
-            $table->integer('paid_by'); //who paid it?
-			
-			$table->timestamp('reserved_at'); //when was it reserved?
+			$table->integer('reservation_id');
+
 			$table->timestamps();
 		});
 	}

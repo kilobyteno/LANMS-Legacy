@@ -9,10 +9,11 @@ class SeatStatus extends Model {
 	protected $fillable = [
 		'name',
 		'slug',
+		'reservation_id',
 	];
 
-	function seats() {
-		return $this->hasMany('Seats', 'status_id');
+	function reservations() {
+		return $this->hasMany('SeatReservations', 'reservation_id');
 	}
 
 }

@@ -19,6 +19,8 @@ class CreateSeatStatusesTable extends Migration {
 			$table->string('name');
 			$table->string('slug');
 
+			$table->integer('reservation_id');
+
 			$table->timestamps();
 		});
 	}
