@@ -186,7 +186,11 @@ class AddressBookController extends Controller {
 			$address = Address::find($id);
 			
 			if($address->primary) {
-				Address::where('user_id', '=', Sentinel::getUser()->id)->first()->update(['primary' => 1]);
+				$uaddress = Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->first();
+				if($uaddress <> null) {
+					$uaddress->primary = 1;
+					$uaddress->save();
+				}
 			}
 
 			if($address->delete()) {

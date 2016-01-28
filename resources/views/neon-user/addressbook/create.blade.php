@@ -59,7 +59,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">Address</label>
 							<div class="col-sm-5 form-group @if($errors->has('address1')) has-error @endif">
-								<input class="form-control" type="text" name="address1" placeholder="Jernbanegata" id="route">
+								<input class="form-control" type="text" name="address1" placeholder="Jernbanegata" value="{{ (old('address1')) ? old('address1') : '' }}" id="route">
 								@if($errors->has('address1'))
 									<p class="text-danger">{{ $errors->first('address1') }}</p>
 								@endif
@@ -69,7 +69,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">Address 2<br><small>This field is used for house numbers</small></label>
 							<div class="col-sm-5 form-group @if($errors->has('address2')) has-error @endif">
-								<input class="form-control" type="text" name="address2" id="street_number">
+								<input class="form-control" type="text" name="address2" value="{{ (old('address2')) ? old('address2') : '' }}" id="street_number">
 								@if($errors->has('address2'))
 									<p class="text-danger">{{ $errors->first('address2') }}</p>
 								@endif
@@ -79,7 +79,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">Postal Code</label>
 							<div class="col-sm-5 form-group @if($errors->has('postalcode')) has-error @endif">
-								<input class="form-control" type="text" name="postalcode" placeholder="2609" id="postal_code">
+								<input class="form-control" type="text" name="postalcode" placeholder="2609" value="{{ (old('postalcode')) ? old('postalcode') : '' }}" id="postal_code">
 								@if($errors->has('postalcode'))
 									<p class="text-danger">{{ $errors->first('postalcode') }}</p>
 								@endif
@@ -89,7 +89,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">City</label>
 							<div class="col-sm-5 form-group @if($errors->has('city')) has-error @endif">
-								<input class="form-control" type="text" name="city" placeholder="Lillehammer" id="locality">
+								<input class="form-control" type="text" name="city" placeholder="Lillehammer" value="{{ (old('city')) ? old('city') : '' }}" id="locality">
 								@if($errors->has('city'))
 									<p class="text-danger">{{ $errors->first('city') }}</p>
 								@endif
@@ -99,7 +99,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">County</label>
 							<div class="col-sm-5 form-group @if($errors->has('county')) has-error @endif">
-								<input class="form-control" type="text" name="county" placeholder="Oppland" id="administrative_area_level_1">
+								<input class="form-control" type="text" name="county" placeholder="Oppland" value="{{ (old('county')) ? old('county') : '' }}" id="administrative_area_level_1">
 								@if($errors->has('county'))
 									<p class="text-danger">{{ $errors->first('county') }}</p>
 								@endif
@@ -109,7 +109,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">Country</label>
 							<div class="col-sm-5 form-group @if($errors->has('country')) has-error @endif">
-								<input class="form-control" type="text" name="country" placeholder="Norway" id="country">
+								<input class="form-control" type="text" name="country" placeholder="Norway" value="{{ (old('country')) ? old('country') : '' }}" id="country">
 								@if($errors->has('country'))
 									<p class="text-danger">{{ $errors->first('country') }}</p>
 								@endif
@@ -121,7 +121,7 @@
 						<div class="row">
 							<label class="col-sm-5 control-label">Primary Address?</label>
 							<div class="col-sm-5 checkbox @if($errors->has('primary')) has-error @endif">
-								<label><input type="checkbox" name="primary">Yes</label>
+								<label><input type="checkbox" name="primary" @if(old('primary')) checked @endif>Yes</label>
 								@if($errors->has('primary'))
 									<p class="text-danger">{{ $errors->first('primary') }}</p>
 								@endif
