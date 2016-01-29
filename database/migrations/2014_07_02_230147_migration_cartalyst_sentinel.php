@@ -109,8 +109,6 @@ class MigrationCartalystSentinel extends Migration
 			$table->date('birthdate')->default('1970-01-01'); //YYYY-MM-DD
 			$table->timestamp('last_activity')->nullable();
 
-			$table->string('address'); // Google Maps location
-
 			$table->string('profilepicture')->nullable();
 			$table->string('profilepicturesmall')->nullable();
 			$table->string('profilecover')->nullable();

@@ -134,29 +134,6 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<div class="panel-title">Address <small class="text-danger">NOT IMPLEMENTED</small></div>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<label class="col-sm-5 control-label">Address<br><small class="text-danger">Not visible on profile</small></label>
-							<div class="col-sm-5 form-group @if ($errors->has('address')) has-error @endif">
-								<div class="input-group">
-									<span class="input-group-addon"><span class="fa fa-globe"></span></span>
-									<input class="form-control" type="text" name="address" value="{{ $address }}">
-								</div>
-								@if($errors->has('location'))
-									<p class="text-danger">{{ $errors->first('location') }}</p>
-								@endif
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
 				
 				<div class="panel panel-primary">
 				
