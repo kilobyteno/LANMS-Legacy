@@ -40,7 +40,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'occupation',
 		'location',
 		'profilepicture',
-		'profilepicture_small',
+		'profilepicturesmall',
 		'profilecover',
 		'showemail',
 		'showname',

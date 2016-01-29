@@ -60,10 +60,10 @@
 							<h3>Sponsorer</h3>
 						</div>
 						<div class="card-action">
-							<img src="{{ asset('images/sponsor/eidsiva.png') }} " width="335px">
-							<img src="{{ asset('images/sponsor/sikker_jobb.png') }} " width="335px">
-							<img src="{{ asset('images/sponsor/infihex.png') }} " width="335px">
-							<img src="{{ asset('images/sponsor/norconsult.png') }} " width="335px">
+							<img class="responsive-img" src="{{ asset('images/sponsor/eidsiva.png') }} " width="335px">
+							<img class="responsive-img" src="{{ asset('images/sponsor/sikker_jobb.png') }} " width="335px">
+							<img class="responsive-img" src="{{ asset('images/sponsor/infihex.png') }} " width="335px">
+							<img class="responsive-img" src="{{ asset('images/sponsor/norconsult.png') }} " width="335px">
 						</div>
 					</div>
 				</div>
