@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeatStatus extends Model {
+class SeatReservationStatus extends Model {
 
-	protected $table = 'seat_statuses';
+	protected $table = 'seat_reservation_statuses';
 
 	protected $fillable = [
 		'name',

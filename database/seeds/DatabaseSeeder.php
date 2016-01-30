@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('SettingsTableSeeder');
 		$this->call('SeatsTableSeeder');
 		$this->call('SeatRowsTableSeeder');
-		$this->call('SeatStatusesTableSeeder');
+		$this->call('SeatReservationStatusesTableSeeder');
 		$this->call('PagesTableSeeder');
 		
 	}

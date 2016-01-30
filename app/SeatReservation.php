@@ -32,7 +32,11 @@ class SeatReservation extends Model {
 	}
 
 	function status() {
-		return $this->hasOne('SeatStatus', 'id', 'status_id');
+		return $this->hasOne('SeatReservationStatus', 'id', 'status_id');
+	}
+
+	function seat() {
+		return $this->hasOne('Seat', 'id', 'seat_id');
 	}
 
 }

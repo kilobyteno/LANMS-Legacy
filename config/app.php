@@ -203,13 +203,16 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 		//Hehe
-		'User'			=> 'LANMS\User',
-		'News'			=> 'LANMS\News',
-		'NewsCategory'	=> 'LANMS\NewsCategory',
-		'Address'		=> 'LANMS\Address',
-		'Seats'			=> 'LANMS\Seats',
-		'SeatRows'		=> 'LANMS\SeatRows',
-		'SeatStatus'	=> 'LANMS\SeatStatus',
+		'User'					=> 'LANMS\User',
+		'News'					=> 'LANMS\News',
+		'NewsCategory'			=> 'LANMS\NewsCategory',
+		'Address'				=> 'LANMS\Address',
+		'Seats'					=> 'LANMS\Seats',
+		'SeatRows'				=> 'LANMS\SeatRows',
+		'SeatPayment'			=> 'LANMS\SeatPayment',
+		'SeatReservation'		=> 'LANMS\SeatReservation',
+		'SeatReservationStatus'	=> 'LANMS\SeatReservationStatus',
+		'SeatTicket'			=> 'LANMS\SeatTicket',
 		
 		/*
 		 * Third-party

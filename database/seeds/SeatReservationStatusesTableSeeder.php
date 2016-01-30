@@ -1,23 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LANMS\Seats;
+use LANMS\SeatReservationStatus;
 
-class SeatStatusesTableSeeder extends Seeder  {
+class SeatReservationStatusesTableSeeder extends Seeder  {
 
 	public function run() {
 
-		SeatStatus::create([
-			'name' 		=> 'Open',
-			'slug' 		=> 'open',
-		]);
-
-		SeatStatus::create([
+		SeatReservationStatus::create([
 			'name' 		=> 'Reserved',
 			'slug' 		=> 'reserved',
 		]);
 
-		SeatStatus::create([
+		SeatReservationStatus::create([
 			'name' 		=> 'Temporary Reserved',
 			'slug' 		=> 'temporary_reserved',
 		]);

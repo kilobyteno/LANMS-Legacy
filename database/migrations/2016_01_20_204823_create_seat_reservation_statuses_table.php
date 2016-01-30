@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSeatStatusesTable extends Migration {
+class CreateSeatReservationStatusesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateSeatStatusesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('seat_statuses', function(Blueprint $table)
+		Schema::create('seat_reservation_statuses', function(Blueprint $table)
 		{
 			$table->increments('id');
 
@@ -32,7 +32,7 @@ class CreateSeatStatusesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('seat_statuses');
+		Schema::drop('seat_reservation_statuses');
 	}
 
 }
