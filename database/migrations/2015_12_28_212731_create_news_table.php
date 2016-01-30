@@ -22,8 +22,8 @@ class CreateNewsTable extends Migration {
 
 			$table->integer('category_id');
 
-			$table->integer('creator_id'); //who created it?
-			$table->integer('author_id'); //who updated it?
+			$table->integer('author_id'); //who created it?
+			$table->integer('editor_id'); //who updated it?
 			$table->enum('active', array(0, 1))->default(1); //is it visible on the website?
 			
 			$table->dateTime('published_at');

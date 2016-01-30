@@ -105,7 +105,7 @@ class NewsController extends Controller {
 			$article->published_at 	= $published_at;
 			$article->category_id	= $request->get('category_id');
 			$article->creator_id	= Sentinel::getUser()->id;
-			$article->author_id		= Sentinel::getUser()->id;
+			$article->editor_id		= Sentinel::getUser()->id;
 
 			$articlesave 			= $article->save();
 
@@ -186,7 +186,7 @@ class NewsController extends Controller {
 			$article->active 		= $active;
 			$article->published_at 	= $published_at;
 			$article->category_id	= $request->get('category_id');
-			$article->author_id		= Sentinel::getUser()->id;
+			$article->editor_id		= Sentinel::getUser()->id;
 
 			if($article->save()) {
 				return Redirect::route('admin-news-edit', $id)

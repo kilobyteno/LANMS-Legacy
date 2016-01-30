@@ -15,11 +15,20 @@ class News extends Model {
 		'published_at',
 		'category_id',
 		'creator_id',
+		'editor_id',
 	];
 	protected $table = 'news';
 
 	function category() {
 		return $this->hasOne('NewsCategory', 'id', 'category_id');
+	}
+
+	function author() {
+		return $this->hasOne('User', 'id', 'author_id');
+	}
+
+	function editor() {
+		return $this->hasOne('User', 'id', 'editor_id');
 	}
 
 	function scopeIsPublished($query) {
