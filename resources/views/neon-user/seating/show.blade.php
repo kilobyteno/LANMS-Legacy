@@ -69,11 +69,17 @@
 						<div class="alert alert-info" role="alert">
 							<strong>Information:</strong> This seat is {{ strtolower($currentseat->reservations->first()->status->name) }}.
 						</div>
+					@elseif($currentseat->row_id == 1)
+						<div class="alert alert-info" role="alert">
+							<strong>Information:</strong> This seat cannot be reserved!
+						</div>
 					@elseif(Sentinel::getUser()->reservations->count() >= 5)
 						<div class="alert alert-warning" role="alert">
-							<strong>Warning!</strong> You are not allowed to reserve more seats.
+							<strong>Warning!</strong> You are not allowed to reserve more than <em>five</em> seats.
 						</div>
-					@elseif($currentseat->row_id <> 1)
+					@elseif(Sentinel::getUser()->addresses->count() == 0)
+						<p><em>You are not allowed to reserve seats. Read the alert above.</em></p>
+					@else
 						<form class="form-horizontal" method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group">
 								<label class="col-sm-2 control-label">
@@ -94,10 +100,6 @@
 								</div>
 							</div>
 						</form>
-					@else
-						<div class="alert alert-info" role="alert">
-							<strong>Information:</strong> This seat cannot be reserved!
-						</div>
 					@endif
 				</div>
 			</div>
