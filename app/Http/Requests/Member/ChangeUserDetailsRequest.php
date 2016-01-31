@@ -23,12 +23,12 @@ class ChangeUserDetailsRequest extends Request {
 	{
 		return [
 			'email' 		=> 'required|max:50|email|unique:users',
-			'firstname' 	=> 'required|min:3|max:250|alpha',
-			'lastname' 		=> 'required|min:3|max:250|alpha',
+			'firstname' 	=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
+			'lastname' 		=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
 			'gender' 		=> '',
-			'location' 		=> 'regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
-			'occupation' 	=> 'regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
+			'location' 		=> 'regex:/^[A-Za-z ,\']+$/',
+			'occupation' 	=> 'regex:/^[A-Za-z ,\']+$/',
 		];
-	}
+	}	}
 
 }
