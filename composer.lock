@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e2b3e7422f00b43c4b9ab0a57207c857",
-    "content-hash": "9bdb55de414df9de8d0591055fd57b92",
+    "hash": "7cf4acc1cce6b8b4918d8802b74be77b",
+    "content-hash": "7b3c5e9b54a7fd718eaff41e0f80e432",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -1044,6 +1044,56 @@
                 "storage"
             ],
             "time": "2015-12-19 20:16:43"
+        },
+        {
+            "name": "liebig/cron",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liebig/cron.git",
+                "reference": "39dd8fb4a580fded1c85062af4af6d8621aa05ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liebig/cron/zipball/39dd8fb4a580fded1c85062af4af6d8621aa05ea",
+                "reference": "39dd8fb4a580fded1c85062af4af6d8621aa05ea",
+                "shasum": ""
+            },
+            "require": {
+                "mtdowling/cron-expression": "1.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "illuminate/support": "4.0.x|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Liebig\\Cron": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Liebig",
+                    "email": "marc.liebig@gmx.eu"
+                }
+            ],
+            "description": "Job scheduling for Laravel",
+            "homepage": "http://liebig.github.io/cron",
+            "keywords": [
+                "cron",
+                "cronjob",
+                "cronmanager",
+                "laravel"
+            ],
+            "time": "2015-03-04 15:57:29"
         },
         {
             "name": "monolog/monolog",
@@ -3452,7 +3502,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "liebig/cron": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
