@@ -23,11 +23,11 @@ class ChangeUserDetailsRequest extends Request {
 	{
 		return [
 			'email' 		=> 'required|max:50|email|unique:users',
-			'firstname' 	=> 'required|min:3|max:250|regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
-			'lastname' 		=> 'required|min:3|max:250|regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
+			'firstname' 	=> 'required|min:3|max:250|alpha',
+			'lastname' 		=> 'required|min:3|max:250|alpha',
 			'gender' 		=> '',
-			'location' 		=> '',
-			'occupation' 	=> '',
+			'location' 		=> 'regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
+			'occupation' 	=> 'regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/',
 		];
 	}
 
