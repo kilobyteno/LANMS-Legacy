@@ -11,7 +11,20 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		// Please note the different namespace 
+		// and please add a \ in front of your classes in the global namespace
+		\Event::listen('cron.collectJobs', function() {
+
+			\Cron::add('example1', '* * * * *', function() {
+				// Do some crazy things unsuccessfully every minute
+				return 'No';
+			});
+			/* 
+				Add this in CPanel:
+				* * * * * /usr/bin/php /var/www/laravel/artisan cron:run
+			*/
+			
+		});
 	}
 
 	/**

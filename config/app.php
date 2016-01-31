@@ -153,6 +153,7 @@ return [
 		'LANMS\Providers\ThemeSelectServiceProvider',
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
 		'anlutro\LaravelSettings\ServiceProvider',
+		'Liebig\Cron\Laravel5ServiceProvider',
 
 	],
 
@@ -223,6 +224,7 @@ return [
 		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
 		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
+
 
 	],
 
