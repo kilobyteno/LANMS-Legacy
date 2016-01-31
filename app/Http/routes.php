@@ -22,7 +22,7 @@ if(Config::get('app.debug')) {
 		}
 	});*/
 	Route::get('/test', function() {
-		echo 'Hello.';
+		abort(500);
 	});
 }
 

@@ -29,12 +29,17 @@
 				font-size: 72px;
 				margin-bottom: 40px;
 			}
+
+			.hero {
+				font-size: 16px;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
 				<div class="title">Be right back.</div>
+				<div class="hero">503 - Service Unavailable</div>
 			</div>
 		</div>
 	</body>
