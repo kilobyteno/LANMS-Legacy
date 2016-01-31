@@ -56,8 +56,11 @@ class UserSeatingController extends Controller {
 	public function reserve($slug, SeatReserveRequest $request)
 	{
 
-		$slug = strtolower($slug); // Just to be sure it is correct
-		$seat = Seats::where('slug', $slug)->first();
+		$slug 			= strtolower($slug); // Just to be sure it is correct
+		$seat 			= Seats::where('slug', $slug)->first();
+		$reservedforid 	= $request->get('reservedfor');
+		$reservedfor 	= Sentinel::findById($reservedforid);
+
 		if($seat == null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'Could not find seat.');
@@ -74,6 +77,8 @@ class UserSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'Seat has already been reserved');
 		}
+
+		/* LOGGED IN USER */
 		if (Sentinel::getUser()->addresses->count() == 0) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
 								->with('message', 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.');
@@ -86,11 +91,21 @@ class UserSeatingController extends Controller {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'info')
 								->with('message', 'You cannot reserve more than one seat to yourself. Please select another user you want to reserve this seat for.');
 		}
+
+		/* RESERVED FOR USER */
+		if ($reservedfor->addresses->count() == 0) {
+			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
+								->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
+		}
+		if($reservedfor->reservations->count() >= 5) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', '<em>'.$reservedfor->username.'</em> are not allowed to reserve more seats.');
+		}
 		
 		$seatreservation 					= new SeatReservation;
 		$seatreservation->seat_id 			= $seat->id;
 		$seatreservation->reservedby_id 	= Sentinel::getUser()->id;
-		$seatreservation->reservedfor_id	= $request->get('reservedfor');
+		$seatreservation->reservedfor_id	= $reservedforid;
 		$seatreservation->status_id 		= 2; // 1 = Reserved, 2 = Temporary Reserved
 
 		$seatreservationsave 				= $seatreservation->save();
