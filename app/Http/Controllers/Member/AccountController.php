@@ -126,7 +126,7 @@ class AccountController extends Controller {
 		if (Sentinel::authenticate($credentials)) {
 
 			$info = [
-				'email' 		=> $request->get('email'),
+				/*'email' 		=> $request->get('email'),*/
 				'firstname' 	=> $request->get('firstname'),
 				'lastname' 		=> $request->get('lastname'),
 				'gender' 		=> $request->get('gender'),
