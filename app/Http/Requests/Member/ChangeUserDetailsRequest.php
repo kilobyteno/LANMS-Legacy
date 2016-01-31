@@ -29,6 +29,6 @@ class ChangeUserDetailsRequest extends Request {
 			'location' 		=> 'regex:/^[A-Za-z ,\']+$/',
 			'occupation' 	=> 'regex:/^[A-Za-z ,\']+$/',
 		];
-	}	}
+	}
 
 }
