@@ -13,6 +13,7 @@ use LANMS\Http\Requests\Member\SettingsRequest;
 use LANMS\Http\Requests\Member\PasswordRequest;
 use LANMS\Http\Requests\Member\ProfileImageRequest;
 use LANMS\Http\Requests\Member\ProfileCoverRequest;
+use LANMS\Http\Requests\Member\ChangeUserDetailsRequest;
 
 use LANMS\User;
 use LANMS\News;
@@ -113,7 +114,7 @@ class AccountController extends Controller {
 		return view('account.changedetails')->with($authuser->toArray());
 	}
 
-	public function postChangeDetails(SettingsRequest $request) {
+	public function postChangeDetails(ChangeUserDetailsRequest $request) {
 
 		$finduser = Sentinel::findById(Sentinel::getUser()->id);
 
@@ -125,7 +126,7 @@ class AccountController extends Controller {
 		if (Sentinel::authenticate($credentials)) {
 
 			$info = [
-				'email' 		=> $request->get('email'),
+				/*'email' 		=> $request->get('email'),*/
 				'firstname' 	=> $request->get('firstname'),
 				'lastname' 		=> $request->get('lastname'),
 				'gender' 		=> $request->get('gender'),

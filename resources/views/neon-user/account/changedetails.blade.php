@@ -31,8 +31,9 @@
 							<div class="col-sm-5 form-group @if ($errors->has('email')) has-error @endif">
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-envelope"></span></span>
-									<input class="form-control" type="text" name="email" placeholder="john@doe.com" value="{{ $email }}">
+									<input class="form-control" type="text" name="email" placeholder="john@doe.com" value="{{ $email }}" disabled readonly>
 								</div>
+								<p class="text-muted"><em>It is not possible to change email at this time.</em></p>
 								@if($errors->has('email'))
 									<p class="text-danger">{{ $errors->first('email') }}</p>
 								@endif
