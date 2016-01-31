@@ -22,7 +22,7 @@ class ChangeUserDetailsRequest extends Request {
 	public function rules()
 	{
 		return [
-			'email' 		=> 'required|max:50|email|unique:users',
+			/*'email' 		=> 'required|max:50|email|unique:users',*/
 			'firstname' 	=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
 			'lastname' 		=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
 			'gender' 		=> '',
