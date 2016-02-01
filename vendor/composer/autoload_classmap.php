@@ -111,6 +111,8 @@ return array(
     'Cartalyst\\Stripe\\Exception\\UnauthorizedException' => $vendorDir . '/cartalyst/stripe/src/Exception/UnauthorizedException.php',
     'Cartalyst\\Stripe\\Http\\Client' => $vendorDir . '/cartalyst/stripe/src/Http/Client.php',
     'Cartalyst\\Stripe\\Http\\ClientInterface' => $vendorDir . '/cartalyst/stripe/src/Http/ClientInterface.php',
+    'Cartalyst\\Stripe\\Laravel\\Facades\\Stripe' => $vendorDir . '/cartalyst/stripe-laravel/src/Facades/Stripe.php',
+    'Cartalyst\\Stripe\\Laravel\\StripeServiceProvider' => $vendorDir . '/cartalyst/stripe-laravel/src/StripeServiceProvider.php',
     'Cartalyst\\Stripe\\Pager' => $vendorDir . '/cartalyst/stripe/src/Pager.php',
     'Cartalyst\\Stripe\\Stripe' => $vendorDir . '/cartalyst/stripe/src/Stripe.php',
     'Cartalyst\\Stripe\\Utility' => $vendorDir . '/cartalyst/stripe/src/Utility.php',

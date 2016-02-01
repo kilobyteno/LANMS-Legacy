@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7003818a2c5d9e24551433f2d9f5a122",
-    "content-hash": "63aa511f84ec579ebf0864368f9b5a48",
+    "hash": "a163ddda4fa9eb8f79b53de0b8726e71",
+    "content-hash": "d63d5ae76f630abe9c5bc3b240d3d0ee",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -260,6 +260,60 @@
                 "stripe"
             ],
             "time": "2015-12-12 01:25:27"
+        },
+        {
+            "name": "cartalyst/stripe-laravel",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cartalyst/stripe-laravel.git",
+                "reference": "05c5d768f07c601d1b47287c4d4a69c07143ffdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/stripe-laravel/zipball/05c5d768f07c601d1b47287c4d4a69c07143ffdf",
+                "reference": "05c5d768f07c601d1b47287c4d4a69c07143ffdf",
+                "shasum": ""
+            },
+            "require": {
+                "cartalyst/stripe": "1.0.*",
+                "illuminate/support": "5.0.*|5.1.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "type": "library",
+            "extra": {
+                "component": "implementation",
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cartalyst\\Stripe\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com",
+                    "homepage": "https://cartalyst.com"
+                }
+            ],
+            "description": "Laravel 5 integration for the Cartalyst Stripe package.",
+            "keywords": [
+                "cartalyst",
+                "laravel",
+                "php",
+                "stripe"
+            ],
+            "time": "2016-01-18 00:50:11"
         },
         {
             "name": "cartalyst/support",
