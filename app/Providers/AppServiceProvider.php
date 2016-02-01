@@ -15,14 +15,14 @@ class AppServiceProvider extends ServiceProvider {
 		// and please add a \ in front of your classes in the global namespace
 		\Event::listen('cron.collectJobs', function() {
 
-			\Cron::add('DeleteExpiredReservations', '*/2 * * * *', function() {
+			\Cron::add('DeleteExpiredReservations', '*/1 * * * *', function() {
 
-				/*$reservations = \SeatReservation::where('status_id', '=', 2);
+				$reservations = \SeatReservation::where('status_id', '=', 2)->get();
 				foreach($reservations as $reservation) {
 					if(\SeatReservation::getExpireTime($reservation->id) == 'expired') {
 						\SeatReservation::find($reservation->id)->delete();
 					}
-				}*/
+				}
 
 				return 'OK';
 
