@@ -82,7 +82,7 @@
 									<div class="row info-list">
 										<div class="col-sm-4">
 											@if($reservation->payment == null)
-												<span class="text-danger"><a href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a></span>
+												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
 											@else
 												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
 											@endif
