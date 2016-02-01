@@ -15,10 +15,19 @@ class AppServiceProvider extends ServiceProvider {
 		// and please add a \ in front of your classes in the global namespace
 		\Event::listen('cron.collectJobs', function() {
 
-			\Cron::add('example1', '* * * * *', function() {
-				// Do some crazy things unsuccessfully every minute
-				return 'No';
+			\Cron::add('DeleteExpiredReservations', '*/2 * * * *', function() {
+
+				/*$reservations = \SeatReservation::where('status_id', '=', 2);
+				foreach($reservations as $reservation) {
+					if(\SeatReservation::getExpireTime($reservation->id) == 'expired') {
+						\SeatReservation::find($reservation->id)->delete();
+					}
+				}*/
+
+				return 'OK';
+
 			});
+
 			/* 
 				Add this in CPanel:
 				* * * * * /usr/bin/php /var/www/laravel/artisan cron:run

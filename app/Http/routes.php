@@ -7,7 +7,7 @@ if(Config::get('app.debug')) {
 	Route::get('/resetdb', function() {
 		Artisan::call('migrate:reset');
 		Artisan::call('migrate');
-		Artisan::call('migrate --path=vendor/liebig/cron/src/migrations');
+		//Artisan::call('migrate --package=vendor/liebig/cron');
 		Artisan::call('db:seed');
 		return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
 	});
