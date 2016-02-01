@@ -25,6 +25,9 @@
 
 			<div class="row">
 				<div class="col-lg-12">
+					@if(Sentinel::getUser()->reservations->count() <> 0)
+						<div class="alert alert-info" role="alert"><strong>Information!</strong> You will not be able to delete any addresses while you have reserved seats.</div>
+					@endif
 					@if($addresses->count() == 0)
 						<blockquote>
 							<p><em>We can't find any addresses tied to your account. You should <a href="{{ route('account-addressbook-create') }}">add</a> one.</em></p>
@@ -47,7 +50,9 @@
 										</address>
 										<p>
 											<a class="btn btn-xs btn-warning btn-icon icon-left" href="{{ route('account-addressbook-edit', $address->id) }}"><i class="fa fa-pencil"></i> Edit</a>
-											<a href="javascript:;" onclick="jQuery('#address-destroy-{{ $address->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-xs btn-icon icon-left"><i class="fa fa-times"></i>Delete</a>
+											@if(Sentinel::getUser()->reservations->count() == 0)
+												<a href="javascript:;" onclick="jQuery('#address-destroy-{{ $address->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-xs btn-icon icon-left"><i class="fa fa-times"></i>Delete</a>
+											@endif
 										</p>
 									</div>
 								</div>
@@ -61,24 +66,25 @@
 		</div>
 	</div>
 </div>
-
-@foreach($addresses as $address)
-	<div class="modal fade" id="address-destroy-{{ $address->id }}" data-backdrop="static">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete Address:</strong> {{ $address->address1 }}</h4>
-				</div>
-				<div class="modal-body">
-					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this address?</strong></h4>
-				</div>
-				<div class="modal-footer">
-					<a href="{{ route('account-addressbook-destroy', $address->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
-					<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
+@if(Sentinel::getUser()->reservations->count() == 0)
+	@foreach($addresses as $address)
+		<div class="modal fade" id="address-destroy-{{ $address->id }}" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title"><strong>Delete Address:</strong> {{ $address->address1 }}</h4>
+					</div>
+					<div class="modal-body">
+						<h4 class="text-danger text-center"><strong>Are you sure you want to delete this address?</strong></h4>
+					</div>
+					<div class="modal-footer">
+						<a href="{{ route('account-addressbook-destroy', $address->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
+						<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-@endforeach
+	@endforeach
+@endif
 
 @stop

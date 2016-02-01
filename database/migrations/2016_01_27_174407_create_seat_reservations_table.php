@@ -24,6 +24,7 @@ class CreateSeatReservationsTable extends Migration {
 			$table->integer('status_id');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

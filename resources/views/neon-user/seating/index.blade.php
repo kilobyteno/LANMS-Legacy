@@ -70,10 +70,35 @@
 				@if(Setting::get('SEATING_OPEN'))
 					<div class="col-md-4">
 						<h3>Seats you have reserved:</h3>
-					</div>
-
-					<div class="col-md-4">
-						<h3>Seats you administer:</h3>
+						@foreach($userreservations as $reservation)
+							<div class="member-entry">
+								<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="member-img">
+									<h3>{{ $reservation->seat->name }}</h3>
+								</a>
+								<div class="member-details">
+									<h4>
+										<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ $reservation->reservedfor->firstname }}@if($reservation->reservedfor->showname) {{ $reservation->reservedfor->lastname }}@endif</a>
+									</h4>
+									<div class="row info-list">
+										<div class="col-sm-4">
+											@if($reservation->payment == null)
+												<span class="text-danger"><a href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a></span>
+											@else
+												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
+											@endif
+										</div>
+										<div class="col-sm-4">
+											<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
+										</div>
+										<div class="col-sm-4">
+											@if($reservation->ticket <> null)
+												<a href="{{ route('seating-ticket-download', $reservation->ticket->id) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
+											@endif
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
 					</div>
 				@else
 					<div class="col-md-8 text-center">

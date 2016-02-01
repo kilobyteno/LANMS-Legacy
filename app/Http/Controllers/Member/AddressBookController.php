@@ -183,6 +183,13 @@ class AddressBookController extends Controller {
 	public function destroy($id)
 	{
 		if (Sentinel::getUser()->hasAccess(['address.'.$id.'.destroy'])) {
+
+			if(Sentinel::getUser()->reservations->count() <> 0) {
+				return Redirect::route('account-addressbook')
+									->with('messagetype', 'warning')
+									->with('message', 'You are not allowed to delete any addresses while you have reserved seats.');
+			}
+
 			$address = Address::find($id);
 			
 			if($address->primary) {
@@ -208,7 +215,7 @@ class AddressBookController extends Controller {
 			$user->removePermission('address.'.$id.'.destroy');
 			$user->save();
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('account-addressbook')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}

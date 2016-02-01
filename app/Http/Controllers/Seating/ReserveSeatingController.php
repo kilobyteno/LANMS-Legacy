@@ -14,7 +14,7 @@ use anlutro\LaravelSettings\Facade as Setting;
 
 use LANMS\Http\Requests\Seating\SeatReserveRequest;
 
-class UserSeatingController extends Controller {
+class ReserveSeatingController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -23,8 +23,9 @@ class UserSeatingController extends Controller {
 	 */
 	public function index()
 	{
-		$rows = SeatRows::all();
-		return view('seating.index')->withRows($rows);
+		$rows 				= SeatRows::all();
+		$userreservations 	= Sentinel::getUser()->reservations;
+		return view('seating.index')->withRows($rows)->with('userreservations', $userreservations);
 	}
 
 	/**
@@ -117,39 +118,6 @@ class UserSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'error')
 								->with('message', 'Something went wrong while saving the reservation!');
 		}
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

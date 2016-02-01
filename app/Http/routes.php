@@ -165,31 +165,23 @@ Route::group([
 			], function() {
 				get('/', [
 					'as' => 'seating',
-					'uses' => 'Seating\UserSeatingController@index'
-				]);
-				get('/{id}/edit', [
-					'as' => 'seating-edit',
-					'uses' => 'Seating\UserSeatingController@edit'
-				]);
-				post('/{id}/update', [
-					'as' => 'seating-update',
-					'uses' => 'Seating\UserSeatingController@update'
+					'uses' => 'Seating\ReserveSeatingController@index'
 				]);
 				get('/{id}/pay', [
 					'as' => 'seating-pay',
-					'uses' => 'Seating\UserSeatingController@pay'
+					'uses' => 'Seating\PaymentSeatingController@pay'
 				]);
 				post('/{slug}/checkout', [
 					'as' => 'seating-checkout',
-					'uses' => 'Seating\UserSeatingController@checkout'
+					'uses' => 'Seating\PaymentSeatingController@checkout'
 				]);
 				get('/{slug}', [
 					'as' => 'seating-show',
-					'uses' => 'Seating\UserSeatingController@show'
+					'uses' => 'Seating\ReserveSeatingController@show'
 				]);
 				post('/{slug}/reserve', [
 					'as' => 'seating-reserve',
-					'uses' => 'Seating\UserSeatingController@reserve'
+					'uses' => 'Seating\ReserveSeatingController@reserve'
 				]);
 		});
 });

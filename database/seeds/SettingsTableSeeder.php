@@ -30,6 +30,7 @@ class SettingsTableSeeder extends Seeder {
 
 		Setting::set('SEATING_OPEN', true);
 		Setting::set('SEATING_SHOW_MAP', true);
+		Setting::set('SEATING_SEAT_EXPIRE_HOURS', 48);
 
 		Setting::set('GOOGLE_MAPS_API_KEY', 'AIzaSyCJDbjolbvN7mYY3SiV6A7SLPCBlHlE-Ow');
 
