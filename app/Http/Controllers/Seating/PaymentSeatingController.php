@@ -4,10 +4,12 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\SeatRows;
 use LANMS\Seats;
 use LANMS\SeatReservation;
+use LANMS\StripeCustomer;
 use anlutro\LaravelSettings\Facade as Setting;
 
 class PaymentSeatingController extends Controller {
@@ -45,7 +47,7 @@ class PaymentSeatingController extends Controller {
 	{
 		$stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
 		if($stripecust == null) {
-			$customer = Stripe::customers()->create([
+			$customer = \Stripe::customers()->create([
 			    'email' => Sentinel::getUser()->email,
 			]);
 			$stripecustomer 			= new StripeCustomer;
