@@ -171,9 +171,9 @@ Route::group([
 					'as' => 'seating-pay',
 					'uses' => 'Seating\PaymentSeatingController@pay'
 				]);
-				post('/{slug}/checkout', [
-					'as' => 'seating-checkout',
-					'uses' => 'Seating\PaymentSeatingController@checkout'
+				post('/{slug}/charge', [
+					'as' => 'seating-charge',
+					'uses' => 'Seating\PaymentSeatingController@charge'
 				]);
 				get('/{slug}', [
 					'as' => 'seating-show',
