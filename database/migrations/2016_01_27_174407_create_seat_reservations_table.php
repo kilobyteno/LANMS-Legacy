@@ -23,7 +23,7 @@ class CreateSeatReservationsTable extends Migration {
 			$table->integer('ticket_id');
 			$table->integer('status_id');
 
-			$table->integer('email_sent');
+			$table->integer('reminder_email_sent');
 
 			$table->timestamps();
 			$table->softDeletes();

@@ -7,6 +7,7 @@ class SeatTicket extends Model {
 	protected $table = 'seat_tickets';
 
 	protected $fillable = [
+		'barcode',
 		'reservation_id',
 		'user_id',
 	];

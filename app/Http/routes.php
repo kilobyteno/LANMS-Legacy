@@ -183,6 +183,10 @@ Route::group([
 					'as' => 'seating-reserve',
 					'uses' => 'Seating\ReserveSeatingController@reserve'
 				]);
+				get('/{slug}/ticket/download', [
+					'as' => 'seating-ticket-download',
+					'uses' => 'Seating\ReserveSeatingController@ticketdownload'
+				]);
 		});
 });
 
@@ -336,8 +340,6 @@ Route::group(['prefix' => 'ajax',], function() {
 		$referral			= Session::get('referral');
 		$referral_code 		= str_random(15);
 
-		$uid 				= mt_rand(1000000000, 2147483647);
-
 		$user = Sentinel::register(array(
 			'email' 			=> $email,
 			'username'			=> $username,
@@ -347,7 +349,6 @@ Route::group(['prefix' => 'ajax',], function() {
 			'password'			=> $password,
 			'referral'			=> $referral,
 			'referral_code'		=> $referral_code,
-			'uid'				=> $uid,
 		));
 
 		if($user) {

@@ -46,18 +46,20 @@
 									</h4>
 									<div class="row info-list">
 										<div class="col-sm-4">
-											@if($reservation->payment == null)
-												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
-											@else
+											@if(!is_null($reservation->payment))
 												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
+											@else
+												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
 											@endif
 										</div>
+										@if(is_null($reservation->payment))
+											<div class="col-sm-4">
+												<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
+											</div>
+										@endif
 										<div class="col-sm-4">
-											<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
-										</div>
-										<div class="col-sm-4">
-											@if($reservation->ticket <> null)
-												<a href="{{ route('seating-ticket-download', $reservation->ticket->id) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
+											@if(!is_null($reservation->ticket))
+												<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
 											@endif
 										</div>
 									</div>

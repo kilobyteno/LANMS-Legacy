@@ -35,61 +35,65 @@
 					<a class="btn btn-info btn-lg btn-block">Pay at the Entrance<em>*</em></a>
 					<p class="text-center text-muted"><small><em>* Additional Fees and <a href="">Terms</a> Apply</em></small></p>
 					<br>
-					<h4 class="text-center text-muted"><em>- or -</em></h4>
+					<h4 class="text-center text-muted"><em>~ or ~</em></h4>
 					<br>
 					<!-- CREDIT CARD FORM STARTS HERE -->
 					<div class="panel panel-default credit-card-box">
-						<div class="panel-heading display-table" >
-							<div class="row display-tr" >
+						<div class="panel-heading display-table">
+							<div class="row display-tr">
 								<h3 class="panel-title display-td">Payment Details</h3>
-								<div class="display-td" >                            
+								<div class="display-td">
 									<img class="img-responsive pull-right" src="{{ Theme::url('images/creditcards.png') }}">
 								</div>
-							</div>                    
+							</div>
 						</div>
 						<div class="panel-body">
-							<form role="form" id="payment-form">
+							<form role="form" id="payment-form" method="post" action="{{ route('seating-charge', $currentseat->slug) }}">
 								<div class="row">
 									<div class="col-xs-12">
-										<div class="form-group">
+										<div class="form-group @if($errors->has('cardNumber')) has-error @endif">
 											<label for="cardNumber">CARD NUMBER</label>
 											<div class="input-group">
-												<input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
+												<input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" required autofocus value="{{ (old('cardNumber')) ? old('cardNumber') : '' }}" autocomplete="off" />
 												<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
 											</div>
-										</div>                            
+										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-4 col-md-4">
-										<div class="form-group">
-											<label for="cardExpiry">EXP. MONTH</label>
-											<input type="tel" class="form-control" name="cardExpiry" placeholder="MM" required />
+										<div class="form-group @if($errors->has('cardMonthExpiry')) has-error @endif">
+											<label for="cardMonthExpiry">EXP. MONTH</label>
+											<input type="tel" class="form-control" name="cardMonthExpiry" placeholder="MM" required value="{{ (old('cardMonthExpiry')) ? old('cardMonthExpiry') : '' }}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="col-xs-4 col-md-4">
-										<div class="form-group">
-											<label for="cardExpiry">EXP. YEAR</label>
-											<input type="tel" class="form-control" name="cardExpiry" placeholder="YY" required />
+										<div class="form-group @if($errors->has('cardYearExpiry')) has-error @endif">
+											<label for="cardYearExpiry">EXP. YEAR</label>
+											<input type="tel" class="form-control" name="cardYearExpiry" placeholder="YY" required value="{{ (old('cardYearExpiry')) ? old('cardYearExpiry') : '' }}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="col-xs-4 col-md-4 pull-right">
-										<div class="form-group">
+										<div class="form-group @if($errors->has('cardCVC')) has-error @endif">
 											<label for="cardCVC">CV CODE</label>
-											<input type="tel" class="form-control" name="cardCVC" placeholder="CVC" required />
+											<input type="tel" class="form-control" name="cardCVC" placeholder="CVC" required value="{{ (old('cardCVC')) ? old('cardCVC') : '' }}" autocomplete="off" />
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-12">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
 										<button class="btn btn-success btn-lg btn-block" type="submit">Pay for Seat</button>
 									</div>
 								</div>
-								<div class="row" style="display:none;">
-									<div class="col-xs-12">
-										<p class="payment-errors"></p>
+								@if ($errors->has())
+									<br>
+									<div class="alert alert-danger">
+										@foreach ($errors->all() as $error)
+											{{ $error }}<br>
+										@endforeach
 									</div>
-								</div>
+								@endif
 							</form>
 						</div>
 					</div>

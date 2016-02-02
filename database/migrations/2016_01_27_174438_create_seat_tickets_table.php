@@ -16,6 +16,8 @@ class CreateSeatTicketsTable extends Migration {
 		{
 			$table->increments('id');
 
+			$table->integer('barcode');
+
 			$table->integer('reservation_id');
 			$table->integer('user_id');
 

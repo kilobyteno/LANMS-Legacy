@@ -25,12 +25,12 @@ class AppServiceProvider extends ServiceProvider {
 							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
 						});
 					}
-					if(\SeatReservation::getExpireTime($reservation->id) == '24 hours' && $reservation->email_sent <> 1) {
+					if(\SeatReservation::getExpireTime($reservation->id) == '24 hours' && $reservation->reminder_email_sent <> 1) {
 						Mail::send('emails.seat.removedsoon', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
 							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
 						});
 						$res = SeatReservation::find($reservation->id);
-						$res->email_sent = 1;
+						$res->reminder_email_sent = 1;
 						$res->save();
 					}
 				}

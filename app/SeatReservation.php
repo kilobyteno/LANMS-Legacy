@@ -18,6 +18,7 @@ class SeatReservation extends Model {
 		'payment_id',
 		'ticket_id',
 		'status_id',
+		'reminder_email_sent',
 	];
 
 	function reservedfor() {
@@ -44,9 +45,22 @@ class SeatReservation extends Model {
 		return $this->hasOne('Seats', 'id', 'seat_id');
 	}
 
+	public function scopePaid($query, $id) {
+		if(SeatPayment::where('reservation_id', '=', $id)->first() == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function scopeGetExpireTime($query, $id) {
 
 		$reservation 	= $query->where('id', '=', $id)->first();
+
+		if($reservation->status_id == 1) { // 1 = reserved
+			return "does not expire";
+		}
+
 		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
 
 		$SECOND 	= 1;

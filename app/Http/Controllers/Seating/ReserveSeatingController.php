@@ -120,4 +120,19 @@ class ReserveSeatingController extends Controller {
 		}
 	}
 
+	public function ticketdownload($slug)
+	{
+		$slug = strtolower($slug); // Just to be sure it is correct
+		$currentseat = Seats::where('slug', $slug)->first();
+		if($currentseat == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find seat.');
+		}
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'It is not possible to reserve seats at this time.');
+		}
+		dd($slug);
+	}
+
 }

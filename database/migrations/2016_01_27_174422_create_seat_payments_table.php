@@ -16,7 +16,7 @@ class CreateSeatPaymentsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->string('stripecode');
+			$table->string('stripecharge');
 
 			$table->integer('user_id');
 			$table->integer('reservation_id');
