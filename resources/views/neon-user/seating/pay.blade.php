@@ -30,6 +30,13 @@
 
 				</div>
 				<div class="col-md-4">
+					<h3>Choose your payment method:</h3>
+					<hr>
+					<a class="btn btn-info btn-lg btn-block">Pay at the Entrance<em>*</em></a>
+					<p class="text-center text-muted"><small><em>* Additional Fees and <a href="">Terms</a> Apply</em></small></p>
+					<br>
+					<h4 class="text-center text-muted"><em>- or -</em></h4>
+					<br>
 					<!-- CREDIT CARD FORM STARTS HERE -->
 					<div class="panel panel-default credit-card-box">
 						<div class="panel-heading display-table" >
@@ -47,14 +54,7 @@
 										<div class="form-group">
 											<label for="cardNumber">CARD NUMBER</label>
 											<div class="input-group">
-												<input 
-													type="tel"
-													class="form-control"
-													name="cardNumber"
-													placeholder="Valid Card Number"
-													autocomplete="cc-number"
-													required autofocus 
-												/>
+												<input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
 												<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
 											</div>
 										</div>                            
@@ -64,44 +64,25 @@
 									<div class="col-xs-4 col-md-4">
 										<div class="form-group">
 											<label for="cardExpiry">EXP. MONTH</label>
-											<input 
-												type="tel" 
-												class="form-control" 
-												name="cardExpiry"
-												placeholder="MM"
-												required 
-											/>
+											<input type="tel" class="form-control" name="cardExpiry" placeholder="MM" required />
 										</div>
 									</div>
 									<div class="col-xs-4 col-md-4">
 										<div class="form-group">
 											<label for="cardExpiry">EXP. YEAR</label>
-											<input 
-												type="tel" 
-												class="form-control" 
-												name="cardExpiry"
-												placeholder="YY"
-												required 
-											/>
+											<input type="tel" class="form-control" name="cardExpiry" placeholder="YY" required />
 										</div>
 									</div>
 									<div class="col-xs-4 col-md-4 pull-right">
 										<div class="form-group">
 											<label for="cardCVC">CV CODE</label>
-											<input 
-												type="tel" 
-												class="form-control"
-												name="cardCVC"
-												placeholder="CVC"
-												autocomplete="cc-csc"
-												required
-											/>
+											<input type="tel" class="form-control" name="cardCVC" placeholder="CVC" required />
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-12">
-										<button class="btn btn-success btn-lg btn-block" type="submit">Charge</button>
+										<button class="btn btn-success btn-lg btn-block" type="submit">Pay for Seat</button>
 									</div>
 								</div>
 								<div class="row" style="display:none;">

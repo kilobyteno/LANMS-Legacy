@@ -9,7 +9,7 @@
 						<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
 					@endif
 					@foreach($row->seats as $seat)
-						<li class="seat @if($seat->reservations->count() <> 0) @if($seat->reservations->first()->status->id == 1) seat-reserved @elseif($seat->reservations->first()->status->id == 2) seat-tempreserved @endif @if(Sentinel::getUser()->id == $seat->reservations->first()->reservedfor->id and $seat->reservations->first()->status->id == 1) seat-yours @endif @endif @if(Request::is('user/seating/'.$seat->slug)) active @endif ">
+						<li class="seat @if($seat->reservations->count() <> 0) @if($seat->reservations->first()->status->id == 1) seat-reserved @elseif($seat->reservations->first()->status->id == 2) seat-tempreserved @endif @if(Sentinel::getUser()->id == $seat->reservations->first()->reservedfor->id and $seat->reservations->first()->status->id == 1) seat-yours @endif @endif @if(Request::segment(3) == $seat->slug) active @endif ">
 							<p>
 								@if($seat->reservations->count() == 0)
 									<a href="{{ URL::route('seating-show', $seat->slug) }}" data-toggle="tooltip" title="Available">{{ $seat->name }}</a>
