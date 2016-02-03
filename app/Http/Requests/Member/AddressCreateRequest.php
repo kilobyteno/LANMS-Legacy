@@ -22,7 +22,7 @@ class AddressCreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'address1' 		=> 'required|alpha_dash|max:100',
+			'address1' 		=> 'required|regex:/^[A-Za-z ]+$/|max:100',
 			'address2' 		=> 'alpha_dash',
 			'postalcode' 	=> 'required|alpha_dash|min:4',
 			'city' 			=> 'required|alpha',
