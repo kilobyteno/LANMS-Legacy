@@ -28,27 +28,27 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
-							<div class="col-sm-4">
-								<i class="fa fa-briefcase"></i> {{ $member->occupation }}
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-twitter"></i>
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-facebook"></i>
-							</div>
-							
+							@if($member->occupation)
+								<div class="col-sm-6">
+									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
+								</div>
+							@endif
+							@if($member->location)
+								<div class="col-sm-6">
+									<i class="fa fa-map-marker"></i> {{ $member->location or '<em>Unkown</em>' }}
+								</div>
+							@endif
 							<div class="clear"></div>
-
-							<div class="col-sm-4">
-								<i class="fa fa-map-marker"></i> {{ $member->location or '<em>Unkown</em>' }}
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-genderless"></i> {{ $member->gender }}
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
-							</div>
+							@if($member->gender)
+								<div class="col-sm-6">
+									<i class="fa fa-genderless"></i> {{ $member->gender }}
+								</div>
+							@endif
+							@if($member->birthdate)
+								<div class="col-sm-6">
+									<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
+								</div>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -74,21 +74,27 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
-							<div class="col-sm-6">
-								<i class="fa fa-briefcase"></i> {{ $member->occupation }}
-							</div>
-							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $member->location or '<em>Unkown</em>' }}
-							</div>
-							
+							@if($member->occupation)
+								<div class="col-sm-6">
+									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
+								</div>
+							@endif
+							@if($member->location)
+								<div class="col-sm-6">
+									<i class="fa fa-map-marker"></i> {{ $member->location }}
+								</div>
+							@endif
 							<div class="clear"></div>
-							
-							<div class="col-sm-6">
-								<i class="fa fa-genderless"></i> {{ $member->gender }}
-							</div>
-							<div class="col-sm-6">
-								<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
-							</div>
+							@if($member->gender)
+								<div class="col-sm-6">
+									<i class="fa fa-genderless"></i> {{ $member->gender }}
+								</div>
+							@endif
+							@if($member->birthdate)
+								<div class="col-sm-6">
+									<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
+								</div>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -107,21 +113,27 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
-							<div class="col-sm-6">
-								<i class="fa fa-briefcase"></i> {{ $member->occupation }}
-							</div>
-							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $member->location or '<em>Unkown</em>' }}
-							</div>
-							
+							@if($member->occupation)
+								<div class="col-sm-6">
+									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
+								</div>
+							@endif
+							@if($member->location)
+								<div class="col-sm-6">
+									<i class="fa fa-map-marker"></i> {{ $member->location }}
+								</div>
+							@endif
 							<div class="clear"></div>
-							
-							<div class="col-sm-6">
-								<i class="fa fa-genderless"></i> {{ $member->gender }}
-							</div>
-							<div class="col-sm-6">
-								<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
-							</div>
+							@if($member->gender)
+								<div class="col-sm-6">
+									<i class="fa fa-genderless"></i> {{ $member->gender }}
+								</div>
+							@endif
+							@if($member->birthdate)
+								<div class="col-sm-6">
+									<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($member->birthdate), date_create('today'))->y }}
+								</div>
+							@endif
 						</div>
 					</div>
 				</div>
