@@ -87,3 +87,16 @@
 .page-container.horizontal-menu header.navbar .navbar-brand {
 	padding: 16.5px 15px;
 }
+
+/* Header fix */
+@media (max-width: 767px) {
+	.page-body .page-container.horizontal-menu header.navbar {
+		position: fixed;
+	}
+	.page-container.horizontal-menu header.navbar ul.nav > li .horizontal-mobile-menu a {
+		padding:5px 8px;
+	}
+	.page-container .main-content {
+		margin-top: 60px;
+	}
+}
