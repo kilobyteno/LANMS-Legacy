@@ -131,7 +131,7 @@
 				Return to Login Page
 			</a>
 
-			<p><a href="{{ route('account-tos') }}">Terms of Service</a> &middot; <a href="{{ route('account-privacy') }}">Privacy Policy</a></p>
+			<p><a href="/tos">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></p>
 			
 		</div>
 		

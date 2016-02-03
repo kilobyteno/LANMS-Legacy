@@ -27,8 +27,6 @@ if(Config::get('app.debug')) {
 }
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-Route::get('/tos', ['as' => 'account-tos', 'uses' => 'HomeController@index']);
-Route::get('/privacy', ['as' => 'account-privacy', 'uses' => 'HomeController@index']);
 Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
 
 Route::group([
