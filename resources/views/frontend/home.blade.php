@@ -6,7 +6,7 @@
 <div class="container">
 
 	<div class="row latest-posts">
-		<div class="col s8">
+		<div class="col l8">
 
 
 
@@ -38,7 +38,7 @@
 
 		</div>
 
-		<div class="col s4">
+		<div class="col m4">
 			<div class="row post">
 				<div class="col s12">
 					<div class="card">
