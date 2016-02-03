@@ -6,6 +6,7 @@ SEATMAP by Infihex
 
 .seatmap {
 	width:100%;
+	max-width: 485px;
 	overflow: auto;
 	border:1px solid #ecf0f1;
 	border-radius: 5px;
