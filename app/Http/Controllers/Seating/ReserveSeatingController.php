@@ -11,6 +11,7 @@ use LANMS\SeatRows;
 use LANMS\Seats;
 use LANMS\SeatReservation;
 use anlutro\LaravelSettings\Facade as Setting;
+use Vsmoraes\Pdf\PdfFacade as PDF;
 
 use LANMS\Http\Requests\Seating\SeatReserveRequest;
 
@@ -132,10 +133,16 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-	
-		$html = view('seating.pdf.ticket')->render();
 
-		return PDF::load($html)->show();
+		if(Sentinel::getUser()->id == $currentseat->reservations->first()->reservedfor->id) {
+			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
+			return PDF::load($html)->show();
+		} else {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You are not allowed to view this ticket.');
+		}
+	
+		
 	}
 
 }

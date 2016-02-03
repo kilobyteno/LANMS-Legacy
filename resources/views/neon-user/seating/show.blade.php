@@ -38,6 +38,40 @@
 						<div class="alert alert-info" role="alert">
 							<strong>Information:</strong> This seat is {{ strtolower($currentseat->reservations->first()->status->name) }}.
 						</div>
+						<div class="member-entry">
+							<a href="{{ route('user-profile', $currentseat->reservations->first()->reservedfor->username) }}" class="member-img">
+								<img src="{{ $currentseat->reservations->first()->reservedfor->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
+								<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
+							</a>
+							<div class="member-details">
+								<h4>
+									<a href="{{ route('user-profile', $currentseat->reservations->first()->reservedfor->username) }}">{{ $currentseat->reservations->first()->reservedfor->firstname }}@if($currentseat->reservations->first()->reservedfor->showname) {{ $currentseat->reservations->first()->reservedfor->lastname }}@endif</a>
+								</h4>
+								<div class="row info-list">
+									@if($currentseat->reservations->first()->reservedfor->occupation)
+										<div class="col-sm-6">
+											<i class="fa fa-briefcase"></i> {{ $currentseat->reservations->first()->reservedfor->occupation }}
+										</div>
+									@endif
+									@if($currentseat->reservations->first()->reservedfor->location)
+										<div class="col-sm-6">
+											<i class="fa fa-map-marker"></i> {{ $currentseat->reservations->first()->reservedfor->location or '<em>Unkown</em>' }}
+										</div>
+									@endif
+									<div class="clear"></div>
+									@if($currentseat->reservations->first()->reservedfor->gender)
+										<div class="col-sm-6">
+											<i class="fa fa-genderless"></i> {{ $currentseat->reservations->first()->reservedfor->gender }}
+										</div>
+									@endif
+									@if($currentseat->reservations->first()->reservedfor->birthdate)
+										<div class="col-sm-6">
+											<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($currentseat->reservations->first()->reservedfor->birthdate), date_create('today'))->y }}
+										</div>
+									@endif
+								</div>
+							</div>
+						</div>
 					@elseif($currentseat->row_id == 1)
 						<div class="alert alert-info" role="alert">
 							<strong>Information:</strong> This seat cannot be reserved!
@@ -46,8 +80,6 @@
 						<div class="alert alert-warning" role="alert">
 							<strong>Warning!</strong> You are not allowed to reserve more than <em>five</em> seats.
 						</div>
-					@elseif(Sentinel::getUser()->addresses->count() == 0)
-						<p><em>You are not allowed to reserve seats. Read the alert above.</em></p>
 					@else
 						<form class="form-horizontal" method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group">
