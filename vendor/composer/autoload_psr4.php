@@ -9,6 +9,7 @@ return array(
     'igaster\\laravelTheme\\' => array($vendorDir . '/igaster/laravel-theme/src'),
     'anlutro\\LaravelSettings\\' => array($vendorDir . '/anlutro/l4-settings/src'),
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
+    'Vsmoraes\\Pdf\\' => array($vendorDir . '/vsmoraes/laravel-pdf/src'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),
     'Symfony\\Polyfill\\Php56\\' => array($vendorDir . '/symfony/polyfill-php56'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),

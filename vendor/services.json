@@ -33,7 +33,8 @@
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "anlutro\\LaravelSettings\\ServiceProvider",
         "Liebig\\Cron\\Laravel5ServiceProvider",
-        "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider"
+        "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider",
+        "Vsmoraes\\Pdf\\PdfServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -57,7 +58,8 @@
         "LANMS\\Providers\\ThemeSelectServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Liebig\\Cron\\Laravel5ServiceProvider",
-        "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider"
+        "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider",
+        "Vsmoraes\\Pdf\\PdfServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

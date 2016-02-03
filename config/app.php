@@ -155,6 +155,7 @@ return [
 		'anlutro\LaravelSettings\ServiceProvider',
 		'Liebig\Cron\Laravel5ServiceProvider',
 		'Cartalyst\Stripe\Laravel\StripeServiceProvider',
+		'Vsmoraes\Pdf\PdfServiceProvider',
 
 	],
 
@@ -226,6 +227,7 @@ return [
 		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
 		'Stripe' 		=> 'Cartalyst\Stripe\Laravel\Facades\Stripe',
+		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
 
 	],
 

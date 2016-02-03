@@ -132,7 +132,10 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		dd($slug);
+	
+		$html = view('seating.pdf.ticket')->render();
+
+		return PDF::load($html)->show();
 	}
 
 }
