@@ -112,7 +112,7 @@ class ReserveSeatingController extends Controller {
 		$seatreservationsave 				= $seatreservation->save();
 
 		if($seatreservationsave) {
-			return Redirect::route('seating-show', $slug)->with('messagetype', 'success')
+			return Redirect::route('seating')->with('messagetype', 'success')
 								->with('message', 'You have successfully reserved this seat!');
 		} else {
 			return Redirect::route('seating')->with('messagetype', 'error')

@@ -48,6 +48,8 @@
 										<div class="col-sm-4">
 											@if(!is_null($reservation->payment))
 												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
+											@elseif($reservation->status_id == 1)
+												<span class="text-danger" data-toggle="tooltip" title="Pay at the Entrance"><i class="fa fa-money"></i> Paid: No</span>
 											@else
 												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
 											@endif

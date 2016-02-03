@@ -175,6 +175,10 @@ Route::group([
 					'as' => 'seating-charge',
 					'uses' => 'Seating\PaymentSeatingController@charge'
 				]);
+				get('/{id}/paylater', [
+					'as' => 'seating-paylater',
+					'uses' => 'Seating\PaymentSeatingController@paylater'
+				]);
 				get('/{slug}', [
 					'as' => 'seating-show',
 					'uses' => 'Seating\ReserveSeatingController@show'

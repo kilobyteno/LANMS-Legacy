@@ -30,10 +30,10 @@
 
 				</div>
 				<div class="col-md-4">
-					<h3>Choose your payment method:</h3>
+					<h1 class="text-center"><small>Price:</small><br>{{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</h1>
 					<hr>
-					<a class="btn btn-info btn-lg btn-block">Pay at the Entrance<em>*</em></a>
-					<p class="text-center text-muted"><small><em>* Additional Fees and <a href="">Terms</a> Apply</em></small></p>
+					<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">Pay at the Entrance<em>*</em></a>
+					<p class="text-center text-muted"><small><em>* Additional fee and <a href="">Terms</a> apply</em></small></p>
 					<br>
 					<h4 class="text-center text-muted"><em>~ or ~</em></h4>
 					<br>
@@ -83,7 +83,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-success btn-lg btn-block" type="submit">Pay for Seat</button>
+										<button class="btn btn-success btn-lg btn-block" type="submit">Pay Now</button>
 									</div>
 								</div>
 								@if ($errors->has())

@@ -68,25 +68,21 @@ class PaymentSeatingController extends Controller {
 			$stripecust = $stripecustomer; 
 		}
 
-		/*$cards = \Stripe::cards()->all($stripecust->cus);
-		if(empty($cards['data'])) {
-			$token = \Stripe::tokens()->create([
-				'card' => [
-					'number'    => $request->get('cardNumber'),
-					'exp_month' => $request->get('cardMonthExpiry'),
-					'cvc'       => $request->get('cardCVC'),
-					'exp_year'  => $request->get('cardYearExpiry'),
-				],
-			]);
-			$card = \Stripe::cards()->create($stripecust->cus, $token['id']);
-		}*/
+		$getcards = \Stripe::cards()->all($stripecust->cus);
+		$carddata = $getcards['data'];
+
+		$cardNumber    		= $request->get('cardNumber');
+		$cardMonthExpiry 	= $request->get('cardMonthExpiry');
+		$cardCVC       		= $request->get('cardCVC');
+		$cardYearExpiry  	= $request->get('cardYearExpiry');
+
 		try {
 			$token = \Stripe::tokens()->create([
 				'card' => [
-					'number'    => $request->get('cardNumber'),
-					'exp_month' => $request->get('cardMonthExpiry'),
-					'cvc'       => $request->get('cardCVC'),
-					'exp_year'  => $request->get('cardYearExpiry'),
+					'number'    => $cardNumber,
+					'exp_month' => $cardMonthExpiry,
+					'cvc'       => $cardCVC,
+					'exp_year'  => $cardYearExpiry,
 				],
 			]);
 			$card = \Stripe::cards()->create($stripecust->cus, $token['id']);
@@ -103,11 +99,10 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
 								->with('message', 'Credit card information is invalid. Please check your information and try again.');
 		}
-		
 
 		$charge = \Stripe::charges()->create([
 			'customer' => $stripecust->cus,
-			'currency' => 'NOK',
+			'currency' => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
 			'amount'   => Setting::get('SEATING_SEAT_PRICE'),
 		]);
 
@@ -129,6 +124,35 @@ class PaymentSeatingController extends Controller {
 		$reservationchange				= SeatReservation::find($reservationid);
 		$reservationchange->status_id	= 1;
 		$reservationchange->payment_id	= $seatpayment->id;
+		$reservationchange->ticket_id	= $seatticket->id;
+		$reservationchange->save();
+
+		return Redirect::route('seating')->with('messagetype', 'success')
+								->with('message', $seat->name.' is now reserved and paid for! We are exited to have you, welcome!');
+
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function paylater($slug)
+	{
+		$seat 							= Seats::where('slug', $slug)->first();
+
+		$reservation 					= $seat->reservations;
+		$reservationid 					= $reservation->first()->id;
+
+		$seatticket 					= new SeatTicket;
+		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
+		$seatticket->reservation_id		= $reservationid;
+		$seatticket->user_id			= Sentinel::getUser()->id;
+		$seatticket->save();
+
+		$reservationchange				= SeatReservation::find($reservationid);
+		$reservationchange->status_id	= 1;
 		$reservationchange->ticket_id	= $seatticket->id;
 		$reservationchange->save();
 
