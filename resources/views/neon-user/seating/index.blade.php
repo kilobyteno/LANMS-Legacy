@@ -17,88 +17,69 @@
 				<li class="active"><strong>Seating</strong></li>
 			</ol>
 
+			@if(Sentinel::getUser()->addresses->count() == 0)
+				<div class="alert alert-warning" role="alert"> <strong>WARNING!</strong> It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href="{{ route('account-addressbook-create') }}" class="alert-link">add</a> one.</div>
+			@endif
+
 			<div class="row">	
 				<div class="col-md-4">
 
-					<div class="seatmap">
-						<ul>
-							<li class="scene">Scene</li>
-							<li class="entrance" id="entrance"><p><span class="fa fa-sign-in"></span></p></li>
-							@foreach($rows as $row)
-								<li class="seat-row">
-									<ul class="seat-row-{{$row->slug}}">
-										@if($row->slug == 'a')
-											<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
+					@if(Setting::get('SEATING_SHOW_MAP'))
+						@include('seating.seatmap')
+					@else
+						<h2>Seatmap is not available at this moment!</h2>
+						<p>Please check back later...</p>
+					@endif
+
+				</div>
+				@if(Setting::get('SEATING_OPEN'))
+					<div class="col-md-4">
+						<h3>Seats you have reserved:</h3>
+						@foreach($userreservations as $reservation)
+							<div class="member-entry">
+								<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="member-img">
+									<h3>{{ $reservation->seat->name }}</h3>
+								</a>
+								<div class="member-details">
+									<h4>
+										<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ $reservation->reservedfor->firstname }}@if($reservation->reservedfor->showname) {{ $reservation->reservedfor->lastname }}@endif</a>
+									</h4>
+									<div class="row info-list">
+										<div class="col-sm-4">
+											@if(!is_null($reservation->payment))
+												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
+											@elseif($reservation->status_id == 1)
+												<span class="text-danger" data-toggle="tooltip" title="Pay at the Entrance"><i class="fa fa-money"></i> Paid: No</span>
+											@else
+												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
+											@endif
+										</div>
+										@if(is_null($reservation->payment))
+											<div class="col-sm-4">
+												<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
+											</div>
 										@endif
-										@foreach($row->seats as $seat)
-											<li class="seat">
-												<p>
-													@if($seat->status == 2)
-														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
-														<div class="popover-content hidden">
-															<p>Reserved for: {{ User::getUsernameByID($seat->used_by) }}</p>
-														</div>
-													@elseif($seat->status == 1)
-														<a href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top">{{ $seat->name }}</a>
-														<div class="popover-content hidden">
-															<p>Temporary Reserved By: {{ User::getUsernameByID($seat->reserved_by) }}</p>
-														</div>
-													@elseif($seat->status == 0)
-														@if(Setting::get('SEATING_OPEN') && $seat->row_id <> 1)
-															<a href="javascript:void(0)" class="popper" data-toggle="popover">{{ $seat->name }}</a>
-															<div class="popper-content hidden">
-																<p><a href="{{ URL::route('seating-reserve', $seat->name) }}">Reserver</a></p>
-															</div>
-														@else
-															{{ $seat->name }}
-														@endif
-													@else
-														{{ $seat->name }}
-													@endif
-												</p>
-											</li>
-										@endforeach
-									</ul>
-								</li>
-							@endforeach
-						</ul>
+										<div class="col-sm-4">
+											@if(!is_null($reservation->ticket))
+												<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
+											@endif
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
 					</div>
-
-				</div>
-				<div class="col-md-4">
-					<h3>Seats you have reserved:</h3>
-				</div>
-
-				<div class="col-md-4">
-					<h3>Seats you administer:</h3>
-					<input type="text" id="ac" />
-				</div>
+				@else
+					<div class="col-md-8 text-center">
+						<div class="well well-lg">
+							<h2>Seating has not started yet!</h2>
+							<p>Please check back later...</p>
+						</div>
+					</div>
+				@endif
 			</div>
 
 		</div>
 	</div>
 </div>
-@stop
-
-@section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
-	<script type="text/javascript">
-		(function($) {
-			$(document).ready( function() { 
-				$('#ac').typeahead({
-					onSelect: function(item) {
-				        console.log(item);
-				    },
-				    ajax: {
-				        url: "/ajax/usernames",
-				        timeout: 500,
-				        displayField: "name",
-				        triggerLength: 1,
-				        method: "get",
-				        loadingClass: "loading-circle",
-				    }
-				});
-			 });
-		})(jQuery);
-	</script>
 @stop

@@ -454,6 +454,18 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $this->hasMany('Address', 'user_id');
 	}
 
+	public function reservations() {
+		return $this->hasMany('SeatReservation', 'reservedby_id', 'id');
+	}
+
+	public function ownreservations() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id');
+	}
+
+	public function stripecustomer() {
+		return $this->hasOne('StripeCustomer', 'user_id', 'id');
+	}
+
 	public function scopeGetLastActivity($query, $id, $short = false) {
 
 		$user 		= $query->where('id', '=', $id)->first();
@@ -609,19 +621,23 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $format;
 	}
 	
-	public function scopeGetUsernameByID($query, $id) {
-		$user 		= $query->where('id', '=', $id)->first();
-		return $user->username;
-	}
-
 	public function scopeGetFullnameByID($query, $id) {
 		$user = $query->where('id', '=', $id)->first();
+		if($user->showname) {
+			return $user->firstname . ' ' . $user->lastname;
+		} else {
+			return $user->firstname;
+		}
+	}
 
-		$first = $user->firstname;
-		$last = $user->lastname;
-		$full = $first . ' ' . $last;
-
-		return $full;
+	public function scopeGetUsernameAndFullnameByID($query, $id) {
+		$user = $query->where('id', '=', $id)->first();
+		if($user->showname) {
+			return $user->username . ' (' . $user->firstname . ' ' . $user->lastname . ')';
+		} else {
+			return $user->username . ' (' . $user->firstname . ')';
+		}
+		
 	}
 
 }

@@ -7,7 +7,7 @@ if(Config::get('app.debug')) {
 	Route::get('/resetdb', function() {
 		Artisan::call('migrate:reset');
 		Artisan::call('migrate');
-		#Artisan::call('migrate --package=vendor/regulus/activity-log');
+		//Artisan::call('migrate --package=vendor/liebig/cron');
 		Artisan::call('db:seed');
 		return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
 	});
@@ -165,31 +165,31 @@ Route::group([
 			], function() {
 				get('/', [
 					'as' => 'seating',
-					'uses' => 'Seating\UserSeatingController@index'
-				]);
-				get('/{id}/edit', [
-					'as' => 'seating-edit',
-					'uses' => 'Seating\UserSeatingController@edit'
-				]);
-				post('/{id}/update', [
-					'as' => 'seating-update',
-					'uses' => 'Seating\UserSeatingController@update'
+					'uses' => 'Seating\ReserveSeatingController@index'
 				]);
 				get('/{id}/pay', [
 					'as' => 'seating-pay',
-					'uses' => 'Seating\UserSeatingController@pay'
+					'uses' => 'Seating\PaymentSeatingController@pay'
 				]);
-				post('/{id}/checkout', [
-					'as' => 'seating-checkout',
-					'uses' => 'Seating\UserSeatingController@checkout'
+				post('/{slug}/charge', [
+					'as' => 'seating-charge',
+					'uses' => 'Seating\PaymentSeatingController@charge'
 				]);
-				get('/{id}/reserve', [
+				get('/{id}/paylater', [
+					'as' => 'seating-paylater',
+					'uses' => 'Seating\PaymentSeatingController@paylater'
+				]);
+				get('/{slug}', [
+					'as' => 'seating-show',
+					'uses' => 'Seating\ReserveSeatingController@show'
+				]);
+				post('/{slug}/reserve', [
 					'as' => 'seating-reserve',
-					'uses' => 'Seating\UserSeatingController@reserve'
+					'uses' => 'Seating\ReserveSeatingController@reserve'
 				]);
-				post('/{id}/reserved', [
-					'as' => 'seating-reserved',
-					'uses' => 'Seating\UserSeatingController@reserved'
+				get('/{slug}/ticket/download', [
+					'as' => 'seating-ticket-download',
+					'uses' => 'Seating\ReserveSeatingController@ticketdownload'
 				]);
 		});
 });
@@ -344,8 +344,6 @@ Route::group(['prefix' => 'ajax',], function() {
 		$referral			= Session::get('referral');
 		$referral_code 		= str_random(15);
 
-		$uid 				= mt_rand(1000000000, 2147483647);
-
 		$user = Sentinel::register(array(
 			'email' 			=> $email,
 			'username'			=> $username,
@@ -355,7 +353,6 @@ Route::group(['prefix' => 'ajax',], function() {
 			'password'			=> $password,
 			'referral'			=> $referral,
 			'referral_code'		=> $referral_code,
-			'uid'				=> $uid,
 		));
 
 		if($user) {

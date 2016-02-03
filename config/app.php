@@ -153,6 +153,10 @@ return [
 		'LANMS\Providers\ThemeSelectServiceProvider',
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
 		'anlutro\LaravelSettings\ServiceProvider',
+		'Liebig\Cron\Laravel5ServiceProvider',
+		'Cartalyst\Stripe\Laravel\StripeServiceProvider',
+		'Vsmoraes\Pdf\PdfServiceProvider',
+		'Milon\Barcode\BarcodeServiceProvider',
 
 	],
 
@@ -203,12 +207,16 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 		//Hehe
-		'User'			=> 'LANMS\User',
-		'News'			=> 'LANMS\News',
-		'NewsCategory'	=> 'LANMS\NewsCategory',
-		'Address'		=> 'LANMS\Address',
-		'Seats'			=> 'LANMS\Seats',
-		'SeatRows'		=> 'LANMS\SeatRows',
+		'User'					=> 'LANMS\User',
+		'News'					=> 'LANMS\News',
+		'NewsCategory'			=> 'LANMS\NewsCategory',
+		'Address'				=> 'LANMS\Address',
+		'Seats'					=> 'LANMS\Seats',
+		'SeatRows'				=> 'LANMS\SeatRows',
+		'SeatPayment'			=> 'LANMS\SeatPayment',
+		'SeatReservation'		=> 'LANMS\SeatReservation',
+		'SeatReservationStatus'	=> 'LANMS\SeatReservationStatus',
+		'SeatTicket'			=> 'LANMS\SeatTicket',
 		
 		/*
 		 * Third-party
@@ -219,6 +227,10 @@ return [
 		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
 		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
+		'Stripe' 		=> 'Cartalyst\Stripe\Laravel\Facades\Stripe',
+		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
+		'DNS1D'			=> 'Milon\Barcode\Facades\DNS1DFacade',
+    	'DNS2D'			=> 'Milon\Barcode\Facades\DNS2DFacade',
 
 	],
 

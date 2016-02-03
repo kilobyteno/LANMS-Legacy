@@ -16,4 +16,8 @@ class Seats extends Model {
 		return $this->hasOne('SeatRows', 'id', 'row_id');
 	}
 
+	function reservations() {
+		return $this->hasMany('SeatReservation', 'seat_id', 'id');
+	}
+	
 }

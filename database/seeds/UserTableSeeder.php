@@ -40,6 +40,14 @@ class UserTableSeeder extends Seeder {
 			'username' 		=> 'user',
 			'referral_code'	=> str_random(15),
 		]);
+		Sentinel::registerAndActivate([
+			'email' 		=> 'test4@rtrdt.ch',
+			'password' 		=> '12345678', // Den hash'r automatisk
+			'firstname' 	=> 'John',
+			'lastname'	 	=> 'USER2',
+			'username' 		=> 'user2',
+			'referral_code'	=> str_random(15),
+		]);
 
 		//Create Roles
 		$role = Sentinel::getRoleRepository()->createModel()->create([

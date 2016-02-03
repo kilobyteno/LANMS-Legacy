@@ -34,6 +34,10 @@ SEATMAP by Infihex
 	margin-left: -4px;
 }
 
+.seatmap ul > .seat-row li.seat.active {
+	background-color: #9b59b6;
+}
+
 .seatmap ul > .seat-row:nth-child(even)  > :not(.seat-row-a) .seat {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
@@ -143,31 +147,26 @@ li.entrance > p {
 
 
 
-.seat-busy {
-	background-color: #e67e22;
+.seatmap ul > .seat-row li.seat-reserved {
+	background-color: #e74c3c;
 }
 
-.seat-busy a {
+.seatmap ul > .seat-row li.seat.seat-reserved > p > a {
 	border-bottom: none;
 }
 
-.seat-other {
-	background-color: #95a5a6;
+.seatmap ul > .seat-row li.seat-tempreserved {
+	background-color: #f39c12;
 }
 
-.seat-other a {
-	color:#333;
+.seatmap ul > .seat-row li.seat.seat-tempreserved > p > a {
 	border-bottom: none;
 }
 
-.seat-other p {
-	color:#333;
+.seatmap ul > .seat-row li.seat-yours {
+	background-color: #2980b9;
 }
 
-.seat-yours {
-	background-color: #3498db;
-}
-
-.seat-yours a {
+.seatmap ul > .seat-row li.seat.seat-yours > p > a {
 	border-bottom: none;
 }

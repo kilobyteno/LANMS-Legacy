@@ -30,8 +30,7 @@ return [
 	],
 
 	'stripe' => [
-		'model'  => 'LANMS\User',
-		'secret' => '',
+		'secret' => 'sk_test_pOqqSRPoUVK52CFMkg7uLxMm',
 	],
 
 ];
