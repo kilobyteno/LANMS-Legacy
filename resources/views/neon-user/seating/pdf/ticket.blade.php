@@ -3,29 +3,38 @@
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 		<style type="text/css">
-			body {font-family: 'Open Sans', sans-serif;overflow:auto;margin: 0;font-size: 14px;line-height: 1.42857143;color: #333;}
-			.row {overflow: auto}
-			.col-md-6 {width:50%;float: left;display: inline-block;}
-			.col-md-12 {width:100%;float: left;display: inline-block;}
-			.text-center {text-align: center}
-			.text-muted {color: #999;}
-			small {font-size: 80%;color: #999;}
-			h1 {font-size: 3em; margin: 0;padding:0;}
-			h2 {font-size: 2em; margin: 0;padding:0;}
-			p {margin: 0;padding:0;}
+			body {font-family:'Open Sans',sans-serif;overflow:auto;margin:0;font-size:14px;line-height:1.25;color:#333;}
+			.row {overflow:auto}
+			.col-md-6 {width:50%;float:left;display: inline-block;}
+			.col-md-12 {width:100%;float:left;display:inline-block;}
+			.text-center {text-align:center}
+			.text-muted {color:#999;}
+			small {font-size:95%;color:#999;}
+			h1 {font-size:3em;margin:0;padding:0;}
+			h2 {font-size:2em;margin:0;padding:0;}
+			p {margin:0;padding:0;}
+			hr {margin-top: 17px;margin-bottom: 17px;border: 0;border-top: 1px solid #eeeeee;}
 		</style>
 	</head>
 	<body>	
 		<div class="col-md-12 text-center">
-			<img src="img/logo.png" style="width:700px;">
-			<h1>INNSJEKKINGSBEVIS</h1>
-			<h2>username</h2>
-			<p>Dette er ditt innsjekkingsbevis. Ta med dette til arrangementet (husk at det er et innsjekkingsbevis per plass). Det er også viktig at du tar med gyldig legitimasjon. Hvis du møter opp uten innsjekkingsbeviset eller legitimasjon, vil det ta lengre tid å sjekke deg inn på LANet. </p>
-			<p>For oppmøtetidspunkt og mer informasjon, se nettsiden vår www.downlinkdg.no
-			<p><strong>Din plass er: {{ $seat->name }}</strong></p>
-
-			<br><br><br>
+			<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:700px;">
+			<h1>TICKET</h1>
+			<hr>
+			<h2>{{ $seat->reservations->first()->reservedfor->firstname.' '.$seat->reservations->first()->reservedfor->lastname }}<br><small>{{ $seat->reservations->first()->reservedfor->username }}</small></h2>
+			<br>
+			<p>This is your ticket for one seat, bring this to the event. Remember that there is one ticket per seat! It is also important that you bring valid identification. If you show up without a ticket or credentials, it will take longer to check you in. </p>
+			<br>
+			<p>For more information, see our website: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
+			<br>
+			<h2><strong><small>Your seat:</small><br>{{ $seat->reservations->first()->seat->name }}</strong></h2>
+			<br><br>
+			<hr>
+			<br><br>
 		</div>
-		<p> <div style="display:inline-block"> {{ DNS1D::getBarcodeHTML(User::getUIDByID($seat->used_by), "I25") }} </div> <br> {{ User::getUIDByID($seat->used_by) }} </p>
+		<h1>
+			<div style="display:inline-block">{!! DNS1D::getBarcodeHTML($seat->reservations->first()->ticket->barcode, "I25", 4, 40) !!}</div>
+			<br><small>{{ $seat->reservations->first()->ticket->barcode }}</small>
+		</h1>
 	</body>
 </html>
