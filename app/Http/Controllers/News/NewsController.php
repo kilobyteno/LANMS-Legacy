@@ -137,7 +137,7 @@ class NewsController extends Controller {
 		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
 
 		return view('news.article')
-				->with($article->toArray())
+				->withArticle($article)
 				->with('pagesinmenu', $pagesinmenu);
 	}
 
