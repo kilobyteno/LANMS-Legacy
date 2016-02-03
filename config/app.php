@@ -156,6 +156,7 @@ return [
 		'Liebig\Cron\Laravel5ServiceProvider',
 		'Cartalyst\Stripe\Laravel\StripeServiceProvider',
 		'Vsmoraes\Pdf\PdfServiceProvider',
+		'Milon\Barcode\BarcodeServiceProvider',
 
 	],
 
@@ -228,6 +229,8 @@ return [
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
 		'Stripe' 		=> 'Cartalyst\Stripe\Laravel\Facades\Stripe',
 		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
+		'DNS1D'			=> 'Milon\Barcode\Facades\DNS1DFacade',
+    	'DNS2D'			=> 'Milon\Barcode\Facades\DNS2DFacade',
 
 	],
 
