@@ -33,7 +33,7 @@
 					<h1 class="text-center"><small>Price:</small><br>{{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</h1>
 					<hr>
 					<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">Pay at the Entrance<em>*</em></a>
-					<p class="text-center text-muted"><small><em>* Additional fee and <a href="">Terms</a> apply</em></small></p>
+					<p class="text-center text-muted"><small><em>* Additional fee and <a href="/tos">Terms</a> apply</em></small></p>
 					<br>
 					<h4 class="text-center text-muted"><em>~ or ~</em></h4>
 					<br>
