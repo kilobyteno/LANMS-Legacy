@@ -4,6 +4,8 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
+use anlutro\LaravelSettings\Facade as Setting;
+
 use Illuminate\Http\Request;
 
 class ReferralController extends Controller {
@@ -15,7 +17,7 @@ class ReferralController extends Controller {
 	 */
 	public function store(Request $request, $code)
 	{
-		if(Setting::get('APP_REFERRAL_ACTIVE')) {
+		if(Setting::get('REFERRAL_ACTIVE')) {
 			$request->session()->put('referral', $code);
 			return Redirect::route('account-register');
 		} else {
