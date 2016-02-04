@@ -12,4 +12,12 @@ class Page extends Model {
 		'content',
 	];
 
+	function author() {
+		return $this->hasOne('User', 'id', 'author_id');
+	}
+
+	function editor() {
+		return $this->hasOne('User', 'id', 'editor_id');
+	}
+
 }

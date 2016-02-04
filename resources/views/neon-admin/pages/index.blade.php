@@ -33,7 +33,7 @@
 						<td>{{ $page->slug }}</td>
 						<td>{{ $page->title }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($page->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->created_at)) }}</td>
-						<td><a href="{{ URL::route('user-profile', User::getUsernameByID($page->author_id)) }}">{{ User::getFullnameByID($page->author_id) }}</a></td>
+						<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.pages.destroy'))
