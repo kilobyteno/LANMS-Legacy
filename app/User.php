@@ -35,7 +35,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'referral',
 		'referral_code',
 		'last_activity',
-		'birthday',
+		'birthdate',
 		'gender',
 		'occupation',
 		'location',
