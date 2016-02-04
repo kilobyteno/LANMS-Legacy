@@ -305,9 +305,9 @@ Route::group([
 
 Route::group(['prefix' => 'ajax',], function() {
 	Route::get('/usernames', function () {
-		/*if(!Request::ajax()) {
+		if(!Request::ajax()) {
 			abort(403);
-		}*/
+		}
 		$users = User::all();
 		$usernames = array();
 		foreach($users as $user) {
