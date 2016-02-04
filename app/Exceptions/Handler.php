@@ -91,12 +91,18 @@ class Handler extends ExceptionHandler {
 		{
 			return view('errors.404');
 		}
+		return parent::render($request, $e);
+
+		/*if($e instanceof NotFoundHttpException)
+		{
+			return view('errors.404');
+		}
 		if (view()->exists('errors.'.$e->getStatusCode()))
         {
 			return parent::render($request, $e);
 		} else {
 			return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
-		}
+		}*/
 	}
 
 }
