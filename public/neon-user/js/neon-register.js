@@ -86,7 +86,6 @@ var neonRegister = neonRegister || {};
 
 				birthdate: {
 					required: true,
-					date: true,
 					age: true
 				},
 				
