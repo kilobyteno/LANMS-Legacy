@@ -92,7 +92,7 @@ class AddressBookController extends Controller {
 		} else {
 			return Redirect::route('account-addressbook-create')
 					->with('messagetype', 'warning')
-					->with('message', 'Your current password does not seem to match.');
+					->with('message', 'Your current password does not seem to match.')->withInput();
 		}
 	}
 
