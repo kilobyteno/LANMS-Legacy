@@ -95,6 +95,7 @@
 	}
 	.page-container.horizontal-menu header.navbar ul.nav > li .horizontal-mobile-menu a {
 		padding:5px 8px;
+		margin-top:10px;
 	}
 	.page-container .main-content {
 		margin-top: 60px;
