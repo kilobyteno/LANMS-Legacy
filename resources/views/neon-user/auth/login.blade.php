@@ -72,7 +72,7 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-block btn-login">
 					<i class="fa fa-sign-in"></i>
-					Login In
+					Log In
 				</button>
 			</div>
 			
