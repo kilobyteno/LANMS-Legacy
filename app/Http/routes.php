@@ -396,11 +396,21 @@ Route::group(['prefix' => 'ajax',], function() {
 		$credentials 		= ['login' => $username];
 		$user 				= Sentinel::findByCredentials($credentials);
 
-		if (Activation::complete($user, $activation_code)) {
-			$activation_status 		= 'success';
-			$resp['redirect_url'] 	= URL::route('account-login');
+		$checkuser = User::where('username', '=', $username)->first();
+		if($checkuser == null) {
+			$activation_msg 			= 'Username and activation code does not match.';
 		} else {
-			$activation_msg 		= 'Something went wrong while activating your account. Please try again later.';
+			$activation = Act::where('user_id', '=', $checkuser->id)->get();
+			if($activation == null) {
+				$activation_msg 			= 'Could not find activation code.';
+			} else {
+				if (Activation::complete($user, $activation_code)) {
+					$activation_status 		= 'success';
+					$resp['redirect_url'] 	= URL::route('account-login');
+				} else {
+					$activation_msg 		= 'Something went wrong while activating your account. Please try again later.';
+				}
+			}
 		}
 
 		$resp['activation_status'] 	= $activation_status;

@@ -217,6 +217,7 @@ return [
 		'SeatReservation'		=> 'LANMS\SeatReservation',
 		'SeatReservationStatus'	=> 'LANMS\SeatReservationStatus',
 		'SeatTicket'			=> 'LANMS\SeatTicket',
+		'Act'					=> 'LANMS\Act',
 		
 		/*
 		 * Third-party
