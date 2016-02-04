@@ -45,7 +45,7 @@
 				
 				<li>
 					<div class="profile-stat">
-						<h3>0</h3>
+						<h3>{{ \Sentinel::getUser()->reservations->count() }}</h3>
 						<span><a href="#">seats reserved</a></span>
 					</div>
 				</li>
