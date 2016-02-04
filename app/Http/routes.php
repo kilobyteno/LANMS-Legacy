@@ -342,40 +342,56 @@ Route::group(['prefix' => 'ajax',], function() {
 		$referral			= Session::get('referral');
 		$referral_code 		= str_random(15);
 
-		$user = Sentinel::register(array(
-			'email' 			=> $email,
-			'username'			=> $username,
-			'firstname'			=> $firstname,
-			'lastname'			=> $lastname,
-			'birthdate'			=> $birthdate,
-			'password'			=> $password,
-			'referral'			=> $referral,
-			'referral_code'		=> $referral_code,
-		));
+		$checkusername 		= User::where('username', '=', $username)->first();
+		$checkemail 		= User::where('email', '=', $email)->first();
 
-		if($user) {
-
-			$activation = Activation::create($user);
-			$activation_code = $activation->code;
-
-			$reg_status = 'success';
-
-			Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
-				$message->to($user->email, $user->firstname)->subject('Activate your account');
-			});
-
-			if(count(Mail::failures()) > 0) {
-				$reg_status = 'invalid';
-				$reg_msg = 'Something went wrong while trying to send you an email.';
-			}
-
-			Session::forget('referral'); //forget the referral
-
-		} else {
+		if(!is_null($checkusername)) { 
 			$reg_status = 'invalid';
-			$reg_msg = 'Something went wrong while trying to register your user.';
+			$reg_msg = 'Username is already taken.';
 		}
 
+		if(!is_null($checkemail)) { 
+			$reg_status = 'invalid';
+			$reg_msg = 'Email is already taken.';
+		}
+
+		if(is_null($checkusername) && is_null($checkemail)) {
+
+			$user = Sentinel::register(array(
+				'email' 			=> $email,
+				'username'			=> $username,
+				'firstname'			=> $firstname,
+				'lastname'			=> $lastname,
+				'birthdate'			=> $birthdate,
+				'password'			=> $password,
+				'referral'			=> $referral,
+				'referral_code'		=> $referral_code,
+			));
+
+			if($user) {
+
+				$activation = Activation::create($user);
+				$activation_code = $activation->code;
+
+				$reg_status = 'success';
+
+				Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
+					$message->to($user->email, $user->firstname)->subject('Activate your account');
+				});
+
+				if(count(Mail::failures()) > 0) {
+					$reg_status = 'invalid';
+					$reg_msg = 'Something went wrong while trying to send you an email.';
+				}
+
+				Session::forget('referral'); //forget the referral
+
+			} else {
+				$reg_status = 'invalid';
+				$reg_msg = 'Something went wrong while trying to register your user.';
+			}
+
+		}
 		
 		$resp['reg_status'] = $reg_status;
 		$resp['reg_msg'] = $reg_msg;
