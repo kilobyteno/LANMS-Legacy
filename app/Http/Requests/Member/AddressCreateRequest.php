@@ -23,10 +23,10 @@ class AddressCreateRequest extends Request {
 	{
 		return [
 			'address1' 		=> 'required|regex:/^[A-Za-z \Wæøå]+$/|max:100',
-			'address2' 		=> 'alpha_dash',
+			'address2' 		=> 'alpha_num',
 			'postalcode' 	=> 'required|alpha_dash|min:4',
-			'city' 			=> 'required|alpha',
-			'county' 		=> 'required|alpha',
+			'city' 			=> 'required|regex:/^[A-Za-z \Wæøå]+$/',
+			'county' 		=> 'required|regex:/^[A-Za-z \Wæøå]+$/',
 			'country' 		=> 'required|alpha',
 		];
 	}
