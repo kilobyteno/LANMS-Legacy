@@ -58,6 +58,12 @@ ALTER TABLE `users` CHANGE `showemail` `showemail` ENUM('0','1') CHARACTER SET u
 ALTER TABLE `users` CHANGE `showname` `showname` ENUM('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' AFTER `showemail`;
 ALTER TABLE `users` CHANGE `showonline` `showonline` ENUM('0','1') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' AFTER `showname`;
 
+/* FIX BIRTHDATE */
+ALTER TABLE `users` CHANGE `birthdate` `birthdate` DATE NULL AFTER `occupation`;
+
+/* REMOVE DEFAULT BIRTHDATE */
+UPDATE `users` SET birthdate = replace(birthdate, '1970-01-01', NULL);
+
 /*
 |
 |	FIXING THE NEWS TABLE

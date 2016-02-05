@@ -106,7 +106,7 @@ class MigrationCartalystSentinel extends Migration
 			$table->string('gender');
 			$table->string('location');
 			$table->string('occupation');
-			$table->date('birthdate')->default('1970-01-01'); //YYYY-MM-DD
+			$table->date('birthdate')->nullable();
 			$table->timestamp('last_activity')->nullable();
 
 			$table->string('profilepicture')->nullable();

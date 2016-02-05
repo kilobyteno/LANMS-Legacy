@@ -91,7 +91,9 @@
 						<li><a href="#"><i class="fa fa-envelope-o"></i> {{ $email }}</a></li>
 					@endif
 					
-					<li><a href="#"><i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</a></li>
+					@if($birthdate)
+						<li><a href="#"><i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</a></li>
+					@endif
 				</ul>
 				
 				
