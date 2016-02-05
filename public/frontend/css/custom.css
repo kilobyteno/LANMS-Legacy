@@ -1,14 +1,18 @@
 a.btn-primary {
-  color: #FFFFFF !important;
-  -webkit-transition: color 0.3s ease-out;
-     -moz-transition: color 0.3s ease-out;
-      -ms-transition: color 0.3s ease-out;
-       -o-transition: color 0.3s ease-out;
-          transition: color 0.3s ease-out;
+    color: #FFFFFF !important;
+    -webkit-transition: color 0.3s ease-out;
+    -moz-transition: color 0.3s ease-out;
+    -ms-transition: color 0.3s ease-out;
+    -o-transition: color 0.3s ease-out;
+    transition: color 0.3s ease-out;
 }
 
 footer {
-  padding-top: 48px;
-  padding-bottom: 48px;
-  margin-top: 64px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    margin-top: 64px;
+}
+
+.card .card-action a {
+    text-transform:none;
 }
