@@ -33,7 +33,7 @@
 							@endif
 						</strong>
 						<span>
-							@if(Sentinel::inRole('admin'))
+							@if(Sentinel::findById($id)->inRole('admin'))
 								Staff
 							@else
 								Member
@@ -73,26 +73,26 @@
 				
 				<ul class="user-details">
 
-					<li><a href="#"><i class="fa fa-at"></i> {{ $username }}</a></li>
+					<li><a><i class="fa fa-at"></i> {{ $username }}</a></li>
 					
 					@if($location)
-						<li><a href="#"><i class="fa fa-map-marker"></i> {{ $location }}</a></li>
+						<li><a><i class="fa fa-map-marker"></i> {{ $location }}</a></li>
 					@endif
 
 					@if($gender)
-						<li><a href="#"><i class="fa fa-genderless"></i> {{ $gender }}</a></li>
+						<li><a><i class="fa fa-genderless"></i> {{ $gender }}</a></li>
 					@endif
 
 					@if($occupation)
-						<li><a href="#"><i class="fa fa-suitcase"></i> {{ $occupation }}</a></li>
+						<li><a><i class="fa fa-suitcase"></i> {{ $occupation }}</a></li>
 					@endif
 
 					@if($showemail)
-						<li><a href="#"><i class="fa fa-envelope-o"></i> {{ $email }}</a></li>
+						<li><a><i class="fa fa-envelope-o"></i> {{ $email }}</a></li>
 					@endif
 					
 					@if($birthdate)
-						<li><a href="#"><i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</a></li>
+						<li><a><i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</a></li>
 					@endif
 				</ul>
 				
