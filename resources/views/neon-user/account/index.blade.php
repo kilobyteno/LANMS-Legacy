@@ -45,7 +45,7 @@
 									<!-- User statuses available classes "is-online", "is-offline", "is-idle", "is-busy" -->
 								@endif
 							</h3>
-							<p>{{ date_diff(date_create($birthdate), date_create('today'))->y }}@if($location) from {{ $location }}@endif</p>
+							<p>@if($birthdate){{ date_diff(date_create($birthdate), date_create('today'))->y }}@endif @if($location) from {{ $location }}@endif</p>
 						</div>
 					</div>
 					<hr>
