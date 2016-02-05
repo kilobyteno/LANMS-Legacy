@@ -10,6 +10,7 @@ DROP TABLE `compo_join`;
 DROP TABLE `compo_team`;
 DROP TABLE `cron_job`;
 DROP TABLE `cron_manager`;
+DROP TABLE `seats`;
 
 /*
 |
@@ -82,3 +83,11 @@ ALTER TABLE `news` ADD `published_at` DATETIME NOT NULL AFTER `active`;
 ALTER TABLE `news` CHANGE `created_at` `created_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `published_at`;
 ALTER TABLE `news` CHANGE `updated_at` `updated_at` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `created_at`;
 ALTER TABLE `news` CHANGE `deleted_at` `deleted_at` TIMESTAMP NULL DEFAULT NULL AFTER `updated_at`;
+
+/*
+|
+|	FIXING THE PROFILEPICTURE PATH
+|
+*/
+UPDATE `users` SET profilepicture = replace(profilepicture, '/img/', '/images/');
+UPDATE `users` SET profilepicturesmall = replace(profilepicturesmall, '/img/', '/images/');

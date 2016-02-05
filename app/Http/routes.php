@@ -24,6 +24,24 @@ if(Config::get('app.debug')) {
 	Route::get('/test', function() {
 		abort(500);
 	});
+	/*Route::get('/aau', function() {
+		echo "AAU - Activate All Users<br><br>";
+		$users = User::where('last_activity', '<>', '0000-00-00 00:00:00')->get();
+		$userstofix = array();
+		foreach ($users as $user) {
+			array_push($userstofix, $user->id);
+			echo "<br>".$user->id;
+		}
+		echo "<hr>";
+		foreach ($userstofix as $u) {
+			$theuser = Sentinel::findById($u);
+			$actex = Act::where('user_id', '=', $u)->where('completed', '=', 1)->count();
+			if($actex <= 0) {
+				$act = Activation::create($theuser);
+				echo "<br> complete act".Activation::complete($theuser, $act->code);
+			}
+		}
+	});*/
 }
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
