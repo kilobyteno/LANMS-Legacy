@@ -118,7 +118,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<p>Moar to come.</p>
+			<p><small><em>More features will appear here in the future.</em></small></p>
 		</div>
 	</div>
 </div>
