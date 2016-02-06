@@ -35,7 +35,7 @@
 						<td>{{ $article->title }}</td>
 						<td><a href="{{ route('admin-news-category') }}"><div class="label label-info"><i class="fa fa-tag"></i> {{ $article->category->name }}</div></a></td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($article->published_at)) .' at '. date(User::getUserTimeFormat(), strtotime($article->published_at)) }}</td>
-						<td><a href="{{ URL::route('user-profile', User::getUsernameByID($article->author_id)) }}">{{ User::getFullnameByID($article->author_id) }}</a></td>
+						<td><a href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.news.destroy'))
