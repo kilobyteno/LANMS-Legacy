@@ -20,8 +20,8 @@ class ProfileController extends Controller {
 
 	public function getMembers() {
 		$members = User::orderBy('username', 'asc')->paginate(10);
-		$newestmembers = User::orderBy('created_at', 'desc')->take(3)->get();
-		$onlinemembers = User::orderBy('last_activity', 'desc')->take(3)->get();
+		$newestmembers = User::orderBy('created_at', 'desc')->take(4)->get();
+		$onlinemembers = User::orderBy('last_activity', 'desc')->take(4)->get();
 		
 		return view('account.members')
 				->with('members', $members)
