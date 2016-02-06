@@ -31,6 +31,7 @@ ALTER TABLE `users` DROP remember_token;
 ALTER TABLE `users` DROP zipcode;
 ALTER TABLE `users` DROP author_id;
 ALTER TABLE `users` DROP deleted_at;
+ALTER TABLE `users` DROP uid;
 
 /* ADD AND UPDATE COLUMNS */
 ALTER TABLE `users` CHANGE `uid` `uid` INT(11) NOT NULL AFTER `id`;
