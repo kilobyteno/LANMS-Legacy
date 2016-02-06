@@ -176,6 +176,18 @@
 @stop
 
 @section('javascript')
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready( function() { 
+				$("#email").on('keydown', function(evt) {
+					$(this).val(function (_, val) {
+						return val + String.fromCharCode(evt.which).toLowerCase();
+					});
+					return false;
+				})
+			 });
+		})(jQuery);
+	</script>
 	<script src="{{ Theme::url('js/neon-register.js') }}"></script>
 	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
 @stop
