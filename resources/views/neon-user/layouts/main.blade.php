@@ -50,6 +50,12 @@
 				<li class="@if(Request::is('user/members')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
 				<li class="@if(Request::is('user/seating')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
 				<!--<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>-->
+				<div class="visible-xs">
+					@if(Sentinel::hasAccess('admin'))
+						<li><a href="{{ URL::Route('admin') }}"><i class="fa fa-user-secret"></i> Admin Panel</a></li>
+					@endif
+					<li><a href="{{ URL::Route('logout') }}">Log Out <i class="fa fa-sign-out right"></i></a></li>
+				</div>
 			</ul>
 			
 			<ul class="nav navbar-right pull-right">
