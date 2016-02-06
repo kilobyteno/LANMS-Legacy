@@ -4,15 +4,16 @@
 | DEBUG ONLY
 */
 if(Config::get('app.debug')) {
-	Route::get('/resetdb', function() {
-		Artisan::call('migrate:reset');
-		Artisan::call('migrate');
-		//Artisan::call('migrate --package=vendor/liebig/cron');
-		Artisan::call('db:seed');
-		return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
-	});
+	if(Setting::get('SHOW_RESETDB')) {
+		Route::get('/resetdb', function() {
+			Artisan::call('migrate:reset');
+			Artisan::call('migrate');
+			Artisan::call('db:seed');
+			return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
+		});
+	}
 	/*Route::get('/mailtest', function() {
-		Mail::send('emails.activate', ['link'=>'derp','firstname'=>'Daniel'], function($message) {
+		Mail::send('emails.auth.activate', ['link'=>route('account-activate', 'derp'),'firstname'=>'Daniel'], function($message) {
 			$message->to("daniel@retardedtech.com", "Daniel")->subject('Test Email');
 		});
 		if(count(Mail::failures()) > 0) {
@@ -20,10 +21,11 @@ if(Config::get('app.debug')) {
 		} else {
 			dd('Success.');
 		}
+		return view('emails.auth.activate', ['link'=>route('account-activate', 'derp'), 'firstname'=>'Daniel']);
 	});*/
-	Route::get('/test', function() {
+	/*Route::get('/test', function() {
 		abort(500);
-	});
+	});*/
 	/*Route::get('/aau', function() {
 		echo "AAU - Activate All Users<br><br>";
 		$users = User::where('last_activity', '<>', '0000-00-00 00:00:00')->get();
