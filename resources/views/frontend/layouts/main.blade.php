@@ -57,6 +57,7 @@
 							@endforeach
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
+								<li><a href="{{ route('account-register') }}"><span>Register</span></a></li>
 							@else
 								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard</em></span></a></li>
 							@endif
@@ -69,6 +70,7 @@
 							@endforeach
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
+								<li><a href="{{ route('account-register') }}"><span>Register</span></a></li>
 							@else
 								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard</em></span></a></li>
 							@endif
