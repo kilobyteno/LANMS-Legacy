@@ -65,6 +65,10 @@ ALTER TABLE `users` CHANGE `birthdate` `birthdate` DATE NULL AFTER `occupation`;
 /* REMOVE DEFAULT BIRTHDATE */
 UPDATE `users` SET birthdate = replace(birthdate, '1970-01-01', NULL);
 
+/* REMOVE DEFAULT PROFILEPICTURE */
+UPDATE `users` SET profilepicture = NULL WHERE profilepicture = '';
+UPDATE `users` SET profilepicturesmall = NULL WHERE profilepicturesmall = '';
+
 /*
 |
 |	FIXING THE NEWS TABLE
