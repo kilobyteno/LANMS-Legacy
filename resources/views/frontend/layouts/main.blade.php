@@ -58,16 +58,19 @@
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 							@else
-								<li><a href="{{ route('account') }}"><span>Go to Dashboard</span></a></li>
+								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard</em></span></a></li>
 							@endif
 						</ul>
 
 						<ul class="side-nav" id="nav-mobile">
 							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
+							@foreach($pagesinmenu as $page)
+								<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
+							@endforeach
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 							@else
-								<li><a href="{{ route('account') }}"><span>Go to Dashboard</span></a></li>
+								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard</em></span></a></li>
 							@endif
 						</ul>
 

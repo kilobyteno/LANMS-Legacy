@@ -1,4 +1,4 @@
-@extends('layouts.emails.main')
+@extends('emails.layouts.main')
 @section('subject', 'Forgot Password')
 @section('content') 
 

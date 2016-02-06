@@ -1,8 +1,8 @@
-@extends('layouts.emails.main')
-@section('subject') Activate Account @stop
+@extends('emails.layouts.main')
+@section('subject', 'Activate Account')
 @section('content') 
 
-To activate your account, click on the following link:<br>
-<a href="{{ $link }}">{{ $link }}</a><br>
+<p>Hello {{ $firstname }}! To activate your account, click on the following link:</p>
+<p><a href="{{ $link }}">{{ $link }}</a></p>
 
 @stop
