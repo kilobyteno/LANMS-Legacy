@@ -28,6 +28,9 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
+							<div class="col-sm-6">
+								<i class="fa fa-at"></i> {{ $member->username }}
+							</div>
 							@if($member->occupation)
 								<div class="col-sm-6">
 									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
@@ -74,6 +77,9 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
+							<div class="col-sm-6">
+								<i class="fa fa-at"></i> {{ $member->username }}
+							</div>
 							@if($member->occupation)
 								<div class="col-sm-6">
 									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
@@ -113,6 +119,9 @@
 							<a href="{{ route('user-profile', $member->username) }}">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
 						</h4>
 						<div class="row info-list">
+							<div class="col-sm-6">
+								<i class="fa fa-at"></i> {{ $member->username }}
+							</div>
 							@if($member->occupation)
 								<div class="col-sm-6">
 									<i class="fa fa-briefcase"></i> {{ $member->occupation }}
