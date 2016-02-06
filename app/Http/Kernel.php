@@ -16,6 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'LANMS\Http\Middleware\VerifyCsrfToken',
+		'LANMS\Http\Middleware\HttpsProtocol', // FORCE HTTPS
 	];
 
 	/**
