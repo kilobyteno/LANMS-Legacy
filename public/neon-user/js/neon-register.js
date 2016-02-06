@@ -210,6 +210,7 @@ var neonRegister = neonRegister || {};
 									if(reg_status == 'invalid')
 									{
 										$(".login-page").removeClass('logging-in');
+										neonRegister.resetProgressBar(true);
 										document.getElementById("reg_msg").innerHTML = response.reg_msg;
 									}
 									else if(reg_status == 'success')
@@ -365,6 +366,42 @@ var neonRegister = neonRegister || {};
 					},
 					onComplete: callback
 				});
+			},
+			resetProgressBar: function(display_errors)
+			{
+				TweenMax.set(neonRegister.$container, {css: {opacity: 0}});
+				
+				setTimeout(function()
+				{
+					TweenMax.to(neonRegister.$container, .6, {css: {opacity: 1}, onComplete: function()
+					{
+						neonRegister.$container.attr('style', '');
+					}});
+					
+					neonRegister.$login_progressbar_indicator.html('0%');
+					neonRegister.$login_progressbar.width(0);
+					
+					if(display_errors)
+					{
+						var $errors_container = $(".form-login-error");
+						
+						$errors_container.show();
+						var height = $errors_container.outerHeight();
+						
+						$errors_container.css({
+							height: 0
+						});
+						
+						TweenMax.to($errors_container, .45, {css: {height: height}, onComplete: function()
+						{
+							$errors_container.css({height: 'auto'});
+						}});
+						
+						// Reset password fields
+						neonRegister.$container.find('input[type="password"]').val('');
+					}
+					
+				}, 800);
 			}
 		});
 	});

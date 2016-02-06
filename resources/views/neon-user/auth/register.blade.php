@@ -29,6 +29,11 @@
 		
 		<div class="login-content">
 
+			<div class="form-login-error">
+				<h3>Registration Unsuccessful</h3>
+				<p id="reg_msg">Oooops...</p>
+			</div>
+
 			<form method="post" accept-charset="utf-8" role="form" id="form_register">
 
 				<div class="form-register-success">
