@@ -161,5 +161,57 @@ class PaymentSeatingController extends Controller {
 
 	}
 
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function changepayment($slug)
+	{
+		$slug = strtolower($slug); // Just to be sure it is correct
+		$seat = Seats::where('slug', $slug)->first();
+
+		if($seat == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find seat.');
+		}
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'It is not possible to reserve seats at this time.');
+		}
+		if ($seat->reservations->first()->payment <> null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'This seat already has a payment assigned to it.');
+		}
+		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t pay for this seat.');
+		}
+		if ($seat->reservations == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'This seat does not have reservation assigned to it.');
+		}
+
+		$reservation 					= $seat->reservations->first();
+		$reservationid 					= $reservation->id;
+
+		if (SeatReservation::getRealExpireTime($reservationid) == "expired") {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t change your payment of your reservation after the first 48 hours.');
+		}
+
+		$reservation->ticket->delete(); // Delete Old Ticket
+
+		$reservationchange				= SeatReservation::find($reservationid);
+		$reservationchange->status_id	= 2;
+		$reservationchange->ticket_id	= 0;
+		$reservationchange->save();
+
+		return Redirect::route('seating')->with('messagetype', 'success')
+								->with('message', 'You can now change your payment of your reservation.');
+
+	}
+
 
 }

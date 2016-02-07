@@ -50,8 +50,11 @@
 												<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
 											@elseif($reservation->status_id == 1)
 												<span class="text-danger" data-toggle="tooltip" title="Pay at the Entrance"><i class="fa fa-money"></i> Paid: No</span>
+												@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+													<a class="btn btn-warning btn-xs" href="{{ route('seating-changepayment', $reservation->seat->slug) }}">Change Payment</a>
+												@endif
 											@else
-												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}" class="text-danger"><i class="fa fa-money"></i> Paid: No</a>
+												<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fa fa-money"></i> Paid: No</a>
 											@endif
 										</div>
 										@if(is_null($reservation->payment))
