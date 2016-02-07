@@ -40,6 +40,14 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
+		if ($currentseat->reservations->first()->payment <> null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'This seat already has a payment assigned to it.');
+		}
+		if(Sentinel::getUser()->id <> $currentseat->reservations->first()->reservedby->id) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t pay for this seat.');
+		}
 		$rows = SeatRows::all();
 		return view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
 	}
@@ -53,6 +61,22 @@ class PaymentSeatingController extends Controller {
 	public function charge($slug, PaymentRequest $request)
 	{
 		$seat = Seats::where('slug', $slug)->first();
+		if($seat == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find seat.');
+		}
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'It is not possible to reserve seats at this time.');
+		}
+		if ($seat->reservations->first()->payment <> null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'This seat already has a payment assigned to it.');
+		}
+		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t pay for this seat.');
+		}
 
 		$stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
 		
@@ -106,8 +130,8 @@ class PaymentSeatingController extends Controller {
 			'amount'   => Setting::get('SEATING_SEAT_PRICE'),
 		]);
 
-		$reservation 					= $seat->reservations;
-		$reservationid 					= $reservation->first()->id;
+		$reservation 					= $seat->reservations->first();
+		$reservationid 					= $reservation->id;
 
 		$seatpayment 					= new SeatPayment;
 		$seatpayment->stripecharge 		= $charge['id'];
@@ -142,8 +166,25 @@ class PaymentSeatingController extends Controller {
 	{
 		$seat 							= Seats::where('slug', $slug)->first();
 
-		$reservation 					= $seat->reservations;
-		$reservationid 					= $reservation->first()->id;
+		if($seat == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find seat.');
+		}
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'It is not possible to reserve seats at this time.');
+		}
+		if ($seat->reservations->first()->payment <> null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'This seat already has a payment assigned to it.');
+		}
+		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t pay for this seat.');
+		}
+
+		$reservation 					= $seat->reservations->first();
+		$reservationid 					= $reservation->id;
 
 		$seatticket 					= new SeatTicket;
 		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
