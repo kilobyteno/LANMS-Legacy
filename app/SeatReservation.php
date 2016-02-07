@@ -58,7 +58,7 @@ class SeatReservation extends Model {
 		$reservation 	= $query->where('id', '=', $id)->first();
 
 		if($reservation->status_id == 1) { // 1 = reserved
-			return "does not expire";
+			return "never";
 		}
 
 		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
