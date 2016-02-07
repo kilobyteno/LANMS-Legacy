@@ -7,7 +7,7 @@
 	<div class="login-content">
 		
 		<a href="{{ route('home') }}" class="logo">
-			<img src="{{ Setting::get('WEB_LOGO') }}" width="120" alt="" />
+			<img src="{{ Setting::get('WEB_LOGO') }}" width="250" alt="" />
 		</a>
 		
 		<p class="description">Oh, so you forgot your password?</p>
