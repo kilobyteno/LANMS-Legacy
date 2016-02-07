@@ -116,7 +116,7 @@ class ReserveSeatingController extends Controller {
 
 		$seatreservationsave 				= $seatreservation->save();
 
-		$updateseat							= Seat::find($seat->id);
+		$updateseat							= Seats::find($seat->id);
 		$updateseat->reservation_id			= $seatreservation->id;
 		$updateseat->save();
 
