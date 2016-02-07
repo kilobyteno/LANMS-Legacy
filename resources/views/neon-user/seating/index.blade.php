@@ -66,7 +66,7 @@
 											</div>
 										@endif
 										<div class="col-sm-4">
-											@if(!is_null($reservation->ticket))
+											@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 												<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
 											@endif
 										</div>
@@ -108,7 +108,7 @@
 											</div>
 										@endif
 										<div class="col-sm-4">
-											@if(!is_null($reservation->ticket))
+											@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 												<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
 											@endif
 										</div>
