@@ -121,7 +121,7 @@ class PaymentSeatingController extends Controller {
 			$type = $e->getErrorType();
 
 			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
-								->with('message', 'Credit card information is invalid. Please check your information and try again.');
+								->with('message', 'Credit card information is invalid or you do not have money on the card. Please check your information and try again.');
 		}
 
 		$charge = \Stripe::charges()->create([
