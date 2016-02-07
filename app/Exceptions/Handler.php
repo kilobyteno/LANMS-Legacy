@@ -49,13 +49,13 @@ class Handler extends ExceptionHandler {
             'loggedIn'  	=> \Sentinel::check(),
             'remoteIP'  	=> $request->getClientIp(),
 
-			'refferalurl'   => URL::previous(),
+			'refferalurl'   => \URL::previous(),
 			'WEB_DOMAIN'    => \Setting::get('WEB_DOMAIN'),
 			'APP_NAME'      => \Setting::get('APP_NAME'),
 			'APP_VERSION'   => \Setting::get('APP_VERSION').' '.Setting::get('APP_VERSION_TYPE'),
         ];
 
-        Mail::send('emails.error', $data, function($message) use ($code)
+        \Mail::send('emails.error', $data, function($message) use ($code)
         {
             $message->to(\Setting::get('MAIL_DEBUG_EMAIL'), \Setting::get('MAIL_DEBUG_EMAIL_NAME'));
             $message->subject(\Setting::get('APP_NAME')." Error on ".\Setting::get('WEB_DOMAIN'));
