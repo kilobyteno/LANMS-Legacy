@@ -42,7 +42,7 @@
 		<div class="navbar-inner">
 		
 			<div class="navbar-brand">
-				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO') }}" width="70" alt="" /></a>
+				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO') }}" width="90" alt="" /></a>
 			</div>
 
 			<ul class="navbar-nav">
