@@ -21,15 +21,15 @@ class AppServiceProvider extends ServiceProvider {
 				foreach($reservations as $reservation) {
 					if(\SeatReservation::getExpireTime($reservation->id) == 'expired') {
 						\SeatReservation::find($reservation->id)->delete();
-						Mail::send('emails.seat.removed', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
+						\Mail::send('emails.seat.removed', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
 							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
 						});
 					}
 					if(\SeatReservation::getExpireTime($reservation->id) == '24 hours' && $reservation->reminder_email_sent <> 1) {
-						Mail::send('emails.seat.removedsoon', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
+						\Mail::send('emails.seat.removedsoon', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
 							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
 						});
-						$res = SeatReservation::find($reservation->id);
+						$res = \SeatReservation::find($reservation->id);
 						$res->reminder_email_sent = 1;
 						$res->save();
 					}
