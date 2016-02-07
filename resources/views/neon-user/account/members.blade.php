@@ -41,7 +41,6 @@
 									<i class="fa fa-map-marker"></i> {{ $member->location or '<em>Unkown</em>' }}
 								</div>
 							@endif
-							<div class="clear"></div>
 							@if($member->gender)
 								<div class="col-sm-6">
 									<i class="fa fa-genderless"></i> {{ $member->gender }}
@@ -90,7 +89,6 @@
 									<i class="fa fa-map-marker"></i> {{ $member->location }}
 								</div>
 							@endif
-							<div class="clear"></div>
 							@if($member->gender)
 								<div class="col-sm-6">
 									<i class="fa fa-genderless"></i> {{ $member->gender }}
@@ -132,7 +130,6 @@
 									<i class="fa fa-map-marker"></i> {{ $member->location }}
 								</div>
 							@endif
-							<div class="clear"></div>
 							@if($member->gender)
 								<div class="col-sm-6">
 									<i class="fa fa-genderless"></i> {{ $member->gender }}
