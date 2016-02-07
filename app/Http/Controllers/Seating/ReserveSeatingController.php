@@ -107,7 +107,7 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', '<em>'.$reservedfor->username.'</em> are not allowed to reserve more seats.');
 		}
-		
+
 		$seatreservation 					= new SeatReservation;
 		$seatreservation->seat_id 			= $seat->id;
 		$seatreservation->reservedby_id 	= Sentinel::getUser()->id;
@@ -115,6 +115,10 @@ class ReserveSeatingController extends Controller {
 		$seatreservation->status_id 		= 2; // 1 = Reserved, 2 = Temporary Reserved
 
 		$seatreservationsave 				= $seatreservation->save();
+
+		$updateseat							= Seat::find($seat->id);
+		$updateseat->reservation_id			= $seatreservation->id;
+		$updateseat->save();
 
 		if($seatreservationsave) {
 			return Redirect::route('seating')->with('messagetype', 'success')
