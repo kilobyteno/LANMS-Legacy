@@ -30,7 +30,7 @@ return [
 	],
 
 	'stripe' => [
-		'secret' => 'sk_test_pOqqSRPoUVK52CFMkg7uLxMm',
+		'secret' => env('STRIPE_SECRET_KEY', 'sk_test_pOqqSRPoUVK52CFMkg7uLxMm'),
 	],
 
 ];
