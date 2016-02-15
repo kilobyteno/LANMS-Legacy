@@ -65,7 +65,12 @@
 					</ul>
 				</li>
 				<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>
-				<li><a href="#"><i class="fa fa-street-view"></i> <span class="title">Seating</span></a></li>
+				<li class="@if(Request::is('admin/seating*')){{'active opened'}} @endif has-sub root-level">
+					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
+					<ul>
+						<li class="@if(Request::is('admin/seating/reservation*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
+					</ul>
+				</li>
 				<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>
 				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
