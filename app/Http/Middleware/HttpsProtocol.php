@@ -15,8 +15,10 @@ class HttpsProtocol {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (!$request->secure() && Setting::get('WEB_PROTOCOL') === 'https') {
-			return redirect()->secure($request->getRequestUri());
+		if(\Config::get('app.debug') && Setting::all() <> null) {
+			if (!$request->secure() && Setting::get('WEB_PROTOCOL') === 'https') {
+				return redirect()->secure($request->getRequestUri());
+			}
 		}
 
 		return $next($request); 

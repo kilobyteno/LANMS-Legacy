@@ -4,14 +4,12 @@
 | DEBUG ONLY
 */
 if(Config::get('app.debug')) {
-	if(Setting::get('SHOW_RESETDB')) {
-		Route::get('/resetdb', function() {
-			Artisan::call('migrate:reset');
-			Artisan::call('migrate');
-			Artisan::call('db:seed');
-			return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
-		});
-	}
+	Route::get('/resetdb', function() {
+		Artisan::call('migrate:reset');
+		Artisan::call('migrate');
+		Artisan::call('db:seed');
+		return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
+	});
 	/*Route::get('/mailtest', function() {
 		Mail::send('emails.auth.activate', ['link'=>route('account-activate', 'derp'),'firstname'=>'Daniel'], function($message) {
 			$message->to("daniel@retardedtech.com", "Daniel")->subject('Test Email');
