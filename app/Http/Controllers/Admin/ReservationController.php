@@ -4,8 +4,11 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
+use LANMS\Seats;
 use LANMS\SeatReservation;
+use LANMS\SeatTicket;
 
 use LANMS\Http\Requests\Admin\ReservationEditRequest;
 
@@ -79,9 +82,11 @@ class ReservationController extends Controller {
 		$updateseat->reservation_id		= $reservation->id;
 		$updateseat->save();
 
-		if($seatreservation->status_id == 1) { // 1 = Reserved, 2 = Temporary Reserved
+		if($reservation->status_id == 1) { // 1 = Reserved, 2 = Temporary Reserved
 			
-			$reservation->ticket->delete();
+			if($reservation->ticket) {
+				$reservation->ticket->delete();
+			}
 
 			$seatticket 					= new SeatTicket;
 			$seatticket->barcode 			= mt_rand(1000000000, 2147483647);

@@ -97,10 +97,11 @@
 	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
 		(function($) {
-			$(document).ready( function() { 
+			$(document).ready(function() {
 				$('#seat').typeahead({
 					onSelect: function(item) {
 						document.getElementById("seat_id").value = item.value;
+						//$('#seat_id').val(item.value);
 						console.log("seat_id: " + item.value);
 					},
 					ajax: {
