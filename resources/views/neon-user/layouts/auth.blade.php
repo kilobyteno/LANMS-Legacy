@@ -33,12 +33,6 @@
 
 </head>
 <body class="page-body login-page login-form-fall" data-url="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif">
-
-
-<!-- This is needed when you send requests via Ajax -->
-<script type="text/javascript">
-var baseurl = "{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif";
-</script>
 	
 <div class="login-container">
 	
@@ -92,6 +86,10 @@ var baseurl = "{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN'
 
 		@endif
 
+	</script>
+	<script type="text/javascript">
+		var baseurl = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+		console.log(baseurl);
 	</script>
 </body>
 </html>
