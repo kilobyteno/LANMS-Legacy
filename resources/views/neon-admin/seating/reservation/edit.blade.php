@@ -101,7 +101,6 @@
 				$('#seat').typeahead({
 					onSelect: function(item) {
 						document.getElementById("seat_id").value = item.value;
-						//$('#seat_id').val(item.value);
 						console.log("seat_id: " + item.value);
 					},
 					ajax: {
