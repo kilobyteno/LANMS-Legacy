@@ -16,3 +16,11 @@ footer {
 .card .card-action a {
     text-transform:none;
 }
+
+.button-collapse {
+    margin-top: 1px;
+}
+
+.btn-readmore {
+    margin-bottom: 14px !important;
+}

@@ -6,7 +6,7 @@
 <div class="container">
 
 	<div class="row latest-posts">
-		<div class="col l8">
+		<div class="col m8">
 
 
 
@@ -32,7 +32,7 @@
 			<br>
 			<div class="row">
 				<div class="col s12">
-					<a href="{{ URL::route('news') }}" class="btn btn-primary"><span class="fa fa-long-arrow-left"></span> Les eldre nyheter</a>
+					<a href="{{ URL::route('news') }}" class="btn btn-primary btn-readmore"><span class="fa fa-long-arrow-left"></span> Les eldre nyheter</a>
 				</div>
 			</div>
 
