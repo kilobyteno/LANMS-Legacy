@@ -8,7 +8,7 @@ class SettingsTableSeeder extends Seeder {
 	public function run() {
 
 		Setting::set('APP_NAME', 'LANMS');
-		Setting::set('APP_VERSION', '2.0.1');
+		Setting::set('APP_VERSION', '2.0.2');
 		Setting::set('APP_VERSION_TYPE', '&beta;eta');
 		Setting::set('APP_URL', 'http://jira.infihex.com/projects/LANMS/issues');
 		Setting::set('SHOW_RESETDB', true);
