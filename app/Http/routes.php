@@ -282,6 +282,30 @@ Route::group([
 				});
 		});
 		Route::group([
+			'prefix' => 'seating'
+			], function() {
+				get('/', [
+					'as' => 'admin-seating' ,
+					'uses' => 'HomeController@index'
+				]);
+				Route::group([
+					'prefix' => 'reservation'
+					], function() {
+						get('/', [
+							'as' => 'admin-seating-reservations',
+							'uses' => 'Admin\ReservationController@index'
+						]);
+						get('/{id}/edit', [
+							'as' => 'admin-seating-reservation-edit',
+							'uses' => 'Admin\ReservationController@edit'
+						]);
+						post('/{id}/update', [
+							'as' => 'admin-seating-reservation-update',
+							'uses' => 'Admin\ReservationController@update'
+						]);
+				});
+		});
+		Route::group([
 			'prefix' => 'pages'
 			], function() {
 				get('/', [
@@ -342,6 +366,17 @@ Route::group(['prefix' => 'ajax',], function() {
 			}
 		}
 		return Response::json($usernames);
+	});
+	Route::get('/seats', function () {
+		/*if(!Request::ajax()) {
+			abort(403);
+		}*/
+		$allseats = Seats::all();
+		$seats = array();
+		foreach($allseats as $seat) {
+			array_push($seats, array('id' => $seat->id, 'name' => $seat->name));
+		}
+		return Response::json($seats);
 	});
 	Route::post('/account/register', function () {
 
