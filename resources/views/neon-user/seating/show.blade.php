@@ -92,12 +92,15 @@
 									@if($errors->has('reservedfor'))
 										<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
 									@endif
+									<div class="checkbox">
+										<label><input type="checkbox" id="tos"> I have read, accepted and agreed to the <a href="/tos" target="_blank">Terms of Service</a>.</label>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-									<button type="submit" class="btn btn-success"><i class="fa fa-hand-paper-o"></i> Reserve Seat</button>
+									<button type="submit" class="btn btn-success" id="reserve" disabled=""><i class="fa fa-hand-paper-o"></i> Reserve Seat</button>
 								</div>
 							</div>
 						</form>
@@ -130,5 +133,10 @@
 				});
 			 });
 		})(jQuery);
+		var checker = document.getElementById('tos');
+		var btn 	= document.getElementById('reserve');
+		checker.onchange = function() {
+			btn.disabled = !this.checked;
+		};
 	</script>
 @stop
