@@ -108,7 +108,7 @@
 									<i class="fa fa-envelope"></i>
 								</div>
 								
-								<input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" value="{{ old('email') }}" />
+								<input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);" />
 							</div>
 						</div>
 						
@@ -177,16 +177,15 @@
 
 @section('javascript')
 	<script type="text/javascript">
-		/*(function($) {
-			$(document).ready( function() { 
-				$("#email").on('keydown', function(evt) {
-					$(this).val(function (_, val) {
-						return val + String.fromCharCode(evt.which).toLowerCase();
-					});
-					return false;
-				})
-			 });
-		})(jQuery);*/
+		function changecase(e, obj)  {
+			var key = e.which || window.event.keyCode;
+			if ((key >= 65) && (key <= 90))  {
+				obj.value+=String.fromCharCode(key).toLowerCase(); 
+				if (e.preventDefault)
+					e.preventDefault();	
+				e.returnValue = false; 	
+			}
+		} 
 	</script>
 	<script src="{{ Theme::url('js/neon-register.js') }}"></script>
 	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
