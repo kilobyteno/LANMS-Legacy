@@ -301,6 +301,10 @@ Route::group([
 							'as' => 'admin-seating-reservation-update',
 							'uses' => 'Admin\ReservationController@update'
 						]);
+						get('/{id}/destroy', [
+							'as' => 'admin-seating-reservation-destroy',
+							'uses' => 'Admin\ReservationController@destroy'
+						]);
 				});
 		});
 		Route::group([

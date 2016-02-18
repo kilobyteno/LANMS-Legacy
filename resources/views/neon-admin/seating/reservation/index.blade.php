@@ -37,6 +37,9 @@
 						<td>{{ date(User::getUserDateFormat(), strtotime($reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($reservation->created_at)) }}</td>
 						<td>
 							<a href="{{ route('admin-seating-reservation-edit', $reservation->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							@if(Sentinel::hasAccess('admin.reservation.destroy'))
+								<a href="javascript:;" onclick="jQuery('#reservation-destroy-{{ $reservation->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+							@endif
 							<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
 					</tr>
@@ -46,6 +49,28 @@
 
 	</div>
 </div>
+
+@foreach($reservations as $reservation)
+	<div class="modal fade" id="reservation-destroy-{{ $reservation->id }}" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title"><strong>Delete Reservation:</strong> #{{ $reservation->id }}</h4>
+				</div>
+				<div class="modal-body text-center">
+					<h4 class="text-danger"><strong>Are you sure you want to delete this reservation?</strong></h4>
+					<p><strong>Seat:</strong> {{ $reservation->seat->name }}</p>
+					<p><strong>Reserved for:</strong> {{ User::getFullnameByID($reservation->reservedfor->id) }}</p>
+					<p><strong>Reserved by:</strong> {{ User::getFullnameByID($reservation->reservedfor->id) }}</p>
+				</div>
+				<div class="modal-footer">
+					<a href="{{ route('admin-seating-reservation-destroy', $reservation->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
+					<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+@endforeach
 
 @stop
 

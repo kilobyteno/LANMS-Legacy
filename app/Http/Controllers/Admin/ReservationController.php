@@ -5,6 +5,7 @@ use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\Seats;
 use LANMS\SeatReservation;
@@ -136,7 +137,24 @@ class ReservationController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.reservation.destroy'])) {
+			$reservation = SeatReservation::find($id);
+			if($reservation->ticket) {
+				$reservation->ticket->delete();
+			}
+			if($reservation->delete()) {
+				return Redirect::route('admin-seating-reservations')
+						->with('messagetype', 'success')
+						->with('message', 'The reservation has now been deleted!');
+			} else {
+				return Redirect::route('admin-seating-reservations')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while deleting the reservation.');
+			}
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 }
