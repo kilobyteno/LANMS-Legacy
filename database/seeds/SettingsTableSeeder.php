@@ -39,6 +39,8 @@ class SettingsTableSeeder extends Seeder {
 
 		Setting::set('REFERRAL_ACTIVE', True);
 
+		Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
+
 		Setting::save();
 	}
 
