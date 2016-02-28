@@ -29,3 +29,6 @@
 .user-status.is-busy {
   background-color: #ee4749;
 }
+footer.main {
+  margin-top: 50px;
+}
