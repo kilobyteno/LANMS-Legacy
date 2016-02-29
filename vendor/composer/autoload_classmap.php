@@ -35,6 +35,7 @@ return array(
     'CreateSeatsTable' => $baseDir . '/database/migrations/2016_01_13_195016_create_seats_table.php',
     'CreateSettingsTable' => $baseDir . '/database/migrations/2015_08_25_172600_create_settings_table.php',
     'CreateStripeCustomersTable' => $baseDir . '/database/migrations/2016_02_01_175023_create_stripe_customers_table.php',
+    'CreateVisitorsTable' => $baseDir . '/database/migrations/2016_02_29_110609_create_visitors_table.php',
     'DOMPDF' => $vendorDir . '/dompdf/dompdf/include/dompdf.cls.php',
     'DOMPDF_Exception' => $vendorDir . '/dompdf/dompdf/include/dompdf_exception.cls.php',
     'DOMPDF_Image_Exception' => $vendorDir . '/dompdf/dompdf/include/dompdf_image_exception.cls.php',

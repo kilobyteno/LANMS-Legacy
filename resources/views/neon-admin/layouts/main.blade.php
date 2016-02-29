@@ -69,7 +69,8 @@
 					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
 					<ul>
 						<li class="@if(Request::is('admin/seating/reservation*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
-						<li class="@if(Request::is('admin/seating/checkin*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-check"></i> <span class="title">Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-check"></i> <span class="title">Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
 					</ul>
 				</li>
 				<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>

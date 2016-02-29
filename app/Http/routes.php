@@ -309,6 +309,18 @@ Route::group([
 				Route::group([
 					'prefix' => 'checkin'
 					], function() {
+						Route::group([
+							'prefix' => 'visitor'
+							], function() {
+								get('/', [
+									'as' => 'admin-seating-checkin-visitor',
+									'uses' => 'Admin\VisitorController@index'
+								]);
+								post('/store', [
+									'as' => 'admin-seating-checkin-visitor-store',
+									'uses' => 'Admin\VisitorController@store'
+								]);
+						});
 						get('/', [
 							'as' => 'admin-seating-checkin',
 							'uses' => 'Admin\CheckinController@index'

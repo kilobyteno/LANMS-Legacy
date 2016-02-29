@@ -219,6 +219,7 @@ return [
 		'SeatTicket'			=> 'LANMS\SeatTicket',
 		'Act'					=> 'LANMS\Act',
 		'Checkin'				=> 'LANMS\Checkin',
+		'Visitor'				=> 'LANMS\Visitor',
 		
 		/*
 		 * Third-party
