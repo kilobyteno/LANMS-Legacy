@@ -9,6 +9,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\SeatTicket;
 use LANMS\Checkin;
+use LANMS\SeatReservation;
+use LANMS\Seats;
 
 use LANMS\Http\Requests\Admin\CheckRequest;
 use LANMS\Http\Requests\Admin\CheckinRequest;
@@ -24,7 +26,20 @@ class CheckinController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
 			$checkedin = Checkin::all();
-			return view('seating.checkin.index')->withCheckedin($checkedin);
+
+			$allreserved = SeatReservation::all();
+
+			$i = 0;
+			foreach ($allreserved as $reservation) {
+				$seat = Seats::find($reservation->seat_id);
+				if($seat->row_id <> 1) {
+					$i++;
+				}
+			}
+
+			$reservedcount = $i;
+
+			return view('seating.checkin.index')->withCheckedin($checkedin)->with('reservedcount', $reservedcount);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');

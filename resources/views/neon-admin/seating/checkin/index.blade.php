@@ -64,7 +64,7 @@
 
 			<div class="col-md-6">
 
-				<h1 class="text-center">{{ Checkin::all()->count() }}<small>/{{ SeatTicket::all()->count() }}</small><br><small>Atendees has checked-in</small></h1>
+				<h1 class="text-center">{{ Checkin::all()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
 				<hr>
 
 				@foreach($checkedin as $checkin)
