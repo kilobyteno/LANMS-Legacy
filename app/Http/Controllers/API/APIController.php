@@ -9,12 +9,23 @@ use LANMS\News;
 use LANMS\Checkin;
 use LANMS\Visitor;
 use LANMS\SeatReservation;
+use LANMS\Seats;
 
 class APIController extends Controller {
 	
 	public function stats()
 	{
-		$reserved 		= SeatReservation::all()->count();
+		$allreserved = SeatReservation::all();
+
+		$i = 0;
+		foreach ($allreserved as $reservation) {
+			$seat = Seats::find($reservation->seat_id);
+			if($seat->row_id <> 1) {
+				$i++;
+			}
+		}
+
+		$reserved		= $i;
 		$checkedin 		= Checkin::all()->count();
 		$visitors 		= Visitor::all()->count();
 
