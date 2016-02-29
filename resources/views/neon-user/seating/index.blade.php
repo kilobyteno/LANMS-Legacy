@@ -21,7 +21,7 @@
 				<div class="alert alert-warning" role="alert"> <strong>WARNING!</strong> It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href="{{ route('account-addressbook-create') }}" class="alert-link">add</a> one.</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
-				<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats.</div>
+				<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
 			@endif
 
 			<div class="row">	
