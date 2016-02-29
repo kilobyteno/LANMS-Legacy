@@ -1,9 +1,17 @@
-<?php namespace LANMS\Http\Controllers;
+<?php namespace LANMS\Http\Controllers\Admin;
 
 use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+
+use LANMS\SeatTicket;
+use LANMS\Checkin;
+
+use LANMS\Http\Requests\Admin\CheckRequest;
+use LANMS\Http\Requests\Admin\CheckinRequest;
 
 class CheckinController extends Controller {
 
@@ -14,7 +22,13 @@ class CheckinController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
+			$checkedin = Checkin::all();
+			return view('seating.checkin.index')->withCheckedin($checkedin);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -32,9 +46,31 @@ class CheckinController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id, CheckinRequest $request)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
+			$bandnumber = $request->get('band_number');
+			$ticket = SeatTicket::find($id);
+			$checkinfound = Checkin::where('bandnumber', '=', $bandnumber)->first();
+			if($ticket == null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'Ticket not found!');
+			}
+			if($checkinfound !== null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'This ticket has already been checked in!');
+			}
+			$checkin 					= new Checkin;
+			$checkin->ticket_id 		= $id;
+			$checkin->bandnumber		= $bandnumber;
+			if($checkin->save()) {
+				return Redirect::route('admin-seating-checkin')->with('messagetype', 'success')
+								->with('message', 'The atendee has been checked in!');
+			}
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -45,7 +81,43 @@ class CheckinController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
+			$barcode = $id;
+			$ticket = SeatTicket::where('barcode', '=', $barcode)->first();
+			if($ticket == null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'Ticket not found!');
+			}
+			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
+			if($checkin !== null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'This ticket has already been checked in!');
+			}
+			return view('seating.checkin.show')->withTicket($ticket);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+	}
+	public function check(CheckRequest $request)
+	{
+		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
+			$barcode = $request->get('ticket_id');
+			$ticket = SeatTicket::where('barcode', '=', $barcode)->first();
+			if($ticket == null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'Ticket not found!');
+			}
+			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
+			if($checkin !== null) {
+				return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'This ticket has already been checked in!');
+			}
+			return Redirect::route('admin-seating-checkin-show', $barcode);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**

@@ -20,4 +20,8 @@ class SeatTicket extends Model {
 		return $this->hasOne('User', 'id', 'user_id');
 	}
 
+	function checkin() {
+		return $this->hasOne('Checkin', 'id', 'checkin_id');
+	}
+
 }

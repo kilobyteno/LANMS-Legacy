@@ -20,6 +20,7 @@ class CreateSeatTicketsTable extends Migration {
 
 			$table->integer('reservation_id');
 			$table->integer('user_id');
+			$table->integer('checkin_id');
 
 			$table->timestamps();
 		});

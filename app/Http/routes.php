@@ -306,6 +306,26 @@ Route::group([
 							'uses' => 'Admin\ReservationController@destroy'
 						]);
 				});
+				Route::group([
+					'prefix' => 'checkin'
+					], function() {
+						get('/', [
+							'as' => 'admin-seating-checkin',
+							'uses' => 'Admin\CheckinController@index'
+						]);
+						get('/{id}', [
+							'as' => 'admin-seating-checkin-show',
+							'uses' => 'Admin\CheckinController@show'
+						]);
+						post('/check', [
+							'as' => 'admin-seating-checkin-check',
+							'uses' => 'Admin\CheckinController@check'
+						]);
+						post('/store/{id}', [
+							'as' => 'admin-seating-checkin-store',
+							'uses' => 'Admin\CheckinController@store'
+						]);
+				});
 		});
 		Route::group([
 			'prefix' => 'pages'

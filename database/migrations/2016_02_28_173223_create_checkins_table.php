@@ -15,6 +15,10 @@ class CreateCheckinsTable extends Migration {
 		Schema::create('checkins', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->integer('ticket_id');
+			$table->integer('bandnumber');
+
 			$table->timestamps();
 		});
 	}
