@@ -137,10 +137,6 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'Could not find seat.');
 		}
-		if(!Setting::get('SEATING_OPEN')) {
-			return Redirect::route('seating')->with('messagetype', 'warning')
-								->with('message', 'It is not possible to reserve seats at this time.');
-		}
 
 		if(Sentinel::getUser()->id == $currentseat->reservations->first()->reservedfor->id) {
 			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
