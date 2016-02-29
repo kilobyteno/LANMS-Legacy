@@ -28,7 +28,7 @@ class APIController extends Controller {
 
 	public function news($amount)
 	{
-		$news = News::all()->take($amount);
+		$news = News::isPublished()->orderby('published_at', 'desc')->get()->take($amount);
 		return \Response::json($news);
 	}
 
