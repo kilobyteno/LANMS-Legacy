@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('title', 'Reservations - Admin')
+@section('css')
+	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
+@stop
 @section('content')
 
 <div class="row">
@@ -15,37 +18,44 @@
 		</ol>
 
 		<br />
+		<div class="row">
+			<div class="col-md-4">
+				@include('seating.seatmap')
+			</div>
+			<div class="col-md-8">
+				<table class="table table-bordered table-hover datatable" id="table-1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Seat</th>
+							<th>Reserved for</th>
+							<th>Reserved by</th>
+							<th>Reserved at</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($reservations as $reservation)
+							<tr>
+								<th scope="row">{{ $reservation->id }}</th>
+								<td>{{ $reservation->seat->name }}</td>
+								<td><a href="{{ URL::route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameByID($reservation->reservedfor->id) }}</a></td>
+								<td><a href="{{ URL::route('user-profile', $reservation->reservedby->username) }}">{{ User::getFullnameByID($reservation->reservedby->id) }}</a></td>
+								<td>{{ date(User::getUserDateFormat(), strtotime($reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($reservation->created_at)) }}</td>
+								<td>
+									<a href="{{ route('admin-seating-reservation-edit', $reservation->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.reservation.destroy'))
+										<a href="javascript:;" onclick="jQuery('#reservation-destroy-{{ $reservation->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+									@endif
+									<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
 		
-		<table class="table table-bordered table-hover datatable" id="table-1">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Seat</th>
-					<th>Reserved for</th>
-					<th>Reserved by</th>
-					<th>Reserved at</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($reservations as $reservation)
-					<tr>
-						<th scope="row">{{ $reservation->id }}</th>
-						<td>{{ $reservation->seat->name }}</td>
-						<td><a href="{{ URL::route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameByID($reservation->reservedfor->id) }}</a></td>
-						<td><a href="{{ URL::route('user-profile', $reservation->reservedby->username) }}">{{ User::getFullnameByID($reservation->reservedby->id) }}</a></td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($reservation->created_at)) }}</td>
-						<td>
-							<a href="{{ route('admin-seating-reservation-edit', $reservation->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.reservation.destroy'))
-								<a href="javascript:;" onclick="jQuery('#reservation-destroy-{{ $reservation->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
-							@endif
-							<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
 
 	</div>
 </div>

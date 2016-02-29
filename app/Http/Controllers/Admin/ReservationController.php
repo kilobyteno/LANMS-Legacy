@@ -10,6 +10,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use LANMS\Seats;
 use LANMS\SeatReservation;
 use LANMS\SeatTicket;
+use LANMS\SeatRows;
 
 use LANMS\Http\Requests\Admin\ReservationEditRequest;
 
@@ -23,8 +24,9 @@ class ReservationController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.reservation.*'])) {
-			$reservations = SeatReservation::all();
-			return view('seating.reservation.index')->withReservations($reservations);
+			$reservations 	= SeatReservation::all();
+			$rows 			= SeatRows::all();
+			return view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
