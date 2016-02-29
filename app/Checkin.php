@@ -6,7 +6,7 @@ class Checkin extends Model {
 
 	protected $fillable = [
 		'ticket_id',
-		'band',
+		'bandnumber',
 	];
 	protected $table = 'checkins';
 

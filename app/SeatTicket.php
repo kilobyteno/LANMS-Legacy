@@ -10,6 +10,7 @@ class SeatTicket extends Model {
 		'barcode',
 		'reservation_id',
 		'user_id',
+		'checkin_id',
 	];
 
 	function reservation() {

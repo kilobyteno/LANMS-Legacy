@@ -60,13 +60,20 @@ class CheckinController extends Controller {
 				return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'This ticket has already been checked in!');
 			}
+
 			$checkin 					= new Checkin;
 			$checkin->ticket_id 		= $id;
 			$checkin->bandnumber		= $bandnumber;
-			if($checkin->save()) {
+			$checkin->save();
+
+			$ticket 					= SeatTicket::find($id);
+			$ticket->checkin_id			= $checkin->id;
+
+			if($ticket->save()) {
 				return Redirect::route('admin-seating-checkin')->with('messagetype', 'success')
 								->with('message', 'The atendee has been checked in!');
 			}
+
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -85,12 +92,12 @@ class CheckinController extends Controller {
 			$barcode = $id;
 			$ticket = SeatTicket::where('barcode', '=', $barcode)->first();
 			if($ticket == null) {
-				return Redirect::back()->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'Ticket not found!');
 			}
 			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
 			if($checkin !== null) {
-				return Redirect::back()->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'This ticket has already been checked in!');
 			}
 			return view('seating.checkin.show')->withTicket($ticket);
@@ -105,12 +112,12 @@ class CheckinController extends Controller {
 			$barcode = $request->get('ticket_id');
 			$ticket = SeatTicket::where('barcode', '=', $barcode)->first();
 			if($ticket == null) {
-				return Redirect::back()->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'Ticket not found!');
 			}
 			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
 			if($checkin !== null) {
-				return Redirect::back()->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'This ticket has already been checked in!');
 			}
 			return Redirect::route('admin-seating-checkin-show', $barcode);
