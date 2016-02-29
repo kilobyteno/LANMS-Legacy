@@ -64,6 +64,18 @@ Route::group([
 		]);
 });
 
+Route::group([
+	'prefix' => 'api'
+	], function() {
+		get('/stats', [
+			'as' => 'api-stats',
+			'uses' => 'API\APIController@stats'
+		]);
+		get('/news/{amount}', [
+			'as' => 'api-news',
+			'uses' => 'API\APIController@news'
+		]);
+});
 
 Route::group([
 	'middleware' => 'sentinel.guest',
