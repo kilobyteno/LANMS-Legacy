@@ -386,7 +386,7 @@ Route::group([
 					'as' => 'admin-print',
 					'uses' => 'Admin\PrintController@index'
 				]);
-				post('/seat', [
+				get('/seat/{slug}', [
 					'as' => 'admin-print-seat',
 					'uses' => 'Admin\PrintController@seat'
 				]);

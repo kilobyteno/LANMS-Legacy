@@ -9,6 +9,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Vsmoraes\Pdf\PdfFacade as PDF;
 
 use LANMS\Seats;
+use LANMS\SeatRows;
 
 use LANMS\Http\Requests\Admin\PrintSeatRequest;
 
@@ -22,7 +23,8 @@ class PrintController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.print.*'])) {
-			return view('print.index');
+			$rows = SeatRows::all();
+			return view('print.index')->withRows($rows);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -34,16 +36,12 @@ class PrintController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function seat(PrintSeatRequest $request)
+	public function seat($slug)
 	{
-		$slug = $request->get('seat_name');
 		$seat = Seats::where('slug', $slug)->first();
-		if($seat->reservation_id == 0) {
-			$html = view('print.pdf.none-seat')->with('seat', $seat)->render();
-		} else {
-			$html = view('print.pdf.seat')->with('seat', $seat)->render();
-		}
-		return PDF::load($html)->show();
+		$html = view('print.pdf.seat')->with('seat', $seat)->render();
+		return $html;
+		return PDF::load($html, 'A4', 'landscape')->show();
 	}
 
 	/**
