@@ -12,7 +12,7 @@
 			.text-danger {color: #ac1818}
 			.text-success {color: #045702}
 			small {font-size:95%;color:#999}
-			h1 {font-size:5em;margin:0;padding:0}
+			h1 {font-size:8em;margin:0;padding:0}
 			h2 {font-size:2em;margin:0;padding:0}
 			p {margin:0;padding:0}
 			hr {margin-top: 17px;margin-bottom: 17px;border: 0;border-top: 1px solid #eee}
