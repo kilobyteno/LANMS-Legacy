@@ -106,6 +106,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.checkin.destroy');
 		$role->addPermission('admin.checkin.restore');
 
+		$role->addPermission('admin.print.create');
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy');
+		$role->addPermission('admin.print.restore');
+
 		$role->addPermission('admin.settings.update');
 
 		$role->save();
@@ -140,6 +145,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.checkin.destroy');
 		$role->addPermission('admin.checkin.restore', false);
 
+		$role->addPermission('admin.print.create');
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy');
+		$role->addPermission('admin.print.restore', false);
+
 		$role->addPermission('admin.settings.update', false);
 
 		$role->save();
@@ -173,6 +183,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.checkin.update');
 		$role->addPermission('admin.checkin.destroy', false);
 		$role->addPermission('admin.checkin.restore', false);
+
+		$role->addPermission('admin.print.create', false);
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy', false);
+		$role->addPermission('admin.print.restore', false);
 
 		$role->addPermission('admin.settings.update', false);
 

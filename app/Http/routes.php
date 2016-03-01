@@ -380,6 +380,18 @@ Route::group([
 				]);
 		});
 		Route::group([
+			'prefix' => 'print'
+			], function() {
+				get('/', [
+					'as' => 'admin-print',
+					'uses' => 'Admin\PrintController@index'
+				]);
+				post('/seat', [
+					'as' => 'admin-print-seat',
+					'uses' => 'Admin\PrintController@seat'
+				]);
+		});
+		Route::group([
 			'prefix' => 'settings'
 			], function() {
 				get('/', [

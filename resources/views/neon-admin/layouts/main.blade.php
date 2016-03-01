@@ -77,6 +77,9 @@
 				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
 				</li>
+				<li class="@if(Request::is('admin/print')){{'active'}} @endif">
+					<a href="{{ route('admin-print') }}"><i class="fa fa-print"></i> <span class="title">Print</span></a>
+				</li>
 				<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">
 					<a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a>
 				</li>
