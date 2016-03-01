@@ -40,7 +40,6 @@ class PrintController extends Controller {
 	{
 		$seat = Seats::where('slug', $slug)->first();
 		$html = view('print.pdf.seat')->with('seat', $seat)->render();
-		return $html;
 		return PDF::load($html, 'A4', 'landscape')->show();
 	}
 
