@@ -47,7 +47,7 @@
 				</div>
 				
 				<div class="col-sm-10 @if($errors->has('ticket_id')) has-error @endif">
-					<input type="text" class="form-control input-lg" name="ticket_id" placeholder="Ticket ID" value="{{ (old('ticket_id')) ? old('ticket_id') : '' }}" autocomplete="off" />
+					<input type="text" class="form-control input-lg" name="ticket_id" placeholder="Ticket ID" value="{{ (old('ticket_id')) ? old('ticket_id') : '' }}" autocomplete="off" autofocus />
 					@if($errors->has('ticket_id'))
 						<p class="text-danger">{{ $errors->first('ticket_id') }}</p>
 					@endif
