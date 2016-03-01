@@ -43,7 +43,6 @@ class PrintController extends Controller {
 		} else {
 			$html = view('print.pdf.seat')->with('seat', $seat)->render();
 		}
-		return $html;
 		return PDF::load($html)->show();
 	}
 
