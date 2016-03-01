@@ -40,7 +40,7 @@
 							<tr>
 								<th scope="row">{{ $reservation->id }}</th>
 								<td>{{ $reservation->seat->name }}</td>
-								<td>{{ $reservation->ticket->barcode }}</td>
+								<td>{{ $reservation->ticket->barcode or 'N/A' }}</td>
 								<td><a href="{{ URL::route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameByID($reservation->reservedfor->id) }}</a></td>
 								<td><a href="{{ URL::route('user-profile', $reservation->reservedby->username) }}">{{ User::getFullnameByID($reservation->reservedby->id) }}</a></td>
 								<td>{{ date(User::getUserDateFormat(), strtotime($reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($reservation->created_at)) }}</td>
