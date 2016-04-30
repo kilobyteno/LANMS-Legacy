@@ -108,7 +108,15 @@
 
 			</div>
 
-			
+			<div class="col-md-6">
+
+				<h1 class="text-center"><br><small>Seat names not checked in</small></h1>
+				<hr>
+				@foreach($noncheckedin as $ticket)
+					<p>{{ $ticket->id }}</p>
+				@endforeach
+
+			</div>
 
 		</div>
 

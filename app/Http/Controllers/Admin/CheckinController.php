@@ -25,9 +25,9 @@ class CheckinController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-			$checkedin = Checkin::all();
-
-			$allreserved = SeatReservation::all();
+			$checkedin 				= Checkin::all();
+			$ticketsnoncheckedin	= SeatTicket::where('checkin_id', '=', null);
+			$allreserved			= SeatReservation::all();
 
 			$i = 0;
 			foreach ($allreserved as $reservation) {
@@ -39,7 +39,7 @@ class CheckinController extends Controller {
 
 			$reservedcount = $i;
 
-			return view('seating.checkin.index')->withCheckedin($checkedin)->with('reservedcount', $reservedcount);
+			return view('seating.checkin.index')->withCheckedin($checkedin)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
