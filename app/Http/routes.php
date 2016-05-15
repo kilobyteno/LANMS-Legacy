@@ -245,6 +245,90 @@ Route::group([
 			'uses' => 'HomeController@index'
 		]);
 		Route::group([
+			'prefix' => 'crew'
+			], function() {
+				get('/', [
+					'as' => 'admin-crew',
+					'uses' => 'Crew\CrewController@admin'
+				]);
+				get('/create', [
+					'as' => 'admin-crew-create',
+					'uses' => 'Crew\CrewController@create'
+				]);
+				post('/store', [
+					'as' => 'admin-crew-store',
+					'uses' => 'Crew\CrewController@store'
+				]);
+				get('/{id}/edit', [
+					'as' => 'admin-crew-edit',
+					'uses' => 'Crew\CrewController@edit'
+				]);
+				post('/{id}/update', [
+					'as' => 'admin-crew-update',
+					'uses' => 'Crew\CrewController@update'
+				]);
+				get('/{id}/destroy', [
+					'as' => 'admin-crew-destroy',
+					'uses' => 'Crew\CrewController@destroy'
+				]);
+				Route::group([
+					'prefix' => 'categories'
+					], function() {
+						get('/', [
+							'as' => 'admin-crew-category',
+							'uses' => 'Crew\CrewCategoryController@admin'
+						]);
+						get('/create', [
+							'as' => 'admin-crew-category-create',
+							'uses' => 'Crew\CrewCategoryController@create'
+						]);
+						post('/store', [
+							'as' => 'admin-crew-category-store',
+							'uses' => 'Crew\CrewCategoryController@store'
+						]);
+						get('/{id}/edit', [
+							'as' => 'admin-crew-category-edit',
+							'uses' => 'Crew\CrewCategoryController@edit'
+						]);
+						post('/{id}/update', [
+							'as' => 'admin-crew-category-update',
+							'uses' => 'Crew\CrewCategoryController@update'
+						]);
+						get('/{id}/destroy', [
+							'as' => 'admin-crew-category-destroy',
+							'uses' => 'Crew\CrewCategoryController@destroy'
+						]);
+				});
+				Route::group([
+					'prefix' => 'skill'
+					], function() {
+						get('/', [
+							'as' => 'admin-crew-skill',
+							'uses' => 'Crew\CrewSkillController@admin'
+						]);
+						get('/create', [
+							'as' => 'admin-crew-skill-create',
+							'uses' => 'Crew\CrewSkillController@create'
+						]);
+						post('/store', [
+							'as' => 'admin-crew-skill-store',
+							'uses' => 'Crew\CrewSkillController@store'
+						]);
+						get('/{id}/edit', [
+							'as' => 'admin-crew-skill-edit',
+							'uses' => 'Crew\CrewSkillController@edit'
+						]);
+						post('/{id}/update', [
+							'as' => 'admin-crew-skill-update',
+							'uses' => 'Crew\CrewSkillController@update'
+						]);
+						get('/{id}/destroy', [
+							'as' => 'admin-crew-skill-destroy',
+							'uses' => 'Crew\CrewSkillController@destroy'
+						]);
+				});
+		});
+		Route::group([
 			'prefix' => 'news'
 			], function() {
 				get('/', [

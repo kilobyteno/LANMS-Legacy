@@ -57,6 +57,14 @@
 				<li class="@if(Request::is('admin/members')){{'active'}} @endif">
 					<a href="{{ route('admin') }}"><i class="fa fa-users"></i> <span class="title">Members</span></a>
 				</li>
+				<li class="@if(Request::is('admin/crew*')){{'active opened'}} @endif has-sub root-level">
+					<a><i class="fa fa-user-md"></i> <span class="title">Crew</span></a>
+					<ul>
+						<li class="@if(Request::is('admin/crew/categories*')){{'active'}} @endif"><a href="{{ route('admin-crew-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
+						<li class="@if(Request::is('admin/crew*') && !Request::is('admin/crew/categories*')){{'active'}} @endif"><a href="{{ route('admin-crew') }}"><i class="fa fa-user-md"></i> <span class="title">Members</span></a></li>
+						<li class="@if(Request::is('admin/crew/skill*') && !Request::is('admin/crew/categories*')){{'active'}} @endif"><a href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase"></i> <span class="title">Skills</span></a></li>
+					</ul>
+				</li>
 				<li class="@if(Request::is('admin/news*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-newspaper-o"></i> <span class="title">News</span></a>
 					<ul>

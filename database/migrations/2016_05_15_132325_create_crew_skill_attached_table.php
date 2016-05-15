@@ -19,6 +19,9 @@ class CreateCrewSkillAttachedTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('skill_id');
 
+			$table->integer('author_id'); //who created it?
+			$table->integer('editor_id'); //who updated it?
+
 			$table->timestamps();
 		});
 	}

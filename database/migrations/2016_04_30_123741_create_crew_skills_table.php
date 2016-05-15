@@ -21,6 +21,9 @@ class CreateCrewSkillsTable extends Migration {
 			$table->string('icon');
 			$table->string('label');
 
+			$table->integer('author_id'); //who created it?
+			$table->integer('editor_id'); //who updated it?
+
 			$table->timestamps();
 		});
 	}

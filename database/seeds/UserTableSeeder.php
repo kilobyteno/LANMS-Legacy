@@ -81,6 +81,16 @@ class UserTableSeeder extends Seeder {
 
 		$role->addPermission('admin');//admin panel access
 
+		$role->addPermission('admin.crew.create');
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy');
+		$role->addPermission('admin.crew.restore');
+
+		$role->addPermission('admin.crew-category.create');
+		$role->addPermission('admin.crew-category.update');
+		$role->addPermission('admin.crew-category.destroy');
+		$role->addPermission('admin.crew-category.restore');
+
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy');
@@ -120,6 +130,16 @@ class UserTableSeeder extends Seeder {
 
 		$role->addPermission('admin');//admin panel access
 
+		$role->addPermission('admin.crew.create');
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy');
+		$role->addPermission('admin.crew.restore', false);
+
+		$role->addPermission('admin.crew-category.create');
+		$role->addPermission('admin.crew-category.update');
+		$role->addPermission('admin.crew-category.destroy');
+		$role->addPermission('admin.crew-category.restore', false);
+
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy');
@@ -158,6 +178,16 @@ class UserTableSeeder extends Seeder {
 		$role = Sentinel::findRoleByName('Moderators');
 
 		$role->addPermission('admin');//admin panel access
+
+		$role->addPermission('admin.crew.create', false);
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy', false);
+		$role->addPermission('admin.crew.restore', false);
+
+		$role->addPermission('admin.crew-category.create', false);
+		$role->addPermission('admin.crew-category.update', false);
+		$role->addPermission('admin.crew-category.destroy', false);
+		$role->addPermission('admin.crew-category.restore', false);
 
 		$role->addPermission('admin.news.create', false);
 		$role->addPermission('admin.news.update');
