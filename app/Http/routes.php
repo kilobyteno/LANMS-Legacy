@@ -65,6 +65,15 @@ Route::group([
 });
 
 Route::group([
+	'prefix' => 'crew'
+	], function() {
+		get('/', [
+			'as' => 'crew',
+			'uses' => 'Crew\CrewController@index'
+		]);
+});
+
+Route::group([
 	'prefix' => 'api'
 	], function() {
 		get('/stats', [

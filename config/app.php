@@ -206,7 +206,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
-		//Hehe
+		// This is so awesome
 		'User'					=> 'LANMS\User',
 		'News'					=> 'LANMS\News',
 		'NewsCategory'			=> 'LANMS\NewsCategory',
@@ -220,6 +220,10 @@ return [
 		'Act'					=> 'LANMS\Act',
 		'Checkin'				=> 'LANMS\Checkin',
 		'Visitor'				=> 'LANMS\Visitor',
+		'Crew'					=> 'LANMS\Crew',
+		'CrewCategory'			=> 'LANMS\CrewCategory',
+		'CrewSkill'				=> 'LANMS\CrewSkill',
+		'CrewSkillAttached'		=> 'LANMS\CrewSkillAttached',
 		
 		/*
 		 * Third-party
