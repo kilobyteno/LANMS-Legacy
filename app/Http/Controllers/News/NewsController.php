@@ -11,8 +11,8 @@ use LANMS\News;
 use LANMS\NewsCategory;
 use LANMS\Page;
 
-use LANMS\Http\Requests\News\NewsCreateRequest;
-use LANMS\Http\Requests\News\NewsEditRequest;
+use LANMS\Http\Requests\Admin\News\NewsCreateRequest;
+use LANMS\Http\Requests\Admin\News\NewsEditRequest;
 
 class NewsController extends Controller {
 

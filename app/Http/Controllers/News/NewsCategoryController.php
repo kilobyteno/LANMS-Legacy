@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use LANMS\NewsCategory;
 
-use LANMS\Http\Requests\News\NewsCategoryCreateRequest;
-use LANMS\Http\Requests\News\NewsCategoryEditRequest;
+use LANMS\Http\Requests\Admin\News\NewsCategoryCreateRequest;
+use LANMS\Http\Requests\Admin\News\NewsCategoryEditRequest;
 
 class NewsCategoryController extends Controller {
 

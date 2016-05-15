@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use LANMS\Page;
 
-use LANMS\Http\Requests\Page\PageCreateRequest;
-use LANMS\Http\Requests\Page\PageEditRequest;
+use LANMS\Http\Requests\Admin\Page\PageCreateRequest;
+use LANMS\Http\Requests\Admin\Page\PageEditRequest;
 
 class PagesController extends Controller {
 
