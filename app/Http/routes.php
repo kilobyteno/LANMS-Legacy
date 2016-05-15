@@ -519,9 +519,9 @@ Route::group(['prefix' => 'ajax',], function() {
 		return Response::json($usernames);
 	});
 	Route::get('/seats', function () {
-		/*if(!Request::ajax()) {
+		if(!Request::ajax()) {
 			abort(403);
-		}*/
+		}
 		$allseats = Seats::all();
 		$seats = array();
 		foreach($allseats as $seat) {
