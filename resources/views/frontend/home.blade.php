@@ -51,9 +51,9 @@
 							<h3>Info</h3>
 						</div>
 						<div class="card-action">
-							<p><b>Hvor: </b>Gausdal Ungdomsskole</p>
-							<p><b>Når: </b>1. - 3. mars 2016</p>
-							<p><b>Pris: </b>200,-</p>
+							<p><b>Hvor: </b></p>
+							<p><b>Når: </b></p>
+							<p><b>Pris: </b></p>
 						</div>
 					</div>
 				</div>
@@ -65,10 +65,8 @@
 							<h3>Sponsorer</h3>
 						</div>
 						<div class="card-action">
-							<img class="responsive-img" src="{{ asset('images/sponsor/eidsiva.png') }} " width="335px">
-							<img class="responsive-img" src="{{ asset('images/sponsor/sikker_jobb.png') }} " width="335px">
 							<img class="responsive-img" src="{{ asset('images/sponsor/infihex.png') }} " width="335px">
-							<img class="responsive-img" src="{{ asset('images/sponsor/norconsult.png') }} " width="335px">
+							
 						</div>
 					</div>
 				</div>
