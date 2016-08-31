@@ -38,6 +38,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('GOOGLE_MAPS_API_KEY', 'AIzaSyCJDbjolbvN7mYY3SiV6A7SLPCBlHlE-Ow');
 
 		Setting::set('REFERRAL_ACTIVE', True);
+		Setting::set('LOGIN_ENABLED', True);
 
 		Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
 

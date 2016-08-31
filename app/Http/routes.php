@@ -535,70 +535,77 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		$resp = array();
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$login_status = 'invalid';
+			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+		} else {
 
-		$reg_status = 'invalid';
-		$reg_msg = 'Something went wrong...';
+			$resp = array();
 
-		$email 				= Request::get('email');
-		$firstname	 		= Request::get('firstname');
-		$lastname 			= Request::get('lastname');
-		$username 			= Request::get('username');
-		$password 			= Request::get('password');
-
-		$originalDate 		= Request::input('birthdate');
-		$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
-
-		$referral			= Session::get('referral');
-		$referral_code 		= str_random(15);
-
-		$checkusername 		= User::where('username', '=', $username)->first();
-		$checkemail 		= User::where('email', '=', $email)->first();
-
-		if(!is_null($checkusername)) { 
 			$reg_status = 'invalid';
-			$reg_msg = 'Username is already taken.';
-		}
+			$reg_msg = 'Something went wrong...';
 
-		if(!is_null($checkemail)) { 
-			$reg_status = 'invalid';
-			$reg_msg = 'Email is already taken.';
-		}
+			$email 				= Request::get('email');
+			$firstname	 		= Request::get('firstname');
+			$lastname 			= Request::get('lastname');
+			$username 			= Request::get('username');
+			$password 			= Request::get('password');
 
-		if(is_null($checkusername) && is_null($checkemail)) {
+			$originalDate 		= Request::input('birthdate');
+			$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
 
-			$user = Sentinel::register(array(
-				'email' 			=> $email,
-				'username'			=> $username,
-				'firstname'			=> $firstname,
-				'lastname'			=> $lastname,
-				'birthdate'			=> $birthdate,
-				'password'			=> $password,
-				'referral'			=> $referral,
-				'referral_code'		=> $referral_code,
-			));
+			$referral			= Session::get('referral');
+			$referral_code 		= str_random(15);
 
-			if($user) {
+			$checkusername 		= User::where('username', '=', $username)->first();
+			$checkemail 		= User::where('email', '=', $email)->first();
 
-				$activation = Activation::create($user);
-				$activation_code = $activation->code;
+			if(!is_null($checkusername)) { 
+				$reg_status = 'invalid';
+				$reg_msg = 'Username is already taken.';
+			}
 
-				$reg_status = 'success';
+			if(!is_null($checkemail)) { 
+				$reg_status = 'invalid';
+				$reg_msg = 'Email is already taken.';
+			}
 
-				Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
-					$message->to($user->email, $user->firstname)->subject('Activate your account');
-				});
+			if(is_null($checkusername) && is_null($checkemail)) {
 
-				if(count(Mail::failures()) > 0) {
+				$user = Sentinel::register(array(
+					'email' 			=> $email,
+					'username'			=> $username,
+					'firstname'			=> $firstname,
+					'lastname'			=> $lastname,
+					'birthdate'			=> $birthdate,
+					'password'			=> $password,
+					'referral'			=> $referral,
+					'referral_code'		=> $referral_code,
+				));
+
+				if($user) {
+
+					$activation = Activation::create($user);
+					$activation_code = $activation->code;
+
+					$reg_status = 'success';
+
+					Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
+						$message->to($user->email, $user->firstname)->subject('Activate your account');
+					});
+
+					if(count(Mail::failures()) > 0) {
+						$reg_status = 'invalid';
+						$reg_msg = 'Something went wrong while trying to send you an email.';
+					}
+
+					Session::forget('referral'); //forget the referral
+
+				} else {
 					$reg_status = 'invalid';
-					$reg_msg = 'Something went wrong while trying to send you an email.';
+					$reg_msg = 'Something went wrong while trying to register your user.';
 				}
 
-				Session::forget('referral'); //forget the referral
-
-			} else {
-				$reg_status = 'invalid';
-				$reg_msg = 'Something went wrong while trying to register your user.';
 			}
 
 		}
@@ -613,28 +620,34 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		$resp 				= array();
-		$activation_status 	= 'invalid';
-		$activation_msg 	= 'Something went wrong...';
-
-		$username 			= Request::input('username');
-		$activation_code	= Request::input('activation_code');
-		$credentials 		= ['login' => $username];
-		$user 				= Sentinel::findByCredentials($credentials);
-
-		$checkuser = User::where('username', '=', $username)->first();
-		if($checkuser == null) {
-			$activation_msg 			= 'Username and activation code does not match.';
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$login_status = 'invalid';
+			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
-			$activation = Act::where('user_id', '=', $checkuser->id)->get();
-			if($activation == null) {
-				$activation_msg 			= 'Could not find activation code.';
+
+			$resp 				= array();
+			$activation_status 	= 'invalid';
+			$activation_msg 	= 'Something went wrong...';
+
+			$username 			= Request::input('username');
+			$activation_code	= Request::input('activation_code');
+			$credentials 		= ['login' => $username];
+			$user 				= Sentinel::findByCredentials($credentials);
+
+			$checkuser = User::where('username', '=', $username)->first();
+			if($checkuser == null) {
+				$activation_msg 			= 'Username and activation code does not match.';
 			} else {
-				if (Activation::complete($user, $activation_code)) {
-					$activation_status 		= 'success';
-					$resp['redirect_url'] 	= URL::route('account-login');
+				$activation = Act::where('user_id', '=', $checkuser->id)->get();
+				if($activation == null) {
+					$activation_msg 			= 'Could not find activation code.';
 				} else {
-					$activation_msg 		= 'Something went wrong while activating your account. Please try again later.';
+					if (Activation::complete($user, $activation_code)) {
+						$activation_status 		= 'success';
+						$resp['redirect_url'] 	= URL::route('account-login');
+					} else {
+						$activation_msg 		= 'Something went wrong while activating your account. Please try again later.';
+					}
 				}
 			}
 		}
@@ -651,53 +664,60 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		$resp = array();
-		$login_status = 'invalid';
-		$login_msg = 'Something went wrong...';
-
-		$username 		= Request::input('username');
-		$password 		= Request::input('password');
-		$remember 		= Request::input('remember');
-
-		$credentials 	= ['login' => $username, 'password' => $password];
-		$user = Sentinel::findByCredentials($credentials);
-
-		if ($user == null) {
-
-			$login_msg = 'User not found!';
-
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$login_status = 'invalid';
+			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
-			$actex = Activation::exists($user);
-			$actco = Activation::completed($user);
-			$active = false;
-			if($actex) {
+			$resp = array();
+			$login_status = 'invalid';
+			$login_msg = 'Something went wrong...';
+
+			$username 		= Request::input('username');
+			$password 		= Request::input('password');
+			$remember 		= Request::input('remember');
+
+			$credentials 	= ['login' => $username, 'password' => $password];
+			$user = Sentinel::findByCredentials($credentials);
+
+			if ($user == null) {
+
+				$login_msg = 'User not found!';
+
+			} else {
+
+				$actex = Activation::exists($user);
+				$actco = Activation::completed($user);
 				$active = false;
-			} elseif($actco) {
-				$active = true;
-			}
-
-			if ($active === false) {
-
-				$login_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
-
-			} elseif ($active === true) {
-
-				if(Sentinel::authenticate($credentials)) {
-
-					$login = Sentinel::login($user, $remember);
-					if(!$login) {
-						$login_msg = 'Could not log you in. Please try again.';
-					} else {
-						$login_status = 'success';
-						$resp['redirect_url'] = URL::route('account');
-					}
-
-				} else {
-					$login_msg = 'Username or password was wrong. Please try again.';
+				if($actex) {
+					$active = false;
+				} elseif($actco) {
+					$active = true;
 				}
 
-			} 
+				if ($active === false) {
+
+					$login_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
+
+				} elseif ($active === true) {
+
+					if(Sentinel::authenticate($credentials)) {
+
+						$login = Sentinel::login($user, $remember);
+						if(!$login) {
+							$login_msg = 'Could not log you in. Please try again.';
+						} else {
+							$login_status = 'success';
+							$resp['redirect_url'] = URL::route('account');
+						}
+
+					} else {
+						$login_msg = 'Username or password was wrong. Please try again.';
+					}
+
+				} 
+
+			}
 
 		}
 
@@ -712,69 +732,76 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		$resp = array();
-		$forgot_status = 'invalid';
-		$forgot_msg = 'Something went wrong...';
-
-		$username = Request::input('username');
-
-		$credentials 	= ['login' => $username];
-
-		$user = Sentinel::findByCredentials($credentials);
-
-		if ($user == null) {
-
-			$forgot_msg = 'User not found!';
-
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$login_status = 'invalid';
+			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
-			$actex = Activation::exists($user);
-			$actco = Activation::completed($user);
-			$active = false;
-			if($actex) {
+			$resp = array();
+			$forgot_status = 'invalid';
+			$forgot_msg = 'Something went wrong...';
+
+			$username = Request::input('username');
+
+			$credentials 	= ['login' => $username];
+
+			$user = Sentinel::findByCredentials($credentials);
+
+			if ($user == null) {
+
+				$forgot_msg = 'User not found!';
+
+			} else {
+
+				$actex = Activation::exists($user);
+				$actco = Activation::completed($user);
 				$active = false;
-			} elseif($actco) {
-				$active = true;
-			}
-
-			$remex = Reminder::exists($user);
-			$reminder = false;
-			if($remex) {
-				$reminder = true;
-			}
-
-			if ($active == false) {
-
-				$forgot_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
-
-			} elseif ($reminder == true) {
-
-				$forgot_msg = '<strong>You have already asked for a reminder!</strong><br>Please check your inbox for the reminder email.';
-
-			} elseif ($active == true && $reminder == false) {
-
-				$reminder 		= Reminder::create($user);
-				$reminder_code 	= $reminder->code;
-
-				Mail::send('emails.auth.forgot-password', 
-					array(
-						'link' => URL::route('account-recover', $reminder_code),
-						'firstname' => $user->firstname,
-						'username' => $user->username,
-					), function($message) use ($user) {
-						$message->to($user->email, $user->firstname)->subject('Forgot Password');
-				});
-				
-				if(count(Mail::failures()) > 0) {
-					$forgot_msg = 'Mail Failure.';
-				} else {
-					$forgot_status = 'success';
-					$forgot_msg = 'Everything went well.';
+				if($actex) {
+					$active = false;
+				} elseif($actco) {
+					$active = true;
 				}
 
-				if(!$reminder) {
-					$forgot_msg = 'E-mail or birthdate was wrong. Please try again.';
+				$remex = Reminder::exists($user);
+				$reminder = false;
+				if($remex) {
+					$reminder = true;
 				}
+
+				if ($active == false) {
+
+					$forgot_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
+
+				} elseif ($reminder == true) {
+
+					$forgot_msg = '<strong>You have already asked for a reminder!</strong><br>Please check your inbox for the reminder email.';
+
+				} elseif ($active == true && $reminder == false) {
+
+					$reminder 		= Reminder::create($user);
+					$reminder_code 	= $reminder->code;
+
+					Mail::send('emails.auth.forgot-password', 
+						array(
+							'link' => URL::route('account-recover', $reminder_code),
+							'firstname' => $user->firstname,
+							'username' => $user->username,
+						), function($message) use ($user) {
+							$message->to($user->email, $user->firstname)->subject('Forgot Password');
+					});
+					
+					if(count(Mail::failures()) > 0) {
+						$forgot_msg = 'Mail Failure.';
+					} else {
+						$forgot_status = 'success';
+						$forgot_msg = 'Everything went well.';
+					}
+
+					if(!$reminder) {
+						$forgot_msg = 'E-mail or birthdate was wrong. Please try again.';
+					}
+				}
+
 			}
 
 		}
@@ -790,23 +817,30 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		$resp 				= array();
-		$resetpw_status 	= 'invalid';
-		$resetpw_msg 		= 'Something went wrong...';
-
-		$username 			= Request::input('username');
-		$password 			= Request::input('password');
-		$resetpassword_code	= Request::input('resetpassword_code');
-		$credentials 		= ['login' => $username];
-		$user 				= Sentinel::findByCredentials($credentials);
-
-		if (Reminder::complete($user, $resetpassword_code, $password)) {
-			$resetpw_status 		= 'success';
-			$resp['redirect_url'] 	= URL::route('account-login');
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$login_status = 'invalid';
+			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
-			$resetpw_msg 	= 'Something went wrong while reseting your password. Please try again later.';
-		}
 
+			$resp 				= array();
+			$resetpw_status 	= 'invalid';
+			$resetpw_msg 		= 'Something went wrong...';
+
+			$username 			= Request::input('username');
+			$password 			= Request::input('password');
+			$resetpassword_code	= Request::input('resetpassword_code');
+			$credentials 		= ['login' => $username];
+			$user 				= Sentinel::findByCredentials($credentials);
+
+			if (Reminder::complete($user, $resetpassword_code, $password)) {
+				$resetpw_status 		= 'success';
+				$resp['redirect_url'] 	= URL::route('account-login');
+			} else {
+				$resetpw_msg 	= 'Something went wrong while reseting your password. Please try again later.';
+			}
+
+		}
+		
 		$resp['resetpw_status'] 	= $resetpw_status;
 		$resp['resetpw_msg'] 		= $resetpw_msg;
 
