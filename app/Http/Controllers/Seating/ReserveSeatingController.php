@@ -24,6 +24,11 @@ class ReserveSeatingController extends Controller {
 	 */
 	public function index()
 	{
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::back()->with('messagetype', 'info')
+								->with('message', 'Seating has not opened yet.');
+		}
+
 		$rows 				= SeatRows::all();
 		$reservations 		= Sentinel::getUser()->reservations;
 		$ownreservations 	= Sentinel::getUser()->ownreservations;
