@@ -664,60 +664,58 @@ Route::group(['prefix' => 'ajax',], function() {
 			abort(403);
 		}
 
-		if(!Setting::get('LOGIN_ENABLED')) {
-			$login_status = 'invalid';
-			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+		$resp = array();
+		$login_status = 'invalid';
+		$login_msg = 'Something went wrong...';
+
+		$username 		= Request::input('username');
+		$password 		= Request::input('password');
+		$remember 		= Request::input('remember');
+
+		$credentials 	= ['login' => $username, 'password' => $password];
+		$user = Sentinel::findByCredentials($credentials);
+
+		if ($user == null) {
+
+			$login_msg = 'User not found!';
+
 		} else {
 
-			$resp = array();
-			$login_status = 'invalid';
-			$login_msg = 'Something went wrong...';
-
-			$username 		= Request::input('username');
-			$password 		= Request::input('password');
-			$remember 		= Request::input('remember');
-
-			$credentials 	= ['login' => $username, 'password' => $password];
-			$user = Sentinel::findByCredentials($credentials);
-
-			if ($user == null) {
-
-				$login_msg = 'User not found!';
-
-			} else {
-
-				$actex = Activation::exists($user);
-				$actco = Activation::completed($user);
+			$actex = Activation::exists($user);
+			$actco = Activation::completed($user);
+			$active = false;
+			if($actex) {
 				$active = false;
-				if($actex) {
-					$active = false;
-				} elseif($actco) {
-					$active = true;
-				}
+			} elseif($actco) {
+				$active = true;
+			}
 
-				if ($active === false) {
+			if ($active === false) {
 
-					$login_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
+				$login_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
 
-				} elseif ($active === true) {
+			} elseif ($active === true) {
 
-					if(Sentinel::authenticate($credentials)) {
+				if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
 
-						$login = Sentinel::login($user, $remember);
-						if(!$login) {
-							$login_msg = 'Could not log you in. Please try again.';
-						} else {
-							$login_status = 'success';
-							$resp['redirect_url'] = URL::route('account');
-						}
+					$login_status = 'invalid';
+					$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
 
+				} elseif(Sentinel::authenticate($credentials)) {
+
+					$login = Sentinel::login($user, $remember);
+					if(!$login) {
+						$login_msg = 'Could not log you in. Please try again.';
 					} else {
-						$login_msg = 'Username or password was wrong. Please try again.';
+						$login_status = 'success';
+						$resp['redirect_url'] = URL::route('account');
 					}
 
-				} 
+				} else {
+					$login_msg = 'Username or password was wrong. Please try again.';
+				}
 
-			}
+			} 
 
 		}
 
