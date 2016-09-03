@@ -110,10 +110,46 @@
 
 			<div class="col-md-6">
 
-				<h1 class="text-center"><br><small>Seat names not checked in</small></h1>
+				<h1 class="text-center"><br><small>Seat names not checked in: {{ $noncheckedin->count() }}</small></h1>
 				<hr>
 				@foreach($noncheckedin as $ticket)
-					<p>{{ $ticket->id }}</p>
+					<div class="col-md-6">
+						<div class="member-entry">
+							<a href="{{ route('user-profile', $ticket->user->username) }}" class="member-img">
+								<img src="{{ $ticket->user->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
+								<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
+							</a>
+							<div class="member-details">
+								<h4>
+									<a href="{{ route('user-profile', $ticket->user->username) }}">{{ $ticket->user->firstname }}@if($ticket->user->showname) {{ $ticket->user->lastname }}@endif</a>
+									| Seat: @if($ticket->reservation){{ $ticket->reservation->seat->name }} @else {{ 'N/A' }}@endif
+								</h4>
+								<div class="row info-list">
+									@if($ticket->user->occupation)
+										<div class="col-sm-6">
+											<i class="fa fa-briefcase"></i> {{ $ticket->user->occupation }}
+										</div>
+									@endif
+									@if($ticket->user->location)
+										<div class="col-sm-6">
+											<i class="fa fa-map-marker"></i> {{ $ticket->user->location or '<em>Unkown</em>' }}
+										</div>
+									@endif
+									<div class="clear"></div>
+									@if($ticket->user->gender)
+										<div class="col-sm-6">
+											<i class="fa fa-genderless"></i> {{ $ticket->user->gender }}
+										</div>
+									@endif
+									@if($ticket->user->birthdate)
+										<div class="col-sm-6">
+											<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($ticket->user->birthdate), date_create('today'))->y }}
+										</div>
+									@endif
+								</div>
+							</div>
+						</div>
+					</div>
 				@endforeach
 
 			</div>

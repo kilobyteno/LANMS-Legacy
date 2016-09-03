@@ -26,7 +26,7 @@ class CheckinController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
 			$checkedin 				= Checkin::all();
-			$ticketsnoncheckedin	= SeatTicket::where('checkin_id', '=', null);
+			$ticketsnoncheckedin	= SeatTicket::where('checkin_id', '=', '0')->get();
 			$allreserved			= SeatReservation::all();
 
 			$i = 0;
