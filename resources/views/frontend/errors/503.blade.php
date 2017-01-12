@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 
 		<style>
 			body {
@@ -8,9 +8,9 @@
 				padding: 0;
 				width: 100%;
 				height: 100%;
-				color: #B0BEC5;
+				color: #555;
 				display: table;
-				font-weight: 100;
+				font-weight: 300;
 				font-family: 'Lato';
 			}
 
@@ -31,15 +31,15 @@
 			}
 
 			.hero {
-				font-size: 16px;
+				font-size: 20px;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Be right back.</div>
-				<div class="hero">503 - Service Unavailable</div>
+				<div class="title">Straks tilbake.</div>
+				<div class="hero">Vi gj&oslash;r oss klare for et nytt &aring;r. Bestilling starter 20-22 februar 2017!</div>
 			</div>
 		</div>
 	</body>
