@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-
+		<title>Be right back.</title>
 		<style>
 			body {
 				margin: 0;
