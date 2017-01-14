@@ -30,8 +30,8 @@ class ReserveSeatingController extends Controller {
 		}
 
 		$rows 				= SeatRows::all();
-		$reservations 		= Sentinel::getUser()->reservations;
-		$ownreservations 	= Sentinel::getUser()->ownreservations;
+		$reservations 		= Sentinel::getUser()->reservations()->thisyear();
+		$ownreservations 	= Sentinel::getUser()->ownreservations()->thisyear();
 		return view('seating.index')
 				->withRows($rows)
 				->with('reservations', $reservations)
