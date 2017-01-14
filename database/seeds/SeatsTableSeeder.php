@@ -77,20 +77,6 @@ class SeatsTableSeeder extends Seeder  {
 			'reservation_id' => 0,
 		]);
 
-		Seats::create([
-			'name' 		=> 'A11',
-			'slug' 		=> 'a11',
-			'row_id'	=> '1',
-			'reservation_id' => 0,
-		]);
-
-		Seats::create([
-			'name' 		=> 'A12',
-			'slug' 		=> 'a12',
-			'row_id'	=> '1',
-			'reservation_id' => 0,
-		]);
-
 
 		Seats::create([
 			'name' 		=> 'B1',
