@@ -22,6 +22,7 @@ class CreateSeatPaymentsTable extends Migration {
 			$table->integer('reservation_id');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

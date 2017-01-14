@@ -20,6 +20,7 @@ class CreateSeatRowsTable extends Migration {
 			$table->string('slug');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

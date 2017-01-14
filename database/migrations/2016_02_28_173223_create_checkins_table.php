@@ -20,6 +20,7 @@ class CreateCheckinsTable extends Migration {
 			$table->integer('bandnumber');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

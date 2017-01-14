@@ -23,6 +23,7 @@ class CreateSeatTicketsTable extends Migration {
 			$table->integer('checkin_id');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

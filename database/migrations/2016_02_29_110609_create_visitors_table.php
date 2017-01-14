@@ -21,6 +21,7 @@ class CreateVisitorsTable extends Migration {
 			$table->string('bandnumber');
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
