@@ -224,6 +224,7 @@ return [
 		'CrewCategory'			=> 'LANMS\CrewCategory',
 		'CrewSkill'				=> 'LANMS\CrewSkill',
 		'CrewSkillAttached'		=> 'LANMS\CrewSkillAttached',
+		'Page'					=> 'LANMS\Page',
 		
 		/*
 		 * Third-party
