@@ -33,7 +33,7 @@
 							@endif
 						</strong>
 						<span>
-							@if(Sentinel::findById($id)->inRole('admin'))
+							@if(Sentinel::findById($id)->inRole('admin') || Sentinel::findById($id)->inRole('superadmin') || Sentinel::findById($id)->inRole('moderator'))
 								Staff
 							@else
 								Member
