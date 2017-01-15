@@ -78,7 +78,7 @@
 
 			<div class="col-md-6">
 
-				<h1 class="text-center">{{ Visitor::all()->count() }}<br><small>Visitors has checked-in</small></h1>
+				<h1 class="text-center">{{ Visitor::thisYear()->count() }}<br><small>Visitors has checked-in</small></h1>
 				<hr>
 				<table class="table">
 					<thead>
