@@ -29,6 +29,7 @@
 		<ol class="breadcrumb 2">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
+			<li>Seating</li>
 			<li><a href="{{ route('admin-seating-reservations') }}">Reservations</a></li>
 			<li class="active"><strong>Edit Reservation #{{ $reservation->id }}</strong></li>
 		</ol>

@@ -30,7 +30,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
-			<li><a href="{{ route('admin-seating') }}">Seating</a></li>
+			<li>Seating</li>
 			<li class="active"><strong>Check-in</strong></li>
 		</ol>
 

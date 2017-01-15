@@ -387,10 +387,6 @@ Route::group([
 		Route::group([
 			'prefix' => 'seating'
 			], function() {
-				get('/', [
-					'as' => 'admin-seating' ,
-					'uses' => 'HomeController@index'
-				]);
 				Route::group([
 					'prefix' => 'reservation'
 					], function() {
