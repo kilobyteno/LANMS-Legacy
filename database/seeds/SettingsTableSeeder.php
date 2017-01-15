@@ -8,7 +8,7 @@ class SettingsTableSeeder extends Seeder {
 	public function run() {
 
 		Setting::set('APP_NAME', 'LANMS');
-		Setting::set('APP_VERSION', '2.1.4');
+		Setting::set('APP_VERSION', '2.2.0');
 		Setting::set('APP_VERSION_TYPE', '');
 		Setting::set('APP_URL', 'http://jira.infihex.com/projects/LANMS?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=no-filter');
 		Setting::set('SHOW_RESETDB', true);
@@ -26,7 +26,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('WEB_NAME', 'LANMS');
 		Setting::set('WEB_LOGO', '/images/lanms.png');
 		Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
-		Setting::set('WEB_COPYRIGHT', '2015 - 2016, Infihex');
+		Setting::set('WEB_COPYRIGHT', '2015-2017, Infihex');
 
 		Setting::set('SEATING_OPEN', true);
 		Setting::set('SEATING_SHOW_MAP', true);
