@@ -40,11 +40,11 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if ($currentseat->reservations->first()->payment <> null) {
+		if ($currentseat->reservationsThisYear->first()->payment <> null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat already has a payment assigned to it.');
 		}
-		if(Sentinel::getUser()->id <> $currentseat->reservations->first()->reservedby->id) {
+		if(Sentinel::getUser()->id <> $currentseat->reservationsThisYear->first()->reservedby->id) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You can\'t pay for this seat.');
 		}
@@ -69,11 +69,11 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if ($seat->reservations->first()->payment <> null) {
+		if ($seat->reservationsThisYear->first()->payment <> null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat already has a payment assigned to it.');
 		}
-		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+		if(Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You can\'t pay for this seat.');
 		}
@@ -130,7 +130,7 @@ class PaymentSeatingController extends Controller {
 			'amount'   => Setting::get('SEATING_SEAT_PRICE'),
 		]);
 
-		$reservation 					= $seat->reservations->first();
+		$reservation 					= $seat->reservationsThisYear->first();
 		$reservationid 					= $reservation->id;
 
 		$seatpayment 					= new SeatPayment;
@@ -143,6 +143,7 @@ class PaymentSeatingController extends Controller {
 		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
 		$seatticket->reservation_id		= $reservationid;
 		$seatticket->user_id			= Sentinel::getUser()->id;
+		$seatticket->year				= \Setting::get('SEATING_YEAR');
 		$seatticket->save();
 
 		$reservationchange				= SeatReservation::find($reservationid);
@@ -174,22 +175,23 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if ($seat->reservations->first()->payment <> null) {
+		if ($seat->reservationsThisYear->first()->payment <> null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat already has a payment assigned to it.');
 		}
-		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+		if(Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You can\'t pay for this seat.');
 		}
 
-		$reservation 					= $seat->reservations->first();
+		$reservation 					= $seat->reservationsThisYear->first();
 		$reservationid 					= $reservation->id;
 
 		$seatticket 					= new SeatTicket;
 		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
 		$seatticket->reservation_id		= $reservationid;
 		$seatticket->user_id			= Sentinel::getUser()->id;
+		$seatticket->year				= \Setting::get('SEATING_YEAR');
 		$seatticket->save();
 
 		$reservationchange				= SeatReservation::find($reservationid);
@@ -221,20 +223,20 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if ($seat->reservations->first()->payment <> null) {
+		if ($seat->reservationsThisYear->first()->payment <> null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat already has a payment assigned to it.');
 		}
-		if(Sentinel::getUser()->id <> $seat->reservations->first()->reservedby->id) {
+		if(Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You can\'t pay for this seat.');
 		}
-		if ($seat->reservations == null) {
+		if ($seat->reservationsThisYear == null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat does not have reservation assigned to it.');
 		}
 
-		$reservation 					= $seat->reservations->first();
+		$reservation 					= $seat->reservationsThisYear->first();
 		$reservationid 					= $reservation->id;
 
 		if (SeatReservation::getRealExpireTime($reservationid) == "expired") {

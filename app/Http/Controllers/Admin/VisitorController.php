@@ -21,7 +21,7 @@ class VisitorController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-			$visitors = Visitor::all();
+			$visitors = Visitor::thisYear()->get();
 			return view('seating.visitor.index')->withVisitors($visitors);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
@@ -48,16 +48,11 @@ class VisitorController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
 
-
-
-			$fullname 			= $request->get('fullname');
-			$telephonenumber 	= $request->get('telephonenumber');
-			$bandnumber			= $request->get('bandnumber');
-
 			$visitor 					= new Visitor;
-			$visitor->fullname 			= $fullname;
-			$visitor->phonenumber		= $telephonenumber;
-			$visitor->bandnumber		= $bandnumber;
+			$visitor->fullname 			= $request->get('fullname');
+			$visitor->phonenumber		= $request->get('telephonenumber');
+			$visitor->bandnumber		= $request->get('bandnumber');
+			$visitor->year				= \Setting::get('SEATING_YEAR');
 			$visitor->save();
 
 			return Redirect::route('admin-seating-checkin-visitor')

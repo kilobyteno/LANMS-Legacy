@@ -15,8 +15,7 @@ class ProfileController extends Controller {
 		$onlinestatus = User::getOnlineStatus($theuser->id);
 		$userarray = $theuser->toArray();
 		$userarray['onlinestatus'] = $onlinestatus;
-		$reservationscount = $theuser->reservations->count();
-		return view('account.profile')->with($userarray)->with('reservationscount', $reservationscount);
+		return view('account.profile')->with($userarray);
 	}
 
 	public function getMembers() {

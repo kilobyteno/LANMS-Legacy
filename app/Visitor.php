@@ -8,6 +8,7 @@ class Visitor extends Model {
 		'fullname',
 		'phonenumber',
 		'bandnumber',
+		'year',
 	];
 	protected $table = 'visitors';
 
@@ -68,6 +69,14 @@ class Visitor extends Model {
 			return $years <= 1 ? "one year" : $years." years";
 		}
 
+	}
+
+	public function scopeThisYear($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
 	}
 
 }

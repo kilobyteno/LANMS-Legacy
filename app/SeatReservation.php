@@ -18,6 +18,7 @@ class SeatReservation extends Model {
 		'payment_id',
 		'ticket_id',
 		'status_id',
+		'year',
 		'reminder_email_sent',
 	];
 
@@ -45,8 +46,16 @@ class SeatReservation extends Model {
 		return $this->hasOne('Seats', 'id', 'seat_id');
 	}
 
-	public function scopePaid($query, $id) {
-		if(SeatPayment::where('reservation_id', '=', $id)->first() == null) {
+	public function scopeThisYear($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopePaid($query) {
+		if(SeatPayment::where('reservation_id', '=', $this->id)->first() == null) {
 			return false;
 		} else {
 			return true;

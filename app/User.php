@@ -458,9 +458,25 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $this->hasMany('SeatReservation', 'reservedby_id', 'id');
 	}
 
-	public function ownreservations() {
+	public function ownReservations() {
 		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id');
 	}
+
+	public function reservationsThisYear() {
+        return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->thisYear();
+    }
+
+    public function ownReservationsThisYear() {
+        return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->thisYear();
+    }
+
+    public function reservationsLastYear() {
+        return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->lastYear();
+    }
+
+    public function ownReservationsLastYear() {
+        return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->lastYear();
+    }
 
 	public function stripecustomer() {
 		return $this->hasOne('StripeCustomer', 'user_id', 'id');

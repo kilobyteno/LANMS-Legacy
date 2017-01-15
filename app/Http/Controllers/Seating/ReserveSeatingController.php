@@ -30,8 +30,8 @@ class ReserveSeatingController extends Controller {
 		}
 
 		$rows 				= SeatRows::all();
-		$reservations 		= Sentinel::getUser()->reservations;
-		$ownreservations 	= Sentinel::getUser()->ownreservations;
+		$reservations 		= Sentinel::getUser()->reservationsThisYear;
+		$ownreservations 	= Sentinel::getUser()->ownReservationsThisYear;
 		return view('seating.index')
 				->withRows($rows)
 				->with('reservations', $reservations)
@@ -84,7 +84,7 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if($seat->reservations->count() >= 1) {
+		if($seat->reservationsThisYear()->count() >= 1) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'Seat has already been reserved');
 		}
@@ -94,11 +94,11 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
 								->with('message', 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.');
 		}
-		if(Sentinel::getUser()->reservations->count() >= 5) {
+		if(Sentinel::getUser()->reservationsThisYear()->count() >= 5) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to reserve more seats.');
 		}
-		if($request->get('reservedfor') == Sentinel::getUser()->id && Sentinel::getUser()->ownreservations->count() >= 1) {
+		if($request->get('reservedfor') == Sentinel::getUser()->id && Sentinel::getUser()->ownReservationsThisYear()->count() >= 1) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'info')
 								->with('message', 'You cannot reserve more than one seat to yourself. Please select another user you want to reserve this seat for.');
 		}
@@ -108,9 +108,9 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
 								->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
 		}
-		if($reservedfor->reservations->count() >= 5) {
+		if($reservedfor->reservationsThisYear()->count() >= 5) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
-								->with('message', '<em>'.$reservedfor->username.'</em> are not allowed to reserve more seats.');
+								->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
 		}
 
 		$seatreservation 					= new SeatReservation;
@@ -118,6 +118,7 @@ class ReserveSeatingController extends Controller {
 		$seatreservation->reservedby_id 	= Sentinel::getUser()->id;
 		$seatreservation->reservedfor_id	= $reservedforid;
 		$seatreservation->status_id 		= 2; // 1 = Reserved, 2 = Temporary Reserved
+		$seatreservation->year 				= \Setting::get('SEATING_YEAR');
 
 		$seatreservationsave 				= $seatreservation->save();
 

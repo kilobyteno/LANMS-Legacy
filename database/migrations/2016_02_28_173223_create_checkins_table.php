@@ -18,6 +18,7 @@ class CreateCheckinsTable extends Migration {
 
 			$table->integer('ticket_id');
 			$table->integer('bandnumber');
+			$table->integer('year');
 
 			$table->timestamps();
 			$table->softDeletes();

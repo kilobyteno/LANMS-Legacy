@@ -33,7 +33,7 @@
 							@endif
 						</strong>
 						<span>
-							@if(Sentinel::findById($id)->inRole('admin'))
+							@if(Sentinel::findById($id)->inRole('admin') || Sentinel::findById($id)->inRole('superadmin') || Sentinel::findById($id)->inRole('moderator'))
 								Staff
 							@else
 								Member
@@ -45,10 +45,26 @@
 				
 				<li>
 					<div class="profile-stat">
-						<h3>{{ $reservationscount }}</h3>
-						<span><a href="{{ route('seating') }}">seats reserved</a></span>
+						<h3>{{ Sentinel::findById($id)->reservations->count() }}</h3>
+						<span>seats reserved</span>
 					</div>
 				</li>
+				@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
+					<li>
+						<div class="profile-stat">
+							<h3>{{\Setting::get('SEATING_YEAR')-1}}</h3>
+							<span>attendance</span>
+						</div>
+					</li>
+				@endif
+				@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
+					<li>
+						<div class="profile-stat">
+							<h3>{{\Setting::get('SEATING_YEAR')}}</h3>
+							<span>attendance</span>
+						</div>
+					</li>
+				@endif
 			</ul>
 			
 		</div>

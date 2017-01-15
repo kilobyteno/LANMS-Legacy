@@ -11,6 +11,7 @@ class SeatTicket extends Model {
 		'reservation_id',
 		'user_id',
 		'checkin_id',
+		'year',
 	];
 
 	function reservation() {
@@ -24,5 +25,18 @@ class SeatTicket extends Model {
 	function checkin() {
 		return $this->hasOne('Checkin', 'id', 'checkin_id');
 	}
+
+	public function scopeNoCheckin($query) {
+		return $query->where('checkin_id', '=', 0);
+	}
+
+	public function scopeThisYear($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
 
 }

@@ -34,6 +34,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('SEATING_SEAT_PRICE', 200);
 		Setting::set('SEATING_SEAT_PRICE_ALT', 250);
 		Setting::set('SEATING_SEAT_PRICE_CURRENCY', 'NOK');
+		Setting::set('SEATING_YEAR', 2017);
 
 		Setting::set('GOOGLE_MAPS_API_KEY', 'AIzaSyCJDbjolbvN7mYY3SiV6A7SLPCBlHlE-Ow');
 

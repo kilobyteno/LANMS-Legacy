@@ -19,5 +19,9 @@ class Seats extends Model {
 	function reservations() {
 		return $this->hasMany('SeatReservation', 'seat_id', 'id');
 	}
+
+	function reservationsThisYear() {
+        return $this->hasMany('SeatReservation', 'seat_id', 'id')->thisYear();
+    }
 	
 }

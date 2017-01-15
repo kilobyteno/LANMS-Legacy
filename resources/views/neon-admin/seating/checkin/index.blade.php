@@ -64,7 +64,7 @@
 
 			<div class="col-md-6">
 
-				<h1 class="text-center">{{ Checkin::all()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
+				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
 				<hr>
 
 				@foreach($checkedin as $checkin)
@@ -110,7 +110,7 @@
 
 			<div class="col-md-6">
 
-				<h1 class="text-center"><br><small>Seat names not checked in: {{ $noncheckedin->count() }}</small></h1>
+				<h1 class="text-center"><br><small>Seats not checked in: {{ $noncheckedin->count() }}</small></h1>
 				<hr>
 				@foreach($noncheckedin as $ticket)
 					<div class="col-md-6">
@@ -121,8 +121,7 @@
 							</a>
 							<div class="member-details">
 								<h4>
-									<a href="{{ route('user-profile', $ticket->user->username) }}">{{ $ticket->user->firstname }}@if($ticket->user->showname) {{ $ticket->user->lastname }}@endif</a>
-									| Seat: @if($ticket->reservation){{ $ticket->reservation->seat->name }} @else {{ 'N/A' }}@endif
+									@if($ticket->reservation){{ $ticket->reservation->seat->name }} @else {{ 'N/A' }}@endif | <a href="{{ route('user-profile', $ticket->user->username) }}">{{ $ticket->user->firstname }}@if($ticket->user->showname) {{ $ticket->user->lastname }}@endif</a>
 								</h4>
 								<div class="row info-list">
 									@if($ticket->user->occupation)

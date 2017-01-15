@@ -21,9 +21,9 @@ if(Config::get('app.debug')) {
 		}
 		return view('emails.auth.activate', ['link'=>route('account-activate', 'derp'), 'firstname'=>'Daniel']);
 	});*/
-	/*Route::get('/test', function() {
-		abort(500);
-	});*/
+	Route::get('/test', function() {
+		print date('Y');
+	});
 	/*Route::get('/aau', function() {
 		echo "AAU - Activate All Users<br><br>";
 		$users = User::where('last_activity', '<>', '0000-00-00 00:00:00')->get();
