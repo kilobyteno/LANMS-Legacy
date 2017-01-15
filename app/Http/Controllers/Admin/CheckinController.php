@@ -25,9 +25,9 @@ class CheckinController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-			$checkedin 				= Checkin::all();
-			$ticketsnoncheckedin	= SeatTicket::where('checkin_id', '=', '0')->get();
-			$allreserved			= SeatReservation::all();
+			$checkedin 				= Checkin::thisYear()->get();
+			$ticketsnoncheckedin	= SeatTicket::noCheckin()->thisYear()->get();
+			$allreserved			= SeatReservation::thisYear()->paid()->get();
 
 			$i = 0;
 			foreach ($allreserved as $reservation) {
@@ -66,7 +66,7 @@ class CheckinController extends Controller {
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
 			$bandnumber = $request->get('band_number');
 			$ticket = SeatTicket::find($id);
-			$checkinfound = Checkin::where('bandnumber', '=', $bandnumber)->first();
+			$checkinfound = Checkin::thisYear()->where('bandnumber', '=', $bandnumber)->first();
 			if($ticket == null) {
 				return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'Ticket not found!');
@@ -79,6 +79,7 @@ class CheckinController extends Controller {
 			$checkin 					= new Checkin;
 			$checkin->ticket_id 		= $id;
 			$checkin->bandnumber		= $bandnumber;
+			$checkin->year				= \Setting::get('SEATING_YEAR');
 			$checkin->save();
 
 			$ticket 					= SeatTicket::find($id);
@@ -110,7 +111,7 @@ class CheckinController extends Controller {
 				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'Ticket not found!');
 			}
-			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
+			$checkin = Checkin::thisYear()->where('ticket_id', '=', $ticket->id)->first();
 			if($checkin !== null) {
 				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'This ticket has already been checked in!');
@@ -130,7 +131,7 @@ class CheckinController extends Controller {
 				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'Ticket not found!');
 			}
-			$checkin = Checkin::where('ticket_id', '=', $ticket->id)->first();
+			$checkin = Checkin::thisYear()->where('ticket_id', '=', $ticket->id)->first();
 			if($checkin !== null) {
 				return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
 								->with('message', 'This ticket has already been checked in!');
