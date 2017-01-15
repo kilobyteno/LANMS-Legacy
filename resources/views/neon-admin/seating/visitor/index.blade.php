@@ -95,7 +95,7 @@
 								<td>{{ $visitor->fullname }}</td>
 								<td>{{ $visitor->phonenumber }}</td>
 								<td>{{ $visitor->bandnumber }}</td>
-								<td>{{ Visitor::getExpireTime($visitor->id) }}</td>
+								<td class="@if(Visitor::getExpireTime($visitor->id) == 'expired') {{ 'text-danger' }} @endif">{{ Visitor::getExpireTime($visitor->id) }}</td>
 							</tr>
 						@endforeach
 					</tbody>
