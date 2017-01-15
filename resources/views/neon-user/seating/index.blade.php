@@ -74,6 +74,11 @@
 											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
 										@endif
 									</div>
+									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+										<div class="col-sm-4">
+											<a class="btn btn-danger btn-xs" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fa fa-trash-o"></i> Remove reservation</a>
+										</div>
+									@endif
 								</div>
 							</div>
 						</div>
@@ -116,6 +121,11 @@
 											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
 										@endif
 									</div>
+									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+										<div class="col-sm-4">
+											<a class="btn btn-danger btn-xs" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fa fa-trash-o"></i> Remove reservation</a>
+										</div>
+									@endif
 								</div>
 							</div>
 						</div>

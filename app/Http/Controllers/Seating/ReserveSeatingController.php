@@ -155,4 +155,44 @@ class ReserveSeatingController extends Controller {
 		
 	}
 
+	public function destroy($id)
+	{
+		$reservation = SeatReservation::find($id);
+
+		if($reservation == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find reservation.');
+		}
+		if(!Setting::get('SEATING_OPEN')) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'It is not possible to remove reservations at this time.');
+		}
+		if(Sentinel::getUser()->id <> $reservation->reservedby->id) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t remove this reservation.');
+		}
+		if (SeatReservation::getRealExpireTime($id) == "expired") {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t remove reservation after the first 48 hours.');
+		}
+
+		$seat = $reservation->seat;
+		$seat->reservation_id = 0;
+		$seat->save();
+
+		if($reservation->ticket) {
+			$reservation->ticket->delete();
+		}
+		
+		if($reservation->delete()) {
+			return Redirect::route('seating')
+					->with('messagetype', 'success')
+					->with('message', 'The reservation has now been removed!');
+		} else {
+			return Redirect::route('seating')
+				->with('messagetype', 'danger')
+				->with('message', 'Something went wrong while deleting the reservation.');
+		}
+	}
+
 }

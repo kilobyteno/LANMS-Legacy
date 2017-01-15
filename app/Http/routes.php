@@ -220,6 +220,10 @@ Route::group([
 					'as' => 'seating-changepayment',
 					'uses' => 'Seating\PaymentSeatingController@changepayment'
 				]);
+				get('/{id}/removereservation', [
+					'as' => 'seating-removereservation',
+					'uses' => 'Seating\ReserveSeatingController@destroy'
+				]);
 				get('/{slug}', [
 					'as' => 'seating-show',
 					'uses' => 'Seating\ReserveSeatingController@show'
