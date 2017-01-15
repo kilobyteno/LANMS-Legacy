@@ -81,7 +81,7 @@
 						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
 					</ul>
 				</li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>
+				{{--<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>--}}
 				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
 				</li>
