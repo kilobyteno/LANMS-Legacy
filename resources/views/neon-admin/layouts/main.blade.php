@@ -72,7 +72,7 @@
 						<li class="@if(Request::is('admin/news/categories*')){{'active'}} @endif"><a href="{{ route('admin-news-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
 					</ul>
 				</li>
-				<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>
+				{{--<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>--}}
 				<li class="@if(Request::is('admin/seating*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
 					<ul>
