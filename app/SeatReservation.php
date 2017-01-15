@@ -50,6 +50,10 @@ class SeatReservation extends Model {
 		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
 	}
 
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
 	public function scopePaid($query, $id) {
 		if(SeatPayment::where('reservation_id', '=', $id)->first() == null) {
 			return false;
