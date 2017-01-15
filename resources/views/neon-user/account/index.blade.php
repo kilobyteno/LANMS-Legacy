@@ -11,6 +11,11 @@
 			</ol>
 
 			<h1>Welcome back, {{ $firstname }}@if($showname && $lastname) {{ $lastname }}@endif!</h1>
+			@if(Sentinel::getUser()->ownReservationsLastYear->count() > 0 && !Sentinel::getUser()->ownReservationsThisYear->count() > 0)
+				<div class="alert alert-info" role="alert">
+					We can see that you attended last year. Want to join us for this year too? <a href="{{route('seating')}}">Check out the seating now</a>.
+				</div>
+			@endif
 			<hr>
 			<div class="row">
 				<div class="col-lg-8">
