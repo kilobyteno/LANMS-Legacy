@@ -143,6 +143,7 @@ class PaymentSeatingController extends Controller {
 		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
 		$seatticket->reservation_id		= $reservationid;
 		$seatticket->user_id			= Sentinel::getUser()->id;
+		$seatticket->year				= \Setting::get('SEATING_YEAR');
 		$seatticket->save();
 
 		$reservationchange				= SeatReservation::find($reservationid);
@@ -190,6 +191,7 @@ class PaymentSeatingController extends Controller {
 		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
 		$seatticket->reservation_id		= $reservationid;
 		$seatticket->user_id			= Sentinel::getUser()->id;
+		$seatticket->year				= \Setting::get('SEATING_YEAR');
 		$seatticket->save();
 
 		$reservationchange				= SeatReservation::find($reservationid);

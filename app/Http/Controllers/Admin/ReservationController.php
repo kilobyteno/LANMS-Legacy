@@ -24,7 +24,7 @@ class ReservationController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.reservation.*'])) {
-			$reservations 	= SeatReservation::all();
+			$reservations 	= SeatReservation::thisYear()->get();
 			$rows 			= SeatRows::all();
 			return view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
 		} else {
