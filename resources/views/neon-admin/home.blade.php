@@ -22,7 +22,7 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="tile-stats tile-cyan" href="{{route('admin-seating')}}">
+				<a class="tile-stats tile-cyan" href="{{route('admin-seating-reservations')}}">
 					<div class="icon"><i class="fa fa-street-view"></i></div>
 					<div class="num" data-start="0" data-end="{{SeatReservation::thisYear()->count()}}" data-duration="1500" data-delay="0">{{SeatReservation::thisYear()->count()}}</div>
 					<h3>Seat reservations</h3>
