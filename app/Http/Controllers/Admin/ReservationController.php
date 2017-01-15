@@ -141,9 +141,15 @@ class ReservationController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.reservation.destroy'])) {
 			$reservation = SeatReservation::find($id);
+
+			$seat = $reservation->seat;
+			$seat->reservation_id = 0;
+			$seat->save();
+
 			if($reservation->ticket) {
 				$reservation->ticket->delete();
 			}
+			
 			if($reservation->delete()) {
 				return Redirect::route('admin-seating-reservations')
 						->with('messagetype', 'success')
