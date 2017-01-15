@@ -511,9 +511,9 @@ Route::group(['prefix' => 'ajax',], function() {
 		$usernames = array();
 		foreach($users as $user) {
 			if($user->showname) {
-				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.' '.$user->lastname.')'));
+				array_push($usernames, array('id' => $user->id, 'name' => $user->firstname.' "' .$user->username. '" '.$user->lastname));
 			} else {
-				array_push($usernames, array('id' => $user->id, 'name' => $user->username.' ('.$user->firstname.')'));
+				array_push($usernames, array('id' => $user->id, 'name' => $user->firstname.' "' .$user->username. '"'));
 			}
 		}
 		return Response::json($usernames);
