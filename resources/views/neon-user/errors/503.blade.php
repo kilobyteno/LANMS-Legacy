@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-		<title>Be right back.</title>
+		<title>Downlink DG</title>
 		<style>
 			body {
 				margin: 0;
@@ -31,15 +31,18 @@
 			}
 
 			.hero {
-				font-size: 16px;
+				font-size: 20px;
+			}
+			small {
+				font-size:75%;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Be right back.</div>
-				<div class="hero">503 - Service Unavailable</div>
+				<div class="title">Straks tilbake.</div>
+				<div class="hero">Vi gj&oslash;r oss klare for et nytt &aring;r. Bestilling starter 20-22 januar 2017!<br><br><small>N&aring;r? 28feb-2mars ~ Hvor? Gausdal ungdomskole ~ Pris? 200kr*</small></div>
 			</div>
 		</div>
 	</body>
