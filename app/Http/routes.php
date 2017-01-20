@@ -410,6 +410,14 @@ Route::group([
 							'as' => 'admin-seating-reservation-destroy',
 							'uses' => 'Admin\ReservationController@destroy'
 						]);
+						get('/brokenband', [
+							'as' => 'admin-seating-brokenband',
+							'uses' => 'Admin\BrokenBandController@index'
+						]);
+						post('/brokenband', [
+							'as' => 'admin-seating-fixedband',
+							'uses' => 'Admin\BrokenBandController@store'
+						]);
 				});
 				Route::group([
 					'prefix' => 'checkin'
