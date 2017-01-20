@@ -21,6 +21,7 @@ return array(
     'Canvas_Factory' => $vendorDir . '/dompdf/dompdf/include/canvas_factory.cls.php',
     'Cellmap' => $vendorDir . '/dompdf/dompdf/include/cellmap.cls.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_01_18_180048_create_addresses_table.php',
+    'CreateBrokenBandsTable' => $baseDir . '/database/migrations/2017_01_18_200109_create_broken_bands_table.php',
     'CreateCheckinsTable' => $baseDir . '/database/migrations/2016_02_28_173223_create_checkins_table.php',
     'CreateCrewCategoriesTable' => $baseDir . '/database/migrations/2016_04_30_170834_create_crew_categories_table.php',
     'CreateCrewSkillAttachedTable' => $baseDir . '/database/migrations/2016_05_15_132325_create_crew_skill_attached_table.php',
