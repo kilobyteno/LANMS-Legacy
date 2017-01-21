@@ -36,7 +36,8 @@
         "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider",
         "Vsmoraes\\Pdf\\PdfServiceProvider",
         "Milon\\Barcode\\BarcodeServiceProvider",
-        "Sentry\\SentryLaravel\\SentryLaravelServiceProvider"
+        "Sentry\\SentryLaravel\\SentryLaravelServiceProvider",
+        "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -63,7 +64,8 @@
         "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider",
         "Vsmoraes\\Pdf\\PdfServiceProvider",
         "Milon\\Barcode\\BarcodeServiceProvider",
-        "Sentry\\SentryLaravel\\SentryLaravelServiceProvider"
+        "Sentry\\SentryLaravel\\SentryLaravelServiceProvider",
+        "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

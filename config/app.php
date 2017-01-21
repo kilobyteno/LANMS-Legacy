@@ -158,6 +158,7 @@ return [
 		'Vsmoraes\Pdf\PdfServiceProvider',
 		'Milon\Barcode\BarcodeServiceProvider',
 		Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
 	],
 

@@ -294,6 +294,10 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
             array (
                 0 => __DIR__ . '/..' . '/sentry/sentry/lib',
             ),
+            'Rap2hpoutre\\LaravelLogViewer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src',
+            ),
         ),
         'P' => 
         array (
@@ -2444,6 +2448,10 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Psy\\Util\\Json' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/Json.php',
         'Psy\\Util\\Mirror' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/Mirror.php',
         'Psy\\Util\\String' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/String.php',
+        'Rap2hpoutre\\LaravelLogViewer\\BaseController' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewer' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/LaravelLogViewer.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/LaravelLogViewerServiceProvider.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LogViewerController' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php',
         'Raven_Autoloader' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Autoloader.php',
         'Raven_Breadcrumbs' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Breadcrumbs.php',
         'Raven_Breadcrumbs_ErrorHandler' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Breadcrumbs/ErrorHandler.php',

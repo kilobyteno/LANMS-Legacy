@@ -248,6 +248,10 @@ Route::group([
 			'as' => 'admin' ,
 			'uses' => 'HomeController@index'
 		]);
+		get('logs', [
+			'as' => 'admin-logs',
+			'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
+		]);
 		Route::group([
 			'prefix' => 'crew'
 			], function() {

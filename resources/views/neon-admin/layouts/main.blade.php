@@ -92,6 +92,11 @@
 				<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">
 					<a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a>
 				</li>
+				@if(Sentinel::getUser()->inRole('superadmin'))
+					<li class="@if(Request::is('admin/logs*')){{'active opened'}} @endif">
+						<a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a>
+					</li>
+				@endif
 			</div>
 		</div>
 	</div>
