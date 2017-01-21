@@ -4,6 +4,10 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+
+use LANMS\BrokenBand;
 
 class BrokenBandController extends Controller {
 
@@ -15,7 +19,7 @@ class BrokenBandController extends Controller {
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-			$brokenbands 				= BrokenBand::thisYear()->get();
+			$brokenbands = BrokenBand::thisYear()->get();
 			return view('seating.brokenband.index')->withBrokenbands($brokenbands);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')

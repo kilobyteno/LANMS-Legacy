@@ -226,6 +226,7 @@ return [
 		'CrewSkill'				=> 'LANMS\CrewSkill',
 		'CrewSkillAttached'		=> 'LANMS\CrewSkillAttached',
 		'Page'					=> 'LANMS\Page',
+		'BrokenBand'			=> 'LANMS\BrokenBand',
 		
 		/*
 		 * Third-party
