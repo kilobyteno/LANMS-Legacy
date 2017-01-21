@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -30,7 +30,7 @@ class Orders extends Api
      */
     public function create(array $parameters = [])
     {
-        return $this->_post('orders', $parameters);
+        return $this->queryAggregator(true)->_post('orders', $parameters);
     }
 
     /**
@@ -66,6 +66,18 @@ class Orders extends Api
     public function pay($orderId, array $parameters = [])
     {
         return $this->_post("orders/{$orderId}/pay", $parameters);
+    }
+
+    /**
+     * Returns the given order.
+     *
+     * @param  string  $orderId
+     * @param  array  $items
+     * @return array
+     */
+    public function returnItems($orderId, array $items = [])
+    {
+        return $this->queryAggregator(true)->_post("orders/{$orderId}/returns", compact('items'));
     }
 
     /**

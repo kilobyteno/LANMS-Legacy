@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel 4 - Persistant Settings
+ * Laravel 4 - Persistent Settings
  * 
  * @author   Andreas Lutro <anlutro@gmail.com>
  * @license  http://opensource.org/licenses/MIT
@@ -114,8 +114,12 @@ class DatabaseSettingStore extends SettingStore
 	 */
 	protected function write(array $data)
 	{
-		$keys = $this->newQuery()
-			->lists('key');
+		$keysQuery = $this->newQuery();
+
+		// "lists" was removed in Laravel 5.3, at which point
+		// "pluck" should provide the same functionality.
+		$method = !method_exists($keysQuery, 'lists') ? 'pluck' : 'lists';
+		$keys = $keysQuery->$method('key');
 
 		$insertData = array_dot($data);
 		$updateData = array();

@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -37,19 +37,24 @@ class FileUploads extends Api
      *
      * @param  string  $file
      * @param  string  $purpose
+     * @param  array  $headers
      * @return array
      */
-    public function create($file, $purpose)
+    public function create($file, $purpose, array $headers = [])
     {
-        $file = new PostFile('file', fopen($file, 'r'));
-
         $client = $this->getClient();
-        $request = $client->createRequest('POST', 'v1/files');
-        $postBody = $request->getBody();
-        $postBody->setField('purpose', $purpose);
-        $postBody->addFile($file);
 
-        return $client->send($request);
+        $request = $client->createRequest('POST', 'v1/files');
+
+        $postBody = $request->getBody();
+
+        $postBody->setField('purpose', $purpose);
+
+        $postBody->addFile(
+            new PostFile('file', fopen($file, 'r'), null, $headers)
+        );
+
+        return json_decode($client->send($request)->getBody()->getContents(), true);
     }
 
     /**

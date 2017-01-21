@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -35,6 +35,13 @@ class Client extends \GuzzleHttp\Client implements ClientInterface
      * @var \Cartalyst\Stripe\ConfigInterface
      */
     protected $config;
+
+    /**
+     * The query aggregator status.
+     *
+     * @var bool
+     */
+    protected $queryAggregator = false;
 
     /**
      * Constructor.
@@ -64,9 +71,22 @@ class Client extends \GuzzleHttp\Client implements ClientInterface
 
             // Set the query aggregator
             $request->getQuery()->setAggregator(
-                Query::phpAggregator(false)
+                Query::phpAggregator($this->queryAggregator)
             );
         });
+    }
+
+    /**
+     * Sets the query aggregator status.
+     *
+     * @param  bool  $status
+     * @return $this
+     */
+    public function queryAggregator($status)
+    {
+        $this->queryAggregator = $status;
+
+        return $this;
     }
 
     /**

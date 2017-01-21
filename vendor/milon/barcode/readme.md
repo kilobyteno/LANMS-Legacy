@@ -1,3 +1,7 @@
+[![Packagist Downloads](https://img.shields.io/packagist/dt/milon/barcode.svg)](https://packagist.org/packages/milon/barcode)
+[![Stable version](https://img.shields.io/packagist/v/milon/barcode.svg)](https://packagist.org/packages/milon/barcode)
+[![License](https://img.shields.io/packagist/l/milon/barcode.svg)](https://packagist.org/packages/milon/barcode)
+
 This is a barcode generation package inspired by [https://github.com/tecnickcom/TCPDF](https://github.com/tecnickcom/TCPDF). Actually I use that package's underline classes for generating barcode. This package is just a wrapper of that package and adds compatibility with Laravel 5.
 
 I used the following classes of that package.
@@ -10,7 +14,9 @@ I used the following classes of that package.
 
 [Read More on TCPDF website](http://www.tcpdf.org)
 
-### This package is compatible with Laravel 5.2
+### This package is compatible with Laravel 5.2 and 5.3
+
+This package relies on [php-gd](http://php.net/manual/en/book.image.php) extension. So, make sure it is installed on your machine.
 
 ## Installation
 
@@ -66,7 +72,13 @@ For version 4.* add these lines on `app/config/app.php` file-
 
 If you want to change Bar-code's settings (Store Path etc.), you need to publish its config file(s). For that you need to run in the terminal-
 
-    php artisan vendor:publish
+```
+# Laravel 5.x
+php artisan vendor:publish
+
+# Laravel 4.x
+php artisan config:publish milon/barcode
+```
 
 Make sure you have write permission to the storage path. By default it sets to `/storage` folder.
 
@@ -185,6 +197,20 @@ echo DNS1D::getBarcodeHTML("4445645656", "CODE11");
 echo DNS1D::getBarcodeHTML("4445645656", "PHARMA");
 echo DNS1D::getBarcodeHTML("4445645656", "PHARMA2T");
 ```
+
+# Running without Laravel
+
+You can use this library without using Laravel.
+
+Example:
+```
+use \Milon\Barcode\DNS1D;
+
+$d = new DNS1D();
+$d->setStorPath(__DIR__."/cache/");
+echo $d->getBarcodeHTML("9780691147727", "EAN13");
+```
+
 
 ## License
 This package is published under `GNU LGPLv3` license and copyright to [Nuruzzaman Milon](http://milon.im). Original Barcode generation classes were written by Nicola Asuni. The license agreement is on project's root.

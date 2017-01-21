@@ -87,7 +87,7 @@ class DNS1D {
      */
     public function getBarcodeSVG($code, $type, $w = 2, $h = 30, $color = 'black') {
         if (!$this->store_path) {
-            $this->setStorPath(\Config::get("barcode.store_path"));
+            $this->setStorPath(app('config')->get("barcode.store_path"));
         }
         $this->setBarcode($code, $type);
         // replace table for special characters
@@ -126,7 +126,7 @@ class DNS1D {
      */
     public function getBarcodeHTML($code, $type, $w = 2, $h = 30, $color = 'black') {
         if (!$this->store_path) {
-            $this->setStorPath(\Config::get("barcode.store_path"));
+            $this->setStorPath(app('config')->get("barcode.store_path"));
         }
         $this->setBarcode($code, $type);
         $html = '<div style="font-size:0;position:relative;">' . "\n";
@@ -159,7 +159,7 @@ class DNS1D {
      */
     public function getBarcodePNG($code, $type, $w = 2, $h = 30, $color = array(0, 0, 0)) {
         if (!$this->store_path) {
-            $this->setStorPath(\Config::get("barcode.store_path"));
+            $this->setStorPath(app('config')->get("barcode.store_path"));
         }
         $this->setBarcode($code, $type);
         // calculate image size
@@ -215,6 +215,16 @@ class DNS1D {
     }
 
     /**
+     * Get the array representation of last generated barcode.
+     *
+     * @return array
+    */
+    public function getBarcodeArray()
+    {
+        return $this->barcode_array;
+    }
+
+    /**
      * Return a .png file path which create in server
      * @param $code (string) code to print
      * @param $type (string) type of barcode: <ul><li>C39 : CODE 39 - ANSI MH10.8M-1983 - USD-3 - 3 of 9.</li><li>C39+ : CODE 39 with checksum</li><li>C39E : CODE 39 EXTENDED</li><li>C39E+ : CODE 39 EXTENDED + CHECKSUM</li><li>C93 : CODE 93 - USS-93</li><li>S25 : Standard 2 of 5</li><li>S25+ : Standard 2 of 5 + CHECKSUM</li><li>I25 : Interleaved 2 of 5</li><li>I25+ : Interleaved 2 of 5 + CHECKSUM</li><li>C128 : CODE 128</li><li>C128A : CODE 128 A</li><li>C128B : CODE 128 B</li><li>C128C : CODE 128 C</li><li>EAN2 : 2-Digits UPC-Based Extention</li><li>EAN5 : 5-Digits UPC-Based Extention</li><li>EAN8 : EAN 8</li><li>EAN13 : EAN 13</li><li>UPCA : UPC-A</li><li>UPCE : UPC-E</li><li>MSI : MSI (Variation of Plessey code)</li><li>MSI+ : MSI + CHECKSUM (modulo 11)</li><li>POSTNET : POSTNET</li><li>PLANET : PLANET</li><li>RMS4CC : RMS4CC (Royal Mail 4-state Customer Code) - CBC (Customer Bar Code)</li><li>KIX : KIX (Klant index - Customer index)</li><li>IMB: Intelligent Mail Barcode - Onecode - USPS-B-3200</li><li>CODABAR : CODABAR</li><li>CODE11 : CODE 11</li><li>PHARMA : PHARMACODE</li><li>PHARMA2T : PHARMACODE TWO-TRACKS</li></ul>
@@ -226,7 +236,7 @@ class DNS1D {
      */
     public function getBarcodePNGPath($code, $type, $w = 2, $h = 30, $color = array(0, 0, 0)) {
         if (!$this->store_path) {
-            $this->setStorPath(\Config::get("barcode.store_path"));
+            $this->setStorPath(app('config')->get("barcode.store_path"));
         }
         $this->setBarcode($code, $type);
         // calculate image size
@@ -1385,7 +1395,11 @@ class DNS1D {
         }
         $data_len = $len - 1;
         //Padding
-        $code = str_pad($code, $data_len, '0', STR_PAD_LEFT);
+        if ($upce) {
+            $code = $this->upce2a($code);
+        } else {
+            $code = str_pad($code, $data_len, '0', STR_PAD_LEFT);
+        }
         $code_len = strlen($code);
         // calculate check digit
         $sum_a = 0;
@@ -2365,4 +2379,50 @@ class DNS1D {
         return $this;
     }
 
+    /**
+     * Convert UPC-E to UPC-A
+     * @param $code (string) code to represent.
+     * @return string upc-a value of upc-e
+     * @protected
+     */
+    protected function upce2a($code) {
+        $manufacturer = '';
+        $itemNumber = '';
+        // break digits
+        $digit1 = substr($code, 0, 1);
+        $digit2 = substr($code, 1, 1);
+        $digit3 = substr($code, 2, 1);
+        $digit4 = substr($code, 3, 1);
+        $digit5 = substr($code, 4, 1);
+        $digit6 = substr($code, 5, 1);
+
+        switch ($digit6) {
+            case '0':
+                $manufacturer = $digit1 . $digit2 . $digit6 . '00';
+                $itemNumber = '00' . $digit3 . $digit4 . $digit5;
+                break;
+            case '1':
+                $manufacturer = $digit1 . $digit2 . $digit6 . '00';
+                $itemNumber = '00' . $digit3 . $digit4 . $digit5;
+                break;
+            case '2':
+                $manufacturer = $digit1 . $digit2 . $digit6 . '00';
+                $itemNumber = '00' . $digit3 . $digit4 . $digit5;
+                break;
+            case '3':
+                $manufacturer = $digit1 . $digit2 . $digit3 . '00';
+                $itemNumber = '000' . $digit4 . $digit5;
+                break;
+            case '4':
+                $manufacturer = $digit1 . $digit2 . $digit3 . $digit4 . '0';
+                $itemNumber = '0000' . $digit5;
+                break;
+            default:
+                $manufacturer = $digit1 . $digit2 . $digit3 . $digit4 . $digit5;
+                $itemNumber = '0000' . $digit6;
+                break;
+        }
+
+        return '0' . $manufacturer . $itemNumber;
+    }
 }

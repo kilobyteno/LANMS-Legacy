@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -65,6 +65,54 @@ class Account extends Api
     public function update($accountId, array $parameters = [])
     {
         return $this->_post("accounts/{$accountId}", $parameters);
+    }
+
+    /**
+     * Deletes an existing account.
+     *
+     * @param  string  $accountId
+     * @return array
+     */
+    public function delete($accountId)
+    {
+        return $this->_delete("accounts/{$accountId}");
+    }
+
+    /**
+     * Rejects an existing account.
+     *
+     * @param  string  $accountId
+     * @param  string  $reason
+     * @return array
+     */
+    public function reject($accountId, $reason)
+    {
+        return $this->_post("accounts/{$accountId}/reject", compact('reason'));
+    }
+
+    /**
+     * Updates an existing account.
+     *
+     * @param  string  $accountId
+     * @param  string  $file
+     * @param  array  $parameters
+     * @return array
+     */
+    public function verify($accountId, $file, $purpose)
+    {
+        $upload = (new FileUploads($this->config))->create(
+            $file, $purpose, [ 'Stripe-Account' => $accountId ]
+        );
+
+        $this->update($accountId, [
+            'legal_entity' => [
+                'verification' => [
+                    'document' => $upload['id'],
+                ],
+            ],
+        ]);
+
+        return $this->_get('accounts/'.$accountId);
     }
 
     /**

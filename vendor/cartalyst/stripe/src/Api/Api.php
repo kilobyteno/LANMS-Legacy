@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -41,6 +41,13 @@ abstract class Api implements ApiInterface
     protected $perPage;
 
     /**
+     * The query aggregator status.
+     *
+     * @var bool
+     */
+    protected $queryAggregator = false;
+
+    /**
      * Constructor.
      *
      * @param  \Cartalyst\Stripe\ConfigInterface  $client
@@ -49,8 +56,6 @@ abstract class Api implements ApiInterface
     public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
-
-        $this->config->base_url = $this->baseUrl();
     }
 
     /**
@@ -84,8 +89,8 @@ abstract class Api implements ApiInterface
      */
     public function _get($url = null, $parameters = [])
     {
-        if ($this->perPage) {
-            $parameters['limit'] = $this->perPage;
+        if ($perPage = $this->getPerPage()) {
+            $parameters['limit'] = $perPage;
         }
 
         return $this->execute('get', $url, $parameters)->json();
@@ -150,12 +155,31 @@ abstract class Api implements ApiInterface
     }
 
     /**
+     * Sets the query aggregator status.
+     *
+     * @param  bool  $status
+     * @return $this
+     */
+    public function queryAggregator($status = false)
+    {
+        $this->queryAggregator = $status;
+
+        return $this;
+    }
+
+    /**
      * Returns an Http client instance.
      *
      * @return \Cartalyst\Stripe\Http\Client
      */
     protected function getClient()
     {
-        return new Client($this->config);
+        $config = $this->config;
+
+        $config->base_url = $this->baseUrl();
+
+        return (new Client($config))
+            ->queryAggregator($this->queryAggregator)
+        ;
     }
 }

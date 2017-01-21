@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.7
+ * @version    1.0.10
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -27,7 +27,7 @@ class Stripe
      *
      * @var string
      */
-    const VERSION = '1.0.6';
+    const VERSION = '1.0.8';
 
     /**
      * The Config repository instance.
@@ -187,7 +187,7 @@ class Stripe
      * @param  array  $parameters
      * @return \Cartalyst\Stripe\Api\ApiInterface
      */
-    public function __call($method, array $parameters = [])
+    public function __call($method, array $parameters)
     {
         if ($this->isIteratorRequest($method)) {
             $apiInstance = $this->getApiInstance(substr($method, 0, -8));
