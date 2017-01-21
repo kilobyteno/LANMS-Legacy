@@ -157,6 +157,7 @@ return [
 		'Cartalyst\Stripe\Laravel\StripeServiceProvider',
 		'Vsmoraes\Pdf\PdfServiceProvider',
 		'Milon\Barcode\BarcodeServiceProvider',
+		Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
 	],
 
@@ -239,6 +240,7 @@ return [
 		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
 		'DNS1D'			=> 'Milon\Barcode\Facades\DNS1DFacade',
     	'DNS2D'			=> 'Milon\Barcode\Facades\DNS2DFacade',
+    	'Sentry' 		=> Sentry\SentryLaravel\SentryFacade::class,
 
 	],
 

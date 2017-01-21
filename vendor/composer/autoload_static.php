@@ -9,10 +9,10 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
     public static $files = array (
         'fe1bcd0336136e435eaf197895daf81a' => __DIR__ . '/..' . '/nikic/php-parser/lib/bootstrap.php',
         '9f7f3f9b1f82484e76bcd07b985a2d2f' => __DIR__ . '/..' . '/symfony/var-dumper/Symfony/Component/VarDumper/Resources/functions/dump.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
@@ -282,6 +282,17 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
             'Symfony\\Component\\Console\\' => 
             array (
                 0 => __DIR__ . '/..' . '/symfony/console',
+            ),
+            'Sentry\\SentryLaravel\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/sentry/sentry-laravel/src',
+            ),
+        ),
+        'R' => 
+        array (
+            'Raven_' => 
+            array (
+                0 => __DIR__ . '/..' . '/sentry/sentry/lib',
             ),
         ),
         'P' => 
@@ -2433,6 +2444,23 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Psy\\Util\\Json' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/Json.php',
         'Psy\\Util\\Mirror' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/Mirror.php',
         'Psy\\Util\\String' => __DIR__ . '/..' . '/psy/psysh/src/Psy/Util/String.php',
+        'Raven_Autoloader' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Autoloader.php',
+        'Raven_Breadcrumbs' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Breadcrumbs.php',
+        'Raven_Breadcrumbs_ErrorHandler' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Breadcrumbs/ErrorHandler.php',
+        'Raven_Breadcrumbs_MonologHandler' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Breadcrumbs/MonologHandler.php',
+        'Raven_Client' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Client.php',
+        'Raven_Compat' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Compat.php',
+        'Raven_Context' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Context.php',
+        'Raven_CurlHandler' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/CurlHandler.php',
+        'Raven_ErrorHandler' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/ErrorHandler.php',
+        'Raven_Exception' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Exception.php',
+        'Raven_Processor' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Processor.php',
+        'Raven_ReprSerializer' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/ReprSerializer.php',
+        'Raven_SanitizeDataProcessor' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/SanitizeDataProcessor.php',
+        'Raven_Serializer' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Serializer.php',
+        'Raven_Stacktrace' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Stacktrace.php',
+        'Raven_TransactionStack' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/TransactionStack.php',
+        'Raven_Util' => __DIR__ . '/..' . '/sentry/sentry/lib/Raven/Util.php',
         'React\\Promise\\CancellablePromiseInterface' => __DIR__ . '/..' . '/react/promise/src/CancellablePromiseInterface.php',
         'React\\Promise\\CancellationQueue' => __DIR__ . '/..' . '/react/promise/src/CancellationQueue.php',
         'React\\Promise\\Deferred' => __DIR__ . '/..' . '/react/promise/src/Deferred.php',
@@ -2485,6 +2513,11 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'SebastianBergmann\\RecursionContext\\Exception' => __DIR__ . '/..' . '/sebastian/recursion-context/src/Exception.php',
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Sentry\\SentryLaravel\\SentryFacade' => __DIR__ . '/..' . '/sentry/sentry-laravel/src/Sentry/SentryLaravel/SentryFacade.php',
+        'Sentry\\SentryLaravel\\SentryLaravel' => __DIR__ . '/..' . '/sentry/sentry-laravel/src/Sentry/SentryLaravel/SentryLaravel.php',
+        'Sentry\\SentryLaravel\\SentryLaravelEventHandler' => __DIR__ . '/..' . '/sentry/sentry-laravel/src/Sentry/SentryLaravel/SentryLaravelEventHandler.php',
+        'Sentry\\SentryLaravel\\SentryLaravelServiceProvider' => __DIR__ . '/..' . '/sentry/sentry-laravel/src/Sentry/SentryLaravel/SentryLaravelServiceProvider.php',
+        'Sentry\\SentryLaravel\\SentryLumenServiceProvider' => __DIR__ . '/..' . '/sentry/sentry-laravel/src/Sentry/SentryLaravel/SentryLumenServiceProvider.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
         'SettingsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SettingsTableSeeder.php',
         'Stringy\\StaticStringy' => __DIR__ . '/..' . '/danielstjules/stringy/src/StaticStringy.php',
