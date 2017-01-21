@@ -26,10 +26,10 @@ class Handler extends ExceptionHandler {
 	public function report(Exception $e)
 	{
 		if ($this->shouldReport($e)) {
-            // bind the event ID for Feedback
-            $this->sentryID = app('sentry')->captureException($e);
-        }
-        parent::report($e);
+			// bind the event ID for Feedback
+			$this->sentryID = app('sentry')->captureException($e);
+		}
+		parent::report($e);
 	}
 
 
@@ -46,9 +46,14 @@ class Handler extends ExceptionHandler {
 		{
 			return view('errors.404');
 		}
-		return response()->view('errors.500', [
-            'sentryID' => $this->sentryID,
-        ], 500);
+
+		if(!\Config::get('app.debug')) {
+			return response()->view('errors.500', [
+				'sentryID' => $this->sentryID,
+			], 500);
+		} else {
+			return parent::render($request, $e);
+		}
 	}
 
 }
