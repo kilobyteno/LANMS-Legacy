@@ -144,7 +144,7 @@ class ReserveSeatingController extends Controller {
 								->with('message', 'Could not find seat.');
 		}
 
-		if(Sentinel::getUser()->id == $currentseat->reservations->first()->reservedfor->id) {
+		if(Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
 			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
 			return PDF::load($html)->show();
 		} else {
