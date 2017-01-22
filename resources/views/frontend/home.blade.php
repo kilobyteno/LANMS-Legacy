@@ -51,9 +51,9 @@
 							<h3>Info</h3>
 						</div>
 						<div class="card-action">
-							<p><b>Hvor: </b></p>
-							<p><b>Når: </b></p>
-							<p><b>Pris: </b></p>
+							<p><b>Hvor: </b> Gausdal Ungdomskole</p>
+							<p><b>Når: </b> 28. feb - 2. mars</p>
+							<p><b>Pris: </b> 200kr*</p>
 						</div>
 					</div>
 				</div>
@@ -65,8 +65,13 @@
 							<h3>Sponsorer</h3>
 						</div>
 						<div class="card-action">
-							<img class="responsive-img" src="{{ asset('images/sponsor/infihex.png') }} " width="335px">
-							
+							<a href="https://www.eidsiva.net/"><img class="responsive-img" src="{{ asset('images/sponsor/eidsiva.png') }} " width="335px"></a>
+						</div>
+						<div class="card-action">
+							<a href="http://www.sikkerjobb.no/"><img class="responsive-img" src="{{ asset('images/sponsor/sikkerjobbas.png') }} " width="335px"></a>
+						</div>
+						<div class="card-action">
+							<a href="https://infihex.com/"><img class="responsive-img" src="{{ asset('images/sponsor/infihex.png') }} " width="335px"></a>
 						</div>
 					</div>
 				</div>
