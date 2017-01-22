@@ -32,7 +32,7 @@
 		
 		<div class="form-login-error">
 			<h3>Login Unsuccessful</h3>
-			<p id="login_msg">Oooops...</p>
+			<p id="msg">Oooops...</p>
 		</div>
 		
 		<form method="post" role="form" id="form_login">

@@ -548,14 +548,14 @@ Route::group(['prefix' => 'ajax',], function() {
 		}
 
 		if(!Setting::get('LOGIN_ENABLED')) {
-			$login_status = 'invalid';
-			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
 			$resp = array();
 
-			$reg_status = 'invalid';
-			$reg_msg = 'Something went wrong...';
+			$status = 'invalid';
+			$msg = 'Something went wrong...';
 
 			$email 				= Request::get('email');
 			$firstname	 		= Request::get('firstname');
@@ -573,13 +573,13 @@ Route::group(['prefix' => 'ajax',], function() {
 			$checkemail 		= User::where('email', '=', $email)->first();
 
 			if(!is_null($checkusername)) { 
-				$reg_status = 'invalid';
-				$reg_msg = 'Username is already taken.';
+				$status = 'invalid';
+				$msg = 'Username is already taken.';
 			}
 
 			if(!is_null($checkemail)) { 
-				$reg_status = 'invalid';
-				$reg_msg = 'Email is already taken.';
+				$status = 'invalid';
+				$msg = 'Email is already taken.';
 			}
 
 			if(is_null($checkusername) && is_null($checkemail)) {
@@ -600,30 +600,30 @@ Route::group(['prefix' => 'ajax',], function() {
 					$activation = Activation::create($user);
 					$activation_code = $activation->code;
 
-					$reg_status = 'success';
+					$status = 'success';
 
 					Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
 						$message->to($user->email, $user->firstname)->subject('Activate your account');
 					});
 
 					if(count(Mail::failures()) > 0) {
-						$reg_status = 'invalid';
-						$reg_msg = 'Something went wrong while trying to send you an email.';
+						$status = 'invalid';
+						$msg = 'Something went wrong while trying to send you an email.';
 					}
 
 					Session::forget('referral'); //forget the referral
 
 				} else {
-					$reg_status = 'invalid';
-					$reg_msg = 'Something went wrong while trying to register your user.';
+					$status = 'invalid';
+					$msg = 'Something went wrong while trying to register your user.';
 				}
 
 			}
 
 		}
 		
-		$resp['reg_status'] = $reg_status;
-		$resp['reg_msg'] = $reg_msg;
+		$resp['status'] = $status;
+		$resp['msg'] = $msg;
 		return Response::json($resp);
 	});
 	Route::post('/account/activate', function () {
@@ -633,13 +633,13 @@ Route::group(['prefix' => 'ajax',], function() {
 		}
 
 		if(!Setting::get('LOGIN_ENABLED')) {
-			$login_status = 'invalid';
-			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
-			$resp 				= array();
-			$activation_status 	= 'invalid';
-			$activation_msg 	= 'Something went wrong...';
+			$resp 		= array();
+			$status 	= 'invalid';
+			$msg 		= 'Something went wrong...';
 
 			$username 			= Request::input('username');
 			$activation_code	= Request::input('activation_code');
@@ -648,24 +648,24 @@ Route::group(['prefix' => 'ajax',], function() {
 
 			$checkuser = User::where('username', '=', $username)->first();
 			if($checkuser == null) {
-				$activation_msg 			= 'Username and activation code does not match.';
+				$msg = 'Username and activation code does not match.';
 			} else {
 				$activation = Act::where('user_id', '=', $checkuser->id)->get();
 				if($activation == null) {
-					$activation_msg 			= 'Could not find activation code.';
+					$msg = 'Could not find activation code.';
 				} else {
 					if (Activation::complete($user, $activation_code)) {
-						$activation_status 		= 'success';
+						$status = 'success';
 						$resp['redirect_url'] 	= URL::route('account-login');
 					} else {
-						$activation_msg 		= 'Something went wrong while activating your account. Please try again later.';
+						$msg = 'Something went wrong while activating your account. Please try again later.';
 					}
 				}
 			}
 		}
 
-		$resp['activation_status'] 	= $activation_status;
-		$resp['activation_msg'] 	= $activation_msg;
+		$resp['status'] = $status;
+		$resp['msg'] 	= $msg;
 
 		return Response::json($resp);
 
@@ -677,8 +677,8 @@ Route::group(['prefix' => 'ajax',], function() {
 		}
 
 		$resp = array();
-		$login_status = 'invalid';
-		$login_msg = 'Something went wrong...';
+		$status = 'invalid';
+		$msg = 'Something went wrong...';
 
 		$username 		= Request::input('username');
 		$password 		= Request::input('password');
@@ -689,7 +689,7 @@ Route::group(['prefix' => 'ajax',], function() {
 
 		if ($user == null) {
 
-			$login_msg = 'User not found!';
+			$msg = 'User not found!';
 
 		} else {
 
@@ -704,35 +704,35 @@ Route::group(['prefix' => 'ajax',], function() {
 
 			if ($active === false) {
 
-				$login_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
+				$msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
 
 			} elseif ($active === true) {
 
 				if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
 
-					$login_status = 'invalid';
-					$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+					$status = 'invalid';
+					$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 
 				} elseif(Sentinel::authenticate($credentials)) {
 
 					$login = Sentinel::login($user, $remember);
 					if(!$login) {
-						$login_msg = 'Could not log you in. Please try again.';
+						$msg = 'Could not log you in. Please try again.';
 					} else {
-						$login_status = 'success';
+						$status = 'success';
 						$resp['redirect_url'] = URL::route('account');
 					}
 
 				} else {
-					$login_msg = 'Username or password was wrong. Please try again.';
+					$msg = 'Username or password was wrong. Please try again.';
 				}
 
 			} 
 
 		}
 
-		$resp['login_status'] = $login_status;
-		$resp['login_msg'] = $login_msg;
+		$resp['status'] = $status;
+		$resp['msg'] = $msg;
 
 		return Response::json($resp);
 	});
@@ -743,13 +743,13 @@ Route::group(['prefix' => 'ajax',], function() {
 		}
 
 		if(!Setting::get('LOGIN_ENABLED')) {
-			$login_status = 'invalid';
-			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
 			$resp = array();
-			$forgot_status = 'invalid';
-			$forgot_msg = 'Something went wrong...';
+			$status = 'invalid';
+			$msg = 'Something went wrong...';
 
 			$username = Request::input('username');
 
@@ -759,7 +759,7 @@ Route::group(['prefix' => 'ajax',], function() {
 
 			if ($user == null) {
 
-				$forgot_msg = 'User not found!';
+				$msg = 'User not found!';
 
 			} else {
 
@@ -780,11 +780,11 @@ Route::group(['prefix' => 'ajax',], function() {
 
 				if ($active == false) {
 
-					$forgot_msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
+					$msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
 
 				} elseif ($reminder == true) {
 
-					$forgot_msg = '<strong>You have already asked for a reminder!</strong><br>Please check your inbox for the reminder email.';
+					$msg = '<strong>You have already asked for a reminder!</strong><br>Please check your inbox for the reminder email.';
 
 				} elseif ($active == true && $reminder == false) {
 
@@ -801,14 +801,14 @@ Route::group(['prefix' => 'ajax',], function() {
 					});
 					
 					if(count(Mail::failures()) > 0) {
-						$forgot_msg = 'Mail Failure.';
+						$msg = 'Mail Failure.';
 					} else {
-						$forgot_status = 'success';
-						$forgot_msg = 'Everything went well.';
+						$status = 'success';
+						$msg = 'Everything went well.';
 					}
 
 					if(!$reminder) {
-						$forgot_msg = 'E-mail or birthdate was wrong. Please try again.';
+						$msg = 'E-mail or birthdate was wrong. Please try again.';
 					}
 				}
 
@@ -816,8 +816,8 @@ Route::group(['prefix' => 'ajax',], function() {
 
 		}
 
-		$resp['forgot_status'] 	= $forgot_status;
-		$resp['forgot_msg'] 	= $forgot_msg;
+		$resp['status'] 	= $status;
+		$resp['msg'] 	= $msg;
 
 		return Response::json($resp);
 	});
@@ -828,13 +828,13 @@ Route::group(['prefix' => 'ajax',], function() {
 		}
 
 		if(!Setting::get('LOGIN_ENABLED')) {
-			$login_status = 'invalid';
-			$login_msg = 'Login and registration has been disabled at this moment. Please check back later!';
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
 			$resp 				= array();
-			$resetpw_status 	= 'invalid';
-			$resetpw_msg 		= 'Something went wrong...';
+			$status 	= 'invalid';
+			$msg 		= 'Something went wrong...';
 
 			$username 			= Request::input('username');
 			$password 			= Request::input('password');
@@ -843,16 +843,16 @@ Route::group(['prefix' => 'ajax',], function() {
 			$user 				= Sentinel::findByCredentials($credentials);
 
 			if (Reminder::complete($user, $resetpassword_code, $password)) {
-				$resetpw_status 		= 'success';
+				$status 		= 'success';
 				$resp['redirect_url'] 	= URL::route('account-login');
 			} else {
-				$resetpw_msg 	= 'Something went wrong while reseting your password. Please try again later.';
+				$msg 	= 'Something went wrong while reseting your password. Please try again later.';
 			}
 
 		}
 		
-		$resp['resetpw_status'] 	= $resetpw_status;
-		$resp['resetpw_msg'] 		= $resetpw_msg;
+		$resp['status'] 	= $status;
+		$resp['msg'] 		= $msg;
 
 		return Response::json($resp);
 		

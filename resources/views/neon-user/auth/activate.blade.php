@@ -31,7 +31,7 @@
 		
 		<div class="form-login-error">
 			<h3>Activation Unsuccessful</h3>
-			<p id="activation_msg">Oooops...</p>
+			<p id="msg">Oooops...</p>
 		</div>
 		
 		<form method="post" role="form" id="form_activate_account">

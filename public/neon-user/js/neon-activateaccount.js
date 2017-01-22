@@ -97,8 +97,8 @@ var neonActivateAccount = neonActivateAccount || {};
 							success: function(response)
 							{
 								// From response you can fetch the data object retured
-								var activation_status = response.activation_status;
-								var activation_msg = response.activation_msg;
+								var status = response.status;
+								var msg = response.msg;
 								
 								// Form is fully completed, we update the percentage
 								neonActivateAccount.setPercentage(90);
@@ -109,13 +109,13 @@ var neonActivateAccount = neonActivateAccount || {};
 								{
 
 									// If login is invalid
-									if(activation_status == 'invalid')
+									if(status == 'invalid')
 									{
 										$(".login-page").removeClass('logging-in');
 										neonActivateAccount.resetProgressBar(true);
-										document.getElementById("activation_msg").innerHTML = activation_msg;
+										document.getElementById("msg").innerHTML = msg;
 									}
-									else if(activation_status == 'success')
+									else if(status == 'success')
 									{
 										neonActivateAccount.setPercentage(99);
 										toastr.success("Your account has now been activated. You will be redirected to the login page.", "Activation Successful", toptions);
