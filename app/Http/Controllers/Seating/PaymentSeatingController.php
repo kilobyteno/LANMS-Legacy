@@ -121,14 +121,28 @@ class PaymentSeatingController extends Controller {
 			$type = $e->getErrorType();
 
 			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
-								->with('message', 'Credit card information is invalid or you do not have money on the card. Please check your information and try again.');
+								->with('message', $message.'. Please check your information and try again.');
 		}
 
-		$charge = \Stripe::charges()->create([
-			'customer' => $stripecust->cus,
-			'currency' => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
-			'amount'   => Setting::get('SEATING_SEAT_PRICE'),
-		]);
+		try {
+			$charge = \Stripe::charges()->create([
+				'customer' => $stripecust->cus,
+				'currency' => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
+				'amount'   => Setting::get('SEATING_SEAT_PRICE'),
+			]);
+		} catch (CardErrorException $e) {
+			// Get the status code
+			$code = $e->getCode();
+
+			// Get the error message returned by Stripe
+			$message = $e->getMessage();
+
+			// Get the error type returned by Stripe
+			$type = $e->getErrorType();
+
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+								->with('message', $message.'. Please check your information and try again.');
+		}
 
 		$reservation 					= $seat->reservationsThisYear->first();
 		$reservationid 					= $reservation->id;
