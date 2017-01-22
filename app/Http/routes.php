@@ -734,24 +734,32 @@ Route::group(['prefix' => 'ajax',], function() {
 
 			} elseif ($active === true) {
 
-				if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
+				try {
+					if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
 
-					$status = 'invalid';
-					$msg = 'Login and registration has been disabled at this moment. Please check back later!';
+						$status = 'invalid';
+						$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 
-				} elseif(Sentinel::authenticate($credentials)) {
+					} elseif(Sentinel::authenticate($credentials)) {
 
-					$login = Sentinel::login($user, $remember);
-					if(!$login) {
-						$msg = 'Could not log you in. Please try again.';
+						$login = Sentinel::login($user, $remember);
+						if(!$login) {
+							$msg = 'Could not log you in. Please try again.';
+						} else {
+							$status = 'success';
+							$resp['redirect_url'] = URL::route('account');
+						}
+
 					} else {
-						$status = 'success';
-						$resp['redirect_url'] = URL::route('account');
+						$msg = 'Username or password was wrong. Please try again.';
 					}
-
-				} else {
-					$msg = 'Username or password was wrong. Please try again.';
+				} catch (NotActivatedException $e) {
+					$msg = 'Account is not activated!';
+				} catch (ThrottlingException $e) {
+					$delay = $e->getDelay();
+					$msg = 'Your account is blocked for '.$delay.' second(s).';
 				}
+				
 
 			} 
 
