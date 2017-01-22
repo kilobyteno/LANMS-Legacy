@@ -1,6 +1,6 @@
 <?php
 
-namespace LANMS\Http\Requests\News;
+namespace LANMS\Http\Requests\Admin\News;
  
 use Illuminate\Foundation\Http\FormRequest;
  
