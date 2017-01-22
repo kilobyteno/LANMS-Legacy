@@ -30,7 +30,7 @@
 
 <div class="highlighted parallax-container">
 	<a class="logo" href="{{ url('/') }}">
-		<img src="{{ asset('images/lanms.png') }}" alt="logo">
+		<img src="{{ Setting::get('WEB_LOGO') }}" alt="logo" style="width: auto !important;height: auto !important;max-width: 600px !important;max-height: 150px !important;">
 	</a>
 	<div class="parallax"><img src="{{ asset('images/lan.jpg') }}" alt="mountain fog" /></div>
 </div>
