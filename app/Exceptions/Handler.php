@@ -25,7 +25,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		if ($this->shouldReport($e)) {
+		if (!\Config::get('app.debug') && $this->shouldReport($e)) {
 			// bind the event ID for Feedback
 			$this->sentryID = app('sentry')->captureException($e);
 		}
