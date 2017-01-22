@@ -105,3 +105,7 @@
 footer.main {
     margin-top: 50px;
 }
+
+.page-container.horizontal-menu header.navbar.navbar-fixed-top {
+	max-height: 57px;
+}
