@@ -175,6 +175,10 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You can\'t remove reservation after the first 48 hours.');
 		}
+		if($reservation->status_id == 1) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'You can\'t remove this reservation after it is reserved.');
+		}
 
 		$seat = $reservation->seat;
 		$seat->reservation_id = 0;
