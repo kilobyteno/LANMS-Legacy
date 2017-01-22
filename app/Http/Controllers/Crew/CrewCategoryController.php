@@ -32,9 +32,9 @@ class CrewCategoryController extends Controller {
 	public function admin()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.crew-category.*'])){
-			$newscategories = CrewCategory::all();
-			return view('crew.category.index')
-						->withCategories($newscategories);
+			$crewcategories = CrewCategory::all();
+			return view('crew.category.admin')
+						->withCategories($crewcategories);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');

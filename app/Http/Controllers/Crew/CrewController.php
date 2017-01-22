@@ -4,7 +4,10 @@ use LANMS\Http\Requests;
 use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\Redirect;
 
+use LANMS\Crew;
 use LANMS\CrewCategory;
 use LANMS\Page;
 
@@ -23,6 +26,23 @@ class CrewController extends Controller {
 		return view('crew.index')
 					->with('crewcategories', $crewcategories)
 					->with('pagesinmenu', $pagesinmenu);
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function admin()
+	{
+		if (Sentinel::getUser()->hasAccess(['admin.crew.*'])){
+			$crewassignment = Crew::all();
+			return view('crew.admin')
+						->with('crewassignment', $crewassignment);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
@@ -64,7 +84,13 @@ class CrewController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.crew.update'])){
+			$crew = Crew::find($id);
+			return view('crew.edit')->withCrew($crew);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**

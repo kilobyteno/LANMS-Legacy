@@ -91,6 +91,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.crew-category.destroy');
 		$role->addPermission('admin.crew-category.restore');
 
+		$role->addPermission('admin.crew-skill.create');
+		$role->addPermission('admin.crew-skill.update');
+		$role->addPermission('admin.crew-skill.destroy');
+		$role->addPermission('admin.crew-skill.restore');
+
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy');
@@ -139,6 +144,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.crew-category.update');
 		$role->addPermission('admin.crew-category.destroy');
 		$role->addPermission('admin.crew-category.restore', false);
+
+		$role->addPermission('admin.crew-skill.create');
+		$role->addPermission('admin.crew-skill.update');
+		$role->addPermission('admin.crew-skill.destroy');
+		$role->addPermission('admin.crew-skill.restore', false);
 
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');

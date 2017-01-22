@@ -169,6 +169,10 @@ Route::group([
 			'as' => 'members',
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
+		get('/crew', [
+			'as' => 'crew2',
+			'uses' => 'Crew\CrewController@index'
+		]);
 		Route::group([
 			'prefix' => 'addressbook'
 			], function() {
@@ -540,6 +544,28 @@ Route::group(['prefix' => 'ajax',], function() {
 			array_push($seats, array('id' => $seat->id, 'name' => $seat->name));
 		}
 		return Response::json($seats);
+	});
+	Route::get('/crew/categories', function () {
+		if(!Request::ajax()) {
+			abort(403);
+		}
+		$allcc = CrewCategories::all();
+		$ccs = array();
+		foreach($allcc as $cc) {
+			array_push($ccs, array('id' => $cc->id, 'title' => $cc->title));
+		}
+		return Response::json($ccs);
+	});
+	Route::get('/pages', function () {
+		if(!Request::ajax()) {
+			abort(403);
+		}
+		$allpages = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get();
+		$pages = array();
+		foreach($allpages as $page) {
+			array_push($pages, array('slug' => $page->slug, 'title' => $page->title));
+		}
+		return Response::json($pages);
 	});
 	Route::post('/account/register', function () {
 

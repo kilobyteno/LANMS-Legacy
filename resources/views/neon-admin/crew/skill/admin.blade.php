@@ -1,17 +1,17 @@
 @extends('layouts.main')
-@section('title', 'Crew Categories - Admin')
+@section('title', 'Crew Skill - Admin')
 @section('content')
 
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Crew Categories @if(Sentinel::hasAccess('admin.crew-category.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-crew-category-create') }}"><i class="fa fa-plus"></i> Create Category</a>@endif</h1>
+		<h1 class="margin-bottom">Crew Skill @if(Sentinel::hasAccess('admin.crew.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-crew-skill-create') }}"><i class="fa fa-plus"></i> Create Skill</a>@endif</h1>
 
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
 			<li><a href="{{ route('admin-crew') }}">Crew</a></li>
-			<li class="active"><strong>Categories</strong></li>
+			<li class="active"><strong>Skill</strong></li>
 		</ol>
 
 		<br />
@@ -20,21 +20,23 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Slug</th>
 					<th>Title</th>
+					<th>Icon</th>
+					<th>Label</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($categories as $category)
+				@foreach($skills as $skill)
 					<tr>
-						<th scope="row">{{ $category->id }}</th>
-						<td>{{ $category->slug }}</td>
-						<td>{{ $category->title }}</td>
+						<th scope="row">{{ $skill->id }}</th>
+						<td>{{ $skill->title }}</td>
+						<td><i class="{{ $skill->icon }}"></i> {{ $skill->icon }}</td>
+						<td><span class="{{ $skill->label }}">{{ $skill->label }}</span></td>
 						<td>
-							<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-crew-skill-edit', $skill->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
 							@endif
 							<a href="{{ route('crew') }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
@@ -46,18 +48,18 @@
 	</div>
 </div>
 
-@foreach($categories as $category)
-	<div class="modal fade" id="category-destroy-{{ $category->id }}" data-backdrop="static">
+@foreach($skills as $skill)
+	<div class="modal fade" id="skill-destroy-{{ $skill->id }}" data-backdrop="static">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete Category:</strong> #{{ $category->id }} - {{ $category->title }}</h4>
+					<h4 class="modal-title"><strong>Delete Category:</strong> #{{ $skill->id }} - {{ $skill->title }}</h4>
 				</div>
 				<div class="modal-body">
-					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this category?</strong></h4>
+					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this skill?</strong></h4>
 				</div>
 				<div class="modal-footer">
-					<a href="{{ route('admin-crew-category-destroy', $category->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
+					<a href="{{ route('admin-crew-skill-destroy', $skill->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
 					<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
 				</div>
 			</div>
