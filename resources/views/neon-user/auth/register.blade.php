@@ -188,5 +188,5 @@
 		} 
 	</script>
 	<script src="{{ Theme::url('js/neon-register.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.inputmask.bundle.js') }}"></script>
 @stop
