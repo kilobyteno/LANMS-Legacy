@@ -120,7 +120,9 @@ var neonLogin = neonLogin || {};
 															
 							// Form is fully completed, we update the percentage
 							neonLogin.setPercentage(80);
-							
+							console.log(status);
+							console.log(msg);
+							console.log(response.redirect_url);
 							
 							// We will give some time for the animation to finish, then execute the following procedures	
 							setTimeout(function()

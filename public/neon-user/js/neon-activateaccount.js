@@ -102,7 +102,8 @@ var neonActivateAccount = neonActivateAccount || {};
 								
 								// Form is fully completed, we update the percentage
 								neonActivateAccount.setPercentage(90);
-								
+								console.log(status);
+								console.log(msg);
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
 								setTimeout(function()

@@ -200,7 +200,8 @@ var neonRegister = neonRegister || {};
 								
 								// Form is fully completed, we update the percentage
 								neonRegister.setPercentage(100);
-								
+								console.log(status);
+								console.log(msg);
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
 								setTimeout(function()

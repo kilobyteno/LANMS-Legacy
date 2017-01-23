@@ -123,6 +123,8 @@ var neonResetPassword = neonResetPassword || {};
 								
 								// Form is fully completed, we update the percentage
 								neonResetPassword.setPercentage(100);
+								console.log(status);
+								console.log(msg);
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
 								setTimeout(function()

@@ -754,8 +754,10 @@ Route::group(['prefix' => 'ajax',], function() {
 						$msg = 'Username or password was wrong. Please try again.';
 					}
 				} catch (NotActivatedException $e) {
+					$status = 'invalid';
 					$msg = 'Account is not activated!';
 				} catch (ThrottlingException $e) {
+					$status = 'invalid';
 					$delay = $e->getDelay();
 					$msg = 'Your account is blocked for '.$delay.' second(s).';
 				}
