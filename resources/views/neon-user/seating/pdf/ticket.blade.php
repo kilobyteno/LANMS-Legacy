@@ -23,7 +23,7 @@
 			<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:700px;">
 			<h1>TICKET</h1>
 			<hr>
-			<h2>{{ $seat->reservations->first()->reservedfor->firstname.' '.$seat->reservations->first()->reservedfor->lastname }}<br><small>{{ $seat->reservations->first()->reservedfor->username }}</small></h2>
+			<h2>{{ $seat->reservationsThisYear()->first()->reservedfor->firstname.' '.$seat->reservationsThisYear()->first()->reservedfor->lastname }}<br><small>{{ $seat->reservationsThisYear()->first()->reservedfor->username }}</small></h2>
 			<br>
 			<p>This is your ticket for one seat, bring this to the event. Remember that there is one ticket per seat! It is also important that you bring valid identification. If you show up without a ticket or credentials, it will take longer to check you in. </p>
 			<br>
@@ -31,22 +31,22 @@
 			<br>
 			<div class="row">
 				<div class="col-md-6">
-					@if(is_null($seat->reservations->first()->payment))
+					@if(is_null($seat->reservationsThisYear()->first()->payment))
 						<h2><strong><small>Paid:</small><br><span class="text-danger">No</span></strong></h2>
 					@else
 						<h2><strong><small>Paid:</small><br><span class="text-success">Yes</span></strong></h2>
 					@endif
 				</div>
 				<div class="col-md-6">
-					<h2><strong><small>Your seat:</small><br>{{ $seat->reservations->first()->seat->name }}</strong></h2>
+					<h2><strong><small>Your seat:</small><br>{{ $seat->reservationsThisYear()->first()->seat->name }}</strong></h2>
 				</div>
 			</div>
 			<hr>
 			<br><br>
 		</div>
 		<h1>
-			<div style="display:inline-block">{!! DNS1D::getBarcodeHTML($seat->reservations->first()->ticket->barcode, "I25", 4, 40) !!}</div>
-			<br><small>{{ $seat->reservations->first()->ticket->barcode }}</small>
+			<div style="display:inline-block">{!! DNS1D::getBarcodeHTML($seat->reservationsThisYear()->first()->ticket->barcode, "I25", 4, 40) !!}</div>
+			<br><small>{{ $seat->reservationsThisYear()->first()->ticket->barcode }}</small>
 		</h1>
 	</body>
 </html>
