@@ -80,6 +80,8 @@
 						<div class="alert alert-warning" role="alert">
 							<strong>Warning!</strong> You are not allowed to reserve more than <em>five</em> seats.
 						</div>
+					@elseif(!Setting::get('SEATING_OPEN'))
+						<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
 					@else
 						<form class="form-horizontal" method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group">

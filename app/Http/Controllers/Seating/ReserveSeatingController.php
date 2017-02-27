@@ -24,11 +24,6 @@ class ReserveSeatingController extends Controller {
 	 */
 	public function index()
 	{
-		if(!Setting::get('SEATING_OPEN')) {
-			return Redirect::back()->with('messagetype', 'info')
-								->with('message', 'Seating has not opened yet.');
-		}
-
 		$rows 				= SeatRows::all();
 		$reservations 		= Sentinel::getUser()->reservationsThisYear;
 		$ownreservations 	= Sentinel::getUser()->ownReservationsThisYear;
@@ -50,10 +45,6 @@ class ReserveSeatingController extends Controller {
 		if($currentseat == null) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'Could not find seat.');
-		}
-		if(!Setting::get('SEATING_OPEN')) {
-			return Redirect::route('seating')->with('messagetype', 'warning')
-								->with('message', 'It is not possible to reserve seats at this time.');
 		}
 		$rows = SeatRows::all();
 		return view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
