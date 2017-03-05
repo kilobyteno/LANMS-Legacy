@@ -15,6 +15,10 @@ class Checkin extends Model {
 		return $this->hasOne('SeatTicket', 'id', 'ticket_id');
 	}
 
+	function ticketThisYear() {
+		return $this->hasOne('SeatTicket', 'id', 'ticket_id')->thisYear()->first();
+	}
+
 	public function scopeThisYear($query) {
 		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
 	}

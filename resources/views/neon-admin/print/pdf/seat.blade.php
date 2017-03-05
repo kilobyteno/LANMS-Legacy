@@ -24,7 +24,7 @@
 			<h1>{{ $seat->name }}</h1>
 			<hr>
 			<br>
-			<h2>@if($seat->reservations->first() <> null){{ $seat->reservations->first()->reservedfor->firstname.' '.$seat->reservations->first()->reservedfor->lastname }}<br><small>{{ $seat->reservations->first()->reservedfor->username }}</small>@endif</h2>
+			<h2>@if($seat->reservationsThisYear()->first() <> null){{ $seat->reservationsThisYear()->first()->reservedfor->firstname.' '.$seat->reservationsThisYear()->first()->reservedfor->lastname }}<br><small>{{ $seat->reservationsThisYear()->first()->reservedfor->username }}</small>@endif</h2>
 			<br><br>
 			<p>
 				<strong>Politi:</strong> 610 53 000 (Nød: 112)<br>
