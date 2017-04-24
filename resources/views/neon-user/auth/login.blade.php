@@ -94,5 +94,5 @@
 
 @section('javascript')
 	<script src="{{ Theme::url('js/neon-login.js') }}"></script>
-	<script>$(document).ready(function(){setInterval(function(){window.location.reload(true);},600000);});/*10min*/</script>
+	<script>setTimeout(function(){location.reload();},600*1000);/*10min*/</script>
 @stop
