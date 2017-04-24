@@ -92,6 +92,7 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         ),
         'C' => 
         array (
+            'Cron\\' => 5,
             'ClassPreloader\\' => 15,
             'Cartalyst\\Support\\' => 18,
             'Cartalyst\\Stripe\\Laravel\\' => 25,
@@ -209,6 +210,10 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
+        ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
         'ClassPreloader\\' => 
         array (
@@ -352,13 +357,6 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
             'Diff' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/php-diff/lib',
-            ),
-        ),
-        'C' => 
-        array (
-            'Cron' => 
-            array (
-                0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
             ),
         ),
     );
@@ -694,6 +692,8 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'GuzzleHttp\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamWrapper.php',
         'GuzzleHttp\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UploadedFile.php',
         'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
+        'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
+        'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
         'GuzzleHttp\\Query' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Query.php',
         'GuzzleHttp\\QueryParser' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/QueryParser.php',
         'GuzzleHttp\\RequestFsm' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RequestFsm.php',
@@ -1243,6 +1243,7 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Intervention\\Image\\Commands\\StreamCommand' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Commands/StreamCommand.php',
         'Intervention\\Image\\Commands\\TextCommand' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Commands/TextCommand.php',
         'Intervention\\Image\\Constraint' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Constraint.php',
+        'Intervention\\Image\\Exception\\ImageException' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Exception/ImageException.php',
         'Intervention\\Image\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Exception/InvalidArgumentException.php',
         'Intervention\\Image\\Exception\\MissingDependencyException' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Exception/MissingDependencyException.php',
         'Intervention\\Image\\Exception\\NotFoundException' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Exception/NotFoundException.php',
@@ -1401,6 +1402,14 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'LANMS\\Http\\Requests\\Admin\\CheckinRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/CheckinRequest.php',
         'LANMS\\Http\\Requests\\Admin\\Crew\\CrewCategoryCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewCategoryCreateRequest.php',
         'LANMS\\Http\\Requests\\Admin\\Crew\\CrewCategoryEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewCategoryEditRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Crew\\CrewSkillCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewSkillCreateRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Crew\\CrewSkillEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewSkillEditRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\News\\NewsCategoryCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryCreateRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\News\\NewsCategoryEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryEditRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\News\\NewsCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCreateRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\News\\NewsEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsEditRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Page\\PageCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Page/PageCreateRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Page\\PageEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Page/PageEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\PrintSeatRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/PrintSeatRequest.php',
         'LANMS\\Http\\Requests\\Admin\\ReservationEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/ReservationEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\SettingEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/SettingEditRequest.php',
@@ -1411,12 +1420,6 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'LANMS\\Http\\Requests\\Member\\ProfileCoverRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileCoverRequest.php',
         'LANMS\\Http\\Requests\\Member\\ProfileImageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileImageRequest.php',
         'LANMS\\Http\\Requests\\Member\\SettingsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/SettingsRequest.php',
-        'LANMS\\Http\\Requests\\News\\NewsCategoryCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryCreateRequest.php',
-        'LANMS\\Http\\Requests\\News\\NewsCategoryEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryEditRequest.php',
-        'LANMS\\Http\\Requests\\News\\NewsCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCreateRequest.php',
-        'LANMS\\Http\\Requests\\News\\NewsEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsEditRequest.php',
-        'LANMS\\Http\\Requests\\Page\\PageCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Page/PageCreateRequest.php',
-        'LANMS\\Http\\Requests\\Page\\PageEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Page/PageEditRequest.php',
         'LANMS\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'LANMS\\Http\\Requests\\Seating\\PaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Seating/PaymentRequest.php',
         'LANMS\\Http\\Requests\\Seating\\SeatReserveRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Seating/SeatReserveRequest.php',
@@ -1462,6 +1465,7 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'League\\Flysystem\\FileNotFoundException' => __DIR__ . '/..' . '/league/flysystem/src/FileNotFoundException.php',
         'League\\Flysystem\\Filesystem' => __DIR__ . '/..' . '/league/flysystem/src/Filesystem.php',
         'League\\Flysystem\\FilesystemInterface' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemInterface.php',
+        'League\\Flysystem\\FilesystemNotFoundException' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemNotFoundException.php',
         'League\\Flysystem\\Handler' => __DIR__ . '/..' . '/league/flysystem/src/Handler.php',
         'League\\Flysystem\\MountManager' => __DIR__ . '/..' . '/league/flysystem/src/MountManager.php',
         'League\\Flysystem\\NotSupportedException' => __DIR__ . '/..' . '/league/flysystem/src/NotSupportedException.php',
@@ -1508,6 +1512,7 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Milon\\Barcode\\Facades\\DNS2DFacade' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/Facades/DNS2DFacade.php',
         'Milon\\Barcode\\PDF417' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/PDF417.php',
         'Milon\\Barcode\\QRcode' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/QRcode.php',
+        'Milon\\Barcode\\WrongCheckDigitException' => __DIR__ . '/..' . '/milon/barcode/src/Milon/Barcode/WrongCheckDigitException.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
         'Monolog\\Formatter\\ElasticaFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ElasticaFormatter.php',
@@ -1601,6 +1606,10 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'Null_Frame_Reflower' => __DIR__ . '/..' . '/dompdf/dompdf/include/null_frame_reflower.cls.php',
         'Null_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/null_positioner.cls.php',
         'PDFLib_Adapter' => __DIR__ . '/..' . '/dompdf/dompdf/include/pdflib_adapter.cls.php',
+        'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
+        'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
+        'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
+        'PHPUnit\\Framework\\TestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestListener.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -1929,6 +1938,7 @@ class ComposerStaticInit6fefe8875c55362f65e565e0189e7fd4
         'PHP_Token_NEW' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NS_C' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NS_SEPARATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_NULLSAFE_OBJECT_OPERATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NUM_STRING' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_OBJECT_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_OBJECT_OPERATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',

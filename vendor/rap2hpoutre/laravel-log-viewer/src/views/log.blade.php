@@ -47,6 +47,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <h1><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Laravel Log Viewer</h1>
+          <p class="text-muted"><i>by Rap2h</i></p>
           <div class="list-group">
             @foreach($files as $file)
               <a href="?l={{ base64_encode($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
@@ -90,9 +91,15 @@
           </table>
           @endif
           <div>
-            <a href="?dl={{ base64_encode($current_file) }}"><span class="glyphicon glyphicon-download-alt"></span> Download file</a>
-            -
-            <a id="delete-log" href="?del={{ base64_encode($current_file) }}"><span class="glyphicon glyphicon-trash"></span> Delete file</a>
+            @if($current_file)
+              <a href="?dl={{ base64_encode($current_file) }}"><span class="glyphicon glyphicon-download-alt"></span> Download file</a>
+              -
+              <a id="delete-log" href="?del={{ base64_encode($current_file) }}"><span class="glyphicon glyphicon-trash"></span> Delete file</a>
+              @if(count($files) > 1)
+                -
+                <a id="delete-all-log" href="?delall=true"><span class="glyphicon glyphicon-trash"></span> Delete all files</a>
+              @endif
+            @endif
           </div>
         </div>
       </div>
@@ -118,7 +125,7 @@
         $('.table-container').on('click', '.expand', function(){
           $('#' + $(this).data('display')).toggle();
         });
-        $('#delete-log').click(function(){
+        $('#delete-log, #delete-all-log').click(function(){
           return confirm('Are you sure?');
         });
       });
