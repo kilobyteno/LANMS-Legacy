@@ -50,15 +50,15 @@ Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-refe
 Route::group([
 	'prefix' => 'news'
 	], function() {
-		get('/', [
+		Route::get('/', [
 			'as' => 'news',
 			'uses' => 'News\NewsController@index'
 		]);
-		get('/{slug}', [
+		Route::get('/{slug}', [
 			'as' => 'news-show',
 			'uses' => 'News\NewsController@show'
 		]);
-		get('/category/{slug}', [
+		Route::get('/category/{slug}', [
 			'as' => 'news-category-show',
 			'uses' => 'News\NewsCategoryController@show'
 		]);
@@ -67,7 +67,7 @@ Route::group([
 Route::group([
 	'prefix' => 'crew'
 	], function() {
-		get('/', [
+		Route::get('/', [
 			'as' => 'crew',
 			'uses' => 'Crew\CrewController@index'
 		]);
@@ -76,11 +76,11 @@ Route::group([
 Route::group([
 	'prefix' => 'api'
 	], function() {
-		get('/stats', [
+		Route::get('/stats', [
 			'as' => 'api-stats',
 			'uses' => 'API\APIController@stats'
 		]);
-		get('/news/{amount}', [
+		Route::get('/news/{amount}', [
 			'as' => 'api-news',
 			'uses' => 'API\APIController@news'
 		]);
@@ -90,23 +90,23 @@ Route::group([
 	'middleware' => 'sentinel.guest',
 	'prefix' => 'account',
 	], function() {
-		get('/forgot/password', [
+		Route::get('/forgot/password', [
 			'as' => 'account-forgot-password' ,
 			'uses' => 'Member\RecoverController@getForgotPassword'
 		]);
-		get('/resetpassword/{code}', [
+		Route::get('/resetpassword/{code}', [
 			'as' => 'account-recover' ,
 			'uses' => 'Member\RecoverController@getResetPassword'
 		]);
-		get('/register', [
+		Route::get('/register', [
 			'as' => 'account-register',
 			'uses' => 'Member\AuthController@getRegister'
 		]);
-		get('/login', [
+		Route::get('/login', [
 			'as' => 'account-login',
 			'uses' => 'Member\AuthController@getLogin'
 		]);
-		get('/activate/{activation_code}', [
+		Route::get('/activate/{activation_code}', [
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
@@ -117,86 +117,86 @@ Route::group([
 	'middleware' => 'sentinel.auth',
 	'prefix' => 'user',
 	], function() {
-		get('/', [
+		Route::get('/', [
 			'as' => 'account' ,
 			'uses' => 'Member\AccountController@index'
 		]);
-		get('/settings', [
+		Route::get('/settings', [
 			'as' => 'account-settings' ,
 			'uses' => 'Member\AccountController@getSettings'
 		]);
-		post('/settings', [
+		Route::post('/settings', [
 			'as' => 'account-settings-post' ,
 			'uses' => 'Member\AccountController@postSettings'
 		]);
-		get('/change/password', [
+		Route::get('/change/password', [
 			'as' => 'account-change-password' ,
 			'uses' => 'Member\AccountController@getChangePassword'
 		]);
-		post('/change/password', [
+		Route::post('/change/password', [
 			'as' => 'account-change-password-post' ,
 			'uses' => 'Member\AccountController@postChangePassword'
 		]);
-		get('/change/details', [
+		Route::get('/change/details', [
 			'as' => 'account-change-details' ,
 			'uses' => 'Member\AccountController@getChangeDetails'
 		]);
-		post('/change/details', [
+		Route::post('/change/details', [
 			'as' => 'account-change-details-post' ,
 			'uses' => 'Member\AccountController@postChangeDetails'
 		]);
-		get('/change/images', [
+		Route::get('/change/images', [
 			'as' => 'account-change-images' ,
 			'uses' => 'Member\AccountController@getChangeImages'
 		]);
-		post('/change/images/profile', [
+		Route::post('/change/images/profile', [
 			'as' => 'account-change-image-profile-post' ,
 			'uses' => 'Member\AccountController@postChangeProfileImage'
 		]);
-		post('/change/images/cover', [
+		Route::post('/change/images/cover', [
 			'as' => 'account-change-image-cover-post' ,
 			'uses' => 'Member\AccountController@postChangeProfileCover'
 		]);
-		get('/logout', [
+		Route::get('/logout', [
 			'as' => 'logout',
 			'uses' => 'Member\AuthController@getLogout'
 		]);
-		get('/profile/{username}', [
+		Route::get('/profile/{username}', [
 			'as' => 'user-profile',
 			'uses' => 'Member\ProfileController@index'
 		]);
-		get('/members', [
+		Route::get('/members', [
 			'as' => 'members',
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
-		get('/crew', [
+		Route::get('/crew', [
 			'as' => 'crew2',
 			'uses' => 'Crew\CrewController@index'
 		]);
 		Route::group([
 			'prefix' => 'addressbook'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'account-addressbook',
 					'uses' => 'Member\AddressBookController@index'
 				]);
-				get('/create', [
+				Route::get('/create', [
 					'as' => 'account-addressbook-create',
 					'uses' => 'Member\AddressBookController@create'
 				]);
-				post('/store', [
+				Route::post('/store', [
 					'as' => 'account-addressbook-store',
 					'uses' => 'Member\AddressBookController@store'
 				]);
-				get('/{id}/edit', [
+				Route::get('/{id}/edit', [
 					'as' => 'account-addressbook-edit',
 					'uses' => 'Member\AddressBookController@edit'
 				]);
-				post('/{id}/update', [
+				Route::post('/{id}/update', [
 					'as' => 'account-addressbook-update',
 					'uses' => 'Member\AddressBookController@update'
 				]);
-				get('/{id}/destroy', [
+				Route::get('/{id}/destroy', [
 					'as' => 'account-addressbook-destroy',
 					'uses' => 'Member\AddressBookController@destroy'
 				]);
@@ -204,39 +204,39 @@ Route::group([
 		Route::group([
 			'prefix' => 'seating'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'seating',
 					'uses' => 'Seating\ReserveSeatingController@index'
 				]);
-				get('/{id}/pay', [
+				Route::get('/{id}/pay', [
 					'as' => 'seating-pay',
 					'uses' => 'Seating\PaymentSeatingController@pay'
 				]);
-				post('/{slug}/charge', [
+				Route::post('/{slug}/charge', [
 					'as' => 'seating-charge',
 					'uses' => 'Seating\PaymentSeatingController@charge'
 				]);
-				get('/{id}/paylater', [
+				Route::get('/{id}/paylater', [
 					'as' => 'seating-paylater',
 					'uses' => 'Seating\PaymentSeatingController@paylater'
 				]);
-				get('/{id}/changepayment', [
+				Route::get('/{id}/changepayment', [
 					'as' => 'seating-changepayment',
 					'uses' => 'Seating\PaymentSeatingController@changepayment'
 				]);
-				get('/{id}/removereservation', [
+				Route::get('/{id}/removereservation', [
 					'as' => 'seating-removereservation',
 					'uses' => 'Seating\ReserveSeatingController@destroy'
 				]);
-				get('/{slug}', [
+				Route::get('/{slug}', [
 					'as' => 'seating-show',
 					'uses' => 'Seating\ReserveSeatingController@show'
 				]);
-				post('/{slug}/reserve', [
+				Route::post('/{slug}/reserve', [
 					'as' => 'seating-reserve',
 					'uses' => 'Seating\ReserveSeatingController@reserve'
 				]);
-				get('/{slug}/ticket/download', [
+				Route::get('/{slug}/ticket/download', [
 					'as' => 'seating-ticket-download',
 					'uses' => 'Seating\ReserveSeatingController@ticketdownload'
 				]);
@@ -248,65 +248,65 @@ Route::group([
 	'middleware' => ['sentinel.auth','sentinel.admin'],
 	'prefix' => 'admin',
 	], function() {
-		get('/', [
+		Route::get('/', [
 			'as' => 'admin' ,
 			'uses' => 'HomeController@index'
 		]);
-		get('logs', [
+		Route::get('logs', [
 			'as' => 'admin-logs',
 			'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
 		]);
 		Route::group([
 			'prefix' => 'crew'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'admin-crew',
 					'uses' => 'Crew\CrewController@admin'
 				]);
-				get('/create', [
+				Route::get('/create', [
 					'as' => 'admin-crew-create',
 					'uses' => 'Crew\CrewController@create'
 				]);
-				post('/store', [
+				Route::post('/store', [
 					'as' => 'admin-crew-store',
 					'uses' => 'Crew\CrewController@store'
 				]);
-				get('/{id}/edit', [
+				Route::get('/{id}/edit', [
 					'as' => 'admin-crew-edit',
 					'uses' => 'Crew\CrewController@edit'
 				]);
-				post('/{id}/update', [
+				Route::post('/{id}/update', [
 					'as' => 'admin-crew-update',
 					'uses' => 'Crew\CrewController@update'
 				]);
-				get('/{id}/destroy', [
+				Route::get('/{id}/destroy', [
 					'as' => 'admin-crew-destroy',
 					'uses' => 'Crew\CrewController@destroy'
 				]);
 				Route::group([
 					'prefix' => 'categories'
 					], function() {
-						get('/', [
+						Route::get('/', [
 							'as' => 'admin-crew-category',
 							'uses' => 'Crew\CrewCategoryController@admin'
 						]);
-						get('/create', [
+						Route::get('/create', [
 							'as' => 'admin-crew-category-create',
 							'uses' => 'Crew\CrewCategoryController@create'
 						]);
-						post('/store', [
+						Route::post('/store', [
 							'as' => 'admin-crew-category-store',
 							'uses' => 'Crew\CrewCategoryController@store'
 						]);
-						get('/{id}/edit', [
+						Route::get('/{id}/edit', [
 							'as' => 'admin-crew-category-edit',
 							'uses' => 'Crew\CrewCategoryController@edit'
 						]);
-						post('/{id}/update', [
+						Route::post('/{id}/update', [
 							'as' => 'admin-crew-category-update',
 							'uses' => 'Crew\CrewCategoryController@update'
 						]);
-						get('/{id}/destroy', [
+						Route::get('/{id}/destroy', [
 							'as' => 'admin-crew-category-destroy',
 							'uses' => 'Crew\CrewCategoryController@destroy'
 						]);
@@ -314,27 +314,27 @@ Route::group([
 				Route::group([
 					'prefix' => 'skill'
 					], function() {
-						get('/', [
+						Route::get('/', [
 							'as' => 'admin-crew-skill',
 							'uses' => 'Crew\CrewSkillController@admin'
 						]);
-						get('/create', [
+						Route::get('/create', [
 							'as' => 'admin-crew-skill-create',
 							'uses' => 'Crew\CrewSkillController@create'
 						]);
-						post('/store', [
+						Route::post('/store', [
 							'as' => 'admin-crew-skill-store',
 							'uses' => 'Crew\CrewSkillController@store'
 						]);
-						get('/{id}/edit', [
+						Route::get('/{id}/edit', [
 							'as' => 'admin-crew-skill-edit',
 							'uses' => 'Crew\CrewSkillController@edit'
 						]);
-						post('/{id}/update', [
+						Route::post('/{id}/update', [
 							'as' => 'admin-crew-skill-update',
 							'uses' => 'Crew\CrewSkillController@update'
 						]);
-						get('/{id}/destroy', [
+						Route::get('/{id}/destroy', [
 							'as' => 'admin-crew-skill-destroy',
 							'uses' => 'Crew\CrewSkillController@destroy'
 						]);
@@ -343,54 +343,54 @@ Route::group([
 		Route::group([
 			'prefix' => 'news'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'admin-news',
 					'uses' => 'News\NewsController@admin'
 				]);
-				get('/create', [
+				Route::get('/create', [
 					'as' => 'admin-news-create',
 					'uses' => 'News\NewsController@create'
 				]);
-				post('/store', [
+				Route::post('/store', [
 					'as' => 'admin-news-store',
 					'uses' => 'News\NewsController@store'
 				]);
-				get('/{id}/edit', [
+				Route::get('/{id}/edit', [
 					'as' => 'admin-news-edit',
 					'uses' => 'News\NewsController@edit'
 				]);
-				post('/{id}/update', [
+				Route::post('/{id}/update', [
 					'as' => 'admin-news-update',
 					'uses' => 'News\NewsController@update'
 				]);
-				get('/{id}/destroy', [
+				Route::get('/{id}/destroy', [
 					'as' => 'admin-news-destroy',
 					'uses' => 'News\NewsController@destroy'
 				]);
 				Route::group([
 					'prefix' => 'categories'
 					], function() {
-						get('/', [
+						Route::get('/', [
 							'as' => 'admin-news-category',
 							'uses' => 'News\NewsCategoryController@admin'
 						]);
-						get('/create', [
+						Route::get('/create', [
 							'as' => 'admin-news-category-create',
 							'uses' => 'News\NewsCategoryController@create'
 						]);
-						post('/store', [
+						Route::post('/store', [
 							'as' => 'admin-news-category-store',
 							'uses' => 'News\NewsCategoryController@store'
 						]);
-						get('/{id}/edit', [
+						Route::get('/{id}/edit', [
 							'as' => 'admin-news-category-edit',
 							'uses' => 'News\NewsCategoryController@edit'
 						]);
-						post('/{id}/update', [
+						Route::post('/{id}/update', [
 							'as' => 'admin-news-category-update',
 							'uses' => 'News\NewsCategoryController@update'
 						]);
-						get('/{id}/destroy', [
+						Route::get('/{id}/destroy', [
 							'as' => 'admin-news-category-destroy',
 							'uses' => 'News\NewsCategoryController@destroy'
 						]);
@@ -402,27 +402,27 @@ Route::group([
 				Route::group([
 					'prefix' => 'reservation'
 					], function() {
-						get('/', [
+						Route::get('/', [
 							'as' => 'admin-seating-reservations',
 							'uses' => 'Admin\ReservationController@index'
 						]);
-						get('/{id}/edit', [
+						Route::get('/{id}/edit', [
 							'as' => 'admin-seating-reservation-edit',
 							'uses' => 'Admin\ReservationController@edit'
 						]);
-						post('/{id}/update', [
+						Route::post('/{id}/update', [
 							'as' => 'admin-seating-reservation-update',
 							'uses' => 'Admin\ReservationController@update'
 						]);
-						get('/{id}/destroy', [
+						Route::get('/{id}/destroy', [
 							'as' => 'admin-seating-reservation-destroy',
 							'uses' => 'Admin\ReservationController@destroy'
 						]);
-						get('/brokenband', [
+						Route::get('/brokenband', [
 							'as' => 'admin-seating-brokenband',
 							'uses' => 'Admin\BrokenBandController@index'
 						]);
-						post('/brokenband', [
+						Route::post('/brokenband', [
 							'as' => 'admin-seating-fixedband',
 							'uses' => 'Admin\BrokenBandController@store'
 						]);
@@ -433,28 +433,28 @@ Route::group([
 						Route::group([
 							'prefix' => 'visitor'
 							], function() {
-								get('/', [
+								Route::get('/', [
 									'as' => 'admin-seating-checkin-visitor',
 									'uses' => 'Admin\VisitorController@index'
 								]);
-								post('/store', [
+								Route::post('/store', [
 									'as' => 'admin-seating-checkin-visitor-store',
 									'uses' => 'Admin\VisitorController@store'
 								]);
 						});
-						get('/', [
+						Route::get('/', [
 							'as' => 'admin-seating-checkin',
 							'uses' => 'Admin\CheckinController@index'
 						]);
-						get('/{id}', [
+						Route::get('/{id}', [
 							'as' => 'admin-seating-checkin-show',
 							'uses' => 'Admin\CheckinController@show'
 						]);
-						post('/check', [
+						Route::post('/check', [
 							'as' => 'admin-seating-checkin-check',
 							'uses' => 'Admin\CheckinController@check'
 						]);
-						post('/store/{id}', [
+						Route::post('/store/{id}', [
 							'as' => 'admin-seating-checkin-store',
 							'uses' => 'Admin\CheckinController@store'
 						]);
@@ -463,27 +463,27 @@ Route::group([
 		Route::group([
 			'prefix' => 'pages'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'admin-pages',
 					'uses' => 'Page\PagesController@admin'
 				]);
-				get('/create', [
+				Route::get('/create', [
 					'as' => 'admin-pages-create',
 					'uses' => 'Page\PagesController@create'
 				]);
-				post('/store', [
+				Route::post('/store', [
 					'as' => 'admin-pages-store',
 					'uses' => 'Page\PagesController@store'
 				]);
-				get('/{id}/edit', [
+				Route::get('/{id}/edit', [
 					'as' => 'admin-pages-edit',
 					'uses' => 'Page\PagesController@edit'
 				]);
-				post('/{id}/update', [
+				Route::post('/{id}/update', [
 					'as' => 'admin-pages-update',
 					'uses' => 'Page\PagesController@update'
 				]);
-				get('/{id}/destroy', [
+				Route::get('/{id}/destroy', [
 					'as' => 'admin-pages-destroy',
 					'uses' => 'Page\PagesController@destroy'
 				]);
@@ -491,11 +491,11 @@ Route::group([
 		Route::group([
 			'prefix' => 'print'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'admin-print',
 					'uses' => 'Admin\PrintController@index'
 				]);
-				get('/seat/{slug}', [
+				Route::get('/seat/{slug}', [
 					'as' => 'admin-print-seat',
 					'uses' => 'Admin\PrintController@seat'
 				]);
@@ -503,15 +503,15 @@ Route::group([
 		Route::group([
 			'prefix' => 'settings'
 			], function() {
-				get('/', [
+				Route::get('/', [
 					'as' => 'admin-settings',
 					'uses' => 'Admin\SettingsController@index'
 				]);
-				get('/{id}/edit', [
+				Route::get('/{id}/edit', [
 					'as' => 'admin-settings-edit',
 					'uses' => 'Admin\SettingsController@edit'
 				]);
-				post('/{id}/update', [
+				Route::post('/{id}/update', [
 					'as' => 'admin-settings-update',
 					'uses' => 'Admin\SettingsController@update'
 				]);
