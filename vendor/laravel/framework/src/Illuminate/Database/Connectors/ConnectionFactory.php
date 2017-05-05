@@ -3,6 +3,7 @@
 namespace Illuminate\Database\Connectors;
 
 use PDO;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\SQLiteConnection;
@@ -97,6 +98,12 @@ class ConnectionFactory
     {
         $readConfig = $this->getReadWriteConfig($config, 'read');
 
+        if (isset($readConfig['host']) && is_array($readConfig['host'])) {
+            $readConfig['host'] = count($readConfig['host']) > 1
+                ? $readConfig['host'][array_rand($readConfig['host'])]
+                : $readConfig['host'][0];
+        }
+
         return $this->mergeReadWriteConfig($config, $readConfig);
     }
 
@@ -138,7 +145,7 @@ class ConnectionFactory
      */
     protected function mergeReadWriteConfig(array $config, array $merge)
     {
-        return array_except(array_merge($config, $merge), ['read', 'write']);
+        return Arr::except(array_merge($config, $merge), ['read', 'write']);
     }
 
     /**
@@ -150,7 +157,7 @@ class ConnectionFactory
      */
     protected function parseConfig(array $config, $name)
     {
-        return array_add(array_add($config, 'prefix', ''), 'name', $name);
+        return Arr::add(Arr::add($config, 'prefix', ''), 'name', $name);
     }
 
     /**
@@ -163,7 +170,7 @@ class ConnectionFactory
      */
     public function createConnector(array $config)
     {
-        if (!isset($config['driver'])) {
+        if (! isset($config['driver'])) {
             throw new InvalidArgumentException('A driver must be specified.');
         }
 
@@ -174,13 +181,10 @@ class ConnectionFactory
         switch ($config['driver']) {
             case 'mysql':
                 return new MySqlConnector;
-
             case 'pgsql':
                 return new PostgresConnector;
-
             case 'sqlite':
                 return new SQLiteConnector;
-
             case 'sqlsrv':
                 return new SqlServerConnector;
         }
@@ -209,13 +213,10 @@ class ConnectionFactory
         switch ($driver) {
             case 'mysql':
                 return new MySqlConnection($connection, $database, $prefix, $config);
-
             case 'pgsql':
                 return new PostgresConnection($connection, $database, $prefix, $config);
-
             case 'sqlite':
                 return new SQLiteConnection($connection, $database, $prefix, $config);
-
             case 'sqlsrv':
                 return new SqlServerConnection($connection, $database, $prefix, $config);
         }

@@ -3,6 +3,8 @@
 namespace Illuminate\Database\Eloquent;
 
 use Closure;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -120,11 +122,77 @@ class Builder
             if (count($result) == count(array_unique($id))) {
                 return $result;
             }
-        } elseif (!is_null($result)) {
+        } elseif (! is_null($result)) {
             return $result;
         }
 
         throw (new ModelNotFoundException)->setModel(get_class($this->model));
+    }
+
+    /**
+     * Find a model by its primary key or return fresh model instance.
+     *
+     * @param  mixed  $id
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function findOrNew($id, $columns = ['*'])
+    {
+        if (! is_null($model = $this->find($id, $columns))) {
+            return $model;
+        }
+
+        return $this->model->newInstance();
+    }
+
+    /**
+     * Get the first record matching the attributes or instantiate it.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function firstOrNew(array $attributes)
+    {
+        if (! is_null($instance = $this->where($attributes)->first())) {
+            return $instance;
+        }
+
+        return $this->model->newInstance($attributes);
+    }
+
+    /**
+     * Get the first record matching the attributes or create it.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function firstOrCreate(array $attributes)
+    {
+        if (! is_null($instance = $this->where($attributes)->first())) {
+            return $instance;
+        }
+
+        $instance = $this->model->newInstance($attributes);
+
+        $instance->save();
+
+        return $instance;
+    }
+
+    /**
+     * Create or update a record matching the attributes, and fill it with values.
+     *
+     * @param  array  $attributes
+     * @param  array  $values
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function updateOrCreate(array $attributes, array $values = [])
+    {
+        $instance = $this->firstOrNew($attributes);
+
+        $instance->fill($values)->save();
+
+        return $instance;
     }
 
     /**
@@ -148,7 +216,7 @@ class Builder
      */
     public function firstOrFail($columns = ['*'])
     {
-        if (!is_null($model = $this->first($columns))) {
+        if (! is_null($model = $this->first($columns))) {
             return $model;
         }
 
@@ -210,7 +278,7 @@ class Builder
      *
      * @param  int  $count
      * @param  callable  $callback
-     * @return void
+     * @return bool
      */
     public function chunk($count, callable $callback)
     {
@@ -220,19 +288,23 @@ class Builder
             // On each chunk result set, we will pass them to the callback and then let the
             // developer take care of everything within the callback, which allows us to
             // keep the memory low for spinning through large result sets for working.
-            call_user_func($callback, $results);
+            if (call_user_func($callback, $results) === false) {
+                return false;
+            }
 
             $page++;
 
             $results = $this->forPage($page, $count)->get();
         }
+
+        return true;
     }
 
     /**
      * Get an array with the values of a given column.
      *
      * @param  string  $column
-     * @param  string  $key
+     * @param  string|null  $key
      * @return \Illuminate\Support\Collection
      */
     public function lists($column, $key = null)
@@ -259,14 +331,17 @@ class Builder
      * @param  int  $perPage
      * @param  array  $columns
      * @param  string  $pageName
+     * @param  int|null  $page
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     *
+     * @throws \InvalidArgumentException
      */
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page')
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $total = $this->query->getCountForPagination();
 
         $this->query->forPage(
-            $page = Paginator::resolveCurrentPage($pageName),
+            $page = $page ?: Paginator::resolveCurrentPage($pageName),
             $perPage = $perPage ?: $this->model->getPerPage()
         );
 
@@ -347,13 +422,13 @@ class Builder
      */
     protected function addUpdatedAtColumn(array $values)
     {
-        if (!$this->model->usesTimestamps()) {
+        if (! $this->model->usesTimestamps()) {
             return $values;
         }
 
         $column = $this->model->getUpdatedAtColumn();
 
-        return array_add($values, $column, $this->model->freshTimestampString());
+        return Arr::add($values, $column, $this->model->freshTimestampString());
     }
 
     /**
@@ -458,28 +533,28 @@ class Builder
     /**
      * Get the relation instance for the given relation name.
      *
-     * @param  string  $relation
+     * @param  string  $name
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function getRelation($relation)
+    public function getRelation($name)
     {
         // We want to run a relationship query without any constrains so that we will
         // not have to remove these where clauses manually which gets really hacky
         // and is error prone while we remove the developer's own where clauses.
-        $query = Relation::noConstraints(function () use ($relation) {
-            return $this->getModel()->$relation();
+        $relation = Relation::noConstraints(function () use ($name) {
+            return $this->getModel()->$name();
         });
 
-        $nested = $this->nestedRelations($relation);
+        $nested = $this->nestedRelations($name);
 
         // If there are nested relationships set on the query, we will put those onto
         // the query instances so that they can be handled after this relationship
         // is loaded. In this way they will all trickle down as they are loaded.
         if (count($nested) > 0) {
-            $query->getQuery()->with($nested);
+            $relation->getQuery()->with($nested);
         }
 
-        return $query;
+        return $relation;
     }
 
     /**
@@ -513,9 +588,9 @@ class Builder
      */
     protected function isNested($name, $relation)
     {
-        $dots = str_contains($name, '.');
+        $dots = Str::contains($name, '.');
 
-        return $dots && starts_with($name, $relation.'.');
+        return $dots && Str::startsWith($name, $relation.'.');
     }
 
     /**
@@ -713,18 +788,18 @@ class Builder
 
         $hasQuery = $hasQuery->getModel()->removeGlobalScopes($hasQuery);
 
-        $hasQuery->mergeWheres(
-            $relationQuery->wheres, $relationQuery->getBindings()
-        );
+        $whereBindings = array_get($relationQuery->getRawBindings(), 'where', []);
 
-        $this->query->mergeBindings($hasQuery->getQuery());
+        $hasQuery->mergeWheres($relationQuery->wheres, $whereBindings);
+
+        $this->query->addBinding($hasQuery->getQuery()->getBindings(), 'where');
     }
 
     /**
      * Get the "has relation" base query instance.
      *
      * @param  string  $relation
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     protected function getHasRelationQuery($relation)
     {
@@ -767,7 +842,9 @@ class Builder
             // constraints have been specified for the eager load and we'll just put
             // an empty Closure with the loader so that we can treat all the same.
             if (is_numeric($name)) {
-                $f = function () {};
+                $f = function () {
+                    //
+                };
 
                 list($name, $constraints) = [$constraints, $f];
             }
@@ -800,8 +877,10 @@ class Builder
         foreach (explode('.', $name) as $segment) {
             $progress[] = $segment;
 
-            if (!isset($results[$last = implode('.', $progress)])) {
-                $results[$last] = function () {};
+            if (! isset($results[$last = implode('.', $progress)])) {
+                $results[$last] = function () {
+                    //
+                };
             }
         }
 
@@ -913,7 +992,7 @@ class Builder
      */
     public function getMacro($name)
     {
-        return array_get($this->macros, $name);
+        return Arr::get($this->macros, $name);
     }
 
     /**

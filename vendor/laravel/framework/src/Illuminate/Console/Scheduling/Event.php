@@ -9,6 +9,7 @@ use Cron\CronExpression;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Contracts\Mail\Mailer;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessUtils;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -85,6 +86,20 @@ class Event
     public $output = '/dev/null';
 
     /**
+     * Indicates whether output should be appended.
+     *
+     * @var bool
+     */
+    protected $shouldAppendOutput = false;
+
+    /**
+     * The array of callbacks to be run before the event is started.
+     *
+     * @var array
+     */
+    protected $beforeCallbacks = [];
+
+    /**
      * The array of callbacks to be run after the event is finished.
      *
      * @var array
@@ -107,6 +122,17 @@ class Event
     public function __construct($command)
     {
         $this->command = $command;
+        $this->output = $this->getDefaultOutput();
+    }
+
+    /**
+     * Get the default output depending on the OS.
+     *
+     * @return string
+     */
+    protected function getDefaultOutput()
+    {
+        return (DIRECTORY_SEPARATOR == '\\') ? 'NUL' : '/dev/null';
     }
 
     /**
@@ -117,7 +143,7 @@ class Event
      */
     public function run(Container $container)
     {
-        if (count($this->afterCallbacks) > 0) {
+        if (count($this->afterCallbacks) > 0 || count($this->beforeCallbacks) > 0) {
             $this->runCommandInForeground($container);
         } else {
             $this->runCommandInBackground();
@@ -144,11 +170,26 @@ class Event
      */
     protected function runCommandInForeground(Container $container)
     {
+        $this->callBeforeCallbacks($container);
+
         (new Process(
             trim($this->buildCommand(), '& '), base_path(), null, null, null
         ))->run();
 
         $this->callAfterCallbacks($container);
+    }
+
+    /**
+     * Call all of the "before" callbacks for the event.
+     *
+     * @param  \Illuminate\Contracts\Container\Container  $container
+     * @return void
+     */
+    protected function callBeforeCallbacks(Container $container)
+    {
+        foreach ($this->beforeCallbacks as $callback) {
+            $container->call($callback);
+        }
     }
 
     /**
@@ -165,19 +206,27 @@ class Event
     }
 
     /**
-     * Build the comand string.
+     * Build the command string.
      *
      * @return string
      */
     public function buildCommand()
     {
+        $output = ProcessUtils::escapeArgument($this->output);
+
+        $redirect = $this->shouldAppendOutput ? ' >> ' : ' > ';
+
         if ($this->withoutOverlapping) {
-            $command = '(touch '.$this->mutexPath().'; '.$this->command.'; rm '.$this->mutexPath().') > '.$this->output.' 2>&1 &';
+            if (windows_os()) {
+                $command = '(echo \'\' > "'.$this->mutexPath().'" & '.$this->command.' & del "'.$this->mutexPath().'")'.$redirect.$output.' 2>&1 &';
+            } else {
+                $command = '(touch '.$this->mutexPath().'; '.$this->command.'; rm '.$this->mutexPath().')'.$redirect.$output.' 2>&1 &';
+            }
         } else {
-            $command = $this->command.' > '.$this->output.' 2>&1 &';
+            $command = $this->command.$redirect.$output.' 2>&1 &';
         }
 
-        return $this->user ? 'sudo -u '.$this->user.' '.$command : $command;
+        return $this->user && ! windows_os() ? 'sudo -u '.$this->user.' -- sh -c \''.$command.'\'' : $command;
     }
 
     /**
@@ -187,7 +236,7 @@ class Event
      */
     protected function mutexPath()
     {
-        return storage_path().'/framework/schedule-'.md5($this->expression.$this->command);
+        return storage_path('framework/schedule-'.md5($this->expression.$this->command));
     }
 
     /**
@@ -198,7 +247,7 @@ class Event
      */
     public function isDue(Application $app)
     {
-        if (!$this->runsInMaintenanceMode() && $app->isDownForMaintenance()) {
+        if (! $this->runsInMaintenanceMode() && $app->isDownForMaintenance()) {
             return false;
         }
 
@@ -231,7 +280,7 @@ class Event
      */
     protected function filtersPass(Application $app)
     {
-        if (($this->filter && !$app->call($this->filter)) ||
+        if (($this->filter && ! $app->call($this->filter)) ||
              $this->reject && $app->call($this->reject)) {
             return false;
         }
@@ -321,11 +370,16 @@ class Event
     /**
      * Schedule the event to run twice daily.
      *
+     * @param  int  $first
+     * @param  int  $second
      * @return $this
      */
-    public function twiceDaily()
+    public function twiceDaily($first = 1, $second = 13)
     {
-        return $this->cron('0 1,13 * * * *');
+        $hours = $first.','.$second;
+
+        return $this->spliceIntoPosition(1, 0)
+                    ->spliceIntoPosition(2, $hours);
     }
 
     /**
@@ -495,7 +549,7 @@ class Event
     /**
      * Set the days of the week the command should run on.
      *
-     * @param  array|dynamic  $days
+     * @param  array|mixed  $days
      * @return $this
      */
     public function days($days)
@@ -534,7 +588,7 @@ class Event
     /**
      * Limit the environments the command should run in.
      *
-     * @param  array|dynamic  $environments
+     * @param  array|mixed  $environments
      * @return $this
      */
     public function environments($environments)
@@ -600,26 +654,40 @@ class Event
      * Send the output of the command to a given location.
      *
      * @param  string  $location
+     * @param  bool  $append
      * @return $this
      */
-    public function sendOutputTo($location)
+    public function sendOutputTo($location, $append = false)
     {
         $this->output = $location;
+
+        $this->shouldAppendOutput = $append;
 
         return $this;
     }
 
     /**
+     * Append the output of the command to a given location.
+     *
+     * @param  string  $location
+     * @return $this
+     */
+    public function appendOutputTo($location)
+    {
+        return $this->sendOutputTo($location, true);
+    }
+
+    /**
      * E-mail the results of the scheduled operation.
      *
-     * @param  array|dynamic  $addresses
+     * @param  array|mixed  $addresses
      * @return $this
      *
      * @throws \LogicException
      */
     public function emailOutputTo($addresses)
     {
-        if (is_null($this->output) || $this->output == '/dev/null') {
+        if (is_null($this->output) || $this->output == $this->getDefaultOutput()) {
             throw new LogicException('Must direct output to a file in order to e-mail results.');
         }
 
@@ -663,6 +731,32 @@ class Event
     }
 
     /**
+     * Register a callback to ping a given URL before the job runs.
+     *
+     * @param  string  $url
+     * @return $this
+     */
+    public function pingBefore($url)
+    {
+        return $this->before(function () use ($url) {
+            (new HttpClient)->get($url);
+        });
+    }
+
+    /**
+     * Register a callback to be called before the operation.
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function before(Closure $callback)
+    {
+        $this->beforeCallbacks[] = $callback;
+
+        return $this;
+    }
+
+    /**
      * Register a callback to ping a given URL after the job runs.
      *
      * @param  string  $url
@@ -670,7 +764,20 @@ class Event
      */
     public function thenPing($url)
     {
-        return $this->then(function () use ($url) { (new HttpClient)->get($url); });
+        return $this->then(function () use ($url) {
+            (new HttpClient)->get($url);
+        });
+    }
+
+    /**
+     * Register a callback to be called after the operation.
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function after(Closure $callback)
+    {
+        return $this->then($callback);
     }
 
     /**
@@ -715,7 +822,7 @@ class Event
      *
      * @param  int  $position
      * @param  string  $value
-     * @return void
+     * @return $this
      */
     protected function spliceIntoPosition($position, $value)
     {

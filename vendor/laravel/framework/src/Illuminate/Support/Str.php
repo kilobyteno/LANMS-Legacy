@@ -2,7 +2,6 @@
 
 namespace Illuminate\Support;
 
-use RuntimeException;
 use Stringy\StaticStringy;
 use Illuminate\Support\Traits\Macroable;
 
@@ -67,7 +66,7 @@ class Str
     public static function contains($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle != '' && strpos($haystack, $needle) !== false) {
+            if ($needle != '' && mb_strpos($haystack, $needle) !== false) {
                 return true;
             }
         }
@@ -85,7 +84,7 @@ class Str
     public static function endsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ((string) $needle === substr($haystack, -strlen($needle))) {
+            if ((string) $needle === static::substr($haystack, -static::length($needle))) {
                 return true;
             }
         }
@@ -104,7 +103,7 @@ class Str
     {
         $quoted = preg_quote($cap, '/');
 
-        return preg_replace('/(?:'.$quoted.')+$/', '', $value).$cap;
+        return preg_replace('/(?:'.$quoted.')+$/u', '', $value).$cap;
     }
 
     /**
@@ -127,7 +126,7 @@ class Str
         // pattern such as "library/*", making any string check convenient.
         $pattern = str_replace('\*', '.*', $pattern).'\z';
 
-        return (bool) preg_match('#^'.$pattern.'#', $value);
+        return (bool) preg_match('#^'.$pattern.'#u', $value);
     }
 
     /**
@@ -166,7 +165,7 @@ class Str
      */
     public static function lower($value)
     {
-        return mb_strtolower($value);
+        return mb_strtolower($value, 'UTF-8');
     }
 
     /**
@@ -181,7 +180,7 @@ class Str
     {
         preg_match('/^\s*+(?:\S++\s*+){1,'.$words.'}/u', $value, $matches);
 
-        if (!isset($matches[0]) || strlen($value) === strlen($matches[0])) {
+        if (! isset($matches[0]) || static::length($value) === static::length($matches[0])) {
             return $value;
         }
 
@@ -217,8 +216,6 @@ class Str
      *
      * @param  int  $length
      * @return string
-     *
-     * @throws \RuntimeException
      */
     public static function random($length = 16)
     {
@@ -240,23 +237,10 @@ class Str
      *
      * @param  int  $length
      * @return string
-     *
-     * @throws \RuntimeException
      */
     public static function randomBytes($length = 16)
     {
-        if (function_exists('random_bytes')) {
-            $bytes = random_bytes($length);
-        } elseif (function_exists('openssl_random_pseudo_bytes')) {
-            $bytes = openssl_random_pseudo_bytes($length, $strong);
-            if ($bytes === false || $strong === false) {
-                throw new RuntimeException('Unable to generate random string.');
-            }
-        } else {
-            throw new RuntimeException('OpenSSL extension is required for PHP 5 users.');
-        }
-
-        return $bytes;
+        return random_bytes($length);
     }
 
     /**
@@ -287,11 +271,11 @@ class Str
      */
     public static function equals($knownString, $userInput)
     {
-        if (!is_string($knownString)) {
+        if (! is_string($knownString)) {
             $knownString = (string) $knownString;
         }
 
-        if (!is_string($userInput)) {
+        if (! is_string($userInput)) {
             $userInput = (string) $userInput;
         }
 
@@ -299,9 +283,9 @@ class Str
             return hash_equals($knownString, $userInput);
         }
 
-        $knownLength = mb_strlen($knownString);
+        $knownLength = mb_strlen($knownString, '8bit');
 
-        if (mb_strlen($userInput) !== $knownLength) {
+        if (mb_strlen($userInput, '8bit') !== $knownLength) {
             return false;
         }
 
@@ -322,7 +306,7 @@ class Str
      */
     public static function upper($value)
     {
-        return mb_strtoupper($value);
+        return mb_strtoupper($value, 'UTF-8');
     }
 
     /**
@@ -381,17 +365,19 @@ class Str
      */
     public static function snake($value, $delimiter = '_')
     {
-        $key = $value.$delimiter;
+        $key = $value;
 
-        if (isset(static::$snakeCache[$key])) {
-            return static::$snakeCache[$key];
+        if (isset(static::$snakeCache[$key][$delimiter])) {
+            return static::$snakeCache[$key][$delimiter];
         }
 
-        if (!ctype_lower($value)) {
-            $value = strtolower(preg_replace('/(.)(?=[A-Z])/', '$1'.$delimiter, $value));
+        if (! ctype_lower($value)) {
+            $value = preg_replace('/\s+/u', '', $value);
+
+            $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $value));
         }
 
-        return static::$snakeCache[$key] = $value;
+        return static::$snakeCache[$key][$delimiter] = $value;
     }
 
     /**
@@ -404,7 +390,7 @@ class Str
     public static function startsWith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle != '' && strpos($haystack, $needle) === 0) {
+            if ($needle != '' && mb_strpos($haystack, $needle) === 0) {
                 return true;
             }
         }
@@ -429,5 +415,29 @@ class Str
         $value = ucwords(str_replace(['-', '_'], ' ', $value));
 
         return static::$studlyCache[$key] = str_replace(' ', '', $value);
+    }
+
+    /**
+     * Returns the portion of string specified by the start and length parameters.
+     *
+     * @param  string  $string
+     * @param  int  $start
+     * @param  int|null  $length
+     * @return string
+     */
+    public static function substr($string, $start, $length = null)
+    {
+        return mb_substr($string, $start, $length, 'UTF-8');
+    }
+
+    /**
+     * Make a string's first character uppercase.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    public static function ucfirst($string)
+    {
+        return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
     }
 }

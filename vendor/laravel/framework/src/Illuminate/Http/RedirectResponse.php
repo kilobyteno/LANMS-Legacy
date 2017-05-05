@@ -3,11 +3,12 @@
 namespace Illuminate\Http;
 
 use BadMethodCallException;
+use Illuminate\Support\Str;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Session\Store as SessionStore;
 use Illuminate\Contracts\Support\MessageProvider;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse as BaseRedirectResponse;
 
 class RedirectResponse extends BaseRedirectResponse
@@ -31,8 +32,8 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Flash a piece of data to the session.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param  string|array  $key
+     * @param  mixed  $value
      * @return \Illuminate\Http\RedirectResponse
      */
     public function with($key, $value = null)
@@ -71,15 +72,30 @@ class RedirectResponse extends BaseRedirectResponse
     {
         $input = $input ?: $this->request->input();
 
-        $this->session->flashInput($data = array_filter($input, $callback = function (&$value) use (&$callback) {
-            if (is_array($value)) {
-                $value = array_filter($value, $callback);
-            }
-
-            return !$value instanceof UploadedFile;
-        }));
+        $this->session->flashInput($this->removeFilesFromInput($input));
 
         return $this;
+    }
+
+    /**
+     * Remove all uploaded files form the given input array.
+     *
+     * @param  array  $input
+     * @return array
+     */
+    protected function removeFilesFromInput(array $input)
+    {
+        foreach ($input as $key => $value) {
+            if (is_array($value)) {
+                $input[$key] = $this->removeFilesFromInput($value);
+            }
+
+            if ($value instanceof SymfonyUploadedFile) {
+                unset($input[$key]);
+            }
+        }
+
+        return $input;
     }
 
     /**
@@ -140,7 +156,7 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Get the request instance.
      *
-     * @return \Illuminate\Http\Request
+     * @return \Illuminate\Http\Request|null
      */
     public function getRequest()
     {
@@ -161,7 +177,7 @@ class RedirectResponse extends BaseRedirectResponse
     /**
      * Get the session store implementation.
      *
-     * @return \Illuminate\Session\Store
+     * @return \Illuminate\Session\Store|null
      */
     public function getSession()
     {
@@ -184,14 +200,14 @@ class RedirectResponse extends BaseRedirectResponse
      *
      * @param  string  $method
      * @param  array  $parameters
-     * @return void
+     * @return $this
      *
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'with')) {
-            return $this->with(snake_case(substr($method, 4)), $parameters[0]);
+        if (Str::startsWith($method, 'with')) {
+            return $this->with(Str::snake(substr($method, 4)), $parameters[0]);
         }
 
         throw new BadMethodCallException("Method [$method] does not exist on Redirect.");

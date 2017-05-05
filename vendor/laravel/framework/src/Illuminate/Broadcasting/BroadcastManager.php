@@ -4,6 +4,7 @@ namespace Illuminate\Broadcasting;
 
 use Pusher;
 use Closure;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Broadcasting\Broadcasters\LogBroadcaster;
 use Illuminate\Broadcasting\Broadcasters\RedisBroadcaster;
@@ -84,6 +85,8 @@ class BroadcastManager implements FactoryContract
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Broadcasting\Broadcaster
+     *
+     * @throws \InvalidArgumentException
      */
     protected function resolve($name)
     {
@@ -96,7 +99,13 @@ class BroadcastManager implements FactoryContract
         if (isset($this->customCreators[$config['driver']])) {
             return $this->callCustomCreator($config);
         } else {
-            return $this->{'create'.ucfirst($config['driver']).'Driver'}($config);
+            $driverMethod = 'create'.ucfirst($config['driver']).'Driver';
+
+            if (method_exists($this, $driverMethod)) {
+                return $this->{$driverMethod}($config);
+            } else {
+                throw new InvalidArgumentException("Driver [{$config['driver']}] not supported.");
+            }
         }
     }
 
@@ -120,7 +129,7 @@ class BroadcastManager implements FactoryContract
     protected function createPusherDriver(array $config)
     {
         return new PusherBroadcaster(
-            new Pusher($config['key'], $config['secret'], $config['app_id'])
+            new Pusher($config['key'], $config['secret'], $config['app_id'], Arr::get($config, 'options', []))
         );
     }
 
@@ -133,7 +142,7 @@ class BroadcastManager implements FactoryContract
     protected function createRedisDriver(array $config)
     {
         return new RedisBroadcaster(
-            $this->app->make('redis'), array_get($config, 'connection')
+            $this->app->make('redis'), Arr::get($config, 'connection')
         );
     }
 

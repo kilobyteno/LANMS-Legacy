@@ -13,8 +13,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Bus\HandlerResolver;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Bus\QueueingDispatcher;
 use Illuminate\Contracts\Bus\Dispatcher as DispatcherContract;
 
@@ -130,7 +130,6 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
         if ($constructor = $reflection->getConstructor()) {
             $injected = array_map(function ($parameter) use ($command, $source, $extras) {
                 return $this->getParameterValueForCommand($command, $source, $parameter, $extras);
-
             }, $constructor->getParameters());
         }
 
@@ -138,7 +137,7 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     }
 
     /**
-     * Get a parameter value for a marshaled command.
+     * Get a parameter value for a marshalled command.
      *
      * @param  string  $command
      * @param  \ArrayAccess  $source
@@ -146,8 +145,7 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
      * @param  array  $extras
      * @return mixed
      */
-    protected function getParameterValueForCommand($command, ArrayAccess $source,
-        ReflectionParameter $parameter, array $extras = [])
+    protected function getParameterValueForCommand($command, ArrayAccess $source, ReflectionParameter $parameter, array $extras = [])
     {
         if (array_key_exists($parameter->name, $extras)) {
             return $extras[$parameter->name];
@@ -235,14 +233,14 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
     {
         $queue = call_user_func($this->queueResolver);
 
-        if (!$queue instanceof Queue) {
+        if (! $queue instanceof Queue) {
             throw new RuntimeException('Queue resolver did not return a Queue implementation.');
         }
 
         if (method_exists($command, 'queue')) {
-            $command->queue($queue, $command);
+            return $command->queue($queue, $command);
         } else {
-            $this->pushCommandToQueue($queue, $command);
+            return $this->pushCommandToQueue($queue, $command);
         }
     }
 
@@ -251,11 +249,11 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
      *
      * @param  \Illuminate\Contracts\Queue\Queue  $queue
      * @param  mixed  $command
-     * @return void
+     * @return mixed
      */
     protected function pushCommandToQueue($queue, $command)
     {
-        if (isset($command->queue) && isset($command->delay)) {
+        if (isset($command->queue, $command->delay)) {
             return $queue->laterOn($command->queue, $command->delay, $command);
         }
 
@@ -267,7 +265,7 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
             return $queue->later($command->delay, $command);
         }
 
-        $queue->push($command);
+        return $queue->push($command);
     }
 
     /**

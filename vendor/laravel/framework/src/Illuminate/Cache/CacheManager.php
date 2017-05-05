@@ -3,6 +3,7 @@
 namespace Illuminate\Cache;
 
 use Closure;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Contracts\Cache\Factory as FactoryContract;
@@ -81,6 +82,8 @@ class CacheManager implements FactoryContract
      *
      * @param  string  $name
      * @return \Illuminate\Contracts\Cache\Repository
+     *
+     * @throws \InvalidArgumentException
      */
     protected function resolve($name)
     {
@@ -93,7 +96,13 @@ class CacheManager implements FactoryContract
         if (isset($this->customCreators[$config['driver']])) {
             return $this->callCustomCreator($config);
         } else {
-            return $this->{'create'.ucfirst($config['driver']).'Driver'}($config);
+            $driverMethod = 'create'.ucfirst($config['driver']).'Driver';
+
+            if (method_exists($this, $driverMethod)) {
+                return $this->{$driverMethod}($config);
+            } else {
+                throw new InvalidArgumentException("Driver [{$config['driver']}] not supported.");
+            }
         }
     }
 
@@ -199,7 +208,7 @@ class CacheManager implements FactoryContract
     {
         $redis = $this->app['redis'];
 
-        $connection = array_get($config, 'connection', 'default') ?: 'default';
+        $connection = Arr::get($config, 'connection', 'default');
 
         return $this->repository(new RedisStore($redis, $this->getPrefix($config), $connection));
     }
@@ -212,7 +221,7 @@ class CacheManager implements FactoryContract
      */
     protected function createDatabaseDriver(array $config)
     {
-        $connection = $this->app['db']->connection(array_get($config, 'connection'));
+        $connection = $this->app['db']->connection(Arr::get($config, 'connection'));
 
         return $this->repository(
             new DatabaseStore(
@@ -248,7 +257,7 @@ class CacheManager implements FactoryContract
      */
     protected function getPrefix(array $config)
     {
-        return array_get($config, 'prefix') ?: $this->app['config']['cache.prefix'];
+        return Arr::get($config, 'prefix') ?: $this->app['config']['cache.prefix'];
     }
 
     /**

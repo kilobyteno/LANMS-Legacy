@@ -4,8 +4,9 @@ namespace Illuminate\Queue\Console;
 
 use Exception;
 use RuntimeException;
-use Illuminate\Queue\IronQueue;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Queue\IronQueue;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -46,7 +47,7 @@ class SubscribeCommand extends Command
     {
         $iron = $this->laravel['queue']->connection();
 
-        if (!$iron instanceof IronQueue) {
+        if (! $iron instanceof IronQueue) {
             throw new RuntimeException('Iron.io based queue must be default.');
         }
 
@@ -96,7 +97,7 @@ class SubscribeCommand extends Command
 
         $url = $this->argument('url');
 
-        if (!starts_with($url, ['http://', 'https://'])) {
+        if (! Str::startsWith($url, ['http://', 'https://'])) {
             $url = $this->laravel['url']->to($url);
         }
 
