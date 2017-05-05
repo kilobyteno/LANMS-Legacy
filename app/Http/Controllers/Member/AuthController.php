@@ -14,8 +14,6 @@ use LANMS\Act;
 class AuthController extends Controller {
  
 	public function __construct(Sentinel $auth, Registrar $registrar) {
- 
-		$this->beforeFilter('csrf', ['on' => ['post']]);
 		$this->middleware('sentinel.guest', ['except' => ['getLogout']]);
 	}
 
