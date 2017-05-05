@@ -208,6 +208,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'Gate' 		=> Illuminate\Support\Facades\Gate::class,
 
 		// This is so awesome
 		'User'					=> 'LANMS\User',
