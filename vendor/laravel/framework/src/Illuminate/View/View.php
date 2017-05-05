@@ -1,4 +1,6 @@
-<?php namespace Illuminate\View;
+<?php
+
+namespace Illuminate\View;
 
 use Closure;
 use ArrayAccess;
@@ -12,7 +14,6 @@ use Illuminate\Contracts\View\View as ViewContract;
 
 class View implements ArrayAccess, ViewContract
 {
-
     /**
      * The view factory instance.
      *
@@ -58,7 +59,7 @@ class View implements ArrayAccess, ViewContract
      * @param  array   $data
      * @return void
      */
-    public function __construct(Factory $factory, EngineInterface $engine, $view, $path, $data = array())
+    public function __construct(Factory $factory, EngineInterface $engine, $view, $path, $data = [])
     {
         $this->view = $view;
         $this->path = $path;
@@ -76,22 +77,16 @@ class View implements ArrayAccess, ViewContract
      */
     public function render(Closure $callback = null)
     {
-        try {
-            $contents = $this->renderContents();
+        $contents = $this->renderContents();
 
-            $response = isset($callback) ? $callback($this, $contents) : null;
+        $response = isset($callback) ? $callback($this, $contents) : null;
 
-            // Once we have the contents of the view, we will flush the sections if we are
-            // done rendering all views so that there is nothing left hanging over when
-            // another view gets rendered in the future by the application developer.
-            $this->factory->flushSectionsIfDoneRendering();
+        // Once we have the contents of the view, we will flush the sections if we are
+        // done rendering all views so that there is nothing left hanging over when
+        // another view gets rendered in the future by the application developer.
+        $this->factory->flushSectionsIfDoneRendering();
 
-            return $response ?: $contents;
-        } catch (Exception $e) {
-            $this->factory->flushSections();
-
-            throw $e;
-        }
+        return $response ?: $contents;
     }
 
     /**
@@ -186,7 +181,7 @@ class View implements ArrayAccess, ViewContract
      * @param  array   $data
      * @return $this
      */
-    public function nest($key, $view, array $data = array())
+    public function nest($key, $view, array $data = [])
     {
         return $this->with($key, $this->factory->make($view, $data));
     }
