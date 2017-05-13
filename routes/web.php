@@ -1,6 +1,17 @@
 <?php
 
 /*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+/*
 | DEBUG ONLY
 */
 if(Config::get('app.debug')) {
@@ -70,19 +81,6 @@ Route::group([
 		Route::get('/', [
 			'as' => 'crew',
 			'uses' => 'Crew\CrewController@index'
-		]);
-});
-
-Route::group([
-	'prefix' => 'api'
-	], function() {
-		Route::get('/stats', [
-			'as' => 'api-stats',
-			'uses' => 'API\APIController@stats'
-		]);
-		Route::get('/news/{amount}', [
-			'as' => 'api-news',
-			'uses' => 'API\APIController@news'
 		]);
 });
 
