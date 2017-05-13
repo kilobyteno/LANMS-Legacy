@@ -10,14 +10,33 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $middleware = [
-		'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-		'Illuminate\Cookie\Middleware\EncryptCookies',
-		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-		'Illuminate\Session\Middleware\StartSession',
-		'Illuminate\View\Middleware\ShareErrorsFromSession',
-		'LANMS\Http\Middleware\VerifyCsrfToken',
+		\Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \LANMS\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 		'LANMS\Http\Middleware\HttpsProtocol', // FORCE HTTPS
 	];
+
+	/**
+     * The application's route middleware groups.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+        'api' => [
+            'throttle:60,1',
+            'bindings',
+        ],
+    ];
 
 	/**
 	 * The application's route middleware.
@@ -25,6 +44,12 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
+		'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'sentinel.auth' => 'LANMS\Http\Middleware\SentinelAuth',
 		'sentinel.guest' => 'LANMS\Http\Middleware\SentinelGuest',
 		'sentinel.admin' => 'LANMS\Http\Middleware\SentinelAdmin',
