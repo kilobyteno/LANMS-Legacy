@@ -267,7 +267,7 @@ return [
 		 * 3rd Party
 		 */
 		'Image' 		=> 'Intervention\Image\Facades\Image',
-		'Theme'  		=> 'igaster\laravelTheme\Facades\Theme',
+		'Theme' 		=> igaster\laravelTheme\Facades\Theme::class,
 		'Activation'	=> 'Cartalyst\Sentinel\Laravel\Facades\Activation',
 		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
 		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
