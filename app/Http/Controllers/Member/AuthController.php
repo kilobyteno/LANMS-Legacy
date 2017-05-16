@@ -3,7 +3,6 @@
 namespace LANMS\Http\Controllers\Member;
 
 use LANMS\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Registrar;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
@@ -13,7 +12,7 @@ use LANMS\Act;
 
 class AuthController extends Controller {
  
-	public function __construct(Sentinel $auth, Registrar $registrar) {
+	public function __construct(Sentinel $auth) {
 		$this->middleware('sentinel.guest', ['except' => ['getLogout']]);
 	}
 
