@@ -18,7 +18,7 @@ class AuthController extends Controller {
 		return view('auth.register');
 	}
 	public function getLogout() {
-		Sentinel::logout();
+		\Sentinel::logout();
 		return Redirect::route('home')
 						->with('messagetype', 'success')
 						->with('message', 'You have now been successfully been logged out!');
