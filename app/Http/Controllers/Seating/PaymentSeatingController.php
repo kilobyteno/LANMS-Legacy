@@ -21,10 +21,6 @@ use Cartalyst\Stripe\Exception\CardErrorException;
 
 class PaymentSeatingController extends Controller {
 
-	public function __construct()
-    {
-        $this->middleware('csrf', ['only' => ['update', 'store']]);
-    }
 
 	/**
 	 * Display the specified resource.

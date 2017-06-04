@@ -14,7 +14,6 @@ class AuthController extends Controller {
  
 	public function __construct(Sentinel $auth) {
 		$this->middleware('sentinel.guest', ['except' => ['getLogout']]);
-		$this->middleware('csrf', ['only' => ['update', 'store']]);
 	}
 
 	public function getLogin() {

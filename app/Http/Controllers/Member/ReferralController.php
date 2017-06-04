@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 
 class ReferralController extends Controller {
 
-	public function __construct()
-    {
-        $this->middleware('csrf', ['only' => ['update', 'store']]);
-    }
-
 	/**
 	 * Store a newly created resource in storage.
 	 *

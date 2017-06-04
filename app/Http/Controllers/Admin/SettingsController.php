@@ -12,11 +12,6 @@ use LANMS\Http\Requests\Admin\SettingEditRequest;
 
 class SettingsController extends Controller {
 
-	public function __construct()
-    {
-        $this->middleware('csrf', ['only' => ['update', 'store']]);
-    }
-
 	/**
 	 * Display a listing of the resource.
 	 *

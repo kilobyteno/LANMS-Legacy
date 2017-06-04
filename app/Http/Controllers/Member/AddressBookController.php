@@ -13,11 +13,6 @@ use LANMS\Http\Requests\Member\AddressCreateRequest;
 
 class AddressBookController extends Controller {
 
-	public function __construct()
-    {
-        $this->middleware('csrf', ['only' => ['update', 'store']]);
-    }
-
 	/**
 	 * Display a listing of the resource.
 	 *
