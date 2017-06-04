@@ -85,7 +85,7 @@ Route::group([
 });
 
 Route::group([
-	'middleware' => ['sentinel.guest', 'setTheme:neon-user'],
+	'middleware' => ['sentinel.guest'],
 	'prefix' => 'account',
 	], function() {
 		Route::get('/forgot/password', [
