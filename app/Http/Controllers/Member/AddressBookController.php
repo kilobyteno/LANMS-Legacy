@@ -212,7 +212,6 @@ class AddressBookController extends Controller {
 			//Remove User Permissions
 			$user = Sentinel::getUser();
 			$user->removePermission('address.'.$id.'.destroy');
-			$user->removePermission('address.'.$id.'.destroy');
 			$user->save();
 		} else {
 			return Redirect::route('account-addressbook')->with('messagetype', 'warning')
