@@ -26,7 +26,7 @@ class CreateNewsTable extends Migration {
 			$table->integer('editor_id'); //who updated it?
 			$table->enum('active', array(0, 1))->default(1); //is it visible on the website?
 			
-			$table->dateTime('published_at');
+			$table->dateTime('published_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->timestamps();
 			$table->softDeletes();
 			
