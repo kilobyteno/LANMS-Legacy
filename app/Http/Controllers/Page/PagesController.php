@@ -14,6 +14,11 @@ use LANMS\Http\Requests\Admin\Page\PageEditRequest;
 
 class PagesController extends Controller {
 
+	public function __construct()
+    {
+        $this->middleware('csrf', ['only' => ['update', 'store']]);
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

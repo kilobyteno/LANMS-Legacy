@@ -16,6 +16,11 @@ use LANMS\Http\Requests\Admin\News\NewsEditRequest;
 
 class NewsController extends Controller {
 
+	public function __construct()
+    {
+        $this->middleware('csrf', ['only' => ['update', 'store']]);
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *

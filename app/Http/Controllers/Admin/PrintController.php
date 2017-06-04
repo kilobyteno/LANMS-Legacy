@@ -15,6 +15,11 @@ use LANMS\Http\Requests\Admin\PrintSeatRequest;
 
 class PrintController extends Controller {
 
+	public function __construct()
+    {
+        $this->middleware('csrf', ['only' => ['update', 'store']]);
+    }
+	
 	/**
 	 * Display a listing of the resource.
 	 *

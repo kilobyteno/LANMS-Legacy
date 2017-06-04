@@ -40,7 +40,6 @@ class RecoverController extends Controller {
 		$this->auth = $auth;
 		$this->passwords = $passwords;
 
-		$this->beforeFilter('csrf', ['on' => ['post']]);
 		$this->middleware('sentinel.guest');
 	}
 

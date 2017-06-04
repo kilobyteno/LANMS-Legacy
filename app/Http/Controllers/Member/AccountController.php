@@ -20,10 +20,10 @@ use LANMS\News;
 
 class AccountController extends Controller {
 
-	public function __construct() {
-		$this->beforeFilter('csrf', ['on' => ['post']]);
-		$this->beforeFilter('sentinel.auth');
-	}
+	public function __construct()
+    {
+        $this->middleware('csrf', ['only' => ['update', 'store']]);
+    }
 
 	public function index() {
 		$authuser = Sentinel::getUser();
