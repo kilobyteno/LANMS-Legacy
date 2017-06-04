@@ -771,16 +771,16 @@
         },
         {
             "name": "igaster/laravel-theme",
-            "version": "v1.14",
+            "version": "v1.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/igaster/laravel-theme.git",
-                "reference": "2f15e330c6fb3fec3a8ebbe424f4f22933ce3afb"
+                "reference": "29434bc021f9592cf05bfc55cde251e32285b00e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/2f15e330c6fb3fec3a8ebbe424f4f22933ce3afb",
-                "reference": "2f15e330c6fb3fec3a8ebbe424f4f22933ce3afb",
+                "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/29434bc021f9592cf05bfc55cde251e32285b00e",
+                "reference": "29434bc021f9592cf05bfc55cde251e32285b00e",
                 "shasum": ""
             },
             "require": {
@@ -823,7 +823,7 @@
                 "themes",
                 "views"
             ],
-            "time": "2017-03-30 11:50:54"
+            "time": "2017-05-11 13:42:34"
         },
         {
             "name": "intervention/image",
