@@ -37,9 +37,9 @@
 						@foreach($addresses as $address)
 							<?php $i++; ?>
 							<div class="col-lg-3">
-								<div class="panel @if($address->primary) panel-info @else panel-default @endif">
+								<div class="panel @if($address->main_address) panel-info @else panel-default @endif">
 									<div class="panel-heading">
-										<h3 class="panel-title">Address #{{ $i }}@if($address->primary) <small>Primary</small>@endif</h3>
+										<h3 class="panel-title">Address #{{ $i }}@if($address->main_address) <small>Primary</small>@endif</h3>
 									</div>
 									<div class="panel-body">
 										<address>

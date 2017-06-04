@@ -47,18 +47,18 @@ class AddressBookController extends Controller {
 		];
 
 		if (Sentinel::authenticate($credentials)) {
-			$primary = 0;
-			if($request->get('primary') == "on") {
-				$primary = 1;
+			$main_address = 0;
+			if($request->get('main_address') == "on") {
+				$main_address = 1;
 			}
 
-			if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('primary', '=', 1)->count() == 0) {
-				$primary = 1;
+			if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', 1)->count() == 0) {
+				$main_address = 1;
 			}
 
-			if($primary == 1) {
-				// Set all other addresses to non-primary
-				Address::where('user_id', '=', Sentinel::getUser()->id)->update(['primary' => 0]);
+			if($main_address == 1) {
+				// Set all other addresses to non-main_address
+				Address::where('user_id', '=', Sentinel::getUser()->id)->update(['main_address' => 0]);
 			}
 
 			$address 				= new Address;
@@ -68,7 +68,7 @@ class AddressBookController extends Controller {
 			$address->city 			= $request->get('city');
 			$address->county 		= $request->get('county');
 			$address->country 		= $request->get('country');
-			$address->primary 		= $primary;
+			$address->main_address 		= $main_address;
 			$address->user_id		= Sentinel::getUser()->id;
 
 			$adresssave = $address->save();
@@ -130,18 +130,18 @@ class AddressBookController extends Controller {
 
 			if (Sentinel::authenticate($credentials)) {
 
-				$primary = 0;
-				if($request->get('primary') == "on") {
-					$primary = 1;
+				$main_address = false;
+				if($request->get('main_address') == "on") {
+					$main_address = true;
 				}
 
-				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('primary', '=', 1)->count() == 0) {
-					$primary = 1;
+				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', true)->count() <= 0) {
+					$main_address = true;
 				}
 
-				if($primary == 1) {
-					// Set all other addresses to non-primary
-					Address::where('user_id', '=', Sentinel::getUser()->id)->update(['primary' => 0]);
+				if($main_address === true) {
+					// Set all other addresses to non-main_address
+					Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->update(['main_address' => false]);
 				}
 
 				$address 				= Address::find($id);
@@ -151,7 +151,7 @@ class AddressBookController extends Controller {
 				$address->city 			= $request->get('city');
 				$address->county 		= $request->get('county');
 				$address->country 		= $request->get('country');
-				$address->primary 		= $primary;
+				$address->main_address 	= $main_address;
 
 				if($address->save()) {
 					return Redirect::route('account-addressbook')
@@ -192,10 +192,10 @@ class AddressBookController extends Controller {
 
 			$address = Address::find($id);
 			
-			if($address->primary) {
+			if($address->main_address) {
 				$uaddress = Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->first();
 				if($uaddress <> null) {
-					$uaddress->primary = 1;
+					$uaddress->main_address = 1;
 					$uaddress->save();
 				}
 			}

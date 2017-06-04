@@ -16,6 +16,7 @@ class Address extends Model {
 		'county',
 		'country',
 		'user_id',
+		'main_address'
 	];
 	protected $table = 'addresses';
 
