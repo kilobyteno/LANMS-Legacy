@@ -268,9 +268,9 @@ return [
 		 */
 		'Image' 		=> 'Intervention\Image\Facades\Image',
 		'Theme' 		=> igaster\laravelTheme\Facades\Theme::class,
-		'Activation'	=> 'Cartalyst\Sentinel\Laravel\Facades\Activation',
-		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
-		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
+		'Activation' 	=> Cartalyst\Sentinel\Laravel\Facades\Activation::class,
+		'Reminder'   	=> Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+		'Sentinel'   	=> Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
 		'Stripe' 		=> 'Cartalyst\Stripe\Laravel\Facades\Stripe',
 		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
