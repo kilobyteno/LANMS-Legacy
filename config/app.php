@@ -170,16 +170,16 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		App\Providers\AppServiceProvider::class,
-		App\Providers\AuthServiceProvider::class,
-		// App\Providers\BroadcastServiceProvider::class,
-		App\Providers\EventServiceProvider::class,
-		App\Providers\RouteServiceProvider::class,
+		LANMS\Providers\AppServiceProvider::class,
+		LANMS\Providers\AuthServiceProvider::class,
+		// LANMS\Providers\BroadcastServiceProvider::class,
+		LANMS\Providers\EventServiceProvider::class,
+		LANMS\Providers\RouteServiceProvider::class,
 
 		/*
 		 * 3rd Party
 		 */
-		intervention\Image\ImageServiceProvider::class,
+		Intervention\Image\ImageServiceProvider::class,
 		igaster\laravelTheme\themeServiceProvider::class,
 		LANMS\Providers\ThemeSelectServiceProvider::class,
 		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
