@@ -84,6 +84,10 @@ Route::group([
 			'as' => 'api-news',
 			'uses' => 'API\APIController@news'
 		]);
+		get('/news/{amount}/{skip}', [
+			'as' => 'api-news-skip',
+			'uses' => 'API\APIController@skipNews'
+		]);
 });
 
 Route::group([

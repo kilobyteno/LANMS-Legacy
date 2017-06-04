@@ -656,4 +656,19 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		
 	}
 
+	public function scopeGetFullnameAndNicknameByID($query, $id) {
+		$user = $query->where('id', '=', $id)->first();
+		if($user->showname) {
+			return $user->firstname . ' "' . $user->username . '" ' . $user->lastname;
+		} else {
+			return $user->firstname . ' "' . $user->username . '"';
+		}
+		
+	}
+
+	public function scopeGetImageLocation($query, $id) {
+		$user = $query->where('id', '=', $id)->first();
+		return $user->profilepicture;
+	}
+
 }
