@@ -16,13 +16,13 @@ class CreateBrokenBandsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('checkin_id');
-			$table->integer('previous_bandnumber');
-			$table->integer('new_bandnumber');
-			$table->integer('year');
+			$table->integer('checkin_id')->default(0);
+			$table->integer('previous_bandnumber')->default(0);
+			$table->integer('new_bandnumber')->default(0);
+			$table->integer('year')->default(1970);
 
-			$table->integer('author_id'); //who created it?
-			$table->integer('editor_id'); //who updated it?
+			$table->integer('author_id')->default(0); //who created it?
+			$table->integer('editor_id')->default(0); //who updated it?
 
 			$table->timestamps();
 		});

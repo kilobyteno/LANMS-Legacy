@@ -19,7 +19,7 @@ class CreateVisitorsTable extends Migration {
 			$table->string('fullname');
 			$table->string('phonenumber');
 			$table->string('bandnumber');
-			$table->integer('year');
+			$table->integer('year')->default(1970);
 
 			$table->timestamps();
 			$table->softDeletes();

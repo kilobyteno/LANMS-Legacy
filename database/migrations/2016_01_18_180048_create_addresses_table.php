@@ -22,7 +22,7 @@ class CreateAddressesTable extends Migration {
 			$table->string('city');
 			$table->string('county');
 			$table->string('country');
-			$table->enum('primary', array(0, 1));
+			$table->enum('primary', array(0, 1))->default(0);
 
 			$table->integer('user_id');
 

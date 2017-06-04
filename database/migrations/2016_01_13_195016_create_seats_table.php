@@ -19,8 +19,8 @@ class CreateSeatsTable extends Migration {
 			$table->string('name');
 			$table->string('slug');
 
-			$table->integer('row_id');
-			$table->integer('reservation_id');
+			$table->integer('row_id')->default(0);
+			$table->integer('reservation_id')->default(0);
 
 			$table->timestamps();
 			$table->softDeletes();

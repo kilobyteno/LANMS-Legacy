@@ -18,10 +18,10 @@ class CreateSeatTicketsTable extends Migration {
 
 			$table->integer('barcode');
 
-			$table->integer('reservation_id');
-			$table->integer('user_id');
-			$table->integer('checkin_id');
-			$table->integer('year');
+			$table->integer('reservation_id')->default(0);
+			$table->integer('user_id')->default(0);
+			$table->integer('checkin_id')->default(0);
+			$table->integer('year')->default(1970);
 
 			$table->timestamps();
 			$table->softDeletes();
