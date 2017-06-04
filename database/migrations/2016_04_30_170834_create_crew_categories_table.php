@@ -19,8 +19,8 @@ class CreateCrewCategoriesTable extends Migration {
 			$table->string('title');
 			$table->string('slug');
 
-			$table->integer('author_id'); //who created it?
-			$table->integer('editor_id'); //who updated it?
+			$table->integer('author_id')->default(0); //who created it?
+			$table->integer('editor_id')->default(0); //who updated it?
 			$table->enum('active', array(0, 1))->default(1); //is it visible on the website?
 
 			$table->timestamps();

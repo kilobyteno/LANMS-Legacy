@@ -19,7 +19,7 @@ class CreateSeatReservationStatusesTable extends Migration {
 			$table->string('name');
 			$table->string('slug');
 
-			$table->integer('reservation_id');
+			$table->integer('reservation_id')->default(0);
 
 			$table->timestamps();
 			$table->softDeletes();
