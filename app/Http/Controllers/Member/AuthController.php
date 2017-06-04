@@ -4,17 +4,11 @@ namespace LANMS\Http\Controllers\Member;
 
 use LANMS\Http\Controllers\Controller;
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-
 use Illuminate\Support\Facades\Redirect;
 
 use LANMS\Act;
 
 class AuthController extends Controller {
- 
-	public function __construct(Sentinel $auth) {
-		$this->middleware('sentinel.guest', ['except' => ['getLogout']]);
-	}
 
 	public function getLogin() {
 		return view('auth.login');
