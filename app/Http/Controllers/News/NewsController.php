@@ -24,7 +24,7 @@ class NewsController extends Controller {
 	public function index()
 	{
   		$news = News::isPublished()->paginate(5);
-		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
+		$pagesinmenu = Page::where('active', '=', true)->where('showinmenu', '=', true)->get(); // This needs to be included in all the frontend pages
 
 		return view('news.news')
 					->withNews($news)
@@ -73,9 +73,9 @@ class NewsController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.news.create'])){
 
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
 			$published_at_date = date_format(date_create_from_format('D, d F Y', $request->get('published_at_date')), 'Y-m-d');;
@@ -134,7 +134,7 @@ class NewsController extends Controller {
 	public function show($id)
 	{
 		$article = News::where('slug', '=', $id)->first();
-		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
+		$pagesinmenu = Page::where('active', '=', true)->where('showinmenu', '=', true)->get(); // This needs to be included in all the frontend pages
 
 		return view('news.article')
 				->withArticle($article)
@@ -169,9 +169,9 @@ class NewsController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.news.update'])){
 
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
 			$published_at_date = date_format(date_create_from_format('D, d F Y', $request->get('published_at_date')), 'Y-m-d');;
