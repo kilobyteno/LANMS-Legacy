@@ -86,7 +86,7 @@
 										<button class="btn btn-success btn-lg btn-block" type="submit">Pay Now</button>
 									</div>
 								</div>
-								@if ($errors->has())
+								@if(count($errors->all()) > 0)
 									<br>
 									<div class="alert alert-danger">
 										@foreach ($errors->all() as $error)

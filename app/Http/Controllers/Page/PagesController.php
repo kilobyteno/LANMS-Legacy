@@ -65,14 +65,14 @@ class PagesController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.pages.create'])){
 			
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
-			$showinmenu = 0;
+			$showinmenu = false;
 			if($request->get('showinmenu') == "on") {
-				$showinmenu = 1;
+				$showinmenu = true;
 			}
 
 			$slug 	= $request->get('slug');
@@ -152,14 +152,14 @@ class PagesController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.pages.update'])){
 
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
-			$showinmenu = 0;
+			$showinmenu = false;
 			if($request->get('showinmenu') == "on") {
-				$showinmenu = 1;
+				$showinmenu = true;
 			}
 			
 			$page 				= Page::find($id);

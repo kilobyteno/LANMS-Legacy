@@ -1,3 +1,19 @@
+0.7.0
+-----
+
+- Added 'sentry:test' to Artisan. (#65)
+- Added 'user_context' configuration to disable automatic collection. (#55)
+
+0.6.1
+-----
+
+- Various fixes for query event breadcrumbs. (#54)
+
+0.6.0
+-----
+
+- Support for Laravel 5.4.
+
 0.5.0
 -----
 

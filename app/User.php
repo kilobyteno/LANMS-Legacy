@@ -196,19 +196,23 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 */
 	public function inRole($role)
 	{
-		$role = array_first($this->roles, function ($index, $instance) use ($role) {
+		if ($role instanceof RoleInterface) {
+			$roleId = $role->getRoleId();
+		}
+
+		foreach ($this->roles as $instance) {
 			if ($role instanceof RoleInterface) {
-				return ($instance->getRoleId() === $role->getRoleId());
+				if ($instance->getRoleId() === $roleId) {
+					return true;
+				}
+			} else {
+				if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
+					return true;
+				}
 			}
+		}
 
-			if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
-				return true;
-			}
-
-			return false;
-		});
-
-		return $role !== null;
+		return false;
 	}
 
 	/**
@@ -401,7 +405,9 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 */
 	public function delete()
 	{
-		if ($this->exists) {
+		$isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
+
+		if ($this->exists && ! $isSoftDeleted) {
 			$this->activations()->delete();
 			$this->persistences()->delete();
 			$this->reminders()->delete();
@@ -409,7 +415,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 			$this->throttle()->delete();
 		}
 
-		parent::delete();
+		return parent::delete();
 	}
 
 	/**
@@ -463,20 +469,20 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 
 	public function reservationsThisYear() {
-        return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->thisYear();
-    }
+		return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->thisYear();
+	}
 
-    public function ownReservationsThisYear() {
-        return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->thisYear();
-    }
+	public function ownReservationsThisYear() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->thisYear();
+	}
 
-    public function reservationsLastYear() {
-        return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->lastYear();
-    }
+	public function reservationsLastYear() {
+		return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->lastYear();
+	}
 
-    public function ownReservationsLastYear() {
-        return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->lastYear();
-    }
+	public function ownReservationsLastYear() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->lastYear();
+	}
 
 	public function stripecustomer() {
 		return $this->hasOne('StripeCustomer', 'user_id', 'id');

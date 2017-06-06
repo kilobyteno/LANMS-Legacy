@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: LANMS
-        psr4_prefix: LANMS
-        src_path: app

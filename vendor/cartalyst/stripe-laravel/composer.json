@@ -11,13 +11,27 @@
     "authors": [
         {
             "name": "Cartalyst LLC",
-            "email": "help@cartalyst.com",
-            "homepage": "https://cartalyst.com"
+            "email": "help@cartalyst.com"
+        },
+        {
+            "name": "Bruno Gaspar",
+            "email": "bruno.gaspar@cartalyst.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Dan Syme",
+            "email": "dan.syme@cartalyst.com",
+            "role": "Project Lead"
+        },
+        {
+            "name": "Suhayb Wardany",
+            "email": "su.wardany@cartalyst.com",
+            "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.0.*|5.1.*",
+        "illuminate/support": "~5.0",
         "cartalyst/stripe": "1.0.*"
     },
     "require-dev": {

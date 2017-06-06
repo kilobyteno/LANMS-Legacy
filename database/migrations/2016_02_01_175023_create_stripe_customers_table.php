@@ -17,7 +17,7 @@ class CreateStripeCustomersTable extends Migration {
 			$table->increments('id');
 
 			$table->string('cus');
-			$table->integer('user_id');
+			$table->integer('user_id')->default(0);
 
 			$table->timestamps();
 			$table->softDeletes();

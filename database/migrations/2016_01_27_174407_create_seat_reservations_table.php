@@ -16,16 +16,16 @@ class CreateSeatReservationsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('seat_id');
-			$table->integer('reservedby_id');
-			$table->integer('reservedfor_id');
-			$table->integer('payment_id');
-			$table->integer('ticket_id');
-			$table->integer('status_id');
+			$table->integer('seat_id')->default(0);
+			$table->integer('reservedby_id')->default(0);
+			$table->integer('reservedfor_id')->default(0);
+			$table->integer('payment_id')->default(0);
+			$table->integer('ticket_id')->default(0);
+			$table->integer('status_id')->default(0);
 
-			$table->integer('year');
+			$table->integer('year')->default(1970);
 
-			$table->integer('reminder_email_sent');
+			$table->integer('reminder_email_sent')->default(0);
 
 			$table->timestamps();
 			$table->softDeletes();

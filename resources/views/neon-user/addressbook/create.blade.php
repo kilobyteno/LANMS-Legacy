@@ -120,10 +120,10 @@
 
 						<div class="row">
 							<label class="col-sm-5 control-label">Primary Address?</label>
-							<div class="col-sm-5 checkbox @if($errors->has('primary')) has-error @endif">
-								<label><input type="checkbox" name="primary" @if(old('primary')) checked @endif>Yes</label>
-								@if($errors->has('primary'))
-									<p class="text-danger">{{ $errors->first('primary') }}</p>
+							<div class="col-sm-5 checkbox @if($errors->has('main_address')) has-error @endif">
+								<label><input type="checkbox" name="main_address" @if(old('main_address')) checked @endif>Yes</label>
+								@if($errors->has('main_address'))
+									<p class="text-danger">{{ $errors->first('main_address') }}</p>
 								@endif
 							</div>
 						</div>

@@ -16,10 +16,10 @@ class CreateSeatPaymentsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->string('stripecharge');
+			$table->string('stripecharge')->nullable();
 
-			$table->integer('user_id');
-			$table->integer('reservation_id');
+			$table->integer('user_id')->default(0);
+			$table->integer('reservation_id')->default(0);
 
 			$table->timestamps();
 			$table->softDeletes();
