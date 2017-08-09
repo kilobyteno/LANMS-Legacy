@@ -130,16 +130,16 @@ class AddressBookController extends Controller {
 
 			if (Sentinel::authenticate($credentials)) {
 
-				$main_address = false;
+				$main_address = 0;
 				if($request->get('main_address') == "on") {
-					$main_address = true;
+					$main_address = 1;
 				}
 
-				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', true)->count() <= 0) {
-					$main_address = true;
+				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', 1)->count() <= 0) {
+					$main_address = 1;
 				}
 
-				if($main_address === true) {
+				if($main_address === 1) {
 					// Set all other addresses to non-main_address
 					Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->update(['main_address' => false]);
 				}
