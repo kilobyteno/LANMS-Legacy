@@ -11,7 +11,7 @@ class ThemeSelectServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		/*if (\Request::segment(1)=='admin') {
+		if (\Request::segment(1)=='admin') {
 			\Theme::set('neon-admin');
 		}
 
@@ -21,7 +21,7 @@ class ThemeSelectServiceProvider extends ServiceProvider {
 
 		if (\Request::segment(1)=='account' && \Request::segment(2)=='register' || \Request::segment(2)=='login' || \Request::segment(2)=='forgot' || \Request::segment(2)=='recover' || \Request::segment(2)=='activate' || \Request::segment(2)=='resetpassword') {
 			\Theme::set('neon-user');
-		}*/
+		}
 	}
 
 	/**

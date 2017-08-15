@@ -180,7 +180,7 @@ return [
 		 * 3rd Party
 		 */
 		Intervention\Image\ImageServiceProvider::class,
-		igaster\laravelTheme\themeServiceProvider::class,
+		Igaster\LaravelTheme\themeServiceProvider::class,
 		LANMS\Providers\ThemeSelectServiceProvider::class,
 		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 		anlutro\LaravelSettings\ServiceProvider::class,
@@ -267,7 +267,7 @@ return [
 		 * 3rd Party
 		 */
 		'Image' 		=> 'Intervention\Image\Facades\Image',
-		'Theme' 		=> igaster\laravelTheme\Facades\Theme::class,
+		'Theme' 		=> Igaster\LaravelTheme\Facades\Theme::class,
 		'Activation' 	=> Cartalyst\Sentinel\Laravel\Facades\Activation::class,
 		'Reminder'   	=> Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
 		'Sentinel'   	=> Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,

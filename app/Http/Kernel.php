@@ -59,7 +59,7 @@ class Kernel extends HttpKernel
 		'sentinel.auth' => 'LANMS\Http\Middleware\SentinelAuth',
 		'sentinel.guest' => 'LANMS\Http\Middleware\SentinelGuest',
 		'sentinel.admin' => 'LANMS\Http\Middleware\SentinelAdmin',
-        'setTheme' => \igaster\laravelTheme\Middleware\setTheme::class,
+        'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
 	];
 
 }
