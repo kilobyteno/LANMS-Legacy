@@ -83,7 +83,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-success btn-lg btn-block" type="submit">Pay Now</button>
+										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Payment">Pay Now</button>
 									</div>
 								</div>
 								@if(count($errors->all()) > 0)
@@ -102,4 +102,17 @@
 		</div>
 	</div>
 </div>
+@stop
+
+@section("javascript")
+<script type="text/javascript">
+	$('#pay').on('click', function() {
+		var $this = $(this);
+		$this.button('loading');
+		var emptyInputs = $(this).parent().find('input[type="tel"]').filter(function() { return $(this).val() == ""; });
+	    if (emptyInputs.length) {
+	        $this.button('reset');
+	    }
+	});
+</script>
 @stop
