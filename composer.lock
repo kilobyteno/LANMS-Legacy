@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3e1c57ac86cb6cd648b89c0af9093dc1",
-    "content-hash": "c3da0363e8f01235336f453fef159cf9",
+    "hash": "e29093402a2e67eafaf04b9161da7e2c",
+    "content-hash": "8bb08cc08267cf3917aa02653cf6d705",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -771,27 +771,24 @@
         },
         {
             "name": "igaster/laravel-theme",
-            "version": "v1.16",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/igaster/laravel-theme.git",
-                "reference": "7816c4497feb326d11447737e8477779a713fc96"
+                "reference": "cd6a7f87044811d52c9951acfca77c6e242701b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/7816c4497feb326d11447737e8477779a713fc96",
-                "reference": "7816c4497feb326d11447737e8477779a713fc96",
+                "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/cd6a7f87044811d52c9951acfca77c6e242701b8",
+                "reference": "cd6a7f87044811d52c9951acfca77c6e242701b8",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": ">=5.2.0",
-                "php": ">=5.4.0"
+                "illuminate/contracts": "5.4.*"
             },
             "require-dev": {
-                "illuminate/database": "~5.2",
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "~4.0",
-                "vlucas/phpdotenv": "~2.0"
+                "orchestra/testbench": "~3.4",
+                "phpunit/phpunit": "^6.0"
             },
             "suggest": {
                 "orchestra/asset": "Use '@css' and '@js' in Blade files"
@@ -799,8 +796,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "igaster\\laravelTheme\\": "src/",
-                    "igaster\\laravelTheme\\Tests\\": "tests/"
+                    "Igaster\\LaravelTheme\\": "src/",
+                    "Igaster\\LaravelTheme\\Tests\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -814,7 +811,7 @@
                 }
             ],
             "description": "Laravel 5 Themes: Asset & Views folder per theme. Theme inheritance. Blade integration and more...",
-            "homepage": "https://github.com/igaster/laravel-theme",
+            "homepage": "https://github.com/Igaster/laravel-theme.git",
             "keywords": [
                 "assets",
                 "blade",
@@ -823,7 +820,7 @@
                 "themes",
                 "views"
             ],
-            "time": "2017-06-07 15:24:25"
+            "time": "2017-07-04 05:37:30"
         },
         {
             "name": "intervention/image",
@@ -1095,20 +1092,20 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.32",
+            "version": "v5.4.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b8300578d159199b1195413b67318c79068cd24d"
+                "reference": "e53a81a2bf406f501cdf818ad949f8d6c8dabfc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b8300578d159199b1195413b67318c79068cd24d",
-                "reference": "b8300578d159199b1195413b67318c79068cd24d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/e53a81a2bf406f501cdf818ad949f8d6c8dabfc0",
+                "reference": "e53a81a2bf406f501cdf818ad949f8d6c8dabfc0",
                 "shasum": ""
             },
             "require": {
-                "doctrine/inflector": "~1.1.0",
+                "doctrine/inflector": "~1.1",
                 "erusev/parsedown": "~1.6",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
@@ -1220,7 +1217,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-08-03 12:59:42"
+            "time": "2017-08-14 20:17:41"
         },
         {
             "name": "laravel/tinker",
@@ -3353,29 +3350,31 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.6.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
-                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
+                "reference": "d3ed4cc37051c1ca52d22d76b437d14809fc7e0d",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3|^7.0"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
                 "ext-intl": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5"
+                "phpunit/phpunit": "^4.0 || ^5.0",
+                "squizlabs/php_codesniffer": "^1.5"
             },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -3397,7 +3396,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-04-29 12:21:54"
+            "time": "2017-08-15 16:48:10"
         },
         {
             "name": "hamcrest/hamcrest-php",

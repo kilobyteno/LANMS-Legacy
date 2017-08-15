@@ -10,7 +10,7 @@
         "cartalyst/sentinel": "2.0.*",
         "cartalyst/stripe": "~1.0",
         "cartalyst/stripe-laravel": "2.0.*",
-        "igaster/laravel-theme": "^1.16",
+        "igaster/laravel-theme": "^2.0",
         "intervention/image": "2.*",
         "intervention/imagecache": "2.*",
         "laravel/framework": "5.4.*",
