@@ -101,7 +101,7 @@
 							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 						@endif
 					<br>
-					<small class="text-muted">Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
+					<small class="text-muted"><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 				</p>
 				</div>
 			</div>
