@@ -48,7 +48,7 @@
 			<ul class="navbar-nav">
 				<li class="@if(Request::is('user')){{'active'}} @endif"><a href="{{ route('account') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 				<li class="@if(Request::is('user/members')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
-				<li class="@if(Request::is('user/crew')){{'active'}} @endif"><a href="{{ route('crew2') }}"><i class="fa fa-user-md"></i> Crew</a></li>
+				<li class="@if(Request::is('user/crew')){{'active'}} @endif"><a href="{{ route('user-crew') }}"><i class="fa fa-user-md"></i> Crew</a></li>
 				<li class="@if(Request::is('user/seating')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
 				@if(Sentinel::hasAccess('admin'))
 					<li class="visible-xs"><a href="{{ URL::Route('admin') }}"><i class="fa fa-user-secret"></i> Admin Panel</a></li>

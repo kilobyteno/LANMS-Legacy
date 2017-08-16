@@ -170,7 +170,7 @@ Route::group([
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
 		Route::get('/crew', [
-			'as' => 'crew2',
+			'as' => 'user-crew',
 			'uses' => 'Crew\CrewController@index'
 		]);
 		Route::group([
