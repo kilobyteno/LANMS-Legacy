@@ -181,7 +181,6 @@ return [
 		 */
 		Intervention\Image\ImageServiceProvider::class,
 		Igaster\LaravelTheme\themeServiceProvider::class,
-		LANMS\Providers\ThemeSelectServiceProvider::class,
 		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 		anlutro\LaravelSettings\ServiceProvider::class,
 		Liebig\Cron\Laravel5ServiceProvider::class,

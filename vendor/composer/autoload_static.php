@@ -2237,7 +2237,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Providers\\ConfigServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ConfigServiceProvider.php',
         'LANMS\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'LANMS\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'LANMS\\Providers\\ThemeSelectServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ThemeSelectServiceProvider.php',
         'LANMS\\Rem' => __DIR__ . '/../..' . '/app/Rem.php',
         'LANMS\\SeatPayment' => __DIR__ . '/../..' . '/app/SeatPayment.php',
         'LANMS\\SeatReservation' => __DIR__ . '/../..' . '/app/SeatReservation.php',

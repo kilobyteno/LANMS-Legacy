@@ -1837,7 +1837,6 @@ return array(
     'LANMS\\Providers\\ConfigServiceProvider' => $baseDir . '/app/Providers/ConfigServiceProvider.php',
     'LANMS\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'LANMS\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
-    'LANMS\\Providers\\ThemeSelectServiceProvider' => $baseDir . '/app/Providers/ThemeSelectServiceProvider.php',
     'LANMS\\Rem' => $baseDir . '/app/Rem.php',
     'LANMS\\SeatPayment' => $baseDir . '/app/SeatPayment.php',
     'LANMS\\SeatReservation' => $baseDir . '/app/SeatReservation.php',
