@@ -55,33 +55,35 @@ if(Config::get('app.debug')) {
 	});*/
 }
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
-
 Route::group([
-	'prefix' => 'news'
+	'middleware' => 'setTheme:frontend'
 	], function() {
-		Route::get('/', [
-			'as' => 'news',
-			'uses' => 'News\NewsController@index'
-		]);
-		Route::get('/{slug}', [
-			'as' => 'news-show',
-			'uses' => 'News\NewsController@show'
-		]);
-		Route::get('/category/{slug}', [
-			'as' => 'news-category-show',
-			'uses' => 'News\NewsCategoryController@show'
-		]);
-});
-
-Route::group([
-	'prefix' => 'crew'
-	], function() {
-		Route::get('/', [
-			'as' => 'crew',
-			'uses' => 'Crew\CrewController@index'
-		]);
+		Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+		Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
+		Route::group([
+			'prefix' => 'news'
+			], function() {
+				Route::get('/', [
+					'as' => 'news',
+					'uses' => 'News\NewsController@index'
+				]);
+				Route::get('/{slug}', [
+					'as' => 'news-show',
+					'uses' => 'News\NewsController@show'
+				]);
+				Route::get('/category/{slug}', [
+					'as' => 'news-category-show',
+					'uses' => 'News\NewsCategoryController@show'
+				]);
+		});
+		Route::group([
+			'prefix' => 'crew'
+			], function() {
+				Route::get('/', [
+					'as' => 'crew',
+					'uses' => 'Crew\CrewController@index'
+				]);
+		});
 });
 
 Route::group([
@@ -112,7 +114,7 @@ Route::group([
 });
 
 Route::group([
-	'middleware' => 'sentinel.auth',
+	'middleware' => ['sentinel.auth', 'setTheme:neon-user'],
 	'prefix' => 'user',
 	], function() {
 		Route::get('/', [
@@ -243,7 +245,7 @@ Route::group([
 
 // ADMIN PANEL
 Route::group([
-	'middleware' => ['sentinel.auth','sentinel.admin'],
+	'middleware' => ['sentinel.auth', 'sentinel.admin', 'setTheme:neon-admin'],
 	'prefix' => 'admin',
 	], function() {
 		Route::get('/', [
@@ -894,4 +896,4 @@ Route::group(['prefix' => 'ajax',], function() {
 });
 
 // THIS NEEDS TO BE AT THE BOTTOM TO MAKE ALL OTHER ROUTES WORK
-Route::get('/{slug}', ['as' => 'page', 'uses' => 'Page\PagesController@show']);
+Route::get('/{slug}', ['middleware' => 'setTheme:frontend', 'as' => 'page', 'uses' => 'Page\PagesController@show']);
