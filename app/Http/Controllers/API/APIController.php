@@ -40,28 +40,34 @@ class APIController extends Controller {
 
 	public function news($amount)
 	{
-		$news = News::isPublished()->orderby('published_at', 'desc')->get()->take($amount);
+		$news = News::isPublished()->orderby('published_at', 'desc')->take($amount)->get();
+
+		$weburl = \Setting::get('WEB_PROTOCOL').'://'.\Setting::get('WEB_DOMAIN').(\Setting::get('WEB_PORT') <> 80 ? ':'.\Setting::get('WEB_PORT') : '');
 
 		$appnews = array();
 
 		foreach ($news as $key) {
-			$id 		= $key["id"];
-			$slug 		= $key["slug"];
-			$title 		= $key["title"];
-			$content 	= html_entity_decode(strip_tags($key["content"], '<br>'));
-			$content    = preg_replace('/<br(\s+)?\/?>/i', "\n", $content);
-			$content	= (strlen($content) > 1000 ? substr($content, 0, 1000).'...' : $content);
-			$summary	= (strlen($content) > 300 ? substr($content, 0, 300).'...' : $content);
-			$author		= User::getFullnameAndNicknameByID($key["author_id"]);
-			$portrait	= (User::getImageLocation($key["author_id"]) ? \Setting::get('WEB_PROTOCOL').'://'.\Setting::get('WEB_DOMAIN').(\Setting::get('WEB_PORT') <> 80 ? ':'.\Setting::get('WEB_PORT') : '').User::getImageLocation($key["author_id"]) : '');
-			$image 		= ($key["image"] ? \Setting::get('WEB_PROTOCOL').'://'.\Setting::get('WEB_DOMAIN').(\Setting::get('WEB_PORT') <> 80 ? ':'.\Setting::get('WEB_PORT') : '').$key["image"] : 'https://downlinkdg.no/images/lan.jpg');
+			$id 			= $key["id"];
+			$slug 			= $key["slug"];
+			$title 			= $key["title"];
+			$content 		= html_entity_decode(strip_tags($key["content"], '<br>'));
+			$content    	= preg_replace('/<br(\s+)?\/?>/i', "\n", $content);
+			$content		= (strlen($content) > 1000 ? substr($content, 0, 1000).'...' : $content);
+			$summary		= (strlen($content) > 300 ? substr($content, 0, 300).'...' : $content);
+			$author			= User::getFullnameAndNicknameByID($key["author_id"]);
+			$authorImage 	= User::getImageLocation($key["author_id"]);
+			dd($authorImage);
+			$portrait		= $weburl.$authorImage;
+			$image 			= ($key["image"] ? $weburl.$key["image"] : 'https://downlinkdg.no/images/lan.jpg');
 			
 			/*$published_at 		= ($key["published_at"] <> "0000-00-00 00:00:00" ? $key["published_at"] : $key["created_at"]);*/
 			$published_at_human = \Carbon::now()->createFromTimestamp(strtotime($key["published_at"]))->diffForHumans();
 			$editor				= User::getFullnameAndNicknameByID($key["editor_id"]);
 			$published_at 		= $key["published_at"];
-			$created_at 		= $key["created_at"];
-			$updated_at 		= $key["updated_at"];
+			/*$created_at 		= $key["created_at"];*/
+			$created_at 		= \Carbon::createFromTimestamp(strtotime($key["created_at"]))->toDateTimeString();
+			/*$updated_at 		= $key["updated_at"];*/
+			$updated_at 		= \Carbon::createFromTimestamp(strtotime($key["updated_at"]))->toDateTimeString();
 
 			$article = array('id' => $id, 'slug' => $slug, 'title' => $title, 'summary' => $summary, 'content' => $content, 'author' => $author, 'portrait' => $portrait, 'image' => 'https://downlinkdg.no/images/lan.jpg', 'created_at' => $created_at, 'published_at' => $published_at, 'published_at_human' => $published_at_human, 'editor' => $editor, 'updated_at' => $updated_at, 'likes' => 0, 'comments' => 0);
 
@@ -73,7 +79,7 @@ class APIController extends Controller {
 
 	public function skipNews($amount, $skip)
 	{
-		$news = News::isPublished()->orderby('published_at', 'desc')->take($amount)->skip($skip)->get();
+		$news = News::isPublished()->orderby('published_at', 'desc')->skip($skip)->take($amount)->get();
 
 		$appnews = array();
 
@@ -93,8 +99,10 @@ class APIController extends Controller {
 			$published_at_human = \Carbon::now()->createFromTimestamp(strtotime($key["published_at"]))->diffForHumans();
 			$editor				= User::getFullnameAndNicknameByID($key["editor_id"]);
 			$published_at 		= $key["published_at"];
-			$created_at 		= $key["created_at"];
-			$updated_at 		= $key["updated_at"];
+			/*$created_at 		= $key["created_at"];*/
+			$created_at 		= \Carbon::createFromTimestamp(strtotime($key["created_at"]))->toDateTimeString();
+			/*$updated_at 		= $key["updated_at"];*/
+			$updated_at 		= \Carbon::createFromTimestamp(strtotime($key["updated_at"]))->toDateTimeString();
 
 			$article = array('id' => $id, 'slug' => $slug, 'title' => $title, 'summary' => $summary, 'content' => $content, 'author' => $author, 'portrait' => $portrait, 'image' => 'https://downlinkdg.no/images/lan.jpg', 'created_at' => $created_at, 'published_at' => $published_at, 'published_at_human' => $published_at_human, 'editor' => $editor, 'updated_at' => $updated_at, 'likes' => 0, 'comments' => 0);
 
