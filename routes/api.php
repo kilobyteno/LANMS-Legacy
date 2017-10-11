@@ -19,14 +19,19 @@ use Illuminate\Http\Request;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:api');
+})->middleware('api');
 
 Route::get('/stats', [
 	'as' => 'api-stats',
 	'uses' => 'API\APIController@stats'
-])->middleware('auth:api');
+])->middleware('api');
 
 Route::get('/news/{amount}', [
 	'as' => 'api-news',
 	'uses' => 'API\APIController@news'
-])->middleware('auth:api');
+])->middleware('api');
+
+Route::get('/news/{amount}/{skip}', [
+	'as' => 'api-news-skip',
+	'uses' => 'API\APIController@skipNews'
+])->middleware('api');
