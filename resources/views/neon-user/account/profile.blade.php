@@ -8,6 +8,7 @@
 			}	
 		</style>
 	@endif
+	<link rel="stylesheet" href="{{ Theme::url('css/neon-timeline.css') }}">
 @endsection
    
 @section('content')
@@ -134,7 +135,24 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<p><small><em>More features will appear here in the future.</em></small></p>
+			<ul class="cbp_tmtimeline">
+				<li>
+					<time class="cbp_tmtime"><span class="large">Now</span></time> 
+					<div class="cbp_tmicon"> <i class="fa fa-user"></i> </div>
+					<div class="cbp_tmlabel empty"> <span>No Activity</span> </div>
+				</li>
+				@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
+					@foreach(Sentinel::findById($id)->ownReservationsLastYear as $reservation)
+						<li>
+							<time class="cbp_tmtime"><span>{{ $reservation->year }}</span> <span>{{ date('M', strtotime($reservation->created_at)) }}</span></time> 
+							<div class="cbp_tmicon bg-info"> <i class="fa fa-street-view"></i> </div>
+							<div class="cbp_tmlabel">
+								<h2 style="padding-bottom:0px;">{{ $firstname }}@if($showname) {{ $lastname }}@endif <span>attended {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</span></h2>
+							</div>
+						</li>
+					@endforeach
+				@endif
+			</ul>
 		</div>
 	</div>
 </div>
