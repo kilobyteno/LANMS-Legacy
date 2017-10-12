@@ -50,14 +50,6 @@
 						<span>seats reserved</span>
 					</div>
 				</li>
-				@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
-					<li>
-						<div class="profile-stat">
-							<h3>{{\Setting::get('SEATING_YEAR')-1}}</h3>
-							<span>attendance</span>
-						</div>
-					</li>
-				@endif
 				@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
 					<li>
 						<div class="profile-stat">
@@ -147,7 +139,7 @@
 							<time class="cbp_tmtime"><span>{{ $reservation->year }}</span> <span>{{ date('M', strtotime($reservation->created_at)) }}</span></time> 
 							<div class="cbp_tmicon bg-info"> <i class="fa fa-street-view"></i> </div>
 							<div class="cbp_tmlabel">
-								<h2 style="padding-bottom:0px;">{{ $firstname }}@if($showname) {{ $lastname }}@endif <span>attended {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</span></h2>
+								<h2 style="padding-bottom:0px;">{{ $firstname }}@if($showname) {{ $lastname }}@endif <span>attended</span> {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</h2>
 							</div>
 						</li>
 					@endforeach
