@@ -52,7 +52,12 @@ class CrewController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.crew.*'])){
+			return view('crew.create');
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**

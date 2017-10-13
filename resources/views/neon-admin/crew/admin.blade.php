@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Crew @if(Sentinel::hasAccess('admin.crew.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-crew-create') }}"><i class="fa fa-plus"></i> Create Category</a>@endif</h1>
+		<h1 class="margin-bottom">Crew @if(Sentinel::hasAccess('admin.crew.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-crew-create') }}"><i class="fa fa-plus"></i> Assign Crew</a>@endif</h1>
 
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>

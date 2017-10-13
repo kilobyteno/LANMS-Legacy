@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Create Category - Admin')
+@section('title', 'Assign Crew - Admin')
 @section('css')
 	<style>
 		.ms-container .ms-list {
@@ -28,13 +28,12 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Create Category</h1>
+		<h1 class="margin-bottom">Assign Crew</h1>
 		<ol class="breadcrumb 2">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
 			<li><a href="{{ route('admin-crew') }}">Crew</a></li>
-			<li><a href="{{ route('admin-crew-category') }}">Categories</a></li>
-			<li class="active"><strong>Create Category</strong></li>
+			<li class="active"><strong>Assign Crew</strong></li>
 		</ol>
 					
 		<br />
