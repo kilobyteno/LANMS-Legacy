@@ -11,7 +11,7 @@
         }
     ],	
     "require": {
-        "illuminate/contracts": "5.4.*"
+        "illuminate/contracts": "5.4.*|5.5.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.4",
@@ -24,6 +24,16 @@
         "psr-4" : {
             "Igaster\\LaravelTheme\\"        : "src/",
             "Igaster\\LaravelTheme\\Tests\\" : "tests/"            
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Igaster\\LaravelTheme\\themeServiceProvider"
+            ],
+            "aliases": {
+                "Theme": "Igaster\\LaravelTheme\\Facades\\Theme"
+            }
         }
     },
     "minimum-stability": "stable"
