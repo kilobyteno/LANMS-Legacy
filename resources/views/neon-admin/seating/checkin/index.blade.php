@@ -68,9 +68,43 @@
 				<hr>
 
 				@foreach($checkedin as $checkin)
-					<p>Bandnumber: {{$checkin->bandnumber}}</p>
+					<div class="col-md-6">
+						<div class="member-entry">
+							<a href="{{ route('user-profile', $checkin->ticket->user->username) }}" class="member-img">
+								<img src="{{ $checkin->ticket->user->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
+								<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
+							</a>
+							<div class="member-details">
+								<h4>
+									<a href="{{ route('user-profile', $checkin->ticket->user->username) }}">{{ $checkin->ticket->user->firstname }}@if($checkin->ticket->user->showname) {{ $checkin->ticket->user->lastname }}@endif</a>
+								</h4>
+								<div class="row info-list">
+									@if($checkin->ticket->user->occupation)
+										<div class="col-sm-6">
+											<i class="fa fa-briefcase"></i> {{ $checkin->ticket->user->occupation }}
+										</div>
+									@endif
+									@if($checkin->ticket->user->location)
+										<div class="col-sm-6">
+											<i class="fa fa-map-marker"></i> {{ $checkin->ticket->user->location or '<em>Unkown</em>' }}
+										</div>
+									@endif
+									<div class="clear"></div>
+									@if($checkin->ticket->user->gender)
+										<div class="col-sm-6">
+											<i class="fa fa-genderless"></i> {{ $checkin->ticket->user->gender }}
+										</div>
+									@endif
+									@if($checkin->ticket->user->birthdate)
+										<div class="col-sm-6">
+											<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($checkin->ticket->user->birthdate), date_create('today'))->y }}
+										</div>
+									@endif
+								</div>
+							</div>
+						</div>
+					</div>
 				@endforeach
-				<em>Fix will come later.</em>
 			</div>
 
 			<div class="col-md-6">
