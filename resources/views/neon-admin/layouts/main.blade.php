@@ -87,7 +87,7 @@
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
 				</li>
 				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
-					<a href="{{ route('admin-info') }}"><i class="fa fa-info"></i> <span class="title">Info</span></a>
+					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
 				<li class="@if(Request::is('admin/print')){{'active'}} @endif">
 					<a href="{{ route('admin-print') }}"><i class="fa fa-print"></i> <span class="title">Print</span></a>
