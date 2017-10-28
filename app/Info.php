@@ -26,4 +26,9 @@ class Info extends Model
 		return $this->hasOne('User', 'id', 'editor_id');
 	}
 
+	public function scopeGetContent($query, $name) {
+		$info = $query->where('name', '=', $name)->first();
+		return $info->content;
+	}
+
 }
