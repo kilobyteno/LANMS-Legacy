@@ -501,6 +501,22 @@ Route::group([
 				]);
 		});
 		Route::group([
+			'prefix' => 'info'
+			], function() {
+				Route::get('/', [
+					'as' => 'admin-info',
+					'uses' => 'Admin\InfoController@index'
+				]);
+				Route::get('/{id}/edit', [
+					'as' => 'admin-info-edit',
+					'uses' => 'Admin\InfoController@edit'
+				]);
+				Route::post('/{id}/update', [
+					'as' => 'admin-info-update',
+					'uses' => 'Admin\InfoController@update'
+				]);
+		});
+		Route::group([
 			'prefix' => 'print'
 			], function() {
 				Route::get('/', [
