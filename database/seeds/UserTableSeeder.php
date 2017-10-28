@@ -126,6 +126,8 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.print.destroy');
 		$role->addPermission('admin.print.restore');
 
+		$role->addPermission('admin.info.update');
+
 		$role->addPermission('admin.settings.update');
 
 		$role->save();
@@ -180,6 +182,8 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.print.destroy');
 		$role->addPermission('admin.print.restore', false);
 
+		$role->addPermission('admin.info.update');
+
 		$role->addPermission('admin.settings.update', false);
 
 		$role->save();
@@ -233,6 +237,8 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.print.update');
 		$role->addPermission('admin.print.destroy', false);
 		$role->addPermission('admin.print.restore', false);
+
+		$role->addPermission('admin.info.update', false);
 
 		$role->addPermission('admin.settings.update', false);
 
