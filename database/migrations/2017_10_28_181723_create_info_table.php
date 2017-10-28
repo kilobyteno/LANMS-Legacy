@@ -24,6 +24,7 @@ class CreateInfoTable extends Migration
             $table->integer('editor_id')->default(0); //who updated it?
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
