@@ -2,10 +2,14 @@
 
 namespace LANMS\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use LANMS\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\Info;
+
+use LANMS\Http\Requests\Admin\InfoEditRequest;
 
 class InfoController extends Controller
 {
@@ -19,7 +23,7 @@ class InfoController extends Controller
 		if (Sentinel::getUser()->hasAccess(['admin.info.*'])){
 			$info = Info::all();
 			return view('info.index')
-						->withinfo($info);
+						->with('allinfo', $info);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -36,7 +40,7 @@ class InfoController extends Controller
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.info.update'])){
 			$info = Info::find($id);
-			return view('info.edit')->withContent($info->content);
+			return view('info.edit')->withInfo($info);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
