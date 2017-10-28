@@ -42,7 +42,7 @@
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Find Band
-						<i class="fa fa-ticket"></i>
+						<i class="fa fa-search"></i>
 					</button>
 				</div>
 				
