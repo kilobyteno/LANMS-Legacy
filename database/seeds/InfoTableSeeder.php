@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use LANMS\Info;
+
 class InfoTableSeeder extends Seeder
 {
     /**
