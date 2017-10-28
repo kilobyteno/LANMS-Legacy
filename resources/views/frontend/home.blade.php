@@ -51,9 +51,9 @@
 							<h3>Info</h3>
 						</div>
 						<div class="card-action">
-							<p><b>Hvor: </b> Gausdal Ungdomskole</p>
-							<p><b>Når: </b> 28. feb - 2. mars</p>
-							<p><b>Pris: </b> 200kr*</p>
+							<p><b>Hvor: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
+							<p><b>Når: </b> {{ LANMS\Info::getContent('when') }}</p>
+							<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
 						</div>
 					</div>
 				</div>
