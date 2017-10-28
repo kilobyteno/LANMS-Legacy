@@ -12,7 +12,7 @@ use LANMS\Checkin;
 use LANMS\SeatReservation;
 use LANMS\Seats;
 
-use LANMS\Http\Requests\Admin\CheckRequest;
+use LANMS\Http\Requests\Admin\CheckTicketRequest;
 use LANMS\Http\Requests\Admin\CheckinRequest;
 
 class CheckinController extends Controller {
