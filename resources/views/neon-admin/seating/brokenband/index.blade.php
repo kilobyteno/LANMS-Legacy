@@ -36,6 +36,27 @@
 
 		<br />
 		
+		<form action="{{ route('admin-seating-brokenband-check') }}" method="post">
+
+			<div class="row">
+				<div class="col-sm-2 post-save-changes">
+					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
+						Find Band
+						<i class="fa fa-ticket"></i>
+					</button>
+				</div>
+				
+				<div class="col-sm-10 @if($errors->has('band_id')) has-error @endif">
+					<input type="text" class="form-control input-lg" name="band_id" placeholder="Band ID" value="{{ (old('band_id')) ? old('band_id') : '' }}" autocomplete="off" autofocus />
+					@if($errors->has('band_id'))
+						<p class="text-danger">{{ $errors->first('band_id') }}</p>
+					@endif
+				</div>
+			</div>
+
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+		</form>
 
 		<br><hr><br>
 
