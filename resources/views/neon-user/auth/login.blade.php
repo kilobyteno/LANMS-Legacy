@@ -81,7 +81,7 @@
 		
 		<div class="login-bottom-links">
 			
-			<p><a href="{{ route('account-forgot-password') }}" class="link">Forgot your credentials?</a> &middot; <a href="{{ route('account-register') }}" class="link">Need an account?</a></p>
+			<p><a href="{{ route('account-forgot-password') }}" class="link">Forgot your credentials?</a> &middot; <a href="{{ route('account-register') }}" class="link">Need an account?</a><br/><a href="{{ route('account-resendverification') }}" class="link">Did not get the activation email?</a></p>
 
 			<p><a href="/tos">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></p>
 			

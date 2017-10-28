@@ -59,4 +59,8 @@ class RecoverController extends Controller {
 		}
 	}
 
+	public function getResendVerification() {
+		return view('auth.resendverification');
+	}
+
 }
