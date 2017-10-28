@@ -3,43 +3,27 @@
 namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Info extends Model
 {
     
-	Info::create([
-		'name' 		=> 'when',
-		'content'	=> '27. feb - 1. mars',
-		'author_id'	=> 1,
-		'editor_id'	=> 1,
-	]);
+	use SoftDeletes;
 
-	Info::create([
-		'name' 		=> 'where',
-		'content'	=> '&Oslash;yerhallen',
-		'author_id'	=> 1,
-		'editor_id'	=> 1,
-	]);
+	protected $dates = ['deleted_at'];
+	protected $fillable = [
+		'content',
+		'author_id',
+		'editor_id',
+	];
+	protected $table = 'info';
 
-	Info::create([
-		'name' 		=> 'where_url',
-		'content'	=> 'https://goo.gl/maps/PvYyAKpxEyu',
-		'author_id'	=> 1,
-		'editor_id'	=> 1,
-	]);
+	function author() {
+		return $this->hasOne('User', 'id', 'author_id');
+	}
 
-	Info::create([
-		'name' 		=> 'price',
-		'content'	=> '300kr',
-		'author_id'	=> 1,
-		'editor_id'	=> 1,
-	]);
-
-	Info::create([
-		'name' 		=> 'price_alt',
-		'content'	=> '350kr',
-		'author_id'	=> 1,
-		'editor_id'	=> 1,
-	]);
+	function editor() {
+		return $this->hasOne('User', 'id', 'editor_id');
+	}
 
 }
