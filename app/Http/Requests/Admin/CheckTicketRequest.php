@@ -2,7 +2,7 @@
 
 use LANMS\Http\Requests\Request;
 
-class CheckRequest extends Request {
+class CheckTicketRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.

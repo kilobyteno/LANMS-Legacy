@@ -112,7 +112,7 @@ class CheckinController extends Controller {
 								->with('message', 'You do not have access to this page!');
 		}
 	}
-	public function check(CheckRequest $request)
+	public function check(CheckTicketRequest $request)
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
 			$barcode = $request->get('ticket_id');
