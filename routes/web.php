@@ -429,6 +429,10 @@ Route::group([
 									'as' => 'admin-seating-brokenband-check',
 									'uses' => 'Admin\BrokenBandController@check'
 								]);
+								Route::get('/show/{id}', [
+									'as' => 'admin-seating-brokenband-show',
+									'uses' => 'Admin\BrokenBandController@show'
+								]);
 								Route::post('/store/{id}', [
 									'as' => 'admin-seating-brokenband-store',
 									'uses' => 'Admin\BrokenBandController@store'
