@@ -85,8 +85,7 @@ var neonRegister = neonRegister || {};
 				},
 
 				birthdate: {
-					required: true,
-					age: true
+					required: true
 				},
 				
 				password: {
