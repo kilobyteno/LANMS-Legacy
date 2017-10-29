@@ -39,28 +39,33 @@
 			<div class="form-register-success">
 				<i class="fa fa-check"></i>
 				<h3>Your verification has been sent!</h3><br>
-				<p>Please check your email, also the Junk-folder.</p>
+				<p>Please check your email inbox, also the Junk-folder.</p>
 			</div>
 
 			<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 			
-			<div class="form-group">
-				
-				<div class="input-group">
-					<div class="input-group-addon">
-						<i class="fa fa-at"></i>
-					</div>
+			<div class="form-steps">
+				<div class="step current" id="step-1">
+					<div class="form-group">
+						
+						<div class="input-group">
+							<div class="input-group-addon">
+								<i class="fa fa-at"></i>
+							</div>
+							
+							<input type="text" class="form-control" name="email" id="email" placeholder="E-mail" autocomplete="off" />
+						</div>
 					
-					<input type="text" class="form-control" name="email" id="email" placeholder="E-mail" autocomplete="off" />
-				</div>
-			
-			</div>
+					</div>
 
-			<div class="form-group">
-				<button type="submit" class="btn btn-success btn-block btn-login">
-					<i class="fa fa-paper-plane"></i>
-					Resend Verification
-				</button>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btn-block btn-login">
+							<i class="fa fa-paper-plane"></i>
+							Resend Verification
+						</button>
+					</div>
+
+				</div>
 			</div>
 			
 		</form>

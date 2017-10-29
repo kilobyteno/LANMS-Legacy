@@ -117,9 +117,21 @@ var neonResendVerification = neonResendVerification || {};
 									}
 									else if(status == 'success')
 									{
-										$(".login-page").removeClass('logging-in');
-										neonResendVerification.resetProgressBar(true);
-										document.getElementById("msg").innerHTML = msg;
+										neonResendVerification.setPercentage(100);
+										// Hide the description title
+										$(".login-page .login-header .description").slideUp();
+										
+										// Hide the register form (steps)
+										neonResendVerification.$steps.slideUp('normal', function()
+										{
+											// Remove loging-in state
+											$(".login-page").removeClass('logging-in');
+											
+											// Now we show the success message
+											$(".form-register-success").slideDown('normal');
+											
+											// You can use the data returned from response variable
+										});
 									};
 									
 								}, 1000);
