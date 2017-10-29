@@ -110,6 +110,10 @@ Route::group([
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
+		Route::get('/resendverification', [
+			'as' => 'account-resendverification' ,
+			'uses' => 'Member\RecoverController@getResendVerification'
+		]);
 		
 });
 
@@ -920,6 +924,58 @@ Route::group(['prefix' => 'ajax',], function() {
 
 		return Response::json($resp);
 		
+	});
+	Route::post('/account/resendverification', function () {
+
+		if(!Request::ajax()) {
+			abort(403);
+		}
+
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
+		} else {
+
+			$resp 		= array();
+			$status 	= 'invalid';
+			$msg 		= 'Something went wrong...';
+
+			$email 	= Request::input('email');
+
+			$checkuser = User::where('email', '=', $email)->first();
+			if($checkuser == null) {
+				$msg = "Couldn't find account associated with the e-mail! Please try again.";
+			} else {
+				
+				$user = Sentinel::findById($checkuser->id);
+				$activation = Activation::exists($user);
+
+				if($activation == null) {
+					$msg = "Your account is already activated or we couldn't find any uncompleted activations.";
+				} else {
+					if ($activation->completed == true) {
+					    $msg = "Activation has already been completed.";
+					} else {
+					    $status = 'success';
+
+						Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation->code), 'firstname' => $checkuser->firstname), function($message) use ($checkuser) {
+							$message->to($checkuser->email, $checkuser->firstname)->subject('Activate your account');
+						});
+
+						if(count(Mail::failures()) > 0) {
+							$status = 'invalid';
+							$msg = 'Something went wrong while trying to send you an email.';
+						}
+					}
+				}
+			}
+		}
+
+		$resp['status'] = $status;
+		$resp['msg'] 	= $msg;
+
+		return Response::json($resp);
+
 	});
 });
 
