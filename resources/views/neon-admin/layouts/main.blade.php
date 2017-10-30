@@ -44,6 +44,7 @@
 				<div class="logo">
 					<a href="{{ route('account') }}"><img src="{{ Setting::get('WEB_LOGO') }}" alt="" width="120"></a>
 				</div>
+				<div class="sidebar-collapse"> <a href="#" class="sidebar-collapse-icon"><!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition --> <i class="entypo-menu"></i> </a> </div>
 				<div class="sidebar-mobile-menu visible-xs">
 					<a href="#" class="with-animation">
 						<i class="entypo-menu"></i>
