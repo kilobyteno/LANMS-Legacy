@@ -88,7 +88,7 @@ class PagesController extends Controller {
 			$page->content 		= $request->get('content');
 			$page->active 		= $active;
 			$page->showinmenu 	= $showinmenu;
-			$page->creator_id	= Sentinel::getUser()->id;
+			$page->editor_id	= Sentinel::getUser()->id;
 			$page->author_id	= Sentinel::getUser()->id;
 
 			$pagesave 		= $page->save();
@@ -168,7 +168,7 @@ class PagesController extends Controller {
 			$page->slug 		= $request->get('slug');
 			$page->active 		= $active;
 			$page->showinmenu 	= $showinmenu;
-			$page->author_id	= Sentinel::getUser()->id;
+			$page->editor_id	= Sentinel::getUser()->id;
 
 			if($page->save()) {
 				return Redirect::route('admin-pages-edit', $id)

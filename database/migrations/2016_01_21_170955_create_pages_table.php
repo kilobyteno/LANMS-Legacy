@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration {
 			$table->string('slug');
 			$table->longText('content');
 
-			$table->integer('creator_id')->default(0); //who created it?
+			$table->integer('editor_id')->default(0); //who created it?
 			$table->integer('author_id')->default(0); //who updated it?
 			$table->boolean('active')->default(1); //is it visible on the website?
 			$table->boolean('showinmenu')->default(0);
