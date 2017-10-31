@@ -21,7 +21,7 @@ class SettingsController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.settings.*'])){
 			$settings = Setting::all();
-			$removesettings = array_splice($settings, 0, 4);
+			$removesettings = array_splice($settings, 0, 6);
 			return view('settings.index')
 						->withSettings($settings);
 		} else {
