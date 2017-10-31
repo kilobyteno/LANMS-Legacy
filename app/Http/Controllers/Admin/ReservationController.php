@@ -70,7 +70,7 @@ class ReservationController extends Controller {
 		$slug = strtolower($slug); // Just to be sure it is correct
 		$currentseat = Seats::where('slug', $slug)->first();
 		if($currentseat == null) {
-			return Redirect::route('seating')->with('messagetype', 'warning')
+			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'Could not find seat.');
 		}
 
@@ -83,7 +83,7 @@ class ReservationController extends Controller {
 			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
 			return PDF::load($html)->show();
 		} else {
-			return Redirect::route('seating')->with('messagetype', 'warning')
+			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
 		}
 		
