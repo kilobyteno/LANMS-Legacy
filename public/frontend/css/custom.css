@@ -49,3 +49,7 @@ hr {
 	max-width: 600px !important;
 	max-height: 150px !important;
 }
+
+.text-danger {
+    color: #ac1818;
+}
