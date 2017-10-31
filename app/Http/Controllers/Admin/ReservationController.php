@@ -74,6 +74,11 @@ class ReservationController extends Controller {
 								->with('message', 'Could not find seat.');
 		}
 
+		if($currentseat->reservationsThisYear()->first() == null) {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'Could not find valid ticket.');
+		}
+
 		if(Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
 			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
 			return PDF::load($html)->show();
