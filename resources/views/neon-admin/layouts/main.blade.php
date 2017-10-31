@@ -140,6 +140,12 @@
 		
 		<hr />
 
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-settings') }}">Settings-page</a>.</div>
+		@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Your license has expired! Please contact your provider.</div>
+		@endif
+
 		@yield('content')
 
 		<div class="row">
@@ -153,6 +159,8 @@
 						<div class="col-md-6 text-right">
 							<p>
 								<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+								<br>
+								@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							</p>
 							<p>
 								@if(Config::get('app.debug'))
