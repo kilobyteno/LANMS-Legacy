@@ -261,6 +261,18 @@ Route::group([
 			'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
 		]);
 		Route::group([
+			'prefix' => 'license'
+			], function() {
+				Route::get('/', [
+					'as' => 'admin-license',
+					'uses' => 'Admin\LicenseController@index'
+				]);
+				Route::get('/check', [
+					'as' => 'admin-license-check',
+					'uses' => 'Admin\LicenseController@check'
+				]);
+		});
+		Route::group([
 			'prefix' => 'crew'
 			], function() {
 				Route::get('/', [

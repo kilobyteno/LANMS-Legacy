@@ -100,6 +100,9 @@
 					<li class="@if(Request::is('admin/logs*')){{'active opened'}} @endif">
 						<a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a>
 					</li>
+					<li class="@if(Request::is('admin/license*')){{'active'}} @endif">
+						<a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a>
+					</li>
 				@endif
 			</div>
 		</div>
