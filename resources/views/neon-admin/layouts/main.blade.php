@@ -144,7 +144,7 @@
 		<hr />
 
 		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-settings') }}">Settings-page</a>.</div>
+			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
 		@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
 			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Your license has expired! Please contact your provider.</div>
 		@endif
