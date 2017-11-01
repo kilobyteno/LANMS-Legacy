@@ -78,11 +78,13 @@ class CheckLicense extends Command
                                 $localkeyresults['status'] = "Invalid";
                                 $results = array();
                             }
-                            $validips = explode(',', $results['validip']);
-                            if (!in_array($usersip, $validips)) {
-                                $localkeyvalid = false;
-                                $localkeyresults['status'] = "Invalid";
-                                $results = array();
+                            if(isset($results['validip'])) {
+                                $validips = explode(',', $results['validip']);
+                                if (!in_array($usersip, $validips)) {
+                                    $localkeyvalid = false;
+                                    $localkeyresults['status'] = "Invalid";
+                                    $results = array();
+                                }
                             }
                             if(isset($results['validdirectory'])) {
                                 $validdirs = explode(',', $results['validdirectory']);
