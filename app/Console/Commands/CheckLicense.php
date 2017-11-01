@@ -203,6 +203,7 @@ class CheckLicense extends Command
                 Setting::save();
                 $status_desc = "Active. Localkey updated.";
                 $this->info('Status: '.$status_desc);
+                \Artisan::call('up');
                 break;
             case "Invalid":
                 $status_desc = "License key is Invalid!";
