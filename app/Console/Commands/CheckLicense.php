@@ -221,6 +221,7 @@ class CheckLicense extends Command
                 Setting::set("APP_LICENSE_STATUS", $status);
                 Setting::save();
                 $this->error('Status: '.$status_desc);
+                \Artisan::call('down');
                 break;
             default:
                 $status_desc = "Invalid Response!";
