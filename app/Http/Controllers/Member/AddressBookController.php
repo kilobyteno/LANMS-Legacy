@@ -135,13 +135,13 @@ class AddressBookController extends Controller {
 					$main_address = 1;
 				}
 
-				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', 1)->count() <= 0) {
-					$main_address = 1;
+				if($main_address == 1) {
+					// Set all other addresses to non-main_address
+					Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '!=', $id)->update(['main_address' => false]);
 				}
 
-				if($main_address === 1) {
-					// Set all other addresses to non-main_address
-					Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->update(['main_address' => false]);
+				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '!=', $id)->where('main_address', '=', 1)->count() < 1) {
+					$main_address = 1;
 				}
 
 				$address 				= Address::find($id);
