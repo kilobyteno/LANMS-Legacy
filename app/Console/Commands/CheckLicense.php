@@ -44,8 +44,8 @@ class CheckLicense extends Command
         function check_license($licensekey, $localkey='') {
             $whmcsurl = 'https://my.infihex.com/';
             $licensing_secret_key = 'InfihexLANMS';
-            $localkeydays = 15; // The number of days to wait between performing remote license checks
-            $allowcheckfaildays = 5; // The number of days to allow failover for after local key expiry
+            $localkeydays = 7; // The number of days to wait between performing remote license checks
+            $allowcheckfaildays = 3; // The number of days to allow failover for after local key expiry
             // -----------------------------------
             //  -- Do not edit below this line --
             // -----------------------------------
@@ -56,6 +56,7 @@ class CheckLicense extends Command
             $dirpath = dirname(__FILE__);
             $verifyfilepath = 'modules/servers/licensing/verify.php';
             $localkeyvalid = false;
+            $originalcheckdate = "19700101";
             if ($localkey) {
                 $localkey = str_replace("\n", '', $localkey); # Remove the line breaks
                 $localdata = substr($localkey, 0, strlen($localkey) - 32); # Extract License Data
@@ -73,22 +74,26 @@ class CheckLicense extends Command
                             $localkeyvalid = true;
                             $results = $localkeyresults;
                             $validdomains = explode(',', $results['validdomain']);
-                            if (!in_array($_SERVER['SERVER_NAME'], $validdomains)) {
+                            if (!in_array(Request::server("SERVER_NAME"), $validdomains)) {
                                 $localkeyvalid = false;
                                 $localkeyresults['status'] = "Invalid";
                                 $results = array();
                             }
-                            $validips = explode(',', $results['validip']);
-                            if (!in_array($usersip, $validips)) {
-                                $localkeyvalid = false;
-                                $localkeyresults['status'] = "Invalid";
-                                $results = array();
+                            if(isset($results['validip'])) {
+                                $validips = explode(',', $results['validip']);
+                                if (!in_array($usersip, $validips)) {
+                                    $localkeyvalid = false;
+                                    $localkeyresults['status'] = "Invalid";
+                                    $results = array();
+                                }
                             }
-                            $validdirs = explode(',', $results['validdirectory']);
-                            if (!in_array($dirpath, $validdirs)) {
-                                $localkeyvalid = false;
-                                $localkeyresults['status'] = "Invalid";
-                                $results = array();
+                            if(isset($results['validdirectory'])) {
+                                $validdirs = explode(',', $results['validdirectory']);
+                                if (!in_array($dirpath, $validdirs)) {
+                                    $localkeyvalid = false;
+                                    $localkeyresults['status'] = "Invalid";
+                                    $results = array();
+                                }
                             }
                         }
                     }
@@ -166,7 +171,7 @@ class CheckLicense extends Command
                 if (!is_array($results)) {
                     die("Invalid License Server Response");
                 }
-                if ($results['md5hash']) {
+                if (isset($results['md5hash'])) {
                     if ($results['md5hash'] != md5($licensing_secret_key . $check_token)) {
                         $results['status'] = "Invalid";
                         $results['description'] = "MD5 Checksum Verification Failed";
@@ -189,36 +194,55 @@ class CheckLicense extends Command
             return $results;
         }
         // Get the license key and local key from storage
-        $licensekey = Setting::get("APP_LICENSE_KEY");
-        $localkey = Setting::get("APP_LICENSE_LOCAL_KEY");
-        $this->info('Checking License...');
-        $results = check_license($licensekey, $localkey); // Validate the license key information
-        $status = $results['status'];
-        switch ($status) {
-            case "Active":
-                Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
-                Setting::save();
-                $status_desc = "Active. Localkey updated.";
-                break;
-            case "Invalid":
-                $status_desc = "License key is Invalid!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                break;
-            case "Expired":
-                $status_desc = "License key is Expired!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                break;
-            case "Suspended":
-                $status_desc = "License key is Suspended!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                break;
-            default:
-                $status_desc = "Invalid Response!";
-                break;
+        $app_licensekey = Setting::get("APP_LICENSE_KEY");
+        $app_localkey = Setting::get("APP_LICENSE_LOCAL_KEY");
+
+        if($app_licensekey == null) {
+            $this->error('You have not saved a license key.');
+            Setting::set("APP_LICENSE_STATUS", "Invalid");
+            Setting::set("APP_LICENSE_STATUS_DESC", "No license key added.");
+            Setting::save();
+        } else {
+            $this->info('Checking License...');
+            $results = check_license($app_licensekey, $app_localkey); // Validate the license key information
+            $status = $results['status'];
+            $status_desc = $results['description'];
+            switch ($status) {
+                case "Active":
+                    Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
+                    $this->info('Status: '.$status);
+                    \Artisan::call('up');
+                    break;
+                case "Invalid":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
+                    $this->error('Status: '.$status);
+                    break;
+                case "Expired":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
+                    $this->error('Status: '.$status_desc);
+                    break;
+                case "Suspended":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
+                    $this->error('Status: '.$status);
+                    \Artisan::call('down');
+                    break;
+                default:
+                    Setting::set("APP_LICENSE_STATUS", "Invalid");
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
+                    break;
+            }
+            $this->info('Descripton: '.$status_desc);
+            $this->info('Done.');
         }
-        $this->info('Status: '.$status_desc);
     }
 }

@@ -12,6 +12,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('APP_VERSION_TYPE', 'Dev');
 		Setting::set('APP_URL', 'http://jira.infihex.com/projects/LANMS?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=no-filter');
 		Setting::set('APP_LICENSE_STATUS', '');
+		Setting::set('APP_LICENSE_STATUS_DESC', '');
 		Setting::set('APP_LICENSE_LOCAL_KEY', '');
 		Setting::set('APP_LICENSE_KEY', '');
 
