@@ -129,6 +129,7 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.info.update');
 
 		$role->addPermission('admin.settings.update');
+		$role->addPermission('admin.license.update');
 
 		$role->save();
 
@@ -185,6 +186,7 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.info.update');
 
 		$role->addPermission('admin.settings.update', false);
+		$role->addPermission('admin.license.update', false);
 
 		$role->save();
 
@@ -241,6 +243,7 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.info.update', false);
 
 		$role->addPermission('admin.settings.update', false);
+		$role->addPermission('admin.license.update', false);
 
 		$role->save();
 
