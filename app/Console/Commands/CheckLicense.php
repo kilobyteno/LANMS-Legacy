@@ -206,7 +206,11 @@ class CheckLicense extends Command
             $this->info('Checking License...');
             $results = check_license($app_licensekey, $app_localkey); // Validate the license key information
             $status = $results['status'];
-            $status_desc = $results['description'];
+            if(isset($results['description'])) {
+                $status_desc = $results['description'];
+            } else  {
+                $status_desc = "";
+            }
             switch ($status) {
                 case "Active":
                     Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
