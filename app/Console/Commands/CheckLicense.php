@@ -193,43 +193,48 @@ class CheckLicense extends Command
             return $results;
         }
         // Get the license key and local key from storage
-        $licensekey = Setting::get("APP_LICENSE_KEY");
-        $localkey = Setting::get("APP_LICENSE_LOCAL_KEY");
-        $this->info('Checking License...');
-        $results = check_license($licensekey, $localkey); // Validate the license key information
-        $status = $results['status'];
-        switch ($status) {
-            case "Active":
-                Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                $status_desc = "Active. Localkey updated.";
-                $this->info('Status: '.$status_desc);
-                \Artisan::call('up');
-                break;
-            case "Invalid":
-                $status_desc = "License key is Invalid!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                $this->error('Status: '.$status_desc);
-                break;
-            case "Expired":
-                $status_desc = "License key is Expired!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                $this->error('Status: '.$status_desc);
-                break;
-            case "Suspended":
-                $status_desc = "License key is Suspended!";
-                Setting::set("APP_LICENSE_STATUS", $status);
-                Setting::save();
-                $this->error('Status: '.$status_desc);
-                \Artisan::call('down');
-                break;
-            default:
-                $status_desc = "Invalid Response!";
-                break;
+        $app_licensekey = Setting::get("APP_LICENSE_KEY");
+        $app_localkey = Setting::get("APP_LICENSE_LOCAL_KEY");
+
+        if($app_licensekey == null) {
+            $this->error('You have not saved a license key.');
+            Setting::set("APP_LICENSE_STATUS", "Invalid");
+            Setting::save();
+        } else {
+            $this->info('Checking License...');
+            $results = check_license($app_licensekey, $app_localkey); // Validate the license key information
+            $status = $results['status'];
+            $status_desc = $results['description'];
+            switch ($status) {
+                case "Active":
+                    Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::save();
+                    $this->info('Status: '.$status);
+                    \Artisan::call('up');
+                    break;
+                case "Invalid":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::save();
+                    $this->error('Status: '.$status);
+                    break;
+                case "Expired":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::save();
+                    $this->error('Status: '.$status_desc);
+                    break;
+                case "Suspended":
+                    Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::save();
+                    $this->error('Status: '.$status);
+                    \Artisan::call('down');
+                    break;
+                default:
+                    $status_desc = "Invalid Response!";
+                    break;
+            }
+            $this->info('Descripton: '.$status_desc);
+            $this->info('Done.');
         }
-        $this->info('Done.');
     }
 }
