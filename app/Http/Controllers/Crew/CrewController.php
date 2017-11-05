@@ -65,9 +65,30 @@ class CrewController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CrewCreateRequest $request)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.crew.create'])){
+
+			$crew 					= new Crew;
+			$crew->user_id 			= $request->get('user_id');
+			$crew->category_id 		= $request->get('category_id');
+			$crew->author_id		= Sentinel::getUser()->id;
+			$crew->editor_id		= Sentinel::getUser()->id;
+
+			if($crew->save()) {
+				return Redirect::route('admin-crew-skill')
+						->with('messagetype', 'success')
+						->with('message', 'The skill has now been saved and published!');
+			} else {
+				return Redirect::route('admin-crew-skill-create')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while saving the skill.');
+			}
+
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
