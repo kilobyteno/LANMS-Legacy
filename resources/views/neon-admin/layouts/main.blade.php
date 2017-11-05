@@ -73,7 +73,6 @@
 						<li class="@if(Request::is('admin/news/categories*')){{'active'}} @endif"><a href="{{ route('admin-news-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
 					</ul>
 				</li>
-				{{--<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>--}}
 				<li class="@if(Request::is('admin/seating*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
 					<ul>
@@ -92,14 +91,13 @@
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
 				@if(Sentinel::inRole('superadmin'))
-					<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">
-						<a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a>
-					</li>
-					<li class="@if(Request::is('admin/logs*')){{'active opened'}} @endif">
-						<a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a>
-					</li>
-					<li class="@if(Request::is('admin/license*')){{'active'}} @endif">
-						<a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a>
+					<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
+						<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
+						<ul>
+							<li class="@if(Request::is('admin/system/settings*')){{'active'}} @endif"><a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a></li>
+							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a></li>
+							<li class="@if(Request::is('admin/system/license*')){{'active'}} @endif"><a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a></li>
+						</ul>
 					</li>
 				@endif
 			</div>

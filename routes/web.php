@@ -256,22 +256,6 @@ Route::group([
 			'as' => 'admin' ,
 			'uses' => 'HomeController@index'
 		]);
-		Route::get('logs', [
-			'as' => 'admin-logs',
-			'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
-		]);
-		Route::group([
-			'prefix' => 'license'
-			], function() {
-				Route::get('/', [
-					'as' => 'admin-license',
-					'uses' => 'Admin\LicenseController@index'
-				]);
-				Route::get('/check', [
-					'as' => 'admin-license-check',
-					'uses' => 'Admin\LicenseController@check'
-				]);
-		});
 		Route::group([
 			'prefix' => 'crew'
 			], function() {
@@ -549,21 +533,42 @@ Route::group([
 				]);
 		});
 		Route::group([
-			'prefix' => 'settings'
+			'prefix' => 'system'
 			], function() {
-				Route::get('/', [
-					'as' => 'admin-settings',
-					'uses' => 'Admin\SettingsController@index'
+				Route::get('logs', [
+					'as' => 'admin-logs',
+					'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
 				]);
-				Route::get('/{id}/edit', [
-					'as' => 'admin-settings-edit',
-					'uses' => 'Admin\SettingsController@edit'
-				]);
-				Route::post('/{id}/update', [
-					'as' => 'admin-settings-update',
-					'uses' => 'Admin\SettingsController@update'
-				]);
+				Route::group([
+					'prefix' => 'license'
+					], function() {
+						Route::get('/', [
+							'as' => 'admin-license',
+							'uses' => 'Admin\LicenseController@index'
+						]);
+						Route::get('/check', [
+							'as' => 'admin-license-check',
+							'uses' => 'Admin\LicenseController@check'
+						]);
+				});
+				Route::group([
+					'prefix' => 'settings'
+					], function() {
+						Route::get('/', [
+							'as' => 'admin-settings',
+							'uses' => 'Admin\SettingsController@index'
+						]);
+						Route::get('/{id}/edit', [
+							'as' => 'admin-settings-edit',
+							'uses' => 'Admin\SettingsController@edit'
+						]);
+						Route::post('/{id}/update', [
+							'as' => 'admin-settings-update',
+							'uses' => 'Admin\SettingsController@update'
+						]);
+				});
 		});
+
 });
 
 Route::group(['prefix' => 'ajax',], function() {
