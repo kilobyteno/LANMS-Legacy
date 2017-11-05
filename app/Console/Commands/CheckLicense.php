@@ -199,6 +199,7 @@ class CheckLicense extends Command
         if($app_licensekey == null) {
             $this->error('You have not saved a license key.');
             Setting::set("APP_LICENSE_STATUS", "Invalid");
+            Setting::set("APP_LICENSE_STATUS_DESC", "No license key added.");
             Setting::save();
         } else {
             $this->info('Checking License...');
@@ -209,28 +210,34 @@ class CheckLicense extends Command
                 case "Active":
                     Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
                     Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
                     $this->info('Status: '.$status);
                     \Artisan::call('up');
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
                     $this->error('Status: '.$status);
                     break;
                 case "Expired":
                     Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
                     $this->error('Status: '.$status_desc);
                     break;
                 case "Suspended":
                     Setting::set("APP_LICENSE_STATUS", $status);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
                     $this->error('Status: '.$status);
                     \Artisan::call('down');
                     break;
                 default:
-                    $status_desc = "Invalid Response!";
+                    Setting::set("APP_LICENSE_STATUS", "Invalid");
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::save();
                     break;
             }
             $this->info('Descripton: '.$status_desc);
