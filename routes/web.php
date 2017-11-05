@@ -173,6 +173,10 @@ Route::group([
 			'as' => 'members',
 			'uses' => 'Member\ProfileController@getMembers'
 		]);
+		Route::post('/members/search', [
+			'as' => 'members-search',
+			'uses' => 'Member\ProfileController@search'
+		]);
 		Route::get('/crew', [
 			'as' => 'user-crew',
 			'uses' => 'Crew\CrewController@index'

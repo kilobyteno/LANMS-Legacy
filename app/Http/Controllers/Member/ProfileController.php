@@ -5,6 +5,8 @@ namespace LANMS\Http\Controllers\Member;
 use LANMS\Http\Controllers\Controller;
 use LANMS\User;
 
+use LANMS\Http\Requests\Member\SearchRequest;
+
 class ProfileController extends Controller {
 
 	public function index($username) {
@@ -24,6 +26,20 @@ class ProfileController extends Controller {
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		
 		return view('account.members')
+				->with('members', $members)
+				->with('newestmembers', $newestmembers)
+				->with('onlinemembers', $onlinemembers);
+	}
+
+	public function search(SearchRequest $request) {
+
+		$members = User::search($request->search)->paginate(10);
+
+		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(4)->get();
+		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
+		
+		return view('account.search')
+				->with('query', $request->search)
 				->with('members', $members)
 				->with('newestmembers', $newestmembers)
 				->with('onlinemembers', $onlinemembers);

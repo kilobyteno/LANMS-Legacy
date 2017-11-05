@@ -1,15 +1,16 @@
 @extends('layouts.main')
-@section('title', 'Members')
+@section('title', 'Search Members')
 @section('content')
 
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Members</h1>
+			<h1>Search Members: <em>{{ $query }}</em></h1>
 			<ol class="breadcrumb 2" >
 				<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 				<li><a href="{{ route('account') }}">Dashboard</a></li>
-				<li class="active"><strong>Members</strong></li>
+				<li><a href="{{ route('members') }}">Members</a></li>
+				<li class="active"><strong>Search Members</strong></li>
 			</ol>
 		</div>
 
