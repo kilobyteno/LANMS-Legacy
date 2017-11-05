@@ -81,6 +81,7 @@
 						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket"></i> <span class="title">Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-brokenband') }}"><i class="fa fa-chain-broken"></i> <span class="title">Broken Band</span></a></li>
+						<li class="@if(Request::is('admin/seating/print')){{'active'}} @endif"><a href="{{ route('admin-seating-print') }}"><i class="fa fa-print"></i> <span class="title">Print Seats</span></a></li>
 					</ul>
 				</li>
 				{{--<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>--}}
@@ -89,9 +90,6 @@
 				</li>
 				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
-				</li>
-				<li class="@if(Request::is('admin/print')){{'active'}} @endif">
-					<a href="{{ route('admin-print') }}"><i class="fa fa-print"></i> <span class="title">Print</span></a>
 				</li>
 				@if(Sentinel::inRole('superadmin'))
 					<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">

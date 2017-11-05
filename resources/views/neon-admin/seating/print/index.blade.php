@@ -34,7 +34,7 @@
 			<li class="active"><strong>Print</strong></li>
 		</ol>
 
-		@include('print.seatmap')
+		@include('seating.print.seatmap')
 
 	</div>
 </div>

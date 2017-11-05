@@ -13,7 +13,7 @@ use LANMS\SeatRows;
 
 use LANMS\Http\Requests\Admin\PrintSeatRequest;
 
-class PrintController extends Controller {
+class PrintSeatController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +24,7 @@ class PrintController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.print.*'])) {
 			$rows = SeatRows::all();
-			return view('print.index')->withRows($rows);
+			return view('seating.print.index')->withRows($rows);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -36,10 +36,10 @@ class PrintController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function seat($slug)
+	public function printSeat($slug)
 	{
 		$seat = Seats::where('slug', $slug)->first();
-		$html = view('print.pdf.seat')->with('seat', $seat)->render();
+		$html = view('seating.print.pdf.seat')->with('seat', $seat)->render();
 		return PDF::load($html, 'A4', 'landscape')->show();
 	}
 

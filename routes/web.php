@@ -479,6 +479,18 @@ Route::group([
 							'uses' => 'Admin\CheckinController@store'
 						]);
 				});
+				Route::group([
+					'prefix' => 'print'
+					], function() {
+						Route::get('/', [
+							'as' => 'admin-seating-print',
+							'uses' => 'Admin\PrintSeatController@index'
+						]);
+						Route::get('/seat/{slug}', [
+							'as' => 'admin-seating-print-seat',
+							'uses' => 'Admin\PrintSeatController@printSeat'
+						]);
+				});
 		});
 		Route::group([
 			'prefix' => 'pages'
@@ -522,18 +534,6 @@ Route::group([
 				Route::post('/{id}/update', [
 					'as' => 'admin-info-update',
 					'uses' => 'Admin\InfoController@update'
-				]);
-		});
-		Route::group([
-			'prefix' => 'print'
-			], function() {
-				Route::get('/', [
-					'as' => 'admin-print',
-					'uses' => 'Admin\PrintController@index'
-				]);
-				Route::get('/seat/{slug}', [
-					'as' => 'admin-print-seat',
-					'uses' => 'Admin\PrintController@seat'
 				]);
 		});
 		Route::group([
