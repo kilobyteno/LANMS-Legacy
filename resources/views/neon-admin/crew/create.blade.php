@@ -49,22 +49,29 @@
 					</button>
 				</div>
 				
-				<div class="col-sm-5 @if($errors->has('title')) has-error @endif">
-					<input type="text" class="form-control input-lg" name="title" placeholder="Category title" value="{{ (old('title')) ? old('title') : '' }}" />
-					@if($errors->has('title'))
-						<p class="text-danger">{{ $errors->first('title') }}</p>
+				<div class="col-sm-5 @if($errors->has('user_id')) has-error @endif">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-user"></i>
+						</div>
+						<input type="text" class="form-control input-lg" name="username" id="username" placeholder="Username" value="" />
+					</div>
+					<input type="text" class="hidden" id="user_id" name="user_id" value="{{ Sentinel::getUser()->id }}">
+					@if($errors->has('user_id'))
+						<p class="text-danger">{{ $errors->first('user_id') }}</p>
 					@endif
 				</div>
 
-				<div class="col-sm-5 @if($errors->has('slug')) has-error @endif">
+				<div class="col-sm-5 @if($errors->has('category_id')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-header"></i>
+							<i class="fa fa-tag"></i>
 						</div>
-						<input type="text" class="form-control input-lg" placeholder="Slug (Optional)" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
+						<input type="text" class="form-control input-lg" name="category" id="category" placeholder="Crew Category" value="">
+						<input type="text" class="hidden" id="category_id" name="category_id" value="0">
 					</div>
-					@if($errors->has('slug'))
-						<p class="text-danger">{{ $errors->first('slug') }}</p>
+					@if($errors->has('category_id'))
+						<p class="text-danger">{{ $errors->first('category_id') }}</p>
 					@endif
 				</div>
 			</div>
@@ -88,4 +95,42 @@
 	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
 	<script src="{{ Theme::url('js/selectboxit/jquery.selectBoxIt.min.js') }}"></script>
 	<script src="{{ Theme::url('js/bootstrap-tagsinput.min.js') }}"></script>
+
+	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready( function() { 
+				$('#username').typeahead({
+					onSelect: function(item) {
+						document.getElementById("user_id").value = item.value;
+						console.log(item.value);
+					},
+					ajax: {
+						url: "/ajax/usernames",
+						timeout: 500,
+						displayField: "name",
+						triggerLength: 1,
+						method: "get",
+					}
+				});
+			 });
+		})(jQuery);
+		(function($) {
+			$(document).ready( function() { 
+				$('#category').typeahead({
+					onSelect: function(item) {
+						document.getElementById("category_id").value = item.value;
+						console.log(item.value);
+					},
+					ajax: {
+						url: "/ajax/crew/categories",
+						timeout: 500,
+						displayField: "title",
+						triggerLength: 1,
+						method: "get",
+					}
+				});
+			 });
+		})(jQuery);
+	</script>
 @stop
