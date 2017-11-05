@@ -24,6 +24,7 @@ class CreateCrewCategoriesTable extends Migration {
 			$table->boolean('active')->default(1); //is it visible on the website?
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

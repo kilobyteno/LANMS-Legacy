@@ -11,18 +11,18 @@ class CrewTableSeeder extends Seeder  {
 	public function run() {
 
 		Crew::create([
-			'user_id' 			=> 1,
-			'crewcategory_id' 	=> 1,
+			'user_id' 		=> 1,
+			'category_id' 	=> 1,
 		]);
 
 		Crew::create([
-			'user_id' 			=> 2,
-			'crewcategory_id' 	=> 2,
+			'user_id' 		=> 2,
+			'category_id' 	=> 2,
 		]);
 
 		Crew::create([
-			'user_id' 			=> 3,
-			'crewcategory_id' 	=> 2,
+			'user_id' 		=> 3,
+			'category_id' 	=> 2,
 		]);
 
 		CrewCategory::create([

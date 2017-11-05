@@ -17,13 +17,14 @@ class CreateCrewsTable extends Migration {
 			$table->increments('id');
 
 			$table->integer('user_id')->default(0);
-			$table->integer('crewcategory_id')->default(0);
+			$table->integer('category_id')->default(0);
+			$table->integer('year')->default(1970);
 
 			$table->integer('author_id')->default(0); //who created it?
 			$table->integer('editor_id')->default(0); //who updated it?
-			$table->boolean('active')->default(1); //is it visible on the website?
 
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
