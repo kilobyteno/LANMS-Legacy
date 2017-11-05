@@ -14,6 +14,7 @@
         "intervention/image": "2.*",
         "intervention/imagecache": "2.*",
         "laravel/framework": "5.4.*",
+        "laravel/scout": "^3.0",
         "laravel/tinker": "~1.0",
         "liebig/cron": "dev-master",
         "milon/barcode": "^5.1",
