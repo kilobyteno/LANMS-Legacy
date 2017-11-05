@@ -62,7 +62,7 @@
 					<a><i class="fa fa-user-md"></i> <span class="title">Crew</span></a>
 					<ul>
 						<li class="@if(Request::is('admin/crew/categories*')){{'active'}} @endif"><a href="{{ route('admin-crew-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
-						<li class="@if(Request::is('admin/crew/member*')){{'active'}} @endif"><a href="{{ route('admin-crew') }}"><i class="fa fa-user-md"></i> <span class="title">Members</span></a></li>
+						<li class="@if(Request::is('admin/crew') || Request::is('admin/crew/create')){{'active'}} @endif"><a href="{{ route('admin-crew') }}"><i class="fa fa-user-md"></i> <span class="title">Members</span></a></li>
 						<li class="@if(Request::is('admin/crew/skill*')){{'active'}} @endif"><a href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase"></i> <span class="title">Skills</span></a></li>
 					</ul>
 				</li>
