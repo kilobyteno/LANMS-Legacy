@@ -15,6 +15,8 @@
 		
 		<p>Status: {{ Setting::get('APP_LICENSE_STATUS') }}</p>
 
+		<p>Description: {{ Setting::get('APP_LICENSE_STATUS_DESC') }}</p>
+
 		<a href="{{ route('admin-license-check') }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-refresh"></i> Check License Status</a>
 
 	</div>
