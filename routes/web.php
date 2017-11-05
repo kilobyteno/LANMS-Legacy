@@ -602,7 +602,7 @@ Route::group(['prefix' => 'ajax',], function() {
 		if(!Request::ajax()) {
 			abort(403);
 		}
-		$allcc = CrewCategories::all();
+		$allcc = CrewCategory::all();
 		$ccs = array();
 		foreach($allcc as $cc) {
 			array_push($ccs, array('id' => $cc->id, 'title' => $cc->title));
