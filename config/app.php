@@ -172,9 +172,10 @@ return [
 		 */
 		LANMS\Providers\AppServiceProvider::class,
 		LANMS\Providers\AuthServiceProvider::class,
-		// LANMS\Providers\BroadcastServiceProvider::class,
+		LANMS\Providers\BroadcastServiceProvider::class,
 		LANMS\Providers\EventServiceProvider::class,
 		LANMS\Providers\RouteServiceProvider::class,
+		Laravel\Scout\ScoutServiceProvider::class,
 
 		/*
 		 * 3rd Party
