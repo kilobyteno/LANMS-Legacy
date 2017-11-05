@@ -56,6 +56,7 @@ class CheckLicense extends Command
             $dirpath = dirname(__FILE__);
             $verifyfilepath = 'modules/servers/licensing/verify.php';
             $localkeyvalid = false;
+            $originalcheckdate = "19700101";
             if ($localkey) {
                 $localkey = str_replace("\n", '', $localkey); # Remove the line breaks
                 $localdata = substr($localkey, 0, strlen($localkey) - 32); # Extract License Data
