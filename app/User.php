@@ -10,14 +10,10 @@ use Cartalyst\Sentinel\Roles\RoleInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 
-use Laravel\Scout\Searchable;
-
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
 {
-	use Searchable;
-
 	use PermissibleTrait;
 
 	/**
