@@ -22,6 +22,10 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Category</th>
+					<th>Created at</th>
+					<th>Created by</th>
+					<th>Edited at</th>
+					<th>Edited by</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -31,6 +35,10 @@
 						<th scope="row">{{ $crew->id }}</th>
 						<td>{{ User::getFullnameByID($crew->user->id) }}</td>
 						<td>{{ $crew->category->title }}</td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($crew->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->created_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($crew->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->updated_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.crew.destroy'))

@@ -21,6 +21,10 @@
 				<tr>
 					<th>ID</th>
 					<th>Title</th>
+					<th>Created at</th>
+					<th>Created by</th>
+					<th>Edited at</th>
+					<th>Edited by</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -29,6 +33,10 @@
 					<tr>
 						<th scope="row">{{ $category->id }}</th>
 						<td>{{ $category->title }}</td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($category->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($category->created_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($category->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($category->updated_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $category->editor->username) }}">{{ User::getFullnameByID($category->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.crew.destroy'))
