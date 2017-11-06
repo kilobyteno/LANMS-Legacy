@@ -86,7 +86,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         array (
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
-            'Laravel\\Scout\\' => 14,
             'LANMS\\' => 6,
         ),
         'I' => 
@@ -255,10 +254,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
-        ),
-        'Laravel\\Scout\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/scout/src',
         ),
         'LANMS\\' => 
         array (
@@ -2176,7 +2171,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Address' => __DIR__ . '/../..' . '/app/Address.php',
         'LANMS\\BrokenBand' => __DIR__ . '/../..' . '/app/BrokenBand.php',
         'LANMS\\Checkin' => __DIR__ . '/../..' . '/app/Checkin.php',
-        'LANMS\\Console\\Commands\\CheckLicense' => __DIR__ . '/../..' . '/app/Console/Commands/CheckLicense.php',
         'LANMS\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'LANMS\\Crew' => __DIR__ . '/../..' . '/app/Crew.php',
         'LANMS\\CrewCategory' => __DIR__ . '/../..' . '/app/CrewCategory.php',
@@ -2187,8 +2181,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Controllers\\Admin\\BrokenBandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrokenBandController.php',
         'LANMS\\Http\\Controllers\\Admin\\CheckinController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CheckinController.php',
         'LANMS\\Http\\Controllers\\Admin\\InfoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InfoController.php',
-        'LANMS\\Http\\Controllers\\Admin\\LicenseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LicenseController.php',
-        'LANMS\\Http\\Controllers\\Admin\\PrintSeatController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrintSeatController.php',
+        'LANMS\\Http\\Controllers\\Admin\\PrintController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrintController.php',
         'LANMS\\Http\\Controllers\\Admin\\ReservationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ReservationController.php',
         'LANMS\\Http\\Controllers\\Admin\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SettingsController.php',
         'LANMS\\Http\\Controllers\\Admin\\VisitorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VisitorController.php',
@@ -2225,7 +2218,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Requests\\Admin\\Crew\\CrewCategoryEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewCategoryEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\Crew\\CrewSkillCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewSkillCreateRequest.php',
         'LANMS\\Http\\Requests\\Admin\\Crew\\CrewSkillEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Crew/CrewSkillEditRequest.php',
-        'LANMS\\Http\\Requests\\Admin\\InfoEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/InfoEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\News\\NewsCategoryCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryCreateRequest.php',
         'LANMS\\Http\\Requests\\Admin\\News\\NewsCategoryEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCategoryEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\News\\NewsCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/News/NewsCreateRequest.php',
@@ -2265,19 +2257,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\StripeCustomer' => __DIR__ . '/../..' . '/app/StripeCustomer.php',
         'LANMS\\User' => __DIR__ . '/../..' . '/app/User.php',
         'LANMS\\Visitor' => __DIR__ . '/../..' . '/app/Visitor.php',
-        'Laravel\\Scout\\Builder' => __DIR__ . '/..' . '/laravel/scout/src/Builder.php',
-        'Laravel\\Scout\\Console\\FlushCommand' => __DIR__ . '/..' . '/laravel/scout/src/Console/FlushCommand.php',
-        'Laravel\\Scout\\Console\\ImportCommand' => __DIR__ . '/..' . '/laravel/scout/src/Console/ImportCommand.php',
-        'Laravel\\Scout\\EngineManager' => __DIR__ . '/..' . '/laravel/scout/src/EngineManager.php',
-        'Laravel\\Scout\\Engines\\AlgoliaEngine' => __DIR__ . '/..' . '/laravel/scout/src/Engines/AlgoliaEngine.php',
-        'Laravel\\Scout\\Engines\\Engine' => __DIR__ . '/..' . '/laravel/scout/src/Engines/Engine.php',
-        'Laravel\\Scout\\Engines\\NullEngine' => __DIR__ . '/..' . '/laravel/scout/src/Engines/NullEngine.php',
-        'Laravel\\Scout\\Events\\ModelsImported' => __DIR__ . '/..' . '/laravel/scout/src/Events/ModelsImported.php',
-        'Laravel\\Scout\\Jobs\\MakeSearchable' => __DIR__ . '/..' . '/laravel/scout/src/Jobs/MakeSearchable.php',
-        'Laravel\\Scout\\ModelObserver' => __DIR__ . '/..' . '/laravel/scout/src/ModelObserver.php',
-        'Laravel\\Scout\\ScoutServiceProvider' => __DIR__ . '/..' . '/laravel/scout/src/ScoutServiceProvider.php',
-        'Laravel\\Scout\\Searchable' => __DIR__ . '/..' . '/laravel/scout/src/Searchable.php',
-        'Laravel\\Scout\\SearchableScope' => __DIR__ . '/..' . '/laravel/scout/src/SearchableScope.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
