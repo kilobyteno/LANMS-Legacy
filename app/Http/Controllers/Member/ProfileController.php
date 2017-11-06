@@ -33,7 +33,7 @@ class ProfileController extends Controller {
 
 	public function search(SearchRequest $request) {
 
-		$members = User::search($request->search)->paginate(10);
+		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->get();
 
 		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
