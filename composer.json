@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "algolia/algoliasearch-client-php": "^1.23",
         "anlutro/l4-settings": "^0.4.7",
         "cartalyst/sentinel": "2.0.*",
         "cartalyst/stripe": "~1.0",
