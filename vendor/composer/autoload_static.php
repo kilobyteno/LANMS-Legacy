@@ -409,12 +409,35 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
             ),
         ),
+        'A' => 
+        array (
+            'AlgoliaSearch' => 
+            array (
+                0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
         'Absolute_Positioner' => __DIR__ . '/..' . '/dompdf/dompdf/include/absolute_positioner.cls.php',
         'Abstract_Renderer' => __DIR__ . '/..' . '/dompdf/dompdf/include/abstract_renderer.cls.php',
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
+        'AlgoliaSearch\\AlgoliaConnectionException' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/AlgoliaConnectionException.php',
+        'AlgoliaSearch\\AlgoliaException' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/AlgoliaException.php',
+        'AlgoliaSearch\\Client' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Client.php',
+        'AlgoliaSearch\\ClientContext' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/ClientContext.php',
+        'AlgoliaSearch\\FailingHostsCache' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/FailingHostsCache.php',
+        'AlgoliaSearch\\FileFailingHostsCache' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/FileFailingHostsCache.php',
+        'AlgoliaSearch\\InMemoryFailingHostsCache' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/InMemoryFailingHostsCache.php',
+        'AlgoliaSearch\\Index' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Index.php',
+        'AlgoliaSearch\\IndexBrowser' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/IndexBrowser.php',
+        'AlgoliaSearch\\Iterators\\AlgoliaIterator' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Iterators/AlgoliaIterator.php',
+        'AlgoliaSearch\\Iterators\\RuleIterator' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Iterators/RuleIterator.php',
+        'AlgoliaSearch\\Iterators\\SynonymIterator' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Iterators/SynonymIterator.php',
+        'AlgoliaSearch\\Json' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Json.php',
+        'AlgoliaSearch\\PlacesIndex' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/PlacesIndex.php',
+        'AlgoliaSearch\\SynonymType' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/SynonymType.php',
+        'AlgoliaSearch\\Version' => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src/AlgoliaSearch/Version.php',
         'Attribute_Translator' => __DIR__ . '/..' . '/dompdf/dompdf/include/attribute_translator.cls.php',
         'Block_Frame_Decorator' => __DIR__ . '/..' . '/dompdf/dompdf/include/block_frame_decorator.cls.php',
         'Block_Frame_Reflower' => __DIR__ . '/..' . '/dompdf/dompdf/include/block_frame_reflower.cls.php',
@@ -2241,6 +2264,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Requests\\Member\\PasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/PasswordRequest.php',
         'LANMS\\Http\\Requests\\Member\\ProfileCoverRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileCoverRequest.php',
         'LANMS\\Http\\Requests\\Member\\ProfileImageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileImageRequest.php',
+        'LANMS\\Http\\Requests\\Member\\SearchRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/SearchRequest.php',
         'LANMS\\Http\\Requests\\Member\\SettingsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/SettingsRequest.php',
         'LANMS\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'LANMS\\Http\\Requests\\Seating\\PaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Seating/PaymentRequest.php',
