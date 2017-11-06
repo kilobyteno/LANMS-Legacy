@@ -460,16 +460,6 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return new static::$permissionsClass($userPermissions, $rolePermissions);
 	}
 
-	/**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'users';
-    }
-
 	public function addresses() {
 		return $this->hasMany('Address', 'user_id');
 	}
