@@ -18,6 +18,10 @@
 
 	<div class="row">
 		<div class="col-md-8">
+			@if($members->count() == 0)
+				<br>
+				<p class="text-muted text-center">No results found.</p>
+			@endif
 			@foreach($members as $member)
 				<div class="member-entry">
 					<a href="{{ route('user-profile', $member->username) }}" class="member-img">
