@@ -103,6 +103,10 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
 		}
+		if($reservedfor->ownReservationsThisYear()->count() >= 1) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', $reservedfor->username.' already has reserved a seat.');
+		}
 
 		$seatreservation 					= new SeatReservation;
 		$seatreservation->seat_id 			= $seat->id;
