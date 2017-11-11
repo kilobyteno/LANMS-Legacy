@@ -62,5 +62,55 @@ class SeatRowsTableSeeder extends Seeder  {
 			'slug' 		=> 'k',
 		]);
 
+		SeatRows::create([
+			'name' 		=> 'L',
+			'slug' 		=> 'l',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'M',
+			'slug' 		=> 'm',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'N',
+			'slug' 		=> 'n',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'O',
+			'slug' 		=> 'o',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'P',
+			'slug' 		=> 'p',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'Q',
+			'slug' 		=> 'q',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'R',
+			'slug' 		=> 'r',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'S',
+			'slug' 		=> 's',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'T',
+			'slug' 		=> 't',
+		]);
+
+		SeatRows::create([
+			'name' 		=> 'U',
+			'slug' 		=> 'u',
+		]);
+
 	}
 }
