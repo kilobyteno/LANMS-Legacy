@@ -11,6 +11,7 @@ SEATMAP by Infihex
 	border:1px solid #ecf0f1;
 	border-radius: 5px;
 	padding: 5px;
+	padding-top: 25px;
 }
 
 .seatmap ul {
@@ -38,12 +39,12 @@ SEATMAP by Infihex
 	background-color: #9b59b6;
 }
 
-.seatmap ul > .seat-row:nth-child(even)  > :not(.seat-row-a) .seat {
+.seatmap ul > .seat-row:nth-child(odd)  > :not(.seat-row-a):not(.entrance) .seat {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
 
-.seatmap ul > .seat-row:nth-child(odd) > :not(.seat-row-a) .seat {
+.seatmap ul > .seat-row:nth-child(even) > :not(.seat-row-a):not(.entrance) .seat {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 	margin-bottom: 20px;
@@ -68,7 +69,9 @@ SEATMAP by Infihex
 ul.seat-row-a {
 	float: right;
 	width: 40px;
-	padding:0;	
+	padding:0;
+	margin-top:40px;
+	clear: both;
 }
 
 .seat-row > ul.seat-row-a > li.seat {
@@ -98,7 +101,6 @@ ul.seat-row-a {
 }
 
 .seat-row > ul.seat-row-a > li.kiosk {
-	margin-top: 15px;
 	background-color: #95a5a6;
 }
 
@@ -112,7 +114,7 @@ li.entrance {
 	border-bottom-left-radius: 5px;
 	border-top-right-radius: 5px;
 	margin-right: -5px;
-	margin-top: -40px;
+	margin-top: -25px;
 	float: right;
 }
 
@@ -123,23 +125,6 @@ li.entrance > p {
 	font-weight: bold;
 	color:#fff;
 	margin: 0;
-}
-
-.seatmap ul > li.scene {
-	width: 50%;
-	margin: 0 auto;
-	background-color: #3498db;
-	height: 25px;
-	margin-bottom: 15px;
-	color: #fff;
-	text-align: center;
-	font-weight: bold;
-	text-transform: uppercase;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	font-size: 16px;
-	line-height: 25px;
-	margin-top: -5px;
 }
 
 .seatmap ul > .seat-row li.seat-reserved {
