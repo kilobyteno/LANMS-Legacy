@@ -13,3 +13,7 @@
 .navbar-nav > li > a {
 	line-height:20px;
 }
+.profile-picture img {
+	max-height: 115px;
+	max-width: 115px;
+}
