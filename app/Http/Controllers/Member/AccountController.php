@@ -174,7 +174,7 @@ class AccountController extends Controller {
 		$path_small 		= public_path() . '/images/profilepicture/' . $filename_small;
 		$webpath_small		= '/images/profilepicture/' . $filename_small;
 
-		$imagesave 			= Image::make($image->getRealPath())->resize(115, null, function($constraint){ $constraint->aspectRatio(); })->save($path);
+		$imagesave 			= Image::make($image->getRealPath())->fit(115)->save($path);
 		$imagesave_small 	= Image::make($image->getRealPath())->fit(75)->save($path_small);
 
 		$info = [

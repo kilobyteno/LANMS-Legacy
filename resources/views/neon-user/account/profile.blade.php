@@ -18,7 +18,9 @@
 	<header class="row">
 		
 		<div class="col-sm-2">
-			<a class="profile-picture" @if(\Sentinel::getUser()->id == $id) href="{{ route('account-change-images') }}" @endif><img src="{{ $profilepicture or '/images/profilepicture/0.png' }}" class="img-responsive img-circle" /></a>
+			<a class="profile-picture" @if(\Sentinel::getUser()->id == $id) href="{{ route('account-change-images') }}" @endif>
+				<img class="img-circle img-responsive" src="{{ $profilepicture or '/images/profilepicture/0.png' }}"></img>
+			</a>
 		</div>
 		
 		<div class="col-sm-7">
