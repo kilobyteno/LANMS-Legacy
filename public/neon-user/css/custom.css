@@ -4,3 +4,12 @@
 .profile-env section.profile-info-tabs {
 	padding-bottom:0;
 }
+.navbar-nav > li {
+	height:60px;
+}
+.page-container.horizontal-menu header.navbar .navbar-brand img {
+    max-height: 40px;
+}
+.navbar-nav > li > a {
+	line-height:20px;
+}
