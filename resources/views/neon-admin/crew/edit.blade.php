@@ -49,23 +49,20 @@
 					</button>
 				</div>
 				
-				<div class="col-sm-5 @if($errors->has('username')) has-error @endif">
-					<input type="text" class="form-control input-lg" name="username" placeholder="Crew title" value="{{ $crew->user->username.' ('.User::getFullnameByID($crew->user->id).')' }}" />
-					<input type="text" class="hidden" id="username_id" name="username_id" value="{{ $crew->user->id }}">
-					@if($errors->has('username'))
-						<p class="text-danger">{{ $errors->first('username') }}</p>
-					@endif
+				<div class="col-sm-5">
+					<input type="text" class="form-control input-lg disabled" disabled="" value="{{ $crew->user->username.' ('.User::getFullnameByID($crew->user->id).')' }}" />
 				</div>
 
-				<div class="col-sm-5 @if($errors->has('slug')) has-error @endif">
+				<div class="col-sm-5 @if($errors->has('category_id')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="fa fa-header"></i>
 						</div>
-						<input type="text" class="form-control input-lg" placeholder="Slug (Optional)" value="{{ (old('slug')) ? old('slug') : $crew->slug }}" name="slug">
+						<input type="text" class="form-control input-lg" name="category" id="category" placeholder="Crew Category" value="{{ $crew->category->title }}" autocomplete="OFF">
+						<input type="text" class="hidden" id="category_id" name="category_id" value="{{ $crew->category->id }}">
 					</div>
-					@if($errors->has('slug'))
-						<p class="text-danger">{{ $errors->first('slug') }}</p>
+					@if($errors->has('category_id'))
+						<p class="text-danger">{{ $errors->first('category_id') }}</p>
 					@endif
 				</div>
 			</div>
@@ -79,27 +76,23 @@
 
 @stop
 @section('javascript')
+	<script src="{{ Theme::url('js/wysihtml5/wysihtml5-0.4.0pre.min.js') }}"></script>
+	<script src="{{ Theme::url('js/wysihtml5/bootstrap-wysihtml5.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.multi-select.js') }}"></script>
+	<script src="{{ Theme::url('js/fileinput.js') }}"></script>
+	<script src="{{ Theme::url('js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
+	<script src="{{ Theme::url('js/selectboxit/jquery.selectBoxIt.min.js') }}"></script>
+	<script src="{{ Theme::url('js/bootstrap-tagsinput.min.js') }}"></script>
+
 	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
 		(function($) {
-			$(document).ready(function() {
-				$('#username').typeahead({
+			$(document).ready( function() { 
+				$('#category').typeahead({
 					onSelect: function(item) {
-						document.getElementById("username_id").value = item.value;
-						console.log("username_id: " + item.value);
-					},
-					ajax: {
-						url: "/ajax/usernames",
-						timeout: 500,
-						displayField: "name",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-				$('#crewcategory').typeahead({
-					onSelect: function(item) {
-						document.getElementById("crewcategory_id").value = item.value;
-						console.log("crewcategory_id: " + item.value);
+						document.getElementById("category_id").value = item.value;
+						console.log(item.value);
 					},
 					ajax: {
 						url: "/ajax/crew/categories",
@@ -112,13 +105,4 @@
 			 });
 		})(jQuery);
 	</script>
-	
-	<script src="{{ Theme::url('js/wysihtml5/wysihtml5-0.4.0pre.min.js') }}"></script>
-	<script src="{{ Theme::url('js/wysihtml5/bootstrap-wysihtml5.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.multi-select.js') }}"></script>
-	<script src="{{ Theme::url('js/fileinput.js') }}"></script>
-	<script src="{{ Theme::url('js/bootstrap-datepicker.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
-	<script src="{{ Theme::url('js/selectboxit/jquery.selectBoxIt.min.js') }}"></script>
-	<script src="{{ Theme::url('js/bootstrap-tagsinput.min.js') }}"></script>
 @stop

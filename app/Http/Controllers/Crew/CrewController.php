@@ -128,9 +128,28 @@ class CrewController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, CrewEditRequest $request)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.crew.update'])){
+			
+			$crew 				= Crew::find($id);
+			$crew->category_id 	= $request->get('category_id');
+			$crew->editor_id	= Sentinel::getUser()->id;
+
+			if($crew->save()) {
+				return Redirect::route('admin-crew-edit', $id)
+						->with('messagetype', 'success')
+						->with('message', 'The crew has now been saved!');
+			} else {
+				return Redirect::route('admin-crew-edit', $id)
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while saving the crew.');
+			}
+
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
