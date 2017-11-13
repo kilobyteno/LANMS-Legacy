@@ -13,10 +13,21 @@ class Crew extends Model {
 	protected $fillable = [
 		'user_id',
 		'category_id',
+		'year',
+		'author_id',
+		'editor_id',
 	];
 
 	function category() {
 		return $this->hasOne('CrewCategory', 'id', 'category_id');
+	}
+
+	function author() {
+		return $this->hasOne('User', 'id', 'author_id');
+	}
+
+	function editor() {
+		return $this->hasOne('User', 'id', 'editor_id');
 	}
 
 	function user() {
