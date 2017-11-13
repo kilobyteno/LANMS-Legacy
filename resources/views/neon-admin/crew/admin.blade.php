@@ -58,10 +58,10 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete Category:</strong> #{{ $crew->id }} - {{ $crew->title }}</h4>
+					<h4 class="modal-title"><strong>Delete Crew:</strong> #{{ $crew->id }} - {{ User::getFullnameByID($crew->user->id) }}</h4>
 				</div>
 				<div class="modal-body">
-					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this crew assignment?</strong></h4>
+					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this crew?</strong></h4>
 				</div>
 				<div class="modal-footer">
 					<a href="{{ route('admin-crew-destroy', $crew->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>

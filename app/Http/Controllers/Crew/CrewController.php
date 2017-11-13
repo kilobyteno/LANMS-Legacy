@@ -138,7 +138,23 @@ class CrewController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.crew.destroy'])){
+			$crew 				= Crew::find($id);
+			$crew->editor_id	= Sentinel::getUser()->id;
+			$crew->save();
+			if($crew->delete()) {
+				return Redirect::route('admin-crew')
+						->with('messagetype', 'success')
+						->with('message', 'The crew has now been deleted!');
+			} else {
+				return Redirect::route('admin-crew')
+					->with('messagetype', 'danger')
+					->with('message', 'Something went wrong while deleting the crew.');
+			}
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 }
