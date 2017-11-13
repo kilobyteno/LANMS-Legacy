@@ -38,7 +38,7 @@
 					
 		<br />
 		
-		<form action="{{ route('admin-crew-category-store') }}" method="post">
+		<form action="{{ route('admin-crew-store') }}" method="post">
 
 			<!-- Title and Publish Buttons -->
 			<div class="row">
@@ -54,7 +54,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-user"></i>
 						</div>
-						<input type="text" class="form-control input-lg" name="username" id="username" placeholder="Username" value="" />
+						<input type="text" class="form-control input-lg" name="username" id="username" placeholder="Username" value="" autocomplete="OFF" />
 					</div>
 					<input type="text" class="hidden" id="user_id" name="user_id" value="{{ Sentinel::getUser()->id }}">
 					@if($errors->has('user_id'))
@@ -67,7 +67,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-tag"></i>
 						</div>
-						<input type="text" class="form-control input-lg" name="category" id="category" placeholder="Crew Category" value="">
+						<input type="text" class="form-control input-lg" name="category" id="category" placeholder="Crew Category" value="" autocomplete="OFF">
 						<input type="text" class="hidden" id="category_id" name="category_id" value="0">
 					</div>
 					@if($errors->has('category_id'))

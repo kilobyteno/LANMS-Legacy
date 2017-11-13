@@ -11,6 +11,9 @@ use LANMS\Crew;
 use LANMS\CrewCategory;
 use LANMS\Page;
 
+use LANMS\Http\Requests\Admin\Crew\CrewCreateRequest;
+use LANMS\Http\Requests\Admin\Crew\CrewEditRequest;
+
 class CrewController extends Controller {
 
 	/**
@@ -76,11 +79,11 @@ class CrewController extends Controller {
 			$crew->editor_id		= Sentinel::getUser()->id;
 
 			if($crew->save()) {
-				return Redirect::route('admin-crew-skill')
+				return Redirect::route('admin-crew')
 						->with('messagetype', 'success')
 						->with('message', 'The skill has now been saved and published!');
 			} else {
-				return Redirect::route('admin-crew-skill-create')
+				return Redirect::route('admin-crew')
 					->with('messagetype', 'danger')
 					->with('message', 'Something went wrong while saving the skill.');
 			}
