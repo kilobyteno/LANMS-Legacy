@@ -23,6 +23,10 @@ class CrewCategory extends Model {
 		return $this->hasMany('Crew', 'category_id', 'id');
 	}
 
+	function crewThisYear() {
+        return $this->hasMany('Crew', 'category_id', 'id')->thisYear();
+    }
+
 	function author() {
 		return $this->hasOne('User', 'id', 'author_id');
 	}

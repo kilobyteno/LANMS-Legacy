@@ -10,7 +10,7 @@
 
 			@foreach($crewcategories as $crewcategory)
 				<h1>{{ $crewcategory->title }}</h1>
-				@foreach($crewcategory->crew as $crew)
+				@foreach($crewcategory->crewThisYear as $crew)
 					<h5>
 						<a href="{{ route('user-profile', $crew->user->username) }}">{{ User::getFullnameAndNicknameByID($crew->user->id) }}</a>
 						@foreach($crew->skillattached as $skilla)
