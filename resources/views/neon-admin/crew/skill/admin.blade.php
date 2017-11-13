@@ -38,7 +38,6 @@
 							@if(Sentinel::hasAccess('admin.crew.destroy'))
 								<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
 							@endif
-							<a href="{{ route('crew') }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
 					</tr>
 				@endforeach
