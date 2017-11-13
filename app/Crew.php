@@ -18,6 +18,14 @@ class Crew extends Model {
 		'editor_id',
 	];
 
+	public function scopeThisYear($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
 	function category() {
 		return $this->hasOne('CrewCategory', 'id', 'category_id');
 	}

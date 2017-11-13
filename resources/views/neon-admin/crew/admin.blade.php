@@ -22,6 +22,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Category</th>
+					<th>Year</th>
 					<th>Created at</th>
 					<th>Created by</th>
 					<th>Edited at</th>
@@ -35,6 +36,7 @@
 						<th scope="row">{{ $crew->id }}</th>
 						<td>{{ User::getFullnameByID($crew->user->id) }}</td>
 						<td>{{ $crew->category->title }}</td>
+						<td>{{ $crew->year }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($crew->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->created_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($crew->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->updated_at)) }}</td>
