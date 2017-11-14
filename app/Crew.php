@@ -42,8 +42,12 @@ class Crew extends Model {
 		return $this->hasOne('User', 'id', 'user_id');
 	}
 
-	function skillattached() {
+	function skillAttached() {
 		return $this->hasMany('CrewSkillAttached', 'user_id', 'id');
+	}
+
+	function skillAttachedThisYear() {
+		return $this->hasMany('CrewSkillAttached', 'user_id', 'id')->thisYear();
 	}
 
 }

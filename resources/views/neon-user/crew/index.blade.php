@@ -16,10 +16,8 @@
 				@foreach($crewcategory->crewThisYear as $crew)
 					<h3>
 						<a href="{{ route('user-profile', $crew->user->username) }}">{{ User::getFullnameAndNicknameByID($crew->user->id) }}</a>
-						@foreach($crew->skillattached as $skilla)
-							@foreach($skilla->skill as $skill)
-								<small><span class="{{ $skill->label }}"><i class="{{ $skill->icon }}"></i> {{ $skill->title }}</span></small>
-							@endforeach
+						@foreach($crew->skillAttachedThisYear as $skilla)
+							<small><span class="{{ $skilla->skill->label }}"><i class="{{ $skilla->skill->icon }}"></i> {{ $skilla->skill->title }}</span></small>
 						@endforeach
 					</h3>
 				@endforeach
