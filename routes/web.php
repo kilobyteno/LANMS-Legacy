@@ -342,6 +342,34 @@ Route::group([
 							'as' => 'admin-crew-skill-destroy',
 							'uses' => 'Crew\CrewSkillController@destroy'
 						]);
+						Route::group([
+							'prefix' => 'attachment'
+							], function() {
+								Route::get('/', [
+									'as' => 'admin-crew-skill-attachment',
+									'uses' => 'Crew\CrewSkillAttachmentController@admin'
+								]);
+								Route::get('/create', [
+									'as' => 'admin-crew-skill-attachment-create',
+									'uses' => 'Crew\CrewSkillAttachmentController@create'
+								]);
+								Route::post('/store', [
+									'as' => 'admin-crew-skill-attachment-store',
+									'uses' => 'Crew\CrewSkillAttachmentController@store'
+								]);
+								Route::get('/{id}/edit', [
+									'as' => 'admin-crew-skill-attachment-edit',
+									'uses' => 'Crew\CrewSkillAttachmentController@edit'
+								]);
+								Route::post('/{id}/update', [
+									'as' => 'admin-crew-skill-attachment-update',
+									'uses' => 'Crew\CrewSkillAttachmentController@update'
+								]);
+								Route::get('/{id}/destroy', [
+									'as' => 'admin-crew-skill-attachment-destroy',
+									'uses' => 'Crew\CrewSkillAttachmentController@destroy'
+								]);
+						});
 				});
 		});
 		Route::group([
@@ -612,6 +640,17 @@ Route::group(['prefix' => 'ajax',], function() {
 			array_push($ccs, array('id' => $cc->id, 'title' => $cc->title));
 		}
 		return Response::json($ccs);
+	});
+	Route::get('/crew/skills', function () {
+		if(!Request::ajax()) {
+			abort(403);
+		}
+		$allcs = CrewSkill::all();
+		$css = array();
+		foreach($allcs as $cs) {
+			array_push($css, array('id' => $cs->id, 'title' => $cs->title));
+		}
+		return Response::json($css);
 	});
 	Route::get('/pages', function () {
 		if(!Request::ajax()) {

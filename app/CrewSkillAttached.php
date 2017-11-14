@@ -19,8 +19,16 @@ class CrewSkillAttached extends Model {
 		'editor_id',
 	];
 
+	public function scopeThisYear($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYear($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
 	function skill() {
-		return $this->hasMany('CrewSkill', 'id', 'skill_id');
+		return $this->hasOne('CrewSkill', 'id', 'skill_id');
 	}
 
 	function author() {
@@ -29,6 +37,10 @@ class CrewSkillAttached extends Model {
 
 	function editor() {
 		return $this->hasOne('User', 'id', 'editor_id');
+	}
+
+	function user() {
+		return $this->hasOne('User', 'id', 'user_id');
 	}
 
 }
