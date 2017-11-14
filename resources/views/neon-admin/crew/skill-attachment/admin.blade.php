@@ -60,7 +60,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete Category:</strong> #{{ $skilla->id }} - {{ $skilla->title }}</h4>
+					<h4 class="modal-title"><strong>Delete Category:</strong> #{{ $skilla->id }}</h4>
 				</div>
 				<div class="modal-body">
 					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this skill attachment?</strong></h4>
