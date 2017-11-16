@@ -258,7 +258,7 @@ Route::group([
 	], function() {
 		Route::get('/', [
 			'as' => 'admin' ,
-			'uses' => 'HomeController@index'
+			'uses' => 'Admin\AdminController@dashboard'
 		]);
 		Route::group([
 			'prefix' => 'crew'
