@@ -571,6 +571,10 @@ Route::group([
 					'as' => 'admin-logs',
 					'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
 				]);
+				Route::get('/whatsnew', [
+					'as' => 'admin-whatsnew' ,
+					'uses' => 'Admin\AdminController@whatsnew'
+				]);
 				Route::group([
 					'prefix' => 'license'
 					], function() {

@@ -91,16 +91,17 @@
 				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
-				@if(Sentinel::inRole('superadmin'))
-					<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
-						<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
-						<ul>
+				<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
+					<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
+					<ul>
+						<li class="@if(Request::is('admin/system/whatsnew')){{'active'}} @endif"><a href="{{ route('admin-whatsnew') }}"><i class="fa fa-lightbulb-o"></i> <span class="title">What's New?</span></a></li>
+						@if(Sentinel::inRole('superadmin'))
 							<li class="@if(Request::is('admin/system/settings*')){{'active'}} @endif"><a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a></li>
 							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a></li>
 							<li class="@if(Request::is('admin/system/license*')){{'active'}} @endif"><a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a></li>
-						</ul>
-					</li>
-				@endif
+						@endif
+					</ul>
+				</li>
 			</div>
 		</div>
 	</div>
