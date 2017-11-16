@@ -184,4 +184,29 @@ class SeatReservation extends Model {
 
 	}
 
+	public function scopeGetExpireTimeInHours($query, $id) {
+
+		$reservation 	= $query->where('id', '=', $id)->first();
+
+		if($reservation->status_id == 1) { // 1 = reserved
+			return 0; //Expired
+		}
+
+		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
+
+		$SECOND 	= 1;
+		$MINUTE 	= 60 * $SECOND;
+		$HOUR 		= 60 * $MINUTE;
+		$DAY 		= 24 * $HOUR;
+		$MONTH 		= 30 * $DAY;
+		$after 		= $time - time();
+
+		if ($after < 0) {
+			return 0; // expired
+		}
+		
+		return floor($after / 60 / 60);
+
+	}
+
 }
