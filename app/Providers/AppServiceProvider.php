@@ -13,44 +13,6 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		// https://laravel-news.com/laravel-5-4-key-too-long-error
 		\Schema::defaultStringLength(191);
-
-
-		// Please note the different namespace 
-		// and please add a \ in front of your classes in the global namespace
-		\Event::listen('cron.collectJobs', function() {
-
-			\Cron::add('DeleteExpiredReservations', '*/1 * * * *', function() {
-
-				$reservations = \SeatReservation::where('status_id', '=', 2)->get();
-				foreach($reservations as $reservation) {
-					if(\SeatReservation::getExpireTime($reservation->id) == 'expired') {
-						\SeatReservation::find($reservation->id)->delete();
-						\Mail::send('emails.seat.removed', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
-						});
-					}
-					if(\SeatReservation::getExpireTime($reservation->id) == '24 hours' && $reservation->reminder_email_sent <> 1) {
-						\Mail::send('emails.seat.removedsoon', array('seatname' => $seatname, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-							$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
-						});
-						$res = \SeatReservation::find($reservation->id);
-						$res->reminder_email_sent = 1;
-						$res->save();
-					}
-				}
-
-
-
-				return 'OK';
-
-			});
-
-			/* 
-				Add this in CPanel:
-				* * * * * /usr/bin/php /var/www/laravel/artisan cron:run
-			*/
-			
-		});
 	}
 
 	/**
