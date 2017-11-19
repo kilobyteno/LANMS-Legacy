@@ -44,7 +44,7 @@ class CheckLicense extends Command
         function check_license($licensekey, $localkey='') {
             $whmcsurl = 'https://my.infihex.com/';
             $licensing_secret_key = 'InfihexLANMS';
-            $localkeydays = 7; // The number of days to wait between performing remote license checks
+            $localkeydays = 1; // The number of days to wait between performing remote license checks
             $allowcheckfaildays = 3; // The number of days to allow failover for after local key expiry
             // -----------------------------------
             //  -- Do not edit below this line --
@@ -211,9 +211,14 @@ class CheckLicense extends Command
             } else  {
                 $status_desc = "";
             }
+            if(isset($results['localkey'])) {
+                $res_localkey = $results['localkey'];
+            } else  {
+                $res_localkey = "";
+            }
             switch ($status) {
                 case "Active":
-                    Setting::set("APP_LICENSE_LOCAL_KEY", $results['localkey']); // get new local key and save it
+                    Setting::set("APP_LICENSE_LOCAL_KEY", $res_localkey); // get new local key and save it
                     Setting::set("APP_LICENSE_STATUS", $status);
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
