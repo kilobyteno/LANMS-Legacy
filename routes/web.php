@@ -597,7 +597,7 @@ Route::group([
 			], function() {
 				Route::get('logs', [
 					'as' => 'admin-logs',
-					'uses' => '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
+					'uses' => 'Admin\LogController@index'
 				]);
 				Route::get('/whatsnew', [
 					'as' => 'admin-whatsnew' ,
