@@ -1,7 +1,6 @@
 <?php
 namespace Vsmoraes\Pdf;
 
-use Dompdf\Options;
 use Illuminate\Http\Response;
 
 class Dompdf implements Pdf
@@ -22,22 +21,24 @@ class Dompdf implements Pdf
      */
     protected $filename;
 
+
     /**
      * Inject the DOMPDF object
      *
-     * @param \Dompdf\Dompdf $dompdf
+     * @param \DOMPDF $dompdf
      */
-    public function __construct(\Dompdf\Dompdf $dompdf)
+    public function __construct(\DOMPDF $dompdf)
     {
         $this->dompdfInstance = $dompdf;
     }
 
+
     /**
      * {@inheritdoc}
      */
-    public function load($html, $size = Pdf::DEFAULT_SIZE, $orientation = Pdf::DEFAULT_ORIENTATION)
+    public function load($html, $size = 'A4', $orientation = 'portrait')
     {
-        $this->dompdfInstance->loadHtml($html);
+        $this->dompdfInstance->load_html($html);
         $this->setPaper($size, $orientation);
 
         return $this;
@@ -58,9 +59,7 @@ class Dompdf implements Pdf
      */
     public function setPaper($size, $orientation)
     {
-        $this->dompdfInstance->setPaper($size, $orientation);
-
-        return $this;
+        return $this->dompdfInstance->set_paper($size, $orientation);
     }
 
     /**
@@ -68,52 +67,38 @@ class Dompdf implements Pdf
      */
     public function render()
     {
-        $this->dompdfInstance->render();
-
-        return $this;
+        return $this->dompdfInstance->render();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setOptions(Options $options)
+    public function clear()
     {
-        $this->dompdfInstance->setOptions($options);
+        \Image_Cache::clear();
 
-        return $this;
+        return true;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getOptions()
+    public function show($options = ['compress' => 1, 'Attachment' => 0])
     {
-        return $this->dompdfInstance->getOptions();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function show($acceptRanges = false, $compress = true, $attachment = true)
-    {
-        $options = [
-            'Accept-Ranges' => (int) $acceptRanges,
-            'compress' => (int) $compress,
-            'Attachment' => (int) $attachment,
-        ];
-
         $this->render();
+        $this->clear();
+
         $filename = !is_null($this->filename) ? $this->filename : static::DOWNLOAD_FILENAME;
 
-        $this->dompdfInstance->stream($filename, $options);
+        return $this->dompdfInstance->stream($filename, $options);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function download()
+    public function download($options = ['compress' => 1, 'Attachment' => 1])
     {
-        return new Response($this->show(false, true, true), 200, [
+        return new Response($this->show($options), 200, [
             'Content-Type' => 'application/pdf',
         ]);
     }
@@ -121,13 +106,10 @@ class Dompdf implements Pdf
     /**
      * {@inheritdoc}
      */
-    public function output($compress = true)
+    public function output($options = ['compress' => 1])
     {
-        $options = [
-            'compress' => (int) $compress,
-        ];
-
         $this->render();
+
         $output = $this->dompdfInstance->output($options);
 
         if (!is_null($this->filename)) {

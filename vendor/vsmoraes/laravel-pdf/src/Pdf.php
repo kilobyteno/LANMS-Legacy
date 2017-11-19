@@ -1,92 +1,71 @@
 <?php
 namespace Vsmoraes\Pdf;
 
-use Dompdf\Options;
-
 interface Pdf
 {
-    const DEFAULT_SIZE = 'A4';
-    const DEFAULT_ORIENTATION = 'portrait';
-
     /**
      * Loads the HTML to the DOMPDF class
      *
      * @param $html
      * @param string $size
      * @param string $orientation
-     *
-     * @return $this
+     * @return mixed
      */
-    public function load($html, $size = self::DEFAULT_SIZE, $orientation = self::DEFAULT_ORIENTATION);
+    public function load($html, $size = 'A4', $orientation = 'portrait');
 
     /**
      * Set the filename (full path) to where the file should be saved
      *
      * @param string $filename
-     *
-     * @return $this
+     * @return mixed
      */
     public function filename($filename);
 
     /**
      * Set paper size
      *
-     * @param string $size
-     * @param string $orientation
-     *
-     * @return $this
+     * @param $size
+     * @param $orientation
+     * @return mixed
      */
     public function setPaper($size, $orientation);
 
     /**
-     * Renders the HTML to PDF
+     * Render the pdf
      *
-     * @return $this
+     * @return mixed
      */
     public function render();
 
     /**
+     * Clear the pdf
+     *
+     * @return mixed
+     */
+    public function clear();
+
+    /**
      * Render the pdf on the browser
      *
-     * @param bool $acceptRanges
-     * @param bool $compress
-     * @param bool $attachment
-     *
-     * @return void
+     * @param array $options
+     * @return mixed
      */
-    public function show($acceptRanges = false, $compress = true, $attachment = true);
+    public function show($options = ['compress' => 1, 'Attachment' => 0]);
 
     /**
      * Forces the pdf to download
      *
+     * @param array $options
      * @return mixed
      */
-    public function download();
+    public function download($options = ['compress' => 1, 'Attachment' => 0]);
 
     /**
      * Output the pdf the to file speficied on $this->filename()
      *
-     * @param bool $compress
-     *
-     * @return string
+     * @param array $options
+     * @return mixed
      */
-    public function output($compress = true);
+    public function output($options = ['compress' => 1]);
 
-    /**
-     * Define Dompdf Options
-     * @see https://github.com/dompdf/dompdf/blob/master/src/Options.php
-     *
-     * @param Options $options
-     *
-     * @return $this
-     */
-    public function setOptions(Options $options);
-
-    /**
-     * Return the current Dompdf options
-     * @see https://github.com/dompdf/dompdf/blob/master/src/Options.php
-     *
-     * @return Options
-     */
-    public function getOptions();
 }

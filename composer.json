@@ -19,7 +19,7 @@
         "rap2hpoutre/laravel-log-viewer": "^0.8.0",
         "sentry/sentry-laravel": "^0.8.0",
         "tom-lingham/searchy": "^2.0",
-        "vsmoraes/laravel-pdf": "^2.0"
+        "vsmoraes/laravel-pdf": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
