@@ -2244,6 +2244,8 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Requests\\Admin\\PrintSeatRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/PrintSeatRequest.php',
         'LANMS\\Http\\Requests\\Admin\\ReservationEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/ReservationEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\SettingEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/SettingEditRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Sponsor\\SponsorCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Sponsor/SponsorCreateRequest.php',
+        'LANMS\\Http\\Requests\\Admin\\Sponsor\\SponsorEditRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/Sponsor/SponsorEditRequest.php',
         'LANMS\\Http\\Requests\\Admin\\VisitorRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Admin/VisitorRequest.php',
         'LANMS\\Http\\Requests\\Member\\AddressCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/AddressCreateRequest.php',
         'LANMS\\Http\\Requests\\Member\\ChangeUserDetailsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ChangeUserDetailsRequest.php',

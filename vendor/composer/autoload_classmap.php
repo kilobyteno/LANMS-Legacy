@@ -1838,6 +1838,8 @@ return array(
     'LANMS\\Http\\Requests\\Admin\\PrintSeatRequest' => $baseDir . '/app/Http/Requests/Admin/PrintSeatRequest.php',
     'LANMS\\Http\\Requests\\Admin\\ReservationEditRequest' => $baseDir . '/app/Http/Requests/Admin/ReservationEditRequest.php',
     'LANMS\\Http\\Requests\\Admin\\SettingEditRequest' => $baseDir . '/app/Http/Requests/Admin/SettingEditRequest.php',
+    'LANMS\\Http\\Requests\\Admin\\Sponsor\\SponsorCreateRequest' => $baseDir . '/app/Http/Requests/Admin/Sponsor/SponsorCreateRequest.php',
+    'LANMS\\Http\\Requests\\Admin\\Sponsor\\SponsorEditRequest' => $baseDir . '/app/Http/Requests/Admin/Sponsor/SponsorEditRequest.php',
     'LANMS\\Http\\Requests\\Admin\\VisitorRequest' => $baseDir . '/app/Http/Requests/Admin/VisitorRequest.php',
     'LANMS\\Http\\Requests\\Member\\AddressCreateRequest' => $baseDir . '/app/Http/Requests/Member/AddressCreateRequest.php',
     'LANMS\\Http\\Requests\\Member\\ChangeUserDetailsRequest' => $baseDir . '/app/Http/Requests/Member/ChangeUserDetailsRequest.php',

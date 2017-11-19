@@ -1,28 +1,25 @@
 language: php
-
-php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - hhvm
-
-matrix:
-  fast_finish: true
-
 sudo: false
-
+php:
+  - 5.6
+env:
+  matrix:
+  - LARAVEL=5.0 TESTBENCH=3.0.*
+  - LARAVEL=5.1 TESTBENCH=3.1.*
+  - LARAVEL=5.2 TESTBENCH=3.2.*
+  - LARAVEL=5.3 TESTBENCH=3.3.*
+  - LARAVEL=5.4 TESTBENCH=3.4.*
 cache:
   directories:
     - $HOME/.composer/cache
-
 before_install:
   - composer self-update
 
-install: travis_retry composer install --no-interaction --prefer-source
+install:
+  - composer require -n orchestra/testbench:$TESTBENCH laravel/framework:$LARAVEL
+  - travis_retry composer install --no-interaction --prefer-dist
+  - composer info
 
 script:
-  - vendor/bin/php-cs-fixer fix --config-file=.php_cs --verbose --diff --dry-run
-  - vendor/bin/phpunit
+  - composer phpcs
+  - composer tests-travis

@@ -1,9 +1,23 @@
-# sentry-laravel
+<p align="center">
+    <a href="https://sentry.io" target="_blank" align="center">
+        <img src="https://sentry.io/_static/getsentry/images/branding/png/sentry-horizontal-black.png" width="280">
+    </a>
+</p>
+
+# Sentry for Laravel
+
+[![Build Status](https://secure.travis-ci.org/getsentry/sentry-laravel.png?branch=master)](http://travis-ci.org/getsentry/sentry-laravel)
+[![Total Downloads](https://img.shields.io/packagist/dt/sentry/sentry-laravel.svg?style=flat-square)](https://packagist.org/packages/sentry/sentry-laravel)
+[![Downloads per month](https://img.shields.io/packagist/dm/sentry/sentry-laravel.svg?style=flat-square)](https://packagist.org/packages/sentry/sentry-laravel)
+[![Latest stable version](https://img.shields.io/packagist/v/sentry/sentry-laravel.svg?style=flat-square)](https://packagist.org/packages/sentry/sentry-laravel)
+[![License](http://img.shields.io/packagist/l/sentry/sentry-laravel.svg?style=flat-square)](https://packagist.org/packages/sentry/sentry-laravel)
 
 Laravel integration for [Sentry](https://sentry.io/).
 
 
-## Laravel 5.x
+## Installation
+
+### Laravel 5.x
 
 Install the ``sentry/sentry-laravel`` package:
 
@@ -11,7 +25,7 @@ Install the ``sentry/sentry-laravel`` package:
 $ composer require sentry/sentry-laravel
 ```
 
-Add the Sentry service provider and facade in ``config/app.php``:
+If you're on Laravel 5.4 or earlier, you'll need to add the following to your ``config/app.php``:
 
 ```php
 'providers' => array(
@@ -30,9 +44,10 @@ Add Sentry reporting to ``app/Exceptions/Handler.php``:
 ```php
 public function report(Exception $exception)
 {
-    if ($this->shouldReport($exception)) {
+    if (app()->bound('sentry') && $this->shouldReport($exception)) {
         app('sentry')->captureException($exception);
     }
+
     parent::report($exception);
 }
 ```
@@ -49,7 +64,7 @@ Add your DSN to ``.env``:
 SENTRY_DSN=https://public:secret@sentry.example.com/1
 ```
 
-## Laravel 4.x
+### Laravel 4.x
 
 Install the ``sentry/sentry-laravel`` package:
 
@@ -77,7 +92,7 @@ Create the Sentry configuration file (``config/sentry.php``):
 $ php artisan config:publish sentry/sentry-laravel
 ```
 
-## Lumen 5.x
+### Lumen 5.x
 
 Install the ``sentry/sentry-laravel`` package:
 
@@ -99,9 +114,10 @@ Add Sentry reporting to ``app/Exceptions/Handler.php``:
 ```php
 public function report(Exception $e)
 {
-    if ($this->shouldReport($e)) {
+    if (app()->bound('sentry') && $this->shouldReport($e)) {
         app('sentry')->captureException($e);
     }
+
     parent::report($e);
 }
 ```
@@ -183,22 +199,47 @@ class SentryContext
 }
 ```
 
+## Displaying the error ID
+
+When something goes wrong and you get a customer email in your inbox it would be nice if they could give you some kind of identitifier for the error they are seeing.
+
+Luckily Sentry provides you with just that by adding one of the following options to your error view.
+
+```php
+// Using the Sentry facade
+$errorID = Sentry::getLastEventID();
+
+// Or without the Sentry facade (Lumen)
+$errorID = app('sentry')->getLastEventID();
+```
+
+This could look something like this in for example your `resources/views/error/500.blade.php`:
+
+```blade
+@if(!empty(Sentry::getLastEventID()))
+    <p>Please send this ID with your support request: {{ Sentry::getLastEventID() }}.</p>
+@endif
+```
+
+This ID can be searched for in the Sentry interface allowing you to find the error quickly.
+
+
 ## Contributing
 
-First, make sure you can run the test suite. Install development dependencies :
+Dependencies are managed through composer:
 
-```bash
+```
 $ composer install
 ```
 
-You may now use phpunit :
+Tests can then be run via phpunit:
 
-```bash
+```
 $ vendor/bin/phpunit
 ```
 
 
-## Resources
+## Community
 
 * [Bug Tracker](http://github.com/getsentry/sentry-laravel/issues)
 * [Code](http://github.com/getsentry/sentry-laravel)
