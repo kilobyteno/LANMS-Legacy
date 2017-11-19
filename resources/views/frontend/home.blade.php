@@ -64,15 +64,18 @@
 						<div class="card-content">
 							<h3>Sponsorer</h3>
 						</div>
-						<div class="card-action">
-							<a href="https://www.eidsiva.net/"><img class="responsive-img" src="{{ asset('images/sponsor/eidsiva.png') }} " width="335px"></a>
-						</div>
-						<div class="card-action">
-							<a href="http://www.sikkerjobb.no/"><img class="responsive-img" src="{{ asset('images/sponsor/sikkerjobbas.png') }} " width="335px"></a>
-						</div>
-						<div class="card-action">
-							<a href="https://infihex.com/"><img class="responsive-img" src="{{ asset('images/sponsor/infihex.png') }} " width="335px"></a>
-						</div>
+						@foreach(LANMS\Sponsor::thisYear()->get() as $sponsor)
+							<div class="card-action">
+								 @if($sponsor->url)
+									<a href="{{ $sponsor->url }}"><img class="responsive-img" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}" width="335px"></a>
+								@else
+									<img class="responsive-img" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}" width="335px">
+								@endif
+								@if($sponsor->description)
+									<p>{{ $sponsor->description }}</p>
+								@endif
+							</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
