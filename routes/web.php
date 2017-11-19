@@ -614,6 +614,10 @@ Route::group([
 							'as' => 'admin-license-check',
 							'uses' => 'Admin\LicenseController@check'
 						]);
+						Route::post('/store', [
+							'as' => 'admin-license-store',
+							'uses' => 'Admin\LicenseController@store'
+						]);
 				});
 				Route::group([
 					'prefix' => 'settings'

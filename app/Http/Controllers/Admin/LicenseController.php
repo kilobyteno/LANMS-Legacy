@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
+use LANMS\Http\Requests\Admin\LicenseKeyEditRequest;
+
 class LicenseController extends Controller {
 
 	/**
@@ -31,6 +33,19 @@ class LicenseController extends Controller {
 			\Artisan::call('lanms:checklicense');
 			return Redirect::route('admin-license')->with('messagetype', 'success')
 								->with('message', 'License status updated!');
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+	}
+
+	public function store(LicenseKeyEditRequest $request)
+	{
+		if (Sentinel::getUser()->hasAccess(['admin.license.*'])) {
+			\Setting::set('APP_LICENSE_KEY', $request->licensekey);
+			\Setting::save();
+			return Redirect::route('admin-license')->with('messagetype', 'success')
+								->with('message', 'License key updated!');
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
