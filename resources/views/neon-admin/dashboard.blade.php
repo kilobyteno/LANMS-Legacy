@@ -22,11 +22,11 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
-				<a class="tile-stats tile-cyan" href="{{route('admin-seating-reservations')}}">
-					<div class="icon"><i class="fa fa-street-view"></i></div>
-					<div class="num" data-start="0" data-end="{{SeatReservation::thisYear()->count()}}" data-duration="1500" data-delay="0">{{SeatReservation::thisYear()->count()}}</div>
-					<h3>Seat reservations</h3>
-					<p>so far this year.</p>
+				<a class="tile-stats tile-blue" href="{{route('admin-crew')}}">
+					<div class="icon"><i class="fa fa-user-md"></i></div>
+					<div class="num" data-start="0" data-end="{{Crew::thisYear()->count()}}" data-duration="1500" data-delay="0">{{Crew::thisYear()->count()}}</div>
+					<h3>Crew members</h3>
+					<p>this year.</p>
 				</a>
 			</div>
 			<div class="col-sm-3">
@@ -46,6 +46,37 @@
 				</a>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+				<a class="tile-stats tile-cyan" href="{{route('admin-seating-reservations')}}">
+					<div class="icon"><i class="fa fa-street-view"></i></div>
+					<div class="num" data-start="0" data-end="{{SeatReservation::thisYear()->count()}}" data-duration="1500" data-delay="0">{{SeatReservation::thisYear()->count()}}</div>
+					<h3>Seat reservations</h3>
+					<p>so far this year.</p>
+				</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="tile-stats tile-green" href="{{route('admin-seating-checkin')}}">
+					<div class="icon"><i class="fa fa-ticket"></i></div>
+					<div class="num" data-start="0" data-end="{{Checkin::thisYear()->count()}}" data-duration="1500" data-delay="0">{{Checkin::thisYear()->count()}}</div>
+					<h3>Check-ins</h3>
+					<p>so far this year.</p>
+				</a>
+			</div>
+			<div class="col-sm-3">
+				<a class="tile-stats tile-pink" href="{{route('admin-seating-checkin-visitor')}}">
+					<div class="icon"><i class="fa fa-reddit-alien"></i></div>
+					<div class="num" data-start="0" data-end="{{Visitor::thisYear()->count()}}" data-duration="1500" data-delay="0">{{Visitor::thisYear()->count()}}</div>
+					<h3>Visitors</h3>
+					<p>so far this year.</p>
+				</a>
+			</div>
+			<div class="col-sm-3">
+				
+			</div>
+		</div>
+
 	</div>
 </div>
 @stop
