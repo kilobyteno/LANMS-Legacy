@@ -565,6 +565,34 @@ Route::group([
 				]);
 		});
 		Route::group([
+			'prefix' => 'sponsor'
+			], function() {
+				Route::get('/', [
+					'as' => 'admin-sponsor',
+					'uses' => 'Admin\SponsorController@index'
+				]);
+				Route::get('/create', [
+					'as' => 'admin-sponsor-create',
+					'uses' => 'Admin\SponsorController@create'
+				]);
+				Route::post('/store', [
+					'as' => 'admin-sponsor-store',
+					'uses' => 'Admin\SponsorController@store'
+				]);
+				Route::get('/{id}/edit', [
+					'as' => 'admin-sponsor-edit',
+					'uses' => 'Admin\SponsorController@edit'
+				]);
+				Route::post('/{id}/update', [
+					'as' => 'admin-sponsor-update',
+					'uses' => 'Admin\SponsorController@update'
+				]);
+				Route::get('/{id}/destroy', [
+					'as' => 'admin-sponsor-destroy',
+					'uses' => 'Admin\SponsorController@destroy'
+				]);
+		});
+		Route::group([
 			'prefix' => 'system'
 			], function() {
 				Route::get('logs', [
