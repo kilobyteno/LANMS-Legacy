@@ -21,6 +21,7 @@
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-125'>LANMS-125</a>] - Other users can reserve seats on a user with a seat reserved</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-127'>LANMS-127</a>] - Reminder email for seat reservations does not send at 24 hours</li>
 						</ul>
+
 						<h4>New Feature</h4>
 						<ul>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-6'>LANMS-6</a>] - Create Sponsor System</li>
@@ -34,12 +35,14 @@
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-118'>LANMS-118</a>] - Merch salg med billett kjøp</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-119'>LANMS-119</a>] - Samtykkeskjema på nett</li>
 						</ul>
+
 						<h4>Task</h4>
 						<ul>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-110'>LANMS-110</a>] - Upgrade Laravel</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-123'>LANMS-123</a>] - Move &quot;Print&quot; under seating</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-124'>LANMS-124</a>] - Move settings, logs &amp; license under &quot;System&quot;</li>
 						</ul>
+
 						<h4>Improvement</h4>
 						<ul>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-71'>LANMS-71</a>] - Admin should be able to set payment to entrance for temp reserved seats</li>
@@ -54,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -81,6 +85,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -108,6 +113,302 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#215" aria-expanded="true" class="">Version 2.1.5</a>
+					</h4>
+				</div>
+				<div id="215" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-54'>LANMS-54</a>] - Members page should not show non active users</li>
+						</ul>
+						    
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-76'>LANMS-76</a>] - List for non-checkedin reservations</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#214" aria-expanded="true" class="">Version 2.1.4</a>
+					</h4>
+				</div>
+				<div id="214" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-74'>LANMS-74</a>] - Ticket ID on reservation table</li>
+						</ul>
+						    
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-81'>LANMS-81</a>] - Add setting for disabling login for users</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-82'>LANMS-82</a>] - Need to hide seating from menu</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#213" aria-expanded="true" class="">Version 2.1.3</a>
+					</h4>
+				</div>
+				<div id="213" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-72'>LANMS-72</a>] - Print outs for seats in admin panel</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#212" aria-expanded="true" class="">Version 2.1.2</a>
+					</h4>
+				</div>
+				<div id="212" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-69'>LANMS-69</a>] - Reservation count for api is counting crew seats</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#211" aria-expanded="true" class="">Version 2.1.1</a>
+					</h4>
+				</div>
+				<div id="211" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-68'>LANMS-68</a>] - Seating info, cant download ticket when closed and more</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#210" aria-expanded="true" class="">Version 2.1.0</a>
+					</h4>
+				</div>
+				<div id="210" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-64'>LANMS-64</a>] - All Users have 30 reserved seats</li>
+						</ul>
+						    
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-65'>LANMS-65</a>] - Check-in</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-67'>LANMS-67</a>] - Output data in JSON</li>
+						</ul>
+						
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-61'>LANMS-61</a>] - Add Seatmap for seating in admin panel</li>
+						</ul>
+						    
+						<h4>Sub-task</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-66'>LANMS-66</a>] - Visitor check-in</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#205" aria-expanded="true" class="">Version 2.0.5</a>
+					</h4>
+				</div>
+				<div id="205" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>New Feature</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-63'>LANMS-63</a>] - Google Analytics</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#204" aria-expanded="true" class="">Version 2.0.4</a>
+					</h4>
+				</div>
+				<div id="204" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>New Feature</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-62'>LANMS-62</a>] - Delete reservations in admin panel</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#203" aria-expanded="true" class="">Version 2.0.3</a>
+					</h4>
+				</div>
+				<div id="203" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>Bug</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-41'>LANMS-41</a>] - User registration/login problems in all browsers</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#202" aria-expanded="true" class="">Version 2.0.2</a>
+					</h4>
+				</div>
+				<div id="202" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>Bug</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-36'>LANMS-36</a>] - Capital letters does not work in email on registration</li>
+						</ul>
+						    
+						<h2>New Feature</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-55'>LANMS-55</a>] - Admin panel: Change reservations</li>
+						</ul>
+						    
+						<h2>Task</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-56'>LANMS-56</a>] - Create ENV setting for stripe key</li>
+						</ul>
+						    
+						<h2>Improvement</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-53'>LANMS-53</a>] - Update seat info about user</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-58'>LANMS-58</a>] - Add more info about rules for reservation</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-59'>LANMS-59</a>] - Frontend needs css improvements</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#201" aria-expanded="true" class="">Version 2.0.1</a>
+					</h4>
+				</div>
+				<div id="201" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>Bug</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-29'>LANMS-29</a>] - Missing Assets</li>
+						</ul>
+						    
+						<h2>New Feature</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-42'>LANMS-42</a>] - User should be able remove reservation if selected pay at entrance</li>
+						</ul>
+						    
+						<h2>Task</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-37'>LANMS-37</a>] - Change mail settings for prod</li>
+						</ul>
+						   
+						<h2>Improvement</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-52'>LANMS-52</a>] - Users should be able to see seats reserved to them</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#200" aria-expanded="true" class="">Version 2.0.0</a>
+					</h4>
+				</div>
+				<div id="200" class="panel-collapse collapse" aria-expanded="true" style="">
+					<div class="panel-body">
+						<h2>Bug</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-14'>LANMS-14</a>] - User::hasAdminAccess-Scope does not work</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-21'>LANMS-21</a>] - News bug</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-22'>LANMS-22</a>] - Deleting primary adress does not set another primary</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-25'>LANMS-25</a>] - Profilepicturesmall does not save in db on upload</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-26'>LANMS-26</a>] - Fix userdetails request</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-30'>LANMS-30</a>] - Can&#39;t have spaces in address</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-32'>LANMS-32</a>] - Some dates does not work on registration (some browsers)</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-33'>LANMS-33</a>] - Addres cant understand special caracters like æøå</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-35'>LANMS-35</a>] - News and Article pages throw 500</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-38'>LANMS-38</a>] - On registration if email exists it gives 500</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-39'>LANMS-39</a>] - Wrong username in activation screen makes it not work</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-40'>LANMS-40</a>] - 2 Feil på &quot;Add address</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-44'>LANMS-44</a>] - Logout button gone on mobile</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-45'>LANMS-45</a>] - All users 46 years old</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-46'>LANMS-46</a>] - Location wrong</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-47'>LANMS-47</a>] - Admin Page-siden getUsernameByID needs to be removed</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-48'>LANMS-48</a>] - Refferal link does not work</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-49'>LANMS-49</a>] - Adressbook create does not rember input</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-50'>LANMS-50</a>] - Chrome says &quot;Please enter a valid date.&quot; when date is valid</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-51'>LANMS-51</a>] - Fix birthdate in db and templates</li>
+						</ul>
+
+						<h2>New Feature</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-2'>LANMS-2</a>] - Implement Frontend Design</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-3'>LANMS-3</a>] - Create Page System</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-5'>LANMS-5</a>] - Create Seating System</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-7'>LANMS-7</a>] - Create Addressbook for users</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-9'>LANMS-9</a>] - &quot;Now&quot;-button in Publish setting on news admin</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-10'>LANMS-10</a>] - Add unique ID for each user (random generated)</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-11'>LANMS-11</a>] - Migration from 1.0</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-15'>LANMS-15</a>] - Autocomplete Address</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-16'>LANMS-16</a>] - Ajax Usernames</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-17'>LANMS-17</a>] - Create Referral System</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-28'>LANMS-28</a>] - Error Emails to Dev</li>
+						</ul>
+
+						<h2>Task</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-4'>LANMS-4</a>] - Finish Settings System</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-20'>LANMS-20</a>] - Add error messages to form admin</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-27'>LANMS-27</a>] - Add relationships for author and news</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-31'>LANMS-31</a>] - Check thru DB changes from 1.0 to 2.0</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-34'>LANMS-34</a>] - Terms of Service &amp; Privacy Policy</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-43'>LANMS-43</a>] - Update and test email templates</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>
