@@ -11,18 +11,26 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.10
+ * @version    2.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
 namespace Cartalyst\Stripe\Api;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\HandlerStack;
 use Cartalyst\Stripe\Utility;
-use Cartalyst\Stripe\Http\Client;
 use Cartalyst\Stripe\ConfigInterface;
+use Psr\Http\Message\RequestInterface;
+use Cartalyst\Stripe\Exception\Handler;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\TransferException;
 
 abstract class Api implements ApiInterface
 {
@@ -41,13 +49,6 @@ abstract class Api implements ApiInterface
     protected $perPage;
 
     /**
-     * The query aggregator status.
-     *
-     * @var bool
-     */
-    protected $queryAggregator = false;
-
-    /**
      * Constructor.
      *
      * @param  \Cartalyst\Stripe\ConfigInterface  $client
@@ -59,7 +60,7 @@ abstract class Api implements ApiInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function baseUrl()
     {
@@ -67,7 +68,7 @@ abstract class Api implements ApiInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getPerPage()
     {
@@ -75,7 +76,7 @@ abstract class Api implements ApiInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setPerPage($perPage)
     {
@@ -85,7 +86,7 @@ abstract class Api implements ApiInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _get($url = null, $parameters = [])
     {
@@ -93,11 +94,11 @@ abstract class Api implements ApiInterface
             $parameters['limit'] = $perPage;
         }
 
-        return $this->execute('get', $url, $parameters)->json();
+        return $this->execute('get', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _head($url = null, array $parameters = [])
     {
@@ -105,81 +106,108 @@ abstract class Api implements ApiInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _delete($url = null, array $parameters = [])
     {
-        return $this->execute('delete', $url, $parameters)->json();
+        return $this->execute('delete', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _put($url = null, array $parameters = [])
     {
-        return $this->execute('put', $url, $parameters)->json();
+        return $this->execute('put', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _patch($url = null, array $parameters = [])
     {
-        return $this->execute('patch', $url, $parameters)->json();
+        return $this->execute('patch', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _post($url = null, array $parameters = [])
     {
-        return $this->execute('post', $url, $parameters)->json();
+        return $this->execute('post', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function _options($url = null, array $parameters = [])
     {
-        return $this->execute('options', $url, $parameters)->json();
+        return $this->execute('options', $url, $parameters);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function execute($httpMethod, $url, array $parameters = [], array $body = [])
+    public function execute($httpMethod, $url, array $parameters = [])
     {
-        $parameters = Utility::prepareParameters($parameters);
+        try {
+            $parameters = Utility::prepareParameters($parameters);
 
-        return $this->getClient()->{$httpMethod}("v1/{$url}", [ 'query' => $parameters, 'body' => $body ]);
-    }
+            $response = $this->getClient()->{$httpMethod}('v1/'.$url, [ 'query' => $parameters ]);
 
-    /**
-     * Sets the query aggregator status.
-     *
-     * @param  bool  $status
-     * @return $this
-     */
-    public function queryAggregator($status = false)
-    {
-        $this->queryAggregator = $status;
-
-        return $this;
+            return json_decode((string) $response->getBody(), true);
+        } catch (ClientException $e) {
+            new Handler($e);
+        }
     }
 
     /**
      * Returns an Http client instance.
      *
-     * @return \Cartalyst\Stripe\Http\Client
+     * @return \GuzzleHttp\Client
      */
     protected function getClient()
     {
-        $config = $this->config;
+        return new Client([
+            'base_uri' => $this->baseUrl(), 'handler' => $this->createHandler()
+        ]);
+    }
 
-        $config->base_url = $this->baseUrl();
+    /**
+     * Create the client handler.
+     *
+     * @return \GuzzleHttp\HandlerStack
+     */
+    protected function createHandler()
+    {
+        $stack = HandlerStack::create();
 
-        return (new Client($config))
-            ->queryAggregator($this->queryAggregator)
-        ;
+        $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
+            $config = $this->config;
+
+            if ($idempotencykey = $config->getIdempotencyKey()) {
+                $request = $request->withHeader('Idempotency-Key', $idempotencykey);
+            }
+
+            if ($accountId = $config->getAccountId()) {
+                $request = $request->withHeader('Stripe-Account', $accountId);
+            }
+
+            $request = $request->withHeader('Stripe-Version', $config->getApiVersion());
+
+            $request = $request->withHeader('User-Agent', 'Cartalyst-Stripe/'.$config->getVersion());
+
+            $request = $request->withHeader('Authorization', 'Basic '.base64_encode($config->getApiKey()));
+
+            return $request;
+        }));
+
+        $stack->push(Middleware::retry(function ($retries, RequestInterface $request, ResponseInterface $response = null, TransferException $exception = null) {
+            return $retries < 3 && ($exception instanceof ConnectException || ($response && $response->getStatusCode() >= 500));
+        }, function ($retries) {
+            return (int) pow(2, $retries) * 1000;
+        }));
+
+        return $stack;
     }
 }

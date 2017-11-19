@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe Laravel
- * @version    2.0.3
+ * @version    6.0.1
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -41,7 +41,7 @@ class StripeServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'stripe',
+            'stripe', 'stripe.config'
         ];
     }
 

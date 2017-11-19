@@ -11,21 +11,19 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.10
+ * @version    2.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
 namespace Cartalyst\Stripe\Api;
 
-use GuzzleHttp\Post\PostFile;
-
 class FileUploads extends Api
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function baseUrl()
     {
@@ -42,19 +40,15 @@ class FileUploads extends Api
      */
     public function create($file, $purpose, array $headers = [])
     {
-        $client = $this->getClient();
+        $response = $this->getClient()->request('POST', 'v1/files', [
+            'headers'   => $headers,
+            'multipart' => [
+                [ 'name' => 'purpose', 'contents' => $purpose ],
+                [ 'name' => 'file', 'contents' => fopen($file, 'r') ]
+            ],
+        ]);
 
-        $request = $client->createRequest('POST', 'v1/files');
-
-        $postBody = $request->getBody();
-
-        $postBody->setField('purpose', $purpose);
-
-        $postBody->addFile(
-            new PostFile('file', fopen($file, 'r'), null, $headers)
-        );
-
-        return json_decode($client->send($request)->getBody()->getContents(), true);
+        return json_decode($response->getBody(), true);
     }
 
     /**

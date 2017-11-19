@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.10
+ * @version    2.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -27,7 +27,7 @@ class Stripe
      *
      * @var string
      */
-    const VERSION = '1.0.8';
+    const VERSION = '2.1.0';
 
     /**
      * The Config repository instance.
@@ -107,7 +107,7 @@ class Stripe
      */
     public function getApiKey()
     {
-        return $this->config->api_key;
+        return $this->config->getApiKey();
     }
 
     /**
@@ -118,7 +118,7 @@ class Stripe
      */
     public function setApiKey($apiKey)
     {
-        $this->config->api_key = $apiKey;
+        $this->config->setApiKey($apiKey);
 
         return $this;
     }
@@ -130,7 +130,7 @@ class Stripe
      */
     public function getApiVersion()
     {
-        return $this->config->api_version;
+        return $this->config->getApiVersion();
     }
 
     /**
@@ -141,7 +141,7 @@ class Stripe
      */
     public function setApiVersion($apiVersion)
     {
-        $this->config->api_version = $apiVersion;
+        $this->config->setApiVersion($apiVersion);
 
         return $this;
     }
@@ -154,7 +154,20 @@ class Stripe
      */
     public function idempotent($idempotencyKey)
     {
-        $this->config->idempotency_key = $idempotencyKey;
+        $this->config->setIdempotencyKey($idempotencyKey);
+
+        return $this;
+    }
+
+    /**
+     * Sets the account id.
+     *
+     * @param  string  $accountId
+     * @return $this
+     */
+    public function accountId($accountId)
+    {
+        $this->config->setAccountId($accountId);
 
         return $this;
     }
@@ -178,6 +191,38 @@ class Stripe
     public static function setAmountConverter($amountConverter)
     {
         static::$amountConverter = $amountConverter;
+    }
+
+    /**
+     * Disables the amount converter.
+     *
+     * @return void
+     */
+    public static function disableAmountConverter()
+    {
+        static::setAmountConverter(null);
+    }
+
+    /**
+     * Returns the default amount converter.
+     *
+     * @return string
+     */
+    public static function getDefaultAmountConverter()
+    {
+        return '\\Cartalyst\\Stripe\\AmountConverter::convert';
+    }
+
+    /**
+     * Sets the default amount converter;
+     *
+     * @return void
+     */
+    public static function setDefaultAmountConverter()
+    {
+        static::setAmountConverter(
+            static::getDefaultAmountConverter()
+        );
     }
 
     /**

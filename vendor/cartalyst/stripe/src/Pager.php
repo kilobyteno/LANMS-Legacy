@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.10
+ * @version    2.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -80,10 +80,16 @@ class Pager
             $parameters['starting_after'] = $this->nextToken;
         }
 
-        if (isset($parameters[0]) && is_string($parameters[0])) {
+        if (isset($parameters[0])) {
             $id = $parameters[0];
 
             unset($parameters[0]);
+
+            if (isset($parameters[1])) {
+                $parameters = $parameters[1];
+
+                unset($parameters[1]);
+            }
 
             $parameters = [ $id, $parameters ];
         } else {

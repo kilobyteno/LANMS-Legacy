@@ -11,19 +11,52 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    1.0.10
+ * @version    2.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2016, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
 namespace Cartalyst\Stripe;
 
-use Cartalyst\Collections\Collection;
-
-class Config extends Collection implements ConfigInterface
+class Config implements ConfigInterface
 {
+    /**
+     * The current package version.
+     *
+     * @var string
+     */
+    protected $version;
+
+    /**
+     * The Stripe API key.
+     *
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
+     * The Stripe API version.
+     *
+     * @var string
+     */
+    protected $apiVersion;
+
+    /**
+     * The idempotency key.
+     *
+     * @var string
+     */
+    protected $idempotencyKey;
+
+    /**
+     * The managed account id.
+     *
+     * @var string
+     */
+    protected $accountId;
+
     /**
      * Constructor.
      *
@@ -35,14 +68,109 @@ class Config extends Collection implements ConfigInterface
      */
     public function __construct($version, $apiKey, $apiVersion)
     {
-        $api_key = $apiKey ?: getenv('STRIPE_API_KEY');
+        $this->setVersion($version);
 
-        $api_version = $apiVersion ?: getenv('STRIPE_API_VERSION') ?: '2015-03-24';
+        $this->setApiKey($apiKey ?: getenv('STRIPE_API_KEY'));
 
-        if (! $api_key) {
+        $this->setApiVersion($apiVersion ?: getenv('STRIPE_API_VERSION') ?: '2016-07-06');
+
+        if (! $this->apiKey) {
             throw new \RuntimeException('The Stripe API key is not defined!');
         }
+    }
 
-        parent::__construct(compact('version', 'api_key', 'api_version'));
+    /**
+     * {@inheritdoc}
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getApiVersion()
+    {
+        return $this->apiVersion;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIdempotencyKey()
+    {
+        return $this->idempotencyKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIdempotencyKey($idempotencyKey)
+    {
+        $this->idempotencyKey = $idempotencyKey;
+
+        return $this;
+    }
+
+    /**
+     * Returns the managed account id.
+     *
+     * @return string
+     */
+    public function getAccountId()
+    {
+        return $this->accountId;
+    }
+
+    /**
+     * Sets the managed account id.
+     *
+     * @param  string  $accountId
+     * @return $this
+     */
+    public function setAccountId($accountId)
+    {
+        $this->accountId = $accountId;
+
+        return $this;
     }
 }
