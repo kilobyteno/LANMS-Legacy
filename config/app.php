@@ -183,7 +183,6 @@ return [
 		Igaster\LaravelTheme\themeServiceProvider::class,
 		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 		anlutro\LaravelSettings\ServiceProvider::class,
-		Liebig\Cron\Laravel5ServiceProvider::class,
 		Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 		Vsmoraes\Pdf\PdfServiceProvider::class,
 		Milon\Barcode\BarcodeServiceProvider::class,

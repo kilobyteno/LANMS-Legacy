@@ -384,13 +384,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
                 0 => __DIR__ . '/..' . '/milon/barcode/src',
             ),
         ),
-        'L' => 
-        array (
-            'Liebig\\Cron' => 
-            array (
-                0 => __DIR__ . '/..' . '/liebig/cron/src',
-            ),
-        ),
         'J' => 
         array (
             'JakubOnderka\\PhpConsoleHighlighter' => 
@@ -563,7 +556,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'CreateCrewSkillAttachedTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_15_132325_create_crew_skill_attached_table.php',
         'CreateCrewSkillsTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_30_123741_create_crew_skills_table.php',
         'CreateCrewsTable' => __DIR__ . '/../..' . '/database/migrations/2016_04_30_120504_create_crews_table.php',
-        'CreateCronjobTable' => __DIR__ . '/../..' . '/database/migrations/2013_06_27_144035_create_cronjob_table.php',
         'CreateCronmanagerTable' => __DIR__ . '/../..' . '/database/migrations/2013_06_27_143953_create_cronmanager_table.php',
         'CreateInfoTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_28_181723_create_info_table.php',
         'CreateNewsCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2015_12_28_213631_create_news_categories_table.php',
@@ -2328,15 +2320,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
-        'Liebig\\Cron\\Cron' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/Cron.php',
-        'Liebig\\Cron\\CronServiceProvider' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/CronServiceProvider.php',
-        'Liebig\\Cron\\Facades\\Cron' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/Facades/Cron.php',
-        'Liebig\\Cron\\KeygenCommand' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/KeygenCommand.php',
-        'Liebig\\Cron\\Laravel5ServiceProvider' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/Laravel5ServiceProvider.php',
-        'Liebig\\Cron\\ListCommand' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/ListCommand.php',
-        'Liebig\\Cron\\Models\\Job' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/Models/Job.php',
-        'Liebig\\Cron\\Models\\Manager' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/Models/Manager.php',
-        'Liebig\\Cron\\RunCommand' => __DIR__ . '/..' . '/liebig/cron/src/Liebig/Cron/RunCommand.php',
         'Line_Box' => __DIR__ . '/..' . '/dompdf/dompdf/include/line_box.cls.php',
         'List_Bullet_Frame_Decorator' => __DIR__ . '/..' . '/dompdf/dompdf/include/list_bullet_frame_decorator.cls.php',
         'List_Bullet_Frame_Reflower' => __DIR__ . '/..' . '/dompdf/dompdf/include/list_bullet_frame_reflower.cls.php',

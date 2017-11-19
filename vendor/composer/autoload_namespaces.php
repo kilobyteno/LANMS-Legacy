@@ -13,7 +13,6 @@ return array(
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Milon\\Barcode' => array($vendorDir . '/milon/barcode/src'),
-    'Liebig\\Cron' => array($vendorDir . '/liebig/cron/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),

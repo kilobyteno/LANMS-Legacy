@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "884253e34ad34c362d8ff1d1718ea19a",
-    "content-hash": "ae7312edd0e94f7c04b0eda42c039965",
+    "hash": "fcbd52f5fec92b39522356c3b99c05ef",
+    "content-hash": "2fea3a3b999cdf6a234181adcee1bab7",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -1386,56 +1386,6 @@
             "time": "2017-08-06 17:41:04"
         },
         {
-            "name": "liebig/cron",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/liebig/cron.git",
-                "reference": "d8ab29847ec7056e5272b0093381ec4ff23db14f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/liebig/cron/zipball/d8ab29847ec7056e5272b0093381ec4ff23db14f",
-                "reference": "d8ab29847ec7056e5272b0093381ec4ff23db14f",
-                "shasum": ""
-            },
-            "require": {
-                "mtdowling/cron-expression": "1.*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "illuminate/support": "4.0.x|~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/migrations"
-                ],
-                "psr-0": {
-                    "Liebig\\Cron": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marc Liebig",
-                    "email": "marc.liebig@gmx.eu"
-                }
-            ],
-            "description": "Job scheduling for Laravel",
-            "homepage": "http://liebig.github.io/cron",
-            "keywords": [
-                "cron",
-                "cronjob",
-                "cronmanager",
-                "laravel"
-            ],
-            "time": "2017-09-13 06:34:16"
-        },
-        {
             "name": "milon/barcode",
             "version": "5.3.6",
             "source": {
@@ -1564,7 +1514,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -4860,9 +4810,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "liebig/cron": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
