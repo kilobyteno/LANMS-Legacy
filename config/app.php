@@ -271,7 +271,7 @@ return [
 		'Reminder'   	=> Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
 		'Sentinel'   	=> Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
-		'Stripe' 		=> 'Cartalyst\Stripe\Laravel\Facades\Stripe',
+		'Stripe' 		=> Cartalyst\Stripe\Laravel\Facades\Stripe::class,
 		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
 		'DNS1D'			=> 'Milon\Barcode\Facades\DNS1DFacade',
     	'DNS2D'			=> 'Milon\Barcode\Facades\DNS2DFacade',
