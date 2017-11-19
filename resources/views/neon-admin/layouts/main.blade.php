@@ -91,6 +91,9 @@
 				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
+				<li class="@if(Request::is('admin/sponsor')){{'active'}} @endif">
+					<a href="{{ route('admin-sponsor') }}"><i class="fa fa-money"></i> <span class="title">Sponsor</span></a>
+				</li>
 				<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
 					<ul>
