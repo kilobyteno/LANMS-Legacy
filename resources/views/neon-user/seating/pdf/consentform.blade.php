@@ -11,7 +11,7 @@
 			.text-muted {color:#999}
 			.text-danger {color: #ac1818}
 			.text-success {color: #045702}
-			small {font-size:75%;color:#999}
+			small {font-size:95%;color:#999}
 			h1 {font-size:3em;margin:0;padding:0}
 			h2 {font-size:2em;margin:0;padding:0}
 			p {margin:0;padding:0;margin-bottom:20px}
@@ -21,7 +21,7 @@
 	<body>
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<img src="{{ Setting::get('WEB_LOGO') }}" style="width:auto;max-width:700px;">
+				<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:auto;max-width:700px;">
 				<h1>Samtykkeskjema<br><small>{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</small></h1>
 				<hr>
 			</div>
@@ -38,22 +38,21 @@
 					<br>
 					<strong><em>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/tilforeldre</em></strong>
 				</p>
-				<br>
 				<hr>
 				<br>
-				<h1>Tillatelse til å delta på {{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</h1>
-				<p>Jeg gir med dette tillatelse til at <strong>{{ strtoupper(Sentinel::getUser()->firstname . ' ' . Sentinel::getUser()->lastname) }}</strong> som er født {{ Sentinel::getUser()->birthdate }} kan delta på arrangementet &quot;{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}&quot; i {{ LANMS\Info::getContent('where') }} {{ LANMS\Info::getContent('when') }}.</p>
+				<h2>Tillatelse til å delta på {{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</h2>
+				<p>Jeg gir med dette tillatelse til at <strong>{{ strtoupper(Sentinel::getUser()->firstname . ' ' . Sentinel::getUser()->lastname) }}</strong> som er født <strong>{{ Sentinel::getUser()->birthdate }}</strong> kan delta på arrangementet &quot;{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}&quot; i {{ LANMS\Info::getContent('where') }} {{ LANMS\Info::getContent('when') }}.</p>
 				<br>
-				<p>Mitt forhold til deltakeren (sett strek under); <em>mor</em>, <em>far</em> eller <em>annen omsorgsperson</em>.</p>
+				<p>Mitt forhold til deltakeren (sett strek under); <strong><em>mor</em></strong>, <strong><em>far</em></strong> eller <strong><em>annen omsorgsperson</em></strong> (spesifiser under).<br>______________________________________________________________________</p>
 				<p>Kontaktinformasjon til omsorgsperson (om det skulle bli nødvendig):</p>
 				<p>Fulltnavn:______________________________________________________________________ Telefonnummer:___________________________________</p>
 				<p>Jeg kan treffes på telefon hele døgnet om det skulle oppstå en nødsituasjon og jeg er inneforstått med at arrangøren kan ringe for å kontrollere gyldigheten av denne tillatelsen.</p>
 				<div class="row">
 					<div class="col-md-6">
-						<p>Sted og dato: ____________________________________________________</p>
+						<p>Sted og dato: _________________________________________________</p>
 					</div>
 					<div class="col-md-6">
-						<p>Signatur: ____________________________________________________</p>
+						<p>Signatur: _________________________________________________</p>
 					</div>
 				</div>
 			</div>
