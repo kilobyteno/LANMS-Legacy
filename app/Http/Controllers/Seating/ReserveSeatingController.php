@@ -150,8 +150,6 @@ class ReserveSeatingController extends Controller {
 
 	public function consentform()
 	{
-		return view('seating.pdf.consentform');
-		//non-debug
 		$html = view('seating.pdf.consentform')->render();
 		return PDF::load($html)->show();
 	}
