@@ -236,6 +236,10 @@ Route::group([
 					'as' => 'seating-removereservation',
 					'uses' => 'Seating\ReserveSeatingController@destroy'
 				]);
+				Route::get('/consentform', [
+					'as' => 'seating-consentform',
+					'uses' => 'Seating\ReserveSeatingController@consentform'
+				]);
 				Route::get('/{slug}', [
 					'as' => 'seating-show',
 					'uses' => 'Seating\ReserveSeatingController@show'
@@ -247,7 +251,7 @@ Route::group([
 				Route::get('/{slug}/ticket/download', [
 					'as' => 'seating-ticket-download',
 					'uses' => 'Seating\ReserveSeatingController@ticketdownload'
-				]);
+				]);	
 		});
 });
 

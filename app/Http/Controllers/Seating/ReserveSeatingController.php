@@ -146,8 +146,14 @@ class ReserveSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
 		}
-	
-		
+	}
+
+	public function consentform()
+	{
+		return view('seating.pdf.consentform');
+		//non-debug
+		$html = view('seating.pdf.consentform')->render();
+		return PDF::load($html)->show();
 	}
 
 	public function destroy($id)

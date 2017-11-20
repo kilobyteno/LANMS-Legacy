@@ -677,4 +677,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $user->profilepicture;
 	}
 
+	public function age() {
+		return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
+	}
+
 }
