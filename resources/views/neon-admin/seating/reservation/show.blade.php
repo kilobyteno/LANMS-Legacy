@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Seat - '.$currentseat->name.' - Admin')
+@section('title', 'Reserve Seat - '.$currentseat->name.' - Admin')
 @section('css')
 	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
 @stop
@@ -7,14 +7,14 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Reservations</h1>
+		<h1 class="margin-bottom">Reserve Seat</h1>
 
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
 			<li>Seating</li>
 			<li><a href="{{ route('admin-seating-reservations') }}">Reservations</a></li>
-			<li class="active"><strong>Show Seat</strong></li>
+			<li class="active"><strong>Reserve Seat</strong></li>
 		</ol>
 
 		<br />
@@ -61,18 +61,8 @@
 							</div>
 						</div>
 					</div>
-				@elseif($currentseat->row_id == 1)
-					<div class="alert alert-info" role="alert">
-						<strong>Information:</strong> This seat cannot be reserved!
-					</div>
-				@elseif(Sentinel::getUser()->reservationsThisYear()->count() >= 5)
-					<div class="alert alert-warning" role="alert">
-						<strong>Warning!</strong> You are not allowed to reserve more than <em>five</em> seats.
-					</div>
-				@elseif(!Setting::get('SEATING_OPEN'))
-					<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
 				@else
-					<form class="form-horizontal" method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
+					<form class="form-horizontal" method="post" action="{{ route('admin-seating-reservation-reserve', $currentseat->slug) }}">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">
 								Reserved for
@@ -83,15 +73,12 @@
 								@if($errors->has('reservedfor'))
 									<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
 								@endif
-								<div class="checkbox">
-									<label><input type="checkbox" id="tos"> I have read, accepted and agreed to the <a href="{{ url('tos') }}" target="_blank">Terms of Service</a>.</label>
-								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<button type="submit" class="btn btn-success" id="reserve" disabled=""><i class="fa fa-hand-paper-o"></i> Reserve Seat</button>
+								<button type="submit" class="btn btn-success" id="reserve"><i class="fa fa-hand-paper-o"></i> Reserve Seat</button>
 							</div>
 						</div>
 					</form>

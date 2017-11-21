@@ -455,11 +455,11 @@ Route::group([
 							'uses' => 'Admin\ReservationController@destroy'
 						]);
 						Route::get('/{slug}', [
-							'as' => 'admin-seating-show',
+							'as' => 'admin-seating-reservation-show',
 							'uses' => 'Admin\ReservationController@show'
 						]);
 						Route::post('/{slug}/reserve', [
-							'as' => 'admin-seating-reserve',
+							'as' => 'admin-seating-reservation-reserve',
 							'uses' => 'Admin\ReservationController@reserve'
 						]);
 						Route::get('/{slug}/pdf', [

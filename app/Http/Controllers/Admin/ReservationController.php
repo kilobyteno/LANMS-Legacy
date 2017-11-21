@@ -12,9 +12,10 @@ use LANMS\SeatReservation;
 use LANMS\SeatTicket;
 use LANMS\SeatRows;
 use Vsmoraes\Pdf\PdfFacade as PDF;
+use anlutro\LaravelSettings\Facade as Setting;
 
 use LANMS\Http\Requests\Admin\ReservationEditRequest;
-use LANMS\Http\Requests\SeatReserveRequest;
+use LANMS\Http\Requests\Seating\SeatReserveRequest;
 
 class ReservationController extends Controller {
 
@@ -116,33 +117,33 @@ class ReservationController extends Controller {
 			$reservedfor 	= Sentinel::findById($reservedforid);
 
 			if($seat == null) {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Could not find seat.');
 			}
 			if(substr($slug, 0, 1) == 'a') {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'It is not possible to reserve seats on the A-row.');
 			}
 			if(!Setting::get('SEATING_OPEN')) {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'It is not possible to reserve seats at this time.');
 			}
 			if($seat->reservationsThisYear()->count() >= 1) {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Seat has already been reserved');
 			}
 
 			/* RESERVED FOR USER */
 			if ($reservedfor->addresses->count() == 0) {
-				return Redirect::route('admin-seating-reservations-show', $slug)->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservation-show', $slug)->with('messagetype', 'warning')
 									->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
 			}
 			if($reservedfor->reservationsThisYear()->count() >= 5) {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
 			}
 			if($reservedfor->ownReservationsThisYear()->count() >= 1) {
-				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', $reservedfor->username.' already has reserved a seat.');
 			}
 
@@ -160,10 +161,10 @@ class ReservationController extends Controller {
 			$updateseat->save();
 
 			if($seatreservationsave) {
-				return Redirect::route('admin-seating')->with('messagetype', 'success')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'success')
 									->with('message', 'You have successfully reserved this seat!');
 			} else {
-				return Redirect::route('admin-seating')->with('messagetype', 'error')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'error')
 									->with('message', 'Something went wrong while saving the reservation!');
 			}
 		} else {
@@ -250,10 +251,12 @@ class ReservationController extends Controller {
 		if (Sentinel::getUser()->hasAccess(['admin.reservation.destroy'])) {
 			$reservation = SeatReservation::find($id);
 
-			if($reservation->ticket->checkin) {
-				return Redirect::route('admin-seating-reservations')
-						->with('messagetype', 'error')
-						->with('message', 'Cannot delete reservation, user has checked-in.');
+			if($reservation->ticket) {
+				if($reservation->ticket->checkin) {
+					return Redirect::route('admin-seating-reservations')
+							->with('messagetype', 'error')
+							->with('message', 'Cannot delete reservation, user has checked-in.');
+				}
 			}
 
 			$seat = $reservation->seat;
