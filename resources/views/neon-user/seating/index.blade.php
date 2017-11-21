@@ -123,6 +123,10 @@
 									<div class="col-sm-4">
 										@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-xs"><i class="fa fa-ticket"></i> Download Ticket</a>
+											@if(Sentinel::getUser()->age() < 16)
+												<br><br>
+												<a href="{{ route('seating-consentform') }}" class="btn btn-primary btn-xs popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>
+											@endif
 										@endif
 									</div>
 									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
