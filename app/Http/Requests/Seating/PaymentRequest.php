@@ -24,7 +24,7 @@ class PaymentRequest extends Request {
 		return [
 			'cardNumber' 		=> 'required|numeric|digits_between:12,16',
 			'cardMonthExpiry' 	=> 'required|numeric|digits:2|min:1|max:12',
-			'cardYearExpiry' 	=> 'required|numeric|digits:2|min:16|max:40',
+			'cardYearExpiry' 	=> 'required|numeric|digits:2|min:'.substr(\Carbon::now()->year, 2).'|max:'.substr(\Carbon::now()->addYear(10)->year, 2),
 			'cardCVC' 			=> 'required|numeric|digits:3',
 		];
 	}
