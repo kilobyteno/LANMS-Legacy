@@ -122,7 +122,7 @@
 									@endif
 									<div class="col-sm-4">
 										@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
-											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fa fa-ticket"></i> Download Ticket</a>
+											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-xs"><i class="fa fa-ticket"></i> Download Ticket</a>
 										@endif
 									</div>
 									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
