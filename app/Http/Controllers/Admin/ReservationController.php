@@ -14,6 +14,7 @@ use LANMS\SeatRows;
 use Vsmoraes\Pdf\PdfFacade as PDF;
 
 use LANMS\Http\Requests\Admin\ReservationEditRequest;
+use LANMS\Http\Requests\SeatReserveRequest;
 
 class ReservationController extends Controller {
 
@@ -60,9 +61,21 @@ class ReservationController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
+			$slug = strtolower($slug); // Just to be sure it is correct
+			$currentseat = Seats::where('slug', $slug)->first();
+			if($currentseat == null) {
+				return Redirect::route('seating')->with('messagetype', 'warning')
+									->with('message', 'Could not find seat.');
+			}
+			$rows = SeatRows::all();
+			return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	public function showPDF($slug)
@@ -87,6 +100,76 @@ class ReservationController extends Controller {
 								->with('message', 'You are not allowed to view this ticket.');
 		}
 		
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function reserve($slug, SeatReserveRequest $request)
+	{
+		if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
+			$slug 			= strtolower($slug); // Just to be sure it is correct
+			$seat 			= Seats::where('slug', $slug)->first();
+			$reservedforid 	= $request->get('reservedfor');
+			$reservedfor 	= Sentinel::findById($reservedforid);
+
+			if($seat == null) {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', 'Could not find seat.');
+			}
+			if(substr($slug, 0, 1) == 'a') {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', 'It is not possible to reserve seats on the A-row.');
+			}
+			if(!Setting::get('SEATING_OPEN')) {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', 'It is not possible to reserve seats at this time.');
+			}
+			if($seat->reservationsThisYear()->count() >= 1) {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', 'Seat has already been reserved');
+			}
+
+			/* RESERVED FOR USER */
+			if ($reservedfor->addresses->count() == 0) {
+				return Redirect::route('admin-seating-reservations-show', $slug)->with('messagetype', 'warning')
+									->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
+			}
+			if($reservedfor->reservationsThisYear()->count() >= 5) {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
+			}
+			if($reservedfor->ownReservationsThisYear()->count() >= 1) {
+				return Redirect::route('admin-seating')->with('messagetype', 'warning')
+									->with('message', $reservedfor->username.' already has reserved a seat.');
+			}
+
+			$seatreservation 					= new SeatReservation;
+			$seatreservation->seat_id 			= $seat->id;
+			$seatreservation->reservedby_id 	= Sentinel::getUser()->id;
+			$seatreservation->reservedfor_id	= $reservedforid;
+			$seatreservation->status_id 		= 2; // 1 = Reserved, 2 = Temporary Reserved
+			$seatreservation->year 				= \Setting::get('SEATING_YEAR');
+
+			$seatreservationsave 				= $seatreservation->save();
+
+			$updateseat							= Seats::find($seat->id);
+			$updateseat->reservation_id			= $seatreservation->id;
+			$updateseat->save();
+
+			if($seatreservationsave) {
+				return Redirect::route('admin-seating')->with('messagetype', 'success')
+									->with('message', 'You have successfully reserved this seat!');
+			} else {
+				return Redirect::route('admin-seating')->with('messagetype', 'error')
+									->with('message', 'Something went wrong while saving the reservation!');
+			}
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
