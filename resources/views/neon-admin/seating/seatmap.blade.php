@@ -27,9 +27,9 @@
 								@elseif(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor->id and $seat->reservationsThisYear()->first()->status->id == 1)
 									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="This seat is reserved for you!">{{ $seat->name }}</a>
 								@elseif($seat->reservationsThisYear()->first()->status->id == 1)
-									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="Reserved for: {{ User::getUsernameAndFullnameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}">{{ $seat->name }}</a>
+									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="Reserved for: {{ User::getFullnameAndNicknameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}">{{ $seat->name }}</a>
 								@elseif($seat->reservationsThisYear()->first()->status->id == 2)
-									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="Temporary Reserved By: {{ User::getUsernameAndFullnameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}">{{ $seat->name }}</a>
+									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="Temporary Reserved By: {{ User::getFullnameAndNicknameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}">{{ $seat->name }}</a>
 								@else
 									{{ $seat->name }}
 								@endif

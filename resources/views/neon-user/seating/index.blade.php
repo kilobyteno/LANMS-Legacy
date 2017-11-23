@@ -49,7 +49,7 @@
 							</a>
 							<div class="member-details">
 								<h4>
-									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ $reservation->reservedfor->firstname }}@if($reservation->reservedfor->showname) {{ $reservation->reservedfor->lastname }}@endif</a>
+									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
 								</h4>
 								<div class="row info-list">
 									<div class="col-sm-4">
@@ -100,7 +100,7 @@
 							</a>
 							<div class="member-details">
 								<h4>
-									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ $reservation->reservedfor->firstname }}@if($reservation->reservedfor->showname) {{ $reservation->reservedfor->lastname }}@endif</a>
+									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
 								</h4>
 								<div class="row info-list">
 									<div class="col-sm-4">

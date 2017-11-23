@@ -45,7 +45,7 @@
 							</a>
 							<div class="member-details">
 								<h4>
-									<a href="{{ route('user-profile', $currentseat->reservationsThisYear()->first()->reservedfor->username) }}">{{ $currentseat->reservationsThisYear()->first()->reservedfor->firstname }}@if($currentseat->reservationsThisYear()->first()->reservedfor->showname) {{ $currentseat->reservationsThisYear()->first()->reservedfor->lastname }}@endif</a>
+									<a href="{{ route('user-profile', $currentseat->reservationsThisYear()->first()->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($currentseat->reservationsThisYear()->first()->reservedfor->id) }}</a>
 								</h4>
 								<div class="row info-list">
 									@if($currentseat->reservationsThisYear()->first()->reservedfor->occupation)
@@ -89,7 +89,7 @@
 									Reserved for
 								</label>
 								<div class="col-sm-10 @if($errors->has('reservedfor')) has-error @endif">
-									<input type="text" class="form-control" id="username" value="{{ Sentinel::getUser()->username.' ('.Sentinel::getUser()->firstname.')' }}" autocomplete="off">
+									<input type="text" class="form-control" id="username" value="{{ User::getFullnameAndNicknameByID(Sentinel::getUser()->id) }}" autocomplete="off">
 									<input type="text" class="hidden" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}">
 									@if($errors->has('reservedfor'))
 										<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
