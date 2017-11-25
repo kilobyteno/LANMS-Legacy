@@ -45,18 +45,17 @@
 				<div class="hero">Oops! We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</div>
 			</div>
 		</div>
+		@if(app()->bound('sentry') && !empty(Sentry::getLastEventID()))
+			<div class="subtitle">Error ID: {{ Sentry::getLastEventID() }}</div>
+			<!-- Sentry JS SDK 2.1.+ required -->
+			<script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
+			<script>
+				Raven.showReportDialog({
+					eventId: '{{ Sentry::getLastEventID() }}',
+					// use the public DSN (dont include your secret!)
+					dsn: 'https://e9ebbd88548a441288393c457ec90441@sentry.io/3235'
+				});
+			</script>
+		@endif
 	</body>
 </html>
-@unless(empty($sentryID))
-	<!-- Sentry JS SDK 2.1.+ required -->
-	<script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
-
-	<script>
-	Raven.showReportDialog({
-		eventId: '{{ $sentryID }}',
-
-		// use the public DSN (dont include your secret!)
-		dsn: 'https://9456e021c68245d3a2dab66d95e6cf42@sentry.io/131026'
-	});
-	</script>
-@endunless

@@ -31,7 +31,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $exception)
 	{
-		if (!env('app.debug') && app()->bound('sentry') && $this->shouldReport($exception)) {
+		if (!config('app.debug') && app()->bound('sentry') && $this->shouldReport($exception)) {
 			app('sentry')->captureException($exception);
 		}
 		parent::report($exception);
@@ -42,23 +42,24 @@ class Handler extends ExceptionHandler {
 	 * Render an exception into an HTTP response.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Exception  $e
+	 * @param  \Exception  $exception
 	 * @return \Illuminate\Http\Response
 	 */
-	public function render($request, Exception $e)
+	public function render($request, Exception $exception)
 	{
-		if($e instanceof NotFoundHttpException)
+		if($exception instanceof NotFoundHttpException)
 		{
 			return view('errors.404');
 		}
 
-		if(!env('app.debug')) {
-			return response()->view('errors.500', [
-				'sentryID' => $this->sentryID,
-			], 500);
-		} else {
-			return parent::render($request, $e);
-		}
+		// Convert all non-http exceptions to a proper 500 http exception
+        // if we don't do this exceptions are shown as a default template
+        // instead of our own view in resources/views/errors/500.blade.php
+        if ($this->shouldReport($exception) && !$this->isHttpException($exception) && !config('app.debug')) {
+            $exception = new HttpException(500, 'Whoops!');
+        }
+
+		return parent::render($request, $exception);
 	}
 	
 	/**
