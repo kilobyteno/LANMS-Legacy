@@ -454,18 +454,6 @@ Route::group([
 							'as' => 'admin-seating-reservation-destroy',
 							'uses' => 'Admin\ReservationController@destroy'
 						]);
-						Route::get('/{slug}', [
-							'as' => 'admin-seating-reservation-show',
-							'uses' => 'Admin\ReservationController@show'
-						]);
-						Route::post('/{slug}/reserve', [
-							'as' => 'admin-seating-reservation-reserve',
-							'uses' => 'Admin\ReservationController@reserve'
-						]);
-						Route::get('/{slug}/pdf', [
-							'as' => 'admin-seating-reservation-pdf',
-							'uses' => 'Admin\ReservationController@showPDF'
-						]);
 						Route::group([
 							'prefix' => 'brokenband'
 							], function() {
@@ -486,6 +474,19 @@ Route::group([
 									'uses' => 'Admin\BrokenBandController@store'
 								]);
 						});
+						Route::get('/{slug}', [
+							'as' => 'admin-seating-reservation-show',
+							'uses' => 'Admin\ReservationController@show'
+						]);
+						Route::post('/{slug}/reserve', [
+							'as' => 'admin-seating-reservation-reserve',
+							'uses' => 'Admin\ReservationController@reserve'
+						]);
+						Route::get('/{slug}/pdf', [
+							'as' => 'admin-seating-reservation-pdf',
+							'uses' => 'Admin\ReservationController@showPDF'
+						]);
+						
 				});
 				Route::group([
 					'prefix' => 'checkin'
