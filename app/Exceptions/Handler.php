@@ -26,16 +26,15 @@ class Handler extends ExceptionHandler {
 	 *
 	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
 	 *
-	 * @param  \Exception  $e
+	 * @param  \Exception  $exception
 	 * @return void
 	 */
-	public function report(Exception $e)
+	public function report(Exception $exception)
 	{
-		if (!\Config::get('app.debug') && $this->shouldReport($e)) {
-			// bind the event ID for Feedback
-			$this->sentryID = app('sentry')->captureException($e);
+		if (!env('app.debug') && app()->bound('sentry') && $this->shouldReport($exception)) {
+			app('sentry')->captureException($exception);
 		}
-		parent::report($e);
+		parent::report($exception);
 	}
 
 
@@ -53,7 +52,7 @@ class Handler extends ExceptionHandler {
 			return view('errors.404');
 		}
 
-		if(!\Config::get('app.debug')) {
+		if(!env('app.debug')) {
 			return response()->view('errors.500', [
 				'sentryID' => $this->sentryID,
 			], 500);
