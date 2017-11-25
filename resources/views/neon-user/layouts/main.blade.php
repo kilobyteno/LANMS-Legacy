@@ -117,7 +117,7 @@
 	<!-- Bottom scripts (common) -->
 	<script src="{{ Theme::url('js/gsap/main-gsap.js') }}"></script>
 	<script src="{{ Theme::url('js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
-	<script src="{{ Theme::url('js/bootstrap.js') }}"></script>
+	<script src="{{ Theme::url('js/bootstrap.min.js') }}"></script>
 	<script src="{{ Theme::url('js/joinable.js') }}"></script>
 	<script src="{{ Theme::url('js/resizeable.js') }}"></script>
 	<script src="{{ Theme::url('js/neon-api.js') }}"></script>
