@@ -1,6 +1,7 @@
 <?php namespace LANMS\Exceptions;
 
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
