@@ -106,13 +106,15 @@
 
 @section("javascript")
 <script type="text/javascript">
-	$('#pay').on('click', function() {
-		var $this = $(this);
-		$this.button('loading');
-		var emptyInputs = $(this).parent().find('input[type="tel"]').filter(function() { return $(this).val() == ""; });
-	    if (emptyInputs.length) {
-	        $this.button('reset');
-	    }
+	jQuery(function ($) { 
+		$('#pay').on('click', function() {
+		    var $this = $(this);
+		    $this.button('loading');
+		    var anyFieldIsEmpty = $("#payment-form input").filter(function() { return $.trim(this.value).length === 0; }).length > 0;
+		    if (anyFieldIsEmpty) {
+		        $this.button('reset');
+		    }
+		});
 	});
 </script>
 @stop
