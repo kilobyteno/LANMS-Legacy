@@ -120,10 +120,6 @@ class ReservationController extends Controller {
 				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Could not find seat.');
 			}
-			if(substr($slug, 0, 1) == 'a') {
-				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-									->with('message', 'It is not possible to reserve seats on the A-row.');
-			}
 			if(!Setting::get('SEATING_OPEN')) {
 				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'It is not possible to reserve seats at this time.');
