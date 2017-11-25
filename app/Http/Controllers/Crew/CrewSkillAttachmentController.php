@@ -32,7 +32,7 @@ class CrewSkillAttachmentController extends Controller {
 	public function admin()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.crew-skill.*'])){
-			$skillAttachments = CrewSkillAttached::all();
+			$skillAttachments = CrewSkillAttached::thisYear()->get();
 			return view('crew.skill-attachment.admin')
 						->withSkillattachments($skillAttachments);
 		} else {
