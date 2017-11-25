@@ -33,7 +33,7 @@ if(Config::get('app.debug')) {
 		return view('emails.auth.activate', ['link'=>route('account-activate', 'derp'), 'firstname'=>'Daniel']);
 	});*/
 	Route::get('/test', function() {
-		print date('Y');
+		App::abort(500);
 	});
 	/*Route::get('/aau', function() {
 		echo "AAU - Activate All Users<br><br>";
