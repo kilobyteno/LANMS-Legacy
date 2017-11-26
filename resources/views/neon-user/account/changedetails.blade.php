@@ -88,6 +88,7 @@
 										<option value="">-- Please select --</option>
 										<option value="Male" {{ ($gender == 'Male') ? 'selected' : '' }}>Male</option>
 										<option value="Female" {{ ($gender == 'Female') ? 'selected' : '' }}>Female</option>
+										<option value="Genderless" {{ ($gender == 'Genderless') ? 'selected' : '' }}>Genderless</option>
 									</select>
 								</div>
 								@if($errors->has('gender'))
