@@ -1013,7 +1013,7 @@ Route::group(['prefix' => 'ajax',], function() {
 			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
 		} else {
 
-			$resp 				= array();
+			$resp 		= array();
 			$status 	= 'invalid';
 			$msg 		= 'Something went wrong...';
 
@@ -1023,7 +1023,9 @@ Route::group(['prefix' => 'ajax',], function() {
 			$credentials 		= ['login' => $username];
 			$user 				= Sentinel::findByCredentials($credentials);
 
-			if (Reminder::complete($user, $resetpassword_code, $password)) {
+			if($user == null) {
+				$msg 		= 'User not found!';
+			} elseif (Reminder::complete($user, $resetpassword_code, $password)) {
 				$status 				= 'success';
 				$msg 					= 'Everything went well.';
 				$resp['redirect_url'] 	= URL::route('account-login');
