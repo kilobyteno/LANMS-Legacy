@@ -50,8 +50,16 @@ class SeatReservation extends Model {
 		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
 	}
 
+	public function scopeThisYearDecending($query) {
+		return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
+	}
+
 	public function scopeLastYear($query) {
 		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+	}
+
+	public function scopeLastYearDecending($query) {
+		return $query->where('year', '<', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
 	}
 
 	public function scopePaid($query) {
