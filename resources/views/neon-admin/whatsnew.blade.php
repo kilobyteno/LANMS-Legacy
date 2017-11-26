@@ -11,7 +11,7 @@
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#230">Version 2.3.0</a>
 					</h4>
 				</div>
-				<div id="230" class="panel-collapse collapse in">
+				<div id="230" class="panel-collapse collapse">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
