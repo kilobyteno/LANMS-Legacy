@@ -21,6 +21,11 @@
 					Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href="{{ route('seating-consentform') }}"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>
 				</div>
 			@endif
+			@if(!Sentinel::getUser()->birthdate)
+				<div class="alert alert-warning" role="alert">
+					<i class="fa fa-exclamation-triangle"></i> There is no birthdate assigned to your account, this is required from now on. Edit it here: <a href="{{ route('account-change-details') }}"> Change Account Details</a>
+				</div>
+			@endif
 			<hr>
 			<div class="row">
 				<div class="col-lg-8">
