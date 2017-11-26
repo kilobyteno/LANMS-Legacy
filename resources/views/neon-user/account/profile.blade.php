@@ -3,8 +3,8 @@
 @section('css')
 	@if($profilecover)
 		<style type="text/css">
-			.blur-image:before {
-				background-image:url("{{ $profilecover }}");
+			.profile-info-tabs {
+				background:url("{{ $profilecover }}") no-repeat center center fixed !important;
 			}	
 		</style>
 	@endif

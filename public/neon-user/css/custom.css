@@ -16,9 +16,29 @@
 .profile-picture img {
 	max-height: 115px;
 	max-width: 115px;
+	background-color: #fff;
 }
 .btn-file > input {
 	transform: none;
 	position: inherit;
 	margin-top: -32px;
 }
+/*.profile-info-tabs:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  
+  display: block;
+  width: 100%;
+  height: 100%;
+  
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+
+  margin-top:-20px;
+}*/
