@@ -5,6 +5,38 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel-group joined" id="releasenotes">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#231" aria-expanded="true">Version 2.3.1</a>
+					</h4>
+				</div>
+				<div id="231" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-97'>LANMS-97</a>] - Email logo needs fixing</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-134'>LANMS-134</a>] - UnexpectedValueException: The Response content must be a string or object implementing __toString(), &quot;boolean&quot; given.</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-142'>LANMS-142</a>] - Swift_TransportException: Connection could not be established with host mani.infihex.com [ #0]</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-144'>LANMS-144</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-145'>LANMS-145</a>] - ErrorException: Argument 1 passed to Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete() must i...</li>
+						</ul>
+						    
+						<h4>Task</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-146'>LANMS-146</a>] - Remove &quot;Featured Image&quot; from news until it is implemented</li>
+						</ul>
+						    
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-141'>LANMS-141</a>] - User must have an birthday</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-143'>LANMS-143</a>] - Gender equality</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -103,7 +135,6 @@
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
-							<li>[<a href='http://jira.infihex.com/browse/LANMS-97'>LANMS-97</a>] - Email logo needs fixing</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-98'>LANMS-98</a>] - Date field on mobile can be buggy</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-102'>LANMS-102</a>] - Kommer det opp &quot;you cant view this ticket&quot;</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-103'>LANMS-103</a>] - Design does not work on iPhone</li>
