@@ -91,7 +91,7 @@
 					@endif
 
 					@if($gender)
-						<li><a><i class="fa fa-genderless"></i> {{ $gender }}</a></li>
+						<li><a><i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</a></li>
 					@endif
 
 					@if($occupation)

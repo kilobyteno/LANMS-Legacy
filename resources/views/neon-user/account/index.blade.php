@@ -56,11 +56,10 @@
 							<h3>
 								<a href="{{ route('user-profile', $username) }}">{{ $firstname }}@if($showname && $lastname) {{ $lastname }}@endif</a>
 								@if($showonline)
-									<a href="#" class="user-status is-{{ $onlinestatus }} tooltip-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{ ucfirst($onlinestatus) }}"></a>
-									<!-- User statuses available classes "is-online", "is-offline", "is-idle", "is-busy" -->
+									<a href="#" class="user-status is-{{ $onlinestatus }} tooltip-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{ ucfirst($onlinestatus) }}"></a><!-- User statuses available classes "is-online", "is-offline", "is-idle", "is-busy" -->
 								@endif
 							</h3>
-							<p>@if($birthdate){{ date_diff(date_create($birthdate), date_create('today'))->y }}@endif @if($location) from {{ $location }}@endif</p>
+							<p>@if($gender)<i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender.',' }}@endif @if($birthdate){{ Sentinel::getUser()->age() }}@endif @if($location) from {{ $location }}@endif</p>
 						</div>
 					</div>
 					<hr>

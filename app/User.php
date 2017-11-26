@@ -684,4 +684,19 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
 	}
 
+	public function scopeGetGenderIcon($query, $gender) {
+		switch ($gender) {
+			case 'Male':
+				return "mars";
+			case 'Female':
+				return "venus";
+			case 'Transgender':
+				return "transgender";
+			case 'Genderless':
+				return "genderless";
+			default:
+				return "genderless";
+		}
+	}
+
 }

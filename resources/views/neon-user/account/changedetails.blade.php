@@ -83,11 +83,12 @@
 							<label class="col-sm-5 control-label">Gender</label>
 							<div class="col-sm-5 form-group @if ($errors->has('gender')) has-error @endif">
 								<div class="input-group">
-									<span class="input-group-addon"><span class="fa fa-genderless"></span></span>
+									<span class="input-group-addon"><span class="fa fa-{{ User::getGenderIcon($gender) }}"></span></span>
 									<select class="form-control" name="gender">
 										<option value="">-- Please select --</option>
 										<option value="Male" {{ ($gender == 'Male') ? 'selected' : '' }}>Male</option>
 										<option value="Female" {{ ($gender == 'Female') ? 'selected' : '' }}>Female</option>
+										<option value="Transgender" {{ ($gender == 'Transgender') ? 'selected' : '' }}>Transgender</option>
 										<option value="Genderless" {{ ($gender == 'Genderless') ? 'selected' : '' }}>Genderless</option>
 									</select>
 								</div>
