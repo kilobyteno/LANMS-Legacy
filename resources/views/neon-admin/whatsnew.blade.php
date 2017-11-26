@@ -8,10 +8,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#230" aria-expanded="true" class="">Version 2.3.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#230">Version 2.3.0</a>
 					</h4>
 				</div>
-				<div id="230" class="panel-collapse collapse in" aria-expanded="true" style="">
+				<div id="230" class="panel-collapse collapse in">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -68,10 +68,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#221" aria-expanded="true" class="">Version 2.2.1</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#221" aria-expanded="true">Version 2.2.1</a>
 					</h4>
 				</div>
-				<div id="221" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="221" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -96,10 +96,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#220" aria-expanded="true" class="">Version 2.2.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#220" aria-expanded="true">Version 2.2.0</a>
 					</h4>
 				</div>
-				<div id="220" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="220" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -124,10 +124,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#215" aria-expanded="true" class="">Version 2.1.5</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#215" aria-expanded="true">Version 2.1.5</a>
 					</h4>
 				</div>
-				<div id="215" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="215" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -145,10 +145,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#214" aria-expanded="true" class="">Version 2.1.4</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#214" aria-expanded="true">Version 2.1.4</a>
 					</h4>
 				</div>
-				<div id="214" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="214" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -167,10 +167,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#213" aria-expanded="true" class="">Version 2.1.3</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#213" aria-expanded="true">Version 2.1.3</a>
 					</h4>
 				</div>
-				<div id="213" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="213" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>New Feature</h4>
 						<ul>
@@ -183,10 +183,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#212" aria-expanded="true" class="">Version 2.1.2</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#212" aria-expanded="true">Version 2.1.2</a>
 					</h4>
 				</div>
-				<div id="212" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="212" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -199,10 +199,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#211" aria-expanded="true" class="">Version 2.1.1</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#211" aria-expanded="true">Version 2.1.1</a>
 					</h4>
 				</div>
-				<div id="211" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="211" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -215,10 +215,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#210" aria-expanded="true" class="">Version 2.1.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#210" aria-expanded="true">Version 2.1.0</a>
 					</h4>
 				</div>
-				<div id="210" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="210" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -247,10 +247,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#205" aria-expanded="true" class="">Version 2.0.5</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#205" aria-expanded="true">Version 2.0.5</a>
 					</h4>
 				</div>
-				<div id="205" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="205" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>New Feature</h4>
 						<ul>
@@ -263,10 +263,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#204" aria-expanded="true" class="">Version 2.0.4</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#204" aria-expanded="true">Version 2.0.4</a>
 					</h4>
 				</div>
-				<div id="204" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="204" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>New Feature</h4>
 						<ul>
@@ -279,10 +279,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#203" aria-expanded="true" class="">Version 2.0.3</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#203" aria-expanded="true">Version 2.0.3</a>
 					</h4>
 				</div>
-				<div id="203" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="203" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -295,10 +295,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#202" aria-expanded="true" class="">Version 2.0.2</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#202" aria-expanded="true">Version 2.0.2</a>
 					</h4>
 				</div>
-				<div id="202" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="202" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -328,10 +328,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#201" aria-expanded="true" class="">Version 2.0.1</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#201" aria-expanded="true">Version 2.0.1</a>
 					</h4>
 				</div>
-				<div id="201" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="201" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -359,10 +359,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#200" aria-expanded="true" class="">Version 2.0.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#200" aria-expanded="true">Version 2.0.0</a>
 					</h4>
 				</div>
-				<div id="200" class="panel-collapse collapse" aria-expanded="true" style="">
+				<div id="200" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
