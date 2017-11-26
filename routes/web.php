@@ -1024,7 +1024,8 @@ Route::group(['prefix' => 'ajax',], function() {
 			$user 				= Sentinel::findByCredentials($credentials);
 
 			if (Reminder::complete($user, $resetpassword_code, $password)) {
-				$status 		= 'success';
+				$status 				= 'success';
+				$msg 					= 'Everything went well.';
 				$resp['redirect_url'] 	= URL::route('account-login');
 			} else {
 				$msg 	= 'Something went wrong while reseting your password. Please try again later.';
@@ -1070,7 +1071,7 @@ Route::group(['prefix' => 'ajax',], function() {
 					    $msg = "Activation has already been completed.";
 					} else {
 					    $status = 'success';
-
+						$msg = 'Everything went well.';
 						Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation->code), 'firstname' => $checkuser->firstname), function($message) use ($checkuser) {
 							$message->to($checkuser->email, $checkuser->firstname)->subject('Activate your account');
 						});

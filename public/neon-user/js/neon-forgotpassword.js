@@ -160,7 +160,7 @@ var neonForgotPassword = neonForgotPassword || {};
 									{
 										$(".login-page").removeClass('logging-in');
 										neonForgotPassword.resetProgressBar(true);
-										document.getElementById("forgot_msg").innerHTML = forgot_msg;
+										document.getElementById("msg").innerHTML = msg;
 									}
 									else if(status == 'success')
 									{
