@@ -20,6 +20,13 @@
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-113'>LANMS-113</a>] - One address, no primary</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-125'>LANMS-125</a>] - Other users can reserve seats on a user with a seat reserved</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-127'>LANMS-127</a>] - Reminder email for seat reservations does not send at 24 hours</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-131'>LANMS-131</a>] - Wrong format of names in seating</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-132'>LANMS-132</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-133'>LANMS-133</a>] - InvalidArgumentException: View [errors.500] not found.</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-135'>LANMS-135</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught exception &#39;BadMethodCallException&#39; with message &#39;Method Cartalyst\Sentinel\Sentinel::has...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-136'>LANMS-136</a>] - Redirected to seating when i try to go to broken bands</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-138'>LANMS-138</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Class &#39;LANMS\Exceptions\HttpException&#39; not found</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-139'>LANMS-139</a>] - File-input covers the whole page</li>
 						</ul>
 						    
 						<h4>New Feature</h4>
@@ -30,7 +37,6 @@
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-80'>LANMS-80</a>] - Crew system, with skills attached</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-85'>LANMS-85</a>] - Info system</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
-							<li>[<a href='http://jira.infihex.com/browse/LANMS-118'>LANMS-118</a>] - Merch salg med billett kjøp</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-119'>LANMS-119</a>] - Samtykkeskjema på nett</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-128'>LANMS-128</a>] - Add &quot;What&#39;s new?&quot; view</li>
 						</ul>
@@ -40,10 +46,12 @@
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-110'>LANMS-110</a>] - Upgrade Laravel</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-123'>LANMS-123</a>] - Move &quot;Print&quot; under seating</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-124'>LANMS-124</a>] - Move settings, logs &amp; license under &quot;System&quot;</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-129'>LANMS-129</a>] - Move Logs into the admin panel design</li>
 						</ul>
 						    
 						<h4>Improvement</h4>
 						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-61'>LANMS-61</a>] - Add Seatmap for seating in admin panel</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-75'>LANMS-75</a>] - Search for members userend</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-87'>LANMS-87</a>] - Timeline for profile</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-91'>LANMS-91</a>] - Admin Dashboard</li>
