@@ -120,10 +120,6 @@ class ReservationController extends Controller {
 				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Could not find seat.');
 			}
-			if(!Setting::get('SEATING_OPEN')) {
-				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-									->with('message', 'It is not possible to reserve seats at this time.');
-			}
 			if($seat->reservationsThisYear()->count() >= 1) {
 				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Seat has already been reserved');
@@ -133,10 +129,6 @@ class ReservationController extends Controller {
 			if ($reservedfor->addresses->count() == 0) {
 				return Redirect::route('admin-seating-reservation-show', $slug)->with('messagetype', 'warning')
 									->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
-			}
-			if($reservedfor->reservationsThisYear()->count() >= 5) {
-				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-									->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
 			}
 			if($reservedfor->ownReservationsThisYear()->count() >= 1) {
 				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
