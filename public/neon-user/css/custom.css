@@ -17,3 +17,8 @@
 	max-height: 115px;
 	max-width: 115px;
 }
+.btn-file > input {
+	transform: none;
+	position: inherit;
+	margin-top: -32px;
+}
