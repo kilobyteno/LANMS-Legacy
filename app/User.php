@@ -672,11 +672,6 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		
 	}
 
-	public function scopeGetImageLocation($query, $id) {
-		$user = $query->where('id', '=', $id)->first();
-		return $user->profilepicture;
-	}
-
 	public function age() {
 		return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
 	}
