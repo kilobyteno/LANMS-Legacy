@@ -4,7 +4,7 @@
 	@if($profilecover)
 		<style type="text/css">
 			.profile-info-tabs {
-				background:url("{{ $profilecover }}") no-repeat center center fixed !important;
+				background:url("{{ $profilecover }}") no-repeat center center !important;
 			}	
 		</style>
 	@endif
