@@ -67,6 +67,19 @@
 						</div>
 
 						<div class="row">
+							<label class="col-sm-5 control-label">Birthdate</label>
+							<div class="col-sm-5 form-group @if ($errors->has('birthdate')) has-error @endif">
+								<div class="input-group">
+									<span class="input-group-addon"><span class="fa fa-birthday-cake"></span></span>
+									<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate }}">
+								</div>
+								@if($errors->has('birthdate'))
+									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
+								@endif
+							</div>
+						</div>
+
+						<div class="row">
 							<label class="col-sm-5 control-label">Gender</label>
 							<div class="col-sm-5 form-group @if ($errors->has('gender')) has-error @endif">
 								<div class="input-group">

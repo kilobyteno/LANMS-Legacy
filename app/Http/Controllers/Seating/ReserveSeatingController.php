@@ -81,6 +81,10 @@ class ReserveSeatingController extends Controller {
 		}
 
 		/* LOGGED IN USER */
+		if (!Sentinel::getUser()->birthdate) {
+			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
+								->with('message', 'You need to have an birthdate assigned to your account to be able to reserve a seat.');
+		}
 		if (Sentinel::getUser()->addresses->count() == 0) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
 								->with('message', 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.');
@@ -95,6 +99,10 @@ class ReserveSeatingController extends Controller {
 		}
 
 		/* RESERVED FOR USER */
+		if (!$reservedfor->birthdate) {
+			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
+								->with('message', 'It seems like '.$reservedfor->username.' does not have an birthdate assigned to their account, they need it to be able to reserve a seat.');
+		}
 		if ($reservedfor->addresses->count() == 0) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
 								->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');

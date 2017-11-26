@@ -127,6 +127,7 @@ class AccountController extends Controller {
 				'gender' 		=> $request->get('gender'),
 				'location' 		=> $request->get('location'),
 				'occupation' 	=> $request->get('occupation'),
+				'birthdate' 	=> $request->get('birthdate'),
 			];
 
 			$updateuser = Sentinel::update($finduser, $info);
