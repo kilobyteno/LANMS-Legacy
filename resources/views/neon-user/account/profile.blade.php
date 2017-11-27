@@ -135,6 +135,17 @@
 					<div class="cbp_tmicon"> <i class="fa fa-user"></i> </div>
 					<div class="cbp_tmlabel empty"> <span>No Activity</span> </div>
 				</li>
+				@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
+					@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
+						<li>
+							<time class="cbp_tmtime"><span>{{ date('Y', strtotime($reservation->created_at)) }}</span> <span>{{ date('M', strtotime($reservation->created_at)) }}</span></time> 
+							<div class="cbp_tmicon bg-info"> <i class="fa fa-street-view"></i> </div>
+							<div class="cbp_tmlabel">
+								<h2 style="padding-bottom:0px;">{{ $firstname }}@if($showname) {{ $lastname }}@endif <span>reserved a seat for</span> {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</h2>
+							</div>
+						</li>
+					@endforeach
+				@endif
 				@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
 					@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
 						<li>
