@@ -14,12 +14,12 @@
 				</div>
 				<div id="232" class="panel-collapse collapse in" aria-expanded="true">
 					<div class="panel-body">
-						<h2>Bug</h2>
+						<h4>Bug</h4>
 						<ul>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-144'>LANMS-144</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
 						</ul>
 						    
-						<h2>Improvement</h2>
+						<h4>Improvement</h4>
 						<ul>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-87'>LANMS-87</a>] - Timeline for profile</li>
 							<li>[<a href='http://jira.infihex.com/browse/LANMS-116'>LANMS-116</a>] - &quot;Pay now&quot;-button should have a loading animation</li>
