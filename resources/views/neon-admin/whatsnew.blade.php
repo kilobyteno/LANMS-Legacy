@@ -9,10 +9,34 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#232" aria-expanded="true">Version 2.3.2</a>
+					</h4>
+				</div>
+				<div id="232" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h2>Bug</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-144'>LANMS-144</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+						</ul>
+						    
+						<h2>Improvement</h2>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-87'>LANMS-87</a>] - Timeline for profile</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-116'>LANMS-116</a>] - &quot;Pay now&quot;-button should have a loading animation</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-147'>LANMS-147</a>] - Names should be able contain norwegian letters</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-148'>LANMS-148</a>] - https setting is not enforcing https</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#231" aria-expanded="true">Version 2.3.1</a>
 					</h4>
 				</div>
-				<div id="231" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="231" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
@@ -40,10 +64,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#230">Version 2.3.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#230" aria-expanded="true">Version 2.3.0</a>
 					</h4>
 				</div>
-				<div id="230" class="panel-collapse collapse">
+				<div id="230" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
