@@ -83,7 +83,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Payment">Pay Now</button>
+										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class='fa fa-money'></i> Pay Now</button>
 									</div>
 								</div>
 								@if(count($errors->all()) > 0)
@@ -106,14 +106,27 @@
 
 @section("javascript")
 <script type="text/javascript">
-	jQuery(function ($) { 
+	jQuery(function ($) {
+		$("#pay").prop("disabled", true);
+		$("#pay").val("<i class='fa fa-money'></i> Pay Now");
+		$("#payment-form input.form-control").prop("disabled", false);
+		$('input').change(function() {
+			if($(this).length > 0) {
+				$("#pay").prop("disabled", true);
+			}
+			var anyFieldIsEmpty = $("#payment-form input").filter(function() { return $.trim(this.value).length === 0; }).length > 0;
+			console.log(anyFieldIsEmpty);
+			if (anyFieldIsEmpty === true) {
+				$("#pay").prop("disabled", true);
+			} else if (anyFieldIsEmpty === false) {
+				$("#pay").prop("disabled", false);
+				$("#pay").val("<i class='fa fa-money'></i> Pay Now");
+			}
+		});
 		$('#pay').on('click', function() {
-		    var $this = $(this);
-		    $this.button('loading');
-		    var anyFieldIsEmpty = $("#payment-form input").filter(function() { return $.trim(this.value).length === 0; }).length > 0;
-		    if (anyFieldIsEmpty) {
-		        $this.button('reset');
-		    }
+			$("#payment-form input.form-control").prop("disabled", true);
+			$("#pay").prop("disabled", true);
+			$("#pay").val("<i class='fa fa-spinner fa-spin'></i> Processing Payment");
 		});
 	});
 </script>
