@@ -23,8 +23,8 @@ class ChangeUserDetailsRequest extends Request {
 	{
 		return [
 			/*'email' 		=> 'required|max:50|email|unique:users',*/
-			'firstname' 	=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
-			'lastname' 		=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
+			'firstname' 	=> 'required|between:3,250|alpha_dash',
+			'lastname' 		=> 'required|between:3,250|alpha_dash',
 			'birthdate'		=> 'date_format:Y-m-d',
 			'gender' 		=> '',
 			'location' 		=> 'regex:/^[A-Za-z ,\']+$/|nullable',
