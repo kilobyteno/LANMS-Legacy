@@ -86,7 +86,7 @@
 										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class='fa fa-money'></i> Pay Now</button>
 										<br />
 										<div class="alert alert-info hidden" id="processing">
-											<i class='fa fa-spinner fa-spin'></i> Processing Payment
+											<i class='fa fa-circle-o-notch fa-spin'></i> Processing Payment
 										</div>
 									</div>
 								</div>
