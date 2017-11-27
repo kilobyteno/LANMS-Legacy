@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Edit Crew - '.$crew->title.' - Admin')
+@section('title', 'Edit Crew - '.$crew->id.' - Admin')
 @section('css')
 	<style>
 		.ms-container .ms-list {
