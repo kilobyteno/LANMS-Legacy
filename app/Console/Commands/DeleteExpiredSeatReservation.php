@@ -38,24 +38,25 @@ class DeleteExpiredSeatReservation extends Command
     public function handle()
     {
         $reservations = \SeatReservation::where('status_id', '=', 2)->get();
-		foreach($reservations as $reservation) {
-			if(\SeatReservation::getExpireTime($reservation->id) == 'expired') {
-				\SeatReservation::find($reservation->id)->delete();
-				\Mail::send('emails.seat.removed', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-					$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
-				});
-				$this->info('"Reservation removal" email sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
-			}
-			if(\SeatReservation::getExpireTimeInHours($reservation->id) == 24 && $reservation->reminder_email_sent <> 1) {
-				\Mail::send('emails.seat.removedsoon', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-					$message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
-				});
-				$res = \SeatReservation::find($reservation->id);
-				$res->reminder_email_sent = 1;
-				$res->save();
-				$this->info('Reminder sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
-			}
-		}
+        foreach($reservations as $reservation) {
+            if($reservation->expiretimeinhours() == 0) {
+                \SeatReservation::find($reservation->id)->delete();
+                \Mail::send('emails.seat.removed', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
+                    $message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
+                });
+                $this->info('"Reservation removal" email sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
+            }
+            if($reservation->expiretimeinhours() == 24 && $reservation->reminder_email_sent == 0) {
+                \Mail::send('emails.seat.removedsoon', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
+                    $message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
+                });
+                $res = \SeatReservation::find($reservation->id);
+                $res->reminder_email_sent = 1;
+                $res->save();
+                $this->info('Reminder sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
+            }
+        }
         $this->info('Done.');
     }
+
 }
