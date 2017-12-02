@@ -112,7 +112,7 @@
 <script type="text/javascript">
 	jQuery(function ($) {
 		$("#pay").prop("disabled", true);
-		$("#payment-form input.form-control").prop("disabled", false);
+		$("#payment-form input.form-control").prop("readonly", false);
 		$('input').change(function() {
 			if($(this).length > 0) {
 				$("#pay").prop("disabled", true);
@@ -126,9 +126,10 @@
 			}
 		});
 		$('#pay').on('click', function() {
-			$("#payment-form input.form-control").prop("disabled", true);
+			$("#payment-form input.form-control").prop("readonly", true);
 			$("#pay").prop("disabled", true);
 			$("#processing").removeClass("hidden");
+			$("#payment-form").submit();
 		});
 	});
 </script>
