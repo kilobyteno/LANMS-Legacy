@@ -40,7 +40,7 @@ class PaymentSeatingController extends Controller {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'It is not possible to reserve seats at this time.');
 		}
-		if ($currentseat->reservationsThisYear->first()->payment <> null) {
+		if (!$currentseat->reservationsThisYear->first()->payment) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'This seat already has a payment assigned to it.');
 		}
