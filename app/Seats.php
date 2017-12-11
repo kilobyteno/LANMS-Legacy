@@ -1,4 +1,6 @@
-<?php namespace LANMS;
+<?php
+
+namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +16,8 @@ class Seats extends Model {
 		'name',
 		'slug',
 		'row_id',
+		'author_id',
+		'editor_id',
 	];
 
 	function row() {
@@ -27,5 +31,13 @@ class Seats extends Model {
 	function reservationsThisYear() {
         return $this->hasMany('SeatReservation', 'seat_id', 'id')->thisYear();
     }
+
+    function author() {
+		return $this->hasOne('User', 'id', 'author_id');
+	}
+
+	function editor() {
+		return $this->hasOne('User', 'id', 'editor_id');
+	}
 	
 }
