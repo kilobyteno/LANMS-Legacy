@@ -111,7 +111,7 @@ class RowsController extends Controller
 
 			return Redirect::route('admin-seating-rows')
 					->with('messagetype', 'success')
-					->with('message', 'The rowrmation has now been saved!');
+					->with('message', 'The row has now been saved!');
 
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
