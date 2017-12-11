@@ -67,8 +67,8 @@
 							<div class="panel-title">Row</div>
 						</div>
 						<div class="panel-body">
-							<input type="text" class="form-control input-lg" name="row" placeholder="A" value="{{ $seat->row->name }}" />
-							<input type="text" class="hidden" id="row_id" name="row_id" value="0">
+							<input type="text" class="form-control input-lg" id="row" placeholder="A" value="{{ $seat->row->name or '' }}" autocomplete="off" />
+							<input type="text" class="hidden" id="row_id" name="row_id" value="{{ $seat->row->id or '0' }}">
 							@if($errors->has('row_id'))
 								<p class="text-danger">{{ $errors->first('row_id') }}</p>
 							@endif

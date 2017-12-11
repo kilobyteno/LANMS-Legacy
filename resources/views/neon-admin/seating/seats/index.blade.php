@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<h1 class="margin-bottom">Seats @if(Sentinel::hasAccess('admin.seating.seat.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-seating-row-create') }}"><i class="fa fa-plus"></i> Create Seat</a>@endif</h1>
+		<h1 class="margin-bottom">Seats @if(Sentinel::hasAccess('admin.seating.seat.create'))<a class="btn btn-lg btn-success btn-icon icon-left pull-right" href="{{ route('admin-seating-seat-create') }}"><i class="fa fa-plus"></i> Create Seat</a>@endif</h1>
 
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
@@ -43,7 +43,7 @@
 								<td>{{ $seat->row->name or 'N/A' }}</td>
 								<td>{{ date(User::getUserDateFormat(), strtotime($seat->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->created_at)) }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->author->username) }}">{{ User::getFullnameByID($seat->author->id) }}</a></td>
-								<td>{{ date(User::getUserDateFormat(), strtotime($seat->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->edited_at)) }}</td>
+								<td>{{ date(User::getUserDateFormat(), strtotime($seat->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->updated_at)) }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->editor->username) }}">{{ User::getFullnameByID($seat->editor->id) }}</a></td>
 								<td>
 									<a href="{{ route('admin-seating-seat-edit', $seat->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>

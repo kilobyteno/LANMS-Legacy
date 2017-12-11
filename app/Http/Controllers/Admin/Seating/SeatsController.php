@@ -9,8 +9,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\Seats;
 
-use LANMS\Http\Requests\Admin\SeatCreateRequest;
-use LANMS\Http\Requests\Admin\SeatEditRequest;
+use LANMS\Http\Requests\Admin\Seating\SeatCreateRequest;
+use LANMS\Http\Requests\Admin\Seating\SeatEditRequest;
 
 class SeatsController extends Controller
 {
@@ -51,7 +51,7 @@ class SeatsController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function store(RowCreateRequest $request)
+	public function store(SeatCreateRequest $request)
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.seating.seat.create'])) {
 
@@ -87,7 +87,7 @@ class SeatsController extends Controller
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.seating.seat.update'])){
 			$seat = Seats::find($id);
-			return view('seating.seats.edit')->withRow($seat);
+			return view('seating.seats.edit')->withSeat($seat);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -100,19 +100,19 @@ class SeatsController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, RowEditRequest $request)
+	public function update($id, SeatEditRequest $request)
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.seating.seat.update'])){
 			$seat 				= Seats::find($id);
 			$seat->name 			= $request->name;
 			$seat->slug 			= strtolower($request->name);
+			$seat->row_id 			= $request->row_id;
 			$seat->editor_id		= Sentinel::getUser()->id;
 			$seat->save();
-
+			
 			return Redirect::route('admin-seating-seats')
 					->with('messagetype', 'success')
 					->with('message', 'The seat has now been saved!');
-
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');

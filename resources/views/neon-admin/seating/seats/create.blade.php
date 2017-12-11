@@ -54,7 +54,7 @@
 							<div class="panel-title">Name</div>
 						</div>
 						<div class="panel-body">
-							<input type="text" class="form-control input-lg" name="name" placeholder="A" value="{{ (old('name')) ? old('name') : '' }}" />
+							<input type="text" class="form-control input-lg" name="name" placeholder="A1" value="{{ (old('name')) ? old('name') : '' }}" />
 							@if($errors->has('name'))
 								<p class="text-danger">{{ $errors->first('name') }}</p>
 							@endif
@@ -68,7 +68,7 @@
 							<div class="panel-title">Row</div>
 						</div>
 						<div class="panel-body">
-							<input type="text" class="form-control input-lg" name="row" placeholder="A1" value="" />
+							<input type="text" class="form-control input-lg" id="row" placeholder="A" value="" autocomplete="off" />
 							<input type="text" class="hidden" id="row_id" name="row_id" value="0">
 							@if($errors->has('row_id'))
 								<p class="text-danger">{{ $errors->first('row_id') }}</p>
@@ -86,15 +86,14 @@
 </div>
 
 @stop
+
 @section('javascript')
 	<script src="{{ Theme::url('js/wysihtml5/wysihtml5-0.4.0pre.min.js') }}"></script>
 	<script src="{{ Theme::url('js/wysihtml5/bootstrap-wysihtml5.js') }}"></script>
 	<script src="{{ Theme::url('js/jquery.multi-select.js') }}"></script>
 	<script src="{{ Theme::url('js/fileinput.js') }}"></script>
 	<script src="{{ Theme::url('js/bootstrap-datepicker.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
 	<script src="{{ Theme::url('js/selectboxit/jquery.selectBoxIt.min.js') }}"></script>
-	<script src="{{ Theme::url('js/bootstrap-tagsinput.min.js') }}"></script>
 
 	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
