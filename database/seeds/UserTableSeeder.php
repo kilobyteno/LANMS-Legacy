@@ -111,6 +111,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.pages.destroy');
 		$role->addPermission('admin.pages.restore');
 
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy');
+		$role->addPermission('admin.seating.row.restore');
+
 		$role->addPermission('admin.reservation.create');
 		$role->addPermission('admin.reservation.update');
 		$role->addPermission('admin.reservation.destroy');
@@ -173,6 +178,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.pages.destroy');
 		$role->addPermission('admin.pages.restore', false);
 
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy');
+		$role->addPermission('admin.seating.row.restore', false);
+
 		$role->addPermission('admin.reservation.create');
 		$role->addPermission('admin.reservation.update');
 		$role->addPermission('admin.reservation.destroy');
@@ -234,6 +244,11 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.pages.update');
 		$role->addPermission('admin.pages.destroy', false);
 		$role->addPermission('admin.pages.restore', false);
+
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy', false);
+		$role->addPermission('admin.seating.row.restore', false);
 
 		$role->addPermission('admin.reservation.create');
 		$role->addPermission('admin.reservation.update');
