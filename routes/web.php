@@ -436,6 +436,34 @@ Route::group([
 			'prefix' => 'seating'
 			], function() {
 				Route::group([
+					'prefix' => 'rows'
+					], function() {
+						Route::get('/', [
+							'as' => 'admin-seating-rows',
+							'uses' => 'Admin\RowsController@index'
+						]);
+						Route::get('/create', [
+							'as' => 'admin-seating-row-create',
+							'uses' => 'Admin\RowsController@create'
+						]);
+						Route::post('/store', [
+							'as' => 'admin-seating-row-store',
+							'uses' => 'Admin\RowsController@store'
+						]);
+						Route::get('/{id}/edit', [
+							'as' => 'admin-seating-row-edit',
+							'uses' => 'Admin\RowsController@edit'
+						]);
+						Route::post('/{id}/update', [
+							'as' => 'admin-seating-row-update',
+							'uses' => 'Admin\RowsController@update'
+						]);
+						Route::get('/{id}/destroy', [
+							'as' => 'admin-seating-row-destroy',
+							'uses' => 'Admin\RowsController@destroy'
+						]);
+				});
+				Route::group([
 					'prefix' => 'reservation'
 					], function() {
 						Route::get('/', [
