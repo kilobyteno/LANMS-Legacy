@@ -464,6 +464,34 @@ Route::group([
 						]);
 				});
 				Route::group([
+					'prefix' => 'seats'
+					], function() {
+						Route::get('/', [
+							'as' => 'admin-seating-seats',
+							'uses' => 'Admin\Seating\SeatsController@index'
+						]);
+						Route::get('/create', [
+							'as' => 'admin-seating-seat-create',
+							'uses' => 'Admin\Seating\SeatsController@create'
+						]);
+						Route::post('/store', [
+							'as' => 'admin-seating-seat-store',
+							'uses' => 'Admin\Seating\SeatsController@store'
+						]);
+						Route::get('/{id}/edit', [
+							'as' => 'admin-seating-seat-edit',
+							'uses' => 'Admin\Seating\SeatsController@edit'
+						]);
+						Route::post('/{id}/update', [
+							'as' => 'admin-seating-seat-update',
+							'uses' => 'Admin\Seating\SeatsController@update'
+						]);
+						Route::get('/{id}/destroy', [
+							'as' => 'admin-seating-seat-destroy',
+							'uses' => 'Admin\Seating\SeatsController@destroy'
+						]);
+				});
+				Route::group([
 					'prefix' => 'reservation'
 					], function() {
 						Route::get('/', [
@@ -695,6 +723,17 @@ Route::group(['prefix' => 'ajax',], function() {
 			}
 		}
 		return Response::json($usernames);
+	});
+	Route::get('/rows', function () {
+		if(!Request::ajax()) {
+			abort(403);
+		}
+		$allrows = SeatRows::all();
+		$rows = array();
+		foreach($allrows as $row) {
+			array_push($rows, array('id' => $row->id, 'name' => $row->name));
+		}
+		return Response::json($rows);
 	});
 	Route::get('/seats', function () {
 		if(!Request::ajax()) {
