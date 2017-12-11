@@ -1,6 +1,6 @@
 <?php
 
-namespace LANMS\Http\Controllers\Admin;
+namespace LANMS\Http\Controllers\Admin\Seating;
 
 use LANMS\Http\Controllers\Controller;
 use Illuminate\Http\Request;

@@ -440,27 +440,27 @@ Route::group([
 					], function() {
 						Route::get('/', [
 							'as' => 'admin-seating-rows',
-							'uses' => 'Admin\RowsController@index'
+							'uses' => 'Admin\Seating\RowsController@index'
 						]);
 						Route::get('/create', [
 							'as' => 'admin-seating-row-create',
-							'uses' => 'Admin\RowsController@create'
+							'uses' => 'Admin\Seating\RowsController@create'
 						]);
 						Route::post('/store', [
 							'as' => 'admin-seating-row-store',
-							'uses' => 'Admin\RowsController@store'
+							'uses' => 'Admin\Seating\RowsController@store'
 						]);
 						Route::get('/{id}/edit', [
 							'as' => 'admin-seating-row-edit',
-							'uses' => 'Admin\RowsController@edit'
+							'uses' => 'Admin\Seating\RowsController@edit'
 						]);
 						Route::post('/{id}/update', [
 							'as' => 'admin-seating-row-update',
-							'uses' => 'Admin\RowsController@update'
+							'uses' => 'Admin\Seating\RowsController@update'
 						]);
 						Route::get('/{id}/destroy', [
 							'as' => 'admin-seating-row-destroy',
-							'uses' => 'Admin\RowsController@destroy'
+							'uses' => 'Admin\Seating\RowsController@destroy'
 						]);
 				});
 				Route::group([
