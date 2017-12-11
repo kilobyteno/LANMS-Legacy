@@ -1,6 +1,6 @@
 <?php
 
-namespace LANMS\Http\Controllers\Admin;
+namespace LANMS\Http\Controllers\Admin\Seating;
 
 use LANMS\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,8 +9,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\SeatRows;
 
-use LANMS\Http\Requests\Admin\RowCreateRequest;
-use LANMS\Http\Requests\Admin\RowEditRequest;
+use LANMS\Http\Requests\Admin\Seating\RowCreateRequest;
+use LANMS\Http\Requests\Admin\Seating\RowEditRequest;
 
 class RowsController extends Controller
 {
@@ -111,7 +111,7 @@ class RowsController extends Controller
 
 			return Redirect::route('admin-seating-rows')
 					->with('messagetype', 'success')
-					->with('message', 'The rowrmation has now been saved!');
+					->with('message', 'The row has now been saved!');
 
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
