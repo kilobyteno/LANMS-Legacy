@@ -29,7 +29,7 @@
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#232" aria-expanded="true">Version 2.3.2</a>
 					</h4>
 				</div>
-				<div id="232" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="232" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
