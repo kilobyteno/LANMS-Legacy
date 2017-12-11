@@ -9,8 +9,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\SeatRows;
 
-use LANMS\Http\Requests\Admin\RowCreateRequest;
-use LANMS\Http\Requests\Admin\RowEditRequest;
+use LANMS\Http\Requests\Admin\Seating\RowCreateRequest;
+use LANMS\Http\Requests\Admin\Seating\RowEditRequest;
 
 class RowsController extends Controller
 {
