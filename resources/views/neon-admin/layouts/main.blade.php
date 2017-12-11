@@ -77,6 +77,7 @@
 				<li class="@if(Request::is('admin/seating*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
 					<ul>
+						<li class="@if(Request::is('admin/seating/row*')){{'active'}} @endif"><a href="{{ route('admin-seating-rows') }}"><i class="fa fa-align-justify"></i> <span class="title">Rows</span></a></li>
 						<li class="@if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket"></i> <span class="title">Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
