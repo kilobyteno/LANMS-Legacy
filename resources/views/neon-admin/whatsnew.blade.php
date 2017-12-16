@@ -9,10 +9,26 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#234" aria-expanded="true">Version 2.3.4</a>
+					</h4>
+				</div>
+				<div id="234" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-153'>LANMS-153</a>] - Pages does not appear in menu anymore</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#233" aria-expanded="true">Version 2.3.3</a>
 					</h4>
 				</div>
-				<div id="233" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="233" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>

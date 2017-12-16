@@ -25,4 +25,8 @@ class Page extends Model {
 		return $this->hasOne('User', 'id', 'editor_id');
 	}
 
+	function scopeForMenu($query) {
+		return $this->where('active', '=', 1)->where('showinmenu', '=', 1)->get();
+	}
+
 }
