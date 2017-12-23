@@ -246,7 +246,7 @@ class CheckLicense extends Command
                     break;
                 default:
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
-                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", "No defined result. ".$status_desc);
                     Setting::save();
                     break;
             }
