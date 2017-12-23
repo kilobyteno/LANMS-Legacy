@@ -92,8 +92,9 @@ class PaymentSeatingController extends Controller {
 			$stripecust = $stripecustomer; 
 		}
 
-		$getcards = \Stripe::cards()->all($stripecust->cus);
+		/*$getcards = \Stripe::cards()->all($stripecust->cus);
 		$carddata = $getcards['data'];
+		dd($carddata);*/
 
 		$cardNumber    		= $request->get('cardNumber');
 		$cardMonthExpiry 	= $request->get('cardMonthExpiry');
@@ -109,7 +110,8 @@ class PaymentSeatingController extends Controller {
 					'exp_year'  => $cardYearExpiry,
 				],
 			]);
-			$card = \Stripe::cards()->create($stripecust->cus, $token['id']);
+			$card_token = $token['id'];
+			$card = \Stripe::cards()->create($stripecust->cus, $card_token);
 		} catch (CardErrorException $e) {
 			// Get the status code
 			$code = $e->getCode();
@@ -121,14 +123,15 @@ class PaymentSeatingController extends Controller {
 			$type = $e->getErrorType();
 
 			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
-								->with('message', $message.'. Please check your information and try again.');
+								->with('message', $message.'. Please check your card information and try again.');
 		}
 
 		try {
 			$charge = \Stripe::charges()->create([
-				'customer' => $stripecust->cus,
-				'currency' => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
-				'amount'   => Setting::get('SEATING_SEAT_PRICE'),
+				'customer' 	=> $stripecust->cus,
+				'currency'	=> Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
+				'amount'	=> Setting::get('SEATING_SEAT_PRICE'),
+				'source'	=> $card_token,
 			]);
 		} catch (CardErrorException $e) {
 			// Get the status code
@@ -141,7 +144,7 @@ class PaymentSeatingController extends Controller {
 			$type = $e->getErrorType();
 
 			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
-								->with('message', $message.'. Please check your information and try again.');
+								->with('message', $message.'. Please try again.');
 		}
 
 		$reservation 					= $seat->reservationsThisYear->first();
