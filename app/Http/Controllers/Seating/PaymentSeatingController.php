@@ -18,6 +18,7 @@ use anlutro\LaravelSettings\Facade as Setting;
 use LANMS\Http\Requests\Seating\PaymentRequest;
 
 use Cartalyst\Stripe\Exception\CardErrorException;
+use Cartalyst\Stripe\Exception\ServerErrorException;
 
 class PaymentSeatingController extends Controller {
 
@@ -110,8 +111,6 @@ class PaymentSeatingController extends Controller {
 					'exp_year'  => $cardYearExpiry,
 				],
 			]);
-			$card_token = $token['id'];
-			$card = \Stripe::cards()->create($stripecust->cus, $card_token);
 		} catch (CardErrorException $e) {
 			// Get the status code
 			$code = $e->getCode();
@@ -127,11 +126,28 @@ class PaymentSeatingController extends Controller {
 		}
 
 		try {
+			$customer = \Stripe::customers()->update($stripecust->cus, [
+				'source' => $token['id'],
+			]);
+		} catch (ServerErrorException $e) {
+			// Get the status code
+			$code = $e->getCode();
+
+			// Get the error message returned by Stripe
+			$message = $e->getMessage();
+
+			// Get the error type returned by Stripe
+			$type = $e->getErrorType();
+
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+								->with('message', $message.'. Please try again.');
+		}
+
+		try {
 			$charge = \Stripe::charges()->create([
 				'customer' 	=> $stripecust->cus,
 				'currency'	=> Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
 				'amount'	=> Setting::get('SEATING_SEAT_PRICE'),
-				'source'	=> $card_token,
 			]);
 		} catch (CardErrorException $e) {
 			// Get the status code
