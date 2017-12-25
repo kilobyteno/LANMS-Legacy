@@ -1,8 +1,11 @@
-<?php namespace LANMS;
+<?php 
+
+namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StripeCustomer extends Model {
+class StripeCustomer extends Model
+{
 
 	protected $table = 'stripe_customers';
 
@@ -12,7 +15,7 @@ class StripeCustomer extends Model {
 	];
 
 	function user() {
-		return $this->hasOne('User', 'id', 'user_id');
+		return $this->hasOne('LANMS\User', 'id', 'user_id');
 	}
 
 }

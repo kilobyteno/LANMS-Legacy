@@ -182,6 +182,14 @@ Route::group([
 			'uses' => 'Crew\CrewController@index'
 		]);
 		Route::group([
+			'prefix' => 'billing'
+			], function() {
+				Route::get('/payments', [
+					'as' => 'payments' ,
+					'uses' => 'Member\StripeController@getPayments'
+				]);
+		});
+		Route::group([
 			'prefix' => 'addressbook'
 			], function() {
 				Route::get('/', [
