@@ -15,6 +15,6 @@ class StripeController extends Controller
 		$charges 	= \Stripe::charges(array('customer' => $scus, 'limit' => 100))->all();
 		$payments 	= $charges['data'];
 		
-		return view('account.payments')->with('payments', $payments);
+		return view('account.billing.payments')->with('payments', $payments);
 	}
 }
