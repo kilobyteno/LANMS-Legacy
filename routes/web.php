@@ -125,42 +125,6 @@ Route::group([
 			'as' => 'account' ,
 			'uses' => 'Member\AccountController@index'
 		]);
-		Route::get('/settings', [
-			'as' => 'account-settings' ,
-			'uses' => 'Member\AccountController@getSettings'
-		]);
-		Route::post('/settings', [
-			'as' => 'account-settings-post' ,
-			'uses' => 'Member\AccountController@postSettings'
-		]);
-		Route::get('/change/password', [
-			'as' => 'account-change-password' ,
-			'uses' => 'Member\AccountController@getChangePassword'
-		]);
-		Route::post('/change/password', [
-			'as' => 'account-change-password-post' ,
-			'uses' => 'Member\AccountController@postChangePassword'
-		]);
-		Route::get('/change/details', [
-			'as' => 'account-change-details' ,
-			'uses' => 'Member\AccountController@getChangeDetails'
-		]);
-		Route::post('/change/details', [
-			'as' => 'account-change-details-post' ,
-			'uses' => 'Member\AccountController@postChangeDetails'
-		]);
-		Route::get('/change/images', [
-			'as' => 'account-change-images' ,
-			'uses' => 'Member\AccountController@getChangeImages'
-		]);
-		Route::post('/change/images/profile', [
-			'as' => 'account-change-image-profile-post' ,
-			'uses' => 'Member\AccountController@postChangeProfileImage'
-		]);
-		Route::post('/change/images/cover', [
-			'as' => 'account-change-image-cover-post' ,
-			'uses' => 'Member\AccountController@postChangeProfileCover'
-		]);
 		Route::get('/logout', [
 			'as' => 'logout',
 			'uses' => 'Member\AuthController@getLogout'
@@ -181,42 +145,6 @@ Route::group([
 			'as' => 'user-crew',
 			'uses' => 'Crew\CrewController@index'
 		]);
-		Route::group([
-			'prefix' => 'billing'
-			], function() {
-				Route::get('/payments', [
-					'as' => 'payments' ,
-					'uses' => 'Member\StripeController@getPayments'
-				]);
-		});
-		Route::group([
-			'prefix' => 'addressbook'
-			], function() {
-				Route::get('/', [
-					'as' => 'account-addressbook',
-					'uses' => 'Member\AddressBookController@index'
-				]);
-				Route::get('/create', [
-					'as' => 'account-addressbook-create',
-					'uses' => 'Member\AddressBookController@create'
-				]);
-				Route::post('/store', [
-					'as' => 'account-addressbook-store',
-					'uses' => 'Member\AddressBookController@store'
-				]);
-				Route::get('/{id}/edit', [
-					'as' => 'account-addressbook-edit',
-					'uses' => 'Member\AddressBookController@edit'
-				]);
-				Route::post('/{id}/update', [
-					'as' => 'account-addressbook-update',
-					'uses' => 'Member\AddressBookController@update'
-				]);
-				Route::get('/{id}/destroy', [
-					'as' => 'account-addressbook-destroy',
-					'uses' => 'Member\AddressBookController@destroy'
-				]);
-		});
 		Route::group([
 			'prefix' => 'seating'
 			], function() {
@@ -260,6 +188,82 @@ Route::group([
 					'as' => 'seating-ticket-download',
 					'uses' => 'Seating\ReserveSeatingController@ticketdownload'
 				]);	
+		});
+		Route::group([
+			'prefix' => 'account'
+			], function() {
+				Route::get('/settings', [
+					'as' => 'account-settings' ,
+					'uses' => 'Member\AccountController@getSettings'
+				]);
+				Route::post('/settings', [
+					'as' => 'account-settings-post' ,
+					'uses' => 'Member\AccountController@postSettings'
+				]);
+				Route::get('/change/password', [
+					'as' => 'account-change-password' ,
+					'uses' => 'Member\AccountController@getChangePassword'
+				]);
+				Route::post('/change/password', [
+					'as' => 'account-change-password-post' ,
+					'uses' => 'Member\AccountController@postChangePassword'
+				]);
+				Route::get('/change/details', [
+					'as' => 'account-change-details' ,
+					'uses' => 'Member\AccountController@getChangeDetails'
+				]);
+				Route::post('/change/details', [
+					'as' => 'account-change-details-post' ,
+					'uses' => 'Member\AccountController@postChangeDetails'
+				]);
+				Route::get('/change/images', [
+					'as' => 'account-change-images' ,
+					'uses' => 'Member\AccountController@getChangeImages'
+				]);
+				Route::post('/change/images/profile', [
+					'as' => 'account-change-image-profile-post' ,
+					'uses' => 'Member\AccountController@postChangeProfileImage'
+				]);
+				Route::post('/change/images/cover', [
+					'as' => 'account-change-image-cover-post' ,
+					'uses' => 'Member\AccountController@postChangeProfileCover'
+				]);
+				Route::group([
+					'prefix' => 'billing'
+					], function() {
+						Route::get('/payments', [
+						'as' => 'payments' ,
+						'uses' => 'Member\StripeController@getPayments'
+					]);
+				});
+				Route::group([
+					'prefix' => 'addressbook'
+					], function() {
+						Route::get('/', [
+							'as' => 'account-addressbook',
+							'uses' => 'Member\AddressBookController@index'
+						]);
+						Route::get('/create', [
+							'as' => 'account-addressbook-create',
+							'uses' => 'Member\AddressBookController@create'
+						]);
+						Route::post('/store', [
+							'as' => 'account-addressbook-store',
+							'uses' => 'Member\AddressBookController@store'
+						]);
+						Route::get('/{id}/edit', [
+							'as' => 'account-addressbook-edit',
+							'uses' => 'Member\AddressBookController@edit'
+						]);
+						Route::post('/{id}/update', [
+							'as' => 'account-addressbook-update',
+							'uses' => 'Member\AddressBookController@update'
+						]);
+						Route::get('/{id}/destroy', [
+							'as' => 'account-addressbook-destroy',
+							'uses' => 'Member\AddressBookController@destroy'
+						]);
+				});
 		});
 });
 
