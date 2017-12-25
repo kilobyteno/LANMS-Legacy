@@ -68,7 +68,7 @@
 								Reserved for
 							</label>
 							<div class="col-sm-10 @if($errors->has('reservedfor')) has-error @endif">
-								<input type="text" class="form-control" id="username" value="{{ Sentinel::getUser()->username.' ('.Sentinel::getUser()->firstname.')' }}" autocomplete="off">
+								<input type="text" class="form-control" id="username" value="{{ User::getFullnameAndNicknameByID(Sentinel::getUser()->id) }}" autocomplete="off">
 								<input type="text" class="hidden" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}">
 								@if($errors->has('reservedfor'))
 									<p class="text-danger">{{ $errors->first('reservedfor') }}</p>

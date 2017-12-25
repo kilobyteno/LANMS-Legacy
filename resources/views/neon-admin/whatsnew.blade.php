@@ -9,10 +9,35 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#235" aria-expanded="true">Version 2.3.5</a>
+					</h4>
+				</div>
+				<div id="235" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-154'>LANMS-154</a>] - User could not change the payment</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-156'>LANMS-156</a>] - Payment takes &quot;Default Card&quot; and not the card that was entered</li>
+						</ul>
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
+						</ul>
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-157'>LANMS-157</a>] - Reserve seat in admin panel has wrong name format</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#234" aria-expanded="true">Version 2.3.4</a>
 					</h4>
 				</div>
-				<div id="234" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="234" class="panel-collapse collapse" aria-expanded="true">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
