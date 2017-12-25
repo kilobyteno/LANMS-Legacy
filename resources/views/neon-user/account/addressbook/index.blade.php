@@ -19,7 +19,8 @@
 			<h2>Address Book<a class="btn btn-sm btn-success pull-right" href="{{ route('account-addressbook-create') }}"><i class="fa fa-plus"></i> Add</a></h2>
 			<ol class="breadcrumb 2" >
 				<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="{{ route('account') }}">Dashboard</a></li>
+				<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+				<li><a href="{{ route('account') }}">Account</a></li>
 				<li class="active"><strong>Address Book</strong></li>
 			</ol>
 

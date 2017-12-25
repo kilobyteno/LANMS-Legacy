@@ -21,7 +21,7 @@ class AddressBookController extends Controller {
 	public function index()
 	{
 		$addresses = Sentinel::getUser()->addresses;
-		return view('addressbook.index')->with('addresses', $addresses);
+		return view('account.addressbook.index')->with('addresses', $addresses);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class AddressBookController extends Controller {
 	 */
 	public function create()
 	{
-		return view('addressbook.create');
+		return view('account.addressbook.create');
 	}
 
 	/**
@@ -106,7 +106,7 @@ class AddressBookController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['address.'.$id.'.edit'])) {
 			$address = Address::find($id);
-			return view('addressbook.edit')->with($address->toArray());
+			return view('account.addressbook.edit')->with($address->toArray());
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');

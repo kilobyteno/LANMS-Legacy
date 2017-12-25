@@ -8,7 +8,7 @@
 			<h1>Search Members: <em>{{ $query }}</em></h1>
 			<ol class="breadcrumb 2" >
 				<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="{{ route('account') }}">Dashboard</a></li>
+				<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 				<li><a href="{{ route('members') }}">Members</a></li>
 				<li class="active"><strong>Search Members</strong></li>
 			</ol>
