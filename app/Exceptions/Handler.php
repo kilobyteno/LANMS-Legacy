@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler {
 		// Convert all non-http exceptions to a proper 500 http exception
         // if we don't do this exceptions are shown as a default template
         // instead of our own view in resources/views/errors/500.blade.php
-        if ($this->shouldReport($exception) && !$this->isHttpException($exception)) {
+        if (!config('app.debug') && $this->shouldReport($exception) && !$this->isHttpException($exception)) {
             $exception = new HttpException(500, 'Whoops!');
         }
 
