@@ -232,7 +232,7 @@ Route::group([
 					'prefix' => 'billing'
 					], function() {
 						Route::get('/payments', [
-						'as' => 'payments' ,
+						'as' => 'account-billing-payments' ,
 						'uses' => 'Member\StripeController@getPayments'
 					]);
 				});

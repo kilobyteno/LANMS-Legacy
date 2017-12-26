@@ -35,9 +35,11 @@
 							<td>{{ ($payment['paid'] ? "Yes" : "No") }}</td>
 							<td>{{ ($payment['refunded'] ? "Yes - ".$payment['amount_refunded']." ".strtoupper($payment['currency']) : "No") }}</td>
 							<td>
-								{{ ucfirst($payment['status']) }}
 								@if($payment['failure_message'])
-									{{ $payment['failure_message'] }}
+									<a href="javascript(void(0));" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $payment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
+								@else
+									{{ ucfirst($payment['status']) }}
+									<a href="javascript(void(0));" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $payment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
 								@endif
 							</td>
 						</tr>
