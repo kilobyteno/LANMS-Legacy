@@ -129,6 +129,18 @@ class PaymentSeatingController extends Controller {
 			$customer = \Stripe::customers()->update($stripecust->cus, [
 				'source' => $token['id'],
 			]);
+		} catch (CardErrorException $e) {
+			// Get the status code
+			$code = $e->getCode();
+
+			// Get the error message returned by Stripe
+			$message = $e->getMessage();
+
+			// Get the error type returned by Stripe
+			$type = $e->getErrorType();
+
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+								->with('message', $message.'. Please try again.');
 		} catch (ServerErrorException $e) {
 			// Get the status code
 			$code = $e->getCode();
