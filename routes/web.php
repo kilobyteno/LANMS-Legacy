@@ -122,7 +122,7 @@ Route::group([
 	'prefix' => 'user',
 	], function() {
 		Route::get('/', [
-			'as' => 'account' ,
+			'as' => 'dashboard' ,
 			'uses' => 'Member\AccountController@index'
 		]);
 		Route::get('/logout', [
@@ -192,6 +192,10 @@ Route::group([
 		Route::group([
 			'prefix' => 'account'
 			], function() {
+				Route::get('/', [
+					'as' => 'account' ,
+					'uses' => 'Member\AccountController@index'
+				]);
 				Route::get('/settings', [
 					'as' => 'account-settings' ,
 					'uses' => 'Member\AccountController@getSettings'
