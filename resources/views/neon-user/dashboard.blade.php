@@ -48,39 +48,12 @@
 					<a href="{{ route('news') }}" class="btn btn-info"><i class="fa fa-newspaper-o"></i> Read more news</a>
 				</div>
 				<div class="col-lg-4">
-					<div class="row">
-						<div class="col-lg-3">
-							<img src="{{ $profilepicturesmall or '/images/profilepicture/0_small.png' }}" class="img-thumbnail">
-						</div>
-						<div class="col-lg-9">
-							<h3>
-								<a href="{{ route('user-profile', $username) }}">{{ $firstname }}@if($showname && $lastname) {{ $lastname }}@endif</a>
-								@if($showonline)
-									<a href="#" class="user-status is-{{ $onlinestatus }} tooltip-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{ ucfirst($onlinestatus) }}"></a><!-- User statuses available classes "is-online", "is-offline", "is-idle", "is-busy" -->
-								@endif
-							</h3>
-							<p>@if($gender)<i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender.',' }}@endif @if($birthdate){{ Sentinel::getUser()->age() }}@endif @if($location) from {{ $location }}@endif</p>
-						</div>
-					</div>
-					<hr>
 					<p class="text-center">Today is {{ date($userdateformat, time()) }}, and the time is {{ date($usertimeformat, time()) }}.</p>
 					<hr>
-					<p><em>Want to do some changes to your profile?</em></p>
-					<div class="list-group">
-						<a href="{{ route('account-change-details') }}" class="list-group-item"><i class="fa fa-edit"></i> Edit Profile Details</a>
-						<a href="{{ route('account-change-images') }}" class="list-group-item"><i class="fa fa-picture-o"></i> Change Profile Images</a>
-						<a href="{{ route('account-addressbook') }}" class="list-group-item"><i class="fa fa-book"></i> Manage Address Book</a>
-						<a href="{{ route('account-change-password') }}" class="list-group-item"><i class="fa fa-asterisk"></i> Change Password</a>
-						<a href="{{ route('account-settings') }}" class="list-group-item"><i class="fa fa-cog"></i> Edit Profile Settings</a>
-					</div>
-					@if(Setting::get('REFERRAL_ACTIVE'))
-						<hr>
-						<p>
-							<strong>Your referral link:</strong><br>
-							<input class="form-control" type="text" name="referrallink" id="referrallink" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ $referral_code }}">
-						</p>
-						<p>You have referred <strong>{{ User::where('referral', '=', Sentinel::getUser()->referral_code)->count() }}</strong> user(s).</p>
-					@endif
+					<p class="text-center">
+						<a href="{{ route('account') }}"><i class="fa fa-user"></i> Your Account</a> &middot; <a href="{{ route('user-profile', \Sentinel::getUser()->username) }}"><i class="fa fa-user-circle-o"></i> Your Profile</a> &middot; <a href="{{ route('account-change-password') }}"><i class="fa fa-asterisk"></i> Change password</a>
+					</p>
+					
 				</div>
 			</div>
 
