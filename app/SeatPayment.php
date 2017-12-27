@@ -7,7 +7,7 @@ class SeatPayment extends Model {
 	protected $table = 'seat_payments';
 
 	protected $fillable = [
-		'stripecode',
+		'stripecharge',
 		'user_id',
 		'reservation_id',
 	];
