@@ -236,9 +236,17 @@ Route::group([
 					'prefix' => 'billing'
 					], function() {
 						Route::get('/payments', [
-						'as' => 'account-billing-payments' ,
-						'uses' => 'Member\StripeController@getPayments'
-					]);
+							'as' => 'account-billing-payments' ,
+							'uses' => 'Member\BillingController@getPayments'
+						]);
+						Route::get('/payment/{id}', [
+							'as' => 'account-billing-payment' ,
+							'uses' => 'Member\BillingController@getPayment'
+						]);
+						Route::get('/charges', [
+							'as' => 'account-billing-charges' ,
+							'uses' => 'Member\BillingController@getCharges'
+						]);
 				});
 				Route::group([
 					'prefix' => 'addressbook'

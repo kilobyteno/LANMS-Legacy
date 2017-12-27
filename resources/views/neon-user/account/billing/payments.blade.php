@@ -5,6 +5,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<h1>Payments</h1>
 			<ol class="breadcrumb 2" >
 				<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 				<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -15,33 +16,22 @@
 
 			<table class="table">
 				<thead>
+					<th>RID</th>
 					<th>Date</th>
-					<th>Amount</th>
-					<th>Currency</th>
-					<th>Cardnumber</th>
-					<th>Exp.</th>
-					<th>Paid</th>
-					<th>Refunded</th>
-					<th>Status</th>
+					<th>Year</th>
+					<th>Seat</th>
+					<th>Reserved for</th>
+					<th>Details</th>
 				</thead>
 				<tbody>
 					@foreach($payments as $payment)
 						<tr>
-							<td>{{ date(User::getUserDateFormat(), $payment['created']) .' at '. date(User::getUserTimeFormat(), $payment['created']) }}</td>
-							<td>{{ $payment['amount'] }}</td>
-							<td>{{ strtoupper($payment['currency']) }}</td>
-							<td><em>xxxx xxxx xxxx</em> {{ $payment['source']['last4'] }}</td>
-							<td>{{ $payment['source']['exp_month'] }} / {{ $payment['source']['exp_year'] }}</td>
-							<td>{{ ($payment['paid'] ? "Yes" : "No") }}</td>
-							<td>{{ ($payment['refunded'] ? "Yes - ".$payment['amount_refunded']." ".strtoupper($payment['currency']) : "No") }}</td>
-							<td>
-								@if($payment['failure_message'])
-									<a href="javascript(void(0));" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $payment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
-								@else
-									{{ ucfirst($payment['status']) }}
-									<a href="javascript(void(0));" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $payment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
-								@endif
-							</td>
+							<td>{{ $payment->reservation->id }}</td>
+							<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
+							<td>{{ $payment->reservation->year }}</td>
+							<td>{{ $payment->reservation->seat->name }}</td>
+							<td>{{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}</td>
+							<td><a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-xs btn-icon icon-left"><i class="fa fa-info-circle"></i>View</a></td>
 						</tr>
 					@endforeach
 				</tbody>
