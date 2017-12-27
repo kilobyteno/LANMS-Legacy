@@ -123,7 +123,7 @@ Route::group([
 	], function() {
 		Route::get('/', [
 			'as' => 'dashboard' ,
-			'uses' => 'Member\AccountController@index'
+			'uses' => 'Member\AccountController@getDashboard'
 		]);
 		Route::get('/logout', [
 			'as' => 'logout',
@@ -194,7 +194,7 @@ Route::group([
 			], function() {
 				Route::get('/', [
 					'as' => 'account' ,
-					'uses' => 'Member\AccountController@index'
+					'uses' => 'Member\AccountController@getAccount'
 				]);
 				Route::get('/settings', [
 					'as' => 'account-settings' ,

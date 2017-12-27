@@ -20,7 +20,7 @@ use LANMS\News;
 
 class AccountController extends Controller {
 
-	public function index() {
+	public function getDashboard() {
 		$authuser = Sentinel::getUser();
 		$onlinestatus = User::getOnlineStatus($authuser->id);
 		$userarray = $authuser->toArray();
@@ -28,9 +28,13 @@ class AccountController extends Controller {
 
 		$news = News::isPublished()->get()->take(2);
 
-		return view('account.index')
+		return view('dashboard')
 					->with($userarray)
 					->withNews($news);
+	}
+
+	public function getAccount() {
+		return view('account.index');
 	}
 
 	public function getSettings(Sentinel $auth) {
