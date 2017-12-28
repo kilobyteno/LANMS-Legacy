@@ -126,22 +126,19 @@
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
 									<input class="form-control" type="password" name="password">
+									<span class="input-group-btn"><button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save Changes</button></span>
 								</div>
 								@if($errors->has('password'))
 									<p class="text-danger">{{ $errors->first('password') }}</p>
 								@endif
 							</div>
 						</div>
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						
 					</div>
 				
 				</div>
 			</div>
-		</div>
-											
-		<div class="form-group default-padding">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Changes</button>
 		</div>
 					
 	</form>
