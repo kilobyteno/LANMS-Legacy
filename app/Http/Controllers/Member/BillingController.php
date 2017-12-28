@@ -17,7 +17,6 @@ class BillingController extends Controller
 	public function getPayment($id) {
 		$seatpayment 	= \LANMS\SeatPayment::find($id);
 		$charge 		= \Stripe::charges()->find($seatpayment->stripecharge);
-		dd($charge);
 		return view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge);
 	}
 
