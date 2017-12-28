@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ProfileImageRequest extends FormRequest {
 	public function rules() {
 		return [
-			'profileimage' 		=> 'image',
+			'profileimage' => 'image|size:8000',
 		];
 	}
 	
