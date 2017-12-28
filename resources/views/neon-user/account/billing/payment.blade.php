@@ -11,7 +11,7 @@
 				<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 				<li><a href="{{ route('account') }}">Account</a></li>
 				<li>Billing</li>
-				<li><a href="{{ route('payments') }}">Payments</a></li>
+				<li><a href="{{ route('account-billing-payments') }}">Payments</a></li>
 				<li class="active"><strong>Payment</strong></li>
 			</ol>
 
@@ -29,22 +29,22 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>{{ date(User::getUserDateFormat(), $payment['created']) .' at '. date(User::getUserTimeFormat(), $payment['created']) }}</td>
-						<td>{{ substr($payment['amount'], 0, -2) }}</td>
-						<td>{{ strtoupper($payment['currency']) }}</td>
-						<td><em>xxxx xxxx xxxx</em> {{ $payment['source']['last4'] }}</td>
-						<td>{{ $payment['source']['exp_month'] }} / {{ $payment['source']['exp_year'] }}</td>
-						<td>{{ ($payment['paid'] ? "Yes" : "No") }}</td>
-						<td>{{ ($payment['refunded'] ? "Yes - ".substr($payment['amount_refunded'], 0, -2)." ".strtoupper($payment['currency']) : "No") }}</td>
+						<td>{{ date(User::getUserDateFormat(), $seatpayment['created']) .' at '. date(User::getUserTimeFormat(), $seatpayment['created']) }}</td>
+						<td>{{ substr($seatpayment['amount'], 0, -2) }}</td>
+						<td>{{ strtoupper($seatpayment['currency']) }}</td>
+						<td><em>xxxx xxxx xxxx</em> {{ $seatpayment['source']['last4'] }}</td>
+						<td>{{ $seatpayment['source']['exp_month'] }} / {{ $seatpayment['source']['exp_year'] }}</td>
+						<td>{{ ($seatpayment['paid'] ? "Yes" : "No") }}</td>
+						<td>{{ ($seatpayment['refunded'] ? "Yes - ".substr($seatpayment['amount_refunded'], 0, -2)." ".strtoupper($seatpayment['currency']) : "No") }}</td>
 						<td>
-							@if($payment['failure_message'])
-								<a href="javascript:void(0);" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $payment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
+							@if($seatpayment['failure_message'])
+								<a href="javascript:void(0);" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $seatpayment['failure_message'] }}" data-original-title="Failure Message">Failure</a>
 							@else
-								{{ ucfirst($payment['status']) }}
+								{{ ucfirst($seatpayment['status']) }}
 							@endif
 						</td>
 						<td>
-							<?php $seatpayment = \LANMS\SeatPayment::where('stripecharge', '=', $payment['id'])->with('reservation')->first(); ?>
+							<?php $seatpayment = \LANMS\SeatPayment::where('stripecharge', '=', $seatpayment['id'])->with('reservation')->first(); ?>
 							@if($seatpayment)
 								#{{ $seatpayment->reservation->id }} - {{ $seatpayment->reservation->year }}
 							@else

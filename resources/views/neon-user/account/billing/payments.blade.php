@@ -16,21 +16,23 @@
 
 			<table class="table">
 				<thead>
-					<th>RID</th>
+					<th>ID</th>
 					<th>Date</th>
 					<th>Year</th>
 					<th>Seat</th>
 					<th>Reserved for</th>
+					<th>Res. ID</th>
 					<th>Details</th>
 				</thead>
 				<tbody>
 					@foreach($payments as $payment)
 						<tr>
-							<td>{{ $payment->reservation->id }}</td>
+							<td>{{ $payment->id }}</td>
 							<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
 							<td>{{ $payment->reservation->year }}</td>
 							<td>{{ $payment->reservation->seat->name }}</td>
 							<td>{{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}</td>
+							<td>{{ $payment->reservation->id }}</td>
 							<td><a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-xs btn-icon icon-left"><i class="fa fa-info-circle"></i>View</a></td>
 						</tr>
 					@endforeach
