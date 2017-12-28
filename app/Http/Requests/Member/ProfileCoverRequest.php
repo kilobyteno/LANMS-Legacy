@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ProfileCoverRequest extends FormRequest {
 	public function rules() {
 		return [
-			'profilecover' 		=> 'image|size:8000',
+			'profilecover' => 'image|size:5000',
 		];
 	}
 	
