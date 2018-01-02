@@ -15,97 +15,87 @@
 			</ol>
 
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					
-					<div class='card-wrapper'></div>
-					<form role="form" id="payment-form" method="post" action="">
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="form-group @if($errors->has('number')) has-error @endif">
-									<label for="number">CARD NUMBER</label>
-									<div class="input-group">
-										<input type="tel" class="form-control" name="number" placeholder="Valid Card Number" required autofocus value="{{ (old('number')) ? old('number') : '' }}" autocomplete="off" />
-										<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6 col-md-6">
-								<div class="form-group @if($errors->has('expiry')) has-error @endif">
-									<label for="expiry">EXP. MONTH / YEAR</label>
-									<input type="tel" class="form-control" name="expiry" placeholder="MM" required value="{{ (old('expiry')) ? old('expiry') : '' }}" autocomplete="off" />
-								</div>
-							</div>
-							<div class="col-xs-6 col-md-6 pull-right">
-								<div class="form-group @if($errors->has('cvc')) has-error @endif">
-									<label for="cvc">CV CODE</label>
-									<input type="tel" class="form-control" name="cvc" placeholder="CVC" required value="{{ (old('cvc')) ? old('cvc') : '' }}" autocomplete="off" />
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-12">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class='fa fa-money'></i> Pay Now</button>
-								<br />
-								<div class="alert alert-info hidden" id="processing">
-									<i class='fa fa-circle-o-notch fa-spin'></i> Processing Payment
-								</div>
-							</div>
-						</div>
-						@if(count($errors->all()) > 0)
-							<br>
-							<div class="alert alert-danger">
-								@foreach ($errors->all() as $error)
-									{{ $error }}<br>
-								@endforeach
-							</div>
-						@endif
-					</form>
+					<div class="card-wrapper" data-jp-card-initialized="true">
+					   <div class="jp-card-container">
+					      <div class="jp-card @if(in_array(strtolower($charge['source']['brand']), array('elo', 'visa', 'visaelectron', 'mastercard', 'maestro', 'amex', 'discover', 'dinersclub', 'dankkort', 'jcb'))){{ 'jp-card-'.strtolower($charge['source']['brand']).' jp-card-identified' }}@endif">
+					         <div class="jp-card-front">
+					            <div class="jp-card-logo jp-card-elo">
+					               <div class="e">e</div>
+					               <div class="l">l</div>
+					               <div class="o">o</div>
+					            </div>
+					            <div class="jp-card-logo jp-card-visa">Visa</div>
+					            <div class="jp-card-logo jp-card-visaelectron">
+					               Visa
+					               <div class="elec">Electron</div>
+					            </div>
+					            <div class="jp-card-logo jp-card-mastercard">Mastercard</div>
+					            <div class="jp-card-logo jp-card-maestro">Maestro</div>
+					            <div class="jp-card-logo jp-card-amex"></div>
+					            <div class="jp-card-logo jp-card-discover">discover</div>
+					            <div class="jp-card-logo jp-card-dinersclub"></div>
+					            <div class="jp-card-logo jp-card-dankort">
+					               <div class="dk">
+					                  <div class="d"></div>
+					                  <div class="k"></div>
+					               </div>
+					            </div>
+					            <div class="jp-card-logo jp-card-jcb">
+					               <div class="j">J</div>
+					               <div class="c">C</div>
+					               <div class="b">B</div>
+					            </div>
+					            <div class="jp-card-lower">
+					               <div class="jp-card-shiny"></div>
+					               <div class="jp-card-cvc jp-card-display">•••</div>
+					               <div class="jp-card-number jp-card-display jp-card-invalid">•••• •••• •••• {{ $charge['source']['last4'] }}</div>
+					               <div class="jp-card-name jp-card-display">{{ $charge['source']['name'] or 'Firstname Lastname' }}</div>
+					               <div class="jp-card-expiry jp-card-display" data-before="month/year" data-after="valid
+					                  thru">{{ $charge['source']['exp_month'] }}/{{ $charge['source']['exp_year'] }}</div>
+					            </div>
+					         </div>
+					         <div class="jp-card-back">
+					            <div class="jp-card-bar"></div>
+					            <div class="jp-card-cvc jp-card-display">•••</div>
+					            <div class="jp-card-shiny"></div>
+					         </div>
+					      </div>
+					   </div>
+					</div>
 
 				</div>
-				<div class="col-md-6">
-					<table class="table">
-						<thead>
-							<th>Date</th>
-							<th>Amount</th>
-							<th>Currency</th>
-							<th>number</th>
-							<th>Card Exp.</th>
-							<th>Paid</th>
-							<th>Refunded</th>
-							<th>Status</th>
-							<th>Linked to reservation</th>
-						</thead>
-						<tbody>
-							<tr>
-								<td>{{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</td>
-								<td>{{ substr($charge['amount'], 0, -2) }}</td>
-								<td>{{ strtoupper($charge['currency']) }}</td>
-								<td><em>xxxx xxxx xxxx</em> {{ $charge['source']['last4'] }}</td>
-								<td>{{ $charge['source']['exp_month'] }} / {{ $charge['source']['exp_year'] }}</td>
-								<td>{{ ($charge['paid'] ? "Yes" : "No") }}</td>
-								<td>{{ ($charge['refunded'] ? "Yes - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : "No") }}</td>
-								<td>
-									@if($charge['failure_message'])
-										<a href="javascript:void(0);" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="Failure Message">Failure</a>
-									@else
-										{{ ucfirst($charge['status']) }}
-									@endif
-								</td>
-								<td>
-									<?php $charge = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
-									@if($charge)
-										#{{ $charge->reservation->id }} - {{ $charge->reservation->year }}
-									@else
-										<em>N/A</em>
-									@endif
-								</td>
-							</tr>
-						</tbody>
-					</table>
-
+				<div class="col-md-4">
+					<h3>Payment Info</h3>
+					<hr style="margin-top: 0">
+					<p><strong>Date:</strong> {{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</p>
+					<p><strong>Amount:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
+					<p><strong>Currency:</strong> {{ strtoupper($charge['currency']) }}</p>
+					<p><strong>Paid:</strong> {{ ($charge['paid'] ? "Yes" : "No") }}</p>
+					<p><strong>Refunded:</strong> {{ ($charge['refunded'] ? "Yes - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : "No") }}</p>
+					<p>
+						<strong>Status:</strong>
+						@if($charge['failure_message'])
+							<a href="javascript:void(0);" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="Failure Message">Failure</a>
+						@else
+							{{ ucfirst($charge['status']) }}
+						@endif
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h3>Reservation Info</h3>
+					<hr style="margin-top: 0">
+					<?php $charge = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
+					@if($charge)
+						<p><strong>ID:</strong> {{ $charge->reservation->id }}</p>
+						<p><strong>Year:</strong> {{ $charge->reservation->year }}</p>
+						<p><strong>Seat:</strong> {{ $charge->reservation->seat->name }}</p>
+						<p><strong>Reserved for:</strong> {{ User::getFullnameAndNicknameByID($charge->reservation->reservedfor->id) }}</p>
+						<p><strong>Reserved by:</strong> {{ User::getFullnameAndNicknameByID($charge->reservation->reservedby->id) }}</p>
+					@else
+						<em>N/A</em>
+					@endif
 					
 				</div>
 			</div>
@@ -113,17 +103,12 @@
 	</div>
 </div>
 @stop
-@section('javascript')
+@section("javascript")
 	<script src="{{ Theme::url('js/jquery.card.js') }}"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function($){
 			$('#payment-form').card({
-				// a selector or DOM element for the container
-				// where you want the card to appear
-				container: '.card-wrapper', // *required*
-				cardType: 'visa',
-
-				// all of the other options from above
+				container: '.card-wrapper'
 			});
 		});
 	</script>
