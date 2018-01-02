@@ -97,10 +97,11 @@ class PaymentSeatingController extends Controller {
 		$carddata = $getcards['data'];
 		dd($carddata);*/
 
-		$cardNumber    		= $request->get('cardNumber');
-		$cardMonthExpiry 	= $request->get('cardMonthExpiry');
-		$cardCVC       		= $request->get('cardCVC');
-		$cardYearExpiry  	= $request->get('cardYearExpiry');
+		$cardNumber    		= str_replace(' ', '', $request->get('number'));
+		$cardMonthExpiry 	= $request->get('expiryMonth');
+		$cardCVC       		= $request->get('cvc');
+		$cardYearExpiry  	= $request->get('expiryYear');
+		$nameOnCard  		= $request->get('name');
 
 		try {
 			$token = \Stripe::tokens()->create([
@@ -109,6 +110,7 @@ class PaymentSeatingController extends Controller {
 					'exp_month' => $cardMonthExpiry,
 					'cvc'       => $cardCVC,
 					'exp_year'  => $cardYearExpiry,
+					'name'		=> $nameOnCard,
 				],
 			]);
 		} catch (CardErrorException $e) {
