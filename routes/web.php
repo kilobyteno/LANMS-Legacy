@@ -983,7 +983,7 @@ Route::group(['prefix' => 'ajax',], function() {
 							$msg = 'Could not log you in. Please try again.';
 						} else {
 							$status = 'success';
-							$resp['redirect_url'] = URL::route('account');
+							$resp['redirect_url'] = URL::route('dashboard');
 						}
 
 					} else {
