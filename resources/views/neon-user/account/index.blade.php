@@ -34,7 +34,6 @@
 					<h3>Billing</h3>
 					<div class="list-group">
 						<a href="{{ route('account-billing-payments') }}" class="list-group-item"><i class="fa fa-money"></i> Payments <span class="badge badge-primary">{{ \Sentinel::getUser()->seatpayments->count() }}</span></a>
-
 						<a href="{{ route('account-billing-charges') }}" class="list-group-item"><i class="fa fa-credit-card"></i> Charges</a>
 					</div>
 
