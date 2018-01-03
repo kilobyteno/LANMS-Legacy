@@ -249,6 +249,14 @@ Route::group([
 						]);
 				});
 				Route::group([
+					'prefix' => 'reservations'
+					], function() {
+						Route::get('/', [
+							'as' => 'account-reservations' ,
+							'uses' => 'Member\ReservationController@index'
+						]);
+				});
+				Route::group([
 					'prefix' => 'addressbook'
 					], function() {
 						Route::get('/', [
