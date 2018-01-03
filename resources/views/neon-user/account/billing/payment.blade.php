@@ -67,7 +67,7 @@
 
 				</div>
 				<div class="col-md-4">
-					<h3>Payment Info</h3>
+					<h3>Payment</h3>
 					<hr style="margin-top: 0">
 					<p><strong>Date:</strong> {{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</p>
 					<p><strong>Amount:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
@@ -84,15 +84,15 @@
 					</p>
 				</div>
 				<div class="col-md-4">
-					<h3>Reservation Info</h3>
+					<?php $payment = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
+					<h3>Reservation <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-xs btn-icon icon-left pull-right"><i class="fa fa-info-circle"></i>View Reservation</a></h3>
 					<hr style="margin-top: 0">
-					<?php $charge = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
 					@if($charge)
-						<p><strong>ID:</strong> {{ $charge->reservation->id }}</p>
-						<p><strong>Year:</strong> {{ $charge->reservation->year }}</p>
-						<p><strong>Seat:</strong> {{ $charge->reservation->seat->name }}</p>
-						<p><strong>Reserved for:</strong> {{ User::getFullnameAndNicknameByID($charge->reservation->reservedfor->id) }}</p>
-						<p><strong>Reserved by:</strong> {{ User::getFullnameAndNicknameByID($charge->reservation->reservedby->id) }}</p>
+						<p><strong>ID:</strong> {{ $payment->reservation->id }}</p>
+						<p><strong>Year:</strong> {{ $payment->reservation->year }}</p>
+						<p><strong>Seat:</strong> {{ $payment->reservation->seat->name }}</p>
+						<p><strong>Reserved for:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}</p>
+						<p><strong>Reserved by:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedby->id) }}</p>
 					@else
 						<em>N/A</em>
 					@endif
