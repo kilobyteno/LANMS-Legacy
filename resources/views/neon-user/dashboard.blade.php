@@ -53,6 +53,17 @@
 					<p class="text-center">
 						<a href="{{ route('account') }}"><i class="fa fa-user"></i> Your Account</a> &middot; <a href="{{ route('user-profile', \Sentinel::getUser()->username) }}"><i class="fa fa-user-circle-o"></i> Your Profile</a> &middot; <a href="{{ route('account-change-password') }}"><i class="fa fa-asterisk"></i> Change password</a>
 					</p>
+					<hr>
+					<h5>Your reservations:</h5>
+					<div class="list-group">
+						@if(Sentinel::getUser()->reservationsThisYear()->get())
+							@foreach(Sentinel::getUser()->reservationsThisYear()->get() as $reservation)
+								<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="list-group-item">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }} @if($reservation->payment) <span class="badge badge-success">Paid</span> @else <span class="badge badge-danger">Not paid</span> @endif</a>
+							@endforeach
+						@else
+							<p><em>No reservations yet...</em></p>
+						@endif
+					</div>
 					
 				</div>
 			</div>
