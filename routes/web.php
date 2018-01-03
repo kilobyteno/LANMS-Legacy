@@ -131,15 +131,15 @@ Route::group([
 		]);
 		Route::get('/profile/{username}', [
 			'as' => 'user-profile',
-			'uses' => 'Member\ProfileController@index'
+			'uses' => 'Member\MemberController@profile'
 		]);
 		Route::get('/members', [
 			'as' => 'members',
-			'uses' => 'Member\ProfileController@getMembers'
+			'uses' => 'Member\MemberController@index'
 		]);
 		Route::post('/members/search', [
 			'as' => 'members-search',
-			'uses' => 'Member\ProfileController@search'
+			'uses' => 'Member\MemberController@search'
 		]);
 		Route::get('/crew', [
 			'as' => 'user-crew',

@@ -7,9 +7,9 @@ use LANMS\User;
 
 use LANMS\Http\Requests\Member\SearchRequest;
 
-class ProfileController extends Controller {
+class MemberController extends Controller {
 
-	public function index($username) {
+	public function profile($username) {
 		$theuser = User::where('username', '=', $username)->first();
 		if($theuser == null) {
 			return abort(404); //if username does not exist
@@ -17,15 +17,15 @@ class ProfileController extends Controller {
 		$onlinestatus = User::getOnlineStatus($theuser->id);
 		$userarray = $theuser->toArray();
 		$userarray['onlinestatus'] = $onlinestatus;
-		return view('account.profile')->with($userarray);
+		return view('members.profile')->with($userarray);
 	}
 
-	public function getMembers() {
+	public function index() {
 		$members = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->paginate(10);
 		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		
-		return view('account.members')
+		return view('members.index')
 				->with('members', $members)
 				->with('newestmembers', $newestmembers)
 				->with('onlinemembers', $onlinemembers);
@@ -38,7 +38,7 @@ class ProfileController extends Controller {
 		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
 		
-		return view('account.search')
+		return view('members.search')
 				->with('query', $request->search)
 				->with('members', $members)
 				->with('newestmembers', $newestmembers)
