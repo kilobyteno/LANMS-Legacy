@@ -28,7 +28,7 @@
 
 					<h3>Reservations</h3>
 					<div class="list-group">
-						<a href="{{ route('account-reservations') }}" class="list-group-item"><i class="fa fa-street-view"></i> Reservations <span class="badge badge-primary">{{ \Sentinel::getUser()->reservations->count() }}</span></a>
+						<a href="{{ route('account-reservation') }}" class="list-group-item"><i class="fa fa-street-view"></i> Reservations <span class="badge badge-primary">{{ \Sentinel::getUser()->reservations->count() }}</span></a>
 					</div>
 
 					<h3>Billing</h3>

@@ -249,11 +249,15 @@ Route::group([
 						]);
 				});
 				Route::group([
-					'prefix' => 'reservations'
+					'prefix' => 'reservation'
 					], function() {
 						Route::get('/', [
-							'as' => 'account-reservations' ,
+							'as' => 'account-reservation' ,
 							'uses' => 'Member\ReservationController@index'
+						]);
+						Route::get('/{id}', [
+							'as' => 'account-reservation-view' ,
+							'uses' => 'Member\ReservationController@view'
 						]);
 				});
 				Route::group([
