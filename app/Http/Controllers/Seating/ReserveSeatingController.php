@@ -11,7 +11,7 @@ use LANMS\SeatRows;
 use LANMS\Seats;
 use LANMS\SeatReservation;
 use anlutro\LaravelSettings\Facade as Setting;
-use Vsmoraes\Pdf\PdfFacade as PDF;
+use PDF;
 
 use LANMS\Http\Requests\Seating\SeatReserveRequest;
 
@@ -148,8 +148,7 @@ class ReserveSeatingController extends Controller {
 		}
 
 		if(Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
-			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
-			return PDF::load($html)->show();
+			return PDF::loadView('seating.pdf.ticket', $currentseat)->download('ticket.pdf');
 		} else {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
@@ -158,8 +157,7 @@ class ReserveSeatingController extends Controller {
 
 	public function consentform()
 	{
-		$html = view('seating.pdf.consentform')->render();
-		return PDF::load($html)->show();
+		return PDF::loadView('seating.pdf.consentform')->download('consentform.pdf');
 	}
 
 	public function destroy($id)
