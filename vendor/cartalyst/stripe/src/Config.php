@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    2.1.0
+ * @version    2.1.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2017, Cartalyst LLC
+ * @copyright  (c) 2011-2018, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -72,7 +72,7 @@ class Config implements ConfigInterface
 
         $this->setApiKey($apiKey ?: getenv('STRIPE_API_KEY'));
 
-        $this->setApiVersion($apiVersion ?: getenv('STRIPE_API_VERSION') ?: '2016-07-06');
+        $this->setApiVersion($apiVersion ?: getenv('STRIPE_API_VERSION') ?: '2017-06-05');
 
         if (! $this->apiKey) {
             throw new \RuntimeException('The Stripe API key is not defined!');

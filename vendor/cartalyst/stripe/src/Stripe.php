@@ -11,14 +11,16 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    2.1.0
+ * @version    2.1.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2017, Cartalyst LLC
+ * @copyright  (c) 2011-2018, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
 namespace Cartalyst\Stripe;
+
+use ReflectionClass;
 
 class Stripe
 {
@@ -264,7 +266,7 @@ class Stripe
     {
         $class = "\\Cartalyst\\Stripe\\Api\\".ucwords($method);
 
-        if (class_exists($class)) {
+        if (class_exists($class) && ! (new ReflectionClass($class))->isAbstract()) {
             return new $class($this->config);
         }
 
