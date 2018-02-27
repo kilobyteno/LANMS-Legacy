@@ -148,7 +148,7 @@ class ReserveSeatingController extends Controller {
 		}
 
 		if(Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
-			return PDF::loadView('seating.pdf.ticket', $currentseat)->download('ticket.pdf');
+			return PDF::loadView('seating.pdf.ticket', $currentseat)->stream();
 		} else {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
@@ -157,7 +157,7 @@ class ReserveSeatingController extends Controller {
 
 	public function consentform()
 	{
-		return PDF::loadView('seating.pdf.consentform')->download('consentform.pdf');
+		return PDF::loadView('seating.pdf.consentform')->stream();
 	}
 
 	public function destroy($id)
