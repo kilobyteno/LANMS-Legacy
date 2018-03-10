@@ -169,7 +169,10 @@ class CheckLicense extends Command
                     }
                 }
                 if (!is_array($results)) {
-                    die("Invalid License Server Response");
+                    Setting::set("APP_LICENSE_STATUS", "Invalid");
+                    Setting::set("APP_LICENSE_STATUS_DESC", "Invalid License Server Response");
+                    Setting::save();
+                    $this->error("Invalid License Server Response");
                 }
                 if (isset($results['md5hash'])) {
                     if ($results['md5hash'] != md5($licensing_secret_key . $check_token)) {
