@@ -21,7 +21,7 @@
 					</div>
 					<div class="panel-body">
 						<p>Status: @if(Setting::get('APP_LICENSE_STATUS') == 'Active') <strong class="text-success">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @else <strong class="text-danger">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @endif</p>
-						<p>Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em></p>
+						<p>@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em>@endif</p>
 						<a href="{{ route('admin-license-check') }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-refresh"></i> Check License Status</a>
 					</div>
 				</div>
