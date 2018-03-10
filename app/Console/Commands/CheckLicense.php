@@ -207,10 +207,10 @@ class CheckLicense extends Command
             $this->info('Checking License...');
             $results = check_license($app_licensekey, $app_localkey); // Validate the license key information
             $status = $results['status'];
-            if(isset($results['description'])) {
-                $status_desc = $results['description'];
+            if(isset($results['message'])) {
+                $status_message = $results['message'];
             } else  {
-                $status_desc = "";
+                $status_message = "";
             }
             if(isset($results['localkey'])) {
                 $res_localkey = $results['localkey'];
@@ -221,38 +221,38 @@ class CheckLicense extends Command
                 case "Active":
                     Setting::set("APP_LICENSE_LOCAL_KEY", $res_localkey); // get new local key and save it
                     Setting::set("APP_LICENSE_STATUS", $status);
-                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->info('Status: '.$status);
                     \Artisan::call('up');
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
-                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
                     $this->info(var_dump($results));
                     break;
                 case "Expired":
                     Setting::set("APP_LICENSE_STATUS", $status);
-                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
-                    $this->error('Status: '.$status_desc);
+                    $this->error('Status: '.$status_message);
                     break;
                 case "Suspended":
                     Setting::set("APP_LICENSE_STATUS", $status);
-                    Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
                     \Artisan::call('down');
                     break;
                 default:
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
-                    Setting::set("APP_LICENSE_STATUS_DESC", "No defined result. ".$status_desc);
+                    Setting::set("APP_LICENSE_STATUS_DESC", "No defined result. ".$status_message);
                     Setting::save();
                     break;
             }
-            $this->info('Descripton: '.$status_desc);
+            $this->info('Descripton: '.$status_message);
             $this->info('Done.');
         }
     }
