@@ -148,7 +148,9 @@ class ReserveSeatingController extends Controller {
 		}
 
 		if(Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
-			return PDF::loadView('seating.pdf.ticket', $currentseat)->stream();
+			$html = view('seating.pdf.ticket')->with('currentseat', $currentseat)->render();
+		    $pdf = PDF::loadHTML($html);
+			return $pdf->stream();
 		} else {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
