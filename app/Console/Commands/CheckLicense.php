@@ -52,6 +52,9 @@ class CheckLicense extends Command
             $check_token = time() . md5(mt_rand(1000000000, 9999999999) . $licensekey);
             $checkdate = date("Ymd");
             $domain = Request::server("SERVER_NAME");
+            if($domain == 'localhost') {
+                $domain = Setting::get("WEB_DOMAIN");
+            }
             $usersip = Request::server("SERVER_ADDR") ? Request::server("SERVER_ADDR") : Request::server("LOCAL_ADDR");
             $dirpath = dirname(__FILE__);
             $verifyfilepath = 'modules/servers/licensing/verify.php';
