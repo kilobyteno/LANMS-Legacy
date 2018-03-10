@@ -5,7 +5,6 @@
 		<style type="text/css">
 			body {font-family:'Open Sans',sans-serif;overflow:auto;margin:0;font-size:14px;line-height:1.25;color:#333}
 			.row {overflow:auto}
-			.col-md-6 {width:50%;float:left;display:inline-block}
 			.col-md-12 {width:100%;float:left;display:inline-block}
 			.text-center {text-align:center}
 			.text-muted {color:#999}
@@ -20,14 +19,10 @@
 	</head>
 	<body>
 		<div class="row">
-			<div class="col-md-12 text-center">
-				<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:auto;height:auto;max-width:700px;max-height:125px;">
-				<h1>Samtykkeskjema<br><small>{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</small></h1>
-				<hr>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-12">
+				<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:auto;height:auto;max-width:700px;max-height:125px;">
+				<h1 class="text-center">Samtykkeskjema<br><small>{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</small></h1>
+				<hr>
 				<p>Alle deltakere under 16 år må ha med seg skriftlig tillatelse fra foresatte til å være med på arrangementet. Mindreårige deltakere som ikke har tillatelse er vi dessverre nødt til å avvise. Downlink har ingen aldersgrense, men vi anbefaler at deltakere under 16 år ikke kommer alene.</p>
 				<p>Vi kan ikke gi noen personlig garanti under arrangementet, men vi gjør vårt ytterste for å sørge for at deltakerne får en minnerik vinterferie. </p>
 				<p>
@@ -45,10 +40,10 @@
 				<p>Fulltnavn: ____________________________________________________________________<br>Telefonnummer: _________________________________</p>
 				<p>Jeg kan treffes på telefon hele døgnet om det skulle oppstå en nødsituasjon og jeg er inneforstått med at arrangøren kan ringe for å kontrollere gyldigheten av denne tillatelsen.</p>
 				<div class="row">
-					<div class="col-md-6">
+					<div style="width:50%;float:left;display:inline-block">
 						<p>Sted og dato:<br><br>_________________________________________________</p>
 					</div>
-					<div class="col-md-6">
+					<div style="width:50%;float:right;display:inline-block">
 						<p>Signatur:<br><br>_________________________________________________</p>
 					</div>
 				</div>
