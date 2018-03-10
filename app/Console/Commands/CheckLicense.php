@@ -193,6 +193,7 @@ class CheckLicense extends Command
             unset($postfields,$data,$matches,$whmcsurl,$licensing_secret_key,$checkdate,$usersip,$localkeydays,$allowcheckfaildays,$md5hash);
             return $results;
         }
+        $this->info("Hostname: ".Request::server("SERVER_NAME"));
         // Get the license key and local key from storage
         $app_licensekey = Setting::get("APP_LICENSE_KEY");
         $app_localkey = Setting::get("APP_LICENSE_LOCAL_KEY");
@@ -230,6 +231,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_desc);
                     Setting::save();
                     $this->error('Status: '.$status);
+                    $this->info(var_dump($results));
                     break;
                 case "Expired":
                     Setting::set("APP_LICENSE_STATUS", $status);
