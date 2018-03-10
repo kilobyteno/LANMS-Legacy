@@ -22,7 +22,7 @@ class LicenseKeyEditRequest extends Request {
 	public function rules()
 	{
 		return [
-			'licensekey' => 'required|alpha_dash',
+			'licensekey' => 'string|alpha_dash|nullable',
 		];
 	}
 

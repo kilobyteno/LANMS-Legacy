@@ -42,10 +42,16 @@ class LicenseController extends Controller {
 	public function store(LicenseKeyEditRequest $request)
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.license.*'])) {
-			\Setting::set('APP_LICENSE_KEY', $request->licensekey);
+			if(is_null($request->licensekey)) {
+				$licensekey = "";
+			} else {
+				$licensekey = $request->licensekey;
+			}
+			\Setting::set('APP_LICENSE_KEY', $licensekey);
 			\Setting::save();
+			\Artisan::call('lanms:checklicense');
 			return Redirect::route('admin-license')->with('messagetype', 'success')
-								->with('message', 'License key updated!');
+								->with('message', 'License key and status updated!');
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
