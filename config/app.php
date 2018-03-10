@@ -184,11 +184,11 @@ return [
 		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
 		anlutro\LaravelSettings\ServiceProvider::class,
 		Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
-		Vsmoraes\Pdf\PdfServiceProvider::class,
 		Milon\Barcode\BarcodeServiceProvider::class,
 		Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 		TomLingham\Searchy\SearchyServiceProvider::class,
+		Barryvdh\DomPDF\ServiceProvider::class,
 
 	],
 
@@ -272,12 +272,12 @@ return [
 		'Sentinel'   	=> Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
 		'Stripe' 		=> Cartalyst\Stripe\Laravel\Facades\Stripe::class,
-		'PDF'			=> 'Vsmoraes\Pdf\PdfFacade',
 		'DNS1D' 		=> Milon\Barcode\Facades\DNS1DFacade::class,
     	'DNS2D' 		=> Milon\Barcode\Facades\DNS2DFacade::class,
     	'Sentry' 		=> Sentry\SentryLaravel\SentryFacade::class,
     	'Carbon' 		=> 'Carbon\Carbon',
     	'Searchy' 		=> TomLingham\Searchy\Facades\Searchy::class,
+    	'PDF' 			=> Barryvdh\DomPDF\Facade::class,
 	],
 
 ];

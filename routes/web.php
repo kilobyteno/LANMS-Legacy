@@ -1001,13 +1001,13 @@ Route::group(['prefix' => 'ajax',], function() {
 					} else {
 						$msg = 'Username or password was wrong. Please try again.';
 					}
-				} catch (NotActivatedException $e) {
+				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
 					$status = 'invalid';
 					$msg = 'Account is not activated!';
-				} catch (ThrottlingException $e) {
+				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
 					$status = 'invalid';
 					$delay = $e->getDelay();
-					$msg = 'Your account is blocked for '.$delay.' second(s).';
+					$msg = 'Your ip is blocked for '.$delay.' second(s).';
 				}
 				
 

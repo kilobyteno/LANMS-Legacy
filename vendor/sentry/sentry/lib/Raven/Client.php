@@ -16,7 +16,7 @@
 
 class Raven_Client
 {
-    const VERSION = '1.8.1';
+    const VERSION = '1.8.3';
 
     const PROTOCOL = '6';
 
@@ -441,6 +441,17 @@ class Raven_Client
      */
     public static function parseDSN($dsn)
     {
+        switch (strtolower($dsn)) {
+            case '':
+            case 'false':
+            case '(false)':
+            case 'empty':
+            case '(empty)':
+            case 'null':
+            case '(null)':
+                return array();
+        }
+
         $url = parse_url($dsn);
         $scheme = (isset($url['scheme']) ? $url['scheme'] : '');
         if (!in_array($scheme, array('http', 'https'))) {
@@ -913,6 +924,9 @@ class Raven_Client
         }
         if (!empty($data['contexts'])) {
             $data['contexts'] = $this->serializer->serialize($data['contexts'], 5);
+        }
+        if (!empty($data['breadcrumbs'])) {
+            $data['breadcrumbs'] = $this->serializer->serialize($data['breadcrumbs'], 5);
         }
     }
 

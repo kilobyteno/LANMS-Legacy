@@ -4,6 +4,16 @@
 
 - ...
 
+## 1.8.3 (2018-02-07)
+
+- Serialize breadcrumbs to prevent issues with binary data (#538)
+- Fix notice array_key_exists() expects parameter 2 to be array, null given (#527)
+
+## 1.8.2 (2017-12-21)
+
+- Improve handling DSN with "null" like values (#522)
+- Prevent warning in Raven_Stacktrace (#493)
+
 ## 1.8.1 (2017-11-09)
 
 - Add setters for the serializers on the `Raven_Client` (#515)
