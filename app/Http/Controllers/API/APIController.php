@@ -48,9 +48,9 @@ class APIController extends Controller {
 			$id 			= $key["id"];
 			$slug 			= $key["slug"];
 			$title 			= $key["title"];
-			$content 		= html_entity_decode(strip_tags($key["content"], '<br>'));
-			$content    	= preg_replace('/<br(\s+)?\/?>/i', "\n", $content);
-			$content		= (strlen($content) > 1000 ? substr($content, 0, 1000).'...' : $content);
+			$content 		= $key["content"];
+			$content 		= html_entity_decode(strip_tags($content, '<br>'));
+			$content    	= preg_replace('/<br(\s+)?\/?>/i', "\n\n", $content);
 			$summary		= (strlen($content) > 300 ? substr($content, 0, 300).'...' : $content);
 			$author			= User::getFullnameAndNicknameByID($key["author_id"]);
 			$portrait 		= (User::find($key["author_id"])->profilepicture ? $weburl.User::find($key["author_id"])->profilepicture : $weburl.'/images/profilepicture/0.png');
@@ -79,9 +79,9 @@ class APIController extends Controller {
 			$id 		= $key["id"];
 			$slug 		= $key["slug"];
 			$title 		= $key["title"];
-			$content 	= html_entity_decode(strip_tags($key["content"], '<br>'));
-			$content    = preg_replace('/<br(\s+)?\/?>/i', "\n", $content);
-			$content	= (strlen($content) > 1000 ? substr($content, 0, 1000).'...' : $content);
+			$content 	= $key["content"];
+			$content 	= html_entity_decode(strip_tags($content, '<br>'));
+			$content    = preg_replace('/<br(\s+)?\/?>/i', "\n\n", $content);
 			$summary	= (strlen($content) > 300 ? substr($content, 0, 300).'...' : $content);
 			$author		= User::getFullnameAndNicknameByID($key["author_id"]);
 			$portrait 	= (User::find($key["author_id"])->profilepicture ? $weburl.User::find($key["author_id"])->profilepicture : $weburl.'/images/profilepicture/0.png');
