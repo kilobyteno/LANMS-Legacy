@@ -31,7 +31,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('WEB_NAME', 'LANMS');
 		Setting::set('WEB_LOGO', '/images/lanms.png');
 		Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
-		Setting::set('WEB_COPYRIGHT', '2015-2017, Infihex');
+		Setting::set('WEB_COPYRIGHT', '2015-2018, Infihex');
 
 		Setting::set('SEATING_OPEN', true);
 		Setting::set('SEATING_SHOW_MAP', true);
