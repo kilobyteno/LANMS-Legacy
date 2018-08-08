@@ -39,11 +39,14 @@
 						<td>{{ date(User::getUserDateFormat(), strtotime($user->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($user->updated_at)) }}</td>
 						<td>@if($user->last_login){{ date(User::getUserDateFormat(), strtotime($user->last_login)) .' at '. date(User::getUserTimeFormat(), strtotime($user->last_login)) }}@else{{'-'}}@endif</td>
 						<td>
-							<a href="{{ route('admin-user-edit', $user->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.users.destroy'))
-								<a href="javascript:;" onclick="jQuery('#user-destroy-{{ $user->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+							<a href="{{ route('user-profile', $user->username) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
+							<a href="{{ route('admin-user-edit', $user->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
+							@if(Sentinel::hasAccess('admin.users.destroy') && !$user->deleted_at)
+								<a href="javascript:;" onclick="jQuery('#user-destroy-{{ $user->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Deactivate</a>
 							@endif
-							<a href="{{ route('user-profile', $user->username) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
+							@if(Sentinel::hasAccess('admin.users.restore') && $user->deleted_at)
+								<a href="{{ route('admin-user-restore', $user->id) }}" class="btn btn-primary btn-sm btn-icon icon-left"><i class="fa fa-redo"></i>Restore</a>
+							@endif
 						</td>
 					</tr>
 				@endforeach
@@ -58,13 +61,13 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete User:</strong> #{{ $user->id }} - {{ $user->username }} ({{ $user->firstname }} {{ $user->lastname }})</h4>
+					<h4 class="modal-title"><strong>Deactivate User:</strong> #{{ $user->id }} - {{ $user->username }} ({{ $user->firstname }} {{ $user->lastname }})</h4>
 				</div>
 				<div class="modal-body">
-					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this user?</strong></h4>
+					<h4 class="text-danger text-center"><strong>Are you sure you want to deactivate this user?</strong></h4>
 				</div>
 				<div class="modal-footer">
-					<a href="{{ route('admin-user-destroy', $user->id) }}" class="btn btn-danger">Yes, I want to delete it.</a>
+					<a href="{{ route('admin-user-destroy', $user->id) }}" class="btn btn-danger">Yes, I want to deactivate it.</a>
 					<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
 				</div>
 			</div>

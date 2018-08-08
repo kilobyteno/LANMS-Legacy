@@ -21,7 +21,7 @@ class UserController extends Controller
 	public function index()
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.users.*'])){
-			$users = User::all();
+			$users = User::withTrashed()->get();
 			return view('user.index')
 						->with('users', $users);
 		} else {
@@ -133,7 +133,32 @@ class UserController extends Controller
 		} else {
 			return Redirect::route('admin-users')
 				->with('messagetype', 'danger')
-				->with('message', 'Something went wrong while deleting the page.');
+				->with('message', 'Something went wrong while deleting the user.');
+		}
+	}
+
+	/**
+	 * Restore the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function restore($id)
+	{
+		if (!Sentinel::getUser()->hasAccess(['admin.users.restore'])){
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+
+		$user = User::find($id);
+		if($user->restore()) {
+			return Redirect::route('admin-users')
+					->with('messagetype', 'success')
+					->with('message', 'The user has now been restored!');
+		} else {
+			return Redirect::route('admin-users')
+				->with('messagetype', 'danger')
+				->with('message', 'Something went wrong while restoring the user.');
 		}
 	}
 }

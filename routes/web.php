@@ -672,6 +672,10 @@ Route::group([
 					'as' => 'admin-user-destroy',
 					'uses' => 'Admin\UserController@destroy'
 				]);
+				Route::get('/{id}/restore', [
+					'as' => 'admin-user-restore',
+					'uses' => 'Admin\UserController@restore'
+				]);
 		});
 		Route::group([
 			'prefix' => 'info'
