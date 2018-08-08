@@ -9,9 +9,11 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use LANMS\User;
 
+use LANMS\Http\Requests\Admin\UserEditRequest;
+
 class UserController extends Controller
 {
-    /**
+	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -72,9 +74,42 @@ class UserController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, SponsorEditRequest $request)
+	public function update($id, UserEditRequest $request)
 	{
-		//
+		if (!Sentinel::getUser()->hasAccess(['admin.users.update'])){
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+
+		$finduser = Sentinel::findById($id);
+
+		$info = [
+			'firstname' 		=> $request->get('firstname'),
+			'lastname' 			=> $request->get('lastname'),
+			'username' 			=> $request->get('username'),
+			'email' 			=> $request->get('email'),
+			'gender' 			=> $request->get('gender'),
+			'location' 			=> $request->get('location'),
+			'occupation' 		=> $request->get('occupation'),
+			'birthdate' 		=> $request->get('birthdate'),
+			'showemail' 		=> $request->get('showemail'),
+			'showname' 			=> $request->get('showname'),
+			'showonline' 		=> $request->get('showonline'),
+			'userdateformat' 	=> $request->get('userdateformat'),
+			'usertimeformat' 	=> $request->get('usertimeformat'),
+		];
+
+		$updateuser = Sentinel::update($finduser, $info);
+
+		if($updateuser) {
+			return Redirect::route('admin-user-edit', $id)
+					->with('messagetype', 'success')
+					->with('message', 'The user details has been saved!');
+		} else {
+			return Redirect::route('admin-user-edit', $id)
+				->with('messagetype', 'danger')
+				->with('message', 'Something went wrong when saving your details.');
+		}
 	}
 
 	/**
@@ -90,15 +125,15 @@ class UserController extends Controller
 								->with('message', 'You do not have access to this page!');
 		}
 
-			$user = User::find($id);
-			if($user->delete()) {
-				return Redirect::route('admin-users')
-						->with('messagetype', 'success')
-						->with('message', 'The user has now been deleted!');
-			} else {
-				return Redirect::route('admin-users')
-					->with('messagetype', 'danger')
-					->with('message', 'Something went wrong while deleting the page.');
-			}
+		$user = User::find($id);
+		if($user->delete()) {
+			return Redirect::route('admin-users')
+					->with('messagetype', 'success')
+					->with('message', 'The user has now been deleted!');
+		} else {
+			return Redirect::route('admin-users')
+				->with('messagetype', 'danger')
+				->with('message', 'Something went wrong while deleting the page.');
+		}
 	}
 }
