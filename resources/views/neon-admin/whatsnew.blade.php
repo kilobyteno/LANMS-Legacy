@@ -9,6 +9,28 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#236" aria-expanded="true">Version 2.3.6</a>
+					</h4>
+				</div>
+				<div id="236" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-160'>LANMS-160</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card&#39;s security code is incorrect.</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-167'>LANMS-167</a>] - DOMPDF_Exception: No block-level parent found.  Not good.</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-168'>LANMS-168</a>] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [7...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-169'>LANMS-169</a>] - ErrorException: Trying to get property of non-object</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-170'>LANMS-170</a>] - ErrorException: Undefined variable: currentseat</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-171'>LANMS-171</a>] - ErrorException: Undefined variable: currentseat</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-172'>LANMS-172</a>] - ErrorException: Undefined variable: currentseat</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#releasenotes" href="#235" aria-expanded="true">Version 2.3.5</a>
 					</h4>
 				</div>
