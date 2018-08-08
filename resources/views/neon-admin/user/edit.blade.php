@@ -53,6 +53,17 @@
 							<div class="panel-title">User Details</div>
 						</div>
 						<div class="panel-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label text-right">Status</label>
+								<div class="col-sm-9">
+									<p>
+										@if(\Activation::completed($user))<div class="label label-primary">Activated</div>@endif
+										@if($user->last_login)<div class="label label-info">Has logged in</div>@endif
+										@if($user->deleted_at)<div class="label label-secondary">Deactivated</div>@endif
+									</p>
+								</div>
+							</div>
+							<hr>
 							<div class="form-group @if($errors->has('firstname')) has-error @endif">
 								<label for="firstname" class="col-sm-3 control-label text-right">Firstname</label>
 								<div class="col-sm-9">

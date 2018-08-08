@@ -24,7 +24,7 @@
 					<th>Lastname</th>
 					<th>Joined</th>
 					<th>Last Edited</th>
-					<th>Last Login</th>
+					<th>Status</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -37,7 +37,7 @@
 						<td>{{ $user->lastname }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($user->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($user->created_at)) }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($user->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($user->updated_at)) }}</td>
-						<td>@if($user->last_login){{ date(User::getUserDateFormat(), strtotime($user->last_login)) .' at '. date(User::getUserTimeFormat(), strtotime($user->last_login)) }}@else{{'-'}}@endif</td>
+						<td>@if(\Activation::completed($user))<div class="label label-primary">Activated</div>@endif @if($user->last_login)<div class="label label-info">Has logged in</div>@endif @if($user->deleted_at)<div class="label label-secondary">Deactivated</div>@endif</td>
 						<td>
 							<a href="{{ route('user-profile', $user->username) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
 							<a href="{{ route('admin-user-edit', $user->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
