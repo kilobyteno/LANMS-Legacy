@@ -81,7 +81,7 @@
 						<li class="@if(Request::is('admin/seating/seat*')){{'active'}} @endif"><a href="{{ route('admin-seating-seats') }}"><i class="fa fa-wheelchair"></i> <span class="title">Seats</span></a></li>
 						<li class="@if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper"></i> <span class="title">Reservations</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket-alt"></i> <span class="title">Check-in</span></a></li>
-						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fab fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-brokenband') }}"><i class="fa fa-unlink"></i> <span class="title">Broken Band</span></a></li>
 						<li class="@if(Request::is('admin/seating/print')){{'active'}} @endif"><a href="{{ route('admin-seating-print') }}"><i class="fa fa-print"></i> <span class="title">Print Seats</span></a></li>
 					</ul>

@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-sm-3">
 				<a class="tile-stats tile-gray" href="{{route('admin-news')}}">
-					<div class="icon"><i class="fa fa-newspaper-o"></i></div>
+					<div class="icon"><i class="fa fa-newspaper"></i></div>
 					<div class="num" data-start="0" data-end="{{News::isPublished()->count()}}" data-duration="1500" data-delay="0">{{News::isPublished()->count()}}</div>
 					<h3>News articles</h3>
 					<p>published.</p>
@@ -40,7 +40,7 @@
 			</div>
 			<div class="col-sm-3">
 				<a class="tile-stats tile-primary" href="{{route('admin-pages')}}">
-					<div class="icon"><i class="fa fa-file-text"></i></div>
+					<div class="icon"><i class="fa fa-file-alt"></i></div>
 					<div class="num" data-start="0" data-end="{{Page::all()->count()}}" data-duration="1500" data-delay="0">{{Page::all()->count()}}</div>
 					<h3>Pages</h3>
 					<p>created and shown on the website.</p>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-sm-3">
 				<a class="tile-stats tile-green" href="{{route('admin-seating-checkin')}}">
-					<div class="icon"><i class="fa fa-ticket"></i></div>
+					<div class="icon"><i class="fa fa-ticket-alt"></i></div>
 					<div class="num" data-start="0" data-end="{{Checkin::thisYear()->count()}}" data-duration="1500" data-delay="0">{{Checkin::thisYear()->count()}}</div>
 					<h3>Check-ins</h3>
 					<p>so far this year.</p>
@@ -67,7 +67,7 @@
 			</div>
 			<div class="col-sm-3">
 				<a class="tile-stats tile-pink" href="{{route('admin-seating-checkin-visitor')}}">
-					<div class="icon"><i class="fa fa-reddit-alien"></i></div>
+					<div class="icon"><i class="fab fa-reddit-alien"></i></div>
 					<div class="num" data-start="0" data-end="{{Visitor::thisYear()->count()}}" data-duration="1500" data-delay="0">{{Visitor::thisYear()->count()}}</div>
 					<h3>Visitors</h3>
 					<p>so far this year.</p>
