@@ -34,9 +34,9 @@
 						<td><i class="{{ $skill->icon }}"></i> {{ $skill->icon }}</td>
 						<td><span class="{{ $skill->label }}">{{ $skill->label }}</span></td>
 						<td>
-							<a href="{{ route('admin-crew-skill-edit', $skill->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-crew-skill-edit', $skill->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
 						</td>
 					</tr>

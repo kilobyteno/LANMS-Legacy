@@ -18,7 +18,7 @@
 					
 					@foreach($row->seats as $seat)
 						@if($seat->slug == 'a7')
-							<li class="seat kiosk" id="kiosk"><p><span class="fa fa-coffee"></span></p></li>
+							<li class="seat kiosk" id="kiosk"><p><span class="fa fa-store"></span></p></li>
 						@endif
 						<li class="seat @if($seat->reservationsThisYear()->count() > 0) @if($seat->reservationsThisYear()->first()->status->id == 1) seat-reserved @elseif($seat->reservationsThisYear()->first()->status->id == 2) seat-tempreserved @endif @if(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor->id and $seat->reservationsThisYear()->first()->status->id == 1) seat-yours @endif  @endif @if(Request::segment(4) == $seat->slug) active @endif ">
 							<p>

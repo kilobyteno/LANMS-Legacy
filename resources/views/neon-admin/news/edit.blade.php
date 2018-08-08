@@ -45,7 +45,7 @@
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Save Changes
-						<i class="fa fa-floppy-o"></i>
+						<i class="fa fa-save"></i>
 					</button>
 				</div>
 				
@@ -119,7 +119,7 @@
 									<div class="input-group">
 										<input type="text" class="form-control @if($errors->has('published_at_time')) has-error @endif" value="{{ (old('published_at_time')) ? old('published_at_time') : date('H:i', strtotime($article->published_at)) }}" data-mask="h:s" name="published_at_time">
 										<div class="input-group-addon">
-											<i class="fa fa-clock-o"></i>
+											<i class="fa fa-clock"></i>
 										</div>
 										@if($errors->has('published_at_time'))
 											<p class="text-danger">{{ $errors->first('published_at_time') }}</p>

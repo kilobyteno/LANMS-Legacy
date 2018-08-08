@@ -41,11 +41,11 @@
 						<td>{{ date(User::getUserDateFormat(), strtotime($article->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($article->edited_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></td>
 						<td>
-							<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('news-show', $article->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
+							<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.news.destroy'))
-								<a href="javascript:;" onclick="jQuery('#news-destroy-{{ $article->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#news-destroy-{{ $article->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
-							<a href="{{ route('news-show', $article->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
 					</tr>
 				@endforeach

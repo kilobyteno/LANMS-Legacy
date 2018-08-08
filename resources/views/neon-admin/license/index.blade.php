@@ -22,7 +22,7 @@
 					<div class="panel-body">
 						<p>Status: @if(Setting::get('APP_LICENSE_STATUS') == 'Active') <strong class="text-success">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @else <strong class="text-danger">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @endif</p>
 						<p>@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em>@endif</p>
-						<a href="{{ route('admin-license-check') }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-refresh"></i> Check License Status</a>
+						<a href="{{ route('admin-license-check') }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-sync"></i> Check License Status</a>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 						<form action="{{ route('admin-license-store') }}" method="post">
 							<div class="input-group">
 								<input type="text" class="form-control input-lg" name="licensekey" placeholder="LANMS-XXX-XXXXXXXXXXXXXX" value="{{ (old('licensekey')) ? old('licensekey') : Setting::get('APP_LICENSE_KEY') }}" />
-								<span class="input-group-btn"><button type="submit" class="btn btn-lg btn-success btn-icon icon-left"><i class="fa fa-floppy-o"></i> Save</button></span>
+								<span class="input-group-btn"><button type="submit" class="btn btn-lg btn-success btn-icon icon-left"><i class="fa fa-save"></i> Save</button></span>
 							</div>
 							@if($errors->has('licensekey'))
 								<p class="text-danger">{{ $errors->first('licensekey') }}</p>

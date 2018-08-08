@@ -60,7 +60,7 @@
 				<div class="col-sm-5 @if($errors->has('slug')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-header"></i>
+							<i class="fa fa-heading"></i>
 						</div>
 						<input type="text" class="form-control input-lg" placeholder="Slug (Optional)" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
 					</div>

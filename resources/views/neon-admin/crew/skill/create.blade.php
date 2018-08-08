@@ -82,7 +82,7 @@
 				<div class="col-sm-5 @if($errors->has('icon')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-font-awesome"></i>
+							<i class="fab fa-font-awesome"></i>
 						</div>
 						<input type="text" class="form-control input-lg" placeholder="Icon" value="{{ (old('icon')) ? old('icon') : '' }}" name="icon">
 					</div>
@@ -95,7 +95,7 @@
 				<div class="col-sm-5 @if($errors->has('label')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-fonticons"></i>
+							<i class="fab fa-fonticons"></i>
 						</div>
 						<input type="text" class="form-control input-lg" placeholder="Label" value="{{ (old('label')) ? old('label') : 'label label-default' }}" name="label">
 					</div>

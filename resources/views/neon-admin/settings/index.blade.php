@@ -13,7 +13,7 @@
 			<li class="active"><strong>Settings</strong></li>
 		</ol>
 
-		<div class="alert alert-danger" role="alert"> <strong>IMPORTANT!</strong> You need to know what you are doing. If you do not know what you are doing you will cause errors on the website. Please be carefull! Ask support if you need help.</div>
+		<div class="alert alert-danger" role="alert"> <strong><i class="fa fa-exclamation-triangle"></i> IMPORTANT!</strong> You need to know what you are doing. If you do not know what you are doing you will cause errors on the website. Please be carefull! Ask support if you need help.</div>
 		
 		<table class="table table-bordered table-hover datatable" id="table-1">
 			<thead>
@@ -29,7 +29,7 @@
 						<td scope="row">{{ $key }}</td>
 						<td>{{ $value }}</td>
 						<td>
-							<a href="{{ route('admin-settings-edit', $key) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-settings-edit', $key) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 						</td>
 					</tr>
 				@endforeach

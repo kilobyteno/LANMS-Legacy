@@ -42,9 +42,9 @@
 						<td>{{ date(User::getUserDateFormat(), strtotime($crew->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->updated_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
 						<td>
-							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#crew-destroy-{{ $crew->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#crew-destroy-{{ $crew->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
 						</td>
 					</tr>

@@ -46,7 +46,7 @@
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Save Changes
-						<i class="fa fa-floppy-o"></i>
+						<i class="fa fa-save"></i>
 					</button>
 				</div>
 				
@@ -82,7 +82,7 @@
 				<div class="col-sm-5 @if($errors->has('icon')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-font-awesome"></i>
+							<i class="fab fa-font-awesome"></i>
 						</div>
 						<input type="text" class="form-control input-lg" name="icon" placeholder="fa fa-user" value="{{ (old('icon')) ? old('icon') : $skill->icon }}" />
 					</div>
@@ -95,7 +95,7 @@
 				<div class="col-sm-5 @if($errors->has('label')) has-error @endif">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-fonticons"></i>
+							<i class="fab fa-fonticons"></i>
 						</div>
 						<input type="text" class="form-control input-lg" name="label" placeholder="label label-default" value="{{ (old('label')) ? old('label') : $skill->label }}" />
 					</div>

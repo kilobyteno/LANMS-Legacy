@@ -36,7 +36,7 @@
 			<li class="active"><strong>Edit Setting: {{ $key }}</strong></li>
 		</ol>
 		
-		<div class="alert alert-danger" role="alert"> <strong>IMPORTANT!</strong> You need to know what you are doing. If you do not know what you are doing you will cause errors on the website. Please be carefull! Ask support if you need help.</div>
+		<div class="alert alert-danger" role="alert"> <strong><i class="fa fa-exclamation-triangle"></i> IMPORTANT!</strong> You need to know what you are doing. If you do not know what you are doing you will cause errors on the website. Please be carefull! Ask support if you need help.</div>
 
 		<form action="{{ route('admin-settings-update', $key) }}" method="post">
 
@@ -45,7 +45,7 @@
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Save Changes
-						<i class="fa fa-floppy-o"></i>
+						<i class="fa fa-save"></i>
 					</button>
 				</div>
 				

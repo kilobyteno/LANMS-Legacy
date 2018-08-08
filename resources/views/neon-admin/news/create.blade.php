@@ -119,7 +119,7 @@
 									<div class="input-group @if($errors->has('published_at_time')) has-error @endif">
 										<input type="text" class="form-control" value="{{ (old('published_at_time')) ? old('published_at_time') : date('h:i') }}" data-mask="h:s" name="published_at_time" id="published_at_time">
 										<div class="input-group-addon">
-											<i class="fa fa-clock-o"></i>
+											<i class="fa fa-clock"></i>
 										</div>
 										@if($errors->has('published_at_time'))
 											<p class="text-danger">{{ $errors->first('published_at_time') }}</p>
@@ -197,7 +197,7 @@
 						<div class="panel-body">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="fa fa-header"></i>
+									<i class="fa fa-heading"></i>
 								</div>
 								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
 							</div>

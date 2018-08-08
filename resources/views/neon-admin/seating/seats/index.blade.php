@@ -46,9 +46,9 @@
 								<td>{{ date(User::getUserDateFormat(), strtotime($seat->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->updated_at)) }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->editor->username) }}">{{ User::getFullnameByID($seat->editor->id) }}</a></td>
 								<td>
-									<a href="{{ route('admin-seating-seat-edit', $seat->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+									<a href="{{ route('admin-seating-seat-edit', $seat->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 									@if(Sentinel::hasAccess('admin.seating.seat.destroy'))
-										<a href="javascript:;" onclick="jQuery('#seat-destroy-{{ $seat->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+										<a href="javascript:;" onclick="jQuery('#seat-destroy-{{ $seat->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 									@endif
 								</td>
 							</tr>

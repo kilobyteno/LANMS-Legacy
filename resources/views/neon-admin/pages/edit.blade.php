@@ -45,7 +45,7 @@
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Save Changes
-						<i class="fa fa-floppy-o"></i>
+						<i class="fa fa-save"></i>
 					</button>
 				</div>
 				
@@ -125,7 +125,7 @@
 						<div class="panel-body">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="fa fa-header"></i>
+									<i class="fa fa-heading"></i>
 								</div>
 								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : $page->slug }}" name="slug">
 							</div>

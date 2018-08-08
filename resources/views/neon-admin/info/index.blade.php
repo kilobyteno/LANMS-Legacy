@@ -27,7 +27,7 @@
 						<td scope="row">{{ $info->name }}</td>
 						<td>{{ $info->content }}</td>
 						<td>
-							<a href="{{ route('admin-info-edit', $info->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-info-edit', $info->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 						</td>
 					</tr>
 				@endforeach

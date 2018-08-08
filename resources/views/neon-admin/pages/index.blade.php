@@ -39,11 +39,11 @@
 						<td>@if($page->edited_at){{ date(User::getUserDateFormat(), strtotime($page->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->edited_at)) }}@endif</td>
 						<td><a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a></td>
 						<td>
-							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
+							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.pages.destroy'))
-								<a href="javascript:;" onclick="jQuery('#page-destroy-{{ $page->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#page-destroy-{{ $page->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
-							<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
 					</tr>
 				@endforeach

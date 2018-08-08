@@ -125,7 +125,7 @@
 						<div class="panel-body">
 							<div class="input-group">
 								<div class="input-group-addon">
-									<i class="fa fa-header"></i>
+									<i class="fa fa-heading"></i>
 								</div>
 								<input type="text" class="form-control" value="{{ (old('slug')) ? old('slug') : '' }}" name="slug">
 							</div>

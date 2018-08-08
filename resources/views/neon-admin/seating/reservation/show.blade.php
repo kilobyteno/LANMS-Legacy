@@ -78,7 +78,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<button type="submit" class="btn btn-success" id="reserve"><i class="fa fa-hand-paper-o"></i> Reserve Seat</button>
+								<button type="submit" class="btn btn-success" id="reserve"><i class="fa fa-hand-paper"></i> Reserve Seat</button>
 							</div>
 						</div>
 					</form>

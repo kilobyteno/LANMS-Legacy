@@ -47,7 +47,7 @@
 						<div class="col-sm-2 post-save-changes">
 							<button type="submit" class="btn btn-warning btn-lg btn-block btn-icon" id="change">
 								Change Broken Band
-								<i class="fa fa-retweet"></i>
+								<i class="fa fa-exchange-alt"></i>
 							</button>
 						</div>
 						

@@ -32,11 +32,11 @@
 						<td>{{ $category->slug }}</td>
 						<td>{{ $category->name }}</td>
 						<td>
-							<a href="{{ route('admin-news-category-edit', $category->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('news-category-show', $category->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
+							<a href="{{ route('admin-news-category-edit', $category->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.news.destroy'))
-								<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
-							<a href="{{ route('news-category-show', $category->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
 						</td>
 					</tr>
 				@endforeach

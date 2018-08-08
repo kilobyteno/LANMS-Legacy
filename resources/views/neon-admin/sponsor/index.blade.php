@@ -39,9 +39,9 @@
 						<td><a href="{{ $sponsor->url }}" target="_blank">{{ $sponsor->url }}</a></td>
 						<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image }}" alt="image" height="90" /></span></a></div></td>
 						<td>
-							<a href="{{ route('admin-sponsor-edit', $sponsor->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
+							<a href="{{ route('admin-sponsor-edit', $sponsor->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.sponsor.destroy'))
-								<a href="javascript:;" onclick="jQuery('#sponsor-destroy-{{ $sponsor->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
+								<a href="javascript:;" onclick="jQuery('#sponsor-destroy-{{ $sponsor->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fa fa-trash"></i>Delete</a>
 							@endif
 						</td>
 					</tr>
