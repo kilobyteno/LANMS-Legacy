@@ -11,7 +11,7 @@
 	<title>@yield('title') - {{ Setting::get('WEB_NAME') }}</title>
 
 	<link rel="stylesheet" href="{{ Theme::url('js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 	<link rel="stylesheet" href="{{ Theme::url('css/font-icons/entypo/css/entypo.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/bootstrap.css') }}">
@@ -53,7 +53,7 @@
 			</header>
 			<div id="main-menu" class="main-menu">
 				<li class="@if(Request::is('admin')){{'active'}} @endif">
-					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Dashboard</span></a>
+					<a href="{{ route('admin') }}"><i class="fa fa-tachometer-alt"></i> <span class="title">Dashboard</span></a>
 				</li>
 				<li class="@if(Request::is('admin/users')){{'active'}} @endif">
 					<a href="{{ route('admin-users') }}"><i class="fa fa-users"></i> <span class="title">Users</span></a>
@@ -68,7 +68,7 @@
 					</ul>
 				</li>
 				<li class="@if(Request::is('admin/news*')){{'active opened'}} @endif has-sub root-level">
-					<a><i class="fa fa-newspaper-o"></i> <span class="title">News</span></a>
+					<a><i class="fa fa-newspaper"></i> <span class="title">News</span></a>
 					<ul>
 						<li class="@if(Request::is('admin/news*') && !Request::is('admin/news/categories*')){{'active'}} @endif"><a href="{{ route('admin-news') }}"><i class="fa fa-list-alt"></i> <span class="title">Articles</span></a></li>
 						<li class="@if(Request::is('admin/news/categories*')){{'active'}} @endif"><a href="{{ route('admin-news-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
@@ -79,31 +79,31 @@
 					<ul>
 						<li class="@if(Request::is('admin/seating/row*')){{'active'}} @endif"><a href="{{ route('admin-seating-rows') }}"><i class="fa fa-align-justify"></i> <span class="title">Rows</span></a></li>
 						<li class="@if(Request::is('admin/seating/seat*')){{'active'}} @endif"><a href="{{ route('admin-seating-seats') }}"><i class="fa fa-wheelchair"></i> <span class="title">Seats</span></a></li>
-						<li class="@if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
-						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket"></i> <span class="title">Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper"></i> <span class="title">Reservations</span></a></li>
+						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket-alt"></i> <span class="title">Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
-						<li class="@if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-brokenband') }}"><i class="fa fa-chain-broken"></i> <span class="title">Broken Band</span></a></li>
+						<li class="@if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-brokenband') }}"><i class="fa fa-unlink"></i> <span class="title">Broken Band</span></a></li>
 						<li class="@if(Request::is('admin/seating/print')){{'active'}} @endif"><a href="{{ route('admin-seating-print') }}"><i class="fa fa-print"></i> <span class="title">Print Seats</span></a></li>
 					</ul>
 				</li>
 				{{--<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>--}}
 				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
-					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
+					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-alt"></i> <span class="title">Pages</span></a>
 				</li>
 				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
 				<li class="@if(Request::is('admin/sponsor')){{'active'}} @endif">
-					<a href="{{ route('admin-sponsor') }}"><i class="fa fa-money"></i> <span class="title">Sponsor</span></a>
+					<a href="{{ route('admin-sponsor') }}"><i class="fa fa-money-bill-alt"></i> <span class="title">Sponsor</span></a>
 				</li>
 				<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
 					<ul>
-						<li class="@if(Request::is('admin/system/whatsnew')){{'active'}} @endif"><a href="{{ route('admin-whatsnew') }}"><i class="fa fa-lightbulb-o"></i> <span class="title">What's New?</span></a></li>
+						<li class="@if(Request::is('admin/system/whatsnew')){{'active'}} @endif"><a href="{{ route('admin-whatsnew') }}"><i class="fa fa-lightbulb"></i> <span class="title">What's New?</span></a></li>
 						@if(Sentinel::inRole('superadmin'))
 							<li class="@if(Request::is('admin/system/settings*')){{'active'}} @endif"><a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a></li>
-							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a></li>
-							<li class="@if(Request::is('admin/system/license*')){{'active'}} @endif"><a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a></li>
+							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar"></i> <span class="title">Logs</span></a></li>
+							<li class="@if(Request::is('admin/system/license*')){{'active'}} @endif"><a href="{{ route('admin-license') }}"><i class="fa fa-id-card"></i> <span class="title">License Status</span></a></li>
 						@endif
 					</ul>
 				</li>
