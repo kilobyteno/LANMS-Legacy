@@ -654,6 +654,26 @@ Route::group([
 				]);
 		});
 		Route::group([
+			'prefix' => 'users'
+			], function() {
+				Route::get('/', [
+					'as' => 'admin-users',
+					'uses' => 'Admin\UserController@index'
+				]);
+				Route::get('/{id}/edit', [
+					'as' => 'admin-user-edit',
+					'uses' => 'Admin\UserController@edit'
+				]);
+				Route::post('/{id}/update', [
+					'as' => 'admin-user-update',
+					'uses' => 'Admin\UserController@update'
+				]);
+				Route::get('/{id}/destroy', [
+					'as' => 'admin-user-destroy',
+					'uses' => 'Admin\UserController@destroy'
+				]);
+		});
+		Route::group([
 			'prefix' => 'info'
 			], function() {
 				Route::get('/', [
