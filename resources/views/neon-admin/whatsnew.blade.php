@@ -31,10 +31,10 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#235" aria-expanded="true">Version 2.3.5</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#235">Version 2.3.5</a>
 					</h4>
 				</div>
-				<div id="235" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="235" class="panel-collapse collapse">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
