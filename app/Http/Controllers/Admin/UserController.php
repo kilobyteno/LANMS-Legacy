@@ -57,7 +57,13 @@ class UserController extends Controller
 	 */
 	public function edit($id)
 	{
-		//
+		if (Sentinel::getUser()->hasAccess(['admin.users.update'])){
+			$user = User::find($id);
+			return view('user.edit')->withUser($user);
+		} else {
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
 	}
 
 	/**
