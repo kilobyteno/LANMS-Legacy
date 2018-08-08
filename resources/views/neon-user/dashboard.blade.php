@@ -56,7 +56,7 @@
 					<hr>
 					<h5>Your reservations:</h5>
 					<div class="list-group">
-						@if(Sentinel::getUser()->reservationsThisYear()->get())
+						@if(Sentinel::getUser()->reservationsThisYear()->count()>0)
 							@foreach(Sentinel::getUser()->reservationsThisYear()->get() as $reservation)
 								<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="list-group-item">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }} @if($reservation->payment) <span class="badge badge-success">Paid</span> @else <span class="badge badge-danger">Not paid</span> @endif</a>
 							@endforeach
