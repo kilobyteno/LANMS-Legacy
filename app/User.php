@@ -10,11 +10,13 @@ use Cartalyst\Sentinel\Roles\RoleInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
 {
-	use PermissibleTrait;
+	use PermissibleTrait, SoftDeletes;
 
 	/**
 	 * {@inheritDoc}
@@ -100,6 +102,13 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 * @var string
 	 */
 	protected static $throttlingModel = 'Cartalyst\Sentinel\Throttling\EloquentThrottle';
+
+	/**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
 	/**
 	 * Returns an array of login column names.

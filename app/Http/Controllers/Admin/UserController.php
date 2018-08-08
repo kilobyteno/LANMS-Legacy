@@ -85,7 +85,11 @@ class UserController extends Controller
 	 */
 	public function destroy($id)
 	{
-		if (Sentinel::getUser()->hasAccess(['admin.users.destroy'])){
+		if (!Sentinel::getUser()->hasAccess(['admin.users.destroy'])){
+			return Redirect::back()->with('messagetype', 'warning')
+								->with('message', 'You do not have access to this page!');
+		}
+
 			$user = User::find($id);
 			if($user->delete()) {
 				return Redirect::route('admin-users')
@@ -96,9 +100,5 @@ class UserController extends Controller
 					->with('messagetype', 'danger')
 					->with('message', 'Something went wrong while deleting the page.');
 			}
-		} else {
-			return Redirect::back()->with('messagetype', 'warning')
-								->with('message', 'You do not have access to this page!');
-		}
 	}
 }
