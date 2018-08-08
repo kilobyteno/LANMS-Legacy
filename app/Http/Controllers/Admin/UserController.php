@@ -60,7 +60,7 @@ class UserController extends Controller
 	public function edit($id)
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.users.update'])){
-			$user = User::find($id);
+			$user = User::withTrashed()->find($id);
 			return view('user.edit')->withUser($user);
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
