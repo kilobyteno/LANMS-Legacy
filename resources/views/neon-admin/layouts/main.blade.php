@@ -55,8 +55,8 @@
 				<li class="@if(Request::is('admin')){{'active'}} @endif">
 					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Dashboard</span></a>
 				</li>
-				<li class="@if(Request::is('admin/members')){{'active'}} @endif">
-					<a href="{{ route('admin') }}"><i class="fa fa-users"></i> <span class="title">Members</span></a>
+				<li class="@if(Request::is('admin/users')){{'active'}} @endif">
+					<a href="{{ route('admin-users') }}"><i class="fa fa-users"></i> <span class="title">Users</span></a>
 				</li>
 				<li class="@if(Request::is('admin/crew*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-user-md"></i> <span class="title">Crew</span></a>

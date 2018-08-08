@@ -15,7 +15,7 @@
 
 		<div class="row">
 			<div class="col-sm-3">
-				<a class="tile-stats tile-aqua">
+				<a class="tile-stats tile-aqua" href="{{route('admin-users')}}">
 					<div class="icon"><i class="fa fa-users"></i></div>
 					<div class="num" data-start="0" data-end="{{User::all()->count()}}" data-duration="1500" data-delay="0">{{User::all()->count()}}</div>
 					<h3>Registered users</h3>
