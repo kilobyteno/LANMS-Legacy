@@ -75,7 +75,7 @@ class PagesController extends Controller {
 				$showinmenu = true;
 			}
 
-			$slug 	= $request->get('slug');
+			$slug = $request->get('slug');
 
 			if($slug == null) {
 				$slugarr = explode(' ',trim($slug));
