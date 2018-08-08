@@ -9,7 +9,6 @@ class PageCreateRequest extends FormRequest {
 		return [
 			'title' 				=> 'required',
 			'content' 				=> 'required',
-			'slug' 					=> 'alpha_dash',
 		];
 	}
 	
