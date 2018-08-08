@@ -87,13 +87,13 @@
 					</ul>
 				</li>
 				{{--<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>--}}
-				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
+				<li class="@if(Request::is('admin/pages*')){{'active'}} @endif">
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-alt"></i> <span class="title">Pages</span></a>
 				</li>
-				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
+				<li class="@if(Request::is('admin/info*')){{'active'}} @endif">
 					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
-				<li class="@if(Request::is('admin/sponsor')){{'active'}} @endif">
+				<li class="@if(Request::is('admin/sponsor*')){{'active'}} @endif">
 					<a href="{{ route('admin-sponsor') }}"><i class="fa fa-money-bill-alt"></i> <span class="title">Sponsor</span></a>
 				</li>
 				<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
