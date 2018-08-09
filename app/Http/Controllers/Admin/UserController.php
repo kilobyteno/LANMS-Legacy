@@ -150,7 +150,7 @@ class UserController extends Controller
 								->with('message', 'You do not have access to this page!');
 		}
 
-		$user = User::find($id);
+		$user = User::withTrashed()->find($id);
 		if($user->restore()) {
 			return Redirect::route('admin-users')
 					->with('messagetype', 'success')
