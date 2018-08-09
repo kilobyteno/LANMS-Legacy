@@ -13,10 +13,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
 {
-	use PermissibleTrait, SoftDeletes;
+	use PermissibleTrait, SoftDeletes, LogsActivity;
+
+	protected static $logAttributes = [
+		'email',
+		'username',
+		'lastname',
+		'firstname',
+		'birthdate',
+		'gender',
+		'occupation',
+		'location',
+		'showemail',
+		'showname',
+		'showonline',
+		'userdateformat',
+		'usertimeformat',
+	];
 
 	/**
 	 * {@inheritDoc}
