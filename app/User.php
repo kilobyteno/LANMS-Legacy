@@ -19,6 +19,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 {
 	use PermissibleTrait, SoftDeletes, LogsActivity;
 
+	protected static $logName = 'user_change';
+	protected static $logOnlyDirty = true;
 	protected static $logAttributes = [
 		'email',
 		'username',
