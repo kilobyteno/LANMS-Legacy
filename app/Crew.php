@@ -31,15 +31,15 @@ class Crew extends Model {
 	}
 
 	function author() {
-		return $this->hasOne('User', 'id', 'author_id');
+		return $this->hasOne('User', 'id', 'author_id')->withTrashed();
 	}
 
 	function editor() {
-		return $this->hasOne('User', 'id', 'editor_id');
+		return $this->hasOne('User', 'id', 'editor_id')->withTrashed();
 	}
 
 	function user() {
-		return $this->hasOne('User', 'id', 'user_id');
+		return $this->hasOne('User', 'id', 'user_id')->withTrashed();
 	}
 
 	function skillAttached() {
