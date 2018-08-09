@@ -25,11 +25,11 @@ class News extends Model {
 	}
 
 	function author() {
-		return $this->hasOne('User', 'id', 'author_id');
+		return $this->hasOne('User', 'id', 'author_id')->withTrashed();
 	}
 
 	function editor() {
-		return $this->hasOne('User', 'id', 'editor_id');
+		return $this->hasOne('User', 'id', 'editor_id')->withTrashed();
 	}
 
 	function scopeIsPublished($query) {

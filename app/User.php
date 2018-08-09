@@ -665,7 +665,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 	
 	public function scopeGetFullnameByID($query, $id) {
-		$user = $query->where('id', '=', $id)->first();
+		$user = $query->withTrashed()->where('id', '=', $id)->first();
 		if($user->showname) {
 			return $user->firstname . ' ' . $user->lastname;
 		} else {
@@ -674,7 +674,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 
 	public function scopeGetUsernameAndFullnameByID($query, $id) {
-		$user = $query->where('id', '=', $id)->first();
+		$user = $query->withTrashed()->where('id', '=', $id)->first();
 		if($user->showname) {
 			return $user->username . ' (' . $user->firstname . ' ' . $user->lastname . ')';
 		} else {
@@ -684,7 +684,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 
 	public function scopeGetFullnameAndNicknameByID($query, $id) {
-		$user = $query->where('id', '=', $id)->first();
+		$user = $query->withTrashed()->where('id', '=', $id)->first();
 		if($user->showname) {
 			return $user->firstname . ' "' . $user->username . '" ' . $user->lastname;
 		} else {
