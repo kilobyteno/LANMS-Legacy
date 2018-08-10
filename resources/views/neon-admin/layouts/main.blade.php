@@ -100,6 +100,7 @@
 					<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
 					<ul>
 						<li class="@if(Request::is('admin/system/whatsnew')){{'active'}} @endif"><a href="{{ route('admin-whatsnew') }}"><i class="fa fa-lightbulb"></i> <span class="title">What's New?</span></a></li>
+						<li class="@if(Request::is('admin/system/activity*')){{'active'}} @endif"><a href="{{ route('admin-activity') }}"><i class="fa fa-chart-line"></i> <span class="title">Activity Log</span></a></li>
 						@if(Sentinel::inRole('superadmin'))
 							<li class="@if(Request::is('admin/system/settings*')){{'active'}} @endif"><a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a></li>
 							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar"></i> <span class="title">Logs</span></a></li>

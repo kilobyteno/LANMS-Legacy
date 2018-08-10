@@ -728,6 +728,10 @@ Route::group([
 					'as' => 'admin-logs',
 					'uses' => 'Admin\LogController@index'
 				]);
+				Route::get('/activitylog', [
+					'as' => 'admin-activity' ,
+					'uses' => 'Admin\AdminController@activity'
+				]);
 				Route::get('/whatsnew', [
 					'as' => 'admin-whatsnew' ,
 					'uses' => 'Admin\AdminController@whatsnew'
