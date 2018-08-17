@@ -96,6 +96,7 @@
 					<h3>Actions</h3>
 					<p><a href="{{ route('account-billing-payment', $reservation->payment_id) }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-money"></i> View Payment</a></p>
 					<p><a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-icon icon-left"><i class="fa fa-ticket"></i> Download Ticket</a></p>
+					<p><a href="{{ route('account-billing-receipt', $reservation->payment_id) }}" class="btn btn-default btn-icon icon-left"><i class="fa fa-print"></i> Download Receipt</a></p>
 					@if(Sentinel::getUser()->age() < 16)
 						<p><a href="{{ route('seating-consentform') }}" class="btn btn-primary popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a></p>
 					@endif

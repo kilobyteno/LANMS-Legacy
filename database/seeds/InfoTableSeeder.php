@@ -47,5 +47,40 @@ class InfoTableSeeder extends Seeder
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
+
+		Info::create([
+			'name' 		=> 'address_street',
+			'content'	=> 'Jernbanegata 1',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'address_postal_code',
+			'content'	=> '2609',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+		
+		Info::create([
+			'name' 		=> 'address_city',
+			'content'	=> 'Lillehammer',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'address_county',
+			'content'	=> 'Oppland',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'address_country',
+			'content'	=> 'Norge',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
     }
 }

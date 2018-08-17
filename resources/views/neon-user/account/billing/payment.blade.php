@@ -67,7 +67,7 @@
 
 				</div>
 				<div class="col-md-4">
-					<h3>Payment</h3>
+					<h3>Payment <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-default btn-xs btn-icon icon-left pull-right"><i class="fa fa-print"></i> Download Receipt</a></h3>
 					<hr style="margin-top: 0">
 					<p><strong>Date:</strong> {{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</p>
 					<p><strong>Amount:</strong> {{ substr($charge['amount'], 0, -2) }}</p>

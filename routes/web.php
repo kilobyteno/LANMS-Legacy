@@ -243,6 +243,10 @@ Route::group([
 							'as' => 'account-billing-payment' ,
 							'uses' => 'Member\BillingController@getPayment'
 						]);
+						Route::get('/receipt/{id}', [
+							'as' => 'account-billing-receipt' ,
+							'uses' => 'Member\BillingController@getReceipt'
+						]);
 						Route::get('/charges', [
 							'as' => 'account-billing-charges' ,
 							'uses' => 'Member\BillingController@getCharges'

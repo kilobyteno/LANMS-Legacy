@@ -9,6 +9,12 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class BillingController extends Controller
 {
+	public function getReceipt($id) {
+		$payment = \LANMS\SeatPayment::find($id);
+		return view('seating.pdf.receipt')->with('payment', $payment);
+		//return \PDF::loadView('seating.pdf.receipt')->stream();
+	}
+
 	public function getPayments() {
 		$payments = Sentinel::getUser()->seatpayments;
 		return view('account.billing.payments')->with('payments', $payments);
