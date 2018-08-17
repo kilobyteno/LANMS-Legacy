@@ -263,7 +263,7 @@ class PaymentSeatingController extends Controller {
 		$reservationchange->save();
 
 		return Redirect::route('seating')->with('messagetype', 'success')
-								->with('message', $seat->name.' is now reserved and paid for! We are exited to have you, welcome!');
+								->with('message', $seat->name.' is now reserved and marked as pay at entrance! We are exited to have you, welcome!');
 
 	}
 
