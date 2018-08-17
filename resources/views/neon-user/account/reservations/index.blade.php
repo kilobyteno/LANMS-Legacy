@@ -37,7 +37,7 @@
 								<td>{{ $reservation->seat->name or 'N/A' }}</td>
 								<td>{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</td>
 								<td>{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}</td>
-								<td>@if($reservation->payment)<a href="{{ route('account-billing-payment', $reservation->payment->id) }}" class="btn btn-success btn-xs btn-icon icon-left"><i class="fa fa-money"></i>View Payment</a>@endif</td>
+								<td><a href="{{ route('account-reservation-view', $reservation->id) }}" class="btn btn-info btn-xs btn-icon icon-left"><i class="fa fa-info"></i>View Reservation</a> @if($reservation->payment)<a href="{{ route('account-billing-payment', $reservation->payment->id) }}" class="btn btn-success btn-xs btn-icon icon-left"><i class="fa fa-money"></i>View Payment</a>@endif</td>
 							</tr>
 						@endforeach
 					</tbody>
