@@ -58,7 +58,7 @@ class ReservationController extends Controller {
 		} else {
 			return Redirect::route('seating')->with('messagetype', 'warning')
 								->with('message', 'There was no reservation found for this seat.');
-	}
+		}
 
 		$reservation 					= $seat->reservationsThisYear->first();
 		$reservationid 					= $reservation->id;
@@ -92,13 +92,13 @@ class ReservationController extends Controller {
 			$slug = strtolower($slug); // Just to be sure it is correct
 			$currentseat = Seats::where('slug', $slug)->first();
 			if($currentseat == null) {
-				return Redirect::route('seating')->with('messagetype', 'warning')
+				return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 									->with('message', 'Could not find seat.');
 			}
 			$rows = SeatRows::all();
 			return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}
@@ -108,12 +108,12 @@ class ReservationController extends Controller {
 		$slug = strtolower($slug); // Just to be sure it is correct
 		$currentseat = Seats::where('slug', $slug)->first();
 		if($currentseat == null) {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 								->with('message', 'Could not find seat.');
 		}
 
 		if($currentseat->reservationsThisYear()->first() == null) {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 								->with('message', 'Could not find valid ticket.');
 		}
 
@@ -121,7 +121,7 @@ class ReservationController extends Controller {
 			$html = view('seating.pdf.ticket')->with('seat', $currentseat)->render();
 			return PDF::load($html)->show();
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
 								->with('message', 'You are not allowed to view this ticket.');
 		}
 		
@@ -180,7 +180,7 @@ class ReservationController extends Controller {
 									->with('message', 'Something went wrong while saving the reservation!');
 			}
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}
@@ -197,7 +197,7 @@ class ReservationController extends Controller {
 			$reservation = SeatReservation::find($id);
 			return view('seating.reservation.edit')->withReservation($reservation);
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}
@@ -247,7 +247,7 @@ class ReservationController extends Controller {
 					->with('message', 'Something went wrong while saving the reservation.');
 			}
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}
@@ -289,7 +289,7 @@ class ReservationController extends Controller {
 					->with('message', 'Something went wrong while deleting the reservation.');
 			}
 		} else {
-			return Redirect::back()->with('messagetype', 'warning')
+			return Redirect::route('admin')->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
 		}
 	}
