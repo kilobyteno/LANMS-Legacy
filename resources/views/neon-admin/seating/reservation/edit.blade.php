@@ -40,6 +40,14 @@
 
 			<!-- Title and Publish Buttons -->
 			<div class="row">
+				@if(!$reservation->ticket && $reservation->status_id != 1)
+					<div class="col-sm-2">
+						<a class="btn btn-orange btn-lg btn-block btn-icon" href="{{ route('admin-seating-reservation-paylater', $reservation->seat->slug) }}">
+							Mark as 'Pay at entrance'
+							<i class="fa fa-door-open"></i>
+						</a>
+					</div>
+				@endif
 				<div class="col-sm-2 post-save-changes">
 					<button type="submit" class="btn btn-green btn-lg btn-block btn-icon">
 						Save Changes

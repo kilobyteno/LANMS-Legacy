@@ -37,23 +37,47 @@ class ReservationController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Display the specified resource.
 	 *
+	 * @param  int  $id
 	 * @return Response
 	 */
-	public function create()
+	public function paylater($slug)
 	{
-		//
+		$seat 							= Seats::where('slug', $slug)->first();
+
+		if($seat == null) {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'Could not find seat.');
+		}
+		if ($seat->reservationsThisYear->first()) {
+			if ($seat->reservationsThisYear->first()->payment_id != 0) {
+				return Redirect::route('seating')->with('messagetype', 'warning')
+									->with('message', 'This seat already has a payment assigned to it.');
+			}
+		} else {
+			return Redirect::route('seating')->with('messagetype', 'warning')
+								->with('message', 'There was no reservation found for this seat.');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
+		$reservation 					= $seat->reservationsThisYear->first();
+		$reservationid 					= $reservation->id;
+
+		$seatticket 					= new SeatTicket;
+		$seatticket->barcode 			= mt_rand(1000000000, 2147483647);
+		$seatticket->reservation_id		= $reservationid;
+		$seatticket->user_id			= $reservation->reservedfor_id;
+		$seatticket->year				= \Setting::get('SEATING_YEAR');
+		$seatticket->save();
+
+		$reservationchange				= SeatReservation::find($reservationid);
+		$reservationchange->status_id	= 1;
+		$reservationchange->ticket_id	= $seatticket->id;
+		$reservationchange->save();
+
+		return Redirect::route('admin-seating-reservations')->with('messagetype', 'success')
+								->with('message', $seat->name.' is now reserved and marked as pay at entrance!');
+
 	}
 
 	/**

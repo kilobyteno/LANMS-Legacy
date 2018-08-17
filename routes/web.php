@@ -582,6 +582,10 @@ Route::group([
 							'as' => 'admin-seating-reservation-pdf',
 							'uses' => 'Admin\ReservationController@showPDF'
 						]);
+						Route::get('/{slug}/paylater', [
+							'as' => 'admin-seating-reservation-paylater',
+							'uses' => 'Admin\ReservationController@paylater'
+						]);
 						
 				});
 				Route::group([
