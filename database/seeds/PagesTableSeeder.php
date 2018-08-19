@@ -7,26 +7,23 @@ class PagesTableSeeder extends Seeder  {
 
 	public function run() {
 
-		/*Page::create([
-			'title' 		=> 'Regler',
-			'slug' 			=> 'rules',
-			'content'		=> '
-			<ul>
-				<li>Alle deltagere må kunne identifisere seg samt vise bilett til alle tider. Vi ber derfor alle om å ta med identifikasjon med bilde. Bankkort, pass, førerkort osv.</li>
-				<li>Snusing, røyking og besittelse av alkohol eller narkotiske stoffer er ikke tillat innenfor området Downlink arrangers. Skal du røyke eller snuse, er det designerte plasser for dette.</li>
-			</ul>
-			<br>
-			<h5>Annet</h5>
-			<ul>
-				<li>Alle forsøk på å komme seg inn i gymsalen utenom designert inngang er strengt forbudt. Våre vakter patruljerer både gymsalen og området rundt 24/7. Om noen skulle komme seg inn uten deltagerarmbånd, vil de bli bortvist fra området.</li>
-				<li>Vi tar ikke ansvar for tyveri, men for sjansen for dette skal bli minimal ber vi deg om å sikre dine verdifulle gjenstander. Få sidemannen til å passe på utstyret ditt mens du sover eller er borte fra plassen din. Skulle likevel et tyveri oppstå, ber vi deg anmeldet forholdet ved å kontakte politiet direkte eller via <a href="http://politi.no">politi.no</a></li>
-				<li>Ved en eventuell evakuering hvor alle må forlate bygget, ber vi deg gå til nærmeste nødutgang. Ikke ta med datamaskinen din. Hjelp andre med å komme seg ut, og følg alle instruksjoner fra crewet</li>
-				<li>Downlink reserveres seg retten til å bortvise deltagere som bestrider vårt reglement eller norsk lov, uten refusjon av billett, reise eller andre utlegg. Om nødvendig vil vi også anmelde forholdet til Politiet.</li>
-			</ul>
-			',
+		Page::create([
+			'title' 		=> 'Privacy Policy',
+			'slug' 			=> 'privacy',
+			'content'		=> "
+			<h2>Privacy Policy</h2>
+			<p>Your privacy is important to us. It is Infihex\'s policy to respect your privacy regarding any information we may collect from you across our website, the one you are browsing now, and other sites we own and operate.</p>
+			<p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+			<p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorised access, disclosure, copying, use or modification.</p>
+			<p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>
+			<p>Our website may link to external sites that are not operated by us. Please be aware that we have no control over the content and practices of these sites, and cannot accept responsibility or liability for their respective privacy policies.</p>
+			<p>You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services.</p>
+			<p>Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.</p>
+			<p>This policy is effective as of 19 August 2018.</p>
+			",
 			'showinmenu'	=> 0,
 			'author_id'		=> 1,
-		]);*/
+		]);
 		
 
 	}
