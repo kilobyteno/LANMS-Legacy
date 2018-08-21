@@ -65,6 +65,8 @@ return [
 
 		'neon-user',
 
+		'vobilet',
+
 		// Add your themes here...
 
 		/*--------------[ Example Structre ]-------------
