@@ -93,14 +93,16 @@
 										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> Crew</a>
 									</li>
 									
-									<li class="nav-item">
-										<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> INFORMATION</a>
-										<div class="dropdown-menu dropdown-menu-arrow">
-											@foreach(\LANMS\Page::forMenu() as $page)
-												<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
-											@endforeach
-										</div>
-									</li>
+									@if(count(\LANMS\Page::forMenu()) > 0)
+										<li class="nav-item">
+											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> INFORMATION</a>
+											<div class="dropdown-menu dropdown-menu-arrow">
+												@foreach(\LANMS\Page::forMenu() as $page)
+													<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
+												@endforeach
+											</div>
+										</li>
+									@endif
 								</ul>
 							</div>
 						</div>
