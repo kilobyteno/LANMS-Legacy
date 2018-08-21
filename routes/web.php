@@ -64,7 +64,7 @@ if(Config::get('app.debug')) {
 }
 
 Route::group([
-	'middleware' => 'setTheme:frontend'
+	'middleware' => 'setTheme:vobilet'
 	], function() {
 		Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 		Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
