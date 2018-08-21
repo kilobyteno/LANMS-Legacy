@@ -121,8 +121,7 @@ class PagesController extends Controller {
 		if($page == null) {
 			abort(404);
 		}
-		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
-		return view('pages.page')->with('pagesinmenu', $pagesinmenu)->with($page->toArray());
+		return view('pages.page')->with($page->toArray());
 	}
 
 	/**

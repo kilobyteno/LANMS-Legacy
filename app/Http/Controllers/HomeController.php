@@ -8,8 +8,7 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$news = News::isPublished()->get()->take(3);
-		return view('main.home')
-				  ->withNews($news);
+		return view('home')->withNews($news);
 	}
 
 }
