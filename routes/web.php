@@ -53,14 +53,6 @@ if(Config::get('app.debug')) {
 			}
 		}
 	});*/
-	Route::group([
-		'middleware' => 'setTheme:vobilet',
-		'prefix' => 'newtheme'
-		], function() {
-			Route::get('/', [
-				'uses' => 'NewThemeController@index'
-			]);
-	});
 }
 
 Route::group([
