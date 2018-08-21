@@ -24,11 +24,8 @@ class NewsController extends Controller {
 	public function index()
 	{
   		$news = News::isPublished()->paginate(5);
-		$pagesinmenu = Page::where('active', '=', true)->where('showinmenu', '=', true)->get(); // This needs to be included in all the frontend pages
-
 		return view('news.news')
-					->withNews($news)
-					->with('pagesinmenu', $pagesinmenu);
+					->withNews($news);
 	}
 
 	/**
