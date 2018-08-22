@@ -121,7 +121,7 @@ class PagesController extends Controller {
 		if($page == null) {
 			abort(404);
 		}
-		return view('pages.page')->with($page->toArray());
+		return view('main.page')->withPage($page);
 	}
 
 	/**

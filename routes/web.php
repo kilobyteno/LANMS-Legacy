@@ -1235,4 +1235,4 @@ Route::group(['prefix' => 'ajax',], function() {
 });
 
 // THIS NEEDS TO BE AT THE BOTTOM TO MAKE ALL OTHER ROUTES WORK
-Route::get('/{slug}', ['middleware' => 'setTheme:frontend', 'as' => 'page', 'uses' => 'Page\PagesController@show']);
+Route::get('/{slug}', ['middleware' => 'setTheme:vobilet', 'as' => 'page', 'uses' => 'Page\PagesController@show']);
