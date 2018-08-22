@@ -10,12 +10,12 @@ use LANMS\Act;
 
 class AuthController extends Controller {
 
-	public function getLogin() {
-		return view('auth.login');
+	public function getSignIn() {
+		return view('auth.signin');
 	}
 
-	public function getRegister() {
-		return view('auth.register');
+	public function getSignUp() {
+		return view('auth.signup');
 	}
 	public function getLogout() {
 		\Sentinel::logout();
