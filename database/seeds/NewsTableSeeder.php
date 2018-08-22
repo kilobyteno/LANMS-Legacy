@@ -19,18 +19,18 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-2',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-3',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -41,9 +41,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-4',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -54,9 +54,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-5',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -67,9 +67,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-6',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -80,9 +80,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-7',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -93,9 +93,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-8',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -106,9 +106,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-9',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -119,9 +119,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-10',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -132,9 +132,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-11',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -145,9 +145,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-12',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -158,9 +158,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-13',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -171,9 +171,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-14',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -184,9 +184,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-15',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -197,9 +197,9 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
-News::create(array(
+		News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 			'slug' 			=> 'news-16',
 			'content' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris sapien, volutpat eget pretium nec, commodo vel nisi. Integer ac metus posuere, volutpat quam id, volutpat leo. In ut euismod ipsum. Fusce euismod justo vitae porta pellentesque. Cras fringilla erat ornare dui suscipit, et pharetra elit egestas. Integer id lacus vel nulla varius viverra. Pellentesque non accumsan sapien, ac hendrerit nisi. Praesent cursus ac orci imperdiet tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -210,7 +210,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
-			'published_at' 	=> \DB::raw('now()'),
+			'published_at' 	=> \Carbon::now(),
 		));
 
 		NewsCategory::create([
