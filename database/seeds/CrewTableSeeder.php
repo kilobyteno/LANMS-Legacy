@@ -52,7 +52,7 @@ class CrewTableSeeder extends Seeder  {
 			'title' 	=> 'Admin',
 			'slug' 		=> 'admin',
 			'icon' 		=> 'fa fa-user-secret',
-			'label' 	=> 'label label-primary',
+			'label' 	=> 'badge badge-primary',
 			'author_id' => 1,
 			'editor_id' => 1,
 		]);
@@ -61,7 +61,7 @@ class CrewTableSeeder extends Seeder  {
 			'title' 	=> 'Network',
 			'slug' 		=> 'network',
 			'icon' 		=> 'fa fa-wifi',
-			'label' 	=> 'label label-success',
+			'label' 	=> 'badge badge-success',
 			'author_id' => 1,
 			'editor_id' => 1,
 		]);
@@ -70,7 +70,7 @@ class CrewTableSeeder extends Seeder  {
 			'title' 	=> 'Security',
 			'slug' 		=> 'security',
 			'icon' 		=> 'fa fa-lock',
-			'label' 	=> 'label label-warning',
+			'label' 	=> 'badge badge-warning',
 			'author_id' => 1,
 			'editor_id' => 1,
 		]);
