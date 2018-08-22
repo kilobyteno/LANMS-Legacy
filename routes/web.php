@@ -98,13 +98,13 @@ Route::group([
 			'as' => 'account-recover' ,
 			'uses' => 'Member\RecoverController@getResetPassword'
 		]);
-		Route::get('/register', [
-			'as' => 'account-register',
-			'uses' => 'Member\AuthController@getRegister'
+		Route::get('/signup', [
+			'as' => 'account-signup',
+			'uses' => 'Member\AuthController@getSignUp'
 		]);
-		Route::get('/login', [
-			'as' => 'account-login',
-			'uses' => 'Member\AuthController@getLogin'
+		Route::get('/signin', [
+			'as' => 'account-signin',
+			'uses' => 'Member\AuthController@getSignIn'
 		]);
 		Route::get('/activate/{activation_code}', [
 			'as' => 'account-activate',
