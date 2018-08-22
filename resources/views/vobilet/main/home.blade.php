@@ -32,18 +32,18 @@
 					<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
 				</div>
 			</div>
-
-			<h4>Sponsors</h4>
-			@foreach(LANMS\Sponsor::thisYear()->get() as $sponsor)
-				<div class="card">
-					<div class="card-body d-flex flex-column">
-						<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
-						@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
+			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
+				<h4>Sponsors</h4>
+				@foreach(LANMS\Sponsor::thisYear()->get() as $sponsor)
+					<div class="card">
+						<div class="card-body d-flex flex-column">
+							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
+							@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
+						</div>
+						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a> 
 					</div>
-					<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a> 
-				</div>
-			@endforeach
-
+				@endforeach
+			@endif
 		</div>
 		
 	</div>
