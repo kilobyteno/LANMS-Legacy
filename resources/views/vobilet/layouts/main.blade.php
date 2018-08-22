@@ -129,6 +129,12 @@
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
 							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 							&middot; <a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a> @if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
+							@if(Config::get('app.debug'))
+								<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
+							@endif
+							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+								<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
+							@endif 
 						</div>
 					</div>
 				</div>
