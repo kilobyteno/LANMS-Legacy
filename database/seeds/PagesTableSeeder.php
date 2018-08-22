@@ -8,6 +8,18 @@ class PagesTableSeeder extends Seeder  {
 	public function run() {
 
 		Page::create([
+			'title' 		=> 'Test Page',
+			'slug' 			=> 'testpage',
+			'content'		=> "
+			<h2>Test Page</h2>
+			<p>Testing page.</p>
+			",
+			'showinmenu'	=> 1,
+			'author_id'		=> 1,
+			'editor_id'		=> 1,
+		]);
+
+		Page::create([
 			'title' 		=> 'Privacy Policy',
 			'slug' 			=> 'privacy',
 			'content'		=> "
@@ -23,6 +35,7 @@ class PagesTableSeeder extends Seeder  {
 			",
 			'showinmenu'	=> 0,
 			'author_id'		=> 1,
+			'editor_id'		=> 1,
 		]);
 		
 		Page::create([
@@ -63,6 +76,7 @@ class PagesTableSeeder extends Seeder  {
 			',
 			'showinmenu'	=> 0,
 			'author_id'		=> 1,
+			'editor_id'		=> 1,
 		]);
 
 	}
