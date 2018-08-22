@@ -19,7 +19,6 @@
 					</div>
 				</div>
 			@endforeach
-			
 		</div>
 		<div class="col-md-12 col-lg-3  col-sm-12">
 			<div class="card">
