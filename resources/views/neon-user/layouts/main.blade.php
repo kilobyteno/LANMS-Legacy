@@ -165,7 +165,6 @@
 			@elseif(Session::get('messagetype') == 'success')
 				toastr.success("{{ Session::get('message') }}", String("{{ Session::get('messagetype') }}").toUpperCase(), opts);
 			@endif
-
 		@endif
 
 	</script>
