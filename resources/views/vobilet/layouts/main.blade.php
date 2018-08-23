@@ -116,6 +116,8 @@
 							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>IMPORTANT!</strong> Your license has expired! Please contact your provider.</div>
 						@endif
 
+						@component('layouts.alert-session') @endcomponent
+
 						@yield('content')
 
 					</div>
