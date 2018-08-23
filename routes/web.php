@@ -106,6 +106,10 @@ Route::group([
 			'as' => 'account-signin',
 			'uses' => 'Member\AuthController@getSignIn'
 		]);
+		Route::post('/signin', [
+			'as' => 'account-signin-post',
+			'uses' => 'Member\AuthController@postSignIn'
+		]);
 		Route::get('/activate/{activation_code}', [
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
@@ -980,82 +984,7 @@ Route::group(['prefix' => 'ajax',], function() {
 		return Response::json($resp);
 
 	});
-	Route::post('/account/login', function () {
-
-		if(!Request::ajax()) {
-			abort(403);
-		}
-
-		$resp = array();
-		$status = 'invalid';
-		$msg = 'Something went wrong...';
-
-		$username 		= Request::input('username');
-		$password 		= Request::input('password');
-		$remember 		= Request::input('remember');
-
-		$credentials 	= ['login' => $username, 'password' => $password];
-		$user = Sentinel::findByCredentials($credentials);
-
-		if ($user == null) {
-
-			$msg = 'User not found!';
-
-		} else {
-
-			$actex = Activation::exists($user);
-			$actco = Activation::completed($user);
-			$active = false;
-			if($actex) {
-				$active = false;
-			} elseif($actco) {
-				$active = true;
-			}
-
-			if ($active === false) {
-
-				$msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
-
-			} elseif ($active === true) {
-
-				try {
-					if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
-
-						$status = 'invalid';
-						$msg = 'Login and registration has been disabled at this moment. Please check back later!';
-
-					} elseif(Sentinel::authenticate($credentials)) {
-
-						$login = Sentinel::login($user, $remember);
-						if(!$login) {
-							$msg = 'Could not log you in. Please try again.';
-						} else {
-							$status = 'success';
-							$resp['redirect_url'] = URL::route('dashboard');
-						}
-
-					} else {
-						$msg = 'Username or password was wrong. Please try again.';
-					}
-				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
-					$status = 'invalid';
-					$msg = 'Account is not activated!';
-				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
-					$status = 'invalid';
-					$delay = $e->getDelay();
-					$msg = 'Your ip is blocked for '.$delay.' second(s).';
-				}
-				
-
-			} 
-
-		}
-
-		$resp['status'] = $status;
-		$resp['msg'] = $msg;
-
-		return Response::json($resp);
-	});
+	
 	Route::post('/account/forgot/password', function () {
 
 		if(!Request::ajax()) {
