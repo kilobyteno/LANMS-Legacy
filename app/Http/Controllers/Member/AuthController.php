@@ -101,6 +101,92 @@ class AuthController extends Controller {
 	public function getSignUp() {
 		return view('auth.signup');
 	}
+
+	public function postSignUp() {
+		if(!Request::ajax()) {
+			abort(403);
+		}
+
+		if(!Setting::get('LOGIN_ENABLED')) {
+			$status = 'invalid';
+			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
+		} else {
+
+			$resp = array();
+
+			$status = 'invalid';
+			$msg = 'Something went wrong...';
+
+			$email 				= Request::get('email');
+			$firstname	 		= Request::get('firstname');
+			$lastname 			= Request::get('lastname');
+			$username 			= Request::get('username');
+			$password 			= Request::get('password');
+
+			$originalDate 		= Request::input('birthdate');
+			$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
+
+			$referral			= Session::get('referral');
+			$referral_code 		= str_random(15);
+
+			$checkusername 		= User::where('username', '=', $username)->first();
+			$checkemail 		= User::where('email', '=', $email)->first();
+
+			if(!is_null($checkusername)) { 
+				$status = 'invalid';
+				$msg = 'Username is already taken.';
+			}
+
+			if(!is_null($checkemail)) { 
+				$status = 'invalid';
+				$msg = 'Email is already taken.';
+			}
+
+			if(is_null($checkusername) && is_null($checkemail)) {
+
+				$user = Sentinel::register(array(
+					'email' 			=> $email,
+					'username'			=> $username,
+					'firstname'			=> $firstname,
+					'lastname'			=> $lastname,
+					'birthdate'			=> $birthdate,
+					'password'			=> $password,
+					'referral'			=> $referral,
+					'referral_code'		=> $referral_code,
+				));
+
+				if($user) {
+
+					$activation = Activation::create($user);
+					$activation_code = $activation->code;
+
+					$status = 'success';
+
+					Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
+						$message->to($user->email, $user->firstname)->subject('Activate your account');
+					});
+
+					if(count(Mail::failures()) > 0) {
+						$status = 'invalid';
+						$msg = 'Something went wrong while trying to send you an email.';
+					}
+
+					Session::forget('referral'); //forget the referral
+
+				} else {
+					$status = 'invalid';
+					$msg = 'Something went wrong while trying to register your user.';
+				}
+
+			}
+
+		}
+		
+		$resp['status'] = $status;
+		$resp['msg'] = $msg;
+		return Response::json($resp);
+	}
+
 	public function getLogout() {
 		\Sentinel::logout();
 		return Redirect::route('home')
