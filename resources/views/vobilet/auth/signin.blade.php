@@ -39,6 +39,7 @@
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 						<button type="submit" class="btn btn-primary btn-block">Sign in</button>
 					</div>
+					<hr>
 					<div class="text-center text-muted mt-3">
 						Don't have account yet? <a href="{{ route('account-signup') }}">Sign up</a>
 					</div>
