@@ -125,14 +125,32 @@
 			</div>
 
 			<!--footer-->
-			<footer class="footer">
+			<footer class="footer br-bl-7 br-br-7">
 				<div class="container">
+					<div class="row align-items-center text-center">
+						<div class="col-lg-6 col-md-6 d-none d-md-block ">
+							<div class="social">
+								<ul class="text-center m-0 ">
+									<li> <a class="social-icon" href=""><i class="fab fa-facebook"></i></a> </li>
+									<li> <a class="social-icon" href=""><i class="fab fa-twitter"></i></a> </li>
+									<li> <a class="social-icon" href=""><i class="fab fa-instagram"></i></a> </li>
+									<li> <a class="social-icon" href=""><i class="fab fa-youtube"></i></a> </li>
+									<li> <a class="social-icon" href=""><i class="fab fa-snapchat"></i></a> </li>
+									<li> <a class="social-icon" href=""><i class="fa fa-rss"></i></a> </li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 text-right privacy"> <a href="{{ url('privacy') }}" class="btn btn-link">Privacy Policy</a> <a href="{{ url('tos') }}" class="btn btn-link">Terms of Service</a></div>
+					</div>
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
 							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
-							&middot; <a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a> @if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
+							<br>
+							<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+							<br>
+							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							@if(Config::get('app.debug'))
-								<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
+								<b><span class="text-danger">DEBUG MODE</span></b>
 							@endif
 							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
 								<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
