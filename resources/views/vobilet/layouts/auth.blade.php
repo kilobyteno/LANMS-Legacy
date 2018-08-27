@@ -24,6 +24,7 @@
 
 		<!-- Dashboard Css -->
 		<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
 
 		<!-- c3.js Charts Plugin -->
@@ -47,6 +48,8 @@
 		<script src="{{ Theme::url('js/vendors/selectize.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/jquery.tablesorter.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
+
+		@yield('javascript')
 		
 		<!-- Custom js -->
 		<script src="{{ Theme::url('js/custom.js') }}"></script>
