@@ -51,6 +51,7 @@
 						</label>
 					</div>
 					<div class="form-footer">
+						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 						<button type="submit" class="btn btn-primary btn-block">Create new account</button>
 					</div>
 					<hr>
