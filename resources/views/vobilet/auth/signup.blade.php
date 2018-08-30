@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Birthdate</label>
-						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" data-mask="date" autocomplete="off" value="{{ old('birthdate') }}" />
+						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
 					</div>
 					<div class="form-group">
 						<label class="form-label">Email address</label>
@@ -78,5 +78,11 @@
 			}
 		} 
 	</script>
-	<script src="{{ Theme::url('js/plugins/input-mask/jquery.maskedinput.js') }}"></script>
+	<script src="{{ Theme::url('js/cleave.js') }}"></script>
+	<script type="text/javascript">
+		var cleave = new Cleave('#birthdate', {
+		    date: true,
+		    datePattern: ['d', 'm', 'Y']
+		});
+	</script>
 @stop
