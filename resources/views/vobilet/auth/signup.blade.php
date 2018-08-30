@@ -41,8 +41,8 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Password</label>
-						<input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off">
-						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off">
+						<input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
+						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
 					</div>
 					<div class="form-group">
 						<label class="custom-control custom-checkbox">
