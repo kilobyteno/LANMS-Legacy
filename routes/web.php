@@ -90,13 +90,21 @@ Route::group([
 	'middleware' => ['sentinel.guest', 'setTheme:vobilet'],
 	'prefix' => 'account',
 	], function() {
-		Route::get('/forgot/password', [
+		Route::get('/password/forgot', [
 			'as' => 'account-forgot-password' ,
 			'uses' => 'Member\RecoverController@getForgotPassword'
 		]);
-		Route::get('/resetpassword/{code}', [
-			'as' => 'account-recover' ,
+		Route::post('/password/forgot', [
+			'as' => 'account-forgot-password-post' ,
+			'uses' => 'Member\RecoverController@postForgotPassword'
+		]);
+		Route::get('/password/reset/{code}', [
+			'as' => 'account-reset-password' ,
 			'uses' => 'Member\RecoverController@getResetPassword'
+		]);
+		Route::post('/password/reset/{code}', [
+			'as' => 'account-reset-password-post' ,
+			'uses' => 'Member\RecoverController@postResetPassword'
 		]);
 		Route::get('/signup', [
 			'as' => 'account-signup',
@@ -902,131 +910,6 @@ Route::group(['prefix' => 'ajax',], function() {
 
 		return Response::json($resp);
 
-	});
-	
-	Route::post('/account/forgot/password', function () {
-
-		if(!Request::ajax()) {
-			abort(403);
-		}
-
-		if(!Setting::get('LOGIN_ENABLED')) {
-			$status = 'invalid';
-			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
-		} else {
-
-			$resp = array();
-			$status = 'invalid';
-			$msg = 'Something went wrong...';
-
-			$username = Request::input('username');
-
-			$credentials 	= ['login' => $username];
-
-			$user = Sentinel::findByCredentials($credentials);
-
-			if ($user == null) {
-
-				$msg = 'User not found!';
-
-			} else {
-
-				$actex = Activation::exists($user);
-				$actco = Activation::completed($user);
-				$active = false;
-				if($actex) {
-					$active = false;
-				} elseif($actco) {
-					$active = true;
-				}
-
-				$remex = Reminder::exists($user);
-				$reminder = false;
-				if($remex) {
-					$reminder = true;
-				}
-
-				if ($active == false) {
-
-					$msg = '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.';
-
-				} elseif ($reminder == true) {
-
-					$msg = '<strong>You have already asked for a reminder!</strong><br>Please check your inbox for the reminder email.';
-
-				} elseif ($active == true && $reminder == false) {
-
-					$reminder 		= Reminder::create($user);
-					$reminder_code 	= $reminder->code;
-
-					Mail::send('emails.auth.forgot-password', 
-						array(
-							'link' => URL::route('account-recover', $reminder_code),
-							'firstname' => $user->firstname,
-							'username' => $user->username,
-						), function($message) use ($user) {
-							$message->to($user->email, $user->firstname)->subject('Forgot Password');
-					});
-					
-					if(count(Mail::failures()) > 0) {
-						$msg = 'Mail Failure.';
-					} else {
-						$status = 'success';
-						$msg = 'Everything went well.';
-					}
-
-					if(!$reminder) {
-						$msg = 'E-mail or birthdate was wrong. Please try again.';
-					}
-				}
-
-			}
-
-		}
-
-		$resp['status'] 	= $status;
-		$resp['msg'] 	= $msg;
-
-		return Response::json($resp);
-	});
-	Route::post('/account/resetpassword', function () {
-
-		if(!Request::ajax()) {
-			abort(403);
-		}
-
-		if(!Setting::get('LOGIN_ENABLED')) {
-			$status = 'invalid';
-			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
-		} else {
-
-			$resp 		= array();
-			$status 	= 'invalid';
-			$msg 		= 'Something went wrong...';
-
-			$username 			= Request::input('username');
-			$password 			= Request::input('password');
-			$resetpassword_code	= Request::input('resetpassword_code');
-			$credentials 		= ['login' => $username];
-			$user 				= Sentinel::findByCredentials($credentials);
-
-			if($user == null) {
-				$msg 		= 'User not found!';
-			} elseif (Reminder::complete($user, $resetpassword_code, $password)) {
-				$status 				= 'success';
-				$msg 					= 'Everything went well.';
-				$resp['redirect_url'] 	= URL::route('account-login');
-			} else {
-				$msg 	= 'Something went wrong while reseting your password. Please try again later.';
-			}
-
-		}
-		
-		$resp['status'] 	= $status;
-		$resp['msg'] 		= $msg;
-
-		return Response::json($resp);
-		
 	});
 	Route::post('/account/resendverification', function () {
 
