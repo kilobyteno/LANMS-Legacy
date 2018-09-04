@@ -11,7 +11,7 @@
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-signin-post') }}">
 				<div class="card-body p-6">
-					<div class="card-title text-center">Login to your Account</div>
+					<div class="card-title text-center">Sign in to your Account</div>
 					@if($errors->any())
 						@component('layouts.alert-form')
 						    @foreach ($errors->all() as $message)
