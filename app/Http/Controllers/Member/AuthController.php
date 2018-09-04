@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use LANMS\Act;
 
 use LANMS\Http\Requests\Auth\SignInRequest;
+use LANMS\Http\Requests\Auth\SignUpRequest;
 
 class AuthController extends Controller {
 
@@ -51,7 +52,7 @@ class AuthController extends Controller {
 			if ($active === false) {
 
 				return Redirect::route('account-signin')->with('messagetype', 'warning')
-									->with('message', '<strong>Your user is not active!</strong><br>Please check your inbox for the activation email.');
+									->with('message', 'Your user is not active! Please check your inbox for the activation email. Check the spam-folder too.');
 
 			} elseif ($active === true) {
 
@@ -102,89 +103,78 @@ class AuthController extends Controller {
 		return view('auth.signup');
 	}
 
-	public function postSignUp() {
-		if(!Request::ajax()) {
-			abort(403);
-		}
+	public function postSignUp(SignUpRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
-			$status = 'invalid';
-			$msg = 'Login and registration has been disabled at this moment. Please check back later!';
-		} else {
-
-			$resp = array();
-
-			$status = 'invalid';
-			$msg = 'Something went wrong...';
-
-			$email 				= Request::get('email');
-			$firstname	 		= Request::get('firstname');
-			$lastname 			= Request::get('lastname');
-			$username 			= Request::get('username');
-			$password 			= Request::get('password');
-
-			$originalDate 		= Request::input('birthdate');
-			$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
-
-			$referral			= Session::get('referral');
-			$referral_code 		= str_random(15);
-
-			$checkusername 		= User::where('username', '=', $username)->first();
-			$checkemail 		= User::where('email', '=', $email)->first();
-
-			if(!is_null($checkusername)) { 
-				$status = 'invalid';
-				$msg = 'Username is already taken.';
-			}
-
-			if(!is_null($checkemail)) { 
-				$status = 'invalid';
-				$msg = 'Email is already taken.';
-			}
-
-			if(is_null($checkusername) && is_null($checkemail)) {
-
-				$user = Sentinel::register(array(
-					'email' 			=> $email,
-					'username'			=> $username,
-					'firstname'			=> $firstname,
-					'lastname'			=> $lastname,
-					'birthdate'			=> $birthdate,
-					'password'			=> $password,
-					'referral'			=> $referral,
-					'referral_code'		=> $referral_code,
-				));
-
-				if($user) {
-
-					$activation = Activation::create($user);
-					$activation_code = $activation->code;
-
-					$status = 'success';
-
-					Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
-						$message->to($user->email, $user->firstname)->subject('Activate your account');
-					});
-
-					if(count(Mail::failures()) > 0) {
-						$status = 'invalid';
-						$msg = 'Something went wrong while trying to send you an email.';
-					}
-
-					Session::forget('referral'); //forget the referral
-
-				} else {
-					$status = 'invalid';
-					$msg = 'Something went wrong while trying to register your user.';
-				}
-
-			}
-
+		if(!\Setting::get('LOGIN_ENABLED')) {
+			return Redirect::route('account-signin')->with('messagetype', 'info')
+								->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		}
 		
-		$resp['status'] = $status;
-		$resp['msg'] = $msg;
-		return Response::json($resp);
+		$email 				= $request->input('email');
+		$firstname	 		= $request->input('firstname');
+		$lastname 			= $request->input('lastname');
+		$username 			= $request->input('username');
+		$password 			= $request->input('password');
+
+		$originalDate 		= $request->input('birthdate');
+		$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
+
+		$referral			= \Session::get('referral');
+		$referral_code 		= str_random(15);
+
+		$checkusername 		= \User::where('username', '=', $username)->first();
+		$checkemail 		= \User::where('email', '=', $email)->first();
+
+		if(!is_null($checkusername)) {
+			return Redirect::route('account-signup')->with('messagetype', 'warning')
+								->with('message', 'Username is already taken.')->withInput();
+		}
+
+		if(!is_null($checkemail)) { 
+			return Redirect::route('account-signup')->with('messagetype', 'warning')
+								->with('message', 'Email is already taken.')->withInput();
+		}
+
+		if(is_null($checkusername) && is_null($checkemail)) {
+
+			$user = \Sentinel::register(array(
+				'email' 			=> $email,
+				'username'			=> $username,
+				'firstname'			=> $firstname,
+				'lastname'			=> $lastname,
+				'birthdate'			=> $birthdate,
+				'password'			=> $password,
+				'referral'			=> $referral,
+				'referral_code'		=> $referral_code,
+			));
+
+			if($user) {
+
+				$activation = \Activation::create($user);
+				$activation_code = $activation->code;
+
+				$status = 'success';
+
+				\Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
+					$message->to($user->email, $user->firstname)->subject('Activate your account');
+				});
+
+				if(count(\Mail::failures()) > 0) {
+					return Redirect::route('account-signup')->with('messagetype', 'warning')
+									->with('message', 'Something went wrong while trying to send you an email. But you user has been registered.');
+				}
+
+				\Session::forget('referral'); //forget the referral
+
+				return Redirect::route('account-signin')->with('messagetype', 'success')
+									->with('message', 'Your account has been created, check your email for the activation link. Double check the spam-folder.');
+
+			} else {
+				return Redirect::route('account-signup')->with('messagetype', 'error')
+									->with('message', 'Something went wrong while trying to register your user.');
+			}
+
+		}
 	}
 
 	public function getLogout() {
