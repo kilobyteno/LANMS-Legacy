@@ -26,7 +26,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Password
-							<a href="{{ route('account-forgot-password') }}" class="float-right small">I forgot my password</a>
+							<a href="{{ route('account-forgot-password') }}" class="float-right small" tabIndex="-1">I forgot my password</a>
 						</label>
 						<input type="password" class="form-control" name="password" placeholder="Password">
 					</div>
