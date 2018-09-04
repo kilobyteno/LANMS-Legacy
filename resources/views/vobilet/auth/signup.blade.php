@@ -12,6 +12,7 @@
 			<form class="card" role="form" method="post" action="{{ route('account-signup-post') }}">
 				<div class="card-body p-6">
 					<div class="card-title text-center">Create New Account</div>
+					@component('layouts.alert-session') @endcomponent
 					@if($errors->any())
 						@component('layouts.alert-form')
 						    @foreach ($errors->all() as $message)
