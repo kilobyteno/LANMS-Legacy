@@ -47,7 +47,7 @@
 					</div>
 					<div class="form-group">
 						<label class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" />
+							<input type="checkbox" class="custom-control-input" name="tos-pp" />
 							<span class="custom-control-label">I have read, accepted and agreed to the <strong>Terms of Service and Privacy Policy</strong></span>
 						</label>
 					</div>
