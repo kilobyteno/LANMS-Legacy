@@ -31,7 +31,7 @@ class AuthController extends Controller {
 		$validated = $request->validated();
 
 		if(!$validated) {
-			return Redirect::route('account-signin')->with('messagetype', 'error')
+			return Redirect::route('account-signin')->with('messagetype', 'danger')
 								->with('message', 'User was not found.')->withInput();
 		}
 
@@ -40,7 +40,7 @@ class AuthController extends Controller {
 
 		if ($user == null) {
 
-			return Redirect::route('account-signin')->with('messagetype', 'error')
+			return Redirect::route('account-signin')->with('messagetype', 'danger')
 								->with('message', 'User was not found.')->withInput();
 
 		} else {
@@ -84,16 +84,16 @@ class AuthController extends Controller {
 
 					} else {
 
-						return Redirect::route('account-signin')->with('messagetype', 'error')
+						return Redirect::route('account-signin')->with('messagetype', 'danger')
 												->with('message', 'Username or password was wrong. Please try again.')->withInput();
 
 					}
 				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
-					return Redirect::route('account-signin')->with('messagetype', 'error')
+					return Redirect::route('account-signin')->with('messagetype', 'danger')
 										->with('message', 'Account is not activated!');
 				} catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
 					$delay = $e->getDelay();
-					return Redirect::route('account-signin')->with('messagetype', 'error')
+					return Redirect::route('account-signin')->with('messagetype', 'danger')
 										->with('message', 'Your ip is blocked for '.$delay.' second(s).');
 				}
 				
@@ -175,7 +175,7 @@ class AuthController extends Controller {
 									->with('message', 'Your account has been created, check your email for the activation link. Double check the spam-folder.');
 
 			} else {
-				return Redirect::route('account-signup')->with('messagetype', 'error')
+				return Redirect::route('account-signup')->with('messagetype', 'danger')
 									->with('message', 'Something went wrong while trying to register your user.');
 			}
 
