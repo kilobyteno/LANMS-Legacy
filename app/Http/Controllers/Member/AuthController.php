@@ -19,6 +19,11 @@ class AuthController extends Controller {
 
 	public function postSignIn(SignInRequest $request) {
 
+		if(!\Setting::get('LOGIN_ENABLED')) {
+			return Redirect::route('account-signin')->with('messagetype', 'info')
+								->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+		}
+
 		$username 		= $request->input('username');
 		$password 		= $request->input('password');
 		$remember 		= $request->input('remember');
