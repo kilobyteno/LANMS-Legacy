@@ -22,7 +22,7 @@
 					@endif
 					<div class="form-group">
 						<label class="form-label">Email or username</label>
-						<input type="text" class="form-control" name="username"  placeholder="Email or username">
+						<input type="text" class="form-control" name="username" placeholder="Email or username">
 					</div>
 					<div class="form-group">
 						<label class="form-label">Password
@@ -42,7 +42,7 @@
 					</div>
 					<hr>
 					<div class="text-center text-muted mt-3">
-						Don't have account yet? <a href="{{ route('account-signup') }}">Sign up</a>
+						<p><a href="{{ route('account-signup') }}">Sign Up</a> &middot; <a href="{{ route('account-resendverification') }}">Resend activation email</a></p>
 					</div>
 				</div>
 				
