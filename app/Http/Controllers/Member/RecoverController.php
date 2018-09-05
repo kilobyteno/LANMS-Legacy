@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 use LANMS\Http\Requests\Auth\ForgotPasswordRequest;
 use LANMS\Http\Requests\Auth\ResetPasswordRequest;
+use LANMS\Http\Requests\Auth\ResendVerificationRequest;
 
 use LANMS\Rem;
 
@@ -134,6 +135,46 @@ class RecoverController extends Controller {
 
 	public function getResendVerification() {
 		return view('auth.resendverification');
+	}
+
+	public function postResendVerification(ResendVerificationRequest $request) {
+
+		if(!\Setting::get('LOGIN_ENABLED')) {
+			return Redirect::route('account-resendverification')->with('messagetype', 'info')
+								->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+		}
+
+		$user = \User::where('email', '=', $request->email)->first();
+		if($user == null) {
+			return Redirect::route('account-resendverification')->with('messagetype', 'danger')
+								->with('message', 'Couldn\'t find account associated with the email! Please try again.');
+		} else {
+			
+			$activation = \Activation::exists($user);
+
+			if($activation == null) {
+				return Redirect::route('account-resendverification')->with('messagetype', 'warning')
+								->with('message', 'Your account is already activated or we couldn\'t find any uncompleted activations.');
+			} elseif($activation->completed == true) {
+			    return Redirect::route('account-resendverification')->with('messagetype', 'info')
+								->with('message', 'Activation has already been completed.');
+			} else {
+			    
+				\Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation->code), 'firstname' => $user->firstname), function($message) use ($user) {
+					$message->to($user->email, $user->firstname)->subject('Activate your account');
+				});
+
+				if(count(\Mail::failures()) > 0) {
+					return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
+									->with('message', 'Something went wrong while trying to send you an email.');
+				} else {
+					return Redirect::route('account-resendverification')->with('messagetype', 'success')
+									->with('message', 'We have sent you a email, check your inbox. Check the spam-folder too.');
+				}
+			}
+
+		}
+
 	}
 
 }

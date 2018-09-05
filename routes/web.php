@@ -130,6 +130,10 @@ Route::group([
 			'as' => 'account-resendverification' ,
 			'uses' => 'Member\RecoverController@getResendVerification'
 		]);
+		Route::post('/resendverification', [
+			'as' => 'account-resendverification-post' ,
+			'uses' => 'Member\RecoverController@postResendVerification'
+		]);
 		
 });
 
