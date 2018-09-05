@@ -30,7 +30,7 @@
 					</div>
 					<hr>
 					<div class="text-center text-muted mt-3">
-						Forget it, <a href="{{ route('account-signup') }}">send me back</a> to the sign in page.
+						Forget it, <a href="{{ route('account-signin') }}">send me back</a> to the sign in page.
 					</div>
 				</div>
 				
