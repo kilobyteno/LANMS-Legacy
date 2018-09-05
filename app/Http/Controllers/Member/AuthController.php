@@ -10,6 +10,7 @@ use LANMS\Act;
 
 use LANMS\Http\Requests\Auth\SignInRequest;
 use LANMS\Http\Requests\Auth\SignUpRequest;
+use LANMS\Http\Requests\Auth\ActivateRequest;
 
 class AuthController extends Controller {
 
@@ -198,6 +199,37 @@ class AuthController extends Controller {
 		} else {
 			return view('auth.activate')->with('activation_code', $activation_code);
 		}
+	}
+
+	public function postActivate(ActivateRequest $request, $activation_code) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
+			return Redirect::route('account-activate')->with('messagetype', 'info')
+								->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+		}
+
+		$username 			= $request->input('username');
+		$credentials 		= ['login' => $username];
+		$user				= \Sentinel::findByCredentials($credentials);
+
+		if($user == null) {
+			return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
+									->with('message', 'Username and activation code does not match.');
+		} else {
+			$activation = Act::where('code', '=', $activation_code)->where('user_id', '=', $user->id)->first();
+			if($activation == null) {
+				return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
+									->with('message', 'User and activation code does not match.');
+			} else {
+				if (\Activation::complete($user, $activation_code)) {
+					return Redirect::route('account-signin')->with('messagetype', 'success')
+									->with('message', 'Your account has been activated!');
+				} else {
+					return Redirect::route('account-signin')->with('messagetype', 'danger')
+									->with('message', 'Something went wrong while activating your account. Please try again later.');
+				}
+			}
+		}
+
 	}
 
 }

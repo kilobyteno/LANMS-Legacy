@@ -126,6 +126,10 @@ Route::group([
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
+		Route::post('/activate/{activation_code}', [
+			'as' => 'account-activate-post',
+			'uses' => 'Member\AuthController@postActivate'
+		]);
 		Route::get('/resendverification', [
 			'as' => 'account-resendverification' ,
 			'uses' => 'Member\RecoverController@getResendVerification'
