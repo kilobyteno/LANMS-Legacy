@@ -22,7 +22,7 @@
 					@endif
 					<div class="form-group">
 						<label class="form-label">Email or username</label>
-						<input type="text" class="form-control" name="username"  placeholder="Email or username">
+						<input type="text" class="form-control" name="username"  placeholder="Email or username" autocomplete="off">
 					</div>
 					<div class="form-footer">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">

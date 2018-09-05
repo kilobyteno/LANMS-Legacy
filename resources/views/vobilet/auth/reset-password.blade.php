@@ -25,15 +25,15 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Confirm email or username</label>
-						<input type="text" class="form-control" name="username"  placeholder="Confirm email or username">
+						<input type="text" class="form-control" name="username"  placeholder="Confirm email or username" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<label class="form-label">New Password</label>
-						<input type="password" class="form-control" name="password" placeholder="New Password">
+						<input type="password" class="form-control" name="password" placeholder="New Password" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<label class="form-label">Confirm New Password</label>
-						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm New Password">
+						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm New Password" autocomplete="off">
 					</div>
 					<div class="form-footer">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
