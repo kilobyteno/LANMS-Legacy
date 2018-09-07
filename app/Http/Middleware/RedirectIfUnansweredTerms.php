@@ -16,8 +16,8 @@ class RedirectIfUnansweredTerms
      */
     public function handle($request, Closure $next)
     {
-        if (\Sentinel::getUser()->accepted_gdpr === null) {
-            return redirect('gdpr/show_terms');
+        if (\Sentinel::getUser()->accepted_gdpr === null or \Sentinel::getUser()->accepted_gdpr === 0) {
+            return \Redirect::route('gdpr-terms');
         }
 
         return $next($request);
