@@ -45,11 +45,11 @@ var neonRegister = neonRegister || {};
 			mydate.setFullYear(year, month - 1, day);
 
 			var currdate = new Date();
-			currdate.setFullYear(currdate.getFullYear() - 12);
+			currdate.setFullYear(currdate.getFullYear() - 13);
 
 			return currdate > mydate;
 
-		}, 'Minimum age is set to 12. If you\'re younger, contact the staff.');
+		}, 'Minimum age is set to 13. If you\'re younger, your parent needs to register an account. Please read the Terms of Service.');
 
 		$.validator.addMethod(
 				"regex",
