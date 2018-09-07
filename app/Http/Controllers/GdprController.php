@@ -4,7 +4,7 @@ namespace LANMS\Http\Controllers;
 
 use LANMS\User;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 use Dialect\Gdpr\Http\Requests\GdprDownload;
 
 class GdprController extends Controller
@@ -22,7 +22,7 @@ class GdprController extends Controller
             'password'                                => $request->input('password'),
         ];
 
-        abort_unless(Auth::attempt($credentials), 403);
+        abort_unless(\Sentinel::authenticate($credentials), 403);
 
         return response()->json(
             $request->user()->portable(),
@@ -50,9 +50,9 @@ class GdprController extends Controller
      */
     public function termsAccepted()
     {
-        $user = Auth::user();
+        $user = \Sentinel::getUser();
 
-        $user->update([
+        \Sentinel::update($user, [
             'accepted_gdpr' => true,
         ]);
 
@@ -66,9 +66,9 @@ class GdprController extends Controller
      */
     public function termsDenied()
     {
-        $user = Auth::user();
+        $user = \Sentinel::getUser();
 
-        $user->update([
+        \Sentinel::update($user, [
             'accepted_gdpr' => false,
         ]);
 
@@ -88,7 +88,7 @@ class GdprController extends Controller
 
         $user->anonymize();
 
-        $user->update([
+        \Sentinel::update($user, [
             'isAnonymized' => true,
         ]);
 
