@@ -71,7 +71,7 @@ class GdprController extends Controller
         \Sentinel::update($user, [
             'accepted_gdpr' => false,
         ]);
-
+        \Sentinel::logout();
         return redirect()->to('/');
     }
 
