@@ -15,9 +15,9 @@
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3">
                 <div class="card">
+                    <div class="card-header">GDPR Update</div>
                     <div class="card-body">
-                        <h5 class="card-title">Member agreement</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">GDPR adjustment</h6>
+                        <h6 class="card-title">User agreement</h6>
                         <p class="card-text">Lorem ipsum dolor sit amet, pro in cetero audire persius, et nam viderer
                             placerat explicari, atqui nusquam ea vel. Hinc denique ea has. No his exerci eloquentiam
                             vituperatoribus,
@@ -28,28 +28,17 @@
                             mel.
                             Officiis lobortis salutatus ei vis, ad denique qualisque sententiae mel. Justo graece sea
                             ei, vero modus propriae ea mei.</p>
-                        <br>
-                        <br>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group float-left">
-                                    <form class="form-inline" role="form" method="POST"
-                                          action="{{ route('gdpr-terms-accepted') }}">
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-primary">Accept</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group float-right">
-                                    <form class="form-inline float-left" role="form" method="POST"
-                                          action="{{ route('gdpr-terms-denied') }}">
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-outline-danger">Deny</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <hr>
+                        <form class="form-inline float-left" role="form" method="POST"
+                              action="{{ route('gdpr-terms-accepted') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-success">Accept</button>
+                        </form>
+                        <form class="form-inline float-right" role="form" method="POST"
+                              action="{{ route('gdpr-terms-denied') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-danger">Deny</button>
+                        </form>
                     </div>
                 </div>
             </div>
