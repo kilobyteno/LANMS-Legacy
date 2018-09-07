@@ -149,6 +149,7 @@ return array(
     'Cartalyst\\Support\\Traits\\ValidatorTrait' => $vendorDir . '/cartalyst/support/src/Traits/ValidatorTrait.php',
     'Cartalyst\\Support\\Validator' => $vendorDir . '/cartalyst/support/src/Validator.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateActivityLogTable' => $baseDir . '/database/migrations/2018_08_09_163524_create_activity_log_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_01_18_180048_create_addresses_table.php',
     'CreateBrokenBandsTable' => $baseDir . '/database/migrations/2017_01_18_200109_create_broken_bands_table.php',
     'CreateCheckinsTable' => $baseDir . '/database/migrations/2016_02_28_173223_create_checkins_table.php',

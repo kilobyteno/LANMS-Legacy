@@ -616,6 +616,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'Cartalyst\\Support\\Traits\\ValidatorTrait' => __DIR__ . '/..' . '/cartalyst/support/src/Traits/ValidatorTrait.php',
         'Cartalyst\\Support\\Validator' => __DIR__ . '/..' . '/cartalyst/support/src/Validator.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'CreateActivityLogTable' => __DIR__ . '/../..' . '/database/migrations/2018_08_09_163524_create_activity_log_table.php',
         'CreateAddressesTable' => __DIR__ . '/../..' . '/database/migrations/2016_01_18_180048_create_addresses_table.php',
         'CreateBrokenBandsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_18_200109_create_broken_bands_table.php',
         'CreateCheckinsTable' => __DIR__ . '/../..' . '/database/migrations/2016_02_28_173223_create_checkins_table.php',
