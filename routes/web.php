@@ -21,38 +21,9 @@ if(Config::get('app.debug')) {
 		Artisan::call('db:seed');
 		return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
 	});
-	/*Route::get('/mailtest', function() {
-		Mail::send('emails.auth.activate', ['link'=>route('account-activate', 'derp'),'firstname'=>'Daniel'], function($message) {
-			$message->to("daniel@retardedtech.com", "Daniel")->subject('Test Email');
-		});
-		if(count(Mail::failures()) > 0) {
-			dd('Mail Failure.');
-		} else {
-			dd('Success.');
-		}
-		return view('emails.auth.activate', ['link'=>route('account-activate', 'derp'), 'firstname'=>'Daniel']);
-	});*/
 	Route::get('/test', function() {
 		App::abort(500);
 	});
-	/*Route::get('/aau', function() {
-		echo "AAU - Activate All Users<br><br>";
-		$users = User::where('last_activity', '<>', '0000-00-00 00:00:00')->get();
-		$userstofix = array();
-		foreach ($users as $user) {
-			array_push($userstofix, $user->id);
-			echo "<br>".$user->id;
-		}
-		echo "<hr>";
-		foreach ($userstofix as $u) {
-			$theuser = Sentinel::findById($u);
-			$actex = Act::where('user_id', '=', $u)->where('completed', '=', 1)->count();
-			if($actex <= 0) {
-				$act = Activation::create($theuser);
-				echo "<br> complete act".Activation::complete($theuser, $act->code);
-			}
-		}
-	});*/
 }
 
 Route::group([
