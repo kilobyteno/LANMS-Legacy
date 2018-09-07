@@ -15,9 +15,41 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+use Dialect\Gdpr\Portable;
+use Dialect\Gdpr\Anonymizable;
+
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
 {
-	use PermissibleTrait, SoftDeletes, LogsActivity;
+	use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable;
+
+	/**
+     * The attributes that should be hidden for the downloadable data.
+     *
+     * @var array
+     */
+    protected $gdprHidden = [
+    	'password',
+    	'permissions',
+    	'profilepicture',
+    	'profilepicturesmall',
+    	'profilecover'
+    ];
+
+	/**
+	 * Using replacement strings.
+	 */
+	protected $gdprAnonymizableFields = [
+	    'firstname' => 'Anon',
+	    'lastname' => 'Ymized'
+    ];
+
+	/**
+    * Using getAnonynomized{column} to return anonymizable data
+    */
+    public function getAnonynomizedEmail()
+    {
+        return random_bytes(10);
+    }
 
 	protected static $logName = 'user_change';
 	protected static $logOnlyDirty = true;
@@ -67,6 +99,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'showonline',
 		'userdateformat',
 		'usertimeformat',
+		'accepted_gdpr',
 	];
 
 	/**
