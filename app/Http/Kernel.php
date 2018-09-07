@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
 		'sentinel.guest' => \LANMS\Http\Middleware\SentinelGuest::class,
 		'sentinel.admin' => \LANMS\Http\Middleware\SentinelAdmin::class,
         'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
+        'gdpr.terms' => \LANMS\Http\Middleware\RedirectIfUnansweredTerms::class,
 	];
 
 }

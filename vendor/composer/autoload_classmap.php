@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddGdprToUsersTable' => $baseDir . '/database/migrations/2018_09_07_202207_add_gdpr_to_users_table.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
     'Barryvdh\\DomPDF\\Facade' => $vendorDir . '/barryvdh/laravel-dompdf/src/Facade.php',
@@ -1961,6 +1962,7 @@ return array(
     'LANMS\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'LANMS\\Http\\Middleware\\HttpsProtocol' => $baseDir . '/app/Http/Middleware/HttpsProtocol.php',
     'LANMS\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+    'LANMS\\Http\\Middleware\\RedirectIfUnansweredTerms' => $baseDir . '/app/Http/Middleware/RedirectIfUnansweredTerms.php',
     'LANMS\\Http\\Middleware\\SentinelAdmin' => $baseDir . '/app/Http/Middleware/SentinelAdmin.php',
     'LANMS\\Http\\Middleware\\SentinelAuth' => $baseDir . '/app/Http/Middleware/SentinelAuth.php',
     'LANMS\\Http\\Middleware\\SentinelGuest' => $baseDir . '/app/Http/Middleware/SentinelGuest.php',

@@ -478,6 +478,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
     );
 
     public static $classMap = array (
+        'AddGdprToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_07_202207_add_gdpr_to_users_table.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'Barryvdh\\DomPDF\\Facade' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade.php',
@@ -2433,6 +2434,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'LANMS\\Http\\Middleware\\HttpsProtocol' => __DIR__ . '/../..' . '/app/Http/Middleware/HttpsProtocol.php',
         'LANMS\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'LANMS\\Http\\Middleware\\RedirectIfUnansweredTerms' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfUnansweredTerms.php',
         'LANMS\\Http\\Middleware\\SentinelAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/SentinelAdmin.php',
         'LANMS\\Http\\Middleware\\SentinelAuth' => __DIR__ . '/../..' . '/app/Http/Middleware/SentinelAuth.php',
         'LANMS\\Http\\Middleware\\SentinelGuest' => __DIR__ . '/../..' . '/app/Http/Middleware/SentinelGuest.php',

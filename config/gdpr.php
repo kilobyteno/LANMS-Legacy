@@ -26,7 +26,7 @@ return [
 
     'middleware' => [
         'web',
-        'auth',
+        'sentinel.auth',
     ],
 
     /*
