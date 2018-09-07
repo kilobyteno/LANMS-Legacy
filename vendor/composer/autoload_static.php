@@ -127,6 +127,7 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
             'Dompdf\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
+            'Dialect\\Gdpr\\' => 13,
             'DeepCopy\\' => 9,
         ),
         'C' => 
@@ -364,6 +365,10 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'Doctrine\\Common\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
+        'Dialect\\Gdpr\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src',
         ),
         'DeepCopy\\' => 
         array (
@@ -673,6 +678,13 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
+        'Dialect\\Gdpr\\Anonymizable' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/Anonymizable.php',
+        'Dialect\\Gdpr\\Commands\\AnonymizeInactiveUsers' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/Commands/AnonymizeInactiveUsers.php',
+        'Dialect\\Gdpr\\EncryptsAttributes' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/EncryptsAttributes.php',
+        'Dialect\\Gdpr\\GdprServiceProvider' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/GdprServiceProvider.php',
+        'Dialect\\Gdpr\\Http\\Requests\\GdprDownload' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/Http/Requests/GdprDownload.php',
+        'Dialect\\Gdpr\\Portable' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/Portable.php',
+        'Dialect\\Gdpr\\console\\Kernel' => __DIR__ . '/..' . '/dialect/laravel-gdpr-compliance/src/console/Kernel.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Doctrine\\Common\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php',
