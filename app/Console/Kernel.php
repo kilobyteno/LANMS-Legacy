@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\CheckLicense::class,
-        Commands\DeleteExpiredSeatReservation::class
+        Commands\DeleteExpiredSeatReservation::class,
+        \Dialect\Gdpr\Commands\AnonymizeInactiveUsers::class,
     ];
 
     /**
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
                   ->daily();
         $schedule->command('lanms:desr')
                   ->hourly();
+        $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
     }
 
     /**
