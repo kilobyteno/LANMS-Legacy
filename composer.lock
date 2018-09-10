@@ -479,16 +479,16 @@
         },
         {
             "name": "dialect/laravel-gdpr-compliance",
-            "version": "v1.3.8",
+            "version": "v1.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dialect-katrineholm/laravel-gdpr-compliance.git",
-                "reference": "75520a7284d62389f064a5ca16df1ae147eef2a6"
+                "reference": "24273b8d11ccbdcf8c82858f512ca62c660ead67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dialect-katrineholm/laravel-gdpr-compliance/zipball/75520a7284d62389f064a5ca16df1ae147eef2a6",
-                "reference": "75520a7284d62389f064a5ca16df1ae147eef2a6",
+                "url": "https://api.github.com/repos/dialect-katrineholm/laravel-gdpr-compliance/zipball/24273b8d11ccbdcf8c82858f512ca62c660ead67",
+                "reference": "24273b8d11ccbdcf8c82858f512ca62c660ead67",
                 "shasum": ""
             },
             "require": {
@@ -530,7 +530,7 @@
                 "laravel",
                 "user anonymization"
             ],
-            "time": "2018-09-04T09:14:53+00:00"
+            "time": "2018-09-10T08:20:29+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -853,16 +853,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a"
+                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/181c4502d8f34db7aed7bfe88d4f87875b8e947a",
-                "reference": "181c4502d8f34db7aed7bfe88d4f87875b8e947a",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/e79cd403fb77fc8963a99ecc30e80ddd885b3311",
+                "reference": "e79cd403fb77fc8963a99ecc30e80ddd885b3311",
                 "shasum": ""
             },
             "require": {
@@ -881,7 +881,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -910,7 +910,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-03-03T17:56:25+00:00"
+            "time": "2018-06-30T13:14:06+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -4883,16 +4883,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.12",
+            "version": "6.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "24da433d7384824d65ea93fbb462e2f31bbb494e"
+                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/24da433d7384824d65ea93fbb462e2f31bbb494e",
-                "reference": "24da433d7384824d65ea93fbb462e2f31bbb494e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0973426fb012359b2f18d3bd1e90ef1172839693",
+                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693",
                 "shasum": ""
             },
             "require": {
@@ -4963,7 +4963,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-08-22T06:32:48+00:00"
+            "time": "2018-09-08T15:10:43+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

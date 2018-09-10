@@ -24,7 +24,7 @@
                             <div class="col-6">
                                 <div class="form-group float-left">
                                     <form class="form-inline" role="form" method="POST"
-                                          action="{{ route('terms_accepted') }}">
+                                          action="{{ route('gdpr-terms-accepted') }}">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-primary">Accept</button>
                                     </form>
@@ -33,7 +33,7 @@
                             <div class="col-6">
                                 <div class="form-group float-right">
                                     <form class="form-inline float-left" role="form" method="POST"
-                                          action="{{ route('terms_denied') }}">
+                                          action="{{ route('gdpr-terms-denied') }}">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-outline-danger">Deny</button>
                                     </form>

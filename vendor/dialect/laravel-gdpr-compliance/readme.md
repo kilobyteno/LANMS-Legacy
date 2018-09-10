@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/dialect-katrineholm/laravel-gdpr-compliance.svg?branch=master)](https://travis-ci.org/dialect-katrineholm/laravel-gdpr-compliance)
 [![StyleCI](https://github.styleci.io/repos/133474603/shield?branch=master)](https://github.styleci.io/repos/133474603)
-[![codecov](https://codecov.io/gh/dialect-katrineholm/laravel-gdpr-compliance/branch/master/graph/badge.svg)](https://codecov.io/gh/dialect-katrineholm/laravel-gdpr-compliance)
 # GDPR compliant data handling with ease
 
 This package helps you get compliant with GDPR;
@@ -63,7 +61,7 @@ until the user has agreed to the new terms.
 To add the agreement functionality:
 
 1. Publish the middleware: <br>
-    `php artisan vendor:publish --provider="Dialect\Gdpr\GdprServiceProvider" --tag=gdpr-consent`
+    `php artisan vendor:publish --provider="Dialect\Gdpr\GdprServiceProvider"`
 2. Add `'gdpr.terms' => \App\Http\Middleware\RedirectIfUnansweredTerms::class` <br>
     to the `$routeMiddleware` middlewaregroup in `app/Http/Kernel` like so: <br>
     ```php
@@ -77,7 +75,15 @@ To add the agreement functionality:
            Route::get('/', 'HomeController@index');
         });
     ```
-4. Change the Agreement text to your particular needs in `resources/views/gdpr/message.blade.php`
+4. Add the fields to `$fillable` in the User model:
+    ```php
+        protected $fillable = [
+            'last_activity',
+            'accepted_gdpr',
+            'isAnonymized'
+        ];
+    ```
+5. Change the Agreement text to your particular needs in `resources/views/gdpr/message.blade.php`
 
 #### Portability
 Add the `Portable` trait to the model model you want to be able to port:
@@ -123,7 +129,7 @@ To activate this feature:
 
     ```php
         protected $commands = [
-            \App\Console\Commands\AnonymizeInactiveUsers::class,
+            \Dialect\Gdpr\Commands\AnonymizeInactiveUsers::class,
         ];
     ```
 
