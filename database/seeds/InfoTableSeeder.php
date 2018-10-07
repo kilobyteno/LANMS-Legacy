@@ -82,5 +82,41 @@ class InfoTableSeeder extends Seeder
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
+
+		Info::create([
+			'name' 		=> 'social_facebook',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_twitter',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_instagram',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_youtube',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_snapchat',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
     }
 }
