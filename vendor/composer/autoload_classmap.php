@@ -2002,7 +2002,6 @@ return array(
     'LANMS\\Http\\Requests\\Member\\ProfileImageRequest' => $baseDir . '/app/Http/Requests/Member/ProfileImageRequest.php',
     'LANMS\\Http\\Requests\\Member\\ProfileRequest' => $baseDir . '/app/Http/Requests/Member/ProfileRequest.php',
     'LANMS\\Http\\Requests\\Member\\SearchRequest' => $baseDir . '/app/Http/Requests/Member/SearchRequest.php',
-    'LANMS\\Http\\Requests\\Member\\SettingsRequest' => $baseDir . '/app/Http/Requests/Member/SettingsRequest.php',
     'LANMS\\Http\\Requests\\Request' => $baseDir . '/app/Http/Requests/Request.php',
     'LANMS\\Http\\Requests\\Seating\\PaymentRequest' => $baseDir . '/app/Http/Requests/Seating/PaymentRequest.php',
     'LANMS\\Http\\Requests\\Seating\\SeatReserveRequest' => $baseDir . '/app/Http/Requests/Seating/SeatReserveRequest.php',

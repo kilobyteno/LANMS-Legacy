@@ -2469,7 +2469,6 @@ class ComposerStaticInit1bf6235d5e77b2cbeaa0c3b418f4e611
         'LANMS\\Http\\Requests\\Member\\ProfileImageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileImageRequest.php',
         'LANMS\\Http\\Requests\\Member\\ProfileRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/ProfileRequest.php',
         'LANMS\\Http\\Requests\\Member\\SearchRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/SearchRequest.php',
-        'LANMS\\Http\\Requests\\Member\\SettingsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Member/SettingsRequest.php',
         'LANMS\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'LANMS\\Http\\Requests\\Seating\\PaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Seating/PaymentRequest.php',
         'LANMS\\Http\\Requests\\Seating\\SeatReserveRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Seating/SeatReserveRequest.php',
