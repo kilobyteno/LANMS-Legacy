@@ -113,7 +113,7 @@ Route::group([
 });
 
 Route::group([
-	'middleware' => ['sentinel.auth', 'setTheme:neon-user', 'gdpr.terms'],
+	'middleware' => ['sentinel.auth', 'setTheme:vobilet', 'gdpr.terms'],
 	'prefix' => 'user',
 	], function() {
 		Route::get('/', [
