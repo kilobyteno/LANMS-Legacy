@@ -87,12 +87,16 @@
 										@endif
 									</tbody>
 									<tbody class="col-lg-6 p-0">
-										<tr>
-											<td><strong>Email:</strong> {{ $email }}</td>
-										</tr>
-										<tr>
-											<td><strong>Last seen:</strong> {{ \Carbon::parse($last_login)->diffForHumans() }}</td>
-										</tr>
+										@if($showemail)
+											<tr>
+												<td><strong>Email:</strong> {{ $email }}</td>
+											</tr>
+										@endif
+										@if($showonline)
+											<tr>
+												<td><strong>Last seen:</strong> {{ \Carbon::parse($last_login)->diffForHumans() }}</td>
+											</tr>
+										@endif
 										@if($occupation)
 											<tr>
 												<td><strong>Email :</strong> {{ $occupation }}</td>
