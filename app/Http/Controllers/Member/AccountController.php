@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use Regulus\ActivityLog\Models\Activity;
 
-use LANMS\Http\Requests\Member\SettingsRequest;
+use LANMS\Http\Requests\Member\ProfileRequest;
 use LANMS\Http\Requests\Member\PasswordRequest;
 use LANMS\Http\Requests\Member\ProfileImageRequest;
 use LANMS\Http\Requests\Member\ProfileCoverRequest;
-use LANMS\Http\Requests\Member\ChangeUserDetailsRequest;
 
 use LANMS\User;
 use LANMS\News;
@@ -33,47 +32,59 @@ class AccountController extends Controller {
 					->withNews($news);
 	}
 
+	public function getAccount() {
+		return view('account.index');
+	}
+
 	public function getEditProfile() {
 		$authuser = Sentinel::getUser();
 		return view('account.edit-profile')->with($authuser->toArray());
 	}
 
-	public function getAccount() {
-		return view('account.index');
-	}
+	public function postEditProfile(ProfileRequest $request) {
 
-	public function getSettings(Sentinel $auth) {
-		$authuser = Sentinel::getUser();
-		return view('account.settings')->with($authuser->toArray());
-	}
-
-	public function postSettings(SettingsRequest $request) {
-		
 		$finduser = Sentinel::findById(Sentinel::getUser()->id);
 
-		$info = [
-			'showemail' 		=> $request->get('showemail'),
-			'showname' 			=> $request->get('showname'),
-			'showonline' 		=> $request->get('showonline'),
-			'userdateformat' 	=> $request->get('userdateformat'),
-			'usertimeformat' 	=> $request->get('usertimeformat'),
+		$credentials = [
+			'login' 		=> Sentinel::getUser()->username,
+			'password' 		=> $request->get('password'),
 		];
 
-		$updateuser = Sentinel::update($finduser, $info);
+		if (Sentinel::authenticate($credentials)) {
 
-		if($updateuser) {
-			return Redirect::route('account-settings')
-					->with('messagetype', 'success')
-					->with('message', 'Your settings has been saved!');
-		} else {
-			return Redirect::route('account-settings')
+			$info = [
+				'firstname' 		=> $request->get('firstname'),
+				'lastname' 			=> $request->get('lastname'),
+				'gender' 			=> $request->get('gender'),
+				'location' 			=> $request->get('location'),
+				'occupation' 		=> $request->get('occupation'),
+				'birthdate' 		=> $request->get('birthdate'),
+				'showemail' 		=> $request->get('showemail'),
+				'showname' 			=> $request->get('showname'),
+				'showonline' 		=> $request->get('showonline'),
+				'userdateformat' 	=> $request->get('userdateformat'),
+				'usertimeformat' 	=> $request->get('usertimeformat'),
+			];
+
+			$updateuser = Sentinel::update($finduser, $info);
+
+			if($updateuser) {
+				return Redirect::route('user-profile', Sentinel::getUser()->username)
+						->with('messagetype', 'success')
+						->with('message', 'Your details has been changed!');
+			} else {
+				return Redirect::route('user-profile', Sentinel::getUser()->username)
 					->with('messagetype', 'danger')
-					->with('message', 'Something went wrong when saving your settings.');
+					->with('message', 'Something went wrong when saving your details.');
+			}
+		} else {
+			return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
+					->with('messagetype', 'warning')
+					->with('message', 'Wrong password. Please try again.');
 		}
-
 	}
 
-	public function getChangePassword(Sentinel $auth) {
+	public function getChangePassword() {
 		return view('account.changepassword');
 	}
 
@@ -113,53 +124,7 @@ class AccountController extends Controller {
 
 	}
 
-	public function getChangeDetails() {
-		$authuser = Sentinel::getUser();
-		return view('account.changedetails')->with($authuser->toArray());
-	}
-
-	public function postChangeDetails(ChangeUserDetailsRequest $request) {
-
-		$finduser = Sentinel::findById(Sentinel::getUser()->id);
-
-		$credentials = [
-			'login' 		=> Sentinel::getUser()->username,
-			'password' 		=> $request->get('password'),
-		];
-
-		if (Sentinel::authenticate($credentials)) {
-
-			$info = [
-				/*'email' 		=> $request->get('email'),*/
-				'firstname' 	=> $request->get('firstname'),
-				'lastname' 		=> $request->get('lastname'),
-				'gender' 		=> $request->get('gender'),
-				'location' 		=> $request->get('location'),
-				'occupation' 	=> $request->get('occupation'),
-				'birthdate' 	=> $request->get('birthdate'),
-			];
-
-			$updateuser = Sentinel::update($finduser, $info);
-
-			if($updateuser) {
-				return Redirect::route('account-change-details')
-						->with('messagetype', 'success')
-						->with('message', 'Your details has been changed!');
-			} else {
-				return Redirect::route('account-change-details')
-					->with('messagetype', 'danger')
-					->with('message', 'Something went wrong when saving your details.');
-			}
-
-		} else {
-			return Redirect::route('account-change-details')
-					->with('messagetype', 'warning')
-					->with('message', 'Wrong password. Please try again.');
-		}
-
-	}
-
-	public function getChangeImages(Sentinel $auth) {
+	public function getChangeImages() {
 		$authuser = Sentinel::getUser();
 		return view('account.changeimages')->with($authuser->toArray());
 	}
