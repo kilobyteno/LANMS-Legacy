@@ -57,14 +57,14 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
-												<i class="dropdown-icon mdi mdi-account-outline "></i> Profile
+												<i class="fas fa-user-circle"></i> Profile
 											</a>
 											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="dropdown-icon  mdi mdi-settings"></i> Account
+												<i class="far fa-user"></i> Account
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
-												<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+												<i class="fas fa-sign-out-alt"></i> Sign out
 											</a>
 										</div>
 									</div>
