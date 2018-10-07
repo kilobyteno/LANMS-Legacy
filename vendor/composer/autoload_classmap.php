@@ -4063,6 +4063,7 @@ return array(
     'UpdateSeatRows' => $baseDir . '/database/migrations/2017_12_11_161626_update_seat_rows.php',
     'UpdateSeats' => $baseDir . '/database/migrations/2017_12_11_171931_update_seats.php',
     'UpdateUsersTable' => $baseDir . '/database/migrations/2018_08_08_195939_update_users_table.php',
+    'UpdateUsersTableWithAbout' => $baseDir . '/database/migrations/2018_10_07_211058_update_users_table_with_about.php',
     'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',

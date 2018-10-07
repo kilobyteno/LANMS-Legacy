@@ -159,9 +159,12 @@
 									<p class="text-danger">{{ $errors->first('gender') }}</p>
 								@endif
 							</div>
-							<div class="form-group">
+							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">About</label>
-								<textarea class="form-control" rows="4"></textarea>
+								<textarea class="form-control" rows="4" name="about">{{ $about }}</textarea>
+								@if($errors->has('about'))
+									<p class="text-danger">{{ $errors->first('about') }}</p>
+								@endif
 							</div>
 						</div>
 					</div>

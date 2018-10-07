@@ -33,6 +33,7 @@ class ProfileRequest extends Request {
 			'showonline' 		=> 'integer',
 			'userdateformat' 	=> '',
 			'usertimeformat' 	=> '',
+			'about' 			=> 'nullable',
 		];
 	}
 

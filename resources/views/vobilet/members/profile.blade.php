@@ -106,14 +106,16 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="row mt-5">
-								<div class="col-md-12">
-									<div class="media-heading">
-										<h5><strong>About</strong></h5>
+							@if($about)
+								<div class="row mt-5">
+									<div class="col-md-12">
+										<div class="media-heading">
+											<h5><strong>About</strong></h5>
+										</div>
+										<p>{{ $about }}</p>
 									</div>
-									<p>...</p>
 								</div>
-							</div>
+							@endif
 						</div>
 					</div>
 				</div>

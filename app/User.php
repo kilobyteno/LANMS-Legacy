@@ -35,6 +35,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'showonline',
 		'userdateformat',
 		'usertimeformat',
+		'about',
 	];
 
 	/**
@@ -67,6 +68,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'showonline',
 		'userdateformat',
 		'usertimeformat',
+		'about',
 	];
 
 	/**
