@@ -62,9 +62,6 @@
 											<a class="dropdown-item" href="{{ route('account') }}">
 												<i class="dropdown-icon  mdi mdi-settings"></i> Account
 											</a>
-											<a class="dropdown-item" href="{{ route('account-settings') }}">
-												<i class="dropdown-icon  mdi mdi-settings"></i> Settings
-											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
 												<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
