@@ -28,7 +28,7 @@ class AccountController extends Controller {
 
 		$news = News::isPublished()->get()->take(2);
 
-		return view('dashboard')
+		return view('account.dashboard')
 					->with($userarray)
 					->withNews($news);
 	}
