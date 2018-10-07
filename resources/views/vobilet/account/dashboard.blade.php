@@ -70,7 +70,7 @@
 						@foreach(Sentinel::getUser()->reservationsThisYear()->get() as $reservation)
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</h3>
+									<h3 class="card-title"><a href="{{ route('seating-show', $reservation->seat->slug) }}">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a></h3>
 									<div class="card-options">
 										@if($reservation->payment)
 											<span class="badge badge-success">Paid</span>
@@ -78,9 +78,6 @@
 											<span class="badge badge-danger">Unpaid</span>
 										@endif
 									</div>
-								</div>
-								<div class="card-body">
-									<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="list-group-item">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }} @if($reservation->payment) <span class="badge badge-success">Paid</span> @else <span class="badge badge-danger">Not paid</span> @endif</a>
 								</div>
 							</div>
 						@endforeach
