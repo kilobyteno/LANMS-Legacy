@@ -128,6 +128,10 @@ Route::group([
 			'as' => 'user-profile',
 			'uses' => 'Member\MemberController@profile'
 		]);
+		Route::get('/profile/{username}/edit', [
+			'as' => 'user-profile-edit',
+			'uses' => 'Member\AccountController@getEditProfile'
+		]);
 		Route::get('/members', [
 			'as' => 'members',
 			'uses' => 'Member\MemberController@index'

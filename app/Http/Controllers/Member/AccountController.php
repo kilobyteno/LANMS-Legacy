@@ -33,6 +33,11 @@ class AccountController extends Controller {
 					->withNews($news);
 	}
 
+	public function getEditProfile() {
+		$authuser = Sentinel::getUser();
+		return view('account.edit-profile')->with($authuser->toArray());
+	}
+
 	public function getAccount() {
 		return view('account.index');
 	}
