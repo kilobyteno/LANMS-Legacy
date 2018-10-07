@@ -19,7 +19,7 @@ class SentinelAuth {
 			if ($request->ajax()) {
 				return response('Unauthorized.', 401);
 			} else {
-				return redirect()->route('account-login')
+				return redirect()->route('account-signin')
 										->with('messagetype', 'info')
 										->with('message', 'You need to login to access this page!');
 			}
