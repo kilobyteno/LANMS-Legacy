@@ -12,7 +12,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Edit</li>
 		</ol>
 	</div>
-	<form class="row">
+	<form class="row" role="form" method="post" action="{{ route('user-profile-edit-post', $username) }}">
 		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-header">
