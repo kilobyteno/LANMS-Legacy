@@ -132,6 +132,10 @@ Route::group([
 			'as' => 'user-profile-edit',
 			'uses' => 'Member\AccountController@getEditProfile'
 		]);
+		Route::post('/profile/{username}/edit', [
+			'as' => 'user-profile-edit-post',
+			'uses' => 'Member\AccountController@postEditProfile'
+		]);
 		Route::get('/members', [
 			'as' => 'members',
 			'uses' => 'Member\MemberController@index'
@@ -195,14 +199,6 @@ Route::group([
 					'as' => 'account' ,
 					'uses' => 'Member\AccountController@getAccount'
 				]);
-				Route::get('/settings', [
-					'as' => 'account-settings' ,
-					'uses' => 'Member\AccountController@getSettings'
-				]);
-				Route::post('/settings', [
-					'as' => 'account-settings-post' ,
-					'uses' => 'Member\AccountController@postSettings'
-				]);
 				Route::get('/change/password', [
 					'as' => 'account-change-password' ,
 					'uses' => 'Member\AccountController@getChangePassword'
@@ -210,14 +206,6 @@ Route::group([
 				Route::post('/change/password', [
 					'as' => 'account-change-password-post' ,
 					'uses' => 'Member\AccountController@postChangePassword'
-				]);
-				Route::get('/change/details', [
-					'as' => 'account-change-details' ,
-					'uses' => 'Member\AccountController@getChangeDetails'
-				]);
-				Route::post('/change/details', [
-					'as' => 'account-change-details-post' ,
-					'uses' => 'Member\AccountController@postChangeDetails'
 				]);
 				Route::get('/change/images', [
 					'as' => 'account-change-images' ,
