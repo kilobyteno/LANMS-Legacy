@@ -56,10 +56,11 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \LANMS\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'sentinel.auth' => 'LANMS\Http\Middleware\SentinelAuth',
-		'sentinel.guest' => 'LANMS\Http\Middleware\SentinelGuest',
-		'sentinel.admin' => 'LANMS\Http\Middleware\SentinelAdmin',
+		'sentinel.auth' => \LANMS\Http\Middleware\SentinelAuth::class,
+		'sentinel.guest' => \LANMS\Http\Middleware\SentinelGuest::class,
+		'sentinel.admin' => \LANMS\Http\Middleware\SentinelAdmin::class,
         'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
+        'gdpr.terms' => \LANMS\Http\Middleware\RedirectIfUnansweredTerms::class,
 	];
 
 }

@@ -15,35 +15,35 @@ class InfoTableSeeder extends Seeder
     {
         Info::create([
 			'name' 		=> 'when',
-			'content'	=> '27. feb - 1. mars',
+			'content'	=> '26. feb - 26. feb 2019',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
 
 		Info::create([
 			'name' 		=> 'where',
-			'content'	=> '&Oslash;yerhallen',
+			'content'	=> 'Gausdal Ungdomskole',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
 
 		Info::create([
 			'name' 		=> 'where_url',
-			'content'	=> 'https://goo.gl/maps/PvYyAKpxEyu',
+			'content'	=> '#',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
 
 		Info::create([
 			'name' 		=> 'price',
-			'content'	=> '300kr',
+			'content'	=> '250kr',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
 
 		Info::create([
 			'name' 		=> 'price_alt',
-			'content'	=> '350kr',
+			'content'	=> '300kr',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
@@ -82,5 +82,41 @@ class InfoTableSeeder extends Seeder
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
+
+		Info::create([
+			'name' 		=> 'social_facebook',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_twitter',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_instagram',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_youtube',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
+		Info::create([
+			'name' 		=> 'social_snapchat',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
     }
 }

@@ -1,0 +1,97 @@
+<?php
+
+namespace LANMS\Http\Controllers;
+
+use LANMS\User;
+use Illuminate\Routing\Controller;
+//use Illuminate\Support\Facades\Auth;
+use Dialect\Gdpr\Http\Requests\GdprDownload;
+
+class GdprController extends Controller
+{
+    /**
+     * Download the GDPR compliant data portability JSON file.
+     *
+     * @param  \Dialect\Package\Gdpr\Http\Requests\GdprDownload  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function download(GdprDownload $request)
+    {
+        $credentials = [
+            $request->user()->getAuthIdentifierName() => $request->user()->getAuthIdentifier(),
+            'password'                                => $request->input('password'),
+        ];
+
+        abort_unless(\Sentinel::authenticate($credentials), 403);
+
+        return response()->json(
+            $request->user()->portable(),
+            200,
+            [
+                'Content-Disposition' => 'attachment; filename="user.json"',
+            ]
+        );
+    }
+
+    /**
+     * Shows The GDPR terms to the user.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showTerms()
+    {
+        return view('gdpr.message');
+    }
+
+    /**
+     * Saves the users acceptance of terms and the time of acceptance.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function termsAccepted()
+    {
+        $user = \Sentinel::getUser();
+
+        \Sentinel::update($user, [
+            'accepted_gdpr' => true,
+        ]);
+
+        return redirect()->route('dashboard')->with('messagetype', 'success')->with('message', 'Your choice has been saved.');
+    }
+
+    /**
+     * Saves the users denial of terms and the time of denial.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function termsDenied()
+    {
+        $user = \Sentinel::getUser();
+
+        \Sentinel::update($user, [
+            'accepted_gdpr' => false,
+        ]);
+        \Sentinel::logout();
+        return redirect()->to('/')->with('messagetype', 'error')->with('message', 'You have to accept the new agreement to use this service. This is because of the new GDPR rules.');
+    }
+
+    /**
+     * Anonymizes the user and sets the boolean.
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function anonymize($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->anonymize();
+
+        \Sentinel::update($user, [
+            'isAnonymized' => true,
+        ]);
+
+        return redirect()->back();
+    }
+}

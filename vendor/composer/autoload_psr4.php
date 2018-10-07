@@ -60,6 +60,7 @@ return array(
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Common/Inflector'),
+    'Dialect\\Gdpr\\' => array($vendorDir . '/dialect/laravel-gdpr-compliance/src'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Cartalyst\\Support\\' => array($vendorDir . '/cartalyst/support/src'),
