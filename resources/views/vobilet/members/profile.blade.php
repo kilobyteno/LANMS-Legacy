@@ -23,9 +23,7 @@
 						<p class="mb-4 text-white">Member</p>
 					@endif
 					@if(\Sentinel::getUser()->id == $id)
-						<a href="{{ route('account-change-details') }}" class="btn btn-light btn-sm"><i class="fa fa-edit"></i> Edit Profile Details</a>
-						<a href="{{ route('account-change-password') }}" class="btn btn-light btn-sm"><i class="fa fa-asterisk"></i> Change Password</a>
-						<a href="{{ route('account-settings') }}" class="btn btn-light btn-sm"><i class="fa fa-cog"></i> Edit Profile Settings</a>
+						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-light btn-sm"><i class="fa fa-pencil-alt"></i> Edit Profile</a>
 					@endif
 				</div>
 			</div>
