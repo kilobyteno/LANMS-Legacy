@@ -52,13 +52,13 @@
 							<table class="table card-table">
 								<tbody>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account') }}"><i class="fa fa-user"></i> Your Account</a></td>
+										<td><a href="{{ route('account') }}" class="text-inherit"><i class="fas fa-id-card"></i> Your Account</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('user-profile', \Sentinel::getUser()->username) }}"><i class="fa fa-user-circle"></i> Your Profile</a></td>
+										<td><a href="{{ route('user-profile', \Sentinel::getUser()->username) }}" class="text-inherit"><i class="fa fa-user-circle"></i> Your Profile</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-change-password') }}"><i class="fa fa-asterisk"></i> Change password</a></td>
+										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fa fa-asterisk"></i> Change password</a></td>
 									</tr>
 								</tbody>
 							</table>
