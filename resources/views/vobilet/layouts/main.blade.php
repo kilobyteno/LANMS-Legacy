@@ -40,7 +40,7 @@
 				<div class="header py-4">
 					<div class="container">
 						<div class="d-flex">
-							<a class="header-brand" href="index.html">
+							<a class="header-brand" href="{{ route('home') }}">
 								<img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
