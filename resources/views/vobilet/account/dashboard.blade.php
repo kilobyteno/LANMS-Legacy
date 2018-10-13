@@ -25,7 +25,7 @@
 			@endif
 			@if(!Sentinel::getUser()->birthdate)
 				<div class="alert alert-warning" role="alert">
-					<i class="fa fa-exclamation-triangle"></i> There is no birthdate assigned to your account, this is required from now on. Edit it here: <a href="{{ route('user-profile-edit', Sentinel::getUser()->username) }}"> Change Account Details</a>
+					<i class="fa fa-exclamation-triangle"></i> There is no birthdate assigned to your account, this is required from now on. <a href="{{ route('user-profile-edit', Sentinel::getUser()->username) }}">Edit your profile</a>
 				</div>
 			@endif
 			<div class="row">
