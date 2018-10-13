@@ -2,15 +2,14 @@
 @section('title', 'User')
 @section('content')
 
-<div class="page-header">
-	<h4 class="page-title">User</h4>
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">Home</li>
-		<li class="breadcrumb-item active" aria-current="page">User</li>
-	</ol>
-</div>
-
 <div class="container">
+	<div class="page-header">
+		<h4 class="page-title">User</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item active" aria-current="page">User</li>
+		</ol>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
 			@if(Sentinel::getUser()->ownReservationsLastYear->count() > 0 && !Sentinel::getUser()->ownReservationsThisYear->count() > 0)

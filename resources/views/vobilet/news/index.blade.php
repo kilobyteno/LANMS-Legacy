@@ -1,17 +1,15 @@
 @extends('layouts.main')
 @section('title', 'News')
-   
 @section('content')
 
-<div class="page-header">
-	<h4 class="page-title">News</h4>
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">Home</li>
-		<li class="breadcrumb-item active" aria-current="page">News</li>
-	</ol>
-</div>
-
 <div class="container">
+	<div class="page-header">
+		<h4 class="page-title">News</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item active" aria-current="page">News</li>
+		</ol>
+	</div>
 	<div class="row">
 		<div class="col-md-12 col-lg-12 col-sm-12">
 			@foreach($news as $article)

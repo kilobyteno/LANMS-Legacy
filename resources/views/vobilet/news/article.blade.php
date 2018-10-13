@@ -1,18 +1,16 @@
 @extends('layouts.main')
 @section('title', $article->title.' - News')
-   
 @section('content')
 
-<div class="page-header">
-	<h4 class="page-title">News</h4>
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">Home</li>
-		<li class="breadcrumb-item">News</li>
-		<li class="breadcrumb-item active" aria-current="page">{{ $article->title }}</li>
-	</ol>
-</div>
-
 <div class="container">
+	<div class="page-header">
+		<h4 class="page-title">News</h4>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item">News</li>
+			<li class="breadcrumb-item active" aria-current="page">{{ $article->title }}</li>
+		</ol>
+	</div>
 	<div class="row">
 		<div class="col-md-12 col-lg-12 col-sm-12">
 			<div class="card"> 
