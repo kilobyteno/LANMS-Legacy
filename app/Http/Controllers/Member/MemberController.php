@@ -33,7 +33,7 @@ class MemberController extends Controller {
 
 	public function search(SearchRequest $request) {
 
-		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->get();
+		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity', '<>', '')->get();
 
 		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(10)->get();
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(10)->get();
