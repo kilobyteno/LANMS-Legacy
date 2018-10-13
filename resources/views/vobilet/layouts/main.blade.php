@@ -91,7 +91,7 @@
 										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> Crew</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/members')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> Members</a>
+										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> Members</a>
 									</li> 
 									@if(count(\LANMS\Page::forMenu()) > 0)
 										<li class="nav-item">
