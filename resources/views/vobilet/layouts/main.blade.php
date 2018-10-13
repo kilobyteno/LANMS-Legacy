@@ -56,11 +56,15 @@
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<a class="dropdown-item" href="{{ route('dashboard') }}">
+												<i class="fas fa-tachometer-alt"></i> Dashboard
+											</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="{{ route('account') }}">
+												<i class="fas fa-id-card"></i> Account
+											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
 												<i class="fas fa-user-circle"></i> Profile
-											</a>
-											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="far fa-user"></i> Account
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
