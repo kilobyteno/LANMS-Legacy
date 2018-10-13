@@ -35,8 +35,8 @@ class MemberController extends Controller {
 
 		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->get();
 
-		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(4)->get();
-		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(4)->get();
+		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(10)->get();
+		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(10)->get();
 		
 		return view('members.search')
 				->with('query', $request->search)
