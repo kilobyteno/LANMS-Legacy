@@ -128,15 +128,15 @@
 			<footer class="footer br-bl-7 br-br-7">
 				<div class="container">
 					<div class="row align-items-center text-center">
-						<div class="col-lg-6 col-md-6 d-none d-md-block ">
+						<div class="col-lg-6 col-md-6 d-none d-md-block">
 							<div class="social">
-								<ul class="text-center m-0 ">
-									<li> <a class="social-icon" href=""><i class="fab fa-facebook"></i></a> </li>
-									<li> <a class="social-icon" href=""><i class="fab fa-twitter"></i></a> </li>
-									<li> <a class="social-icon" href=""><i class="fab fa-instagram"></i></a> </li>
-									<li> <a class="social-icon" href=""><i class="fab fa-youtube"></i></a> </li>
-									<li> <a class="social-icon" href=""><i class="fab fa-snapchat"></i></a> </li>
-									<li> <a class="social-icon" href=""><i class="fa fa-rss"></i></a> </li>
+								<ul class="text-center m-0">
+									@if(\LANMS\Info::where('name', 'social_facebook')->first()->content)<li><a class="social-icon" href="https://www.facebook.com/{{ \LANMS\Info::where('name', 'social_facebook')->first()->content }}"><i class="fab fa-facebook"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_twitter')->first()->content)<li><a class="social-icon" href="https://www.twitter.com/{{ \LANMS\Info::where('name', 'social_twitter')->first()->content }}"><i class="fab fa-twitter"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_instagram')->first()->content)<li><a class="social-icon" href="https://www.instagram.com/{{ \LANMS\Info::where('name', 'social_instagram')->first()->content }}"><i class="fab fa-instagram"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_youtube')->first()->content)<li><a class="social-icon" href="https://www.youtube.com/{{ \LANMS\Info::where('name', 'social_youtube')->first()->content }}"><i class="fab fa-youtube"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_snapchat')->first()->content)<li><a class="social-icon" href="https://www.snapchat.com/add/{{ \LANMS\Info::where('name', 'social_snapchat')->first()->content }}"><i class="fab fa-snapchat"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_twitch')->first()->content)<li><a class="social-icon" href="https://www.twitch.tv/{{ \LANMS\Info::where('name', 'social_twitch')->first()->content }}"><i class="fab fa-twitch"></i></a></li>@endif
 								</ul>
 							</div>
 						</div>

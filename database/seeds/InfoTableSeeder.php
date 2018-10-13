@@ -118,5 +118,12 @@ class InfoTableSeeder extends Seeder
 			'editor_id'	=> 1,
 		]);
 
+		Info::create([
+			'name' 		=> 'social_twitch',
+			'content'	=> '',
+			'author_id'	=> 1,
+			'editor_id'	=> 1,
+		]);
+
     }
 }
