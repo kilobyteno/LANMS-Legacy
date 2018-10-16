@@ -188,7 +188,7 @@
 				</div>
 				<div class="card-footer text-right">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<button type="submit" class="btn btn-success">Update Profile</button>
+					<button type="submit" class="btn btn-success"><i class="fas fa-user-check"></i> Update Profile</button>
 				</div>
 			</div>
 			
