@@ -47,7 +47,7 @@
 										<td><a href="{{ route('account-addressbook') }}" class="text-inherit"><i class="fa fa-book"></i> Manage Address Book</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fa fa-asterisk"></i> Change Password</a></td>
+										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fas fa-key"></i> Change Password</a></td>
 									</tr>
 								</tbody>
 							</table>
