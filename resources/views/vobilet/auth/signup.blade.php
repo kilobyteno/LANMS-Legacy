@@ -46,9 +46,10 @@
 						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
 					</div>
 					<div class="form-group">
-						<label class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" name="tos-pp" />
-							<span class="custom-control-label">I have read, accepted and agreed to the <strong>Terms of Service and Privacy Policy</strong></span>
+						<label class="custom-switch">
+							<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" name="tos-pp">
+							<span class="custom-switch-indicator"></span>
+							<span class="custom-switch-description">I have read and agree to the<br><strong>Terms of Service and Privacy Policy</strong></span>
 						</label>
 					</div>
 					<div class="form-footer">
