@@ -24,6 +24,7 @@
 					@endif
 					@if(\Sentinel::getUser()->id == $id)
 						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-light btn-sm"><i class="fa fa-pencil-alt"></i> Edit Profile</a>
+						<a href="{{ route('account-change-images') }}" class="btn btn-light btn-sm"><i class="fas fa-images"></i> Edit Images</a>
 					@endif
 				</div>
 			</div>
