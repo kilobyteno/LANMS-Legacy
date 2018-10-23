@@ -72,7 +72,7 @@ class GdprController extends Controller
             'accepted_gdpr' => false,
         ]);
         \Sentinel::logout();
-        return redirect()->to('/')->with('messagetype', 'error')->with('message', 'You have to accept the new agreement to use this service. This is because of the new GDPR rules.');
+        return redirect()->to('/')->with('messagetype', 'danger')->with('message', 'You have to accept the new agreement to use this service. This is because of the new GDPR rules.');
     }
 
     /**
