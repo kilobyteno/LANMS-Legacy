@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col col-login mx-auto">
 			<div class="text-center mb-6">
-				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="h-6" alt="{{ Setting::get('WEB_NAME') }}"></a>
+				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO') }}" class="h-6" alt="{{ Setting::get('WEB_NAME') }}"></a>
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-signin-post') }}">
 				<div class="card-body p-6">

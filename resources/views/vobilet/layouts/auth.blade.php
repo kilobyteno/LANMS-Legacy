@@ -33,7 +33,7 @@
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
 	</head>
-	<body class="login-img">
+	<body class="login-img" style="background-image: url('{{ Theme::url('images/lan.jpg') }}');">
 		<div id="global-loader"></div>
 		<div class="page">
 			<div class="page-single">
