@@ -96,6 +96,9 @@
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> Members</a>
 									</li> 
+									<li class="nav-item">
+										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> Seating</a>
+									</li> 
 									@if(count(\LANMS\Page::forMenu()) > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> INFORMATION</a>
