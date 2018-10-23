@@ -4,6 +4,7 @@ namespace Dialect\Gdpr;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
 use Dialect\Gdpr\Commands\AnonymizeInactiveUsers;
 
 class GdprServiceProvider extends ServiceProvider
@@ -25,6 +26,12 @@ class GdprServiceProvider extends ServiceProvider
             __DIR__.'/middleware/RedirectIfUnansweredTerms.php' => base_path('app/Http/Middleware/RedirectIfUnansweredTerms.php'),
             __DIR__.'/Http/Controllers/GdprController.php' => base_path('app/Http/Controllers/GdprController.php'),
         ], 'gdpr-consent');
+
+        // add scheduled job without overriding any other scheduled jobs
+        $this->app->booted(function () {
+            $schedule = $this->app->make(Schedule::class);
+            $schedule->command(AnonymizeInactiveUsers::class)->daily();
+        });
     }
 
     /**
@@ -61,7 +68,6 @@ class GdprServiceProvider extends ServiceProvider
     {
         $this->configure();
         $this->offerPublishing();
-        $this->addScheduledJobs();
     }
 
     /**
@@ -86,16 +92,5 @@ class GdprServiceProvider extends ServiceProvider
                 __DIR__.'/config/gdpr.php' => config_path('gdpr.php'),
             ], 'gdpr-config');
         }
-    }
-
-    protected function addScheduledJobs()
-    {
-        $this->app->singleton('dialect.gdpr.console.kernel', function ($app) {
-            $dispatcher = $app->make(\Illuminate\Contracts\Events\Dispatcher::class);
-
-            return new console\Kernel($app, $dispatcher);
-        });
-
-        $this->app->make('dialect.gdpr.console.kernel');
     }
 }
