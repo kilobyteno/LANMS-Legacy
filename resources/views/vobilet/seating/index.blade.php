@@ -74,6 +74,7 @@
 													<div class="item-action dropdown">
 														<a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
 														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> View</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
 															@elseif($reservation->status_id == 2 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
@@ -136,6 +137,7 @@
 													<div class="item-action dropdown">
 														<a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
 														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> View</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
 															@elseif($reservation->status_id == 2 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
