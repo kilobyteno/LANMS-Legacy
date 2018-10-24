@@ -77,7 +77,7 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> View</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
-															@elseif($reservation->status_id == 2 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> Change payment</a>
 															@endif
 															@if($reservation->reservedfor->age() < 16)
@@ -140,7 +140,7 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> View</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
-															@elseif($reservation->status_id == 2 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> Change payment</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
