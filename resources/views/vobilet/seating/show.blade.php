@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Seating')
+@section('title', $currentseat->name.' - Seat')
 @section('css')
 	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
 @stop
@@ -7,10 +7,11 @@
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">Seating</h4>
+		<h4 class="page-title">Seat - {{ $currentseat->name }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">Home</li>
-			<li class="breadcrumb-item active" aria-current="page">Seating</li>
+			<li class="breadcrumb-item">Seating</li>
+			<li class="breadcrumb-item active" aria-current="page">{{ $currentseat->name }}</li>
 		</ol>
 	</div>
 	<div class="row">
