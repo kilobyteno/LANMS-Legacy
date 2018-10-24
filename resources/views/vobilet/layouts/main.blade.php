@@ -55,6 +55,12 @@
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											@if(Sentinel::hasAccess('admin'))
+												<a class="dropdown-item" href="{{ route('admin') }}">
+													<i class="fa fa-user-secret"></i> Admin Panel
+												</a>
+												<div class="dropdown-divider"></div>
+											@endif
 											<a class="dropdown-item" href="{{ route('dashboard') }}">
 												<i class="fas fa-tachometer-alt"></i> Dashboard
 											</a>
