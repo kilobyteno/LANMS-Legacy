@@ -101,19 +101,19 @@ class ReserveSeatingController extends Controller {
 		/* RESERVED FOR USER */
 		if (!$reservedfor->birthdate) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-								->with('message', 'It seems like '.$reservedfor->username.' does not have an birthdate assigned to their account, they need it to be able to reserve a seat.');
+								->with('message', 'It seems like '.\User::getFullnameAndNicknameByID($reservedfor->id).' does not have an birthdate assigned to their account, they need it to be able to reserve a seat.');
 		}
 		if ($reservedfor->addresses->count() == 0) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-								->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
+								->with('message', 'It seems like '.\User::getFullnameAndNicknameByID($reservedfor->id).' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
 		}
 		if($reservedfor->reservationsThisYear()->count() >= 5) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
-								->with('message', $reservedfor->username.' are not allowed to reserve more seats.');
+								->with('message', \User::getFullnameAndNicknameByID($reservedfor->id).' are not allowed to reserve more seats.');
 		}
 		if($reservedfor->ownReservationsThisYear()->count() >= 1) {
 			return Redirect::route('seating')->with('messagetype', 'warning')
-								->with('message', $reservedfor->username.' already has reserved a seat.');
+								->with('message', \User::getFullnameAndNicknameByID($reservedfor->id).' already has reserved a seat.');
 		}
 
 		$seatreservation 					= new SeatReservation;
