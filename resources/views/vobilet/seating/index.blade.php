@@ -19,7 +19,7 @@
 				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href="{{ route('account-addressbook-create') }}" class="alert-link">add</a> one.</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
-				<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
+				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
 			@endif
 
 			<div class="row">	
@@ -34,111 +34,122 @@
 
 				</div>
 
-				<div class="col-md-3">
-
-					<h4>Seats you have reserved:</h4>
-					@if($reservations->count() == 0)
-						<p><em>You haven't reserved any seats...</em></p>
-					@endif
-					@foreach($reservations as $reservation)
-						<div class="member-entry">
-							<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="member-img">
-								<h3>{{ $reservation->seat->name }}</h3>
-							</a>
-							<div class="member-details">
-								<h4>
-									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
-								</h4>
-								<div class="row info-list">
-									<div class="col-sm-4">
-										@if(!is_null($reservation->payment))
-											<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
-										@elseif($reservation->status_id == 1)
-											<span class="text-danger" data-toggle="tooltip" title="Pay at the Entrance"><i class="fa fa-money"></i> Paid: No</span>
-											@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired")
-												<a class="btn btn-warning btn-xs" href="{{ route('seating-changepayment', $reservation->seat->slug) }}">Change Payment</a>
-											@endif
-										@else
-											<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fa fa-money"></i> Paid: No</a>
-										@endif
-									</div>
-									@if(is_null($reservation->payment))
-										<div class="col-sm-4">
-											<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
-										</div>
-									@endif
-									<div class="col-sm-4">
-										@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
-											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-xs"><i class="fa fa-ticket"></i> Download Ticket</a>
-											@if(Sentinel::getUser()->age() < 16)
-												<br><br>
-												<a href="{{ route('seating-consentform') }}" class="btn btn-primary btn-xs popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>
-											@endif
-										@endif
-									</div>
-									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
-										<div class="col-sm-4">
-											<a class="btn btn-danger btn-xs" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fa fa-trash-o"></i> Remove reservation</a>
-										</div>
-									@endif
-								</div>
-							</div>
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Your Reservations</h3>
 						</div>
-					@endforeach
-				</div>
-				<div class="col-md-3">
-					<h4>Seats reserved to you:</h4>
-					@if($ownreservations->count() == 0)
-						<p><em>There are no seats reserved to you...</em></p>
-					@endif
-					@foreach($ownreservations as $reservation)
-						<div class="member-entry">
-							<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="member-img">
-								<h3>{{ $reservation->seat->name }}</h3>
-							</a>
-							<div class="member-details">
-								<h4>
-									<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
-								</h4>
-								<div class="row info-list">
-									<div class="col-sm-4">
-										@if(!is_null($reservation->payment))
-											<span class="text-success"><i class="fa fa-money"></i> Paid: Yes</span>
-										@elseif($reservation->status_id == 1)
-											<span class="text-danger" data-toggle="tooltip" title="Pay at the Entrance"><i class="fa fa-money"></i> Paid: No</span>
-											@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired")
-												<a class="btn btn-warning btn-xs" href="{{ route('seating-changepayment', $reservation->seat->slug) }}">Change Payment</a>
-											@endif
-										@else
-											<a class="btn btn-danger btn-xs" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fa fa-money"></i> Paid: No</a>
-										@endif
-									</div>
-									@if(is_null($reservation->payment))
-										<div class="col-sm-4">
-											<i class="fa fa-clock-o"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}
-										</div>
-									@endif
-									<div class="col-sm-4">
-										@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
-											<a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-xs"><i class="fa fa-ticket"></i> Download Ticket</a>
-											@if(Sentinel::getUser()->age() < 16)
-												<br><br>
-												<a href="{{ route('seating-consentform') }}" class="btn btn-primary btn-xs popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>
-											@endif
-										@endif
-									</div>
-									@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
-										<div class="col-sm-4">
-											<a class="btn btn-danger btn-xs" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fa fa-trash-o"></i> Remove reservation</a>
-										</div>
-									@endif
-								</div>
-							</div>
+						<div class="card-body o-auto" style="height: 15rem">
+							@if($reservations->count() == 0)
+								<p><em>You haven't reserved any seats...</em></p>
+							@else
+								<ul class="list-unstyled list-separated">
+									@foreach($reservations as $reservation)
+										<li class="list-separated-item">
+											<div class="row align-items-center">
+												<div class="col-auto">
+													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall or '/images/profilepicture/0.png' }})"></span>
+												</div>
+												<div class="col">
+													<div>
+														<a href="javascript:void(0)" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
+													</div>
+													<small class="d-block item-except text-sm text-muted h-1x">
+														@if(is_null($reservation->payment))
+															<span class="badge badge-info"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
+														@endif
+														@if(!is_null($reservation->payment))
+															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
+														@elseif($reservation->status_id == 1)
+															<span class="badge badge-warning" data-toggle="tooltip" title="Pay at the Entrance"><i class="fas fa-money-bill-alt"></i> Not paid yet</span>
+														@else
+															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> Not paid</span>
+														@endif
+													</small>
+												</div>
+												<div class="col-auto">
+													<div class="item-action dropdown">
+														<a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															@if($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> Change payment</a>
+															@endif
+															@if(is_null($reservation->payment))
+																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
+															@endif
+															@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
+																<div class="dropdown-divider"></div>
+																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> Remove reservation</a>
+															@endif
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									@endforeach
+								</ul>
+							@endif
 						</div>
-					@endforeach
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Seat reserved for you</h3>
+						</div>
+						<div class="card-body o-auto" style="height: 15rem">
+							@if($ownreservations->count() == 0)
+								<p><em>You haven't reserved any seats...</em></p>
+							@else
+								<ul class="list-unstyled list-separated">
+									@foreach($ownreservations as $reservation)
+										<li class="list-separated-item">
+											<div class="row align-items-center">
+												<div class="col-auto">
+													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall or '/images/profilepicture/0.png' }})"></span>
+												</div>
+												<div class="col">
+													<div>
+														<a href="javascript:void(0)" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
+													</div>
+													<small class="d-block item-except text-sm text-muted h-1x">
+														@if(is_null($reservation->payment))
+															<span class="badge badge-info"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
+														@endif
+														@if(!is_null($reservation->payment))
+															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
+														@elseif($reservation->status_id == 1)
+															<span class="badge badge-warning" data-toggle="tooltip" title="Pay at the Entrance"><i class="fas fa-money-bill-alt"></i> Not paid yet</span>
+														@else
+															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> Not paid</span>
+														@endif
+													</small>
+												</div>
+												<div class="col-auto">
+													<div class="item-action dropdown">
+														<a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															@if($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> "expired")
+																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> Change payment</a>
+															@endif
+															@if(is_null($reservation->payment))
+																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
+															@endif
+															@if(SeatReservation::getRealExpireTime($reservation->id) <> "expired" && $reservation->status_id != 1)
+																<div class="dropdown-divider"></div>
+																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> Remove reservation</a>
+															@endif
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									@endforeach
+								</ul>
+							@endif
+						</div>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
