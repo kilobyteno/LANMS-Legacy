@@ -143,6 +143,9 @@
 															@if(is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> Pay now</a>
 															@endif
+															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
+																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> Download Ticket</a>
+															@endif
 															@if($reservation->reservedfor->age() < 16)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> Samtykkeskjema</a>
 															@endif
