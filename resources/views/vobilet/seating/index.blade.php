@@ -52,7 +52,7 @@
 												</div>
 												<div class="col">
 													<div>
-														<a href="javascript:void(0)" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
+														<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
 													</div>
 													<small class="d-block item-except text-sm text-muted h-1x">
 														@if(is_null($reservation->payment))
@@ -115,7 +115,7 @@
 												</div>
 												<div class="col">
 													<div>
-														<a href="javascript:void(0)" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
+														<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="text-inherit">{{ $reservation->seat->name }} - {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
 													</div>
 													<small class="d-block item-except text-sm text-muted h-1x">
 														@if(is_null($reservation->payment))
