@@ -95,7 +95,7 @@ class ReserveSeatingController extends Controller {
 		}
 		if($request->get('reservedfor') == Sentinel::getUser()->id && Sentinel::getUser()->ownReservationsThisYear()->count() >= 1) {
 			return Redirect::route('seating-show', $slug)->with('messagetype', 'info')
-								->with('message', 'You cannot reserve more than one seat to yourself. Please select another user you want to reserve this seat for.');
+								->with('message', 'You cannot reserve more than one seat to yourself. Please select another member you want to reserve this seat for.');
 		}
 
 		/* RESERVED FOR USER */
