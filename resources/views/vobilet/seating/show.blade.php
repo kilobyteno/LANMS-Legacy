@@ -11,6 +11,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">Home</li>
 			<li class="breadcrumb-item">Seating</li>
+			<li class="breadcrumb-item">Seat</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ $currentseat->name }}</li>
 		</ol>
 	</div>
