@@ -56,7 +56,7 @@
 													</div>
 													<small class="d-block item-except text-sm text-muted h-1x">
 														@if(is_null($reservation->payment))
-															<span class="badge badge-info"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
+															<span class="badge badge-info" data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($reservation->created_at)->addDays(2)->format('Y-m-d H:i') }}"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
@@ -113,7 +113,7 @@
 													</div>
 													<small class="d-block item-except text-sm text-muted h-1x">
 														@if(is_null($reservation->payment))
-															<span class="badge badge-info"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
+															<span class="badge badge-info" data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($reservation->created_at)->addDays(2)->format('Y-m-d H:i') }}"><i class="far fa-clock"></i> Expires in: {{ SeatReservation::getExpireTime($reservation->id) }}</span>
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
