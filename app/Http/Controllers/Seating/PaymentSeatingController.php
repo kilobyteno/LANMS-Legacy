@@ -134,8 +134,8 @@ class PaymentSeatingController extends Controller {
 			// Get the error type returned by Stripe
 			$type = $e->getErrorType();
 
-			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
-								->with('message', $message.'. Please check your card information and try again.');
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+								->with('message', 'Please check your card information and try again: '.$message);
 		}
 
 		try {
@@ -152,7 +152,7 @@ class PaymentSeatingController extends Controller {
 			// Get the error type returned by Stripe
 			$type = $e->getErrorType();
 
-			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
 								->with('message', $message.'. Please try again.');
 		} catch (ServerErrorException $e) {
 			// Get the status code
@@ -164,7 +164,7 @@ class PaymentSeatingController extends Controller {
 			// Get the error type returned by Stripe
 			$type = $e->getErrorType();
 
-			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
 								->with('message', $message.'. Please try again.');
 		}
 
@@ -184,7 +184,7 @@ class PaymentSeatingController extends Controller {
 			// Get the error type returned by Stripe
 			$type = $e->getErrorType();
 
-			return Redirect::route('seating-pay', $slug)->with('messagetype', 'error')
+			return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
 								->with('message', $message.'. Please try again.');
 		}
 
