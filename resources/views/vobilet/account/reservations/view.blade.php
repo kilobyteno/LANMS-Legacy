@@ -16,16 +16,18 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h3>Reserved by</h3>
-			<div class="member-entry">
-				<a href="{{ route('user-profile', $reservation->reservedby->username) }}" class="member-img">
-					<img src="{{ $reservation->reservedby->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
-					<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
-				</a>
-				<div class="member-details">
-					<h4>
-						<a href="{{ route('user-profile', $reservation->reservedby->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}</a>
-					</h4>
-					<div class="row info-list">
+			<div class="card card-profile" style="background: url({{ $reservation->reservedby->profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+				<div class="card-body text-center">
+					<a href="{{ route('user-profile', $reservation->reservedby->username) }}">
+						<img class="card-profile-img" src="{{ $reservation->reservedby->profilepicture or '/images/profilepicture/0.png' }}">
+						<h3 class="mb-3 text-white">{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}</h3>
+					</a>
+					@if(Sentinel::findById($reservation->reservedby->id)->inRole('admin') || Sentinel::findById($reservation->reservedby->id)->inRole('superadmin') || Sentinel::findById($reservation->reservedby->id)->inRole('moderator'))
+						<p class="mb-4 text-white">Staff</p>
+					@else
+						<p class="mb-4 text-white">Member</p>
+					@endif
+					<div class="row text-white">
 						@if($reservation->reservedby->occupation)
 							<div class="col-sm-6">
 								<i class="fa fa-briefcase"></i> {{ $reservation->reservedby->occupation }}
@@ -33,10 +35,9 @@
 						@endif
 						@if($reservation->reservedby->location)
 							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $reservation->reservedby->location }}
+								<i class="fa fa-map-marker"></i> {{ $reservation->reservedby->location or '<em>Unkown</em>' }}
 							</div>
 						@endif
-						<div class="clear"></div>
 						@if($reservation->reservedby->gender)
 							<div class="col-sm-6">
 								<i class="fa fa-genderless"></i> {{ $reservation->reservedby->gender }}
@@ -50,20 +51,21 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<div class="col-md-4">
 			<h3>Reserved for</h3>
-			<div class="member-entry">
-				<a href="{{ route('user-profile', $reservation->reservedfor->username) }}" class="member-img">
-					<img src="{{ $reservation->reservedfor->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
-					<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
-				</a>
-				<div class="member-details">
-					<h4>
-						<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a>
-					</h4>
-					<div class="row info-list">
+			<div class="card card-profile" style="background: url({{ $reservation->reservedfor->profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+				<div class="card-body text-center">
+					<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">
+						<img class="card-profile-img" src="{{ $reservation->reservedfor->profilepicture or '/images/profilepicture/0.png' }}">
+						<h3 class="mb-3 text-white">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</h3>
+					</a>
+					@if(Sentinel::findById($reservation->reservedfor->id)->inRole('admin') || Sentinel::findById($reservation->reservedfor->id)->inRole('superadmin') || Sentinel::findById($reservation->reservedfor->id)->inRole('moderator'))
+						<p class="mb-4 text-white">Staff</p>
+					@else
+						<p class="mb-4 text-white">Member</p>
+					@endif
+					<div class="row text-white">
 						@if($reservation->reservedfor->occupation)
 							<div class="col-sm-6">
 								<i class="fa fa-briefcase"></i> {{ $reservation->reservedfor->occupation }}
@@ -71,10 +73,9 @@
 						@endif
 						@if($reservation->reservedfor->location)
 							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $reservation->reservedfor->location }}
+								<i class="fa fa-map-marker"></i> {{ $reservation->reservedfor->location or '<em>Unkown</em>' }}
 							</div>
 						@endif
-						<div class="clear"></div>
 						@if($reservation->reservedfor->gender)
 							<div class="col-sm-6">
 								<i class="fa fa-genderless"></i> {{ $reservation->reservedfor->gender }}
@@ -94,11 +95,11 @@
 			<p><strong>Year:</strong> {{ $reservation->year }}</p>
 			<p><strong>Seat:</strong> {{ $reservation->seat->name }}</p>
 			<h3>Actions</h3>
-			<p><a href="{{ route('account-billing-payment', $reservation->payment_id) }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-money"></i> View Payment</a></p>
-			<p><a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-icon icon-left"><i class="fa fa-ticket"></i> Download Ticket</a></p>
-			<p><a href="{{ route('account-billing-receipt', $reservation->payment_id) }}" class="btn btn-default btn-icon icon-left"><i class="fa fa-print"></i> Download Receipt</a></p>
+			<p><a href="{{ route('account-billing-payment', $reservation->payment_id) }}" class="btn btn-success btn-sm"><i class="fas fa-money-bill-alt"></i> View Payment</a></p>
+			<p><a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-ticket-alt"></i> Download Ticket</a></p>
+			<p><a href="{{ route('account-billing-receipt', $reservation->payment_id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> Download Receipt</a></p>
 			@if(Sentinel::getUser()->age() < 16)
-				<p><a href="{{ route('seating-consentform') }}" class="btn btn-primary popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a></p>
+				<p><a href="{{ route('seating-consentform') }}" class="btn btn-dark btn-sm popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fas fa-user-tie"></i> Samtykkeskjema</a></p>
 			@endif
 		</div>
 	</div>
