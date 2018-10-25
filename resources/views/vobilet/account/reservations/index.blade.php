@@ -20,7 +20,8 @@
 						<p><em>We can't find any data for you...</em></p>
 					</div>
 				@else
-					<table class="table-responsive">
+					<div class="table-responsive">
+						<table class="table card-table table-vcenter text-nowrap">
 						<thead>
 						<th>ID</th>
 						<th>Date</th>
@@ -44,6 +45,7 @@
 						@endforeach
 					</tbody>
 					</table>
+					</div>
 				@endif
 			</div>
 		</div>
