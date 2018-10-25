@@ -40,7 +40,7 @@
 						<div class="alert alert-info" role="alert">
 							<i class="fas fa-info mr-2" aria-hidden="true"></i> This seat is {{ strtolower($currentseat->reservationsThisYear()->first()->status->name) }} for this member.
 						</div>
-						<div class="card card-profile" style="background: url({{ $profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+						<div class="card card-profile" style="background: url({{ $currentseat->reservationsThisYear()->first()->reservedfor->profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
 							<div class="card-body text-center">
 								<a href="{{ route('user-profile', $currentseat->reservationsThisYear()->first()->reservedfor->username) }}">
 									<img class="card-profile-img" src="{{ $currentseat->reservationsThisYear()->first()->reservedfor->profilepicture or '/images/profilepicture/0.png' }}">
