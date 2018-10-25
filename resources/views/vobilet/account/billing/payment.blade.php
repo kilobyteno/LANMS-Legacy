@@ -66,7 +66,7 @@
 
 		</div>
 		<div class="col-md-4">
-			<h3>Payment <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-default btn-xs btn-icon icon-left pull-right"><i class="fa fa-print"></i> Download Receipt</a></h3>
+			<h3>Payment <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> Download Receipt</a></h3>
 			<hr style="margin-top: 0">
 			<p><strong>Date:</strong> {{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</p>
 			<p><strong>Amount:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
@@ -76,7 +76,7 @@
 			<p>
 				<strong>Status:</strong>
 				@if($charge['failure_message'])
-					<a href="javascript:void(0);" class="btn btn-danger btn-xs popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="Failure Message">Failure</a>
+					<a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="Failure Message">Failure</a>
 				@else
 					{{ ucfirst($charge['status']) }}
 				@endif
@@ -84,7 +84,7 @@
 		</div>
 		<div class="col-md-4">
 			<?php $payment = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
-			<h3>Reservation <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-xs btn-icon icon-left pull-right"><i class="fa fa-info-circle"></i>View Reservation</a></h3>
+			<h3>Reservation <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> View Reservation</a></h3>
 			<hr style="margin-top: 0">
 			@if($charge)
 				<p><strong>ID:</strong> {{ $payment->reservation->id }}</p>

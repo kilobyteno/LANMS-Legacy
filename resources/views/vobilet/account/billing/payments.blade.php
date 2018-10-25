@@ -23,29 +23,29 @@
 				@else
 					<div class="table-responsive">
 						<table class="table card-table table-vcenter text-nowrap">
-						<thead>
-							<th>ID</th>
-							<th>Date</th>
-							<th>Year</th>
-							<th>Seat</th>
-							<th>Reserved for</th>
-							<th>Res. ID</th>
-							<th>Details</th>
-						</thead>
-						<tbody>
-							@foreach($payments as $payment)
-								<tr>
-									<td>{{ $payment->id }}</td>
-									<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
-									<td>{{ $payment->reservation->year or 'N/A' }}</td>
-									<td>{{ $payment->reservation->seat->name or 'N/A' }}</td>
-									<td>{{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) or 'N/A' }}</td>
-									<td>{{ $payment->reservation->id or 'N/A' }}</td>
-									<td><a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-xs btn-icon icon-left"><i class="fa fa-info-circle"></i>View</a></td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							<thead>
+								<th>ID</th>
+								<th>Date</th>
+								<th>Year</th>
+								<th>Seat</th>
+								<th>Reserved for</th>
+								<th>Res. ID</th>
+								<th>Details</th>
+							</thead>
+							<tbody>
+								@foreach($payments as $payment)
+									<tr>
+										<td>{{ $payment->id }}</td>
+										<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
+										<td>{{ $payment->reservation->year or 'N/A' }}</td>
+										<td>{{ $payment->reservation->seat->name or 'N/A' }}</td>
+										<td>{{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) or 'N/A' }}</td>
+										<td>{{ $payment->reservation->id or 'N/A' }}</td>
+										<td><a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> View</a></td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
 					</div>
 				@endif
 			</div>
