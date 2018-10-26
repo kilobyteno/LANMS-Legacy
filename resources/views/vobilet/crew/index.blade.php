@@ -25,7 +25,7 @@
 										@endforeach
 									</div>
 									<div class="d-flex align-items-center pt-5 mt-auto">
-										<div class="avatar brround avatar-md mr-3" style="background-image: url(@if($crew->profilepicturesmall){{ $crew->profilepicturesmall }} @else {{ '/images/profilepicture/0_small.png' }}@endif)"></div>
+										<div class="avatar brround avatar-md mr-3" style="background-image: url({{ $crew->profilepicturesmall or '/images/profilepicture/0_small.png' }})"></div>
 										<div><a href="{{ URL::route('user-profile', $crew->username) }}" class="text-default">{{ User::getFullnameByID($crew->id) }}</a></div>
 									</div>
 								</div>
