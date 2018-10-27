@@ -95,9 +95,9 @@
 			<p><strong>Year:</strong> {{ $reservation->year }}</p>
 			<p><strong>Seat:</strong> {{ $reservation->seat->name }}</p>
 			<h3>Actions</h3>
-			<p><a href="{{ route('account-billing-payment', $reservation->payment_id) }}" class="btn btn-success btn-sm"><i class="fas fa-money-bill-alt"></i> View Payment</a></p>
+			@if($reservation->payment_id)<p><a href="{{ route('account-billing-payment', $reservation->payment_id) }}" class="btn btn-success btn-sm"><i class="fas fa-money-bill-alt"></i> View Payment</a></p>@endif
 			<p><a href="{{ route('seating-ticket-download', $reservation->seat->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-ticket-alt"></i> Download Ticket</a></p>
-			<p><a href="{{ route('account-billing-receipt', $reservation->payment_id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> Download Receipt</a></p>
+			@if($reservation->payment_id)<p><a href="{{ route('account-billing-receipt', $reservation->payment_id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> Download Receipt</a></p>@endif
 			@if(Sentinel::getUser()->age() < 16)
 				<p><a href="{{ route('seating-consentform') }}" class="btn btn-dark btn-sm popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Du er under 16 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fas fa-user-tie"></i> Samtykkeskjema</a></p>
 			@endif
