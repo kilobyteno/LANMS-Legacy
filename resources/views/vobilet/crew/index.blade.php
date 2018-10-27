@@ -19,13 +19,13 @@
 						<div class="col-md-6 col-lg-6 col-sm-12">
 							<div class="card">
 								<div class="card-body d-flex flex-column">
-									<div class="text-muted">
+									<div class="text-muted"><small>
 										@foreach($crew->skillAttachedThisYear as $skilla)
-											<small><span class="{{ $skilla->skill->label }}"><i class="{{ $skilla->skill->icon }}"></i> {{ $skilla->skill->title }}</span></small>
+											<span class="{{ $skilla->skill->label }}"><i class="{{ $skilla->skill->icon }}"></i> {{ $skilla->skill->title }}</span>
 										@endforeach
-									</div>
+									</small></div>
 									<div class="d-flex align-items-center pt-5 mt-auto">
-										<div class="avatar brround avatar-md mr-3" style="background-image: url(@if($crew->profilepicturesmall){{ $crew->profilepicturesmall }} @else {{ '/images/profilepicture/0_small.png' }}@endif)"></div>
+										<div class="avatar brround avatar-md mr-3" style="background-image: url({{ $crew->profilepicturesmall or '/images/profilepicture/0_small.png' }})"></div>
 										<div><a href="{{ URL::route('user-profile', $crew->username) }}" class="text-default">{{ User::getFullnameByID($crew->id) }}</a></div>
 									</div>
 								</div>

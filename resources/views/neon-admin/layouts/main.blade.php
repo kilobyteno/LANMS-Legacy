@@ -129,10 +129,9 @@
 						<ul class="dropdown-menu">
 							<li class="caret"></li>
 							<li><a href="{{ route('user-profile', Sentinel::getUser()->username) }}"><i class="fa fa-user"></i> View Profile</a></li>
-							<li><a href="{{ route('account-change-details') }}"><i class="fa fa-edit"></i> Edit Profile Details</a></li>
-							<li><a href="{{ route('account-change-password') }}"><i class="fa fa-asterisk"></i> Change Password</a></li>
-							<li><a href="{{ route('account-change-images') }}"><i class="fa fa-picture-o"></i> Change Profile Images</a></li>
-							<li><a href="{{ route('account-settings') }}"><i class="fa fa-cog"></i> Edit Profile Settings</a></li>
+							<li><a href="{{ route('user-profile-edit', Sentinel::getUser()->username) }}"><i class="fa fa-edit"></i> Edit Profile</a></li>
+							<li><a href="{{ route('account-change-password') }}"><i class="fas fa-key"></i> Change Password</a></li>
+							<li><a href="{{ route('account-change-images') }}"><i class="fas fa-images"></i> Change Profile Images</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -99,7 +99,7 @@
 						</div>
 						<input type="text" class="form-control input-lg" placeholder="Label" value="{{ (old('label')) ? old('label') : 'label label-default' }}" name="label">
 					</div>
-					<p>Available labels can be found here: <a href="https://getbootstrap.com/docs/3.3/components/#available-variations" target="_blank">getbootstrap.com</a></p>
+					<p>Available labels can be found here: <a href="https://getbootstrap.com/docs/4.1/components/badge/" target="_blank">getbootstrap.com</a></p>
 					@if($errors->has('label'))
 						<p class="text-danger">{{ $errors->first('label') }}</p>
 					@endif
