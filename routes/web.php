@@ -26,6 +26,35 @@ if(Config::get('app.debug')) {
 	});
 }
 
+/*
+
+# TEMP FIX FOR dialect-katrineholm/laravel-gdpr-compliance
+
+*/
+
+Route::post('download', [
+    'as' => 'gdpr-download',
+    'uses' => 'GdprController@download',
+]);
+Route::get('/terms', [
+    'as' => 'gdpr-terms',
+    'uses' => 'GdprController@showTerms',
+]);
+Route::post('terms/accepted', [
+    'as' => 'gdpr-terms-accepted',
+    'uses' => 'GdprController@termsAccepted',
+]);
+Route::post('terms/denied', [
+    'as' => 'gdpr-terms-denied',
+    'uses' => 'GdprController@termsDenied',
+]);
+
+/*
+
+# END OF TEMP FIX FOR dialect-katrineholm/laravel-gdpr-compliance
+
+*/
+
 Route::group([
 	'middleware' => 'setTheme:vobilet'
 	], function() {
