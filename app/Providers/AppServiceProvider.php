@@ -1,6 +1,8 @@
 <?php namespace LANMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Spatie\Activitylog\Models\Activity;
+use LANMS\Observers\ActivityObserver;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -20,6 +22,8 @@ class AppServiceProvider extends ServiceProvider {
 				\URL::forceScheme('https');
 			}
 		}
+
+		Activity::observe(ActivityObserver::class);
 
 	}
 
