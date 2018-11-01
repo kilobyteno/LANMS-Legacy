@@ -37,7 +37,7 @@
 						<td>{{ date(User::getUserDateFormat(), strtotime($page->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->created_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
 						<td>@if($page->edited_at){{ date(User::getUserDateFormat(), strtotime($page->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->edited_at)) }}@endif</td>
-						<td><a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a></td>
+						<td>@if($page->editor->username)<a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a>@endif</td>
 						<td>
 							<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>
 							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
