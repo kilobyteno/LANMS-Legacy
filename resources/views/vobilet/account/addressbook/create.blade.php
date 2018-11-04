@@ -22,7 +22,7 @@
 					
 					<div class="form-group @if($errors->has('address1')) has-error @endif">
 						<label class="form-label">Address</label>
-						<input class="form-control" type="text" name="address1" placeholder="Jernbanegata 15" value="{{ old('address1') }}">
+						<input class="form-control" type="text" name="address1" placeholder="Jernbanegata" value="{{ old('address1') }}">
 						@if($errors->has('address1'))
 							<p class="text-danger">{{ $errors->first('address1') }}</p>
 						@endif
@@ -30,7 +30,7 @@
 
 					<div class="form-group @if($errors->has('address2')) has-error @endif">
 						<label class="form-label">Address 2</label>
-						<input class="form-control" type="text" name="address2" value="{{ old('address2') }}">
+						<input class="form-control" type="text" name="address2"  placeholder="15D" value="{{ old('address2') }}">
 						@if($errors->has('address2'))
 							<p class="text-danger">{{ $errors->first('address2') }}</p>
 						@endif
