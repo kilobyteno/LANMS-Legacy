@@ -14,9 +14,9 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card card-profile" style="background: url({{ $profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+			<div class="card card-profile" style="background: url({{ $profilecover ?? '/images/profilecover/0.jpg' }}); background-size:cover;">
 				<div class="card-body text-center">
-					<img class="card-profile-img" src="{{ $profilepicture or '/images/profilepicture/0.png' }}">
+					<img class="card-profile-img" src="{{ $profilepicture ?? '/images/profilepicture/0.png' }}">
 					<h3 class="mb-3 text-white">{{ $firstname }}@if($showname) {{ $lastname }}@endif</h3>
 					@if(Sentinel::findById($id)->inRole('admin') || Sentinel::findById($id)->inRole('superadmin') || Sentinel::findById($id)->inRole('moderator'))
 						<p class="mb-4 text-white">Staff</p>
