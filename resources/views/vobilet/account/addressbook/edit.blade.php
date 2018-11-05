@@ -36,36 +36,39 @@
 						@endif
 					</div>
 
-					<div class="col-md-6 form-group @if($errors->has('postalcode')) has-error @endif">
-						<label class="form-label">Postal Code</label>
-						<input class="form-control" type="text" name="postalcode" placeholder="2609" value="{{ $postalcode }}">
-						@if($errors->has('postalcode'))
-							<p class="text-danger">{{ $errors->first('postalcode') }}</p>
-						@endif
-					</div>
+					<div class="row">
+						<div class="col-md-6 form-group @if($errors->has('postalcode')) has-error @endif">
+							<label class="form-label">Postal Code</label>
+							<input class="form-control" type="text" name="postalcode" placeholder="2609" value="{{ $postalcode }}">
+							@if($errors->has('postalcode'))
+								<p class="text-danger">{{ $errors->first('postalcode') }}</p>
+							@endif
+						</div>
 
-					<div class="col-md-6 form-group @if($errors->has('city')) has-error @endif">
-						<label class="form-label">City</label>
-						<input class="form-control" type="text" name="city" placeholder="Lillehammer" value="{{ $city }}">
-						@if($errors->has('city'))
-							<p class="text-danger">{{ $errors->first('city') }}</p>
-						@endif
+						<div class="col-md-6 form-group @if($errors->has('city')) has-error @endif">
+							<label class="form-label">City</label>
+							<input class="form-control" type="text" name="city" placeholder="Lillehammer" value="{{ $city }}">
+							@if($errors->has('city'))
+								<p class="text-danger">{{ $errors->first('city') }}</p>
+							@endif
+						</div>
 					</div>
-							
-					<div class="col-md-6 form-group @if($errors->has('county')) has-error @endif">
-						<label class="form-label">County</label>
-						<input class="form-control" type="text" name="county" placeholder="Oppland" value="{{ $county }}">
-						@if($errors->has('county'))
-							<p class="text-danger">{{ $errors->first('county') }}</p>
-						@endif
-					</div>
+					<div class="row">
+						<div class="col-md-6 form-group @if($errors->has('county')) has-error @endif">
+							<label class="form-label">County</label>
+							<input class="form-control" type="text" name="county" placeholder="Oppland" value="{{ $county }}">
+							@if($errors->has('county'))
+								<p class="text-danger">{{ $errors->first('county') }}</p>
+							@endif
+						</div>
 
-					<div class="col-md-6 form-group @if($errors->has('country')) has-error @endif">
-						<label class="form-label">Country</label>
-						<input class="form-control" type="text" name="country" placeholder="Norway" value="{{ $country }}">
-						@if($errors->has('country'))
-							<p class="text-danger">{{ $errors->first('country') }}</p>
-						@endif
+						<div class="col-md-6 form-group @if($errors->has('country')) has-error @endif">
+							<label class="form-label">Country</label>
+							<input class="form-control" type="text" name="country" placeholder="Norway" value="{{ $country }}">
+							@if($errors->has('country'))
+								<p class="text-danger">{{ $errors->first('country') }}</p>
+							@endif
+						</div>
 					</div>
 
 				</div>
