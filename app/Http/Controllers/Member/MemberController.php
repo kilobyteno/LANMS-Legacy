@@ -21,9 +21,9 @@ class MemberController extends Controller {
 	}
 
 	public function index() {
-		$members = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->paginate(30);
-		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(10)->get();
-		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(10)->get();
+		$members = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->paginate(30);
+		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
+		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
 		
 		return view('members.index')
 				->with('members', $members)
@@ -33,10 +33,10 @@ class MemberController extends Controller {
 
 	public function search(SearchRequest $request) {
 
-		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity', '<>', '')->get();
+		$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity')->having('isAnonymized', '0')->get();
 
-		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->take(10)->get();
-		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->take(10)->get();
+		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
+		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
 		
 		return view('members.search')
 				->with('query', $request->search)
