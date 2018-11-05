@@ -21,7 +21,7 @@
 				<div class="card-body">
 					<div class="row mb-2">
 						<div class="col-auto">
-							<span class="avatar brround avatar-xl" style="background-image: url({{ $profilepicturesmall or '/images/profilepicture/0_small.png' }})"></span>
+							<span class="avatar brround avatar-xl" style="background-image: url({{ $profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
 						</div>
 						<div class="col">
 							<h3 class="mb-1">{{ $firstname }} {{ $lastname }}</h3>
