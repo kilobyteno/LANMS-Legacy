@@ -39,7 +39,7 @@
 				<div class="card-footer">
 					<form class="form-inline float-left" role="form" method="POST" action="{{ route('gdpr-terms-accepted') }}">
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-success"><i class="fas fa-vote-yea"></i> Accept</button>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-vote-yea"></i> I Accept</button>
                     </form>
                     <form class="form-inline float-right" role="form" method="POST" action="{{ route('gdpr-terms-denied') }}">
                         {{ csrf_field() }}
