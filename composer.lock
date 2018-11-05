@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23587b4c8492be8479ace4eb9dc3c8e5",
+    "content-hash": "bddd810d9ecba0d78cb3558664f4935f",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -479,20 +479,21 @@
         },
         {
             "name": "dialect/laravel-gdpr-compliance",
-            "version": "v1.3.5",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dialect-katrineholm/laravel-gdpr-compliance.git",
-                "reference": "af074346e0015a5eb64eabbbe4696bb20cda82d6"
+                "reference": "e8918025639a842b84ba6e966704c4ba13e7aa58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dialect-katrineholm/laravel-gdpr-compliance/zipball/af074346e0015a5eb64eabbbe4696bb20cda82d6",
-                "reference": "af074346e0015a5eb64eabbbe4696bb20cda82d6",
+                "url": "https://api.github.com/repos/dialect-katrineholm/laravel-gdpr-compliance/zipball/e8918025639a842b84ba6e966704c4ba13e7aa58",
+                "reference": "e8918025639a842b84ba6e966704c4ba13e7aa58",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.0"
+                "illuminate/support": ">=5.5",
+                "php": ">=7.0"
             },
             "require-dev": {
                 "orchestra/testbench": "~3.0"
@@ -507,7 +508,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Dialect\\Gdpr\\": "src"
+                    "Dialect\\Gdpr\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -529,7 +530,7 @@
                 "laravel",
                 "user anonymization"
             ],
-            "time": "2018-05-30T06:43:06+00:00"
+            "time": "2018-11-05T07:22:48+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
