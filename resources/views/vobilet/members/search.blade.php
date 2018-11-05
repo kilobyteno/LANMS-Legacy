@@ -36,7 +36,7 @@
 							<li class="list-separated-item">
 								<div class="row align-items-center">
 									<div class="col-auto">
-										<span class="avatar brround avatar-md d-block" style="background-image: url({{ $member->profilepicture or '/images/profilepicture/0.png' }})"></span>
+										<span class="avatar brround avatar-md d-block" style="background-image: url({{ $member->profilepicture ?? '/images/profilepicture/0.png' }})"></span>
 									</div>
 									<div class="col">
 										<div>
@@ -60,7 +60,7 @@
 							<li class="list-separated-item">
 								<div class="row align-items-center">
 									<div class="col-auto">
-										<span class="avatar brround avatar-md d-block" style="background-image: url({{ $member->profilepicture or '/images/profilepicture/0.png' }})"></span>
+										<span class="avatar brround avatar-md d-block" style="background-image: url({{ $member->profilepicture ?? '/images/profilepicture/0.png' }})"></span>
 									</div>
 									<div class="col">
 										<div>
@@ -88,7 +88,7 @@
 							</tr>
 						@foreach($members as $member)
 							<tr>
-								<td><a href="{{ route('user-profile', $member->username) }}"><span class="avatar d-block rounded" style="background-image: url({{ $member->profilepicture or '/images/profilepicture/0.png' }})"></span></a></td>
+								<td><a href="{{ route('user-profile', $member->username) }}"><span class="avatar d-block rounded" style="background-image: url({{ $member->profilepicture ?? '/images/profilepicture/0.png' }})"></span></a></td>
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->username }}</a></td>
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a></td>
 								<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $member->created_at }}">{{ \Carbon::parse($member->created_at)->diffForHumans() }}</span></td>
