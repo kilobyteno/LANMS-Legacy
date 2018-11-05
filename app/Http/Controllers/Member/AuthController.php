@@ -36,7 +36,7 @@ class AuthController extends Controller {
 								->with('message', 'User was not found.')->withInput();
 		}
 
-		$credentials 	= ['login' => $username, 'password' => $password];
+		$credentials = ['login' => $username, 'password' => $password];
 		$user = \Sentinel::findByCredentials($credentials);
 
 		if ($user == null) {
@@ -45,6 +45,11 @@ class AuthController extends Controller {
 								->with('message', 'User was not found.')->withInput();
 
 		} else {
+
+			if ($user->isAnonymized) {
+				return Redirect::route('account-signin')->with('messagetype', 'danger')
+									->with('message', 'This account has been deleted.')->withInput();
+			}
 
 			$actex = \Activation::exists($user);
 			$actco = \Activation::completed($user);

@@ -13,7 +13,7 @@ use LANMS\Http\Requests\Member\ProfileRequest;
 use LANMS\Http\Requests\Member\PasswordRequest;
 use LANMS\Http\Requests\Member\ProfileImageRequest;
 use LANMS\Http\Requests\Member\ProfileCoverRequest;
-use Dialect\Gdpr\Http\Requests\GdprDownload;
+use LANMS\Http\Requests\Member\DeleteAccountRequest;
 
 use LANMS\User;
 use LANMS\News;
@@ -215,7 +215,7 @@ class AccountController extends Controller {
 		return view('account.gdpr.delete');
 	}
 
-	public function postGDPRDelete(GdprDownload $request) {
+	public function postGDPRDelete(DeleteAccountRequest $request) {
 
 		$credentials = [
             'login'         => \Sentinel::getUser()->username,
@@ -231,10 +231,14 @@ class AccountController extends Controller {
         $user->anonymize();
 
         \Sentinel::update($user, [
-            'isAnonymized' => true,
+            'isAnonymized' => true
         ]);
 
-        return redirect()->route('logout');
+        \Sentinel::logout();
+
+        return Redirect::route('home')
+						->with('messagetype', 'success')
+						->with('message', 'Your account has now been deleted!');
 	}
 
 }

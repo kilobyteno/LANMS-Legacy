@@ -18,8 +18,9 @@
 					<p>We are sorry to see you go!</p>
 					<p>When clicking the delete button your account and all its data will be deleted forever. It will not be able to recover any data attached to this account.</p>
 					<p>Make sure you <a href="{{ route('account-gdpr-download') }}">download your data</a> before you delete your account.</p>
+					<p>Deleting your account will anonymize your Profile and remove your name and photo from most things that your account is connected too.</p>
 					<div class="form-group @if($errors->has('password')) has-error @endif">
-						<label class="form-label">Password</label>
+						<label class="form-label">When you are ready to delete your account, type in your password here:</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password">
 						</div>
@@ -32,10 +33,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<label class="custom-switch">
-								<input type="checkbox" class="custom-switch-input" name="accepted">
+								<input type="checkbox" class="custom-switch-input" name="accept_deletion">
 								<span class="custom-switch-indicator"></span>
 								<span class="custom-switch-description">Yes, I am sure I want to delete my account!</span>
 							</label>
+							@if($errors->has('accept_deletion'))
+								<p class="text-danger">{{ $errors->first('accept_deletion') }}</p>
+							@endif
 						</div>
 						<div class="col-md-6 text-right">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
