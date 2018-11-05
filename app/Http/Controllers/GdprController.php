@@ -18,8 +18,8 @@ class GdprController extends Controller
     public function download(GdprDownload $request)
     {
         $credentials = [
-            $request->user()->getAuthIdentifierName() => $request->user()->getAuthIdentifier(),
-            'password'                                => $request->input('password'),
+            'login'         => \Sentinel::getUser()->username,
+            'password'      => $request->input('password'),
         ];
 
         abort_unless(\Sentinel::authenticate($credentials), 403);
