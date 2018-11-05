@@ -32,7 +32,10 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     	'permissions',
     	'profilepicture',
     	'profilepicturesmall',
-    	'profilecover'
+    	'profilecover',
+    	'isAnonymized',
+    	'accepted_gdpr'
+    ];
     ];
 
 	/**
@@ -102,6 +105,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		'usertimeformat',
 		'about',
 		'accepted_gdpr',
+		'isAnonymized'
 	];
 
 	/**
