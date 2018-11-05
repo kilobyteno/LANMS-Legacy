@@ -59,7 +59,7 @@
 									@endif
 									@if($currentseat->reservationsThisYear()->first()->reservedfor->location)
 										<div class="col-sm-3">
-											<i class="fa fa-map-marker"></i> {{ $currentseat->reservationsThisYear()->first()->reservedfor->location or '<em>Unkown</em>' }}
+											<i class="fa fa-map-marker"></i> {{ $currentseat->reservationsThisYear()->first()->reservedfor->location }}
 										</div>
 									@endif
 									@if($currentseat->reservationsThisYear()->first()->reservedfor->gender)
