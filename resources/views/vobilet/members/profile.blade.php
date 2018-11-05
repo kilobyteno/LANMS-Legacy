@@ -100,7 +100,7 @@
 										@endif
 										@if($occupation)
 											<tr>
-												<td><strong>Email :</strong> {{ $occupation }}</td>
+												<td><strong>Occupation:</strong> {{ $occupation }}</td>
 											</tr>
 										@endif
 										@if($birthdate)
