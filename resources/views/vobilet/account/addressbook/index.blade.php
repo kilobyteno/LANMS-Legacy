@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-12"> 
 			@if(Sentinel::getUser()->reservations->count() <> 0)
-				<div class="alert alert-info" role="alert"><strong>Information!</strong> You will not be able to delete any addresses while you have reserved seats.</div>
+				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> You will not be able to delete any addresses while you have reserved seats.</div>
 			@endif
 			@if($addresses->count() == 0)
 				<blockquote>
