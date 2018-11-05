@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-5">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">Attendence</h3>
@@ -62,7 +62,7 @@
 				@endif
 			</div>
 		</div>
-		<div class="col-lg-8">
+		<div class="col-lg-7">
 			<div class="card">
 				<div class="card-body">
 					<div id="profile-log-switch">
