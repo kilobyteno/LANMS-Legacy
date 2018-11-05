@@ -24,6 +24,10 @@ if(Config::get('app.debug')) {
 	Route::get('/test', function() {
 		App::abort(500);
 	});
+	Route::get('/pdf', function() {
+		\Theme::set('vobilet');
+		return view('seating.pdf.consentform');
+	});
 }
 
 Route::group([
