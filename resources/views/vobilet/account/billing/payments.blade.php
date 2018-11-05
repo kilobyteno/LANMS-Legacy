@@ -37,11 +37,11 @@
 									<tr>
 										<td>{{ $payment->id }}</td>
 										<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
-										<td>{{ $payment->reservation->year or 'N/A' }}</td>
-										<td>{{ $payment->reservation->seat->name or 'N/A' }}</td>
-										<td>{{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) or 'N/A' }}</td>
-										<td>{{ $payment->reservation->id or 'N/A' }}</td>
-										<td><a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> View</a></td>
+										<td>{{ $payment->reservation->year ?? 'N/A' }}</td>
+										<td>{{ $payment->reservation->seat->name ?? 'N/A' }}</td>
+										<td>@if($payment->reservation){{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}@else{{ 'N/A' }}@endif</td>
+										<td>{{ $payment->reservation->id ?? 'N/A' }}</td>
+										<td>@if($payment->reservation)<a href="{{ route('account-billing-payment', $payment->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> View</a>@endif</td>
 									</tr>
 								@endforeach
 							</tbody>
