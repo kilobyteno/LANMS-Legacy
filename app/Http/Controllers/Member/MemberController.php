@@ -21,12 +21,14 @@ class MemberController extends Controller {
 	}
 
 	public function index() {
-		$members = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->paginate(30);
+		$members = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->paginate(20);
+		$totalmembers = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
 		$newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
 		$onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
 		
 		return view('members.index')
 				->with('members', $members)
+				->with('totalmembers', $totalmembers)
 				->with('newestmembers', $newestmembers)
 				->with('onlinemembers', $onlinemembers);
 	}

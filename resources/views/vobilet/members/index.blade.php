@@ -97,7 +97,7 @@
 					</table>
 				</div>
 			</div>
-			<p class="text-muted">{{ $members->count() }} total members</p>
+			<p class="text-muted">Showing {{ $members->count() }} of {{ $totalmembers->count() }} total members</p>
 			{!! $members->render() !!}
 		</div>
 	</div>
