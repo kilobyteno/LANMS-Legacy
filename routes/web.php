@@ -227,6 +227,10 @@ Route::group([
 					'as' => 'account-gdpr-delete' ,
 					'uses' => 'Member\AccountController@getGDPRDelete'
 				]);
+				Route::post('/delete', [
+					'as' => 'account-gdpr-delete-post' ,
+					'uses' => 'Member\AccountController@postGDPRDelete'
+				]);
 				Route::group([
 					'prefix' => 'billing'
 					], function() {
