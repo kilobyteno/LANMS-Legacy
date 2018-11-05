@@ -286,6 +286,10 @@ Route::group([
 							'as' => 'account-gdpr-download' ,
 							'uses' => 'Member\AccountController@getGDPRDownload'
 						]);
+						Route::get('/delete', [
+							'as' => 'account-gdpr-delete' ,
+							'uses' => 'Member\AccountController@getGDPRDelete'
+						]);
 				});
 		});
 });
