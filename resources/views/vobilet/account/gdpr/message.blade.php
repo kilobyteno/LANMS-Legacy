@@ -3,12 +3,17 @@
 @section('content')
 
 <div class="container">
+    <div class="page-header">
+        <h4 class="page-title">GDPR Agreement</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Account</li>
+            <li class="breadcrumb-item active" aria-current="page">GDPR Agreement</li>
+        </ol>
+    </div>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header">
-					<h2 class="card-title">GDPR Agreement</h2>
-				</div>
 				<div class="card-body">
 					<p>Probably you've heard about GDPR, but what does the regulation mean to you as a member? Here you can read about what the privacy reform implies for your member relationship on this website.</p>
 
