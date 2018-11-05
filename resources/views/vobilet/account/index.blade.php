@@ -63,6 +63,9 @@
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-gdpr-download') }}" class="text-inherit"><i class="fas fa-download"></i> Download</a></td>
 									</tr>
+									<tr class="border-bottom">
+										<td><a href="{{ route('account-gdpr-delete') }}" class="text-inherit"><i class="fas fa-trash"></i> Delete</a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
