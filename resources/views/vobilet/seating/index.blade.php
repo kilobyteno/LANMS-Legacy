@@ -48,7 +48,7 @@
 										<li class="list-separated-item">
 											<div class="row align-items-center">
 												<div class="col-auto">
-													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall or '/images/profilepicture/0.png' }})"></span>
+													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall ?? '/images/profilepicture/0.png' }})"></span>
 												</div>
 												<div class="col">
 													<div>
@@ -114,7 +114,7 @@
 										<li class="list-separated-item">
 											<div class="row align-items-center">
 												<div class="col-auto">
-													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall or '/images/profilepicture/0.png' }})"></span>
+													<span class="avatar brround avatar-md d-block" style="background-image: url({{ $reservation->reservedfor->profilepicturesmall ?? '/images/profilepicture/0.png' }})"></span>
 												</div>
 												<div class="col">
 													<div>
