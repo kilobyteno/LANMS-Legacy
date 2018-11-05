@@ -209,4 +209,9 @@ class AccountController extends Controller {
 	public function getGDPRDownload() {
 		return view('account.gdpr.download');
 	}
+
+	public function getGDPRDelete() {
+		return view('account.gdpr.delete');
+	}
+
 }
