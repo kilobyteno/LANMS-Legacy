@@ -219,6 +219,14 @@ Route::group([
 					'as' => 'account-change-image-cover-post' ,
 					'uses' => 'Member\AccountController@postChangeProfileCover'
 				]);
+				Route::get('/download', [
+					'as' => 'account-gdpr-download' ,
+					'uses' => 'Member\AccountController@getGDPRDownload'
+				]);
+				Route::get('/delete', [
+					'as' => 'account-gdpr-delete' ,
+					'uses' => 'Member\AccountController@getGDPRDelete'
+				]);
 				Route::group([
 					'prefix' => 'billing'
 					], function() {
@@ -277,18 +285,6 @@ Route::group([
 						Route::get('/{id}/destroy', [
 							'as' => 'account-addressbook-destroy',
 							'uses' => 'Member\AddressBookController@destroy'
-						]);
-				});
-				Route::group([
-					'prefix' => 'gdpr'
-					], function() {
-						Route::get('/download', [
-							'as' => 'account-gdpr-download' ,
-							'uses' => 'Member\AccountController@getGDPRDownload'
-						]);
-						Route::get('/delete', [
-							'as' => 'account-gdpr-delete' ,
-							'uses' => 'Member\AccountController@getGDPRDelete'
 						]);
 				});
 		});
