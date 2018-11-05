@@ -27,8 +27,13 @@ class AdminController extends Controller {
 								->with('message', 'You do not have access to this page!');
 		}
 
-		$activity = Activity::where('properties', '<>', '{"attributes":[],"old":[]}')->get();
-		return view('activity')->withActivities($activity);
+		$activities = Activity::where('properties', '<>', '{"attributes":[],"old":[]}')->where('causer_id', '<>', '')->where('causer_type', '<>', '')->get();
+		foreach ($activities as $activity) {
+			$values = json_decode($activity->properties, true);
+			$activity->oldvalue = json_encode($values["old"]);
+			$activity->newvalue = json_encode($values["attributes"]);
+		}
+		return view('activity')->withActivities($activities);
 
 	}
 

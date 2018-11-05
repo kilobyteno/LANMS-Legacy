@@ -26,7 +26,8 @@
 							<th>Description</th>
 							<th>Subject</th>
 							<th>Causer</th>
-							<th>Properties</th>
+							<th>Old Value</th>
+							<th>New Value</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,7 +38,8 @@
 								<td>{{ $activity->description }}</td>
 								<td>{{ $activity->subject_type }} ID: {{ $activity->subject_id }}</td>
 								<td>{{ $activity->causer_type }} ID: {{ $activity->causer_id }}</td>
-								<td>{{ $activity->properties }}</td>
+								<td>{{ $activity->oldvalue }}</td>
+								<td>{{ $activity->newvalue }}</td>
 							</tr>
 						@endforeach
 					</tbody>
