@@ -53,6 +53,20 @@
 							</table>
 						</div>
 					</div>
+					<div class="card">
+						<div class="card-header">
+							<h2 class="card-title">Personal Data</h2>
+						</div>
+						<div class="">
+							<table class="table card-table">
+								<tbody>
+									<tr class="border-bottom">
+										<td><a href="{{ route('account-gdpr-download') }}" class="text-inherit"><i class="fas fa-download"></i> Download</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="card">
