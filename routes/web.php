@@ -279,6 +279,14 @@ Route::group([
 							'uses' => 'Member\AddressBookController@destroy'
 						]);
 				});
+				Route::group([
+					'prefix' => 'gdpr'
+					], function() {
+						Route::get('/download', [
+							'as' => 'account-gdpr-download' ,
+							'uses' => 'Member\AccountController@getGDPRDownload'
+						]);
+				});
 		});
 });
 
