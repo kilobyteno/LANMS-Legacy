@@ -160,11 +160,11 @@
             </tr>
             <tr class="item last">
                 <td>Ticket {{ $payment->reservation->year }} - {{ $payment->reservation->seat->name }}</td>
-                <td>{{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</td>
+                <td>{{ substr($charge['amount'], 0, -2) }} {{ strtoupper($charge['currency']) }}</td>
             </tr>
             <tr class="total">
                 <td></td>
-                <td>Total: {{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</td>
+                <td>Total: {{ substr($charge['amount'], 0, -2) }} {{ strtoupper($charge['currency']) }}</td>
             </tr>
         </table>
     </div>

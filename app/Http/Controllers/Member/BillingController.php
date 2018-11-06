@@ -11,7 +11,8 @@ class BillingController extends Controller
 {
 	public function getReceipt($id) {
 		$payment = \LANMS\SeatPayment::find($id);
-		return view('seating.pdf.receipt')->with('payment', $payment);
+		$charge = \Stripe::charges()->find($payment->stripecharge);
+		return view('seating.pdf.receipt')->with('payment', $payment)->with('charge', $charge);
 		//return \PDF::loadView('seating.pdf.receipt')->stream();
 	}
 
