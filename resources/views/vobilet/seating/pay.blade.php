@@ -7,11 +7,11 @@
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">Seating</h4>
+		<h4 class="page-title">Pay for Reservation</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('seating') }}">Seating</a></li>
-			<li class="breadcrumb-item">Pay Reservation</li>
+			<li class="breadcrumb-item">Pay for Reservation</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ $currentseat->name }}</li>
 		</ol>
 	</div>
