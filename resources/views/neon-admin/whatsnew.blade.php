@@ -9,10 +9,59 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#236" aria-expanded="true">Version 2.3.6</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#240" aria-expanded="true">Version 2.4.0</a>
 					</h4>
 				</div>
-				<div id="236" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="240" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-155'>LANMS-155</a>] - Illuminate\Http\Exceptions\PostTooLargeException</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-174'>LANMS-174</a>] - When user has been on the login page for a while; the token expires</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-176'>LANMS-176</a>] - SignedInNotSupported Error from Google Maps API</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-178'>LANMS-178</a>] - Undefined variable: currentseat</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-179'>LANMS-179</a>] - Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-186'>LANMS-186</a>] - Trying to get property &#39;username&#39; of non-object</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-188'>LANMS-188</a>] - When searching for users it shows inactive users</li>
+						</ul>
+						    
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-19'>LANMS-19</a>] - User administration</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-24'>LANMS-24</a>] - Receipt for ticket</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-88'>LANMS-88</a>] - Add system for rows and seats</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-158'>LANMS-158</a>] - Let users see payments and charges made</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-164'>LANMS-164</a>] - A list of reservations made</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-175'>LANMS-175</a>] - Add activity logging</li>
+						</ul>
+
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-71'>LANMS-71</a>] - Admin should be able to set payment to entrance for temp reserved seats</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-159'>LANMS-159</a>] - Cleanup routes for user/account</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-161'>LANMS-161</a>] - New account and dashboard pages</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-162'>LANMS-162</a>] - New design improvement for save buttons</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-163'>LANMS-163</a>] - Add a interactive card for payments</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-173'>LANMS-173</a>] - GDPR: Cookie Notice</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-180'>LANMS-180</a>] - GDPR: Users can easily request deletion of their personal data</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-181'>LANMS-181</a>] - GDPR: If you process children&#39;s personal data, verify their age and ask consent from their legal guardian</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-182'>LANMS-182</a>] - GDPR: Add a General Privacy Policy</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-183'>LANMS-183</a>] - GDPR: Add a General Terms and Conditions</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-184'>LANMS-184</a>] - Update the user UI</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-185'>LANMS-185</a>] - GDPR: Users can easily download their personal data</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#236">Version 2.3.6</a>
+					</h4>
+				</div>
+				<div id="236" class="panel-collapse collapse">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
