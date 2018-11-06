@@ -2,10 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dialect\Gdpr\Anonymizable;
 
 class SeatReservation extends Model {
 
-	use SoftDeletes;
+	use SoftDeletes, Anonymizable;
 
 	protected $dates = ['deleted_at'];
 
