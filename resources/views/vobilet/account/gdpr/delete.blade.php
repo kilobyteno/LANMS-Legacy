@@ -6,8 +6,9 @@
     <div class="page-header">
         <h4 class="page-title">Delete Personal Data</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item">Account</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('account') }}">Account</a></li>
             <li class="breadcrumb-item active" aria-current="page">Delete Personal Data</li>
         </ol>
     </div>

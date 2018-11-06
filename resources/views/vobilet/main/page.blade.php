@@ -6,7 +6,7 @@
 	<div class="page-header">
 		<h4 class="page-title">{{ $page->title }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item">Home</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 			<li class="breadcrumb-item">Information</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ $page->title }}</li>
 		</ol>

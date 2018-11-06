@@ -6,8 +6,8 @@
 	<div class="page-header">
 		<h4 class="page-title">Addressbook <a class="btn btn-sm btn-success pull-right" href="{{ route('account-addressbook-create') }}"><i class="fa fa-plus"></i> Add</a></h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item">Home</li>
-			<li class="breadcrumb-item">User</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Addressbook</li>
 		</ol>
 	</div>
