@@ -29,103 +29,111 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-5">
-			<div class="card">
-				<div class="card-header">
-					<h3 class="card-title">Attendence</h3>
+		@if($isAnonymized)
+			<div class="col-lg-12">
+				<div class="alert alert-danger" role="alert">
+					<i class="fas fa-frown mr-2" aria-hidden="true"></i> This user has been deleted.
 				</div>
-				@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0 || Sentinel::findById($id)->ownReservationsLastYear->count()>0)
-					<div class="table-responsive">
-						<table class="table card-table table-vcenter text-nowrap">
-							<tbody>
-								@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
-									@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
-										<tr>
-											<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
-											<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
-										</tr>
-									@endforeach
-								@endif
-								@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
-									@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
-										<tr>
-											<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
-											<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
-										</tr>
-									@endforeach
-								@endif
-							</tbody>
-						</table>
-					</div>
-				@else
-					<div class="card-body"><p class="text-muted"><em>No attendance yet.</em></p></div>
-				@endif
 			</div>
-		</div>
-		<div class="col-lg-7">
-			<div class="card">
-				<div class="card-body">
-					<div id="profile-log-switch">
-						<div class="fade show active">
-							<div class="table-responsive border">
-								<table class="table row table-borderless w-100 m-0">
-									<tbody class="col-lg-6 p-0">
-										<tr>
-											<td><strong>Username:</strong> {{ $username }}</td>
-										</tr>
-										<tr>
-											<td><strong>Joined:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $created_at }}">{{ \Carbon::parse($created_at)->diffForHumans() }}</span></td>
-										</tr>
-										@if($location)
+		@else
+			<div class="col-lg-5">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Attendence</h3>
+					</div>
+					@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0 || Sentinel::findById($id)->ownReservationsLastYear->count()>0)
+						<div class="table-responsive">
+							<table class="table card-table table-vcenter text-nowrap">
+								<tbody>
+									@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
+										@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
 											<tr>
-												<td><strong>Location:</strong> {{ $location }}</td>
+												<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
+												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
 											</tr>
-										@endif
-										@if($gender)
+										@endforeach
+									@endif
+									@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
+										@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
 											<tr>
-												<td><strong>Gender:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</td>
+												<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
+												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
 											</tr>
-										@endif
-									</tbody>
-									<tbody class="col-lg-6 p-0">
-										@if($showemail)
+										@endforeach
+									@endif
+								</tbody>
+							</table>
+						</div>
+					@else
+						<div class="card-body"><p class="text-muted"><em>No attendance yet.</em></p></div>
+					@endif
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<div class="card">
+					<div class="card-body">
+						<div id="profile-log-switch">
+							<div class="fade show active">
+								<div class="table-responsive border">
+									<table class="table row table-borderless w-100 m-0">
+										<tbody class="col-lg-6 p-0">
 											<tr>
-												<td><strong>Email:</strong> {{ $email }}</td>
+												<td><strong>Username:</strong> {{ $username }}</td>
 											</tr>
-										@endif
-										@if($showonline)
 											<tr>
-												<td><strong>Last seen:</strong> {{ \Carbon::parse($last_login)->diffForHumans() }}</td>
+												<td><strong>Joined:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $created_at }}">{{ \Carbon::parse($created_at)->diffForHumans() }}</span></td>
 											</tr>
-										@endif
-										@if($occupation)
-											<tr>
-												<td><strong>Occupation:</strong> {{ $occupation }}</td>
-											</tr>
-										@endif
-										@if($birthdate)
-											<tr>
-												<td><strong>Age:</strong> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</td>
-											</tr>
-										@endif
-									</tbody>
-								</table>
-							</div>
-							@if($about)
-								<div class="row mt-5">
-									<div class="col-md-12">
-										<div class="media-heading">
-											<h5><strong>About</strong></h5>
-										</div>
-										<p>{{ $about }}</p>
-									</div>
+											@if($location)
+												<tr>
+													<td><strong>Location:</strong> {{ $location }}</td>
+												</tr>
+											@endif
+											@if($gender)
+												<tr>
+													<td><strong>Gender:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</td>
+												</tr>
+											@endif
+										</tbody>
+										<tbody class="col-lg-6 p-0">
+											@if($showemail)
+												<tr>
+													<td><strong>Email:</strong> {{ $email }}</td>
+												</tr>
+											@endif
+											@if($showonline)
+												<tr>
+													<td><strong>Last seen:</strong> {{ \Carbon::parse($last_login)->diffForHumans() }}</td>
+												</tr>
+											@endif
+											@if($occupation)
+												<tr>
+													<td><strong>Occupation:</strong> {{ $occupation }}</td>
+												</tr>
+											@endif
+											@if($birthdate)
+												<tr>
+													<td><strong>Age:</strong> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</td>
+												</tr>
+											@endif
+										</tbody>
+									</table>
 								</div>
-							@endif
+								@if($about)
+									<div class="row mt-5">
+										<div class="col-md-12">
+											<div class="media-heading">
+												<h5><strong>About</strong></h5>
+											</div>
+											<p>{{ $about }}</p>
+										</div>
+									</div>
+								@endif
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		@endif
 	</div>
 </div>
 @stop
