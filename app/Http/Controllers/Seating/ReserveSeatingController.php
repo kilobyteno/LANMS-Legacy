@@ -159,7 +159,8 @@ class ReserveSeatingController extends Controller {
 
 	public function consentform()
 	{
-		return PDF::loadView('seating.pdf.consentform')->stream();
+		$html = view('seating.pdf.consentform')->render();
+		return PDF::loadHTML($html)->stream();
 	}
 
 	public function destroy($id)
