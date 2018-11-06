@@ -50,7 +50,7 @@
 			               <div class="jp-card-shiny"></div>
 			               <div class="jp-card-cvc jp-card-display">•••</div>
 			               <div class="jp-card-number jp-card-display jp-card-invalid">•••• •••• •••• {{ $charge['source']['last4'] }}</div>
-			               <div class="jp-card-name jp-card-display">{{ $charge['source']['name'] or 'Firstname Lastname' }}</div>
+			               <div class="jp-card-name jp-card-display">{{ $charge['source']['name'] ?? '' }}</div>
 			               <div class="jp-card-expiry jp-card-display" data-before="month/year" data-after="valid
 			                  thru">{{ $charge['source']['exp_month'] }}/{{ $charge['source']['exp_year'] }}</div>
 			            </div>
