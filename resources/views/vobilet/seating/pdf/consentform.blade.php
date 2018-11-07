@@ -41,7 +41,7 @@
 				</ul>
 			</div>
 			<div class="col-md-6" style="float: right;">
-				<p>Det bør også nevnes at arrangørene;</p>
+				<p>Det bør også nevnes at arrangørene:</p>
 				<ul>
 					<li>Vil ikke ta bilder av barna når de er svært lettkledde.</li>
 					<li>Vil gjøre sitt beste for at bildene som publiseres på nett vil legges ut i en kvalitet som gjør det lite attraktivt for andre å manipulere dem eller benytte dem i andre sammenhenger.</li>
