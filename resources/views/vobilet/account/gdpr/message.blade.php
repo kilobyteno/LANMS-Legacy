@@ -15,6 +15,20 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Do you consent to these new changes?</h3>
+                    <div class="card-options">
+                        <form class="form-inline" role="form" method="POST" action="{{ route('gdpr-terms-accepted') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-success"><i class="fas fa-vote-yea"></i> I Consent</button>
+                        </form>
+                        <form class="form-inline ml-3" role="form" method="POST" action="{{ route('gdpr-terms-denied') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-times"></i> I Deny These Changes</button>
+                        </form>
+                    </div>
+                    
+                </div>
 				<div class="card-body">
 					<p>Probably you've heard about GDPR, but what does the regulation mean to you as a member? Here you can read about what the privacy reform implies for your member relationship on this website.</p>
 
@@ -36,16 +50,6 @@
 
                     <p><strong>Increased security for your customer data</strong></p>
                     <p>The new directive requires this website to have a full overview of all the event's personal data and to demand security for these. In the event of a data break, which may affect your personal information, this website follows the rules for reporting duty stated in the GDPR.</p>
-				</div>
-				<div class="card-footer">
-					<form class="form-inline float-left" role="form" method="POST" action="{{ route('gdpr-terms-accepted') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-success"><i class="fas fa-vote-yea"></i> I Accept</button>
-                    </form>
-                    <form class="form-inline float-right" role="form" method="POST" action="{{ route('gdpr-terms-denied') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="btn btn-outline-danger"><i class="fas fa-times"></i> Deny</button>
-                    </form>
 				</div>
 			</div>
 		</div>
