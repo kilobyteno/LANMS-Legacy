@@ -27,7 +27,7 @@
 				<div class="card-body">
 					<p><b>Hvor: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
 					<p><b>Når: </b> {{ LANMS\Info::getContent('when') }}</p>
-					<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
+					<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
 				</div>
 			</div>
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
