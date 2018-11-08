@@ -18,215 +18,218 @@ use LANMS\Http\Requests\Member\DeleteAccountRequest;
 use LANMS\User;
 use LANMS\News;
 
-class AccountController extends Controller {
+class AccountController extends Controller
+{
+    public function getDashboard()
+    {
+        $authuser = Sentinel::getUser();
+        $onlinestatus = User::getOnlineStatus($authuser->id);
+        $userarray = $authuser->toArray();
+        $userarray['onlinestatus'] = $onlinestatus;
 
-	public function getDashboard() {
-		$authuser = Sentinel::getUser();
-		$onlinestatus = User::getOnlineStatus($authuser->id);
-		$userarray = $authuser->toArray();
-		$userarray['onlinestatus'] = $onlinestatus;
+        $news = News::isPublished()->get()->take(2);
 
-		$news = News::isPublished()->get()->take(2);
+        return view('account.dashboard')
+                    ->with($userarray)
+                    ->withNews($news);
+    }
 
-		return view('account.dashboard')
-					->with($userarray)
-					->withNews($news);
-	}
+    public function getAccount()
+    {
+        return view('account.index');
+    }
 
-	public function getAccount() {
-		return view('account.index');
-	}
+    public function getEditProfile()
+    {
+        $authuser = Sentinel::getUser();
+        return view('account.edit-profile')->with($authuser->toArray());
+    }
 
-	public function getEditProfile() {
-		$authuser = Sentinel::getUser();
-		return view('account.edit-profile')->with($authuser->toArray());
-	}
+    public function postEditProfile(ProfileRequest $request)
+    {
+        $finduser = Sentinel::findById(Sentinel::getUser()->id);
 
-	public function postEditProfile(ProfileRequest $request) {
+        $credentials = [
+            'login'         => Sentinel::getUser()->username,
+            'password'      => $request->get('password'),
+        ];
 
-		$finduser = Sentinel::findById(Sentinel::getUser()->id);
+        if (Sentinel::authenticate($credentials)) {
+            $info = [
+                'firstname'         => $request->get('firstname'),
+                'lastname'          => $request->get('lastname'),
+                'gender'            => $request->get('gender'),
+                'location'          => $request->get('location'),
+                'occupation'        => $request->get('occupation'),
+                'birthdate'         => $request->get('birthdate'),
+                'about'             => $request->get('about'),
+                'showemail'         => $request->get('showemail'),
+                'showname'          => $request->get('showname'),
+                'showonline'        => $request->get('showonline'),
+                'userdateformat'    => $request->get('userdateformat'),
+                'usertimeformat'    => $request->get('usertimeformat'),
+            ];
 
-		$credentials = [
-			'login' 		=> Sentinel::getUser()->username,
-			'password' 		=> $request->get('password'),
-		];
+            $updateuser = Sentinel::update($finduser, $info);
 
-		if (Sentinel::authenticate($credentials)) {
+            if ($updateuser) {
+                return Redirect::route('user-profile', Sentinel::getUser()->username)
+                        ->with('messagetype', 'success')
+                        ->with('message', 'Your details has been changed!');
+            } else {
+                return Redirect::route('user-profile', Sentinel::getUser()->username)
+                    ->with('messagetype', 'danger')
+                    ->with('message', 'Something went wrong when saving your details.');
+            }
+        } else {
+            return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
+                    ->with('messagetype', 'warning')
+                    ->with('message', 'Wrong password. Please try again.');
+        }
+    }
 
-			$info = [
-				'firstname' 		=> $request->get('firstname'),
-				'lastname' 			=> $request->get('lastname'),
-				'gender' 			=> $request->get('gender'),
-				'location' 			=> $request->get('location'),
-				'occupation' 		=> $request->get('occupation'),
-				'birthdate' 		=> $request->get('birthdate'),
-				'about' 			=> $request->get('about'),
-				'showemail' 		=> $request->get('showemail'),
-				'showname' 			=> $request->get('showname'),
-				'showonline' 		=> $request->get('showonline'),
-				'userdateformat' 	=> $request->get('userdateformat'),
-				'usertimeformat' 	=> $request->get('usertimeformat'),
-			];
+    public function getChangePassword()
+    {
+        return view('account.changepassword');
+    }
 
-			$updateuser = Sentinel::update($finduser, $info);
+    public function postChangePassword(PasswordRequest $request)
+    {
+        $finduser = Sentinel::findById(Sentinel::getUser()->id);
 
-			if($updateuser) {
-				return Redirect::route('user-profile', Sentinel::getUser()->username)
-						->with('messagetype', 'success')
-						->with('message', 'Your details has been changed!');
-			} else {
-				return Redirect::route('user-profile', Sentinel::getUser()->username)
-					->with('messagetype', 'danger')
-					->with('message', 'Something went wrong when saving your details.');
-			}
-		} else {
-			return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
-					->with('messagetype', 'warning')
-					->with('message', 'Wrong password. Please try again.');
-		}
-	}
+        $credentials = [
+            'username'      => Sentinel::getUser()->username,
+            'password'      => $request->get('current_password'),
+        ];
 
-	public function getChangePassword() {
-		return view('account.changepassword');
-	}
+        if (Sentinel::authenticate($credentials)) {
+            $info = [
+                'password'      => $request->get('password')
+            ];
 
-	public function postChangePassword(PasswordRequest $request) {
+            $updateuser = Sentinel::update($finduser, $info);
 
-		$finduser = Sentinel::findById(Sentinel::getUser()->id);
+            if ($updateuser) {
+                Sentinel::logout();
+                return Redirect::route('home')
+                        ->with('messagetype', 'success')
+                        ->with('message', 'Your password has been changed! Please login again to confirm the password change.');
+            } else {
+                return Redirect::route('account-change-password')
+                    ->with('messagetype', 'danger')
+                    ->with('message', 'Something went wrong when saving your password.');
+            }
+        } else {
+            return Redirect::route('account-change-password')
+                    ->with('messagetype', 'warning')
+                    ->with('message', 'Your current password does not seem to match.');
+        }
+    }
 
-		$credentials = [
-			'username' 		=> Sentinel::getUser()->username,
-			'password' 		=> $request->get('current_password'),
-		];
+    public function getChangeImages()
+    {
+        $authuser = Sentinel::getUser();
+        return view('account.changeimages')->with($authuser->toArray());
+    }
 
-		if (Sentinel::authenticate($credentials)) {
+    public function postChangeProfileImage(ProfileImageRequest $request)
+    {
+        $finduser           = Sentinel::findById(Sentinel::getUser()->id);
 
-			$info = [
-				'password' 		=> $request->get('password')
-			];
+        $image              = $request->file('profileimage');
 
-			$updateuser = Sentinel::update($finduser, $info);
+        if ($image == null) {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'warning')
+                    ->with('message', 'Please select an image.');
+        }
+        
+        $filename           = Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
+        $path               = public_path() . '/images/profilepicture/' . $filename;
+        $webpath            = '/images/profilepicture/' . $filename;
 
-			if($updateuser) {
-				Sentinel::logout();
-				return Redirect::route('home')
-						->with('messagetype', 'success')
-						->with('message', 'Your password has been changed! Please login again to confirm the password change.');
-			} else {
-				return Redirect::route('account-change-password')
-					->with('messagetype', 'danger')
-					->with('message', 'Something went wrong when saving your password.');
-			}
+        $filename_small     = Sentinel::getUser()->id . '_small.' . $image->getClientOriginalExtension();
+        $path_small         = public_path() . '/images/profilepicture/' . $filename_small;
+        $webpath_small      = '/images/profilepicture/' . $filename_small;
 
-		} else {
-			return Redirect::route('account-change-password')
-					->with('messagetype', 'warning')
-					->with('message', 'Your current password does not seem to match.');
-		}
+        $imagesave          = Image::make($image->getRealPath())->fit(115)->save($path);
+        $imagesave_small    = Image::make($image->getRealPath())->fit(75)->save($path_small);
 
-	}
+        $info = [
+            'profilepicture'        => $webpath,
+            'profilepicturesmall'   => $webpath_small,
+        ];
+        $updateuser = Sentinel::update($finduser, $info);
 
-	public function getChangeImages() {
-		$authuser = Sentinel::getUser();
-		return view('account.changeimages')->with($authuser->toArray());
-	}
+        if ($imagesave && $updateuser && $imagesave_small) {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'Your profile picture has been changed!');
+        } else {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'danger')
+                    ->with('message', 'Your profile picture could not be uploaded.');
+        }
+    }
 
-	public function postChangeProfileImage(ProfileImageRequest $request) {
-		
-		$finduser 			= Sentinel::findById(Sentinel::getUser()->id);
+    public function postChangeProfileCover(ProfileCoverRequest $request)
+    {
+        $finduser           = Sentinel::findById(Sentinel::getUser()->id);
 
-		$image 				= $request->file('profileimage');
+        $image              = $request->file('profilecover');
 
-		if($image == null) {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'warning')
-					->with('message', 'Please select an image.');
-		}
-		
-		$filename 			= Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
-		$path 				= public_path() . '/images/profilepicture/' . $filename;
-		$webpath			= '/images/profilepicture/' . $filename;
+        if ($image == null) {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'warning')
+                    ->with('message', 'Please select an image.');
+        }
+        
+        $filename           = Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
+        $path               = public_path() . '/images/profilecover/' . $filename;
+        $webpath            = '/images/profilecover/' . $filename;
 
-		$filename_small		= Sentinel::getUser()->id . '_small.' . $image->getClientOriginalExtension();
-		$path_small 		= public_path() . '/images/profilepicture/' . $filename_small;
-		$webpath_small		= '/images/profilepicture/' . $filename_small;
+        $imagesave          = Image::make($image->getRealPath())->resize(1920, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($path);
 
-		$imagesave 			= Image::make($image->getRealPath())->fit(115)->save($path);
-		$imagesave_small 	= Image::make($image->getRealPath())->fit(75)->save($path_small);
+        $info = [
+            'profilecover'      => $webpath,
+        ];
+        $updateuser = Sentinel::update($finduser, $info);
 
-		$info = [
-			'profilepicture' 		=> $webpath,
-			'profilepicturesmall' 	=> $webpath_small,
-		];
-		$updateuser = Sentinel::update($finduser, $info);
+        if ($imagesave && $updateuser) {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'Your profile cover has been changed!');
+        } else {
+            return Redirect::route('account-change-images')
+                    ->with('messagetype', 'danger')
+                    ->with('message', 'Your profile cover could not be uploaded.');
+        }
+    }
 
-		if($imagesave && $updateuser && $imagesave_small) {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'success')
-					->with('message', 'Your profile picture has been changed!');
-		} else {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'danger')
-					->with('message', 'Your profile picture could not be uploaded.');
-		}
+    public function getGDPRDownload()
+    {
+        return view('account.gdpr.download');
+    }
 
-	}
+    public function getGDPRDelete()
+    {
+        return view('account.gdpr.delete');
+    }
 
-	public function postChangeProfileCover(ProfileCoverRequest $request) {
-		
-		$finduser 			= Sentinel::findById(Sentinel::getUser()->id);
-
-		$image 				= $request->file('profilecover');
-
-		if($image == null) {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'warning')
-					->with('message', 'Please select an image.');
-		}
-		
-		$filename 			= Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
-		$path 				= public_path() . '/images/profilecover/' . $filename;
-		$webpath			= '/images/profilecover/' . $filename;
-
-		$imagesave 			= Image::make($image->getRealPath())->resize(1920, null, function($constraint){ $constraint->aspectRatio(); })->save($path);
-
-		$info = [
-			'profilecover' 		=> $webpath,
-		];
-		$updateuser = Sentinel::update($finduser, $info);
-
-		if($imagesave && $updateuser) {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'success')
-					->with('message', 'Your profile cover has been changed!');
-		} else {
-			return Redirect::route('account-change-images')
-					->with('messagetype', 'danger')
-					->with('message', 'Your profile cover could not be uploaded.');
-		}
-
-	}
-
-	public function getGDPRDownload() {
-		return view('account.gdpr.download');
-	}
-
-	public function getGDPRDelete() {
-		return view('account.gdpr.delete');
-	}
-
-	public function postGDPRDelete(DeleteAccountRequest $request) {
-
-		$credentials = [
+    public function postGDPRDelete(DeleteAccountRequest $request)
+    {
+        $credentials = [
             'login'         => \Sentinel::getUser()->username,
             'password'      => $request->input('password'),
         ];
 
         abort_unless(\Sentinel::authenticate($credentials), 403);
 
-		$user = User::findOrFail(\Sentinel::getUser()->id);
+        $user = User::findOrFail(\Sentinel::getUser()->id);
 
-		abort_unless($user, 403);
+        abort_unless($user, 403);
 
         $user->anonymize();
 
@@ -237,8 +240,7 @@ class AccountController extends Controller {
         \Sentinel::logout();
 
         return Redirect::route('home')
-						->with('messagetype', 'success')
-						->with('message', 'Your account has now been deleted!');
-	}
-
+                        ->with('messagetype', 'success')
+                        ->with('message', 'Your account has now been deleted!');
+    }
 }
