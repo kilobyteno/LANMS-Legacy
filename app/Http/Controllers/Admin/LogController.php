@@ -4,18 +4,17 @@ use LANMS\Http\Controllers\Controller;
 
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 
-class LogController extends Controller {
+class LogController extends Controller
+{
+    protected $request;
 
-	protected $request;
-
-    public function __construct ()
+    public function __construct()
     {
         $this->request = app('request');
     }
     
-	public function index()
+    public function index()
     {
-
         if ($this->request->input('l')) {
             LaravelLogViewer::setFile(base64_decode($this->request->input('l')));
         }
@@ -25,8 +24,8 @@ class LogController extends Controller {
         } elseif ($this->request->has('del')) {
             app('files')->delete(LaravelLogViewer::pathToLogFile(base64_decode($this->request->input('del'))));
             return $this->redirect($this->request->url());
-        } elseif ($this->request->has('delall')){
-            foreach(LaravelLogViewer::getFiles(true) as $file){
+        } elseif ($this->request->has('delall')) {
+            foreach (LaravelLogViewer::getFiles(true) as $file) {
                 app('files')->delete(LaravelLogViewer::pathToLogFile($file));
             }
             return $this->redirect($this->request->url());
@@ -57,5 +56,4 @@ class LogController extends Controller {
         // For laravel 4.2
         return app('\Illuminate\Support\Facades\Response')->download($data);
     }
-
 }
