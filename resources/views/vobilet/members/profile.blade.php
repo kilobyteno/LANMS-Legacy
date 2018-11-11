@@ -100,7 +100,7 @@
 													<td><strong>Email:</strong> {{ $email }}</td>
 												</tr>
 											@endif
-											@if($showonline && $last_activity)
+											@if($showonline && $last_activity && $last_activity != '0000-00-00 00:00:00')
 												<tr>
 													<td><strong>Last seen:</strong> {{ \Carbon::parse($last_activity)->diffForHumans() }}</td>
 												</tr>
