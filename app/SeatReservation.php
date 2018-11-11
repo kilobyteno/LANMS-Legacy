@@ -52,7 +52,7 @@ class SeatReservation extends Model
 
     public function seat()
     {
-        return $this->hasOne('Seats', 'id', 'seat_id');
+        return $this->hasOne('Seats', 'id', 'seat_id')->withTrashed();
     }
 
     public function scopeThisYear($query)
