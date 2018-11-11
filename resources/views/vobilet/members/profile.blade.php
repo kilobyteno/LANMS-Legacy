@@ -100,9 +100,9 @@
 													<td><strong>Email:</strong> {{ $email }}</td>
 												</tr>
 											@endif
-											@if($showonline)
+											@if($showonline && $last_activity)
 												<tr>
-													<td><strong>Last seen:</strong> {{ \Carbon::parse($last_login)->diffForHumans() }}</td>
+													<td><strong>Last seen:</strong> {{ \Carbon::parse($last_activity)->diffForHumans() }}</td>
 												</tr>
 											@endif
 											@if($occupation)
