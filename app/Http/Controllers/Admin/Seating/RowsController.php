@@ -126,6 +126,7 @@ class RowsController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
             $row = SeatRows::find($id);
+            $row->seats()->delete();
             if ($row->delete()) {
                 return Redirect::route('admin-seating-rows')
                         ->with('messagetype', 'success')
