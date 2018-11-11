@@ -16,10 +16,10 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h3>Reserved by</h3>
-			<div class="card card-profile" style="background: url({{ $reservation->reservedby->profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+			<div class="card card-profile" style="background: url({{ $reservation->reservedby->profilecover ?? '/images/profilecover/0.jpg' }}); background-size:cover;">
 				<div class="card-body text-center">
 					<a href="{{ route('user-profile', $reservation->reservedby->username) }}">
-						<img class="card-profile-img" src="{{ $reservation->reservedby->profilepicture or '/images/profilepicture/0.png' }}">
+						<img class="card-profile-img" src="{{ $reservation->reservedby->profilepicture ?? '/images/profilepicture/0.png' }}">
 						<h3 class="mb-3 text-white">{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}</h3>
 					</a>
 					@if(Sentinel::findById($reservation->reservedby->id)->inRole('admin') || Sentinel::findById($reservation->reservedby->id)->inRole('superadmin') || Sentinel::findById($reservation->reservedby->id)->inRole('moderator'))
@@ -54,10 +54,10 @@
 		</div>
 		<div class="col-md-4">
 			<h3>Reserved for</h3>
-			<div class="card card-profile" style="background: url({{ $reservation->reservedfor->profilecover or '/images/profilecover/0.jpg' }}); background-size:cover;">
+			<div class="card card-profile" style="background: url({{ $reservation->reservedfor->profilecover ?? '/images/profilecover/0.jpg' }}); background-size:cover;">
 				<div class="card-body text-center">
 					<a href="{{ route('user-profile', $reservation->reservedfor->username) }}">
-						<img class="card-profile-img" src="{{ $reservation->reservedfor->profilepicture or '/images/profilepicture/0.png' }}">
+						<img class="card-profile-img" src="{{ $reservation->reservedfor->profilepicture ?? '/images/profilepicture/0.png' }}">
 						<h3 class="mb-3 text-white">{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</h3>
 					</a>
 					@if(Sentinel::findById($reservation->reservedfor->id)->inRole('admin') || Sentinel::findById($reservation->reservedfor->id)->inRole('superadmin') || Sentinel::findById($reservation->reservedfor->id)->inRole('moderator'))
