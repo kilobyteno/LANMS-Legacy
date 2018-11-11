@@ -35,7 +35,7 @@
 						@endif
 						@if($reservation->reservedby->location)
 							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $reservation->reservedby->location or '<em>Unkown</em>' }}
+								<i class="fa fa-map-marker"></i> {{ $reservation->reservedby->location }}
 							</div>
 						@endif
 						@if($reservation->reservedby->gender)
@@ -73,7 +73,7 @@
 						@endif
 						@if($reservation->reservedfor->location)
 							<div class="col-sm-6">
-								<i class="fa fa-map-marker"></i> {{ $reservation->reservedfor->location or '<em>Unkown</em>' }}
+								<i class="fa fa-map-marker"></i> {{ $reservation->reservedfor->location }}
 							</div>
 						@endif
 						@if($reservation->reservedfor->gender)
