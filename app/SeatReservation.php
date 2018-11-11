@@ -1,215 +1,224 @@
-<?php namespace LANMS;
+<?php
+
+namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Dialect\Gdpr\Anonymizable;
 
-class SeatReservation extends Model {
+class SeatReservation extends Model
+{
+    use SoftDeletes, Anonymizable;
 
-	use SoftDeletes, Anonymizable;
+    protected $dates = ['deleted_at'];
 
-	protected $dates = ['deleted_at'];
+    protected $table = 'seat_reservations';
 
-	protected $table = 'seat_reservations';
+    protected $fillable = [
+        'seat_id',
+        'reservedby_id',
+        'reservedfor_id',
+        'payment_id',
+        'ticket_id',
+        'status_id',
+        'year',
+        'reminder_email_sent',
+    ];
 
-	protected $fillable = [
-		'seat_id',
-		'reservedby_id',
-		'reservedfor_id',
-		'payment_id',
-		'ticket_id',
-		'status_id',
-		'year',
-		'reminder_email_sent',
-	];
+    public function reservedfor()
+    {
+        return $this->hasOne('User', 'id', 'reservedfor_id');
+    }
 
-	function reservedfor() {
-		return $this->hasOne('User', 'id', 'reservedfor_id');
-	}
+    public function reservedby()
+    {
+        return $this->hasOne('User', 'id', 'reservedby_id');
+    }
 
-	function reservedby() {
-		return $this->hasOne('User', 'id', 'reservedby_id');
-	}
+    public function payment()
+    {
+        return $this->hasOne('SeatPayment', 'id', 'payment_id');
+    }
 
-	function payment() {
-		return $this->hasOne('SeatPayment', 'id', 'payment_id');
-	}
+    public function ticket()
+    {
+        return $this->hasOne('SeatTicket', 'id', 'ticket_id');
+    }
 
-	function ticket() {
-		return $this->hasOne('SeatTicket', 'id', 'ticket_id');
-	}
+    public function status()
+    {
+        return $this->hasOne('SeatReservationStatus', 'id', 'status_id');
+    }
 
-	function status() {
-		return $this->hasOne('SeatReservationStatus', 'id', 'status_id');
-	}
+    public function seat()
+    {
+        return $this->hasOne('Seats', 'id', 'seat_id');
+    }
 
-	function seat() {
-		return $this->hasOne('Seats', 'id', 'seat_id');
-	}
+    public function scopeThisYear($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+    }
 
-	public function scopeThisYear($query) {
-		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
-	}
+    public function scopeThisYearDecending($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
+    }
 
-	public function scopeThisYearDecending($query) {
-		return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
-	}
+    public function scopeLastYear($query)
+    {
+        return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+    }
 
-	public function scopeLastYear($query) {
-		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
-	}
+    public function scopeLastYearDecending($query)
+    {
+        return $query->where('year', '<', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
+    }
 
-	public function scopeLastYearDecending($query) {
-		return $query->where('year', '<', \Setting::get('SEATING_YEAR'))->orderBy('year', 'DESC');
-	}
+    public function scopePaid($query)
+    {
+        if (SeatPayment::where('reservation_id', '=', $this->id)->first() == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-	public function scopePaid($query) {
-		if(SeatPayment::where('reservation_id', '=', $this->id)->first() == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+    public function scopeGetExpireTime($query, $id)
+    {
+        $reservation = $query->where('id', '=', $id)->first();
 
-	public function scopeGetExpireTime($query, $id) {
+        if ($reservation->status_id == 1) { // 1 = reserved
+            return "never";
+        }
 
-		$reservation 	= $query->where('id', '=', $id)->first();
+        $time = strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
 
-		if($reservation->status_id == 1) { // 1 = reserved
-			return "never";
-		}
+        $SECOND = 1;
+        $MINUTE = 60 * $SECOND;
+        $HOUR = 60 * $MINUTE;
+        $DAY = 24 * $HOUR;
+        $MONTH = 30 * $DAY;
+        $after = $time - time();
 
-		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
+        if ($after < 0) {
+            return "expired";
+        }
 
-		$SECOND 	= 1;
-		$MINUTE 	= 60 * $SECOND;
-		$HOUR 		= 60 * $MINUTE;
-		$DAY 		= 24 * $HOUR;
-		$MONTH 		= 30 * $DAY;
-		$after 		= $time - time();
+        if ($time == '0000-00-00 00:00:00') {
+            return "never";
+        }
 
-		if ($after < 0) {
-			return "expired";
-		}
+        if ($after < 1 * $MINUTE) {
+            return ($after <= 1) ? "right now" : $after . " seconds";
+        }
 
-		if ($time == '0000-00-00 00:00:00') {
-			return "never";
-		}
+        if ($after < 2 * $MINUTE) {
+            return "a minute";
+        }
 
-		if ($after < 1 * $MINUTE) {
-			return ($after <= 1) ? "right now" : $after . " seconds";
-		}
+        if ($after < 45 * $MINUTE) {
+            return floor($after / 60) . " minutes";
+        }
 
-		if ($after < 2 * $MINUTE) {
-			return "a minute";
-		}
+        if ($after < 90 * $MINUTE) {
+            return "an hour";
+        }
 
-		if ($after < 45 * $MINUTE) {
-			return floor($after / 60) . " minutes";
-		}
+        if ($after < 24 * $HOUR) {
+            return (floor($after / 60 / 60) == 1 ? 'about an hour' : floor($after / 60 / 60).' hours');
+        }
 
-		if ($after < 90 * $MINUTE) {
-			return "an hour";
-		}
+        if ($after < 48 * $HOUR) {
+            return "two days";
+        }
 
-		if ($after < 24 * $HOUR) {
-			return (floor($after / 60 / 60) == 1 ? 'about an hour' : floor($after / 60 / 60).' hours');
-		}
+        if ($after < 30 * $DAY) {
+            return floor($after / 60 / 60 / 24) . " days";
+        }
 
-		if ($after < 48 * $HOUR) {
-			return "two days";
-		}
+        if ($after < 12 * $MONTH) {
+            $months = floor($after / 60 / 60 / 24 / 30);
+            return $months <= 1 ? "one month" : $months . " months";
+        } else {
+            $years = floor($after / 60 / 60 / 24 / 30 / 12);
+            return $years <= 1 ? "one year" : $years." years";
+        }
+    }
 
-		if ($after < 30 * $DAY) {
-			return floor($after / 60 / 60 / 24) . " days";
-		}
+    public function scopeGetRealExpireTime($query, $id)
+    {
+        $reservation = $query->where('id', '=', $id)->first();
 
-		if ($after < 12 * $MONTH) {
-			$months = floor($after / 60 / 60 / 24 / 30);
-			return $months <= 1 ? "one month" : $months . " months";
-		} else {
-			$years = floor  ($after / 60 / 60 / 24 / 30 / 12);
-			return $years <= 1 ? "one year" : $years." years";
-		}
+        $time = strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
 
-	}
+        $SECOND = 1;
+        $MINUTE = 60 * $SECOND;
+        $HOUR = 60 * $MINUTE;
+        $DAY = 24 * $HOUR;
+        $MONTH = 30 * $DAY;
+        $after = $time - time();
 
-	public function scopeGetRealExpireTime($query, $id) {
+        if ($after < 0) {
+            return "expired";
+        }
 
-		$reservation 	= $query->where('id', '=', $id)->first();
+        if ($time == '0000-00-00 00:00:00') {
+            return "never";
+        }
 
-		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
+        if ($after < 1 * $MINUTE) {
+            return ($after <= 1) ? "right now" : $after . " seconds";
+        }
 
-		$SECOND 	= 1;
-		$MINUTE 	= 60 * $SECOND;
-		$HOUR 		= 60 * $MINUTE;
-		$DAY 		= 24 * $HOUR;
-		$MONTH 		= 30 * $DAY;
-		$after 		= $time - time();
+        if ($after < 2 * $MINUTE) {
+            return "a minute";
+        }
 
-		if ($after < 0) {
-			return "expired";
-		}
+        if ($after < 45 * $MINUTE) {
+            return floor($after / 60) . " minutes";
+        }
 
-		if ($time == '0000-00-00 00:00:00') {
-			return "never";
-		}
+        if ($after < 90 * $MINUTE) {
+            return "an hour";
+        }
 
-		if ($after < 1 * $MINUTE) {
-			return ($after <= 1) ? "right now" : $after . " seconds";
-		}
+        if ($after < 24 * $HOUR) {
+            return (floor($after / 60 / 60) == 1 ? 'about an hour' : floor($after / 60 / 60).' hours');
+        }
 
-		if ($after < 2 * $MINUTE) {
-			return "a minute";
-		}
+        if ($after < 48 * $HOUR) {
+            return "two days";
+        }
 
-		if ($after < 45 * $MINUTE) {
-			return floor($after / 60) . " minutes";
-		}
+        if ($after < 30 * $DAY) {
+            return floor($after / 60 / 60 / 24) . " days";
+        }
 
-		if ($after < 90 * $MINUTE) {
-			return "an hour";
-		}
+        if ($after < 12 * $MONTH) {
+            $months = floor($after / 60 / 60 / 24 / 30);
+            return $months <= 1 ? "one month" : $months . " months";
+        } else {
+            $years = floor($after / 60 / 60 / 24 / 30 / 12);
+            return $years <= 1 ? "one year" : $years." years";
+        }
+    }
 
-		if ($after < 24 * $HOUR) {
-			return (floor($after / 60 / 60) == 1 ? 'about an hour' : floor($after / 60 / 60).' hours');
-		}
+    public function expiretimeinhours()
+    {
+        $time = strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($this->created_at));
 
-		if ($after < 48 * $HOUR) {
-			return "two days";
-		}
+        $SECOND = 1;
+        $MINUTE = 60 * $SECOND;
+        $HOUR = 60 * $MINUTE;
+        $DAY = 24 * $HOUR;
+        $MONTH = 30 * $DAY;
+        $after = $time - time();
 
-		if ($after < 30 * $DAY) {
-			return floor($after / 60 / 60 / 24) . " days";
-		}
+        if ($after < 0) {
+            return 0; // expired
+        }
 
-		if ($after < 12 * $MONTH) {
-			$months = floor($after / 60 / 60 / 24 / 30);
-			return $months <= 1 ? "one month" : $months . " months";
-		} else {
-			$years = floor  ($after / 60 / 60 / 24 / 30 / 12);
-			return $years <= 1 ? "one year" : $years." years";
-		}
-
-	}
-
-	public function expiretimeinhours() {
-
-		$time			= strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($this->created_at));
-
-		$SECOND 	= 1;
-		$MINUTE 	= 60 * $SECOND;
-		$HOUR 		= 60 * $MINUTE;
-		$DAY 		= 24 * $HOUR;
-		$MONTH 		= 30 * $DAY;
-		$after 		= $time - time();
-
-		if ($after < 0) {
-			return 0; // expired
-		}
-
-		return floor($after / 60 / 60);
-
-	}
-
+        return floor($after / 60 / 60);
+    }
 }
