@@ -26,7 +26,7 @@
 									</small></div>
 									<div class="d-flex align-items-center pt-5 mt-auto">
 										<div class="avatar brround avatar-md mr-3" style="background-image: url({{ $crew->user->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></div>
-										<div><a href="{{ route('user-profile', $crew->user->username) }}" class="text-default">{{ User::getFullnameByID($crew->id) }}</a></div>
+										<div><a href="{{ route('user-profile', $crew->user->username) }}" class="text-default">{{ User::getFullnameByID($crew->user->id) }}</a></div>
 									</div>
 								</div>
 							</div>
