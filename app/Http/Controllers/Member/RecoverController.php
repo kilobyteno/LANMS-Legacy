@@ -68,7 +68,7 @@ class RecoverController extends Controller
             \Mail::send(
                 'emails.auth.forgot-password',
                 array(
-                    'link' => \URL::route('account-recover', $reminder_code),
+                    'link' => \URL::route('account-reset-password', $reminder_code),
                     'firstname' => $user->firstname,
                     'username' => $user->username,
                 ),
