@@ -65,7 +65,7 @@ class ReserveSeatingController extends Controller
         $reservedforid  = $request->get('reservedfor');
         $reservedfor    = Sentinel::findById($reservedforid);
 
-        if ($seat == null) {
+        if (is_null($seat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', 'Could not find seat.');
         }
@@ -144,7 +144,7 @@ class ReserveSeatingController extends Controller
     {
         $slug = strtolower($slug); // Just to be sure it is correct
         $currentseat = Seats::where('slug', $slug)->first();
-        if ($currentseat == null) {
+        if (is_null($currentseat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', 'Could not find seat.');
         }
