@@ -26,7 +26,7 @@ class BillingController extends Controller
     public function getPayment($id)
     {
         $seatpayment = \LANMS\SeatPayment::find($id);
-        if (!$seatpayment->user_id == Sentinel::getUser()->id) {
+        if (!Sentinel::getUser()->id == $seatpayment->user_id) {
             abort(403);
         }
         $charge = \Stripe::charges()->find($seatpayment->stripecharge);
@@ -40,7 +40,7 @@ class BillingController extends Controller
 
         if ($scus) {
             $sccus      = $scus->cus;
-            $charges    = \Stripe::charges(array('customer' => $sccus, 'limit' => 100))->all();
+            $charges    = \Stripe::charges()->all(array('customer' => $sccus, 'limit' => 100));
             $charges    = $charges['data'];
         } else {
             $charges    = [];
