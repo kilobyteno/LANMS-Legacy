@@ -92,7 +92,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
+				<div class="col-sm-3">
 					<div class="panel panel-primary @if($errors->has('image')) panel-danger @endif" data-collapsed="0">
 						<div class="panel-heading">
 							<div class="panel-title">Logo</div>
@@ -114,6 +114,19 @@
 							</div>
 							@if($errors->has('image'))
 								<p class="text-danger">{{ $errors->first('image') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="panel panel-primary @if($errors->has('sort_order')) panel-danger @endif" data-collapsed="0">
+						<div class="panel-heading">
+							<div class="panel-title">Sort Order</div>
+						</div>
+						<div class="panel-body">
+							<input type="text" class="form-control input-lg" name="sort_order" placeholder="0" value="{{ (old('sort_order')) ? old('sort_order') : '' }}">
+							@if($errors->has('sort_order'))
+								<p class="text-danger">{{ $errors->first('sort_order') }}</p>
 							@endif
 						</div>
 					</div>

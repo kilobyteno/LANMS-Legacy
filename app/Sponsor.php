@@ -14,11 +14,17 @@ class Sponsor extends Model
         'name',
         'url',
         'description',
+        'sort_order',
         'image',
         'author_id',
         'editor_id',
     ];
     protected $table = 'sponsors';
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('sort_order', 'asc');
+    }
 
     public function author()
     {

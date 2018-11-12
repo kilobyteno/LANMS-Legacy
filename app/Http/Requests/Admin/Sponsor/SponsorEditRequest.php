@@ -9,10 +9,11 @@ class SponsorEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' 			=> 'required',
-            'url' 			=> '',
-            'description' 	=> '',
-            'image' 		=> 'image|mimes:jpeg,png,jpg,gif,svg',
+            'name'          => 'required',
+            'url'           => '',
+            'description'   => '',
+            'sort_order'    => 'required|integer',
+            'image'         => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
     

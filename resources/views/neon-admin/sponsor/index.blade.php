@@ -24,6 +24,7 @@
 		<table class="table table-bordered table-hover datatable" id="table-1">
 			<thead>
 				<tr>
+					<th>Sort Order</th>
 					<th>Name</th>
 					<th>Description</th>
 					<th>URL</th>
@@ -34,7 +35,8 @@
 			<tbody>
 				@foreach($sponsors as $sponsor)
 					<tr>
-						<td scope="row">{{ $sponsor->name }}</td>
+						<td scope="row">{{ $sponsor->sort_order }}</td>
+						<td>{{ $sponsor->name }}</td>
 						<td>{{ $sponsor->description }}</td>
 						<td><a href="{{ $sponsor->url }}" target="_blank">{{ $sponsor->url }}</a></td>
 						<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image }}" alt="image" height="90" /></span></a></div></td>
