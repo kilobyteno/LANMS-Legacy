@@ -16,6 +16,7 @@ class ReservationController extends Controller
     public function view($id)
     {
         $reservation = \LANMS\SeatReservation::find($id);
+        abort_unless($reservation, 404);
         return view('account.reservations.view')->with('reservation', $reservation);
     }
 }
