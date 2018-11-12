@@ -40,7 +40,7 @@ class BillingController extends Controller
 
         if ($scus) {
             $sccus      = $scus->cus;
-            $charges    = \Stripe::charges(array('customer' => $scus, 'limit' => 100))->all();
+            $charges    = \Stripe::charges(array('customer' => $sccus, 'limit' => 100))->all();
             $charges    = $charges['data'];
         } else {
             $charges    = [];
