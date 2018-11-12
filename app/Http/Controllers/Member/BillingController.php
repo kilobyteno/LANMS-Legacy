@@ -25,8 +25,11 @@ class BillingController extends Controller
 
     public function getPayment($id)
     {
-        $seatpayment    = \LANMS\SeatPayment::find($id);
-        $charge         = \Stripe::charges()->find($seatpayment->stripecharge);
+        $seatpayment = \LANMS\SeatPayment::find($id);
+        if (!$seatpayment->user_id == Sentinel::getUser()->id) {
+            abort(403);
+        }
+        $charge = \Stripe::charges()->find($seatpayment->stripecharge);
         return view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge);
     }
 
