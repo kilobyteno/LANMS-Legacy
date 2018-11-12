@@ -45,8 +45,10 @@
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
-									<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
-									<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+									<div class="d-none d-md-flex">
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+									</div>
 								@else
 									<div class="dropdown">
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
@@ -91,6 +93,16 @@
 						<div class="row align-items-center">
 							<div class="col-lg order-lg-first">
 								<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+									@if(Sentinel::Guest())
+										<div class="d-block d-sm-none">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+											</li>
+										</div>
+									@endif
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
 									</li>
