@@ -26,6 +26,8 @@ class BillingController extends Controller
     public function getPayment($id)
     {
         $seatpayment = \LANMS\SeatPayment::find($id);
+        print $seatpayment->user->id;
+        print Sentinel::getUser()->id;
         if (!\Sentinel::getUser()->id == $seatpayment->user->id) {
             abort(403);
         }
