@@ -27,11 +27,7 @@ class CrewController extends Controller
     public function index()
     {
         $crewcategories = CrewCategory::where('active', '=', 1)->get();
-        $pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
-
-        return view('crew.index')
-                    ->with('crewcategories', $crewcategories)
-                    ->with('pagesinmenu', $pagesinmenu);
+        return view('crew.index')->with('crewcategories', $crewcategories);
     }
 
     /**

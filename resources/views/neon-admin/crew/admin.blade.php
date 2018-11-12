@@ -34,8 +34,8 @@
 				@foreach($crewassignment as $crew)
 					<tr>
 						<th scope="row">{{ $crew->id }}</th>
-						<td>{{ User::getFullnameByID($crew->user->id) or 'N/A' }}</td>
-						<td>{{ $crew->category->title or 'N/A' }}</td>
+						<td>{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
+						<td>{{ $crew->category->title ?? 'N/A' }}</td>
 						<td>{{ $crew->year }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($crew->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->created_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
