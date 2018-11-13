@@ -47,7 +47,7 @@
 					</div>
 					<div class="form-group">
 						<label class="custom-switch">
-							<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" name="tos-pp">
+							<input type="checkbox" class="custom-switch-input" name="tos-pp">
 							<span class="custom-switch-indicator"></span>
 							<span class="custom-switch-description">I have read and agree to the<br><strong>Terms of Service and Privacy Policy</strong></span>
 						</label>
