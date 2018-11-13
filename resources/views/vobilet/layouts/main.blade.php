@@ -152,6 +152,21 @@
 			<!--footer-->
 			<footer class="footer br-bl-7 br-br-7">
 				<div class="container">
+					@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="sponsorcarousel" class="carousel slide mb-5 mt-2" data-ride="carousel" data-interval="3000">
+							        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+							        	@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
+								            <div class="carousel-item col-md-4 @if($sponsor->sort_order == 0) active @endif">
+								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a>
+								            </div>
+							            @endforeach
+							        </div>
+							    </div>
+							</div>
+						</div>
+					@endif
 					<div class="row align-items-center text-center">
 						<div class="col-lg-6 col-md-6 d-none d-md-block">
 							<div class="social">
@@ -222,6 +237,32 @@
 			    "href": "{{ url('/privacy') }}"
 			  }
 			})});
+		</script>
+
+		<link href="{{ Theme::url('css/sponsorcarousel.css') }}" rel="stylesheet" />
+		<script>
+
+			$('#sponsorcarousel').on('slide.bs.carousel', function (e) {
+
+			    var $e = $(e.relatedTarget);
+			    var idx = $e.index();
+			    var itemsPerSlide = 3;
+			    var totalItems = $('.carousel-item').length;
+			    
+			    if (idx >= totalItems-(itemsPerSlide-1)) {
+			        var it = itemsPerSlide - (totalItems - idx);
+			        for (var i=0; i<it; i++) {
+			            // append slides to end
+			            if (e.direction=="left") {
+			                $('.carousel-item').eq(i).appendTo('.carousel-inner');
+			            }
+			            else {
+			                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+			            }
+			        }
+			    }
+			});
+  
 		</script>
 
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
