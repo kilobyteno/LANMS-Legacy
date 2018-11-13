@@ -40,7 +40,7 @@ return [
     */
 
     'settings' => [
-        'ttl' => 12,
+        'ttl' => 60,
     ],
 
     /*
