@@ -38,18 +38,6 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     ];
 
     /**
-     * The relations to include in the downloadable data.
-     *
-     * @var array
-     */
-    protected $gdprWith = [
-        'addresses',
-        'ownReservations',
-        'seatpayments',
-        'stripecustomer'
-    ];
-
-    /**
      * Using replacement strings.
      */
     protected $gdprAnonymizableFields = [

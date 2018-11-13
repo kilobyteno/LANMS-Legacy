@@ -4,11 +4,10 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Dialect\Gdpr\Anonymizable;
 
 class SeatReservation extends Model
 {
-    use SoftDeletes, Anonymizable;
+    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 

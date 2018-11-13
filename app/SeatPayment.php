@@ -1,11 +1,8 @@
 <?php namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
-use Dialect\Gdpr\Anonymizable;
 
 class SeatPayment extends Model {
-
-	use Anonymizable;
 
 	protected $table = 'seat_payments';
 

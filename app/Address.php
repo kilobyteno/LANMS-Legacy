@@ -2,11 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Dialect\Gdpr\Anonymizable;
 
 class Address extends Model {
 
-	use SoftDeletes, Anonymizable;
+	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
 	protected $fillable = [
