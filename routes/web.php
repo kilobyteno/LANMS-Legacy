@@ -182,7 +182,7 @@ Route::group([
                     'as' => 'seating-consentform',
                     'uses' => 'Seating\ReserveSeatingController@consentform'
                 ]);
-                Route::get('/{slug}', [
+                Route::get('/{slug}/show', [
                     'as' => 'seating-show',
                     'uses' => 'Seating\ReserveSeatingController@show'
                 ]);
