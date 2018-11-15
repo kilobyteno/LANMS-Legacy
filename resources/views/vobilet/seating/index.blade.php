@@ -60,11 +60,15 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
+															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
+																<span class="badge badge-warning" data-toggle="tooltip" title="You get a pizza at the event!"><i class="fas fa-stroopwafel"></i> Pizza</span>
+															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="Pay at the Entrance"><i class="fas fa-money-bill-alt"></i> Not paid yet</span>
 														@else
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> Not paid</span>
 														@endif
+														
 														@if($reservation->reservedfor->age() < 16)
 															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Personen som denne reservasjonen er reservert for er under 16 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet." data-original-title="Hvorfor ser jeg denne?"><i class="fas fa-user-tie"></i> Samtykkeskjema</a>
 														@endif
@@ -126,6 +130,9 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> Paid</span>
+															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
+																<span class="badge badge-warning" data-toggle="tooltip" title="You get a pizza at the event!"><i class="fas fa-stroopwafel"></i> Pizza</span>
+															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="Pay at the Entrance"><i class="fas fa-money-bill-alt"></i> Not paid yet</span>
 														@else
