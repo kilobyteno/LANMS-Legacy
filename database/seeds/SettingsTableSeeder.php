@@ -36,12 +36,11 @@ class SettingsTableSeeder extends Seeder
         Setting::set('SEATING_SEAT_PRICE_ALT', 300);
         Setting::set('SEATING_SEAT_PRICE_CURRENCY', 'NOK');
         Setting::set('SEATING_YEAR', 2019);
-
-        Setting::set('GOOGLE_MAPS_API_KEY', '');
-
+        
         Setting::set('REFERRAL_ACTIVE', true);
         Setting::set('LOGIN_ENABLED', true);
 
+        Setting::set('GOOGLE_MAPS_API_KEY', '');
         Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
 
         Setting::set('FACEBOOK_APP_ID', '');
