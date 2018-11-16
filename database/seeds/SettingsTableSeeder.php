@@ -44,6 +44,9 @@ class SettingsTableSeeder extends Seeder
 
         Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
 
+        Setting::set('FACEBOOK_APP_ID', '');
+        Setting::set('FACEBOOK_PAGE_ID', '');
+
         Setting::save();
     }
 }
