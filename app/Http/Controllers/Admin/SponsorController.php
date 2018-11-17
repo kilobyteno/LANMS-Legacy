@@ -69,6 +69,7 @@ class SponsorController extends Controller
             $sponsor->name          = $name;
             $sponsor->url           = $request->get('url');
             $sponsor->description   = $request->get('description');
+            $sponsor->sort_order    = $request->get('sort_order');
             $sponsor->image         = $webpath;
             $sponsor->year          = \Setting::get('SEATING_YEAR');
             $sponsor->editor_id     = Sentinel::getUser()->id;
@@ -132,6 +133,7 @@ class SponsorController extends Controller
             $sponsor->name          = $name;
             $sponsor->url           = $request->get('url');
             $sponsor->description   = $request->get('description');
+            $sponsor->sort_order    = $request->get('sort_order');
 
             if ($image) {
                 $sponsor->image         = $webpath;

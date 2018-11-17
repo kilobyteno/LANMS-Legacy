@@ -5,3 +5,15 @@
 .card-profile-img {
 	background: #DDD;
 }
+
+.header-brand img {
+	max-height: 40px;
+}
+
+.header-toggler-icon {
+	border-radius:none;
+	width: 2rem;
+	height: 5px;
+	margin: -2px 0 0 -1rem;
+	box-shadow: 0 8px currentColor, 0 -8px currentColor;
+}

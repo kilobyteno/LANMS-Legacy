@@ -49,6 +49,7 @@ class Handler extends ExceptionHandler {
 	 */
 	public function render($request, Exception $exception)
 	{
+		\Theme::set('vobilet');
 		if($exception instanceof NotFoundHttpException)
 		{
 			return view('errors.404');

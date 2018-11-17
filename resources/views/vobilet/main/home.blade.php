@@ -32,7 +32,7 @@
 			</div>
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
 				<h4>Sponsors</h4>
-				@foreach(LANMS\Sponsor::thisYear()->get() as $sponsor)
+				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 					<div class="card">
 						<div class="card-body d-flex flex-column">
 							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>

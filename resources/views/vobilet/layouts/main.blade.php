@@ -45,8 +45,10 @@
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
-									<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
-									<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+									<div class="d-none d-md-flex">
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+									</div>
 								@else
 									<div class="dropdown">
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
@@ -91,6 +93,16 @@
 						<div class="row align-items-center">
 							<div class="col-lg order-lg-first">
 								<ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+									@if(Sentinel::Guest())
+										<div class="d-block d-sm-none">
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+											</li>
+										</div>
+									@endif
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
 									</li>
@@ -140,6 +152,21 @@
 			<!--footer-->
 			<footer class="footer br-bl-7 br-br-7">
 				<div class="container">
+					@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="sponsorcarousel" class="carousel slide mb-5 mt-2" data-ride="carousel" data-interval="3000">
+							        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+							        	@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
+								            <div class="carousel-item col-md-4 @if($sponsor->sort_order == 0) active @endif">
+								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a>
+								            </div>
+							            @endforeach
+							        </div>
+							    </div>
+							</div>
+						</div>
+					@endif
 					<div class="row align-items-center text-center">
 						<div class="col-lg-6 col-md-6 d-none d-md-block">
 							<div class="social">
@@ -188,18 +215,18 @@
 		<!-- Custom js -->
 		<script src="{{ Theme::url('js/custom.js') }}"></script>
 
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 		<script>
 			window.addEventListener("load", function(){
 			window.cookieconsent.initialise({
 			  "palette": {
 			    "popup": {
-			      "background": "#ffffff",
-			      "text": "#333333"
+			      "background": "#333333",
+			      "text": "#ffffff"
 			    },
 			    "button": {
-			      "background": "#444444",
+			      "background": "#0061da",
 			      "text": "#ffffff"
 			    }
 			  },
@@ -212,6 +239,32 @@
 			})});
 		</script>
 
+		<link href="{{ Theme::url('css/sponsorcarousel.css') }}" rel="stylesheet" />
+		<script>
+
+			$('#sponsorcarousel').on('slide.bs.carousel', function (e) {
+
+			    var $e = $(e.relatedTarget);
+			    var idx = $e.index();
+			    var itemsPerSlide = 3;
+			    var totalItems = $('.carousel-item').length;
+			    
+			    if (idx >= totalItems-(itemsPerSlide-1)) {
+			        var it = itemsPerSlide - (totalItems - idx);
+			        for (var i=0; i<it; i++) {
+			            // append slides to end
+			            if (e.direction=="left") {
+			                $('.carousel-item').eq(i).appendTo('.carousel-inner');
+			            }
+			            else {
+			                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+			            }
+			        }
+			    }
+			});
+  
+		</script>
+
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -221,6 +274,27 @@
 				ga('create', '{{ Setting::get('GOOGLE_ANALYTICS_TRACKING_ID') }}', 'auto');
 				ga('send', 'pageview');
 			</script>
+		@endif
+
+		@if(Setting::get('FACEBOOK_APP_ID') && Setting::get('FACEBOOK_PAGE_ID'))
+			<script>
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId            : '{{ Setting::get('FACEBOOK_APP_ID') }}',
+						autoLogAppEvents : true,
+						xfbml            : true,
+						version          : 'v2.12'
+					});
+				};
+				(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+			</script>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="Hei, vi er her for å hjelpe deg! :)" logged_out_greeting="Hei, vi er her for å hjelpe deg! :)"></div>
 		@endif
 
 	</body>

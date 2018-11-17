@@ -123,7 +123,7 @@ class CrewCategoryController extends Controller
     public function edit($id)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.update'])) {
-            $crewcategory = CrewCategory::find($id);
+            $crewcategory = CrewCategory::find($id)->withTrashed();
             return view('crew.category.edit')->withCategory($crewcategory);
         } else {
             return Redirect::back()->with('messagetype', 'warning')

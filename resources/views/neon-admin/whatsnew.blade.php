@@ -9,10 +9,49 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#240" aria-expanded="true">Version 2.4.0</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#241" aria-expanded="true">Version 2.4.1</a>
 					</h4>
 				</div>
-				<div id="240" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="241" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-191'>LANMS-191</a>] - ErrorException: Trying to get property of non-object</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-192'>LANMS-192</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-194'>LANMS-194</a>] - InvalidArgumentException: Route [account-recover] not defined.</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-197'>LANMS-197</a>] - Randomly showing &quot;Could not find seat&quot; in seating</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-198'>LANMS-198</a>] - Some users can see other users charges</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-199'>LANMS-199</a>] - ErrorException: Missing required parameters for [Route: user-profile] [URI: user/profile/{username}]. (View: /hom...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-201'>LANMS-201</a>] - Crew Skills is showing wrongly</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-207'>LANMS-207</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-210'>LANMS-210</a>] - ErrorException: Undefined index: old</li>
+						</ul>
+						    
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-205'>LANMS-205</a>] - Add support for Facebook Messenger</li>
+						</ul>
+
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-195'>LANMS-195</a>] - Capture User in Sentry</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-202'>LANMS-202</a>] - Sort order for Sponsors</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-203'>LANMS-203</a>] - Rework the header on mobile</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-206'>LANMS-206</a>] - Add error pages to user UI</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-209'>LANMS-209</a>] - Pizza badge</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-213'>LANMS-213</a>] - Lastname cant contain spaces, it should be possible</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#240">Version 2.4.0</a>
+					</h4>
+				</div>
+				<div id="240" class="panel-collapse collapse">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>
