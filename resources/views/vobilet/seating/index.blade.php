@@ -39,7 +39,7 @@
 						<div class="card-header">
 							<h3 class="card-title">Your Reservations</h3>
 						</div>
-						<div class="card-body o-auto" style="height: 15rem">
+						<div class="card-body o-auto" style="height: 20rem">
 							@if($reservations->count() == 0)
 								<p><em>You haven't reserved any seats...</em></p>
 							@else
@@ -109,7 +109,7 @@
 						<div class="card-header">
 							<h3 class="card-title">Seat reserved for you</h3>
 						</div>
-						<div class="card-body o-auto" style="height: 15rem">
+						<div class="card-body o-auto" style="height: 10rem">
 							@if($ownreservations->count() == 0)
 								<p><em>You haven't reserved any seats...</em></p>
 							@else
