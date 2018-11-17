@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('lanms:checklicense')->daily();
         $schedule->command('lanms:desr')->hourly();
+        $schedule->command('lanms:dnau')->daily();
         $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
     }
 
