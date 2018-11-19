@@ -11,17 +11,17 @@ return [
     ],
 
     'twitter' => [
-        'consurmer_key' => '',
-        'consurmer_secret' => '',
-        'access_token' => '',
-        'access_token_secret' => ''
+        'consurmer_key' => env('TWITTER_CONSUMER_KEY'),
+        'consurmer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'access_token' => env('TWITTER_ACCESS_TOKEN'),
+        'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET')
     ],
 
     'facebook' => [
-        'app_id' => '',
-        'app_secret' => '',
+        'app_id' => env('FACEBOOK_APP_ID'),
+        'app_secret' => env('FACEBOOK_APP_SECRET'),
         'default_graph_version' => 'v3.2',
-        'page_access_token' => ''
+        'page_access_token' => env('FACEBOOK_PAGE_ACCESS_TOKEN')
     ],
 
     // Set Proxy for Servers that can not Access Social Networks due to Sanctions or ...
