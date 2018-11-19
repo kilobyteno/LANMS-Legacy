@@ -98,6 +98,11 @@
 									<p class="text-danger">{{ $errors->first('active') }}</p>
 								@endif
 							</div>
+							<br />
+							<div class="checkbox checkbox-replace">
+								<input type="checkbox" name="socialmedia">
+								<label>Publish to Social Media</label>
+							</div>
 							
 							<br />
 
