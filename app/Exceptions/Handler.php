@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler {
 		if ($exception instanceof TokenMismatchException) {
             //Redirect to login form if session expires
             return redirect()->back()
-			            ->with('messagetype', 'error')
+			            ->with('messagetype', 'danger')
 						->with('message', 'Validation Token has expired. Please try again!');
         }
 
