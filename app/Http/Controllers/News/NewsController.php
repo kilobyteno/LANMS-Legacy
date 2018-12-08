@@ -13,6 +13,8 @@ use LANMS\News;
 use LANMS\NewsCategory;
 use LANMS\Page;
 
+use anlutro\LaravelSettings\Facade as Setting;
+
 use LANMS\Http\Requests\Admin\News\NewsCreateRequest;
 use LANMS\Http\Requests\Admin\News\NewsEditRequest;
 
@@ -109,7 +111,25 @@ class NewsController extends Controller
 
             $articlesave            = $article->save();
 
+            $port = (Setting::get('WEB_PORT') <> 80) ? '' : ':'.Setting::get('WEB_PORT');
+            $link = Setting::get('WEB_PROTOCOL').'://'.Setting::get('WEB_DOMAIN').'/'.$slug;
+
             if ($articlesave) {
+                if ($request->get('socialmedia') == "on") {
+                    if (env('TWITTER_CONSUMER_KEY') != '' && env('TWITTER_CONSUMER_SECRET') != '' && env('TWITTER_ACCESS_TOKEN') != '' && env('TWITTER_ACCESS_TOKEN_SECRET') != '') {
+                        \Toolkito\Larasap\SendTo::Twitter($title.' - '.$link);
+                    }
+                    if (env('FACEBOOK_APP_ID') != '' && env('FACEBOOK_APP_SECRET') != '' && env('FACEBOOK_PAGE_ACCESS_TOKEN') != '') {
+                        \Toolkito\Larasap\SendTo::Facebook(
+                            'link',
+                            [
+                                'link' => $link,
+                                'message' => $title
+                            ]
+                        );
+                    }
+                }
+
                 return Redirect::route('admin-news')
                         ->with('messagetype', 'success')
                         ->with('message', 'The article has now been saved and published!');
