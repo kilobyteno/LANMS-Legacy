@@ -25,8 +25,8 @@
         Raven.showReportDialog({
             eventId: '{{ Sentry::getLastEventID() }}',
             dsn: 'https://e9ebbd88548a441288393c457ec90441@sentry.io/3235',
-            user.email: '{{ \Sentinel::getUser()->email ?? "" }}',
-            user.name: '{{ User::getFullnameByID(\Sentinel::getUser()->id) ?? "" }}'
+            user.email: '{{ \Sentinel::getUser()->email ?? "Unknown" }}',
+            user.name: '{{ \Sentinel::getUser()->username ?? "Unknown" }}'
         });
     </script>
 @endif
