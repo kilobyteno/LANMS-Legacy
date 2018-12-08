@@ -119,6 +119,15 @@ class NewsController extends Controller
                     if (env('TWITTER_CONSUMER_KEY') != '' && env('TWITTER_CONSUMER_SECRET') != '' && env('TWITTER_ACCESS_TOKEN') != '' && env('TWITTER_ACCESS_TOKEN_SECRET') != '') {
                         \Toolkito\Larasap\SendTo::Twitter($title.' - '.$link);
                     }
+                    if (env('FACEBOOK_APP_ID') != '' && env('FACEBOOK_APP_SECRET') != '' && env('FACEBOOK_PAGE_ACCESS_TOKEN') != '') {
+                        \Toolkito\Larasap\SendTo::Facebook(
+                            'link',
+                            [
+                                'link' => $link,
+                                'message' => $title
+                            ]
+                        );
+                    }
                 }
 
                 return Redirect::route('admin-news')
