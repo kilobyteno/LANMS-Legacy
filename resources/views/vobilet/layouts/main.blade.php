@@ -184,7 +184,7 @@
 					</div>
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
-							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
+							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; <i class="fas fa-language"></i> {{ strtoupper(App::getLocale()) }}</small>
 							<br>
 							<a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
 							<br>
