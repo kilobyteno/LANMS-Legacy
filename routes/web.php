@@ -36,6 +36,10 @@ if (Config::get('app.debug')) {
         \Theme::set('vobilet');
         return view('seating.pdf.consentform');
     });
+    Route::get('setlocale/{locale}', function ($locale) {
+        Session::put('locale', $locale);
+        return Redirect::to('/');
+    });
 }
 
 Route::group([
