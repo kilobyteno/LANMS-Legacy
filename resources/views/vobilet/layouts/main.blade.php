@@ -46,8 +46,8 @@
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
 									<div class="d-none d-md-flex">
-										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
-										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin') }}</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup') }}</a>
 									</div>
 								@else
 									<div class="dropdown">
