@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', 'Reset Password')
+@section('title', trans('auth.reset.title'))
    
 @section('content')
 
@@ -11,7 +11,7 @@
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-reset-password-post', $resetpassword_code) }}">
 				<div class="card-body p-6">
-					<div class="card-title text-center">Reset Password</div>
+					<div class="card-title text-center">{{ trans('auth.reset.title') }}</div>
 					@component('layouts.alert-session') @endcomponent
 					@if($errors->any())
 						@component('layouts.alert-form')
@@ -24,24 +24,24 @@
 						<input type="text" class="form-control" value="{{ $resetpassword_code }}" readonly>
 					</div>
 					<div class="form-group">
-						<label class="form-label">Confirm email or username</label>
-						<input type="text" class="form-control" name="username"  placeholder="Confirm email or username" autocomplete="off">
+						<label class="form-label">{{ trans('auth.reset.username') }}</label>
+						<input type="text" class="form-control" name="username"  placeholder="{{ trans('auth.reset.username') }}" autocomplete="off">
 					</div>
 					<div class="form-group">
-						<label class="form-label">New Password</label>
-						<input type="password" class="form-control" name="password" placeholder="New Password" autocomplete="off">
+						<label class="form-label">{{ trans('auth.reset.password') }}</label>
+						<input type="password" class="form-control" name="password" placeholder="{{ trans('auth.reset.password') }}" autocomplete="off">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Confirm New Password</label>
-						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm New Password" autocomplete="off">
+						<label class="form-label">{{ trans('auth.reset.passwordagain') }}</label>
+						<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('auth.reset.passwordagain') }}" autocomplete="off">
 					</div>
 					<div class="form-footer">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-						<button type="submit" class="btn btn-primary btn-block">Reset</button>
+						<button type="submit" class="btn btn-primary btn-block">{{ trans('auth.reset.button') }}</button>
 					</div>
 					<hr>
 					<div class="text-center text-muted mt-3">
-						Forget it, <a href="{{ route('account-signin') }}">send me back</a> to the sign in page.
+						{!! trans('auth.reset.forgetit', ['url' => route('account-signin')]) !!}
 					</div>
 				</div>
 				

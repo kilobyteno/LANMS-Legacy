@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', 'Forgot Password')
+@section('title', trans('auth.activate.title'))
    
 @section('content')
 
@@ -11,7 +11,7 @@
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-forgot-password-post') }}">
 				<div class="card-body p-6">
-					<div class="card-title text-center">Forgot Password</div>
+					<div class="card-title text-center">{{ trans('auth.activate.title') }}</div>
 					@component('layouts.alert-session') @endcomponent
 					@if($errors->any())
 						@component('layouts.alert-form')
@@ -21,16 +21,16 @@
 						@endcomponent
 					@endif
 					<div class="form-group">
-						<label class="form-label">Email or username</label>
-						<input type="text" class="form-control" name="username"  placeholder="Email or username" autocomplete="off">
+						<label class="form-label">{{ trans('auth.activate.username') }}</label>
+						<input type="text" class="form-control" name="username"  placeholder="{{ trans('auth.activate.username') }}" autocomplete="off">
 					</div>
 					<div class="form-footer">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-						<button type="submit" class="btn btn-primary btn-block">Send</button>
+						<button type="submit" class="btn btn-primary btn-block">{{ trans('auth.activate.button') }}</button>
 					</div>
 					<hr>
 					<div class="text-center text-muted mt-3">
-						Forget it, <a href="{{ route('account-signin') }}">send me back</a> to the sign in page.
+						{!! trans('auth.activate.forgetit', ['url' => route('account-signin')]) !!}
 					</div>
 				</div>
 				
