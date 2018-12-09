@@ -184,10 +184,16 @@
 					</div>
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
-							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; <i class="fas fa-language"></i> {{ strtoupper(App::getLocale()) }}</small>
+							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 							<br>
-							<a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
-							<br>
+							<div class="dropup btn-group mt-2 mb-2">
+								<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ strtoupper(App::getLocale()) }}<span class="caret"></span></button>
+								<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+									<li><a href="{{ route('locale', 'en') }}">English</a></li>
+									<li><a href="{{ route('locale', 'no') }}">Norsk</a></li>
+								</ul>
+							</div>
+							<p><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a></p>
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">DEBUG MODE</span></b>
