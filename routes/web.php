@@ -36,16 +36,13 @@ if (Config::get('app.debug')) {
         \Theme::set('vobilet');
         return view('seating.pdf.consentform');
     });
-    Route::get('setlocale/{locale}', function ($locale) {
-        Session::put('locale', $locale);
-        return Redirect::to('/');
-    });
 }
 
 Route::group([
     'middleware' => 'setTheme:vobilet'
     ], function () {
         Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+        Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
         Route::group([
             'prefix' => 'news'
