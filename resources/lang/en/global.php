@@ -10,6 +10,8 @@ return [
         'created' => 'Created',
         'updated' => 'Updated',
         'at' => 'at',
+        'expired' => 'expired',
+        'never' => 'never',
     ),
     'alert' => array(
         'validation' => 'Validation warning',

@@ -38,7 +38,7 @@
 				<div class="col-md-6">
 					@if($currentseat->reservationsThisYear()->first())
 						<div class="alert alert-info" role="alert">
-							<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.checklater', ['type' => strtolower($currentseat->reservationsThisYear()->first()->status->name)]) }}
+							<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.show.reserved', ['type' => strtolower($currentseat->reservationsThisYear()->first()->status->name)]) }}
 						</div>
 						<div class="card card-profile" style="background: url({{ $currentseat->reservationsThisYear()->first()->reservedfor->profilecover ?? '/images/profilecover/0.jpg' }}); background-size:cover;">
 							<div class="card-body text-center">

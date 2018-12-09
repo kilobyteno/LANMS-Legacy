@@ -10,6 +10,15 @@ return [
     'closed' => 'Seatmap is not available at this moment!',
     'checklater' => 'Please check back later...',
 
+    'map' => array(
+        'exit' => 'Exit',
+        'kiosk' => 'Kiosk',
+        'available' => 'Available',
+        'you' => 'This seat is reserved for you!',
+        'reservedfor' => 'Reserved for',
+        'tempreserved' => 'Temporary Reserved By',
+    ),
+
     'reservation' => array(
         'none' => 'You haven\'t reserved any seats...',
         'your' => 'Your Reservations',
@@ -44,6 +53,23 @@ return [
             'cannotbereserved' => 'This seat cannot be reserved!',
             'reservationlimit' => 'You are not allowed to reserve more than <em>five</em> seats.',
             'closed' => 'Seating is closed at this moment, you cannot reserve seats or change reservations.',
+        ),
+    ),
+
+    'pay' => array(
+        'title' => 'Pay for Reservation',
+        'price' => 'Price',
+        'entrancebutton' => 'Pay at the entrance*',
+        'entrancedesc' => '* Additional fee (:price) and <a href=":url">Terms</a> apply',
+        'or' => 'or',
+        'button' => 'Pay Now',
+        'processing' => 'Processing Payment',
+        'card' => array(
+            'number' => 'CARD NUMBER',
+            'expmonth' => 'EXP. MONTH',
+            'expyear' => 'EXP. YEAR',
+            'cvc' => 'CVC',
+            'name' => 'NAME ON CARD',
         ),
     ),
 

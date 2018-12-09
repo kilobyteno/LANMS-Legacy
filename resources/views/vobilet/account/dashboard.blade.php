@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', 'User')
+@section('title', trans('user.dashboard.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">User</h4>
+		<h4 class="page-title">{{ trans('user.dashboard.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">User</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.dashboard.title') }}</li>
 		</ol>
 	</div>
 	<div class="row">

@@ -113,7 +113,16 @@ li.entrance {
 	float: right;
 }
 
-li.entrance > p {
+li.entrance > a {
+	display: inline;
+	font-size: 22px;
+	line-height: 45px;
+	font-weight: bold;
+	color:#fff;
+	margin: 0;
+}
+
+li.kiosk > a {
 	display: inline;
 	font-size: 22px;
 	line-height: 45px;

@@ -10,4 +10,8 @@ return [
     'loggedin' => 'Welcome back!',
     'loggedout' => 'You have now been successfully been logged out!',
 
+    'dashboard' => array(
+        'title' => 'User',
+    ),
+
 ];
