@@ -73,7 +73,7 @@ class AuthController extends Controller
                                                 ->with('message', 'Could not log you in. Please try again.')->withInput();
                         } else {
                             return Redirect::route('account')->with('messagetype', 'success')
-                                                ->with('message', 'Welcome back!');
+                                                ->with('message', trans('user.loggedin'));
                         }
                     } else {
                         return Redirect::route('account-signin')->with('messagetype', 'danger')
@@ -171,7 +171,7 @@ class AuthController extends Controller
         \Sentinel::logout();
         return Redirect::route('home')
                         ->with('messagetype', 'success')
-                        ->with('message', 'You have now been successfully been logged out!');
+                        ->with('message', trans('user.loggedout'));
     }
 
     public function getActivate($activation_code)
