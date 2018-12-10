@@ -26,7 +26,7 @@ return [
         'expires' => 'Expires',
         'paid' => 'Paid',
         'notpaidyet' => 'Not paid yet',
-        'notpaid' => 'Not paid',
+        'notpaid' => 'Unpaid',
         'view' => 'View',
         'pay' => 'Pay now',
         'changepayment' => 'Change payment',

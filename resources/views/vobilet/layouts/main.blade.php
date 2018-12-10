@@ -65,11 +65,11 @@
 												<div class="dropdown-divider"></div>
 											@endif
 											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard') }}
+												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="fas fa-id-card"></i> {{ trans('user.account') }}
+												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
 												<i class="fas fa-user-circle"></i> {{ trans('user.profile') }}
