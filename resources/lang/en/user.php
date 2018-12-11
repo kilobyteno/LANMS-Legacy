@@ -82,7 +82,14 @@ return [
             'title' => 'Change Password',
             'editpassword' => 'Edit your password',
             'button' => 'Update Password',
+
+        'changeimages' => array(
+            'title' => 'Change Profile Images',
+            'button' => 'Upload Image',
+            'coverphoto' => 'Cover Photo',
+            'profilephoto' => 'Profile Photo',
         ),
+        
     ),
 
 ];
