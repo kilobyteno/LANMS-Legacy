@@ -53,4 +53,32 @@ return [
         ),
     ),
 
+    'profile' => array(
+        'title' => 'Profile',
+        'edit' => array(
+            'title' => 'Edit profile',
+            'myprofile' => 'My profile',
+            'button' => 'Update Profile',
+
+            'details' => array(
+                'title' => 'Edit your profile details',
+            ),
+
+            'settings' => array(
+                'title' => 'Edit your settings',
+                'show' => 'Show',
+                'fullname' => 'Fullname',
+                'onlinestatus' => 'Online Status',
+                'dateformat' => 'Date format',
+                'timeformat' => 'Time format',
+            ),
+
+            'confirmpassword' => array(
+                'title' => 'Confirm changes with your password',
+                'password' => 'Password',
+            ),
+
+        ),
+    ),
+
 ];

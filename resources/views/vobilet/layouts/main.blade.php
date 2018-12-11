@@ -72,7 +72,7 @@
 												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
-												<i class="fas fa-user-circle"></i> {{ trans('user.profile') }}
+												<i class="fas fa-user-circle"></i> {{ trans('user.profile.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
