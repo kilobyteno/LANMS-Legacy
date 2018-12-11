@@ -1,22 +1,22 @@
 @extends('layouts.main')
-@section('title', trans('user.profile.changepassword.title'))
+@section('title', trans('user.account.changepassword.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('user.profile.changepassword.title') }}</h4>
+		<h4 class="page-title">{{ trans('user.account.changepassword.title') }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.profile.changepassword.title') }}</li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.changepassword.title') }}</li>
 		</ol>
 	</div>
 	<form class="row" role="form" method="post" action="{{ route('account-change-password-post') }}">
 		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('user.profile.myprofile') }}</h3>
+					<h3 class="card-title">{{ trans('user.account.myprofile') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="row mb-2">
@@ -34,7 +34,7 @@
 		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('user.profile.changepassword.editpassword') }}</h3>
+					<h3 class="card-title">{{ trans('user.account.changepassword.editpassword') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="form-group @if ($errors->has('current_password')) has-error @endif">
@@ -67,7 +67,7 @@
 				</div>
 				<div class="card-footer text-right">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<button type="submit" class="btn btn-success"><i class="fas fa-key"></i> {{ trans('user.profile.changepassword.button') }}</button>
+					<button type="submit" class="btn btn-success"><i class="fas fa-key"></i> {{ trans('user.account.changepassword.button') }}</button>
 				</div>
 			</div>
 			

@@ -51,6 +51,11 @@ return [
             'desc' => 'This is the referral link you can share to your friends, this will track back to you if they register at this website.',
             'users' => '{0} <em>You have not referred any users yet.</em>|{1} You have referred <strong>:count</strong> user.|[2,*] You have referred <strong>:count</strong> users.',
         ),
+        'changepassword' => array(
+            'title' => 'Change Password',
+            'editpassword' => 'Edit your password',
+            'button' => 'Update Password',
+        ),
     ),
 
     'profile' => array(
@@ -78,10 +83,6 @@ return [
             ),
 
         ),
-        'changepassword' => array(
-            'title' => 'Change Password',
-            'editpassword' => 'Edit your password',
-            'button' => 'Update Password',
 
         'changeimages' => array(
             'title' => 'Change Profile Images',
