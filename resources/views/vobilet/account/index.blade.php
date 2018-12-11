@@ -15,17 +15,17 @@
 		<div class="col-md-12">
 			@if(Sentinel::getUser()->ownReservationsLastYear->count() > 0 && !Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> {{ trans('user.alert.attendancelastyear', ['url' => route('seating')]) }}
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.attendancelastyear', ['url' => route('seating')]) !!}
 				</div>
 			@endif
 			@if(Sentinel::getUser()->age() < 16 && Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> {{ trans('user.alert.consentform', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) }}
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.consentform', ['url' => route('seating-consentform')]) !!}
 				</div>
 			@endif
 			@if(!Sentinel::getUser()->birthdate)
 				<div class="alert alert-warning" role="alert">
-					<i class="fa fa-exclamation-triangle"></i> {{ trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) }}
+					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
 				</div>
 			@endif
 			<div class="row">
@@ -114,7 +114,7 @@
 								<p>This is the referral link you can share to your friends, this will track back to you if they register at this website.</p>
 								<input class="form-control" type="text" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ Sentinel::getUser()->referral_code }}">
 								<br>
-								<p>{!! trans_choice('user.account.referral.users', ['value' => User::where('referral', '=', Sentinel::getUser()->referral_code)->count()]) !!}</p>
+								<p>{!! trans_choice('user.account.referral.users', ['value' => User::where('referral', Sentinel::getUser()->referral_code)->count()]) !!}</p>
 							</div>
 						</div>
 					@endif

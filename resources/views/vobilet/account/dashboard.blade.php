@@ -14,17 +14,17 @@
 		<div class="col-md-12">
 			@if(Sentinel::getUser()->ownReservationsLastYear->count() > 0 && !Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> {{ trans('user.alert.attendancelastyear', ['url' => route('seating')]) }}
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.attendancelastyear', ['url' => route('seating')]) !!}
 				</div>
 			@endif
 			@if(Sentinel::getUser()->age() < 16 && Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> {{ trans('user.alert.consentform', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) }}
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.consentform', ['url' => route('seating-consentform')]) !!}
 				</div>
 			@endif
 			@if(!Sentinel::getUser()->birthdate)
 				<div class="alert alert-warning" role="alert">
-					<i class="fa fa-exclamation-triangle"></i> {{ trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) }}
+					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
 				</div>
 			@endif
 			<div class="row">
