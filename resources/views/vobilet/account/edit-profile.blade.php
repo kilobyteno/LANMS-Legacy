@@ -177,7 +177,7 @@
 				</div>
 				<div class="card-body">
 					<div class="form-group @if ($errors->has('password')) has-error @endif">
-						<label class="form-label">{{ trans('user.profile.edit.confirmpassword.password') }}</label>
+						<label class="form-label">{{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password">
 						</div>

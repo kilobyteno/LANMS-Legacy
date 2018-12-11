@@ -75,7 +75,6 @@ return [
 
             'confirmpassword' => array(
                 'title' => 'Confirm changes with your password',
-                'password' => 'Password',
             ),
 
         ),

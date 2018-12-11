@@ -23,6 +23,7 @@ return [
     'staff' => 'Staff',
     'member' => 'Member',
     'email' => 'Email',
+    'password' => 'Password',
 
     'time' => array(
         'created' => 'Created',
