@@ -1,22 +1,22 @@
 @extends('layouts.main')
-@section('title', 'Change Password')
+@section('title', trans('user.profile.changepassword.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">Change Password</h4>
+		<h4 class="page-title">{{ trans('user.profile.changepassword.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('account') }}">Account</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Change Password</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.profile.changepassword.title') }}</li>
 		</ol>
 	</div>
 	<form class="row" role="form" method="post" action="{{ route('account-change-password-post') }}">
 		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">My Profile</h3>
+					<h3 class="card-title">{{ trans('user.profile.myprofile') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="row mb-2">
@@ -34,11 +34,11 @@
 		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Edit your password</h3>
+					<h3 class="card-title">{{ trans('user.profile.changepassword.editpassword') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="form-group @if ($errors->has('current_password')) has-error @endif">
-						<label class="form-label">Current Password</label>
+						<label class="form-label">{{ trans('global.current') }} {{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="current_password">
 						</div>
@@ -47,7 +47,7 @@
 						@endif
 					</div>
 					<div class="form-group @if ($errors->has('password')) has-error @endif">
-						<label class="form-label">New Password</label>
+						<label class="form-label">{{ trans('global.new') }} {{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password">
 						</div>
@@ -56,7 +56,7 @@
 						@endif
 					</div>
 					<div class="form-group @if ($errors->has('password_confirmation')) has-error @endif">
-						<label class="form-label">Confirm New Password</label>
+						<label class="form-label">Confirm {{ trans('global.new') }} {{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password_confirmation">
 						</div>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="card-footer text-right">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<button type="submit" class="btn btn-success"><i class="fas fa-key"></i> Update Password</button>
+					<button type="submit" class="btn btn-success"><i class="fas fa-key"></i> {{ trans('user.profile.changepassword.button') }}</button>
 				</div>
 			</div>
 			

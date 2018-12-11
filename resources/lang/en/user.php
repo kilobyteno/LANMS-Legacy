@@ -78,6 +78,11 @@ return [
             ),
 
         ),
+        'changepassword' => array(
+            'title' => 'Change Password',
+            'editpassword' => 'Edit your password',
+            'button' => 'Update Password',
+        ),
     ),
 
 ];
