@@ -3,8 +3,26 @@
 return [
 
     'by' => 'by', // In 'Created by' etc.
+    'yes' => 'Yes',
+    'no' => 'No',
+    'pleaseselect' => 'Please Select',
+
+    'firstname' => 'Firstname',
+    'lastname' => 'Lastname',
+    'birthdate' => 'Birthdate',
+    'gender' => array(
+        'title' => 'Gender',
+        'male' => 'Male',
+        'female' => 'Female',
+        'transgender' => 'Transgender',
+        'genderless' => 'Genderless',
+    ),
+    'location' => 'Location',
+    'occupation' => 'Occupation',
+    'about' => 'About',
     'staff' => 'Staff',
     'member' => 'Member',
+    'email' => 'Email',
 
     'time' => array(
         'created' => 'Created',
@@ -13,12 +31,11 @@ return [
         'expired' => 'expired',
         'never' => 'never',
     ),
+
     'alert' => array(
         'validation' => 'Validation warning',
         'important' => 'Important',
     ),
-
-
 
     'facebookmessenger' => array(
         'logged_in_greeting' => 'Hei, vi er her for å hjelpe deg! :)',
