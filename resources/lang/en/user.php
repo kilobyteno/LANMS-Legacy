@@ -55,9 +55,9 @@ return [
 
     'profile' => array(
         'title' => 'Profile',
+        'myprofile' => 'My profile',
         'edit' => array(
             'title' => 'Edit profile',
-            'myprofile' => 'My profile',
             'button' => 'Update Profile',
 
             'details' => array(
