@@ -33,6 +33,7 @@ return [
     'member' => 'Member',
     'email' => 'Email',
     'password' => 'Password',
+    'download' => 'Download',
 
     'time' => array(
         'created' => 'Created',
