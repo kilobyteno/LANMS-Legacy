@@ -11,6 +11,11 @@ return [
     'new' => 'New',
     'current' => 'Current',
 
+    'add' => 'Add', // As in 'Add Address' etc.
+    'edit' => 'Edit', // As in 'edit Address' etc.
+    'delete' => 'Delete', // As in 'Delete Address' etc.
+    'savechanges' => 'Save Changes',
+
     'firstname' => 'Firstname',
     'lastname' => 'Lastname',
     'birthdate' => 'Birthdate',
@@ -35,6 +40,15 @@ return [
         'at' => 'at',
         'expired' => 'expired',
         'never' => 'never',
+    ),
+
+    'address' => array(
+        'address1' => 'Address',
+        'address2' => 'Address 2',
+        'postalcode' => 'Postal Code',
+        'city' => 'City',
+        'county' => 'County',
+        'country' => 'Country',
     ),
 
     'alert' => array(
