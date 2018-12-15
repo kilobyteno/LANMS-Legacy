@@ -50,7 +50,15 @@ return [
         ),
         'billing' => array(
             'title' => 'Billing',
-            'payments' => 'Payments',
+            'payments' => array(
+                'title' => 'Payments',
+                'payment' => array(
+                    'title' => 'Payment',
+                    'downloadreceipt' => 'Download Receipt',
+                    'failure' => 'Failure',
+                    'message' => 'Message',
+                ),
+            ),
             'charges' => 'Charges',
         ),
         'referral' => array(
