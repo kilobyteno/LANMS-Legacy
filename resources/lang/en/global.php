@@ -16,6 +16,7 @@ return [
     'edit' => 'Edit', // As in 'edit Address' etc.
     'delete' => 'Delete', // As in 'Delete Address' etc.
     'savechanges' => 'Save Changes',
+    'download' => 'Download',
 
     'firstname' => 'Firstname',
     'lastname' => 'Lastname',
@@ -27,17 +28,23 @@ return [
         'transgender' => 'Transgender',
         'genderless' => 'Genderless',
     ),
+
+    'staff' => 'Staff',
+    'member' => 'Member',
+
+    'username' => 'Username',
+    'lastseen' => 'Last Seen',
+    'joined' => 'Joined',
+    'age' => 'Age',
+    'yearsold' => 'years old', //lowercase
     'location' => 'Location',
     'occupation' => 'Occupation',
     'about' => 'About',
-    'staff' => 'Staff',
-    'member' => 'Member',
     'email' => 'Email',
     'password' => 'Password',
-    'download' => 'Download',
+    
     'view' => 'View',
     'status' => 'Status',
-
     'date' => 'Date',
     'year' => 'Year',
     'seat' => 'Seat',
