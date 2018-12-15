@@ -108,10 +108,10 @@
 					@if(Setting::get('REFERRAL_ACTIVE'))
 						<div class="card">
 							<div class="card-header">
-								<h2 class="card-title">Referral</h2>
+								<h2 class="card-title">{{ trans('user.account.referral.title') }}</h2>
 							</div>
 							<div class="card-body">
-								<p>This is the referral link you can share to your friends, this will track back to you if they register at this website.</p>
+								<p>{{ trans('user.account.referral.desc') }}</p>
 								<input class="form-control" type="text" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ Sentinel::getUser()->referral_code }}">
 								<br>
 								<p>{!! trans_choice('user.account.referral.users', ['value' => User::where('referral', Sentinel::getUser()->referral_code)->count()]) !!}</p>
