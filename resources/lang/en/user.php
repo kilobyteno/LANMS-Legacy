@@ -35,8 +35,6 @@ return [
         ),
         'personaldata' => array(
             'title' => 'Personal Data',
-            'download' => 'Download',
-            'delete' => 'Delete',
         ),
         'reservations' => array(
             'title' => 'Reservations',

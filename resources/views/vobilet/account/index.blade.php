@@ -61,10 +61,10 @@
 							<table class="table card-table">
 								<tbody>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-gdpr-download') }}" class="text-inherit"><i class="fas fa-download"></i> {{ trans('user.account.personaldata.download') }}</a></td>
+										<td><a href="{{ route('account-gdpr-download') }}" class="text-inherit"><i class="fas fa-download"></i> {{ trans('global.download') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-gdpr-delete') }}" class="text-inherit"><i class="fas fa-trash"></i> {{ trans('user.account.personaldata.delete') }}</a></td>
+										<td><a href="{{ route('account-gdpr-delete') }}" class="text-inherit"><i class="fas fa-trash"></i> {{ trans('global.delete') }}</a></td>
 									</tr>
 								</tbody>
 							</table>
