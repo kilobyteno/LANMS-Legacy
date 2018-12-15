@@ -15,7 +15,7 @@ return [
     ),
 
     'dashboard' => array(
-        'title' => 'User Dashboard',
+        'title' => 'User',
         'quicklinks' => array(
             'title' => 'Quick Links',
             'youraccount' => 'Your Account',
@@ -76,6 +76,14 @@ return [
     'profile' => array(
         'title' => 'Profile',
         'myprofile' => 'My profile',
+        'attendance' => 'Attendance',
+        'editprofile' => 'Edit Profile',
+        'editimages' => 'Edit Images',
+        'reservedaseatfor' => 'Reserved a seat for',
+        'noattendance' => 'No attendance yet.',
+        'alert' => array(
+            'userdeleted' => 'This user has been deleted.',
+        ),
         'edit' => array(
             'title' => 'Edit profile',
             'button' => 'Update Profile',

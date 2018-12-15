@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', $username . ' - Profile')
+@section('title', $username . ' - '.trans('user.profile.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">Profile</h4>
+		<h4 class="page-title">{{ trans('user.profile.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Profile</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.profile.title') }}</li>
 		</ol>
 	</div>
 	<div class="row">
@@ -18,13 +18,13 @@
 					<img class="card-profile-img" src="{{ $profilepicture ?? '/images/profilepicture/0.png' }}">
 					<h3 class="mb-3 text-white">{{ $firstname }}@if($showname) {{ $lastname }}@endif</h3>
 					@if(Sentinel::findById($id)->inRole('admin') || Sentinel::findById($id)->inRole('superadmin') || Sentinel::findById($id)->inRole('moderator'))
-						<p class="mb-4 text-white">Staff</p>
+						<p class="mb-4 text-white">{{ trans('global.staff') }}</p>
 					@else
-						<p class="mb-4 text-white">Member</p>
+						<p class="mb-4 text-white">{{ trans('global.members') }}</p>
 					@endif
 					@if(\Sentinel::getUser()->id == $id)
-						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-light btn-sm"><i class="fa fa-pencil-alt"></i> Edit Profile</a>
-						<a href="{{ route('account-change-images') }}" class="btn btn-light btn-sm"><i class="fas fa-images"></i> Edit Images</a>
+						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-light btn-sm"><i class="fa fa-pencil-alt"></i> {{ trans('user.profile.editprofile') }}</a>
+						<a href="{{ route('account-change-images') }}" class="btn btn-light btn-sm"><i class="fas fa-images"></i> {{ trans('user.profile.editimages') }}</a>
 					@endif
 				</div>
 			</div>
@@ -32,14 +32,14 @@
 		@if($isAnonymized)
 			<div class="col-lg-12">
 				<div class="alert alert-danger" role="alert">
-					<i class="fas fa-frown mr-2" aria-hidden="true"></i> This user has been deleted.
+					<i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ trans('user.profile.alert.userdeleted') }}
 				</div>
 			</div>
 		@else
 			<div class="col-lg-5">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Attendence</h3>
+						<h3 class="card-title">{{ trans('user.profile.attendance') }}</h3>
 					</div>
 					@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0 || Sentinel::findById($id)->ownReservationsLastYear->count()>0)
 						<div class="table-responsive">
@@ -48,7 +48,7 @@
 									@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
 										@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
 											<tr>
-												<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
+												<td class="no-border">{{ trans('user.profile.reservedaseatfor') }} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
 												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
 											</tr>
 										@endforeach
@@ -56,7 +56,7 @@
 									@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
 										@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
 											<tr>
-												<td class="no-border">Reserved a seat for {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
+												<td class="no-border">{{ trans('user.profile.reservedaseatfor') }} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
 												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
 											</tr>
 										@endforeach
@@ -65,7 +65,7 @@
 							</table>
 						</div>
 					@else
-						<div class="card-body"><p class="text-muted"><em>No attendance yet.</em></p></div>
+						<div class="card-body"><p class="text-muted"><em>{{ trans('user.profile.noattendance') }}</em></p></div>
 					@endif
 				</div>
 			</div>
@@ -78,41 +78,41 @@
 									<table class="table row table-borderless w-100 m-0">
 										<tbody class="col-lg-6 p-0">
 											<tr>
-												<td><strong>Username:</strong> {{ $username }}</td>
+												<td><strong>{{ trans('global.username') }}:</strong> {{ $username }}</td>
 											</tr>
 											<tr>
-												<td><strong>Joined:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $created_at }}">{{ \Carbon::parse($created_at)->diffForHumans() }}</span></td>
+												<td><strong>{{ trans('global.joined') }}:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $created_at }}">{{ \Carbon::parse($created_at)->diffForHumans() }}</span></td>
 											</tr>
 											@if($location)
 												<tr>
-													<td><strong>Location:</strong> {{ $location }}</td>
+													<td><strong>{{ trans('global.location') }}:</strong> {{ $location }}</td>
 												</tr>
 											@endif
 											@if($gender)
 												<tr>
-													<td><strong>Gender:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</td>
+													<td><strong>{{ trans('global.gender.title') }}:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</td>
 												</tr>
 											@endif
 										</tbody>
 										<tbody class="col-lg-6 p-0">
 											@if($showemail)
 												<tr>
-													<td><strong>Email:</strong> {{ $email }}</td>
+													<td><strong>{{ trans('global.email') }}:</strong> {{ $email }}</td>
 												</tr>
 											@endif
 											@if($showonline && $last_activity && $last_activity != '0000-00-00 00:00:00')
 												<tr>
-													<td><strong>Last seen:</strong> {{ \Carbon::parse($last_activity)->diffForHumans() }}</td>
+													<td><strong>{{ trans('global.lastseen') }}:</strong> {{ \Carbon::parse($last_activity)->diffForHumans() }}</td>
 												</tr>
 											@endif
 											@if($occupation)
 												<tr>
-													<td><strong>Occupation:</strong> {{ $occupation }}</td>
+													<td><strong>{{ trans('global.occupation') }}:</strong> {{ $occupation }}</td>
 												</tr>
 											@endif
 											@if($birthdate)
 												<tr>
-													<td><strong>Age:</strong> {{ date_diff(date_create($birthdate), date_create('today'))->y }} years old</td>
+													<td><strong>{{ trans('global.age') }}:</strong> {{ \Carbon::parse($birthdate)->age }} {{ trans('global.yearsold') }}</td>
 												</tr>
 											@endif
 										</tbody>
@@ -122,7 +122,7 @@
 									<div class="row mt-5">
 										<div class="col-md-12">
 											<div class="media-heading">
-												<h5><strong>About</strong></h5>
+												<h5><strong>{{ trans('global.about') }}</strong></h5>
 											</div>
 											<p>{{ $about }}</p>
 										</div>
