@@ -40,6 +40,15 @@ return [
         ),
         'reservations' => array(
             'title' => 'Reservations',
+            'viewreservation' => 'View Reservation',
+            'viewpayment' => 'View Payment',
+            'reservation' => array(
+                'title' => 'Reservation',
+                'info' => 'Info',
+                'actions' => 'Actions',
+                'downloadticket' => 'Download Ticket',
+                'downloadreceipt' => 'Download Receipt',
+            ),
         ),
         'billing' => array(
             'title' => 'Billing',
