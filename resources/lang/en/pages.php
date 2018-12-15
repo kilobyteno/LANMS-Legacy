@@ -15,6 +15,7 @@ return [
             'title' => 'Search Members',
             'placeholder' => 'Username or Name',
             'button' => 'Search',
+            'results' => 'results', //lowercase
         ),
         'newest' => array(
             'title' => 'Newest Members',

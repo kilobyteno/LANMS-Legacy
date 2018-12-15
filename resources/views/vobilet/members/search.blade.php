@@ -1,15 +1,15 @@
 @extends('layouts.main')
-@section('title', 'Search Members')
+@section('title', trans('pages.members.search.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h1 class="page-title">Search Members: <em>{{ $query }}</em></h1>
+		<h1 class="page-title">{{ trans('pages.members.search.title') }}: <em>{{ $query }}</em></h1>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
-			<li class="breadcrumb-item">Members</li>
-			<li class="breadcrumb-item active" aria-current="page">Search</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item">{{ trans('header.members') }}</li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('pages.members.search.title') }}</li>
 		</ol>
 	</div>
 	<div class="row row-cards">
@@ -23,12 +23,12 @@
 					</div>
 				</div>
 				<div class="card-footer text-right">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> {{ trans('pages.members.search.button') }}</button>
 				</div>
 			</form>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Newest Members</h3>
+					<h3 class="card-title">{{ trans('pages.members.newest.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -52,7 +52,7 @@
 			</div>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Last Online Members</h3>
+					<h3 class="card-title">{{ trans('pages.members.lastonline.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -82,9 +82,9 @@
 						<tbody>
 							<tr>
 								<th class="w-1"></th>
-								<th>Username</th>
-								<th>Name</th>
-								<th class="d-none d-sm-table-cell">Joined</th>
+								<th>{{ trans('pages.members.table.username') }}</th>
+								<th>{{ trans('pages.members.table.name') }}</th>
+								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.joined') }}</th>
 							</tr>
 						@foreach($members as $member)
 							<tr>
@@ -98,7 +98,7 @@
 					</table>
 				</div>
 			</div>
-			<p class="text-muted">{{ $members->count() }} results</p>
+			<p class="text-muted">{{ $members->count() }} {{ trans('pages.members.search.results') }}</p>
 		</div>
 	</div>
 </div>
