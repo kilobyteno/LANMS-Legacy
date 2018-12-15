@@ -10,6 +10,7 @@ return [
     'confirm' => 'Confirm',
     'new' => 'New',
     'current' => 'Current',
+    'nodata' => 'We can\'t find any data for you...',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
@@ -34,6 +35,23 @@ return [
     'email' => 'Email',
     'password' => 'Password',
     'download' => 'Download',
+    'view' => 'View',
+    'status' => 'Status',
+
+    'date' => 'Date',
+    'year' => 'Year',
+    'seat' => 'Seat',
+    'reservedfor' => 'Reserved for',
+    'reservedby' => 'Reserved by',
+    'details' => 'Details',
+
+    'payment' => array(
+        'amount' => 'Amount',
+        'currency' => 'Currency',
+        'paid' => 'Paid',
+        'refunded' => 'Refunded',
+        'never' => 'never',
+    ),
 
     'time' => array(
         'created' => 'Created',
