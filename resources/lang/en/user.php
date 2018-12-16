@@ -55,8 +55,6 @@ return [
                 'payment' => array(
                     'title' => 'Payment',
                     'downloadreceipt' => 'Download Receipt',
-                    'failure' => 'Failure',
-                    'message' => 'Message',
                 ),
             ),
             'charges' => 'Charges',

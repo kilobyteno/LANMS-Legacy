@@ -76,7 +76,7 @@
             <p>
                 <strong>{{ trans('global.status') }}:</strong>
                 @if($charge['failure_message'])
-                    <a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="{{ trans('user.account.billing.payments.payment.failure') }} {{ trans('user.account.billing.payments.payment.message') }}">{{ trans('user.account.billing.payments.payment.failure') }}</a>
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="{{ trans('global.failure') }} {{ trans('global.payment.message') }}">{{ trans('global.payment.failure') }}</a>
                 @else
                     {{ ucfirst($charge['status']) }}
                 @endif

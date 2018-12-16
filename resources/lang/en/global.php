@@ -58,6 +58,8 @@ return [
         'paid' => 'Paid',
         'refunded' => 'Refunded',
         'never' => 'never',
+        'failure' => 'Failure',
+        'message' => 'Message',
     ),
 
     'time' => array(
