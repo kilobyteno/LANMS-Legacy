@@ -97,7 +97,7 @@
 										<td><a href="{{ route('account-billing-payments') }}" class="text-inherit"><i class="fas fa-money-bill-alt"></i> {{ trans('user.account.billing.payments.title') }} <span class="badge badge-default">{{ \Sentinel::getUser()->seatpayments->count() }}</span></a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ trans('user.account.billing.charges') }}</a></td>
+										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ trans('user.account.billing.charges.title') }}</a></td>
 									</tr>
 								</tbody>
 							</table>
