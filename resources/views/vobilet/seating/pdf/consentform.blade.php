@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
