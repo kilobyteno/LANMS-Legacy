@@ -42,6 +42,7 @@ return [
     'about' => 'About',
     'email' => 'Email',
     'password' => 'Password',
+    'date' => 'Date',
     
     'view' => 'View',
     'status' => 'Status',
@@ -57,6 +58,8 @@ return [
         'currency' => 'Currency',
         'paid' => 'Paid',
         'refunded' => 'Refunded',
+        'cardnumber' => 'Cardnumber',
+        'cardexp' => 'Card Exp.',
         'never' => 'never',
         'failure' => 'Failure',
         'message' => 'Message',

@@ -57,7 +57,9 @@ return [
                     'downloadreceipt' => 'Download Receipt',
                 ),
             ),
-            'charges' => 'Charges',
+            'charges' => array(
+                'title' => 'Charges',
+            ),
         ),
         'referral' => array(
             'title' => 'Referral',
