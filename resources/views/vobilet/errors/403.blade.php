@@ -1,20 +1,20 @@
 @extends('layouts.main')
-@section('title', 'Forbidden')
+@section('title', trans('pages.errors.403.title'))
 @section('content')
 
 <div class="container text-center">
 	<div class="page-header">
-		<h4 class="page-title">Forbidden</h4>
+		<h4 class="page-title">{{ trans('pages.errors.403.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Forbidden</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('pages.errors.403.title') }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="display-1 text-dark mb-5">403</div>
-			<h1>Sorry, you are forbidden from accessing this page.</h1>
-			<p><a class="btn btn-primary mt-10" href="{{ route('home') }}"><i class="fas fa-arrow-left"></i> Back To Home</a></p>
+			<h1>{{ trans('pages.errors.403.desc') }}</h1>
+			<p><a class="btn btn-primary mt-10" href="{{ route('home') }}"><i class="fas fa-arrow-left"></i> {{ trans('pages.errors.button') }}</a></p>
 		</div>		
 	</div>
 </div>
