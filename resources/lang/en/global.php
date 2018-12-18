@@ -18,9 +18,12 @@ return [
     'savechanges' => 'Save Changes',
     'download' => 'Download',
 
+    'fullname' => 'Full name',
     'firstname' => 'Firstname',
     'lastname' => 'Lastname',
+    'username' => 'Username',
     'birthdate' => 'Birthdate',
+    'phonenumber' => 'Phonenumber',
     'gender' => array(
         'title' => 'Gender',
         'male' => 'Male',
@@ -32,7 +35,7 @@ return [
     'staff' => 'Staff',
     'member' => 'Member',
 
-    'username' => 'Username',
+    
     'lastseen' => 'Last Seen',
     'joined' => 'Joined',
     'age' => 'Age',
