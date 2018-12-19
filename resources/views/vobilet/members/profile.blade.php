@@ -90,7 +90,7 @@
 											@endif
 											@if($gender)
 												<tr>
-													<td><strong>{{ trans('global.gender.title') }}:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ $gender }}</td>
+													<td><strong>{{ trans('global.gender.title') }}:</strong> <i class="fa fa-{{ User::getGenderIcon($gender) }}"></i> {{ trans('global.gender.'.strtolower($gender)) }}</td>
 												</tr>
 											@endif
 										</tbody>
