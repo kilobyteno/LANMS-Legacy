@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,25 +54,25 @@
 		<!-- Custom js -->
 		<script src="{{ Theme::url('js/custom.js') }}"></script>
 
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 		<script>
 			window.addEventListener("load", function(){
 			window.cookieconsent.initialise({
 			  "palette": {
 			    "popup": {
-			      "background": "#ffffff",
-			      "text": "#333333"
+			      "background": "#333333",
+			      "text": "#ffffff"
 			    },
 			    "button": {
-			      "background": "#444444",
+			      "background": "#0061da",
 			      "text": "#ffffff"
 			    }
 			  },
 			  "content": {
-			    "message": "This website uses cookies to ensure you get the best experience on our website. Do you accept this?",
-			    "dismiss": "I ACCEPT",
-			    "link": "Learn more",
+			    "message": "{{ trans('global.cookieconsent.message') }}",
+			    "dismiss": "{{ trans('global.cookieconsent.dismiss') }}",
+			    "link": "{{ trans('global.cookieconsent.link') }}",
 			    "href": "{{ url('/privacy') }}"
 			  }
 			})});

@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
@@ -25,25 +26,25 @@
 				<br>
 				<img src=".{{ Setting::get('WEB_LOGO') }}" style="max-width:50%;display: inline-block;">
 				<br>
-				<h1>TICKET</h1>
+				<h1>{{ trans('pdf.ticket.title') }}</h1>
 				<br>
 			</div>
 			<hr>
 			<h2 class="text-center">{{ $currentseat->reservationsThisYear()->first()->reservedfor->firstname.' '.$currentseat->reservationsThisYear()->first()->reservedfor->lastname }}<br><small>{{ $currentseat->reservationsThisYear()->first()->reservedfor->username }}</small></h2>
 			<br>
-			<p>This is your ticket, for one seat, bring this to the event. Remember that there is one ticket per seat! It is also important that you bring valid identification. If you show up without a ticket or credentials, we cannot check you in to the event. If you need a consent form, remember to bring that as well.</p>
+			<p>{{ trans('pdf.ticket.desc') }}</p>
 			<br>
-			<p>For more information, go to our website: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
+			<p>{{ trans('pdf.ticket.moreinfo') }}: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<div class="text-center clms">
 				<div style="width:50%;float:left;">
 					@if(is_null($currentseat->reservationsThisYear()->first()->payment))
-						<h2><strong><small>Paid:</small><br><span class="text-danger">No</span></strong></h2>
+						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }}</span></strong></h2>
 					@else
-						<h2><strong><small>Paid:</small><br><span class="text-success">Yes</span></strong></h2>
+						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 					@endif
 				</div>
 				<div style="width:50%;float:right;">
-					<h2><strong><small>Your seat:</small><br>{{ $currentseat->reservationsThisYear()->first()->seat->name }}</strong></h2>
+					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $currentseat->reservationsThisYear()->first()->seat->name }}</strong></h2>
 				</div>
 			</div>
 			

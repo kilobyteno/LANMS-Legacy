@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Home')
+@section('title', trans('header.home'))
 @section('content')
 
 <div class="container">
@@ -22,16 +22,16 @@
 		<div class="col-md-12 col-lg-3  col-sm-12">
 			<div class="card">
 				<div class="card-header">
-					<h2 class="card-title">Info</h2>
+					<h2 class="card-title">{{ trans('pages.home.info') }}</h2>
 				</div>
 				<div class="card-body">
-					<p><b>Hvor: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
-					<p><b>Når: </b> {{ LANMS\Info::getContent('when') }}</p>
-					<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
+					<p><b>{{ trans('pages.home.where') }}: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
+					<p><b>{{ trans('pages.home.when') }}: </b> {{ LANMS\Info::getContent('when') }}</p>
+					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
 				</div>
 			</div>
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
-				<h4>Sponsors</h4>
+				<h4>{{ trans('pages.home.sponsors') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 					<div class="card">
 						<div class="card-body d-flex flex-column">

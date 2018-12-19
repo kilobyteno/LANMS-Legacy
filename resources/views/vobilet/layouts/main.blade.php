@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,8 +46,8 @@
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
 									<div class="d-none d-md-flex">
-										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
-										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin.button') }}</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
 									</div>
 								@else
 									<div class="dropdown">
@@ -60,23 +60,23 @@
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											@if(Sentinel::hasAccess('admin'))
 												<a class="dropdown-item" href="{{ route('admin') }}">
-													<i class="fa fa-user-secret"></i> Admin Panel
+													<i class="fa fa-user-secret"></i> {{ trans('user.adminpanel') }}
 												</a>
 												<div class="dropdown-divider"></div>
 											@endif
 											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> Dashboard
+												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="fas fa-id-card"></i> Account
+												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
-												<i class="fas fa-user-circle"></i> Profile
+												<i class="fas fa-user-circle"></i> {{ trans('user.profile.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
-												<i class="fas fa-sign-out-alt"></i> Sign out
+												<i class="fas fa-sign-out-alt"></i> {{ trans('auth.signout') }}
 											</a>
 										</div>
 									</div>
@@ -96,31 +96,31 @@
 									@if(Sentinel::Guest())
 										<div class="d-block d-sm-none">
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>Sign in</a>
+												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin.button') }}</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>Sign up</a>
+												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
 											</li>
 										</div>
 									@endif
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
+										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ trans('header.home') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> News</a>
+										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> Crew</a>
+										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> {{ trans('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> Members</a>
+										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> {{ trans('header.members') }}</a>
 									</li> 
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> Seating</a>
+										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
 									</li> 
 									@if(count(\LANMS\Page::forMenu()) > 0)
 										<li class="nav-item">
-											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> INFORMATION</a>
+											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
 												@foreach(\LANMS\Page::forMenu() as $page)
 													<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
@@ -136,9 +136,9 @@
 				<div class="my-3 my-md-5">
 					<div class="container">
 						@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>IMPORTANT!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
+							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>IMPORTANT!</strong> Your license has expired! Please contact your provider.</div>
+							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
 						@endif
 
 						@component('layouts.alert-session') @endcomponent
@@ -180,20 +180,26 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 text-right privacy"> <a href="{{ url('privacy') }}" class="btn btn-link">Privacy Policy</a> <a href="{{ url('tos') }}" class="btn btn-link">Terms of Service</a></div>
+						<div class="col-lg-6 col-md-6 text-right privacy"> <a href="{{ url('privacy') }}" class="btn btn-link">{{ trans('footer.privacypolicy') }}</a> <a href="{{ url('tos') }}" class="btn btn-link">{{ trans('footer.termsofservice') }}</a></div>
 					</div>
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
 							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 							<br>
-							<a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
-							<br>
+							<div class="dropup btn-group mt-2 mb-2">
+								<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
+								<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+									<li><a href="{{ route('locale', 'en') }}">{{ trans('language.en') }}</a></li>
+									<li><a href="{{ route('locale', 'no') }}">{{ trans('language.no') }}</a></li>
+								</ul>
+							</div>
+							<p><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							@if(Config::get('app.debug'))
-								<b><span class="text-danger">DEBUG MODE</span></b>
+								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 							@endif
 							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
-								<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
+								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 							@endif 
 						</div>
 					</div>
@@ -231,9 +237,9 @@
 			    }
 			  },
 			  "content": {
-			    "message": "This website uses cookies to ensure you get the best experience on our website. Do you accept this?",
-			    "dismiss": "I ACCEPT",
-			    "link": "Learn more",
+			    "message": "{{ trans('global.cookieconsent.message') }}",
+			    "dismiss": "{{ trans('global.cookieconsent.dismiss') }}",
+			    "link": "{{ trans('global.cookieconsent.link') }}",
 			    "href": "{{ url('/privacy') }}"
 			  }
 			})});
@@ -294,7 +300,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="Hei, vi er her for å hjelpe deg! :)" logged_out_greeting="Hei, vi er her for å hjelpe deg! :)"></div>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
 		@endif
 
 	</body>

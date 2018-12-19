@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', 'Sign Up')
+@section('title', trans('auth.signup.button'))
    
 @section('content')
 
@@ -11,7 +11,7 @@
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-signup-post') }}">
 				<div class="card-body p-6">
-					<div class="card-title text-center">Create New Account</div>
+					<div class="card-title text-center">{{ trans('auth.signup.title') }}</div>
 					@component('layouts.alert-session') @endcomponent
 					@if($errors->any())
 						@component('layouts.alert-form')
@@ -21,44 +21,44 @@
 						@endcomponent
 					@endif
 					<div class="form-group">
-						<label class="form-label">Firstname</label>
-						<input type="text" class="form-control" name="firstname" placeholder="Firstname" autocomplete="off" value="{{ old('firstname') }}">
+						<label class="form-label">{{ trans('global.firstname') }}</label>
+						<input type="text" class="form-control" name="firstname" placeholder="{{ trans('global.firstname') }}" autocomplete="off" value="{{ old('firstname') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Lastname</label>
-						<input type="text" class="form-control"  name="lastname" placeholder="Lastname" autocomplete="off" value="{{ old('lastname') }}">
+						<label class="form-label">{{ trans('global.lastname') }}</label>
+						<input type="text" class="form-control"  name="lastname" placeholder="{{ trans('global.lastname') }}" autocomplete="off" value="{{ old('lastname') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Username</label>
-						<input type="text" class="form-control"  name="username" placeholder="Username" autocomplete="off" value="{{ old('username') }}">
+						<label class="form-label">{{ trans('global.username') }}</label>
+						<input type="text" class="form-control"  name="username" placeholder="{{ trans('global.username') }}" autocomplete="off" value="{{ old('username') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Birthdate</label>
-						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
+						<label class="form-label">{{ trans('global.birthdate') }}</label>
+						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
 					</div>
 					<div class="form-group">
-						<label class="form-label">Email address</label>
-						<input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
+						<label class="form-label">{{ trans('global.email') }}</label>
+						<input type="email" class="form-control" name="email" placeholder="{{ trans('global.email') }}" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
 					</div>
 					<div class="form-group">
-						<label class="form-label">Password</label>
-						<input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-						<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
+						<label class="form-label">{{ trans('global.password') }}</label>
+						<input type="password" class="form-control" name="password" placeholder="{{ trans('global.password') }}" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
+						<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('global.confirm') }} {{ trans('global.password') }}" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
 					</div>
 					<div class="form-group">
 						<label class="custom-switch">
 							<input type="checkbox" class="custom-switch-input" name="tos-pp">
 							<span class="custom-switch-indicator"></span>
-							<span class="custom-switch-description">I have read and agree to the<br><strong>Terms of Service and Privacy Policy</strong></span>
+							<span class="custom-switch-description">{!! trans('auth.signup.agreement') !!}</span>
 						</label>
 					</div>
 					<div class="form-footer">
 						<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-						<button type="submit" class="btn btn-primary btn-block">Create new account</button>
+						<button type="submit" class="btn btn-primary btn-block">{{ trans('auth.signup.button_alt') }}</button>
 					</div>
 					<hr>
 					<div class="text-center text-muted mt-3">
-						Already have account? <a href="{{ route('account-signin') }}">Sign in</a>
+						{{ trans('auth.signup.haveaccount') }} <a href="{{ route('account-signin') }}">{{ trans('auth.signin.button') }}</a>
 					</div>
 				</div>
 				

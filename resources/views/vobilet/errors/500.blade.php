@@ -1,21 +1,21 @@
 @extends('layouts.main')
-@section('title', 'Server Error')
+@section('title', trans('pages.errors.500.title'))
 @section('content')
 
 <div class="container text-center">
     <div class="page-header">
-        <h4 class="page-title">Server Error</h4>
+        <h4 class="page-title">{{ trans('pages.errors.500.title') }}</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Server Error</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ trans('pages.errors.500.title') }}</li>
         </ol>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="display-1 text-dark mb-5">500</div>
-            <h1>Looks like we're having some server issues.</h1>
+            <h1>{{ trans('pages.errors.500.desc') }}</h1>
             <p>Error ID: {{ Sentry::getLastEventID() ?? 'N/A' }}</p>
-            <p><a class="btn btn-primary mt-10" href="{{ route('home') }}"><i class="fas fa-arrow-left"></i> Back To Home</a></p>
+            <p><a class="btn btn-primary mt-10" href="{{ route('home') }}"><i class="fas fa-arrow-left"></i> {{ trans('pages.errors.button') }}</a></p>
         </div>      
     </div>
 </div>
