@@ -35,7 +35,6 @@ return [
     'staff' => 'Staff',
     'member' => 'Member',
 
-    
     'lastseen' => 'Last Seen',
     'joined' => 'Joined',
     'age' => 'Age',
