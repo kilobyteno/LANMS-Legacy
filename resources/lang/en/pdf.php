@@ -6,7 +6,7 @@ return [
         'reservationnumber' => 'Reservation #',
         'paymentmethod' => 'Payment Method',
         'paymentinfo' => 'Payment Info',
-        'card' => 'Card',
+        'card' => 'Credit Card',
         'item' => 'Item',
         'price' => 'Price',
         'ticket' => 'Ticket',
