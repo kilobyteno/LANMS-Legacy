@@ -64,7 +64,7 @@ return [
         'referral' => array(
             'title' => 'Referral',
             'desc' => 'This is the referral link you can share to your friends, this will track back to you if they register at this website.',
-            'users' => '{0} <em>You have not referred any users yet.</em>|{1} You have referred <strong>:count</strong> user.|[2,*] You have referred <strong>:count</strong> users.',
+            'users' => '{0} <em>You have not referred any users yet.</em>|{1} You have referred <strong>one</strong> user.|[2,*] You have referred <strong>:count</strong> users.',
         ),
         'changepassword' => array(
             'title' => 'Change Password',
@@ -171,7 +171,7 @@ return [
                     <p>You may withdraw your consent at any time. To get an overview or make changes to your consent, you can easily go to \"My Account\". You can also unsubscribe from emails.</p>
 
                     <p><strong>Coordinator and third party</strong></p>
-                    <p>The chairman of this event of this  is generally responsible for the event's processing of personal data. To provide a tailor-made acquisition experience for you, this website uses external partners, but your personal data is in no way neglected or sold to third parties. Here you can read more about our processing of personal data.</p>
+                    <p>The chairman of this event of this is generally responsible for the event's processing of personal data. To provide a tailor-made acquisition experience for you, this website uses external partners, but your personal data is in no way neglected or sold to third parties. Here you can read more about our processing of personal data.</p>
 
                     <p><strong>Privacy Policy</strong></p>
                     <p>In connection with GDPR, we have adapted and simplified our privacy statement. Here you can read in detail how we process your personal information and what types of information it concerns. The declaration informs you of the customer data you provide during usage of this website and the contact points for the information internally in our system.</p>
