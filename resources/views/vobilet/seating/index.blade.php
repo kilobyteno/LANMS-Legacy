@@ -64,7 +64,7 @@
 																<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.pizza.desc') }}"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span>
 															@endif
 														@elseif($reservation->status_id == 1)
-															<span class="badge badge-warning" data-toggle="tooltip" title="Pay at the Entrance"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
+															<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.notpaidyetdesc') }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
 														@else
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
