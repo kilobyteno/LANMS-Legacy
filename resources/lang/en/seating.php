@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => ' It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href=":url" class="alert-link">add</a> one.',
+        'noaddress' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href=":url" class="alert-link">add</a> one.',
         'closed' => 'Seating is closed at this moment, you cannot reserve seats or change reservations.',
     ),
 
@@ -36,8 +36,8 @@ return [
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
-            'desc' => 'Personen som denne reservasjonen er reservert for er under 16 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet.',
-            'why' => 'Hvorfor ser jeg denne?',
+            'desc' => 'The person who has this reservation is reserved for under 16 years and must have a consent form, completed upon check-in at the event.',
+            'why' => 'Why do I see this?',
         ),
         'pizza' => array(
             'title' => 'Pizza',
