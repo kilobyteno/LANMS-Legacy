@@ -16,7 +16,7 @@
 		<div class="col-lg-4">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('user.account.myprofile') }}</h3>
+					<h3 class="card-title">{{ trans('user.profile.myprofile') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="row mb-2">
