@@ -45,7 +45,6 @@ return [
     'about' => 'About',
     'email' => 'Email',
     'password' => 'Password',
-    'date' => 'Date',
     
     'view' => 'View',
     'status' => 'Status',
