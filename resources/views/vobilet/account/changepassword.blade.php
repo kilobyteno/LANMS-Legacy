@@ -56,7 +56,7 @@
 						@endif
 					</div>
 					<div class="form-group @if ($errors->has('password_confirmation')) has-error @endif">
-						<label class="form-label">Confirm {{ trans('global.new') }} {{ trans('global.password') }}</label>
+						<label class="form-label">{{ trans('global.confirm') }} {{ trans('global.new') }} {{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password_confirmation">
 						</div>
