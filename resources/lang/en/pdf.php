@@ -30,7 +30,7 @@ return [
         'shouldalsobementioned' => 'Det bør også nevnes at arrangørene',
         'shouldalsobementionedpoints' => '<li>Vil ikke ta bilder av barna når de er svært lettkledde.</li>
                     <li>Vil gjøre sitt beste for at bildene som publiseres på nett vil legges ut i en kvalitet som gjør det lite attraktivt for andre å manipulere dem eller benytte dem i andre sammenhenger.</li>
-                    <li>Vil alltid be om spesifikt samtykke fra omsorgsperson dersom det skal tas bilder av barna til journalistiske formål, eller dersom utplasserte studenter ønsker å ta bilder av barna.</li>
+                    <li>Vil alltid be om spesifikt samtykke fra omsorgsperson dersom det skal tas bilder av barna til journalistiske formål.</li>
                     <li>Vil ikke frigi digitale bildekopier av barnet uten spesifikt samtykke fra de foresatte.</li>',
         'moreinfo' => 'Vi har samlet informasjon til omsorgsperson på nettsidene våre: <br><strong><em>:url</em></strong>',
         'permission' => 'Tillatelse til å delta på :event',
