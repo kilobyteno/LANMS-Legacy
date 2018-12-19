@@ -11,6 +11,7 @@ return [
     'checklater' => 'Please check back later...',
 
     'map' => array(
+        'scene' => 'Scene',
         'exit' => 'Exit',
         'kiosk' => 'Kiosk',
         'available' => 'Available',

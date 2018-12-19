@@ -1,6 +1,6 @@
 <div class="seatmap">
 	<ul>
-		<li class="scene">Scene</li>
+		<li class="scene">{{ trans('seating.map.scene') }}</li>
 		<li class="entrance" id="entrance"><a data-toggle="tooltip" title="{{ trans('seating.map.exit') }}"><i class="fas fa-door-open"></i></a></li>
 
 		@foreach($rows as $row)
