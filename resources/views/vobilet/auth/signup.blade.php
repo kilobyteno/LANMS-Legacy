@@ -21,29 +21,29 @@
 						@endcomponent
 					@endif
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.firstname') }}</label>
-						<input type="text" class="form-control" name="firstname" placeholder="{{ trans('auth.signup.firstname') }}" autocomplete="off" value="{{ old('firstname') }}">
+						<label class="form-label">{{ trans('global.firstname') }}</label>
+						<input type="text" class="form-control" name="firstname" placeholder="{{ trans('global.firstname') }}" autocomplete="off" value="{{ old('firstname') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.lastname') }}</label>
-						<input type="text" class="form-control"  name="lastname" placeholder="{{ trans('auth.signup.lastname') }}" autocomplete="off" value="{{ old('lastname') }}">
+						<label class="form-label">{{ trans('global.lastname') }}</label>
+						<input type="text" class="form-control"  name="lastname" placeholder="{{ trans('global.lastname') }}" autocomplete="off" value="{{ old('lastname') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.username') }}</label>
-						<input type="text" class="form-control"  name="username" placeholder="{{ trans('auth.signup.username') }}" autocomplete="off" value="{{ old('username') }}">
+						<label class="form-label">{{ trans('global.username') }}</label>
+						<input type="text" class="form-control"  name="username" placeholder="{{ trans('global.username') }}" autocomplete="off" value="{{ old('username') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.birthdate') }}</label>
+						<label class="form-label">{{ trans('global.birthdate') }}</label>
 						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.email') }}</label>
-						<input type="email" class="form-control" name="email" placeholder="{{ trans('auth.signup.email') }}" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
+						<label class="form-label">{{ trans('global.email') }}</label>
+						<input type="email" class="form-control" name="email" placeholder="{{ trans('global.email') }}" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signup.password') }}</label>
-						<input type="password" class="form-control" name="password" placeholder="{{ trans('auth.signup.password') }}" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-						<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('auth.signup.passwordagain') }}" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
+						<label class="form-label">{{ trans('global.password') }}</label>
+						<input type="password" class="form-control" name="password" placeholder="{{ trans('global.password') }}" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
+						<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('global.confirm') }} {{ trans('global.password') }}" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
 					</div>
 					<div class="form-group">
 						<label class="custom-switch">

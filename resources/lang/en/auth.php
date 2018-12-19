@@ -7,7 +7,6 @@ return [
     'signin' => array(
         'title' => 'Sign in to your Account',
         'username' => 'Email or username',
-        'password' => 'Password',
         'rememberme' => 'Remember me',
         'forgot' => 'I forgot my password',
         'resend' => 'Resend activation email',
@@ -16,14 +15,7 @@ return [
 
     'signup' => array(
         'title' => 'Create New Account',
-        'firstname' => 'Firstname',
-        'lastname' => 'Lastname',
-        'username' => 'Username',
-        'birthdate' => 'Birthdate',
         'dateofbirth' => 'Date of Birth',
-        'email' => 'Email address',
-        'password' => 'Password',
-        'passwordagain' => 'Confirm Password',
         'agreement' => 'I have read and agree to the<br><strong>Terms of Service and Privacy Policy</strong>',
         'button' => 'Sign up',
         'button_alt' => 'Create new account',

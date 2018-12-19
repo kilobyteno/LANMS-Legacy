@@ -25,10 +25,10 @@
 						<input type="text" class="form-control" name="username" placeholder="{{ trans('auth.signin.username') }}">
 					</div>
 					<div class="form-group">
-						<label class="form-label">{{ trans('auth.signin.password') }}
+						<label class="form-label">{{ trans('global.password') }}
 							<a href="{{ route('account-forgot-password') }}" class="float-right small" tabIndex="-1">{{ trans('auth.signin.forgot') }}</a>
 						</label>
-						<input type="password" class="form-control" name="password" placeholder="{{ trans('auth.signin.password') }}">
+						<input type="password" class="form-control" name="password" placeholder="{{ trans('global.password') }}">
 					</div>
 					<div class="form-group">
 						<label class="custom-control custom-checkbox">
