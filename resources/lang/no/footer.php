@@ -2,8 +2,8 @@
 
 return [
 
-    'privacypolicy' => 'Privacy Policy',
-    'termsofservice' => 'Terms of Service',
+    'privacypolicy' => 'Personvernregler',
+    'termsofservice' => 'Vilkår for bruk',
     'debugmode' => 'feilsøkingsmodus',
     'resetdbandsettings' => 'Tilbakestill DB og innstillinger',
 
