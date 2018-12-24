@@ -8,7 +8,7 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         Setting::set('APP_NAME', 'LANMS');
-        Setting::set('APP_VERSION', '2.4.1');
+        Setting::set('APP_VERSION', '2.5.0');
         Setting::set('APP_VERSION_TYPE', 'Dev');
         Setting::set('APP_URL', 'http://lanms.xyz/');
         Setting::set('APP_LICENSE_STATUS', '');
