@@ -33,7 +33,7 @@ return [
     ),
 
     'staff' => 'Staff',
-    'member' => 'Medlem',
+    'members' => 'Medlem',
 
     'lastseen' => 'Sist sett',
     'joined' => 'Ble med',
