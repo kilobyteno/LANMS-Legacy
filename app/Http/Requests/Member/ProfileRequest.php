@@ -30,9 +30,7 @@ class ProfileRequest extends Request {
 			'occupation' 		=> 'regex:/^[A-Za-z ,\']+$/|nullable',
 			'showemail' 		=> 'integer',
 			'showname' 			=> 'integer',
-			'showonline' 		=> 'integer',
-			'userdateformat' 	=> '',
-			'usertimeformat' 	=> '',
+			'showonline' 		=> 'integer', 
 			'about' 			=> 'nullable',
 		];
 	}
