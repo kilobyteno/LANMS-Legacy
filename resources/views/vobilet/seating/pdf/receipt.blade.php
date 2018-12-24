@@ -35,7 +35,7 @@
                             </td>
                             <td>
                                 {{ trans('pdf.receipt.reservationnumber') }}: {{ $payment->reservation->id }}<br>
-                                {{ trans('global.date') }}: {{ date(User::getUserDateFormat(), strtotime($payment->reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->reservation->created_at)) }}<br>
+                                {{ trans('global.date') }}: {{ ucfirst(\Carbon::parse($payment->reservation->created_at)->isoFormat('LLLL')) }}<br>
                             </td>
                         </tr>
                     </table>
@@ -67,7 +67,7 @@
             </tr>
             <tr class="details">
                 <td>{{ trans('pdf.receipt.card') }}</td>
-                <td>#{{ $payment->id }} &middot; {{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
+                <td>#{{ $payment->id }} &middot; {{ ucfirst(\Carbon::parse($payment->created_at)->isoFormat('LLLL')) }}</td>
             </tr>
             <tr class="heading">
                 <td>{{ trans('pdf.receipt.item') }}</td>
