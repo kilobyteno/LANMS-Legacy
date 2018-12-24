@@ -37,7 +37,7 @@
                             <tbody>
                                 @foreach($charges as $charge)
                                     <tr>
-                                        <td>{{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</td>
+                                        <td>{{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</td>
                                         <td>{{ substr($charge['amount'], 0, -2) }}</td>
                                         <td>{{ strtoupper($charge['currency']) }}</td>
                                         <td>&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $charge['source']['last4'] }}</td>

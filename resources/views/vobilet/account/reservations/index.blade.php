@@ -33,7 +33,7 @@
 							<tbody>
 								@foreach($reservations as $reservation)
 									<tr>
-										<td>{{ date(User::getUserDateFormat(), strtotime($reservation->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($reservation->created_at)) }}</td>
+										<td>{{ ucfirst(\Carbon::parse($reservation->created_at)->isoFormat('LLLL')) }}</td>
 										<td>{{ $reservation->year ?? 'N/A' }}</td>
 										<td>{{ $reservation->seat->name ?? 'N/A' }}</td>
 										<td>{{ User::getFullnameAndNicknameByID($reservation->reservedfor_id) }}</td>

@@ -33,7 +33,7 @@
 							<tbody>
 								@foreach($payments as $payment)
 									<tr>
-										<td>{{ date(User::getUserDateFormat(), strtotime($payment->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($payment->created_at)) }}</td>
+										<td>{{ ucfirst(\Carbon::parse($payment->created_at)->isoFormat('LLLL')) }}</td>
 										<td>{{ $payment->reservation->year ?? 'N/A' }}</td>
 										<td>{{ $payment->reservation->seat->name ?? 'N/A' }}</td>
 										<td>@if($payment->reservation){{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}@else{{ 'N/A' }}@endif</td>

@@ -68,7 +68,7 @@
         <div class="col-md-4">
             <h3>{{ trans('user.account.billing.payments.payment.title') }} <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> {{ trans('user.account.billing.payments.payment.downloadreceipt') }}</a></h3>
             <hr style="margin-top: 0">
-            <p><strong>{{ trans('global.date') }}:</strong> {{ date(User::getUserDateFormat(), $charge['created']) .' at '. date(User::getUserTimeFormat(), $charge['created']) }}</p>
+            <p><strong>{{ trans('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
             <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
             <p><strong>{{ trans('global.payment.currency') }}:</strong> {{ strtoupper($charge['currency']) }}</p>
             <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? "Yes" : "No") }}</p>
