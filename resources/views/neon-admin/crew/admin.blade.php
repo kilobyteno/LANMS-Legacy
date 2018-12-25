@@ -37,9 +37,9 @@
 						<td>{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
 						<td>{{ $crew->category->title ?? 'N/A' }}</td>
 						<td>{{ $crew->year }}</td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($crew->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->created_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($crew->created_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($crew->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($crew->updated_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($crew->updated_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>

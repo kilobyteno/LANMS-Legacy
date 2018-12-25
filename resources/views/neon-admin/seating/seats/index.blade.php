@@ -41,9 +41,9 @@
 								<td>{{ $seat->name }}</td>
 								<td>{{ $seat->slug }}</td>
 								<td>{{ $seat->row->name or 'N/A' }}</td>
-								<td>{{ date(User::getUserDateFormat(), strtotime($seat->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->created_at)) }}</td>
+								<td>{{ ucfirst(\Carbon::parse($seat->created_at)->isoFormat('LLL')) }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->author->username) }}">{{ User::getFullnameByID($seat->author->id) }}</a></td>
-								<td>{{ date(User::getUserDateFormat(), strtotime($seat->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($seat->updated_at)) }}</td>
+								<td>{{ ucfirst(\Carbon::parse($seat->updated_at)->isoFormat('LLL')) }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->editor->username) }}">{{ User::getFullnameByID($seat->editor->id) }}</a></td>
 								<td>
 									<a href="{{ route('admin-seating-seat-edit', $seat->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>
