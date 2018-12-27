@@ -5,9 +5,6 @@ return [
     'adminpanel' => 'Admin Panel',
     'profile' => 'Profile',
 
-    'loggedin' => 'Welcome back!',
-    'loggedout' => 'You have now been successfully been logged out!',
-
     'alert' => array(
         'attendancelastyear' => 'We can see that you attended last year. Want to join us for this year too? <a href=":url">Check out the seating now</a>.',
         'consentform' => 'Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href=":url"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>',

@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-signin')->with('messagetype', 'info')
-                                ->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+                                ->with('message', trans('auth.alert.logindisabled'));
         }
 
         $username       = $request->input('username');
@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         if (!$validated) {
             return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                ->with('message', 'User was not found.')->withInput();
+                                ->with('message', trans('auth.alert.usernotfound'))->withInput();
         }
 
         $credentials = ['login' => $username, 'password' => $password];
@@ -42,11 +42,11 @@ class AuthController extends Controller
 
         if ($user == null) {
             return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                ->with('message', 'User was not found.')->withInput();
+                                ->with('message', trans('auth.alert.usernotfound'))->withInput();
         } else {
             if ($user->isAnonymized) {
                 return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                    ->with('message', 'This account has been deleted.')->withInput();
+                                    ->with('message', trans('auth.alert.isanonymized'))->withInput();
             }
 
             $actex = \Activation::exists($user);
@@ -60,32 +60,32 @@ class AuthController extends Controller
 
             if ($active === false) {
                 return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                    ->with('message', 'Your user is not active! Please check your inbox for the activation email. Check the spam-folder too.');
+                                    ->with('message', trans('auth.alert.notactive'));
             } elseif ($active === true) {
                 try {
                     if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
                         return Redirect::route('account-signin')->with('messagetype', 'info')
-                                            ->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+                                            ->with('message', trans('auth.alert.logindisabled'));
                     } elseif (\Sentinel::authenticate($credentials)) {
                         $login = \Sentinel::login($user, $remember);
                         if (!$login) {
                             return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                                ->with('message', 'Could not log you in. Please try again.')->withInput();
+                                                ->with('message', trans('auth.alert.loginfailed'))->withInput();
                         } else {
                             return Redirect::route('account')->with('messagetype', 'success')
-                                                ->with('message', trans('user.loggedin'));
+                                                ->with('message', trans('auth.alert.loggedin'));
                         }
                     } else {
                         return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                                ->with('message', 'Username or password was wrong. Please try again.')->withInput();
+                                                ->with('message', trans('auth.alert.usernamepasswordwrong'))->withInput();
                     }
                 } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                        ->with('message', 'Account is not activated!');
+                                        ->with('message', trans('auth.alert.accountnotactive'));
                 } catch (\Cartalyst\Sentinel\Checkpoints\ThrottlingException $e) {
                     $delay = $e->getDelay();
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                        ->with('message', 'Your ip is blocked for '.$delay.' second(s).');
+                                        ->with('message', trans('auth.alert.throttle', ['delay' => $delay]));
                 }
             }
         }
@@ -100,7 +100,7 @@ class AuthController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-signin')->with('messagetype', 'info')
-                                ->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+                                ->with('message', trans('auth.alert.logindisabled'));
         }
         
         $email              = $request->input('email');
@@ -120,12 +120,12 @@ class AuthController extends Controller
 
         if (!is_null($checkusername)) {
             return Redirect::route('account-signup')->with('messagetype', 'warning')
-                                ->with('message', 'Username is already taken.')->withInput();
+                                ->with('message', trans('auth.alert.usernametaken'))->withInput();
         }
 
         if (!is_null($checkemail)) {
             return Redirect::route('account-signup')->with('messagetype', 'warning')
-                                ->with('message', 'Email is already taken.')->withInput();
+                                ->with('message', trans('auth.alert.emailtaken'))->withInput();
         }
 
         if (is_null($checkusername) && is_null($checkemail)) {
@@ -144,24 +144,22 @@ class AuthController extends Controller
                 $activation = \Activation::create($user);
                 $activation_code = $activation->code;
 
-                $status = 'success';
-
                 \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation_code), 'firstname' => $firstname), function ($message) use ($user) {
                     $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
                 });
 
                 if (count(\Mail::failures()) > 0) {
                     return Redirect::route('account-signup')->with('messagetype', 'warning')
-                                    ->with('message', 'Something went wrong while trying to send you an email. But you user has been registered.');
+                                    ->with('message', trans('auth.alert.emailfailure'));
                 }
 
                 \Session::forget('referral'); //forget the referral
 
                 return Redirect::route('account-signin')->with('messagetype', 'success')
-                                    ->with('message', 'Your account has been created, check your email for the activation link. Double check the spam-folder.');
+                                    ->with('message', trans('auth.alert.accountcreated'));
             } else {
                 return Redirect::route('account-signup')->with('messagetype', 'danger')
-                                    ->with('message', 'Something went wrong while trying to register your user.');
+                                    ->with('message', trans('auth.alert.creationfailure'));
             }
         }
     }
@@ -171,7 +169,7 @@ class AuthController extends Controller
         \Sentinel::logout();
         return Redirect::route('home')
                         ->with('messagetype', 'success')
-                        ->with('message', trans('user.loggedout'));
+                        ->with('message', trans('auth.alert.loggedout'));
     }
 
     public function getActivate($activation_code)
@@ -180,7 +178,7 @@ class AuthController extends Controller
         if ($act == null) {
             return Redirect::route('home')
                 ->with('messagetype', 'warning')
-                ->with('message', 'We couldn\'t find your activation code. Please try again.');
+                ->with('message', trans('auth.alert.activationfailure'));
         } else {
             return view('auth.activate')->with('activation_code', $activation_code);
         }
@@ -190,7 +188,7 @@ class AuthController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-activate')->with('messagetype', 'info')
-                                ->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
+                                ->with('message', trans('auth.alert.logindisabled'));
         }
 
         $username           = $request->input('username');
@@ -199,19 +197,19 @@ class AuthController extends Controller
 
         if ($user == null) {
             return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
-                                    ->with('message', 'Username and activation code does not match.');
+                                    ->with('message', trans('auth.alert.usernameactivationfailure'));
         } else {
             $activation = Act::where('code', '=', $activation_code)->where('user_id', '=', $user->id)->first();
             if ($activation == null) {
                 return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
-                                    ->with('message', 'User and activation code does not match.');
+                                    ->with('message', trans('auth.alert.usernameactivationfailure'));
             } else {
                 if (\Activation::complete($user, $activation_code)) {
                     return Redirect::route('account-signin')->with('messagetype', 'success')
-                                    ->with('message', 'Your account has been activated!');
+                                    ->with('message', trans('auth.alert.accountactivated'));
                 } else {
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                    ->with('message', 'Something went wrong while activating your account. Please try again later.');
+                                    ->with('message', trans('auth.alert.accountactivationfailure'));
                 }
             }
         }
