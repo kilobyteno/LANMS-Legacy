@@ -89,8 +89,8 @@ return [
     ),
 
     'facebookmessenger' => array(
-        'logged_in_greeting' => 'Hei, vi er her for å hjelpe deg! :)',
-        'logged_out_greeting' => 'Hei, vi er her for å hjelpe deg! :)',
+        'logged_in_greeting' => 'Hi, we are here to help you! :)',
+        'logged_out_greeting' => 'Hi, we are here to help you! :)',
     ),
 
     'cookieconsent' => array(
