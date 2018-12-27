@@ -7,7 +7,7 @@ return [
 
     'alert' => array(
         'attendancelastyear' => 'We can see that you attended last year. Want to join us for this year too? <a href=":url">Check out the seating now</a>.',
-        'consentform' => 'We can see that you are under the age of 16 and at the event must have completed the consent form completed at check-in. You can find the completed form here: <a href=":url"><i class="fa fa-user-circle-o"></i> consent form</a>',
+        'consentform' => 'We can see that you are under the age of 16 and at the event must have completed the consent form completed at check-in. You can find the completed form here: <a href=":url"><i class="fas fa-user-circle"></i> Consent Form</a>',
         'nobirthdate' => 'There is no birthdate assigned to your account, this is required from now on. <a href=":url">Edit your profile</a>',
     ),
 
