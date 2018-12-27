@@ -147,7 +147,7 @@ class AuthController extends Controller
                 $status = 'success';
 
                 \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation_code), 'firstname' => $firstname), function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject('Activate your account');
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
                 });
 
                 if (count(\Mail::failures()) > 0) {
