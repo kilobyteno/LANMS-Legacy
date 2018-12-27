@@ -23,25 +23,25 @@ return [
 
     'consentform' => array(
         'title' => 'Samtykkeskjema',
-        'desc' => 'Alle deltakere under 16 år må ha med seg skriftlig tillatelse fra omsorgsperson til å være med på arrangementet. Mindreårige deltakere som ikke har tillatelse er vi dessverre nødt til å avvise. Aldersgrensen for å delta på arrangementet er satt til 13 år, er deltaker under denne grensen må omsorgsperson være med på arrengementet.',
-        'organizerswantright' => 'Arrangørene ønsker retten til',
-        'organizerswantrightpoints' => '<li>Å publisere bilde/video av deltaker på arrangementet sin nettside/sosialemedier. Åpen Facebook-side og åpen nettside. Når deltaker har kommet på pallplassering i konkurranser og/eller er med på oversiktlige bilder av arrangementet.</li>
-                    <li>Å kun ha gyldighet på dette samtykkeskjemaet i uken arrangementet skjer</li>',
-        'shouldalsobementioned' => 'Det bør også nevnes at arrangørene',
-        'shouldalsobementionedpoints' => '<li>Vil ikke ta bilder av barna når de er svært lettkledde.</li>
-                    <li>Vil gjøre sitt beste for at bildene som publiseres på nett vil legges ut i en kvalitet som gjør det lite attraktivt for andre å manipulere dem eller benytte dem i andre sammenhenger.</li>
-                    <li>Vil alltid be om spesifikt samtykke fra omsorgsperson dersom det skal tas bilder av barna til journalistiske formål.</li>
-                    <li>Vil ikke frigi digitale bildekopier av barnet uten spesifikt samtykke fra de foresatte.</li>',
-        'moreinfo' => 'Vi har samlet informasjon til omsorgsperson på nettsidene våre: <br><strong><em>:url</em></strong>',
-        'permission' => 'Tillatelse til å delta på :event',
-        'permissiondesc' => 'Jeg gir med dette tillatelse til at :name som er født :birthdate kan delta på arrangementet ":event" i :location. Jeg gir med dette tillatelse til arrangørene som nevnt i punkt(ene) over.',
-        'myrelationship' => 'Mitt forhold til deltakeren (sett strek under); <strong><em>mor</em></strong>, <strong><em>far</em></strong> eller <strong><em>annen omsorgsperson</em></strong> (spesifiser under).',
-        'contact' => 'Kontaktinformasjon til omsorgsperson, om det skulle bli nødvendig (<strong>skriv tydelig</strong>)',
-        'icanbecontacted' => 'Jeg kan treffes på telefon hele døgnet om det skulle oppstå en nødsituasjon og jeg er inneforstått med at arrangøren kan ringe for å kontrollere gyldigheten av denne tillatelsen.',
-        'filledoutbycaregiver' => 'Fylles ut av <strong>omsorgsperson</strong>',
-        'filledoutbyorganizers' => 'Fylles ut av <em>arrangørene</em>',
-        'placeanddate' => 'Sted og dato',
-        'signature' => 'Signatur',
+        'desc' => 'All participants under the age of 16 must bring a written permission from the caregiver to attend the event. Minors who do not have permission are unfortunately obliged to reject. The age limit for attending the event is set to 13 years, if the participant is below this limit, the caregiver must be on the arranger.',
+        'organizerswantright' => 'The organizers want the right to',
+        'organizerswantrightpoints' => '<li>To publish photo / video of participant at the event\'s website / social media. Open Facebook page and open website. When the participant has placed a pallet in competitions and / or participates in clear pictures of the event.</li>
+                    <li>To be valid only on this consent form during the week\'s event</li>',
+        'shouldalsobementioned' => 'It should also be mentioned that the organizers',
+        'shouldalsobementionedpoints' => '<li>Will not take pictures of the kids when they are very easy to dress.</li>
+                    <li>Want to do their best to ensure that the images published online will be presented in a quality that makes it unattractive for others to manipulate them or use them in other contexts.</li>
+                    <li>Will always ask for specific consent from the caregiver if pictures of the children are to be taken for journalistic purposes.</li>
+                    <li>Will not release digital photo copies of the child without the specific consent of the guardians.</li>',
+        'moreinfo' => 'We have collected information for the caregiver on our website: <br><strong><em>:url</em></strong>',
+        'permission' => 'Permission to attend :event',
+        'permissiondesc' => 'With this permission I give that :name born :birthdate can attend the event ":event" in :location. With this permission I give to the organizers as mentioned in point(s) above.',
+        'myrelationship' => 'My relationship with the participant (seen below); <strong><em>mother</em></strong>, <strong><em>father</em></strong> or <strong><em>another caregiver</em></strong> (specify below).',
+        'contact' => 'Contact information for a caregiver, if necessary (<strong>write clearly</strong>)',
+        'icanbecontacted' => 'I can be reached by phone 24 hours a day if an emergency should arise and I understand that the organizer may call to verify the validity of this permit.',
+        'filledoutbycaregiver' => 'To be completed by <strong>caregiver</strong>',
+        'filledoutbyorganizers' => 'To be completed by <em>organizers</em>',
+        'placeanddate' => 'Place and date',
+        'signature' => 'Signature',
     ),
 
 ];
