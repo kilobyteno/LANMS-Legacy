@@ -22,7 +22,7 @@ return [
     ),
 
     'consentform' => array(
-        'title' => 'Samtykkeskjema',
+        'title' => 'Consent Form',
         'desc' => 'All participants under the age of 16 must bring a written permission from the caregiver to attend the event. Minors who do not have permission are unfortunately obliged to reject. The age limit for attending the event is set to 13 years, if the participant is below this limit, the caregiver must be on the arranger.',
         'organizerswantright' => 'The organizers want the right to',
         'organizerswantrightpoints' => '<li>To publish photo / video of participant at the event\'s website / social media. Open Facebook page and open website. When the participant has placed a pallet in competitions and / or participates in clear pictures of the event.</li>
