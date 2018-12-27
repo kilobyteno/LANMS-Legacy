@@ -82,7 +82,7 @@ class AuthController extends Controller
                 } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
                                         ->with('message', 'Account is not activated!');
-                } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
+                } catch (\Cartalyst\Sentinel\Checkpoints\ThrottlingException $e) {
                     $delay = $e->getDelay();
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
                                         ->with('message', 'Your ip is blocked for '.$delay.' second(s).');
