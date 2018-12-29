@@ -25,6 +25,11 @@ return [
         'title' => 'Account',
         'details' => array(
             'title' => 'Details',
+            'alert' => array(
+                'saved' => 'Your details has been changed!',
+                'failed' => 'Something went wrong when saving your details.',
+                'wrongpassword' => 'Wrong password. Please try again.',
+            ),
             'editprofile' => 'Edit Profile',
             'images' => 'Change Profile Images',
             'addressbook' => 'Manage Address Book',
@@ -65,6 +70,11 @@ return [
         ),
         'changepassword' => array(
             'title' => 'Change Password',
+            'alert' => array(
+                'saved' => 'Your password has been changed! Please login again to confirm the password change.',
+                'failed' => 'Something went wrong when saving your details.',
+                'wrongpassword' => 'Your current password does not seem to match.',
+            ),
             'editpassword' => 'Edit your password',
             'button' => 'Update Password',
         ),
@@ -106,6 +116,11 @@ return [
 
         'changeimages' => array(
             'title' => 'Change Profile Images',
+            'alert' => array(
+                'saved' => 'Your profile cover has been changed!',
+                'failed' => 'Your profile cover could not be uploaded.',
+                'noimage' => 'Please select an image.',
+            ),
             'button' => 'Upload Image',
             'coverphoto' => 'Cover Photo',
             'profilephoto' => 'Profile Photo',
@@ -138,6 +153,9 @@ return [
     'gdpr' => array(
         'delete' => array(
             'title' => 'Delete Personal Data',
+            'alert' => array(
+                'saved' => 'Your account has now been deleted!',
+            ),
             'message' => '<p>We are sorry to see you go!</p>
                     <p>When clicking the delete button your account and all its data will be deleted forever. It will not be able to recover any data attached to this account.</p>
                     <p>Make sure you <a href=":url">download your data</a> before you delete your account.</p>
