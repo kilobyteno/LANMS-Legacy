@@ -1,7 +1,7 @@
 @extends('emails.layouts.main')
-@section('subject', 'Reservasjon fjernet!')
+@section('subject', trans('email.seat.removed.title'))
 @section('content') 
 
-Your reservation for the {{ $seatname }} seat has been removed, since you have not paid for it within 48 hours of reservation time.<br>
+{{ trans('email.seat.removed.desc', ['seatname' => $seatname]) }}<br>
 
 @stop
