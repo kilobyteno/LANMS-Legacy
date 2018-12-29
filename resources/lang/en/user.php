@@ -137,6 +137,11 @@ return [
         'confirmchanges' => 'Confirm changes with your password',
         'alert' => array(
             'nodeletewhilereservation' => 'You will not be able to delete any addresses while you have reserved seats.',
+            'saved' => 'The address has now been added!',
+            'updated' => 'The address has now been updated!',
+            'deleted' => 'The address has now been deleted!',
+            'failed' => 'Something went wrong while saving the address to the address book.',
+            'wrongpassword' => 'Your current password does not seem to match.',
         ),
         'swal' => array(
             'title' => 'Nothing has been done.',

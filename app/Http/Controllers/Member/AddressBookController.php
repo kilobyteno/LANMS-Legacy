@@ -77,7 +77,6 @@ class AddressBookController extends Controller
             $adresssave = $address->save();
 
             if ($adresssave) {
-
                 //give user rights to edit address
                 $user = Sentinel::getUser();
                 $user->addPermission('address.'.$address->id.'.edit');
@@ -86,16 +85,16 @@ class AddressBookController extends Controller
 
                 return Redirect::route('account-addressbook')
                         ->with('messagetype', 'success')
-                        ->with('message', 'The address has now been added!');
+                        ->with('message', trans('user.addressbook.alert.saved'));
             } else {
                 return Redirect::route('account-addressbook-create')
                     ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the address to the address book.');
+                    ->with('message', trans('user.addressbook.alert.failed'));
             }
         } else {
             return Redirect::route('account-addressbook-create')
                     ->with('messagetype', 'warning')
-                    ->with('message', 'Your current password does not seem to match.')->withInput();
+                    ->with('message', trans('user.addressbook.alert.wrongpassword'))->withInput();
         }
     }
 
@@ -112,7 +111,7 @@ class AddressBookController extends Controller
             return view('account.addressbook.edit')->with($address->toArray());
         } else {
             return Redirect::back()->with('messagetype', 'warning')
-                                ->with('message', 'You do not have access to this page!');
+                                ->with('message', trans('global.noaccess'));
         }
     }
 
@@ -157,20 +156,20 @@ class AddressBookController extends Controller
                 if ($address->save()) {
                     return Redirect::route('account-addressbook')
                             ->with('messagetype', 'success')
-                            ->with('message', 'The address has now been updated!');
+                            ->with('message', trans('user.addressbook.alert.updated'));
                 } else {
                     return Redirect::route('account-addressbook-edit', $id)
                         ->with('messagetype', 'danger')
-                        ->with('message', 'Something went wrong while saving the changes to the address.');
+                        ->with('message', trans('user.addressbook.alert.failed'));
                 }
             } else {
                 return Redirect::route('account-addressbook-edit', $id)
                         ->with('messagetype', 'warning')
-                        ->with('message', 'Your current password does not seem to match.');
+                        ->with('message', trans('user.addressbook.alert.wrongpassword'));
             }
         } else {
             return Redirect::back()->with('messagetype', 'warning')
-                                ->with('message', 'You do not have access to this page!');
+                                ->with('message', trans('global.noaccess'));
         }
     }
 
@@ -186,7 +185,7 @@ class AddressBookController extends Controller
             if (Sentinel::getUser()->reservations->count() <> 0) {
                 return Redirect::route('account-addressbook')
                                     ->with('messagetype', 'warning')
-                                    ->with('message', 'You are not allowed to delete any addresses while you have reserved seats.');
+                                    ->with('message', trans('user.addressbook.alert.nodeletewhilereservation'));
             }
 
             $address = Address::find($id);
@@ -202,11 +201,11 @@ class AddressBookController extends Controller
             if ($address->delete()) {
                 return Redirect::route('account-addressbook')
                         ->with('messagetype', 'success')
-                        ->with('message', 'The address has now been deleted!');
+                        ->with('message', trans('user.addressbook.alert.deleted'));
             } else {
                 return Redirect::route('account-addressbook')
                     ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while deleting the address.');
+                    ->with('message', trans('user.addressbook.alert.failed'));
             }
             //Remove User Permissions
             $user = Sentinel::getUser();
@@ -214,7 +213,7 @@ class AddressBookController extends Controller
             $user->save();
         } else {
             return Redirect::route('account-addressbook')->with('messagetype', 'warning')
-                                ->with('message', 'You do not have access to this page!');
+                                ->with('message', trans('global.noaccess'));
         }
     }
 }

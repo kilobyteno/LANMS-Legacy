@@ -11,6 +11,7 @@ return [
     'new' => 'New',
     'current' => 'Current',
     'nodata' => 'We can\'t find any data for you...',
+    'noaccess' => 'You do not have access to this page!',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
