@@ -56,6 +56,12 @@ return [
         'username' => 'Email or username',
         'forgetit' => 'Forget it, <a href=":url">send me back</a> to the sign in page.',
         'button' => 'Send Email',
+        'alert' => array(
+            'notactive' => 'Your user is not active! Please check your inbox for the activation email. Check the spam-folder too.',
+            'alreadyasked' => 'You have already asked for a reminder! Please check your inbox for the activation email. Check the spam-folder too.',
+            'emailfailure' => 'Something went wrong while trying to send you an email.',
+            'emailsuccess' => 'Check your email for the reset password link. Double check the spam-folder.',
+        ),
     ),
 
     'resend' => array(
@@ -63,6 +69,13 @@ return [
         'email' => 'Email',
         'forgetit' => 'Forget it, <a href=":url">send me back</a> to the sign in page.',
         'button' => 'Send Email',
+        'alert' => array(
+            'usernotfound' => 'Couldn\'t find account associated with the email! Please try again.',
+            'noactivations' => 'Your account is already activated or we couldn\'t find any uncompleted activations.',
+            'activationcompleted' => 'Activation has already been completed.',
+            'emailfailure' => 'Something went wrong while trying to send you an email.',
+            'emailsuccess' => 'We have sent you a email, check your inbox. Check the spam-folder too.',
+        ),
     ),
 
     'reset' => array(
@@ -72,6 +85,12 @@ return [
         'passwordagain' => 'Confirm New Password',
         'forgetit' => 'Forget it, <a href=":url">send me back</a> to the sign in page.',
         'button' => 'Reset',
+        'alert' => array(
+            'noreminder' => 'We couldn\'t find your reminder code. Please try again.',
+            'nomatch' => 'Username does not match the code!',
+            'cansignin' => 'You can now sign in!',
+            'failure' =>'Something went wrong while reseting your password. Please try again later.',
+        ),
     ),
 
 
