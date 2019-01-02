@@ -47,7 +47,7 @@ class ReserveSeatingController extends Controller
         $currentseat = Seats::where('slug', $slug)->first();
         if (is_null($currentseat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         $rows = SeatRows::all();
         return view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
@@ -67,7 +67,7 @@ class ReserveSeatingController extends Controller
 
         if (is_null($seat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         if (substr($slug, 0, 1) == 'a') {
             return Redirect::route('seating')->with('messagetype', 'warning')
@@ -146,7 +146,7 @@ class ReserveSeatingController extends Controller
         $currentseat = Seats::where('slug', $slug)->first();
         if (is_null($currentseat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
 
         if (Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
