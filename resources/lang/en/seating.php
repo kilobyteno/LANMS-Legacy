@@ -5,6 +5,17 @@ return [
     'alert' => array(
         'noaddress' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href=":url" class="alert-link">add</a> one.',
         'closed' => 'Seating is closed at this moment, you cannot reserve seats or change reservations.',
+        'seatnotfound' => 'Could not find seat.',
+        'seatingclosed' => 'It is not possible to reserve seats at this time.',
+        'paymentexist' => 'This seat already has a payment assigned to it.',
+        'youcantpay' => 'You can\'t pay for this seat.',
+        'noreservation' => 'There was no reservation found for this seat.',
+        'carderror' => 'Please check your card information and try again',
+        'pleasetryagain' => 'Please try again.',
+        'seatpaid' => ':seatname is now reserved and paid for! We are exited to have you, welcome!',
+        'seattemppaid' => ':seatname is now marked as pay at entrance! We are exited to have you, welcome!',
+        'paymentcantchange' => 'You can\'t change your payment of your reservation after the first 48 hours.',
+        'youcanchangepayment' => 'You can now change your payment of your reservation.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',

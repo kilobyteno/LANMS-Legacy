@@ -38,24 +38,24 @@ class PaymentSeatingController extends Controller
         $currentseat = Seats::where('slug', $slug)->first();
         if ($currentseat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'It is not possible to reserve seats at this time.');
+                                ->with('message', trans('seating.alert.seatingclosed'));
         }
         if ($currentseat->reservationsThisYear->first()) {
             if ($currentseat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'This seat already has a payment assigned to it.');
+                                    ->with('message', trans('seating.alert.paymentexist'));
             }
             if (Sentinel::getUser()->id <> $currentseat->reservationsThisYear->first()->reservedby->id) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'You can\'t pay for this seat.');
+                                    ->with('message', trans('seating.alert.noreservation'));
             }
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'There was no reservation found for this seat.');
+                                ->with('message', trans('seating.alert.noreservation'));
         }
         
         $rows = SeatRows::all();
@@ -73,24 +73,24 @@ class PaymentSeatingController extends Controller
         $seat = Seats::where('slug', $slug)->first();
         if ($seat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'It is not possible to reserve seats at this time.');
+                                ->with('message', trans('seating.alert.seatingclosed'));
         }
         if ($seat->reservationsThisYear->first()) {
             if ($seat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'This seat already has a payment assigned to it.');
+                                    ->with('message', trans('seating.alert.paymentexist'));
             }
             if (Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'You can\'t pay for this seat.');
+                                    ->with('message', trans('seating.alert.noreservation'));
             }
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'There was no reservation found for this seat.');
+                                ->with('message', trans('seating.alert.noreservation'));
         }
 
         $stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
@@ -138,7 +138,7 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', 'Please check your card information and try again: '.$message);
+                                ->with('message', trans('seating.alert.carderror').': '.$message);
         }
 
         try {
@@ -156,7 +156,7 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. Please try again.');
+                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         } catch (ServerErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -168,7 +168,7 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. Please try again.');
+                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
         try {
@@ -188,7 +188,7 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. Please try again.');
+                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
         $reservation                    = $seat->reservationsThisYear->first();
@@ -214,7 +214,7 @@ class PaymentSeatingController extends Controller
         $reservationchange->save();
 
         return Redirect::route('seating')->with('messagetype', 'success')
-                                ->with('message', $seat->name.' is now reserved and paid for! We are exited to have you, welcome!');
+                                ->with('message', trans('seating.alert.seatpaid', ['seatname' => $seat->name]));
     }
 
     /**
@@ -229,24 +229,24 @@ class PaymentSeatingController extends Controller
 
         if ($seat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'It is not possible to reserve seats at this time.');
+                                ->with('message', trans('seating.alert.seatingclosed'));
         }
         if ($seat->reservationsThisYear->first()) {
             if ($seat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'This seat already has a payment assigned to it.');
+                                    ->with('message', trans('seating.alert.paymentexist'));
             }
             if (Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'You can\'t pay for this seat.');
+                                    ->with('message', trans('seating.alert.noreservation'));
             }
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'There was no reservation found for this seat.');
+                                ->with('message', trans('seating.alert.noreservation'));
         }
 
         $reservation                    = $seat->reservationsThisYear->first();
@@ -265,7 +265,7 @@ class PaymentSeatingController extends Controller
         $reservationchange->save();
 
         return Redirect::route('seating')->with('messagetype', 'success')
-                                ->with('message', $seat->name.' is now reserved and marked as pay at entrance! We are exited to have you, welcome!');
+                                ->with('message', trans('seating.alert.seattemppaid', ['seatname' => $seat->name]));
     }
 
     /**
@@ -281,24 +281,24 @@ class PaymentSeatingController extends Controller
 
         if ($seat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'It is not possible to reserve seats at this time.');
+                                ->with('message', trans('seating.alert.seatingclosed'));
         }
         if ($seat->reservationsThisYear->first()) {
             if ($seat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'This seat already has a payment assigned to it.');
+                                    ->with('message', trans('seating.alert.paymentexist'));
             }
             if (Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', 'You can\'t pay for this seat.');
+                                    ->with('message', trans('seating.alert.noreservation'));
             }
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'There was no reservation found for this seat.');
+                                ->with('message', trans('seating.alert.noreservation'));
         }
 
         $reservation                    = $seat->reservationsThisYear->first();
@@ -306,7 +306,7 @@ class PaymentSeatingController extends Controller
 
         if (SeatReservation::getRealExpireTime($reservationid) == "expired") {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', 'You can\'t change your payment of your reservation after the first 48 hours.');
+                                ->with('message', trans('seating.alert.paymentcantchange'));
         }
 
         $reservation->ticket->delete(); // Delete Old Ticket
@@ -317,6 +317,6 @@ class PaymentSeatingController extends Controller
         $reservationchange->save();
 
         return Redirect::route('seating')->with('messagetype', 'success')
-                                ->with('message', 'You can now change your payment of your reservation.');
+                                ->with('message', trans('seating.alert.youcanchangepayment'));
     }
 }
