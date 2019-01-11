@@ -24,10 +24,10 @@ class SignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'                     => 'required|email',
+            'email'                     => 'required|email|unique:users,email',
             'firstname'                 => 'required|between:3,250|alpha_dash',
             'lastname'                  => 'required|between:3,250|alpha_dash',
-            'username'                  => 'required',
+            'username'                  => 'required|unique:users,username',
             'password'                  => 'required|confirmed|min:8|max:64',
             'birthdate'                 => 'required|date_format:d/m/Y',
             'tos-pp'                    => 'accepted',
