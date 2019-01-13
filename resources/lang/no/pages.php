@@ -27,6 +27,7 @@ return [
             'username' => 'Brukernavn',
             'name' => 'Navn',
             'joined' => 'Ble med',
+            'lastseen' => 'Sist sett',
             'showing' => 'Viser :pluck av :total totalt antall medlemmer',
         ),
     ),

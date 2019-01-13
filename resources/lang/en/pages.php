@@ -27,6 +27,7 @@ return [
             'username' => 'Username',
             'name' => 'Name',
             'joined' => 'Joined',
+            'lastseen' => 'Last Seen',
             'showing' => 'Showing :pluck of :total total members',
         ),
     ),

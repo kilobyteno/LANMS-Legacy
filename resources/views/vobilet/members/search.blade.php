@@ -85,6 +85,7 @@
 								<th>{{ trans('pages.members.table.username') }}</th>
 								<th>{{ trans('pages.members.table.name') }}</th>
 								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.joined') }}</th>
+								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.lastseen') }}</th>
 							</tr>
 						@foreach($members as $member)
 							<tr>
@@ -92,6 +93,7 @@
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->username }}</a></td>
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a></td>
 								<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $member->created_at }}">{{ \Carbon::parse($member->created_at)->diffForHumans() }}</span></td>
+								<td class="d-none d-sm-table-cell">{{ \Carbon::parse($member->last_activity)->diffForHumans() }}</td>
 							</tr>
 						@endforeach
 						</tbody>
