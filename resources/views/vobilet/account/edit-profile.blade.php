@@ -120,6 +120,15 @@
 									<p class="text-danger">{{ $errors->first('lastname') }}</p>
 								@endif
 							</div>
+							<div class="form-group @if ($errors->has('phone')) has-error @endif">
+								<label class="form-label">{{ trans('global.phone') }}</label>
+								<div class="input-group">
+									<input class="form-control" type="tel" id="phone" name="phone" placeholder="+4722225555" value="{{ $phone }}">
+								</div>
+								@if($errors->has('phone'))
+									<p class="text-danger">{{ $errors->first('phone') }}</p>
+								@endif
+							</div>
 							<div class="form-group @if ($errors->has('gender')) has-error @endif">
 								<label class="form-label">{{ trans('global.gender.title') }}</label>
 								<select class="form-control" name="gender">
@@ -135,7 +144,7 @@
 							</div>
 							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">{{ trans('global.about') }}</label>
-								<textarea class="form-control" rows="4" name="about">{{ $about }}</textarea>
+								<textarea class="form-control" rows="2" name="about">{{ $about }}</textarea>
 								@if($errors->has('about'))
 									<p class="text-danger">{{ $errors->first('about') }}</p>
 								@endif
@@ -169,4 +178,16 @@
 		</div>
 	</form>
 </div>
+@stop
+
+@section('css')
+	<link href="{{ Theme::url('css/intlTelInput.css') }}" rel="stylesheet" />
+@stop
+
+@section('javascript')
+	<script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
+	<script>
+		var input = document.querySelector("#phone");
+		window.intlTelInput(input);
+	</script>
 @stop

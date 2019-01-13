@@ -24,7 +24,7 @@ return [
     'lastname' => 'Lastname',
     'username' => 'Username',
     'birthdate' => 'Birthdate',
-    'phonenumber' => 'Phonenumber',
+    'phone' => 'Phone',
     'gender' => array(
         'title' => 'Gender',
         'male' => 'Male',

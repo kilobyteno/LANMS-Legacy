@@ -99,6 +99,8 @@ return [
     |
     */
 
+    'phone' => 'The :attribute field contains an invalid phonenumber.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

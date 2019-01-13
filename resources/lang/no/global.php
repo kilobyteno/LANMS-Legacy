@@ -23,7 +23,7 @@ return [
     'lastname' => 'Etternavn',
     'username' => 'Brukernavn',
     'birthdate' => 'Bursdag',
-    'phonenumber' => 'Telefonnummer',
+    'phone' => 'Telefonnummer',
     'gender' => array(
         'title' => 'Kjønn',
         'male' => 'Mann',

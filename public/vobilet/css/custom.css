@@ -17,3 +17,17 @@
 	margin: -2px 0 0 -1rem;
 	box-shadow: 0 8px currentColor, 0 -8px currentColor;
 }
+
+.iti-flag {background-image: url("/vobilet/images/intlTelInput/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti-flag {background-image: url("/vobilet/images/intlTelInput/flags@2x.png");}
+}
+
+.intl-tel-input {
+	width: 100%;
+}
+
+.intl-tel-input .country-list .country.highlight {
+	margin: 0;
+}

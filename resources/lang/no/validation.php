@@ -99,6 +99,8 @@ return [
     |
     */
 
+    'phone' => ':attribute feltet inneholder et ugyldig telefonnummer.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
