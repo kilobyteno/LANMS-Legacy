@@ -22,3 +22,8 @@ ul {
 	list-style-type: disc;
 	padding-left: 30px;
 }
+
+.social ul {
+	list-style-type: none;
+	padding-left: 0;
+}
