@@ -17,3 +17,8 @@
 	margin: -2px 0 0 -1rem;
 	box-shadow: 0 8px currentColor, 0 -8px currentColor;
 }
+
+ul {
+	list-style-type: disc;
+	padding-left: 30px;
+}
