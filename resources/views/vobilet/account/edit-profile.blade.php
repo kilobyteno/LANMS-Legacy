@@ -68,32 +68,6 @@
 						@endif
 					</div>
 
-					<div class="form-group @if ($errors->has('userdateformat')) has-error @endif">
-						<label class="form-label">{{ trans('user.profile.edit.settings.dateformat') }}</label>
-						<select class="form-control" name="userdateformat">
-							<option value="d. M Y" {{ ($userdateformat == 'd. M Y') ? 'selected' : '' }}>{{ date('d. M Y', time()) }} (d. M Y)</option>
-							<option value="d.m.y" {{ ($userdateformat == 'd.m.y') ? 'selected' : '' }}>{{ date('d.m.y', time()) }} (d.m.y)</option>
-							<option value="F j, Y" {{ ($userdateformat == 'F j, Y') ? 'selected' : '' }}>{{ date('F j, Y', time()) }} (F j, Y)</option>
-							<option value="M j, Y" {{ ($userdateformat == 'M j, Y') ? 'selected' : '' }}>{{ date('M j, Y', time()) }} (M j, Y)</option>
-							<option value="n/j/y" {{ ($userdateformat == 'n/j/y') ? 'selected' : '' }}>{{ date('n/j/y', time()) }} (n/j/y)</option>
-							<option value="Y/m/d" {{ ($userdateformat == 'Y/m/d') ? 'selected' : '' }}>{{ date('Y/m/d', time()) }} (Y/m/d)</option>
-						</select>
-						@if($errors->has('userdateformat'))
-							<p class="text-danger">{{ $errors->first('userdateformat') }}</p>
-						@endif
-					</div>
-
-					<div class="form-group @if ($errors->has('usertimeformat')) has-error @endif">
-						<label class="form-label">{{ trans('user.profile.edit.settings.timeformat') }}</label>
-						<select class="form-control" name="usertimeformat">
-							<option value="H:i" {{ ($usertimeformat == 'H:i') ? 'selected' : '' }}>{{ date('H:i', time()) }} (H:i)</option>
-							<option value="g:i a" {{ ($usertimeformat == 'g:i a') ? 'selected' : '' }}>{{ date('g:i a', time()) }} (g:i a)</option>
-						</select>
-						@if($errors->has('usertimeformat'))
-							<p class="text-danger">{{ $errors->first('usertimeformat') }}</p>
-						@endif
-					</div>
-
 				</div>
 			</div>
 		</div>
