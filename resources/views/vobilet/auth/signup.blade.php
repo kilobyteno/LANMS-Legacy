@@ -20,27 +20,19 @@
 							@endforeach
 						@endcomponent
 					@endif
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="form-label">{{ trans('global.firstname') }}</label>
 						<input type="text" class="form-control" name="firstname" placeholder="{{ trans('global.firstname') }}" autocomplete="off" value="{{ old('firstname') }}">
-					</div>
-					<div class="form-group">
 						<label class="form-label">{{ trans('global.lastname') }}</label>
 						<input type="text" class="form-control"  name="lastname" placeholder="{{ trans('global.lastname') }}" autocomplete="off" value="{{ old('lastname') }}">
-					</div>
-					<div class="form-group">
 						<label class="form-label">{{ trans('global.username') }}</label>
 						<input type="text" class="form-control"  name="username" placeholder="{{ trans('global.username') }}" autocomplete="off" value="{{ old('username') }}">
-					</div>
-					<div class="form-group">
 						<label class="form-label">{{ trans('global.birthdate') }}</label>
 						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
-					</div>
-					<div class="form-group">
+						<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+						<input type="text" class="form-control" type="tel" id="phone" name="phone" placeholder="{{ trans('global.phone') }}" autocomplete="off" value="{{ old('phone') }}" />
 						<label class="form-label">{{ trans('global.email') }}</label>
 						<input type="email" class="form-control" name="email" placeholder="{{ trans('global.email') }}" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
-					</div>
-					<div class="form-group">
 						<label class="form-label">{{ trans('global.password') }}</label>
 						<input type="password" class="form-control" name="password" placeholder="{{ trans('global.password') }}" autocomplete="off" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
 						<input type="password" class="form-control" name="password_confirmation" placeholder="{{ trans('global.confirm') }} {{ trans('global.password') }}" autocomplete="off" style="border-top-left-radius:0;border-top-right-radius:0">
@@ -69,7 +61,23 @@
 
 @stop
 
+@section('css')
+	<link href="{{ Theme::url('css/intlTelInput.css') }}" rel="stylesheet" />
+	<style type="text/css">
+		.form-label {
+			margin-top: .375rem;
+			margin-bottom: 0;
+		}
+	</style>
+@stop
+
 @section('javascript')
+	<script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
+	<script>
+		var input = document.querySelector("#phone");
+		window.intlTelInput(input);
+	</script>
+
 	<script type="text/javascript">
 		function changecase(e, obj)  {
 			var key = e.which || window.event.keyCode;
