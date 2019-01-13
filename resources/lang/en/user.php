@@ -97,6 +97,8 @@ return [
 
             'details' => array(
                 'title' => 'Edit your profile details',
+                'phonewhy' => 'Why?',
+                'phonewhydesc' => 'We need your phone number in case of an emergency during the event.',
             ),
 
             'settings' => array(

@@ -26,7 +26,7 @@ class ProfileRequest extends Request
             'firstname'         => 'required|between:3,250|string',
             'lastname'          => 'required|between:3,250|string',
             'birthdate'         => 'date_format:Y-m-d',
-            'phone'             => 'phone:AUTO,NO',
+            'phone'             => 'required|phone:AUTO,NO',
             'gender'            => '',
             'location'          => 'regex:/^[A-Za-z ,\']+$/|nullable',
             'occupation'        => 'regex:/^[A-Za-z ,\']+$/|nullable',

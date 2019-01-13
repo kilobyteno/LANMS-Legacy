@@ -90,6 +90,8 @@ return [
 
             'details' => array(
                 'title' => 'Rediger profilinformasjonen din',
+                'phonewhy' => 'Hvorfor?',
+                'phonewhydesc' => 'Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet.',
             ),
 
             'settings' => array(
