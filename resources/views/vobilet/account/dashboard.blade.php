@@ -27,6 +27,11 @@
 					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
 				</div>
 			@endif
+			@if(!Sentinel::getUser()->phone)
+				<div class="alert alert-warning" role="alert">
+					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nophone', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
+				</div>
+			@endif
 			<div class="row">
 				<div class="col-lg-8 col-lg-8 col-sm-8">
 					@foreach($news as $article)

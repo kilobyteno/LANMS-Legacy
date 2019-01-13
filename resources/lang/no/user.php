@@ -12,6 +12,7 @@ return [
         'attendancelastyear' => 'Vi kan se at du deltok i fjor. Vil du bli med oss i år også? <a href=":url">Sjekk ut sitteområdet nå</a>.',
         'consentform' => 'Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href=":url"><i class="fas fa-user-circle"></i> Samtykkeskjema</a>',
         'nobirthdate' => 'There is no birthdate assigned to your account, this is required from now on. <a href=":url">Edit your profile</a>',
+        'nophone' => 'Det er ikke noe telefonnummer lagret på kontoen din. Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet. <a href=":url">Rediger profilen din</a>',
     ),
 
     'dashboard' => array(
