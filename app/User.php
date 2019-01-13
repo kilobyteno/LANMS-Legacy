@@ -748,9 +748,6 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function scopeGetFullnameAndNicknameByID($query, $id)
     {
         $user = $query->withTrashed()->where('id', '=', $id)->first();
-        if (!$user) {
-            return "N/A";
-        }
         if ($user->showname) {
             return $user->firstname . ' "' . $user->username . '" ' . $user->lastname;
         } else {
