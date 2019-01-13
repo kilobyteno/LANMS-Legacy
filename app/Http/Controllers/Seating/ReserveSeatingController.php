@@ -143,14 +143,17 @@ class ReserveSeatingController extends Controller
     public function ticketdownload($slug)
     {
         $slug = strtolower($slug); // Just to be sure it is correct
-        $currentseat = Seats::where('slug', $slug)->first();
-        if (is_null($currentseat)) {
+        $seat = Seats::where('slug', $slug)->first();
+        if (is_null($seat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', 'Could not find seat.');
         }
 
-        if (Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id && $currentseat->reservationsThisYear()->first()->ticket) {
-            $html = view('seating.pdf.ticket')->with('currentseat', $currentseat)->render();
+        $ticket = $seat->reservationsThisYear()->first()->ticket;
+        $reservedfor = $seat->reservationsThisYear()->first()->reservedfor;
+        $payment = $seat->reservationsThisYear()->first()->payment;
+        if (Sentinel::getUser()->id == $reservedfor->id && !is_null($ticket)) {
+            $html = view('seating.pdf.ticket')->with('seat', $seat)->with('payment', $payment)->with('reservedfor', $reservedfor)->with('ticket', $ticket)->render();
             $pdf = PDF::loadHTML($html);
             return $pdf->stream();
         } else {
