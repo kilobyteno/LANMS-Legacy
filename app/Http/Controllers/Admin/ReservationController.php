@@ -119,14 +119,11 @@ class ReservationController extends Controller
                                 ->with('message', 'Could not find valid ticket.');
         }
 
-        if (Sentinel::getUser()->id == $currentseat->reservationsThisYear()->first()->reservedfor->id) {
-            $html = view('seating.pdf.ticket')->with('currentseat', $currentseat)->render();
-            $pdf = PDF::loadHTML($html);
-            return $pdf->stream();
-        } else {
-            return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-                                ->with('message', 'You are not allowed to view this ticket.');
-        }
+        \Theme::set('vobilet');
+       
+        $html = view('seating.pdf.ticket')->with('currentseat', $currentseat)->render();
+        $pdf = PDF::loadHTML($html);
+        return $pdf->stream();
     }
 
     /**
