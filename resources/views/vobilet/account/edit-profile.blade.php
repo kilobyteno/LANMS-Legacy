@@ -74,7 +74,7 @@
 		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('user.profile.edit.title') }}</h3>
+					<h3 class="card-title">{{ trans('user.profile.edit.details.title') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="row">
