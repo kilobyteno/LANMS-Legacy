@@ -47,9 +47,18 @@
 						center: 'title',
 						right: ''
 					},
-					defaultView: 'agendaWeek',
+					defaultView: 'agendaFourDay',
+					views: {
+						agendaFourDay: {
+							type: 'agenda',
+							duration: { days: 3 }
+						}
+					},
 					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
 					nowIndicator: true,
+					allDaySlot: false,
+					minTime: '07:00:00',
+					slotDuration: '00:15:00',
 					firstDay: 1,
 					locale: '{{ \Session::get('locale') ?? 'en' }}',
 					googleCalendarApiKey: '{{ Setting::get('GOOGLE_CALENDAR_API_KEY') }}',
