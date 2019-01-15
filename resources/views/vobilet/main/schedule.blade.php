@@ -51,7 +51,7 @@
 					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
 					nowIndicator: true,
 					firstDay: 1,
-					locale: 'nb',
+					locale: '{{ \Session::get('locale') ?? 'en' }}',
 					googleCalendarApiKey: '{{ Setting::get('GOOGLE_CALENDAR_API_KEY') }}',
 					events: {
 						googleCalendarId: '{{ Setting::get('GOOGLE_CALENDAR_ID') }}'
