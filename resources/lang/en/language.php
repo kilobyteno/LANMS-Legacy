@@ -3,6 +3,6 @@
 return [
 
     'en' => 'English',
-    'no' => 'Norsk',
+    'nb' => 'Norsk',
 
 ];

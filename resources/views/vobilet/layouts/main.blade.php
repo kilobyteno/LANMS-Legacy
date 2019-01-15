@@ -193,7 +193,7 @@
 								<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
 								<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
 									<li><a href="{{ route('locale', 'en') }}">{{ trans('language.en') }}</a></li>
-									<li><a href="{{ route('locale', 'no') }}">{{ trans('language.no') }}</a></li>
+									<li><a href="{{ route('locale', 'nb') }}">{{ trans('language.nb') }}</a></li>
 								</ul>
 							</div>
 							<p><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>

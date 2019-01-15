@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function locale($locale)
     {
-        $valid_locales = array('en', 'no');
+        $valid_locales = array('en', 'nb');
         if (in_array($locale, $valid_locales)) {
             \Session::put('locale', $locale);
         }
