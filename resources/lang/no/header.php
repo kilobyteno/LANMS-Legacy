@@ -4,6 +4,7 @@ return [
 
     'home' => 'Hjem',
     'news' => 'Nyheter',
+    'schedule' => 'Tidsplan',
     'crew' => 'Crew',
     'members' => 'Medlemmer',
     'seating' => 'Sitteområde',

@@ -110,6 +110,9 @@
 										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 									</li>
 									<li class="nav-item">
+										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
+									</li>
+									<li class="nav-item">
 										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> {{ trans('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
@@ -207,7 +210,7 @@
 			</footer>
 			<!-- End Footer-->
 		</div>
-
+		
 		<!-- Dashboard js -->
 		<script src="{{ Theme::url('js/vendors/jquery-3.2.1.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/bootstrap.bundle.min.js') }}"></script>
