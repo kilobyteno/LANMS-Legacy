@@ -37,16 +37,13 @@
     font-weight: 500;
     padding: 8px 18px;
     text-transform: uppercase;
-    border: 1px solid rgba(0, 40, 100, 0.12);
+    border: 1px solid #eee;
     font-size: 1.05em;
     border-bottom: 0;
     position: relative;
-    border-top: 3px solid rgba(0, 40, 100, 0.12);
+    border-top: 3px solid #eee;
     color: #111;
     margin: 0 5px 0 0;
-}
-.tab_wrapper > ul li:last-child{
-	border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 }
 .tab_wrapper > ul li.active {
   border-color: #0061da;
@@ -110,7 +107,7 @@
 }
 .tab_wrapper .content_wrapper .accordian_header.active {
   color: #0061da;
-  border-bottom: 1px solid #eee;
+  border: 1px solid #eee;
 }
 .tab_wrapper .content_wrapper .accordian_header.active:after {
   position: absolute;
@@ -223,7 +220,7 @@
   position: absolute;
   width: 5px;
   height: 100%;
-  background: rgba(0, 40, 100, 0.12);
+  background: #eee;
 }
 .tab_wrapper.right_side > ul li.active {
   border-color: #ccc;
@@ -250,13 +247,13 @@
 .tab_wrapper.right_side .content_wrapper {
   width: 75%;
   float: left;
-  border: 1px solid rgba(0, 40, 100, 0.12);
+  border: 1px solid #eee;
 }
 .tab_wrapper.right_side .controller {
   top: -50px;
 }
 .tab_wrapper.accordion .content_wrapper {
-  border-color: rgba(0, 40, 100, 0.12);
+  border-color: #eee;
 }
 .tab_wrapper.accordion .content_wrapper .accordian_header {
   display: block;

@@ -18,7 +18,7 @@
  .addui-slider .addui-slider-track {
      display: block;
      position: relative;
-     background: #fff;
+     background: rgb(229, 235, 247);
      border-radius: 4px;
 }
 /* line 17, C:/wamp/www/github/addSlider/src/partials/_addSlider.scss */

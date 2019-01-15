@@ -84,7 +84,6 @@ form.convFormDynamic {
     margin: 10px 10px;
     padding: 0 !important;
     position: relative;
-	background: #fff;
     border: 2px solid rgba(0, 40, 100, 0.12);
 }
 
@@ -147,6 +146,7 @@ div.conv-form-wrapper:before {
     top: 0;
     left: 0;
     z-index: 2;
+    background: linear-gradient(#fff, transparent);
 }
 @media (max-width: 767px) {
     div.conv-form-wrapper div.wrapper-messages, div.conv-form-wrapper div#messages {
@@ -238,7 +238,7 @@ div.conv-form-wrapper  div#messages div.message {
     word-wrap: break-word;
 }
 div.conv-form-wrapper  div#messages div.message.to {
-    background: rgba(70, 127, 207, 0.1);
+    background: rgba(70, 127, 207, 0.06);
     float: left;
     border-top-left-radius: 0;
 }

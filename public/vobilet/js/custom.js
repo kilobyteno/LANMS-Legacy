@@ -33,8 +33,8 @@
 		}
 	};
 
-	$(".rating-stars").ratingStars(ratingOptions);
-	$(".vscroll").mCustomScrollbar();
+	//$(".rating-stars").ratingStars(ratingOptions);
+	//$(".vscroll").mCustomScrollbar();
 })(jQuery);
 	
 $(function(e) {

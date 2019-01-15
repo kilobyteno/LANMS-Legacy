@@ -81,7 +81,7 @@
 	padding: 15px 35px 15px 20px;
 }
 #sidebar li a[aria-expanded="true"], #sidebar ul li a:hover {
-	background: rgba(0, 0, 0, 0.07);
+	background:rgb(242, 244, 248);
 }
 #sidebar ul li.active>a {
 	color: #fff;
@@ -425,8 +425,8 @@
 	padding-right: 100px !important;
 }
 .menu-toggle-button {
-	padding: 12px;
-    font-size: 20px;
+	font-size: 20px;
+    margin-top: 12px;
 }
 ul {
 	margin-top: 0;
