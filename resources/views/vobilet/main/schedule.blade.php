@@ -15,7 +15,11 @@
 		<div class="col-md-12 col-lg-12 col-sm-12">
 			<div class="card">
 				<div class="card-body">
-					 <div id="calendar"></div>
+					@if(Setting::get('GOOGLE_CALENDAR_API_KEY') && Setting::get('GOOGLE_CALENDAR_ID'))
+						<div id="calendar"></div>
+					@else
+						<p>{{ trans('global.nodata') }}</p>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -34,24 +38,26 @@
 	<script src="{{ Theme::url('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 	<script src="{{ Theme::url('plugins/fullcalendar/gcal.min.js') }}"></script>
 	<script src="{{ Theme::url('plugins/fullcalendar/locale-all.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#calendar').fullCalendar({
-				header: {
-					left: '',
-					center: 'title',
-					right: ''
-				},
-				defaultView: 'agendaWeek',
-				defaultDate: '2019-02-25',
-				nowIndicator: true,
-				firstDay: 1,
-				locale: 'nb',
-				googleCalendarApiKey: 'AIzaSyAgroQkh7OwGrv3ZnMJzKinX2Pl5moDd5E',
-				events: {
-					googleCalendarId: 'post@downlinkdg.no'
-				}
+	@if(Setting::get('GOOGLE_CALENDAR_API_KEY') && Setting::get('GOOGLE_CALENDAR_ID') && Setting::get('GOOGLE_CALENDAR_START_DATE'))
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#calendar').fullCalendar({
+					header: {
+						left: '',
+						center: 'title',
+						right: ''
+					},
+					defaultView: 'agendaWeek',
+					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
+					nowIndicator: true,
+					firstDay: 1,
+					locale: 'nb',
+					googleCalendarApiKey: '{{ Setting::get('GOOGLE_CALENDAR_API_KEY') }}',
+					events: {
+						googleCalendarId: '{{ Setting::get('GOOGLE_CALENDAR_ID') }}'
+					}
+				});
 			});
-		});
-	</script>
+		</script>
+	@endif
 @stop

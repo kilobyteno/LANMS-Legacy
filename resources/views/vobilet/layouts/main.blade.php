@@ -110,17 +110,14 @@
 										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
-									</li>
-									<li class="nav-item">
 										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> {{ trans('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> {{ trans('header.members') }}</a>
-									</li> 
+									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
-									</li> 
+									</li>
 									@if(count(\LANMS\Page::forMenu()) > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> {{ trans('header.information') }}</a>
@@ -131,6 +128,9 @@
 											</div>
 										</li>
 									@endif
+									<li class="nav-item">
+										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
+									</li>
 								</ul>
 							</div>
 						</div>
