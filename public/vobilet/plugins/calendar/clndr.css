@@ -77,7 +77,7 @@ p {
     text-align: center;
     color: #3e4b5b;
     display: inline-block;
-    background: #e0e5ec;
+    background: #fff;
 }
 .cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button:hover {
   background: #0061da;
@@ -100,7 +100,7 @@ p {
     text-align: center;
     color: #3e4b5b;
     display: inline-block;
-    background: #e0e5ec;
+    background: #fff;
 }
 .cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button:hover {
   background: #0061da;
@@ -162,7 +162,7 @@ p {
 }
 .cal1 .clndr .clndr-table tr .day.event,
 .cal1 .clndr .clndr-table tr .day.my-event {
-  background: rgba(0, 40, 100, 0.12);
+  background: rgba(0, 40, 100, 0.062);
 }
 .cal1 .clndr .clndr-table tr .day.event:hover,
 .cal1 .clndr .clndr-table tr .day.my-event:hover {
@@ -189,7 +189,7 @@ p {
   border-top: 1px solid rgba(0, 40, 100, 0.12);
   width: 100%;
   height: inherit;
-  background: #f0f6ff;
+  background: #fff;
 }
 .cal1 .clndr .clndr-table tr .empty:hover,
 .cal1 .clndr .clndr-table tr .adjacent-month:hover,

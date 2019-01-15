@@ -455,7 +455,6 @@ a.fc-more:hover {
 .fc-unthemed thead {
 	border-color: rgba(0, 40, 100, 0.12);
 }
-
 .fc-unthemed .fc-popover {
 	background-color: #fff;
 	border-width: 1px;
@@ -464,14 +463,14 @@ a.fc-more:hover {
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-list-heading td,
 .fc-unthemed .fc-popover .fc-header {
-	background: #f2f4f8
+	background: #fff;
 }
 .fc-scroller{
 	height:auto !important;
 	
 }
 .fc-unthemed td.fc-today {
-	background: #e7f0fb;
+	background: #fff;
 }
 .fc-unthemed .fc-disabled-day {
 	background: #d7d7d7;

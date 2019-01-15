@@ -37,8 +37,8 @@ $(function(e){
     bar1.render();
   });
 });
-  
- /*---- chart1----*/ 
+
+/*---- chart1----*/  
 $(function(e){
   'use strict';
 	var seriesData = [ [], [], [] ];
@@ -111,7 +111,7 @@ $(function(e){
 		seriesData[2][i].r = 0|Math.random() * 8 + 2
 	}
 
-	/*---- chart3----*/
+	/*---- chart 3----*/
 
 	var graph = new Rickshaw.Graph( {
 		element: document.getElementById("chart3"),
@@ -168,11 +168,11 @@ $(function(e){
 					color: "#fc7303"
 				}
 			]
-		} );
+	} );
 
-		graph.render();
-
+	graph.render();
 	
+	/*---- chart 6----*/
 	var random = new Rickshaw.Fixtures.RandomData(12 * 60 * 60);
 
 	var series = [[]];
@@ -188,11 +188,9 @@ $(function(e){
 	  min = Math.min(min, series[0][i].y);
 	  max = Math.max(max, series[0][i].y);
 	}
+
 	var logScale = d3.scale.log().domain([min/4, max]);
 	var linearScale = d3.scale.linear().domain([min, max]).range(logScale.range());
-	
-	
-	/*---- chart 6----*/
 	var graph = new Rickshaw.Graph( {
 	  element: document.getElementById("chart6"),
 	  renderer: 'line',
@@ -218,7 +216,7 @@ $(function(e){
 
 	graph.render();
 	
-	/*---- chart 7----*/
+	
 	var graph = new Rickshaw.Graph( {
 	element: document.getElementById("chart7"),
 	renderer: 'line',

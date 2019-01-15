@@ -592,8 +592,8 @@ Licensed under the MIT license.
                     show: true,
                     aboveData: false,
                     color: "#545454", // primary color used for outline and labels
-                    backgroundColor: null, // null for transparent, else color
-                    borderColor: "#eef0f2", // set if different from the grid color
+                    backgroundColor: "#eceef9", // null for transparent, else color
+                    borderColor: "#cfd6e7", // set if different from the grid color
                     tickColor: null, // color for the ticks, e.g. "rgba(0,0,0,0.15)"
                     margin: 0, // distance from the canvas edge to the grid
                     labelMargin: 5, // in pixels

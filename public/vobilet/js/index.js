@@ -12,7 +12,7 @@
 			  },
 			  size: $this.height(),
 			  startAngle: -Math.PI / 4 * 2,
-			  emptyFill: '#F4F4F4',
+			  emptyFill: '#fff',
 			  lineCap: 'round'
 			});
 		  });

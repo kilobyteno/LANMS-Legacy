@@ -1170,7 +1170,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 /*            Navigation menu                */
 
 .nav-pills {
-	background-color: rgba(70, 127, 207, 0.06);
+	background-color: #fff;
 }
 .nav-pills>li+li {
 	margin-left: 0 !important;
