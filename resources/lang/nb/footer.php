@@ -7,4 +7,5 @@ return [
     'debugmode' => 'feilsøkingsmodus',
     'resetdbandsettings' => 'Tilbakestill DB og innstillinger',
 
+
 ];

@@ -5,9 +5,6 @@ return [
     'adminpanel' => 'Administrasjonspanel',
     'profile' => 'Profil',
 
-    'loggedin' => 'Velkommen tilbake!',
-    'loggedout' => 'Nå har du blitt logget ut!',
-
     'alert' => array(
         'attendancelastyear' => 'Vi kan se at du deltok i fjor. Vil du bli med oss i år også? <a href=":url">Sjekk ut sitteområdet nå</a>.',
         'consentform' => 'Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href=":url"><i class="fas fa-user-circle"></i> Samtykkeskjema</a>',
@@ -29,6 +26,11 @@ return [
         'title' => 'Konto',
         'details' => array(
             'title' => 'Detaljer',
+			'alert' => array(
+                'saved' => 'Dine detaljer er endret!',
+                'failed' => 'Noe gikk galt når du lagret dine detaljer.',
+                'wrongpassword' => 'Feil passord. Vær så snill, prøv på nytt.',
+            ),
             'editprofile' => 'Rediger profil',
             'images' => 'Endre profilbilder',
             'addressbook' => 'Administrer adressebok',
@@ -69,6 +71,11 @@ return [
         ),
         'changepassword' => array(
             'title' => 'Bytt passord',
+			'alert' => array(
+                'saved' => 'Ditt passord har blitt endret! Vennligst logg inn igjen for å bekrefte passordendringen.',
+                'failed' => 'Noe gikk galt når du lagret dine detaljer.',
+                'wrongpassword' => 'Ditt nåværende passord ser ikke ut til å samsvare.',
+            ),
             'editpassword' => 'Rediger passordet ditt',
             'button' => 'Oppdater passord',
         ),
@@ -112,6 +119,11 @@ return [
 
         'changeimages' => array(
             'title' => 'Endre profilbilder',
+			'alert' => array(
+                'saved' => 'Profil bakgrunnen ditt er endret!',
+                'failed' => 'Profil bakgrunnen ditt kunne ikke lastes opp.',
+                'noimage' => 'Vennligst velg et bilde.',
+            ),
             'button' => 'Last opp bilde',
             'coverphoto' => 'Forsidebilde',
             'profilephoto' => 'Profilbilde',
@@ -128,6 +140,11 @@ return [
         'confirmchanges' => 'Bekreft endringer med passordet ditt',
         'alert' => array(
             'nodeletewhilereservation' => 'Du vil ikke kunne slette adresser mens du har reserverte plasser.',
+			'saved' => 'Adressen er nå lagt til!',
+            'updated' => 'Adressen er nå oppdatert!',
+            'deleted' => 'Adressen er nå slettet!',
+            'failed' => 'Noe gikk galt mens du lagret adressen til adresseboken.',
+            'wrongpassword' => 'Ditt nåværende passord ser ikke ut til å samsvare.',
         ),
         'swal' => array(
             'title' => 'Ingenting har blitt gjort.',
@@ -144,6 +161,9 @@ return [
     'gdpr' => array(
         'delete' => array(
             'title' => 'Slett personopplysninger',
+			'alert' => array(
+                'saved' => 'Kontoen din er nå slettet!',
+            ),
             'message' => '<p>Vi beklager å se deg gå!</p>
                     <p>Når du klikker på sletteknappen, vil kontoen din og alle dataene bli slettet for alltid. Det kan ikke gjenopprette data som er knyttet til denne kontoen.</p>
                     <p>Sørg for at du <a href=":url">laster ned dataene dine</a> før du sletter kontoen din.</p>

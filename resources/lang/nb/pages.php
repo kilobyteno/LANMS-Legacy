@@ -51,7 +51,7 @@ return [
             'desc' => 'Virker som om denne siden ikke eksisterer.',
         ),
         '500' => array(
-            'title' => 'Server Error',
+            'title' => 'Server Feil',
             'desc' => 'Ser ut som om vi har noen serverproblemer.',
         ),
     ),

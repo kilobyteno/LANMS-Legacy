@@ -11,6 +11,7 @@ return [
     'new' => 'Nytt',
     'current' => 'Nåværende',
     'nodata' => 'Vi kan ikke finne noen data for deg...',
+	'noaccess' => 'Du har ikke tilgang til denne siden!',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
