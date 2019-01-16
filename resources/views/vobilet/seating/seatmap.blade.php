@@ -15,7 +15,7 @@
 						<li class="seat @if($seat->reservationsThisYear()->count() > 0) 
 							@if($seat->reservationsThisYear()->first()->status->id == 1) seat-reserved 
 							@elseif($seat->reservationsThisYear()->first()->status->id == 2) seat-tempreserved @endif 
-							@if(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor->id) seat-yours @endif  @endif 
+							@if(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor->id and $seat->reservationsThisYear()->first()->status->id == 1) seat-yours @endif  @endif 
 							@if(Request::segment(3) == $seat->slug) active @endif ">
 							<p>
 								@if($seat->reservationsThisYear()->count() == 0)
