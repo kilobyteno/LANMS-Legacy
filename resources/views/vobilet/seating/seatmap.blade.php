@@ -22,7 +22,7 @@
 							<p>
 								@if($seat->reservationsThisYear()->count() == 0)
 									<a href="{{ route('seating-show', $seat->slug) }}" data-toggle="tooltip" title="Available">{{ $seat->name }}</a>
-								@elseif(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor->id and $seat->reservationsThisYear()->first()->status->id == 1)
+								@elseif(Sentinel::getUser()->id == $seat->reservationsThisYear()->first()->reservedfor_id and $seat->reservationsThisYear()->first()->status->id == 1)
 									<a href="{{ route('seating-show', $seat->slug) }}" data-toggle="tooltip" title="This seat is reserved for you!">{{ $seat->name }}</a>
 								@elseif($seat->reservationsThisYear()->first()->status->id == 1)
 									<a href="{{ route('seating-show', $seat->slug) }}" data-toggle="tooltip" title="Reserved for: {{ User::getUsernameAndFullnameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}">{{ $seat->name }}</a>
