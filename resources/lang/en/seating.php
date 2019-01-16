@@ -16,6 +16,7 @@ return [
         'seattemppaid' => ':seatname is now marked as pay at entrance! We are exited to have you, welcome!',
         'paymentcantchange' => 'You can\'t change your payment of your reservation after the first 48 hours.',
         'youcanchangepayment' => 'You can now change your payment of your reservation.',
+        'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',
@@ -53,6 +54,29 @@ return [
         'pizza' => array(
             'title' => 'Pizza',
             'desc' => 'You get a pizza at the event!',
+        ),
+        'alert' => array(
+            'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
+            'alreadyreserved' => 'Seat has already been reserved.',
+            'nobirthday' => 'You need to have an birthdate assigned to your account to be able to reserve a seat.',
+            'noaddresses' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.',
+            'limit' => 'You have reached the reservation limit. So you are not allowed to reserve more seats.',
+            'limitself' => 'You cannot reserve more than one seat to yourself. Please select another member you want to reserve this seat for.',
+            'nobirthdayfor' => 'It seems like :name does not have an birthdate assigned to their account, they need it to be able to reserve a seat.',
+            'noaddressesfor' => 'It seems like :name does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.',
+            'limitreservedfor' => ':name are not allowed to reserve more seats.',
+            'alreadyreservedfor' => ':name has already reserved a seat.',
+            'success' => 'You have successfully reserved this seat!',
+            'failure' => 'Something went wrong while saving the reservation!',
+            'ticketnoaccess' => 'You are not allowed to view this ticket.',
+            'destroy' => array(
+                'notfound' => 'Could not find reservation.',
+                'noaccess' => 'You can\'t remove this reservation.',
+                'cantberemovedafter' => 'You can\'t remove reservation after the first :hours hours.',
+                'cantberemoved' => 'You can\'t remove this reservation after it is reserved.',
+                'success' => 'The reservation has now been removed!',
+                'failure' => 'Something went wrong while deleting the reservation.',
+            ),
         ),
     ),
 
