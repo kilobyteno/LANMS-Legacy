@@ -17,8 +17,8 @@
 			<form class="card" method="post" action="{{ route('members-search') }}">
 				<div class="card-body">
 					<div class="form-group">
-						<div class="form-label">Search Members</div>
-						<input type="text" class="form-control" name="search" placeholder="Username or Name">
+						<div class="form-label">{{ trans('pages.members.search.title') }}</div>
+						<input type="text" class="form-control" name="search" placeholder="Username or Name" value="{{ $query ?? '' }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</div>
 				</div>
