@@ -57,7 +57,7 @@ class GdprController extends Controller
             'accepted_gdpr' => true,
         ]);
 
-        return redirect()->route('dashboard')->with('messagetype', 'success')->with('message', 'Your choice has been saved.');
+        return redirect()->route('dashboard')->with('messagetype', 'success')->with('message', trans('user.gdpr.message.alert.saved'));
     }
 
     /**
@@ -73,7 +73,7 @@ class GdprController extends Controller
             'accepted_gdpr' => false,
         ]);
         \Sentinel::logout();
-        return redirect()->to('/')->with('messagetype', 'danger')->with('message', 'You have to accept the new agreement to use this service. This is because of the new GDPR rules.');
+        return redirect()->to('/')->with('messagetype', 'danger')->with('message', trans('user.gdpr.message.alert.denied'));
     }
 
     /**

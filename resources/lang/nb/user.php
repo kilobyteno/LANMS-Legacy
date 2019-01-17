@@ -178,6 +178,10 @@ return [
         ),
         'message' => array(
             'title' => 'GDPR-avtalen',
+            'alert' => array(
+                'saved' => 'Ditt valg har blitt lagret.',
+                'denied' => 'Du må godta den nye avtalen for å bruke denne tjenesten. Dette er på grunn av de nye GDPR-reglene.',
+            ),
             'question' => 'Samtykker du i disse nye endringene?',
             'iconsent' => 'Jeg samtykker',
             'ideny' => 'Jeg nekter disse endringene',

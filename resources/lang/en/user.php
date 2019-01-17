@@ -178,6 +178,10 @@ return [
         ),
         'message' => array(
             'title' => 'GDPR Agreement',
+            'alert' => array(
+                'saved' => 'Your choice has been saved.',
+                'denied' => 'You have to accept the new agreement to use this service. This is because of the new GDPR rules.',
+            ),
             'question' => 'Do you consent to these new changes?',
             'iconsent' => 'I Consent',
             'ideny' => 'I Deny These Changes',
