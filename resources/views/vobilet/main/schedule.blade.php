@@ -1,13 +1,11 @@
 @extends('layouts.main')
 @section('title', trans('header.schedule'))
 @section('content')
-
 <div class="container">
 	<div class="page-header">
 		<h4 class="page-title">{{ trans('header.schedule') }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item">{{ trans('header.information') }}</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.schedule') }}</li>
 		</ol>
 	</div>
@@ -25,7 +23,6 @@
 		</div>
 	</div>
 </div>
-
 @stop
 
 @section('css')
