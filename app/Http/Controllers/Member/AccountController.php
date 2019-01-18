@@ -112,16 +112,16 @@ class AccountController extends Controller
                 Sentinel::logout();
                 return Redirect::route('home')
                         ->with('messagetype', 'success')
-                        ->with('message', trans('user.changepassword.alert.saved'));
+                        ->with('message', trans('user.account.changepassword.alert.saved'));
             } else {
                 return Redirect::route('account-change-password')
                     ->with('messagetype', 'danger')
-                    ->with('message', trans('user.changepassword.alert.failed'));
+                    ->with('message', trans('user.account.changepassword.alert.failed'));
             }
         } else {
             return Redirect::route('account-change-password')
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('user.changepassword.alert.wrongpassword'));
+                    ->with('message', trans('user.account.changepassword.alert.wrongpassword'));
         }
     }
 
