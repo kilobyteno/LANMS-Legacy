@@ -120,8 +120,8 @@ return [
         'changeimages' => array(
             'title' => 'Endre profilbilder',
             'alert' => array(
-                'saved' => 'Profil bakgrunnen ditt er endret!',
-                'failed' => 'Profil bakgrunnen ditt kunne ikke lastes opp.',
+                'saved' => 'Bildet ditt er lastet opp!',
+                'failed' => 'Bildet ditt kunne ikke lastes opp.',
                 'noimage' => 'Vennligst velg et bilde.',
             ),
             'button' => 'Last opp bilde',

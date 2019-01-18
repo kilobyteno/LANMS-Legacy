@@ -120,8 +120,8 @@ return [
         'changeimages' => array(
             'title' => 'Change Profile Images',
             'alert' => array(
-                'saved' => 'Your profile cover has been changed!',
-                'failed' => 'Your profile cover could not be uploaded.',
+                'saved' => 'Your image has been uploaded!',
+                'failed' => 'Your image could not be uploaded.',
                 'noimage' => 'Please select an image.',
             ),
             'button' => 'Upload Image',
