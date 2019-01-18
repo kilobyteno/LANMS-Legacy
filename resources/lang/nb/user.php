@@ -107,8 +107,6 @@ return [
                 'show' => 'Vis',
                 'fullname' => 'Fullt navn',
                 'onlinestatus' => 'Online status',
-                'dateformat' => 'Datoformat',
-                'timeformat' => 'Tidsformat',
                 'language' => 'Ønsket Språk',
             ),
 

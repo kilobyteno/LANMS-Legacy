@@ -107,8 +107,6 @@ return [
                 'show' => 'Show',
                 'fullname' => 'Fullname',
                 'onlinestatus' => 'Online Status',
-                'dateformat' => 'Date format',
-                'timeformat' => 'Time format',
                 'language' => 'Preffered Language',
             ),
 
