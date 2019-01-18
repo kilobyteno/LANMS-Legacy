@@ -13,7 +13,7 @@ return [
         'carderror' => 'Vennligst sjekk kortinformasjonen din og prøv igjen',
         'pleasetryagain' => 'Vær så snill, prøv på nytt.',
         'seatpaid' => ':seatname er nå reservert og betalt for! Vi er glade for å ha deg med, velkommen!',
-        'seattemppaid' => ':seatname er nå merket som lønn ved inngangen! Vi er glade for å ha deg med, velkommen!',
+        'seattemppaid' => ':seatname er nå merket som at den skal betales ved inngangen! Vi er glade for å ha deg med, velkommen!',
         'paymentcantchange' => 'Du kan ikke endre betalingen av din reservasjon etter de første 48 timene.',
         'youcanchangepayment' => 'Du kan nå endre betalingen av din reservasjon.',
         'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
