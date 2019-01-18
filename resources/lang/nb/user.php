@@ -26,7 +26,7 @@ return [
         'title' => 'Konto',
         'details' => array(
             'title' => 'Detaljer',
-			'alert' => array(
+            'alert' => array(
                 'saved' => 'Dine detaljer er endret!',
                 'failed' => 'Noe gikk galt når du lagret dine detaljer.',
                 'wrongpassword' => 'Feil passord. Vær så snill, prøv på nytt.',
@@ -71,7 +71,7 @@ return [
         ),
         'changepassword' => array(
             'title' => 'Bytt passord',
-			'alert' => array(
+            'alert' => array(
                 'saved' => 'Ditt passord har blitt endret! Vennligst logg inn igjen for å bekrefte passordendringen.',
                 'failed' => 'Noe gikk galt når du lagret dine detaljer.',
                 'wrongpassword' => 'Ditt nåværende passord ser ikke ut til å samsvare.',
@@ -119,7 +119,7 @@ return [
 
         'changeimages' => array(
             'title' => 'Endre profilbilder',
-			'alert' => array(
+            'alert' => array(
                 'saved' => 'Profil bakgrunnen ditt er endret!',
                 'failed' => 'Profil bakgrunnen ditt kunne ikke lastes opp.',
                 'noimage' => 'Vennligst velg et bilde.',
@@ -140,7 +140,7 @@ return [
         'confirmchanges' => 'Bekreft endringer med passordet ditt',
         'alert' => array(
             'nodeletewhilereservation' => 'Du vil ikke kunne slette adresser mens du har reserverte plasser.',
-			'saved' => 'Adressen er nå lagt til!',
+            'saved' => 'Adressen er nå lagt til!',
             'updated' => 'Adressen er nå oppdatert!',
             'deleted' => 'Adressen er nå slettet!',
             'failed' => 'Noe gikk galt mens du lagret adressen til adresseboken.',
@@ -161,7 +161,7 @@ return [
     'gdpr' => array(
         'delete' => array(
             'title' => 'Slett personopplysninger',
-			'alert' => array(
+            'alert' => array(
                 'saved' => 'Kontoen din er nå slettet!',
             ),
             'message' => '<p>Vi beklager å se deg gå!</p>
@@ -178,6 +178,10 @@ return [
         ),
         'message' => array(
             'title' => 'GDPR-avtalen',
+            'alert' => array(
+                'saved' => 'Ditt valg har blitt lagret.',
+                'denied' => 'Du må godta den nye avtalen for å bruke denne tjenesten. Dette er på grunn av de nye GDPR-reglene.',
+            ),
             'question' => 'Samtykker du i disse nye endringene?',
             'iconsent' => 'Jeg samtykker',
             'ideny' => 'Jeg nekter disse endringene',

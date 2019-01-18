@@ -133,10 +133,10 @@ class ReserveSeatingController extends Controller
 
         if ($seatreservationsave) {
             return Redirect::route('seating')->with('messagetype', 'success')
-                                ->with('message', trans('seating.alert.reservation.success'));
+                                ->with('message', trans('seating.reservation.alert.success'));
         } else {
             return Redirect::route('seating')->with('messagetype', 'error')
-                                ->with('message', trans('seating.alert.reservation.failure'));
+                                ->with('message', trans('seating.reservation.alert.failure'));
         }
     }
 
@@ -201,11 +201,11 @@ class ReserveSeatingController extends Controller
         if ($reservation->delete()) {
             return Redirect::route('seating')
                     ->with('messagetype', 'success')
-                    ->with('message', trans('seating.alert.success'));
+                    ->with('message', trans('seating.reservation.alert.destroy.success'));
         } else {
             return Redirect::route('seating')
                 ->with('messagetype', 'danger')
-                ->with('message', trans('seating.alert.failure'));
+                ->with('message', trans('seating.reservation.alert.destroy.failure'));
         }
     }
 }

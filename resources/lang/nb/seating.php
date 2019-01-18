@@ -5,7 +5,7 @@ return [
     'alert' => array(
         'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse. Du burde <a href=":url" class="alert-link">legge til</a> en.',
         'closed' => 'Sitteområdet er stengt for øyeblikket, du kan ikke reservere plasser eller endre reservasjoner.',
-		'seatnotfound' => 'Could not find seat.',
+        'seatnotfound' => 'Fant ikke setet.',
         'seatingclosed' => 'Det er ikke mulig å reservere plasser på dette tidspunktet.',
         'paymentexist' => 'Dette setet har allerede en betaling tildelt den.',
         'youcantpay' => 'Du kan ikke betale for dette setet.',
@@ -54,7 +54,7 @@ return [
         'pizza' => array(
             'title' => 'Pizza',
             'desc' => 'Du får en pizza på arrangementet!',
-),
+        ),
         'alert' => array(
             'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
             'alreadyreserved' => 'Stolen er allerede reservert.',
@@ -66,7 +66,7 @@ return [
             'noaddressesfor' => 'Det ser ut som :name har ingen adresser knyttet til kontoen sin. De kan ikke reservere noe sete før de har lagt til en primæradresse.',
             'limitreservedfor' => ':name har ikke lov til å reservere flere seter.',
             'alreadyreservedfor' => ':name har allerede reservert plass.',
-            'success' => 'Du har bestilt dette setet!',
+            'success' => 'Du har reservert dette setet!',
             'failure' => 'Noe gikk galt mens du lagret reservasjonen!',
             'ticketnoaccess' => 'Du har ikke lov til å se denne billetten.',
             'destroy' => array(
