@@ -21,7 +21,7 @@ class SentinelAuth {
 			} else {
 				return redirect()->route('account-signin')
 										->with('messagetype', 'info')
-										->with('message', 'You need to login to access this page!');
+                                        ->with('message', trans('global.noaccess'));
 			}
 		} else {
 			$now = date_create('now');
