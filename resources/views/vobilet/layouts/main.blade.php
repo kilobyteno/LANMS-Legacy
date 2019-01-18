@@ -180,6 +180,7 @@
 									@if(\LANMS\Info::where('name', 'social_youtube')->first()->content)<li><a class="social-icon" href="https://www.youtube.com/{{ \LANMS\Info::where('name', 'social_youtube')->first()->content }}"><i class="fab fa-youtube"></i></a></li>@endif
 									@if(\LANMS\Info::where('name', 'social_snapchat')->first()->content)<li><a class="social-icon" href="https://www.snapchat.com/add/{{ \LANMS\Info::where('name', 'social_snapchat')->first()->content }}"><i class="fab fa-snapchat"></i></a></li>@endif
 									@if(\LANMS\Info::where('name', 'social_twitch')->first()->content)<li><a class="social-icon" href="https://www.twitch.tv/{{ \LANMS\Info::where('name', 'social_twitch')->first()->content }}"><i class="fab fa-twitch"></i></a></li>@endif
+									@if(\LANMS\Info::where('name', 'social_discord')->first()->content)<li><a class="social-icon" href="https://discord.me/{{ \LANMS\Info::where('name', 'social_discord')->first()->content }}"><i class="fab fa-discord"></i></a></li>@endif
 								</ul>
 							</div>
 						</div>
