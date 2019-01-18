@@ -15,7 +15,11 @@ class HomeController extends Controller
 
     public function locale($locale)
     {
-        if (\Sentinel::guest()) {
+        if (\Sentinel::check()) {
+            if (in_array($locale, array_keys(config('app.locales')))) {
+                \Sentinel::update(\Sentinel::getUser(), ['language' => $locale]);
+            }
+        } else {
             if (in_array($locale, array_keys(config('app.locales')))) {
                 \Session::put('locale', $locale);
             }
