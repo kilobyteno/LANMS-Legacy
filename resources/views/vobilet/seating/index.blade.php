@@ -109,7 +109,7 @@
 						<div class="card-header">
 							<h3 class="card-title">{{ trans('seating.reservation.foryou') }}</h3>
 						</div>
-						<div class="card-body o-auto" style="height: 10rem">
+						<div class="card-body o-auto" style="height: 12rem">
 							@if($ownreservations->count() == 0)
 								<p><em>{{ trans('seating.reservation.none') }}</em></p>
 							@else
