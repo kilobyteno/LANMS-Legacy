@@ -159,13 +159,6 @@
 				<footer class="main">
 					<div class="row">
 						<div class="col-md-6">
-							<div class="dropup btn-group mt-2 mb-2">
-								<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
-								<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-									<li><a href="{{ route('locale', 'en') }}">{{ trans('language.en') }}</a></li>
-									<li><a href="{{ route('locale', 'no') }}">{{ trans('language.no') }}</a></li>
-								</ul>
-							</div>
 							<p>&copy; {{ Setting::get('WEB_COPYRIGHT') }}</p>
 							<p class="text-muted"><small><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
 						</div>
