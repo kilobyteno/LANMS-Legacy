@@ -92,7 +92,7 @@
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->username }}</a></td>
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a></td>
 								<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $member->created_at }}">{{ \Carbon::parse($member->created_at)->diffForHumans() }}</span></td>
-								<td class="d-none d-sm-table-cell">{{ \Carbon::parse($member->last_activity)->diffForHumans() }}</td>
+								<td class="d-none d-sm-table-cell">@if($member->showonline && $member->last_activity && $member->last_activity != '0000-00-00 00:00:00'){{ \Carbon::parse($member->last_activity)->diffForHumans() }}@endif</td>
 							</tr>
 						@endforeach
 						</tbody>
