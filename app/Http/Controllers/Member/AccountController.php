@@ -67,6 +67,7 @@ class AccountController extends Controller
                 'showemail'         => $request->get('showemail'),
                 'showname'          => $request->get('showname'),
                 'showonline'        => $request->get('showonline'),
+                'language'          => $request->get('language'),
             ];
 
             $updateuser = Sentinel::update($finduser, $info);

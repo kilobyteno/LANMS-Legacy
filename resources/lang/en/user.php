@@ -109,6 +109,7 @@ return [
                 'onlinestatus' => 'Online Status',
                 'dateformat' => 'Date format',
                 'timeformat' => 'Time format',
+                'language' => 'Preffered Language',
             ),
 
             'confirmpassword' => array(

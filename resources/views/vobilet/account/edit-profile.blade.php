@@ -68,6 +68,19 @@
 						@endif
 					</div>
 
+					<div class="form-group @if ($errors->has('language')) has-error @endif">
+						<label class="form-label">{{ trans('user.profile.edit.settings.language') }}</label>
+						<select class="form-control" name="language">
+							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
+							@foreach(array_flip(config('app.locales')) as $lang)
+								<option value="{{ $lang }}" {{ ($language == $lang) ? 'selected' : '' }}>{{ trans('language.'.$lang) }}</option>
+							@endforeach
+						</select>
+						@if($errors->has('language'))
+							<p class="text-danger">{{ $errors->first('language') }}</p>
+						@endif
+					</div>
+
 				</div>
 			</div>
 		</div>
