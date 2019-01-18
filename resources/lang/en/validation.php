@@ -99,6 +99,8 @@ return [
     |
     */
 
+    'OlderThan' => 'You need to be older than :age years old.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
