@@ -26,7 +26,7 @@ class UserEditRequest extends FormRequest
         return [
             'firstname'         => 'required|between:3,250|string',
             'lastname'          => 'required|between:3,250|string',
-            'username'          => 'required|between:3,250|alpha_dash|unique:users,username,'.$this->id.',id',
+            'username'          => 'required|between:3,250|unique:users,username,'.$this->id.',id',
             'email'             => 'required|max:50|email|unique:users,email,'.$this->id.',id',
             'birthdate'         => 'date_format:Y-m-d',
             'gender'            => '',
