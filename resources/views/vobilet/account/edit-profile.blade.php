@@ -101,11 +101,13 @@
 									<p class="text-danger">{{ $errors->first('firstname') }}</p>
 								@endif
 							</div>
-							<div class="form-group @if ($errors->has('birthdate')) has-error @endif">
-								<label class="form-label">{{ trans('global.birthdate') }}</label>
-								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
-								@if($errors->has('birthdate'))
-									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
+							<div class="form-group @if ($errors->has('lastname')) has-error @endif">
+								<label class="form-label">{{ trans('global.lastname') }}</label>
+								<div class="input-group">
+									<input class="form-control" type="text" name="lastname" placeholder="Doe" value="{{ $lastname ?? old('lastname') }}">
+								</div>
+								@if($errors->has('lastname'))
+									<p class="text-danger">{{ $errors->first('lastname') }}</p>
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('location')) has-error @endif">
@@ -124,13 +126,11 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="form-group @if ($errors->has('lastname')) has-error @endif">
-								<label class="form-label">{{ trans('global.lastname') }}</label>
-								<div class="input-group">
-									<input class="form-control" type="text" name="lastname" placeholder="Doe" value="{{ $lastname ?? old('lastname') }}">
-								</div>
-								@if($errors->has('lastname'))
-									<p class="text-danger">{{ $errors->first('lastname') }}</p>
+							<div class="form-group @if ($errors->has('birthdate')) has-error @endif">
+								<label class="form-label">{{ trans('global.birthdate') }}</label>
+								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
+								@if($errors->has('birthdate'))
+									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
