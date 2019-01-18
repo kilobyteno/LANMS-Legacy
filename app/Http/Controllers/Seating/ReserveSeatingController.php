@@ -71,7 +71,7 @@ class ReserveSeatingController extends Controller
         }
         if (substr($slug, 0, 1) == 'a') {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.notpossibleonthisrow'));
+                                ->with('message', trans('seating.reservation.alert.notpossibleonthisrow'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
@@ -79,43 +79,43 @@ class ReserveSeatingController extends Controller
         }
         if ($seat->reservationsThisYear()->count() >= 1) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.alreadyreserved'));
+                                ->with('message', trans('seating.reservation.alert.alreadyreserved'));
         }
 
         /* LOGGED IN USER */
         if (!Sentinel::getUser()->birthdate) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.nobirthday'));
+                                ->with('message', trans('seating.reservation.alert.nobirthday'));
         }
         if (Sentinel::getUser()->addresses->count() == 0) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.noaddresses'));
+                                ->with('message', trans('seating.reservation.alert.noaddresses'));
         }
         if (Sentinel::getUser()->reservationsThisYear()->count() >= 5) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.limit'));
+                                ->with('message', trans('seating.reservation.alert.limit'));
         }
         if ($request->get('reservedfor') == Sentinel::getUser()->id && Sentinel::getUser()->ownReservationsThisYear()->count() >= 1) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'info')
-                                ->with('message', trans('seating.alert.reservation.limitself'));
+                                ->with('message', trans('seating.reservation.alert.limitself'));
         }
 
         /* RESERVED FOR USER */
         if (!$reservedfor->birthdate) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.nobirthdayfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
+                                ->with('message', trans('seating.reservation.alert.nobirthdayfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
         if ($reservedfor->addresses->count() == 0) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.noaddressesfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
+                                ->with('message', trans('seating.reservation.alert.noaddressesfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
         if ($reservedfor->reservationsThisYear()->count() >= 5) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.limitreservedfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
+                                ->with('message', trans('seating.reservation.alert.limitreservedfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
         if ($reservedfor->ownReservationsThisYear()->count() >= 1) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.alreadyreservedfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
+                                ->with('message', trans('seating.reservation.alert.alreadyreservedfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
 
         $seatreservation                    = new SeatReservation;
@@ -155,7 +155,7 @@ class ReserveSeatingController extends Controller
             return $pdf->stream();
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.ticketnoaccess'));
+                                ->with('message', trans('seating.reservation.alert.ticketnoaccess'));
         }
     }
 
@@ -171,7 +171,7 @@ class ReserveSeatingController extends Controller
 
         if ($reservation == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.destroy.notfound'));
+                                ->with('message', trans('seating.reservation.alert.destroy.notfound'));
         }
         if (!Setting::get('SEATING_OPEN')) {
             return Redirect::route('seating')->with('messagetype', 'warning')
@@ -179,15 +179,15 @@ class ReserveSeatingController extends Controller
         }
         if (Sentinel::getUser()->id <> $reservation->reservedby->id) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.destroy.noaccess'));
+                                ->with('message', trans('seating.reservation.alert.destroy.noaccess'));
         }
         if (SeatReservation::getRealExpireTime($id) == "expired") {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.destroy.cantberemovedafter', ['hours' => \Setting::get('SEATING_SEAT_EXPIRE_HOURS')]));
+                                ->with('message', trans('seating.reservation.alert.destroy.cantberemovedafter', ['hours' => \Setting::get('SEATING_SEAT_EXPIRE_HOURS')]));
         }
         if ($reservation->status_id == 1) {
             return Redirect::route('seating')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.reservation.destroy.cantberemoved'));
+                                ->with('message', trans('seating.reservation.alert.destroy.cantberemoved'));
         }
 
         $seat = $reservation->seat;
