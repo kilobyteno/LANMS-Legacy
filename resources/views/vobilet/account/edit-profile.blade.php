@@ -110,22 +110,6 @@
 									<p class="text-danger">{{ $errors->first('lastname') }}</p>
 								@endif
 							</div>
-							<div class="form-group @if ($errors->has('location')) has-error @endif">
-								<label class="form-label">{{ trans('global.location') }}</label>
-								<input class="form-control" type="text" name="location" placeholder="Oslo, Norway" value="{{ $location ?? old('location') }}">
-								@if($errors->has('location'))
-									<p class="text-danger">{{ $errors->first('location') }}</p>
-								@endif
-							</div>
-							<div class="form-group @if ($errors->has('occupation')) has-error @endif">
-								<label class="form-label">{{ trans('global.occupation') }}</label>
-								<input class="form-control" type="text" name="occupation" placeholder="IT Technician" value="{{ $occupation ?? old('occupation') }}">
-								@if($errors->has('occupation'))
-									<p class="text-danger">{{ $errors->first('occupation') }}</p>
-								@endif
-							</div>
-						</div>
-						<div class="col-md-6">
 							<div class="form-group @if ($errors->has('birthdate')) has-error @endif">
 								<label class="form-label">{{ trans('global.birthdate') }}</label>
 								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
@@ -140,6 +124,22 @@
 								</div>
 								@if($errors->has('phone'))
 									<p class="text-danger">{{ $errors->first('phone') }}</p>
+								@endif
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group @if ($errors->has('location')) has-error @endif">
+								<label class="form-label">{{ trans('global.location') }}</label>
+								<input class="form-control" type="text" name="location" placeholder="Oslo, Norway" value="{{ $location ?? old('location') }}">
+								@if($errors->has('location'))
+									<p class="text-danger">{{ $errors->first('location') }}</p>
+								@endif
+							</div>
+							<div class="form-group @if ($errors->has('occupation')) has-error @endif">
+								<label class="form-label">{{ trans('global.occupation') }}</label>
+								<input class="form-control" type="text" name="occupation" placeholder="IT Technician" value="{{ $occupation ?? old('occupation') }}">
+								@if($errors->has('occupation'))
+									<p class="text-danger">{{ $errors->first('occupation') }}</p>
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('gender')) has-error @endif">
