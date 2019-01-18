@@ -15,11 +15,27 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-        if (\Session::has('locale')) {
-            \App::setLocale(\Session::get('locale'));
-            // You also can set the Carbon locale
-            \Carbon::setLocale(\Session::get('locale'));
+        if (\Sentinel::check()) {
+            if (\Sentinel::getUser()->language) {
+                $locale = \Sentinel::getUser()->language;
+                if (in_array($locale, array_keys(config('app.locales')))) {
+                    \Session::put('locale', $locale);
+                    \App::setLocale($locale);
+                    \Carbon::setLocale($locale);
+                }
+                return $next($request);
+            }
         }
+
+        // GUEST
+        if (\Session::has('locale')) {
+            $locale = \Session::get('locale');
+            if (in_array($locale, array_keys(config('app.locales')))) {
+                \App::setLocale($locale);
+                \Carbon::setLocale($locale);
+            }
+        }
+        
         return $next($request);
     }
 }

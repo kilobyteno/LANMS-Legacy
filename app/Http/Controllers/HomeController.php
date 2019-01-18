@@ -15,9 +15,10 @@ class HomeController extends Controller
 
     public function locale($locale)
     {
-        $valid_locales = array('en', 'nb');
-        if (in_array($locale, $valid_locales)) {
-            \Session::put('locale', $locale);
+        if (\Sentinel::guest()) {
+            if (in_array($locale, array_keys(config('app.locales')))) {
+                \Session::put('locale', $locale);
+            }
         }
         return redirect()->back();
     }
