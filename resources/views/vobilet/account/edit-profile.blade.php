@@ -82,7 +82,7 @@
 							<div class="form-group @if($errors->has('firstname')) has-error @endif">
 								<label class="form-label">{{ trans('global.firstname') }}</label>
 								<div class="input-group">
-									<input class="form-control" type="text" name="firstname" placeholder="John" value="{{ $firstname }}">
+									<input class="form-control" type="text" name="firstname" placeholder="John" value="{{ $firstname ?? old('firstname') }}">
 								</div>
 								@if($errors->has('firstname'))
 									<p class="text-danger">{{ $errors->first('firstname') }}</p>
@@ -90,21 +90,21 @@
 							</div>
 							<div class="form-group @if ($errors->has('birthdate')) has-error @endif">
 								<label class="form-label">{{ trans('global.birthdate') }}</label>
-								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate }}">
+								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
 								@if($errors->has('birthdate'))
 									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('location')) has-error @endif">
 								<label class="form-label">{{ trans('global.location') }}</label>
-								<input class="form-control" type="text" name="location" placeholder="Oslo, Norway" value="{{ $location }}">
+								<input class="form-control" type="text" name="location" placeholder="Oslo, Norway" value="{{ $location ?? old('location') }}">
 								@if($errors->has('location'))
 									<p class="text-danger">{{ $errors->first('location') }}</p>
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('occupation')) has-error @endif">
 								<label class="form-label">{{ trans('global.occupation') }}</label>
-								<input class="form-control" type="text" name="occupation" placeholder="IT Technician" value="{{ $occupation }}">
+								<input class="form-control" type="text" name="occupation" placeholder="IT Technician" value="{{ $occupation ?? old('occupation') }}">
 								@if($errors->has('occupation'))
 									<p class="text-danger">{{ $errors->first('occupation') }}</p>
 								@endif
@@ -114,7 +114,7 @@
 							<div class="form-group @if ($errors->has('lastname')) has-error @endif">
 								<label class="form-label">{{ trans('global.lastname') }}</label>
 								<div class="input-group">
-									<input class="form-control" type="text" name="lastname" placeholder="Doe" value="{{ $lastname }}">
+									<input class="form-control" type="text" name="lastname" placeholder="Doe" value="{{ $lastname ?? old('lastname') }}">
 								</div>
 								@if($errors->has('lastname'))
 									<p class="text-danger">{{ $errors->first('lastname') }}</p>
@@ -123,7 +123,7 @@
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
 								<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 								<div class="input-group">
-									<input class="form-control" type="tel" id="phone" name="phone" placeholder="+4722225555" value="{{ $phone }}">
+									<input class="form-control" type="tel" id="phone" name="phone" placeholder="+4722225555" value="{{ $phone ?? old('phone') }}">
 								</div>
 								@if($errors->has('phone'))
 									<p class="text-danger">{{ $errors->first('phone') }}</p>
@@ -144,7 +144,7 @@
 							</div>
 							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">{{ trans('global.about') }}</label>
-								<textarea class="form-control" rows="2" name="about">{{ $about }}</textarea>
+								<textarea class="form-control" rows="2" name="about">{{ $about ?? old('about') }}</textarea>
 								@if($errors->has('about'))
 									<p class="text-danger">{{ $errors->first('about') }}</p>
 								@endif
