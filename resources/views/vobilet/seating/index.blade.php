@@ -70,7 +70,7 @@
 														@endif
 														
 														@if($reservation->reservedfor->age() < 16)
-															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
+															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
 												</div>
@@ -139,7 +139,7 @@
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
 														@if($reservation->reservedfor->age() < 16)
-															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
+															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
 												</div>
