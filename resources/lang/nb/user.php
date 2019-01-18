@@ -66,7 +66,7 @@ return [
         ),
         'referral' => array(
             'title' => 'Henvisning',
-            'desc' => 'Dette er henvisningslinken du kan dele med vennene dine, dette vil spore tilbake til deg hvis du registrerer deg på dette nettstedet.',
+            'desc' => 'Dette er henvisningslinken du kan dele med vennene dine, dette vil spore tilbake til deg hvis de registrerer seg på dette nettstedet.',
             'users' => '{0} <em>Du har ikke henvist noen brukere ennå.</em>|{1} Du har henvist <strong>en</strong> bruker.|[2,*] Du har henvist <strong>:count</strong> brukere.',
         ),
         'changepassword' => array(
