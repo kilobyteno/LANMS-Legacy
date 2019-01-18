@@ -166,7 +166,7 @@ return [
             'message' => '<p>We are sorry to see you go!</p>
                     <p>When clicking the delete button your account and all its data will be deleted forever. It will not be able to recover any data attached to this account.</p>
                     <p>Make sure you <a href=":url">download your data</a> before you delete your account.</p>
-                    <p>Deleting your account will anonymize your Profile and remove your name and photo from most things that your account is connected too.</p>',
+                    <p>Deleting your account will anonymize your Profile and remove your name and photo from most things that your account is connected to.</p>',
             'password' => 'When you are ready to delete your account, type in your password here',
             'iamsure' => 'Yes, I am sure I want to delete my account!',
             'button' => 'Delete my account',
