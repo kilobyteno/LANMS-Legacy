@@ -30,6 +30,11 @@
 					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
 				</div>
 			</div>
+			@if(\LANMS\Info::where('name', 'social_discord_server_id')->where('content', '<>', '')->first())
+				<div class="mb-4">
+					<iframe src="https://discordapp.com/widget?id={{ \LANMS\Info::where('name', 'social_discord_server_id')->first()->content }}&theme=light" height="300" allowtransparency="true" frameborder="0" style="width: 100%"></iframe>
+				</div>
+			@endif
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
 				<h4>{{ trans('pages.home.sponsors') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
