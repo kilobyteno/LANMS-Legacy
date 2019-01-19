@@ -37,9 +37,7 @@ class MemberController extends Controller
 
     public function search(SearchRequest $request)
     {
-        $members = \Searchy::search('users')->fields('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity')->having('isAnonymized', '=', '0')->get();
-
-        dd($members);
+        $members = \Searchy::search('users')->fields('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity')->having('isAnonymized', '0')->get();
 
         $newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         $onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
