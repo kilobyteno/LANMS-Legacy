@@ -60,7 +60,7 @@ return [
             'notactive' => 'Brukeren din er ikke aktiv! Vennligst sjekk innboksen din for aktiverings-e-posten. Sjekk også spam-mappen.',
             'alreadyasked' => 'Du har allerede bedt om en påminnelse! Vennligst sjekk innboksen din for aktiverings-e-posten. Sjekk også spam-mappen.',
             'emailfailure' => 'Noe gikk galt under forsøk på å sende deg en e-post.',
-            'emailsuccess' => 'Sjekk e-posten din for tilbakestill passordkoblingen. Dobbeltklikk på spam-mappen.',
+            'emailsuccess' => 'Sjekk e-posten din for tilbakestill passordkoblingen. Dobbel sjekk på spam-mappen.',
         ),
     ),
 
