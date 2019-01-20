@@ -40,7 +40,7 @@ return [
     */
 
     'settings' => [
-        'ttl' => 60,
+        'ttl' => 36,
         'user_model_fqn' => \LANMS\User::class, // Fully qualified namespace of the User model
     ],
 

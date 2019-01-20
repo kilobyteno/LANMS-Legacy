@@ -33,9 +33,9 @@
 					<tr>
 						<th scope="row">{{ $category->id }}</th>
 						<td>{{ $category->title }}</td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($category->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($category->created_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($category->created_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($category->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($category->updated_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($category->updated_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $category->editor->username) }}">{{ User::getFullnameByID($category->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>

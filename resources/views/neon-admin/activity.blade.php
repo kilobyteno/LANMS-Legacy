@@ -33,7 +33,7 @@
 					<tbody>
 						@foreach($activities as $activity)
 							<tr>
-								<td>{{ $activity->created_at }}</td>
+								<td>{{ ucfirst(\Carbon::parse($activity->created_at)->isoFormat('LLL')) }}</td>
 								<td>{{ $activity->log_name }}</td>
 								<td>{{ $activity->description }}</td>
 								<td>{{ $activity->subject_type }} ID: {{ $activity->subject_id }}</td>

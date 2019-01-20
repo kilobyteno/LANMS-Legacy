@@ -42,7 +42,7 @@
 							<tr>
 								<td class="text-{{{$log['level_class']}}}"><span class="glyphicon glyphicon-{{{$log['level_img']}}}-sign" aria-hidden="true"></span> &nbsp;{{$log['level']}}</td>
 								<td class="text">{{$log['context']}}</td>
-								<td class="date">{{{$log['date']}}}</td>
+								<td class="date">{{ ucfirst(\Carbon::parse($log['date'])->isoFormat('LLL')) }}</td>
 								<td class="text">
 									@if ($log['stack']) <a class="pull-right expand btn btn-default btn-xs" data-display="stack{{{$key}}}"><span class="glyphicon glyphicon-search"></span></a>@endif
 									{{{$log['text']}}}

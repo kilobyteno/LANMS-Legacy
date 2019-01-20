@@ -86,6 +86,8 @@ $(function(e){
 	  }
 	});
 	
+	
+	/*---- morrisBar5----*/	
 	var day_data = [
 	  {"period": "Jan", "licensed": 3407, "sorned": 660},
 	  {"period": "Feb", "licensed": 3351, "sorned": 629},
@@ -98,8 +100,6 @@ $(function(e){
 	  {"period": "Sept", "licensed": 3201, "sorned": 656},
 	  {"period": "Oct", "licensed": 3215, "sorned": 622}
 	];
-	
-	/*---- morrisBar5----*/	
 	new Morris.Bar({
 	  element: 'morrisBar5',
 	  data: day_data,
@@ -110,6 +110,7 @@ $(function(e){
 	  xLabelAngle: 0
 	});
 	
+	/*---- morrisBar6----*/	
 	var nReloads = 0;
 	function data(offset) {
 	  var ret = [];
@@ -124,7 +125,6 @@ $(function(e){
 	  return ret;
 	}
 	
-	/*---- morrisBar6----*/	
 	var graph = Morris.Line({
 		element: 'morrisBar6',
 		data: data(0),
@@ -178,8 +178,8 @@ $(function(e){
 		}).on('click', function(i, row){
 		  console.log(i, row);
 	});
-		
-	/*---- morrisBar9----*/	
+	
+	/*---- morrisBar9----*/
 	new Morris.Donut({
 		  element: 'morrisBar9',
 		  data: [

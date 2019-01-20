@@ -225,43 +225,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
-					<div class="panel panel-primary" data-collapsed="0">
-						<div class="panel-heading">
-							<div class="panel-title">Date and Time Settings</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group @if($errors->has('userdateformat')) has-error @endif">
-								<label for="userdateformat" class="col-sm-3 control-label text-right">Date Format</label>
-								<div class="col-sm-9">
-									<select class="form-control" name="userdateformat">
-										<option value="d. M Y" {{ ($user->userdateformat == 'd. M Y') ? 'selected' : '' }}>{{ date('d. M Y', time()) }} (d. M Y)</option>
-										<option value="d.m.y" {{ ($user->userdateformat == 'd.m.y') ? 'selected' : '' }}>{{ date('d.m.y', time()) }} (d.m.y)</option>
-										<option value="F j, Y" {{ ($user->userdateformat == 'F j, Y') ? 'selected' : '' }}>{{ date('F j, Y', time()) }} (F j, Y)</option>
-										<option value="M j, Y" {{ ($user->userdateformat == 'M j, Y') ? 'selected' : '' }}>{{ date('M j, Y', time()) }} (M j, Y)</option>
-										<option value="n/j/y" {{ ($user->userdateformat == 'n/j/y') ? 'selected' : '' }}>{{ date('n/j/y', time()) }} (n/j/y)</option>
-										<option value="Y/m/d" {{ ($user->userdateformat == 'Y/m/d') ? 'selected' : '' }}>{{ date('Y/m/d', time()) }} (Y/m/d)</option>
-									</select>
-									@if($errors->has('userdateformat'))
-										<p class="text-danger">{{ $errors->first('userdateformat') }}</p>
-									@endif
-								</div>
-							</div>
-							<div class="form-group @if($errors->has('usertimeformat')) has-error @endif">
-								<label for="usertimeformat" class="col-sm-3 control-label text-right">Time Format</label>
-								<div class="col-sm-9">
-									<select class="form-control" name="usertimeformat">
-											<option value="H:i" {{ ($user->usertimeformat == 'H:i') ? 'selected' : '' }}>{{ date('H:i', time()) }} (H:i)</option>
-											<option value="g:i a" {{ ($user->usertimeformat == 'g:i a') ? 'selected' : '' }}>{{ date('g:i a', time()) }} (g:i a)</option>
-										</select>
-									@if($errors->has('usertimeformat'))
-										<p class="text-danger">{{ $errors->first('usertimeformat') }}</p>
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">

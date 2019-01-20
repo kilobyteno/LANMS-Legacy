@@ -24,8 +24,8 @@
 					@if(Setting::get('SEATING_SHOW_MAP'))
 						@include('seating.seatmap')
 					@else
-						<h2>Seatmap is not available at this moment!</h2>
-						<p>Please check back later...</p>
+						<h2>{{ trans('seating.closed') }}</h2>
+						<p>{{ trans('seating.checklater') }}</p>
 					@endif
 
 				</div>

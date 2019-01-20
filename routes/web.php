@@ -42,6 +42,8 @@ Route::group([
     'middleware' => 'setTheme:vobilet'
     ], function () {
         Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+        Route::get('/schedule', ['as' => 'schedule', 'uses' => 'HomeController@schedule']);
+        Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
         Route::group([
             'prefix' => 'news'
@@ -788,12 +790,9 @@ Route::group([
             });
     });
 
-Route::group(['prefix' => 'ajax',], function () {
+Route::group(['prefix' => 'ajax','middleware' => ['sentinel.auth', 'ajax.check']], function () {
     Route::get('/usernames', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
-        $users = User::all();
+        $users = User::orderBy('username', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
         $usernames = array();
         foreach ($users as $user) {
             if ($user->showname) {
@@ -805,9 +804,6 @@ Route::group(['prefix' => 'ajax',], function () {
         return Response::json($usernames);
     });
     Route::get('/rows', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
         $allrows = SeatRows::all();
         $rows = array();
         foreach ($allrows as $row) {
@@ -816,9 +812,6 @@ Route::group(['prefix' => 'ajax',], function () {
         return Response::json($rows);
     });
     Route::get('/seats', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
         $allseats = Seats::all();
         $seats = array();
         foreach ($allseats as $seat) {
@@ -827,9 +820,6 @@ Route::group(['prefix' => 'ajax',], function () {
         return Response::json($seats);
     });
     Route::get('/crew/categories', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
         $allcc = CrewCategory::all();
         $ccs = array();
         foreach ($allcc as $cc) {
@@ -838,9 +828,6 @@ Route::group(['prefix' => 'ajax',], function () {
         return Response::json($ccs);
     });
     Route::get('/crew/skills', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
         $allcs = CrewSkill::all();
         $css = array();
         foreach ($allcs as $cs) {
@@ -849,9 +836,6 @@ Route::group(['prefix' => 'ajax',], function () {
         return Response::json($css);
     });
     Route::get('/pages', function () {
-        if (!Request::ajax()) {
-            abort(403);
-        }
         $allpages = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get();
         $pages = array();
         foreach ($allpages as $page) {

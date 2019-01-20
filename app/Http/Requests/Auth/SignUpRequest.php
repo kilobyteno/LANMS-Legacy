@@ -25,13 +25,14 @@ class SignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'                     => 'required|email|unique:users,email',
-            'firstname'                 => 'required|between:3,250|alpha_dash',
-            'lastname'                  => 'required|between:3,250|alpha_dash',
-            'username'                  => 'required|unique:users,username',
-            'password'                  => 'required|confirmed|min:8|max:64',
-            'birthdate'                 => ['required', 'date_format:Y-m-d', new OlderThan],
-            'tos-pp'                    => 'accepted',
+            'email'             => 'required|email|unique:users,email',
+            'firstname'         => 'required|between:3,250|alpha_dash',
+            'lastname'          => 'required|between:3,250|alpha_dash',
+            'username'          => 'required|unique:users,username',
+            'password'          => 'required|confirmed|min:8|max:64',
+            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
+            'phone'             => 'required|phone:AUTO,NO',
+            'tos-pp'            => 'accepted',
         ];
     }
 }

@@ -37,9 +37,9 @@
 						<td>{{ User::getFullnameByID($skilla->user->id) }}</td>
 						<td><small><span class="{{ $skilla->skill->label }}"><i class="{{ $skilla->skill->icon }}"></i> {{ $skilla->skill->title }}</span></small></td>
 						<td>{{ $skilla->year }}</td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($skilla->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($skilla->created_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($skilla->created_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $skilla->author->username) }}">{{ User::getFullnameByID($skilla->author->id) }}</a></td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($skilla->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($skilla->updated_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($skilla->updated_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $skilla->editor->username) }}">{{ User::getFullnameByID($skilla->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-skill-attachment-edit', $skilla->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>

@@ -39,9 +39,9 @@
 								<th scope="row">{{ $row->id }}</th>
 								<td>{{ $row->name }}</td>
 								<td>{{ $row->slug }}</td>
-								<td>{{ date(User::getUserDateFormat(), strtotime($row->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($row->created_at)) }}</td>
+								<td>{{ ucfirst(\Carbon::parse($row->created_at)->isoFormat('LLL')) }}</td>
 								<td><a href="{{ URL::route('user-profile', $row->author->username) }}">{{ User::getFullnameByID($row->author->id) }}</a></td>
-								<td>{{ date(User::getUserDateFormat(), strtotime($row->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($row->updated_at)) }}</td>
+								<td>{{ ucfirst(\Carbon::parse($row->updated_at)->isoFormat('LLL')) }}</td>
 								<td><a href="{{ URL::route('user-profile', $row->editor->username) }}">{{ User::getFullnameByID($row->editor->id) }}</a></td>
 								<td>
 									<a href="{{ route('admin-seating-row-edit', $row->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-pencil-alt"></i>Edit</a>

@@ -1,27 +1,24 @@
 @extends('layouts.main')
-@section('title', 'Add Address')
+@section('title', trans('user.addressbook.edit.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">Edit Address</h4>
+		<h4 class="page-title">{{ trans('user.addressbook.edit.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('account-addressbook') }}">Addressbook</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Edit Address</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account-addressbook') }}">{{ trans('user.addressbook.title') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.addressbook.edit.title') }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<form class="col-md-12" role="form" method="post" action="{{ route('account-addressbook-update', $id) }}"> 
 			<div class="card">
-				<div class="card-header">
-					<h3 class="card-title">Edit Address</h3>
-				</div>
 				<div class="card-body">
 					
 					<div class="form-group @if($errors->has('address1')) has-error @endif">
-						<label class="form-label">Address</label>
+						<label class="form-label">{{ trans('global.address.address1') }}</label>
 						<input class="form-control" type="text" name="address1" placeholder="Jernbanegata 15" value="{{ $address1 }}">
 						@if($errors->has('address1'))
 							<p class="text-danger">{{ $errors->first('address1') }}</p>
@@ -29,7 +26,7 @@
 					</div>
 
 					<div class="form-group @if($errors->has('address2')) has-error @endif">
-						<label class="form-label">Address 2</label>
+						<label class="form-label">{{ trans('global.address.address2') }}</label>
 						<input class="form-control" type="text" name="address2" value="{{ $address2 }}">
 						@if($errors->has('address2'))
 							<p class="text-danger">{{ $errors->first('address2') }}</p>
@@ -38,7 +35,7 @@
 
 					<div class="row">
 						<div class="col-md-6 form-group @if($errors->has('postalcode')) has-error @endif">
-							<label class="form-label">Postal Code</label>
+							<label class="form-label">{{ trans('global.address.postalcode') }}</label>
 							<input class="form-control" type="text" name="postalcode" placeholder="2609" value="{{ $postalcode }}">
 							@if($errors->has('postalcode'))
 								<p class="text-danger">{{ $errors->first('postalcode') }}</p>
@@ -46,7 +43,7 @@
 						</div>
 
 						<div class="col-md-6 form-group @if($errors->has('city')) has-error @endif">
-							<label class="form-label">City</label>
+							<label class="form-label">{{ trans('global.address.city') }}</label>
 							<input class="form-control" type="text" name="city" placeholder="Lillehammer" value="{{ $city }}">
 							@if($errors->has('city'))
 								<p class="text-danger">{{ $errors->first('city') }}</p>
@@ -55,7 +52,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6 form-group @if($errors->has('county')) has-error @endif">
-							<label class="form-label">County</label>
+							<label class="form-label">{{ trans('global.address.county') }}</label>
 							<input class="form-control" type="text" name="county" placeholder="Oppland" value="{{ $county }}">
 							@if($errors->has('county'))
 								<p class="text-danger">{{ $errors->first('county') }}</p>
@@ -63,7 +60,7 @@
 						</div>
 
 						<div class="col-md-6 form-group @if($errors->has('country')) has-error @endif">
-							<label class="form-label">Country</label>
+							<label class="form-label">{{ trans('global.address.country') }}</label>
 							<input class="form-control" type="text" name="country" placeholder="Norway" value="{{ $country }}">
 							@if($errors->has('country'))
 								<p class="text-danger">{{ $errors->first('country') }}</p>
@@ -76,17 +73,17 @@
 					<label class="custom-switch">
 						<input type="checkbox" class="custom-switch-input" name="main_address" @if($main_address) checked @endif>
 						<span class="custom-switch-indicator"></span>
-						<span class="custom-switch-description">I want this as my primary address</span>
+						<span class="custom-switch-description">{{ trans('user.addressbook.primaryaddress') }}</span>
 					</label>
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Confirm changes with your password</h3>
+					<h3 class="card-title">{{ trans('user.addressbook.confirmchanges') }}</h3>
 				</div>
 				<div class="card-body">
 					<div class="form-group @if ($errors->has('password')) has-error @endif">
-						<label class="form-label">Password</label>
+						<label class="form-label">{{ trans('global.password') }}</label>
 						<div class="input-group">
 							<input class="form-control" type="password" name="password">
 						</div>
@@ -97,7 +94,7 @@
 				</div>
 				<div class="card-footer text-right">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save changes</button>
+					<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> {{ trans('global.savechanges') }}</button>
 				</div>
 			</div>
 		</form>

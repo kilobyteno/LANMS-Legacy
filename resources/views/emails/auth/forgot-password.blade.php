@@ -1,14 +1,13 @@
 @extends('emails.layouts.main')
-@section('subject', 'Forgot Password')
+@section('subject', trans('email.auth.forgotpassword.title'))
 @section('content') 
 
-It looks as if you have requested to reset your password. Use the link below to create a new password for your account.
-If you did not expect this email, you can safely ignore it.<br><br>
+{{ trans('email.auth.forgotpassword.desc') }}<br><br>
 
-Reset Password URL: <a href="{{ $link }}">{{ $link }}</a><br>
+{{ trans('email.auth.forgotpassword.url') }}: <a href="{{ $link }}">{{ $link }}</a><br>
 <small>{{ $link }}</small><br><br>
 
 
-If you have any questions at all, feel free to contact us!<br>
+{{ trans('email.auth.forgotpassword.questions') }}<br>
 
 @stop

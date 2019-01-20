@@ -9,10 +9,108 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#releasenotes" href="#241" aria-expanded="true">Version 2.4.1</a>
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#250" aria-expanded="true">Version 2.5.0</a>
 					</h4>
 				</div>
-				<div id="241" class="panel-collapse collapse in" aria-expanded="true">
+				<div id="250" class="panel-collapse collapse in" aria-expanded="true">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-217'>LANMS-217</a>] - Chosen file does not appear in input field</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-221'>LANMS-221</a>] - Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-222'>LANMS-222</a>] - ErrorException: Route [home] not defined. (View: /home/downlinkdg/repositories/lanms/resources/views/vobilet/erro...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-223'>LANMS-223</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-241'>LANMS-241</a>] - Non-active, deleted, etc users is in ajax calls</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-242'>LANMS-242</a>] - AJAX is available without being logged in</li>
+						</ul>
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-211'>LANMS-211</a>] - Add Translation Support</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-219'>LANMS-219</a>] - Add calendar/schedule system</li>
+						</ul>
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-216'>LANMS-216</a>] - Add Norwegian translation</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-218'>LANMS-218</a>] - Update time/date formatting to use Carbon</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-226'>LANMS-226</a>] - Add phone number to users</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-227'>LANMS-227</a>] - Add last activity to members list</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-232'>LANMS-232</a>] - GDPR: Users with no activity for the last 3 years will be anonymized</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-235'>LANMS-235</a>] - Add user preference on language</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-239'>LANMS-239</a>] - Improve user input with old on profile</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-243'>LANMS-243</a>] - Add discord link to footer</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#244">Version 2.4.4</a>
+					</h4>
+				</div>
+				<div id="244" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-245'>LANMS-245</a>] - Exception: DateTime::__construct(): Failed to parse time string (2004-28-05) at position 6 (8): Unexpected c...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#243">Version 2.4.3</a>
+					</h4>
+				</div>
+				<div id="243" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-229'>LANMS-229</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-231'>LANMS-231</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-236'>LANMS-236</a>] - Searching users does not work anymore</li>
+						</ul>    
+						<h4>Improvement</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-230'>LANMS-230</a>] - Allow admins to view ticket</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-237'>LANMS-237</a>] - Add age check on birthdate fields</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#242">Version 2.4.2</a>
+					</h4>
+				</div>
+				<div id="242" class="panel-collapse collapse">
+					<div class="panel-body">
+						<h4>Bug</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-193'>LANMS-193</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;App\User&#39; not found</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-215'>LANMS-215</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+						</ul>
+						<h4>New Feature</h4>
+						<ul>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-196'>LANMS-196</a>] - Post to social medias when posting news</li>
+							<li>[<a href='http://jira.infihex.com/browse/LANMS-212'>LANMS-212</a>] - Command for deleting non-activated users</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#releasenotes" href="#241">Version 2.4.1</a>
+					</h4>
+				</div>
+				<div id="241" class="panel-collapse collapse">
 					<div class="panel-body">
 						<h4>Bug</h4>
 						<ul>

@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', 'Members')
+@section('title', trans('header.members'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h1 class="page-title">Users</h1>
+		<h1 class="page-title">{{ trans('header.members') }}</h1>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">User</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Members</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.members') }}</li>
 		</ol>
 	</div>
 	<div class="row row-cards">
@@ -16,18 +16,18 @@
 			<form class="card" method="post" action="{{ route('members-search') }}">
 				<div class="card-body">
 					<div class="form-group">
-						<div class="form-label">Search Members</div>
-						<input type="text" class="form-control" name="search" placeholder="Username or Name">
+						<div class="form-label">{{ trans('pages.members.search.title') }}</div>
+						<input type="text" class="form-control" name="search" placeholder="{{ trans('pages.members.search.placeholder') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</div>
 				</div>
 				<div class="card-footer text-right">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> {{ trans('pages.members.search.button') }}</button>
 				</div>
 			</form>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Newest Members</h3>
+					<h3 class="card-title">{{ trans('pages.members.newest.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -51,7 +51,7 @@
 			</div>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">Last Online Members</h3>
+					<h3 class="card-title">{{ trans('pages.members.lastonline.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -81,9 +81,10 @@
 						<tbody>
 							<tr>
 								<th class="w-1"></th>
-								<th>Username</th>
-								<th>Name</th>
-								<th class="d-none d-sm-table-cell">Joined</th>
+								<th>{{ trans('pages.members.table.username') }}</th>
+								<th>{{ trans('pages.members.table.name') }}</th>
+								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.joined') }}</th>
+								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.lastseen') }}</th>
 							</tr>
 						@foreach($members as $member)
 							<tr>
@@ -91,13 +92,14 @@
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->username }}</a></td>
 								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a></td>
 								<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $member->created_at }}">{{ \Carbon::parse($member->created_at)->diffForHumans() }}</span></td>
+								<td class="d-none d-sm-table-cell">@if($member->showonline && $member->last_activity && $member->last_activity != '0000-00-00 00:00:00'){{ \Carbon::parse($member->last_activity)->diffForHumans() }}@endif</td>
 							</tr>
 						@endforeach
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<p class="text-muted">Showing {{ $members->count() }} of {{ $totalmembers->count() }} total members</p>
+			<p class="text-muted">{{ trans('pages.members.table.showing', ['pluck' => $members->count(), 'total' => $totalmembers->count()]) }}</p>
 			{!! $members->render() !!}
 		</div>
 	</div>

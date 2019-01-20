@@ -1,30 +1,35 @@
 @extends('layouts.main')
-@section('title', 'User')
+@section('title', trans('user.dashboard.title'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">User</h4>
+		<h4 class="page-title">{{ trans('user.dashboard.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">User</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.dashboard.title') }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			@if(Sentinel::getUser()->ownReservationsLastYear->count() > 0 && !Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> We can see that you attended last year. Want to join us for this year too? <a href="{{route('seating')}}">Check out the seating now</a>.
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.attendancelastyear', ['url' => route('seating')]) !!}
 				</div>
 			@endif
 			@if(Sentinel::getUser()->age() < 16 && Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
-					<i class="fa fa-info-circle"></i> Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href="{{ route('seating-consentform') }}"><i class="fa fa-user-circle-o"></i> Samtykkeskjema</a>
+					<i class="fa fa-info-circle"></i> {!! trans('user.alert.consentform', ['url' => route('seating-consentform')]) !!}
 				</div>
 			@endif
 			@if(!Sentinel::getUser()->birthdate)
 				<div class="alert alert-warning" role="alert">
-					<i class="fa fa-exclamation-triangle"></i> There is no birthdate assigned to your account, this is required from now on. <a href="{{ route('user-profile-edit', Sentinel::getUser()->username) }}">Edit your profile</a>
+					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nobirthdate', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
+				</div>
+			@endif
+			@if(!Sentinel::getUser()->phone)
+				<div class="alert alert-warning" role="alert">
+					<i class="fa fa-exclamation-triangle"></i> {!! trans('user.alert.nophone', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}
 				</div>
 			@endif
 			<div class="row">
@@ -46,35 +51,35 @@
 				<div class="col-lg-4">
 					<div class="card">
 						<div class="card-header">
-							<h2 class="card-title">Quick Links</h2>
+							<h2 class="card-title">{{ trans('user.dashboard.quicklinks.title') }}</h2>
 						</div>
 						<div class="">
 							<table class="table card-table">
 								<tbody>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account') }}" class="text-inherit"><i class="fas fa-id-card"></i> Your Account</a></td>
+										<td><a href="{{ route('account') }}" class="text-inherit"><i class="fas fa-id-card"></i> {{ trans('user.dashboard.quicklinks.youraccount') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('user-profile', \Sentinel::getUser()->username) }}" class="text-inherit"><i class="fa fa-user-circle"></i> Your Profile</a></td>
+										<td><a href="{{ route('user-profile', \Sentinel::getUser()->username) }}" class="text-inherit"><i class="fa fa-user-circle"></i> {{ trans('user.dashboard.quicklinks.yourprofile') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fa fa-asterisk"></i> Change password</a></td>
+										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fa fa-asterisk"></i> {{ trans('user.dashboard.quicklinks.changepassword') }}</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					@if(Sentinel::getUser()->reservationsThisYear()->count()>0)
-						<h5>Your reservations:</h5>
+						<h5>{{ trans('seating.reservation.your') }}:</h5>
 						@foreach(Sentinel::getUser()->reservationsThisYear()->get() as $reservation)
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title"><a href="{{ route('seating-show', $reservation->seat->slug) }}">{{ $reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}</a></h3>
 									<div class="card-options">
 										@if($reservation->payment)
-											<span class="badge badge-success">Paid</span>
+											<span class="badge badge-success">{{ trans('seating.reservation.paid') }}</span>
 										@else
-											<span class="badge badge-danger">Unpaid</span>
+											<span class="badge badge-danger">{{ trans('seating.reservation.notpaid') }}</span>
 										@endif
 									</div>
 								</div>

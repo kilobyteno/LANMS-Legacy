@@ -35,8 +35,8 @@
 						<td>{{ $user->username }}</td>
 						<td>{{ $user->firstname }}</td>
 						<td>{{ $user->lastname }}</td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($user->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($user->created_at)) }}</td>
-						<td>{{ date(User::getUserDateFormat(), strtotime($user->updated_at)) .' at '. date(User::getUserTimeFormat(), strtotime($user->updated_at)) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($user->created_at)->isoFormat('LLL')) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($user->updated_at)->isoFormat('LLL')) }}</td>
 						<td>@if(\Activation::completed($user))<div class="label label-primary">Activated</div>@endif @if($user->last_login)<div class="label label-info">Has logged in</div>@endif @if($user->deleted_at)<div class="label label-secondary">Deactivated</div>@endif</td>
 						<td>
 							<a href="{{ route('user-profile', $user->username) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="fa fa-eye"></i>View</a>

@@ -1,8 +1,8 @@
 @extends('emails.layouts.main')
-@section('subject', 'Activate Account')
+@section('subject', trans('email.auth.activate.title'))
 @section('content') 
 
-<p>Hello {{ $firstname }}! To activate your account, click on the following link:</p>
+<p>{{ trans('email.auth.activate.hello', ['firstname' => $firstname]) }}</p>
 <p><a href="{{ $link }}">{{ $link }}</a></p>
 
 @stop

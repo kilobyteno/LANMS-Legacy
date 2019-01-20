@@ -11350,12 +11350,13 @@ a.icon:hover {
     transition: .3s border-color;
     font-weight: 500;
     padding: 1rem 1.40rem;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-right-width: 0;
+	text-transform: uppercase;
 }
 .vobilet-navbar .nav-link .icon {
 	font-size: 21px;
@@ -11399,6 +11400,11 @@ a.icon:hover {
 	}
 	.vobilet-navbar .nav-link{
 		width:100%;
+		color:#3e4b5b;
+	}
+	.nav-item.with-sub .sub-item{
+		border-top:2px solid #0061da;
+	
 	}
 	.vobilet-navbar .nav-item {
 		min-width:100%;
@@ -11454,7 +11460,7 @@ a.icon:hover {
 	padding-bottom: 5px;
 	margin-bottom: 15px;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 300;
 	display: block;
 	text-align: left;
 	letter-spacing: 1px;
@@ -11462,7 +11468,7 @@ a.icon:hover {
 .vobilet-navbar .sub-item {
 	background-color: #fff;
 	position: absolute;
-	top: 53px;
+	top: 51px;
 	left: 0;
 	border: 1px solid #ced4da;
 	border-top: 0;
@@ -11643,7 +11649,10 @@ a.icon:hover {
 	}
 	
 	.dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate{
-		display:none;
+		margin-top:10px !important;
+	}
+	div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+		justify-content: center;
 	}
 	.page-title {
 		line-height: 1.5rem;
@@ -13056,7 +13065,7 @@ a.icon:hover {
 }
 .store .table td {
     padding: 1.5rem;
-    vertical-align: top;
+    vertical-align: middle;
 }
 .card-profile .card-header {
 	height: 5rem;

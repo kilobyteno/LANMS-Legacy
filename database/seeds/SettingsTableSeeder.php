@@ -8,7 +8,7 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         Setting::set('APP_NAME', 'LANMS');
-        Setting::set('APP_VERSION', '2.4.1');
+        Setting::set('APP_VERSION', '2.5.0');
         Setting::set('APP_VERSION_TYPE', 'Dev');
         Setting::set('APP_URL', 'http://lanms.xyz/');
         Setting::set('APP_LICENSE_STATUS', '');
@@ -42,6 +42,9 @@ class SettingsTableSeeder extends Seeder
 
         Setting::set('GOOGLE_MAPS_API_KEY', '');
         Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
+        Setting::set('GOOGLE_CALENDAR_API_KEY', '');
+        Setting::set('GOOGLE_CALENDAR_ID', '');
+        Setting::set('GOOGLE_CALENDAR_START_DATE', '1970-01-30');
 
         Setting::set('FACEBOOK_APP_ID', '');
         Setting::set('FACEBOOK_PAGE_ID', '');

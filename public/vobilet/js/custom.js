@@ -32,10 +32,11 @@
 			targetFormElementSelector: '.rating-value'
 		}
 	};
+
 	//$(".rating-stars").ratingStars(ratingOptions);
 	//$(".vscroll").mCustomScrollbar();
+})(jQuery);
 	
-})(jQuery);	
 $(function(e) {
 		  /** Constant div card */
 	  const DIV_CARD = 'div.card';
