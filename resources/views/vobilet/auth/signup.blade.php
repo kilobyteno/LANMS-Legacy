@@ -34,7 +34,7 @@
 					</div>
 					<div class="form-group">
 						<label class="form-label">Birthdate</label>
-						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
+						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Date of Birth (YYYY-MM-DD)" autocomplete="off" value="{{ old('birthdate') }}" />
 					</div>
 					<div class="form-group">
 						<label class="form-label">Email address</label>
@@ -85,7 +85,8 @@
 	<script type="text/javascript">
 		var cleave = new Cleave('#birthdate', {
 		    date: true,
-		    datePattern: ['d', 'm', 'Y']
+		    datePattern: ['Y', 'm', 'd'],
+		    delimiter: '-'
 		});
 	</script>
 @stop
