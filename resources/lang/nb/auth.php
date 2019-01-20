@@ -56,7 +56,7 @@ return [
         'username' => 'E-post eller brukernavn',
         'forgetit' => 'Glem det, <a href=":url">send meg tilbake</a> til påloggingssiden.',
         'button' => 'Send E-post',
-		'alert' => array(
+        'alert' => array(
             'notactive' => 'Brukeren din er ikke aktiv! Vennligst sjekk innboksen din for aktiverings-e-posten. Sjekk også spam-mappen.',
             'alreadyasked' => 'Du har allerede bedt om en påminnelse! Vennligst sjekk innboksen din for aktiverings-e-posten. Sjekk også spam-mappen.',
             'emailfailure' => 'Noe gikk galt under forsøk på å sende deg en e-post.',
@@ -69,7 +69,7 @@ return [
         'email' => 'E-post',
         'forgetit' => 'Glem det, <a href=":url">send meg tilbake</a> til påloggingssiden.',
         'button' => 'Send E-post',
-		'alert' => array(
+        'alert' => array(
             'usernotfound' => 'Kunne ikke finne konto knyttet til e-posten! Vær så snill, prøv på nytt.',
             'noactivations' => 'Kontoen din er allerede aktivert, eller vi kunne ikke finne noen ufullstendige aktiveringer.',
             'activationcompleted' => 'Aktivering er allerede fullført.',
@@ -85,7 +85,7 @@ return [
         'passwordagain' => 'Bekreft Nytt Passord',
         'forgetit' => 'Glem det, <a href=":url">send meg tilbake</a> til påloggingssiden.',
         'button' => 'Resett',
-		'alert' => array(
+        'alert' => array(
             'noreminder' => 'Vi kunne ikke finne din påminnelseskode. Vær så snill, prøv på nytt.',
             'nomatch' => 'Brukernavnet samsvarer ikke med koden!',
             'cansignin' => 'Du kan nå logge inn!',
