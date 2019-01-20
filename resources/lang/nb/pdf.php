@@ -15,7 +15,7 @@ return [
 
     'ticket' => array(
         'title' => 'Billett',
-        'desc' => 'Dette er din billett, for et sete, ta med dette til arrangementet. Husk at det er en billett per sete! Det er også viktig at du tar med gyldig legitimasjon. Hvis du dukker opp uten billett eller legitimasjon, kan vi ikke sjekke deg inn i arrangementet. Hvis du trenger et samtykkeskjema, husk å ta med det også.',
+        'desc' => 'Dette er din billett, for et sete, ta med dette til arrangementet. Det er viktig at du tar med gyldig legitimasjon. Hvis du dukker opp uten billett eller legitimasjon kan vi ikke sjekke deg inn i arrangementet. Hvis du trenger et samtykkeskjema, husk å ta med det også. Husk at det er en billett per sete!',
         'moreinfo' => 'For mer informasjon, gå til vår hjemmeside',
         'paymentinfo' => 'Betalingsinformasjon',
         'yourseat' => 'Ditt sete',
