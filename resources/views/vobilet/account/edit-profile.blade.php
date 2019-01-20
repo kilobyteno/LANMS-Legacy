@@ -212,4 +212,12 @@
 			},
 		});
 	</script>
+	<script src="{{ Theme::url('js/cleave.js') }}"></script>
+	<script type="text/javascript">
+		var cleave = new Cleave('#birthdate', {
+		    date: true,
+		    datePattern: ['Y', 'm', 'd'],
+		    delimiter: '-'
+		});
+	</script>
 @stop
