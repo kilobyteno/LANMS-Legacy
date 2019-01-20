@@ -37,14 +37,14 @@
 			<p>{{ trans('pdf.ticket.moreinfo') }}: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<div class="text-center clms">
 				<div style="width:50%;float:left;">
-					@if(is_null($currentseat->reservationsThisYear()->first()->payment))
+					@if(is_null($payment))
 						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }}</span></strong></h2>
 					@else
 						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 					@endif
 				</div>
 				<div style="width:50%;float:right;">
-					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $currentseat->reservationsThisYear()->first()->seat->name }}</strong></h2>
+					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $seat->name }}</strong></h2>
 				</div>
 			</div>
 			
