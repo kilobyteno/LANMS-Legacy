@@ -108,9 +108,7 @@ class AuthController extends Controller
         $lastname           = $request->input('lastname');
         $username           = $request->input('username');
         $password           = $request->input('password');
-
-        $originalDate       = $request->input('birthdate');
-        $birthdate          = date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
+        $birthdate          = $request->input('birthdate');
 
         $referral           = \Session::get('referral');
         $referral_code      = str_random(15);
