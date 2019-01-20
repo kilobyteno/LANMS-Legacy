@@ -2,9 +2,9 @@
     "use strict";
 	
 // ______________ PAGE LOADING
-	/*$(window).on("load", function(e) {
+	$(window).on("load", function(e) {
 		$("#global-loader").fadeOut("slow");
-	})*/
+	})
 	
 	// ______________ BACK TO TOP BUTTON
 

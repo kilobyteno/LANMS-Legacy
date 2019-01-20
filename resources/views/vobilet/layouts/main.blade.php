@@ -34,7 +34,6 @@
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
 	</head>
 	<body class="">
-		<div id="global-loader" ></div>
 		<div class="page">
 			<div class="page-main">
 				<div class="header py-4">
