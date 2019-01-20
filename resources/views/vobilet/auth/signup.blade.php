@@ -28,7 +28,7 @@
 						<label class="form-label">{{ trans('global.username') }}</label>
 						<input type="text" class="form-control"  name="username" placeholder="{{ trans('global.username') }}" autocomplete="off" value="{{ old('username') }}">
 						<label class="form-label">{{ trans('global.birthdate') }}</label>
-						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (DD/MM/YYYY)" autocomplete="off" value="{{ old('birthdate') }}" />
+						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (YYYY-MM-DD)" autocomplete="off" value="{{ old('birthdate') }}" />
 						<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 						<input type="text" class="form-control" type="tel" id="phone" name="phone" placeholder="{{ trans('global.phone') }}" autocomplete="off" value="{{ old('phone') }}" />
 						<label class="form-label">{{ trans('global.email') }}</label>
