@@ -16,7 +16,7 @@ return [
         'usernametaken' => 'Brukernavnet er allerede i bruk.',
         'emailtaken' => 'E-posten er allerede i bruk.',
         'emailfailure' => 'Noe gikk galt under forsøk på å sende deg en e-post. Men du har blitt registrert.',
-        'accountcreated' => 'Din konto er opprettet, sjekk e-posten din for aktiveringslenken. Dobbeltklikk på spam-mappen.',
+        'accountcreated' => 'Din konto er opprettet, sjekk e-posten din for aktiveringslenken. Dobbelt sjekk på spam-mappen.',
         'creationfailure' => 'Noe gikk galt under forsøk på å registrere brukeren.',
         'activationfailure' => 'Vi kunne ikke finne din aktiveringskode. Prøv på nytt.',
         'usernameactivationfailure' => 'Brukernavn og aktiveringskode stemmer ikke overens.',
