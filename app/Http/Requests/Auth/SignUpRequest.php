@@ -30,7 +30,7 @@ class SignUpRequest extends FormRequest
             'lastname'                  => 'required|between:3,250|alpha_dash',
             'username'                  => 'required|unique:users,username',
             'password'                  => 'required|confirmed|min:8|max:64',
-            'birthdate'                 => ['required', 'date_format:d/m/Y', new OlderThan],
+            'birthdate'                 => ['required', 'date_format:Y-m-d', new OlderThan],
             'tos-pp'                    => 'accepted',
         ];
     }
