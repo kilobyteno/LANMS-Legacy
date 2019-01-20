@@ -112,7 +112,7 @@
 							</div>
 							<div class="form-group @if ($errors->has('birthdate')) has-error @endif">
 								<label class="form-label">{{ trans('global.birthdate') }}</label>
-								<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
+								<input class="form-control" type="text" name="birthdate" id="birthdate" placeholder="1970-01-30" value="{{ $birthdate ?? old('birthdate') }}">
 								@if($errors->has('birthdate'))
 									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
 								@endif
