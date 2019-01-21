@@ -20,7 +20,7 @@
 				</span>
 				<div>
 					<h4 class="m-0"><a href="{{ route('admin-users') }}"><strong>{{ User::where('last_activity', '<>', '')->where('isAnonymized', '0')->count() }}</strong> <small>Users</small></a></h4>
-					<small class="text-muted">{{ User::onlyTrashed()->count() }} deleted users</small>
+					<small class="text-muted">{{ User::onlyTrashed()->count() }} deleted</small>
 				</div>
 			</div>
 		</div>
