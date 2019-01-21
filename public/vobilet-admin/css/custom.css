@@ -1,0 +1,15 @@
+a, .breadcrumb-item a {
+	color:#3498db;
+}
+
+.app-sidebar__toggle::before {
+	content:none;
+}
+
+.app-sidebar__toggle {
+	font-size: 21px;
+}
+
+.app-sidebar__toggle:hover {
+	color: #ddd;
+}

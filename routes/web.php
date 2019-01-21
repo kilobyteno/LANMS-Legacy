@@ -309,7 +309,7 @@ Route::group([
 
 // ADMIN PANEL
 Route::group([
-    'middleware' => ['sentinel.auth', 'sentinel.admin', 'setTheme:neon-admin', 'gdpr.terms'],
+    'middleware' => ['sentinel.auth', 'sentinel.admin', 'setTheme:vobilet-admin', 'gdpr.terms'],
     'prefix' => 'admin',
     ], function () {
         Route::get('/', [
