@@ -67,6 +67,8 @@ return [
 
 		'vobilet',
 
+		'vobilet-admin',
+
 		// Add your themes here...
 
 		/*--------------[ Example Structre ]-------------
