@@ -2,6 +2,10 @@ a, .breadcrumb-item a {
 	color:#3498db;
 }
 
+a:focus, a:hover, a:active {
+	color: #eee;
+}
+
 .app-sidebar__toggle::before {
 	content:none;
 }
@@ -11,5 +15,5 @@ a, .breadcrumb-item a {
 }
 
 .app-sidebar__toggle:hover {
-	color: #ddd;
+	color: #eee;
 }
