@@ -47,7 +47,7 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="{{ Setting::get('WEB_LOGO') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"><i class="fas fa-bars"></i></a>
 							<div class="d-flex order-lg-2 ml-auto">
@@ -97,30 +97,26 @@
 				<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 				<aside class="app-sidebar mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
 					<ul class="side-menu">
-						<li class="slide">
-							<a class="side-menu__item active" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-home"></i><span class="side-menu__label">DASHBOARD</span><i class="angle fa fa-angle-right"></i></a>
-							<ul class="slide-menu">
-								<li><a class="slide-item" href="index.html">Home 1</a></li>
-								<li><a class="slide-item" href="index2.html">Home 2</a></li>
-								<li><a class="slide-item" href="index3.html">Home 3</a></li>
-								<li><a class="slide-item" href="index4.html">Home 4</a></li>
-							</ul>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin')){{'active'}} @endif" href="{{ route('admin') }}"><i class="side-menu__icon fa fa-tachometer-alt"></i><span class="side-menu__label">Dashboard</span></a>
 						</li>
 						<li>
-							<a class="side-menu__item" href="widgets.html"><i class="side-menu__icon fa fa-window-restore"></i><span class="side-menu__label">Widgets</span></a>
+							<a class="side-menu__item @if(Request::is('admin/users')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fa fa-users"></i><span class="side-menu__label">Users</span></a>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active opened'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-home"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item @if(Request::is('admin/crew/categories*')){{'active'}} @endif" href="{{ route('admin-crew-category') }}"><i class="fa fa-tag mr-1"></i> Categories</a></li>
+								<li><a class="slide-item @if(Request::is('admin/crew*') && !Request::is('admin/crew/categories*') && !Request::is('admin/crew/skill*')){{'active'}} @endif" href="{{ route('admin-crew') }}"><i class="fa fa-user-md mr-1"></i> Members</a></li>
+								<li><a class="slide-item @if(Request::is('admin/crew/skill*') && !Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase mr-1"></i> Skills</a></li>
+								<li><a class="slide-item @if(Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill-attachment') }}"><i class="fa fa-paperclip mr-1"></i> Skill Attachment</a></li>
+							</ul>
 						</li>
 					</ul>
 				</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 376px; max-height: 625px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></aside>
 				<div class="app-content my-3 my-md-5">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title">Dashboard</h4>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
-							</ol>
-						</div>
-
+						
 						@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
 							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
@@ -165,6 +161,8 @@
 		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
 		<script src="{{ Theme::url('plugins/toggle-sidebar/js/sidemenu.js') }}"></script>
+		<script src="{{ Theme::url('plugins/charts-c3/d3.v5.min.js') }}"></script>
+		<script src="{{ Theme::url('plugins/charts-c3/c3-chart.js') }}"></script>
 
 		@yield('javascript')
 		
