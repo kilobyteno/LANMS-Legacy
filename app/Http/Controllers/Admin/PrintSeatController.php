@@ -6,7 +6,7 @@ use LANMS\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Vsmoraes\Pdf\PdfFacade as PDF;
+use PDF;
 
 use LANMS\Seats;
 use LANMS\SeatRows;
@@ -41,7 +41,7 @@ class PrintSeatController extends Controller
     {
         $seat = Seats::where('slug', $slug)->first();
         $html = view('seating.print.pdf.seat')->with('seat', $seat)->render();
-        return PDF::load($html, 'A4', 'landscape')->show();
+        return PDF::loadHTML($html)->setPaper('a4', 'landscape')->stream();
     }
 
     /**
