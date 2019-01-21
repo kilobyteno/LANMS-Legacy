@@ -89,12 +89,13 @@
 				@else
 					<h2><strong><small>Paid:</small><br><span class="text-success">Yes</span></strong></h2>
 				@endif
+				<h2><strong><small>Seat:</small><br>{{ $ticket->reservation->seat->name }}</strong></h2>
 			</div>
 
 			<div class="col-md-4">
 				<div class="member-entry">
 					<a href="{{ route('user-profile', $ticket->user->username) }}" class="member-img">
-						<img src="{{ $ticket->user->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
+						<img src="{{ $ticket->user->profilepicture ?? '/images/profilepicture/0.png' }}" class="img-rounded" />
 						<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
 					</a>
 					<div class="member-details">
@@ -109,7 +110,7 @@
 							@endif
 							@if($ticket->user->location)
 								<div class="col-sm-6">
-									<i class="fa fa-map-marker"></i> {{ $ticket->user->location or '<em>Unkown</em>' }}
+									<i class="fa fa-map-marker"></i> {{ $ticket->user->location ?? '<em>Unkown</em>' }}
 								</div>
 							@endif
 							<div class="clear"></div>
@@ -129,7 +130,7 @@
 			</div>
 
 			<div class="col-md-4 text-center">
-				<h2><strong><small>Seat:</small><br>{{ $ticket->reservation->seat->name }}</strong></h2>
+				
 			</div>
 
 		</div>
