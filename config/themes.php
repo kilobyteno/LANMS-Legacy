@@ -57,14 +57,6 @@ return [
 
 	'themes' => [
 
-		'bootstrapextended',
-
-		'frontend',
-
-		'neon-admin',
-
-		'neon-user',
-
 		'vobilet',
 
 		'vobilet-admin',
