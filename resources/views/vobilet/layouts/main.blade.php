@@ -54,7 +54,7 @@
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
 											<span class="ml-2 d-none d-lg-block">
-												<span class="text-dark">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
+												<span class="text-dark" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -274,6 +274,12 @@
 			    }
 			});
   
+		</script>
+
+		<script type="text/javascript">
+			$('#usermenu').click(function() {
+				$("i", this).toggleClass("fa-caret-up fa-caret-down");
+			});
 		</script>
 
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
