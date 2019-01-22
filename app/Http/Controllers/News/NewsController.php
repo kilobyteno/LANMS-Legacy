@@ -111,8 +111,7 @@ class NewsController extends Controller
 
             $articlesave            = $article->save();
 
-            $port = (Setting::get('WEB_PORT') <> 80) ? '' : ':'.Setting::get('WEB_PORT');
-            $link = Setting::get('WEB_PROTOCOL').'://'.Setting::get('WEB_DOMAIN').'/'.$slug;
+            $link = route('news-show', $slug);
 
             if ($articlesave) {
                 if ($request->get('socialmedia') == "on") {
