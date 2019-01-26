@@ -25,3 +25,12 @@ a:focus, a:hover, a:active {
 .slide-item.active, .slide-item:hover, .slide-item:focus {
 	background: #3f4759;
 }
+
+.col-sm-3 a:hover {
+	border-radius: 0;
+	border: 1px solid #3f4759;
+}
+
+.list-group-item.active {
+	color:inherit
+}
