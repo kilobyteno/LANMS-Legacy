@@ -23,17 +23,18 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+		<link href="{{ Theme::url('css/dashboard.css') }}" rel="stylesheet" />
 		<!-- Sidemenu Css -->
 		<link href="{{ Theme::url('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
 		@yield('css')
-		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
-
 		<!-- c3.js Charts Plugin -->
 		<link href="{{ Theme::url('plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
 
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
+
+		<!---Custom-->
+		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
 	</head>
 	<body class="app sidebar-mini rtl">
 		<div id="global-loader"></div>
@@ -103,8 +104,8 @@
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/users')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
 						</li>
-						<li class="slide">
-							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active opened'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-crown"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
+						<li class="slide @if(Request::is('admin/crew*')){{'is-expanded'}} @endif">
+							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-crown"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item @if(Request::is('admin/crew/categories*')){{'active'}} @endif" href="{{ route('admin-crew-category') }}"><i class="fa fa-tag mr-1"></i> Categories</a></li>
 								<li><a class="slide-item @if(Request::is('admin/crew*') && !Request::is('admin/crew/categories*') && !Request::is('admin/crew/skill*')){{'active'}} @endif" href="{{ route('admin-crew') }}"><i class="fa fa-user mr-1"></i> Members</a></li>
@@ -112,21 +113,62 @@
 								<li><a class="slide-item @if(Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill-attachment') }}"><i class="fa fa-paperclip mr-1"></i> Skill Attachment</a></li>
 							</ul>
 						</li>
+						<li class="slide @if(Request::is('admin/news*')){{'is-expanded'}} @endif">
+							<a class="side-menu__item @if(Request::is('admin/news*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-newspaper"></i><span class="side-menu__label">News</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item @if(Request::is('admin/news/categories*')){{'active'}} @endif" href="{{ route('admin-news-category') }}"><i class="fas fa-tags mr-1"></i> Categories</a></li>
+								<li><a class="slide-item @if(Request::is('admin/news*') && !Request::is('admin/news/categories*')){{'active'}} @endif" href="{{ route('admin-news') }}"><i class="far fa-newspaper mr-1"></i> Articles</a></li>
+							</ul>
+						</li>
+						<li class="slide @if(Request::is('admin/seating*')){{'is-expanded'}} @endif">
+							<a class="side-menu__item @if(Request::is('admin/seating*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-chair"></i><span class="side-menu__label">Seating</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item @if(Request::is('admin/seating/row*')){{'active'}} @endif" href="{{ route('admin-seating-rows') }}"><i class="fas fa-align-justify mr-1"></i> Rows</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/seat*')){{'active'}} @endif" href="{{ route('admin-seating-seats') }}"><i class="fas fa-chair mr-1"></i> Seats</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif" href="{{ route('admin-seating-reservations') }}"><i class="fas fa-hand-paper mr-1"></i> Reservations</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif" href="{{ route('admin-seating-brokenband') }}"><i class="fas fa-unlink mr-1"></i> Broken Band</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin') }}"><i class="fas fa-ticket-alt mr-1"></i> Atendee Check-in</a></li>
+								<li><a class="slide-item @if(!Request::is('admin/seating/checkin*') && Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin-visitor') }}"><i class="fas fa-user-astronaut mr-1"></i> Visitor Check-in</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/print*')){{'active'}} @endif" href="{{ route('admin-seating-print') }}"><i class="fas fa-print mr-1"></i> Print Seats</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
+						</li>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/info')){{'active'}} @endif" href="{{ route('admin-info') }}"><i class="side-menu__icon fas fa-info-circle"></i><span class="side-menu__label">Info</span></a>
+						</li>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/sponsor')){{'active'}} @endif" href="{{ route('admin-sponsor') }}"><i class="side-menu__icon far fa-money-bill-alt"></i><span class="side-menu__label">Sponsor</span></a>
+						</li>
+						<li class="slide @if(Request::is('admin/system*')){{'is-expanded'}} @endif">
+							<a class="side-menu__item @if(Request::is('admin/system*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-cogs"></i><span class="side-menu__label">System</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item @if(Request::is('admin/system/whatsnew*')){{'active'}} @endif" href="{{ route('admin-whatsnew') }}"><i class="far fa-lightbulb mr-1"></i> What's New?</a></li>
+								<li><a class="slide-item @if(Request::is('admin/system/activity*')){{'active'}} @endif" href="{{ route('admin-activity') }}"><i class="fas fa-chart-line mr-1"></i> Activity Log</a></li>
+								@if(Sentinel::inRole('superadmin'))
+									<li><a class="slide-item @if(Request::is('admin/system/settings*')){{'active'}} @endif" href="{{ route('admin-settings') }}"><i class="fas fa-cog mr-1"></i> Settings</a></li>
+									<li><a class="slide-item @if(Request::is('admin/system/logs*')){{'active'}} @endif" href="{{ route('admin-logs') }}"><i class="fas fa-clipboard-list mr-1"></i> Logs</a></li>
+									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License Status</a></li>
+								@endif
+							</ul>
+						</li>
 					</ul>
 				</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 376px; max-height: 625px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></aside>
 				<div class="app-content my-3 my-md-5">
 					<div class="side-app">
-						
-						@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
-						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-							<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
-						@endif
+						<div style="min-height:80vh">
+							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+								<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+								<div class="alert alert-danger" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+							@endif
 
-						@component('layouts.alert-session') @endcomponent
+							@component('layouts.alert-session') @endcomponent
 
-						@yield('content')
-
+							
+							@yield('content')
+						</div>
 					</div>
 					<footer class="footer">
 						<div class="container">
@@ -158,7 +200,6 @@
 		<script src="{{ Theme::url('js/vendors/jquery.sparkline.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/selectize.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/jquery.tablesorter.min.js') }}"></script>
-		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
 		<script src="{{ Theme::url('plugins/toggle-sidebar/js/sidemenu.js') }}"></script>
 		<script src="{{ Theme::url('plugins/charts-c3/d3.v5.min.js') }}"></script>
