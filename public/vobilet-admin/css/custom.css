@@ -34,3 +34,7 @@ a:focus, a:hover, a:active {
 .list-group-item.active {
 	color:inherit
 }
+
+.richText .richText-editor ul, .richText .richText-editor ol {
+	list-style-type: unset;
+}
