@@ -7,7 +7,7 @@
 	<h4 class="page-title">System Logs</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-		<li class="breadcrumb-item"><a href="{{ route('admin-users') }}">Admin</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item active" aria-current="page">System Logs</li>
 	</ol>
 </div>

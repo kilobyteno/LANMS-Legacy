@@ -6,7 +6,7 @@
 	<h4 class="page-title">Dashboard</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="#">Home</a></li>
-		<li class="breadcrumb-item"><a href="{{ route('admin-users') }}">Admin</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
 	</ol>
 </div>
