@@ -17,6 +17,11 @@ a:focus, a:hover, a:active {
 .app-sidebar__toggle:hover {
 	color: #eee;
 }
+
+.table-responsive {
+	overflow-x: hidden;
+}
+
 .slide-item.active, .slide-item:hover, .slide-item:focus {
 	background: #3f4759;
 }
