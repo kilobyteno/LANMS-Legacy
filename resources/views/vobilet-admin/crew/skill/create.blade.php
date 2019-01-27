@@ -20,7 +20,6 @@
 			<div class="card-body">
 				<form action="{{ route('admin-crew-skill-store') }}" method="post">
 
-					<!-- Title and Publish Buttons -->
 					<div class="row">
 						<div class="col-sm-5 form-group">
 							<div class="input-group">
