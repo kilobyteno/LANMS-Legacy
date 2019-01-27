@@ -29,7 +29,7 @@
 										<i class="far fa-user"></i>
 									</div>
 								</div>
-								<input type="text" class="form-control input-lg disabled" disabled="" value="{{ $crew->user->username.' ('.User::getFullnameByID($crew->user->id).')' }}" />
+								<input type="text" class="form-control input-lg disabled" disabled="" value="{{ User::getFullnameAndNicknameByID($crew->user->id) }}" />
 							</div>
 						</div>
 
