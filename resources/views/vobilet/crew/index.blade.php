@@ -20,8 +20,8 @@
 							<div class="card">
 								<div class="card-body d-flex flex-column">
 									<div class="text-muted"><small>
-										@foreach(\LANMS\CrewSkillAttached::where('user_id', $crew->user->id)->thisYear()->get() as $skilla)
-											<span class="{{ $skilla->skill->label }}"><i class="{{ $skilla->skill->icon }}"></i> {{ $skilla->skill->title }}</span>
+										@foreach($crew->skills as $skill)
+											<span class="{{ $skill->label }}"><i class="{{ $skill->icon }}"></i> {{ $skill->title }}</span>
 										@endforeach
 									</small></div>
 									<div class="d-flex align-items-center pt-5 mt-auto">

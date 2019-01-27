@@ -54,6 +54,19 @@
 						</div>
 
 					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group mt-4 mb-0">
+								<label class="form-label">Skills:</label>
+								@foreach(\LANMS\CrewSkill::orderBy('title', 'asc')->get() as $skill)
+		                        	<label class="custom-control custom-checkbox mr-2" style="display: inline-block;">
+										<input type="checkbox" class="custom-control-input" name="skills[]" value="{{ $skill->id }}" @if(in_array($skill->id, $crew->skills->pluck('id')->toArray())) checked @endif>
+										<span class="custom-control-label">{{ $skill->title }}</span>
+									</label>
+		                        @endforeach
+							</div>
+						</div>
+					</div>
 
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 

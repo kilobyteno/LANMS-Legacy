@@ -42,12 +42,8 @@ class Crew extends Model {
 		return $this->hasOne('User', 'id', 'user_id')->withTrashed();
 	}
 
-	function skillAttached() {
-		return $this->hasMany('CrewSkillAttached', 'user_id', 'id');
+    public function skills()
+    {
+        return $this->belongsToMany('LANMS\CrewSkill');
 	}
-
-	function skillAttachedThisYear() {
-		return $this->hasMany('CrewSkillAttached', 'user_id', 'id')->thisYear();
-	}
-
 }

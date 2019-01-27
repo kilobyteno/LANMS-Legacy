@@ -70,21 +70,24 @@ class CrewController extends Controller
     public function store(CrewCreateRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.create'])) {
-            $crew                   = new Crew;
-            $crew->user_id          = $request->get('user_id');
-            $crew->category_id      = $request->get('category_id');
-            $crew->year             = \Setting::get('SEATING_YEAR');
-            $crew->author_id        = Sentinel::getUser()->id;
-            $crew->editor_id        = Sentinel::getUser()->id;
+            $crew = Crew::create([
+                'user_id' => $request->get('user_id'),
+                'category_id' => $request->get('category_id'),
+                'year' => \Setting::get('SEATING_YEAR'),
+                'author_id' => Sentinel::getUser()->id,
+                'editor_id' => Sentinel::getUser()->id,
+            ]);
+            
+            $crew->skills()->attach($request->input('skills'));
 
-            if ($crew->save()) {
+            if ($crew) {
                 return Redirect::route('admin-crew')
                         ->with('messagetype', 'success')
-                        ->with('message', 'The skill has now been saved and published!');
+                        ->with('message', 'The crew has now been saved!');
             } else {
                 return Redirect::route('admin-crew')
                     ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the skill.');
+                    ->with('message', 'Something went wrong while saving the crew.');
             }
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -132,6 +135,9 @@ class CrewController extends Controller
             $crew               = Crew::find($id);
             $crew->category_id  = $request->get('category_id');
             $crew->editor_id    = Sentinel::getUser()->id;
+
+            $crew->skills()->detach();
+            $crew->skills()->attach($request->input('skills'));
 
             if ($crew->save()) {
                 return Redirect::route('admin-crew-edit', $id)
