@@ -26,14 +26,14 @@
 		<link href="{{ Theme::url('css/dashboard.css') }}" rel="stylesheet" />
 		<!-- Sidemenu Css -->
 		<link href="{{ Theme::url('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
-		@yield('css')
 		<!-- c3.js Charts Plugin -->
 		<link href="{{ Theme::url('plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
-
+		<!-- Select2 -->
+		<link href="{{ Theme::url('plugins/select2/select2.min.css') }}" rel="stylesheet">
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
-
 		<!---Custom-->
+		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
 	</head>
 	<body class="app sidebar-mini rtl">
@@ -204,6 +204,7 @@
 		<script src="{{ Theme::url('plugins/toggle-sidebar/js/sidemenu.js') }}"></script>
 		<script src="{{ Theme::url('plugins/charts-c3/d3.v5.min.js') }}"></script>
 		<script src="{{ Theme::url('plugins/charts-c3/c3-chart.js') }}"></script>
+		<script src="{{ Theme::url('plugins/select2/select2.full.min.js') }}"></script>
 
 		@yield('javascript')
 		
@@ -213,6 +214,9 @@
 		<script type="text/javascript">
 			$('#usermenu').click(function() {
 				$("i", this).toggleClass("fa-caret-up fa-caret-down");
+			});
+			$(document).ready(function() {
+				$('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 			});
 		</script>
 
