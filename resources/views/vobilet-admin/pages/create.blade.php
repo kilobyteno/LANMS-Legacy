@@ -20,7 +20,7 @@
 				<form action="{{ route('admin-pages-store') }}" method="post">
 
 					<div class="input-group mb-5">
-						<input type="text" class="form-control input-lg" name="title" autocomplete="off" placeholder="Page title" value="{{ (old('title')) ? old('title') : '' }}" />
+						<input type="text" class="form-control input-lg" name="title" autocomplete="off" placeholder="Title" value="{{ (old('title')) ? old('title') : '' }}" />
 						<span class="input-group-append">
 							<button class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i> Save</button>
 						</span>
