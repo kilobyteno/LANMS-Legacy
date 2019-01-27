@@ -36,7 +36,7 @@ class CrewCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.*'])) {
             $crewcategories = CrewCategory::all();
-            return view('crew.category.admin')
+            return view('crew.category.index')
                         ->withCategories($crewcategories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
