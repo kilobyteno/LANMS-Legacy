@@ -38,3 +38,16 @@ a:focus, a:hover, a:active {
 .richText .richText-editor ul, .richText .richText-editor ol {
 	list-style-type: unset;
 }
+
+.iti-flag {background-image: url("/vobilet-admin/images/intlTelInput/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti-flag {background-image: url("/vobilet-admin/images/intlTelInput/flags@2x.png");}
+}
+
+.intl-tel-input {
+	width: 100%;
+}
+
+.intl-tel-input .country-list .country.highlight {
+	margin: 0;
