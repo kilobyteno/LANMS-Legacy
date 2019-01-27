@@ -39,7 +39,7 @@ class CrewController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.*'])) {
             $crewassignment = Crew::thisYear()->get();
-            return view('crew.admin')
+            return view('crew.index')
                         ->with('crewassignment', $crewassignment);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
