@@ -116,8 +116,8 @@
 						<li class="slide @if(Request::is('admin/news*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/news*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-newspaper"></i><span class="side-menu__label">News</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
-								<li><a class="slide-item @if(Request::is('admin/news/categories*')){{'active'}} @endif" href="{{ route('admin-news-category') }}"><i class="fas fa-tags mr-1"></i> Categories</a></li>
 								<li><a class="slide-item @if(Request::is('admin/news*') && !Request::is('admin/news/categories*')){{'active'}} @endif" href="{{ route('admin-news') }}"><i class="far fa-newspaper mr-1"></i> Articles</a></li>
+								<li><a class="slide-item @if(Request::is('admin/news/categories*')){{'active'}} @endif" href="{{ route('admin-news-category') }}"><i class="fas fa-tags mr-1"></i> Categories</a></li>
 							</ul>
 						</li>
 						<li class="slide @if(Request::is('admin/seating*')){{'is-expanded'}} @endif">
