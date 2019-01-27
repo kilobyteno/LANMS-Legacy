@@ -22,7 +22,7 @@ if (Config::get('app.debug')) {
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test', function () {
-        //App::abort(500);
+        App::abort(404);
         /*\Toolkito\Larasap\SendTo::Facebook(
             'link',
             [
@@ -30,7 +30,7 @@ if (Config::get('app.debug')) {
                 'message' => 'Test'
             ]
         );*/
-        \Toolkito\Larasap\SendTo::Twitter('https://downlinkdg.no/');
+        //\Toolkito\Larasap\SendTo::Twitter('https://downlinkdg.no/');
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
