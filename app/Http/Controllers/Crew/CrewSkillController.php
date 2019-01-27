@@ -36,7 +36,7 @@ class CrewSkillController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.*'])) {
             $skills = CrewSkill::all();
-            return view('crew.skill.admin')
+            return view('crew.skill.index')
                         ->withSkills($skills);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
