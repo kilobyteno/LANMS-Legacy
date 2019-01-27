@@ -107,8 +107,8 @@
 						<li class="slide @if(Request::is('admin/crew*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-crown"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
-								<li><a class="slide-item @if(Request::is('admin/crew/categories*')){{'active'}} @endif" href="{{ route('admin-crew-category') }}"><i class="fa fa-tag mr-1"></i> Categories</a></li>
 								<li><a class="slide-item @if(Request::is('admin/crew*') && !Request::is('admin/crew/categories*') && !Request::is('admin/crew/skill*')){{'active'}} @endif" href="{{ route('admin-crew') }}"><i class="fa fa-user mr-1"></i> Members</a></li>
+								<li><a class="slide-item @if(Request::is('admin/crew/categories*')){{'active'}} @endif" href="{{ route('admin-crew-category') }}"><i class="fa fa-tag mr-1"></i> Categories</a></li>
 								<li><a class="slide-item @if(Request::is('admin/crew/skill*') && !Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase mr-1"></i> Skills</a></li>
 								<li><a class="slide-item @if(Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill-attachment') }}"><i class="fa fa-paperclip mr-1"></i> Skill Attachment</a></li>
 							</ul>
