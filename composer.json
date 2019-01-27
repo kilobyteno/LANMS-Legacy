@@ -12,6 +12,7 @@
         "cartalyst/stripe": "~2.0",
         "cartalyst/stripe-laravel": "9.0.*",
         "dialect/laravel-gdpr-compliance": "^1.4",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "filp/whoops": "~2.0",
         "igaster/laravel-theme": "^2.0",

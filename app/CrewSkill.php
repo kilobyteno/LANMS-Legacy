@@ -15,7 +15,7 @@ class CrewSkill extends Model
         'title',
         'slug',
         'icon',
-        'label',
+        'class',
         'author_id',
         'editor_id',
     ];
