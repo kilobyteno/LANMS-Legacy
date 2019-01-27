@@ -13,6 +13,8 @@ class UpdateCrewSkillAttachments extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('crew_skill_attached');
+        
         Schema::create('crew_crew_skill', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('crew_id')->unsigned();
