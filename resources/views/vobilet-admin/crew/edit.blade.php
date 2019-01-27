@@ -18,9 +18,8 @@
 		
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-crew-store') }}" method="post">
+				<form action="{{ route('admin-crew-update', $crew->id) }}" method="post">
 
-					<!-- Title and Publish Buttons -->
 					<div class="row">
 
 						<div class="col-sm-5">
