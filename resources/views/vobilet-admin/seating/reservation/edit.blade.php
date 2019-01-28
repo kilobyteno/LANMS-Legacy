@@ -20,7 +20,7 @@
 			<div class="card-body">
 				<form action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
 					<div class="row">
-						<div class="col-sm-2 input-group">
+						<div class="col-sm-1 input-group">
 							<div class="input-group-prepend">
 								<div class="input-group-text">Seat</div>
 							</div>
@@ -49,7 +49,7 @@
 							@endif
 						</div>
 
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							@if(!$reservation->ticket && $reservation->status_id != 1)
 								<a class="btn btn-orange btn-lg btn-block" href="{{ route('admin-seating-reservation-paylater', $reservation->seat->slug) }}"><i class="fas fa-door-open mr-2"></i>Mark as 'Pay at entrance'</a>
 							@endif
