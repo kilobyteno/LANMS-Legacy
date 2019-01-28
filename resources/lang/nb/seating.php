@@ -84,7 +84,7 @@ return [
         'seat' => 'Sete',
         'reserved' => 'Dette setet er :type for dette medlemmet.',
         'reservedfor' => 'Reservert for',
-        'agreement' => 'Jeg har lest og godkjent <strong>vilkårene for bruk</strong> og <strong> regler</strong> for dette arrangementet.',
+        'agreement' => 'Jeg har lest og godkjent <strong>kjøpsbetingelser</strong> og <strong>regler</strong> for dette arrangementet.',
         'button' => 'Reserver sete',
         'alert' => array(
             'cannotbereserved' => 'Dette setet kan ikke reserveres!',

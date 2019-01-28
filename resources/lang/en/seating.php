@@ -84,7 +84,7 @@ return [
         'seat' => 'Seat',
         'reserved' => 'This seat is :type for this member.',
         'reservedfor' => 'Reserved for',
-        'agreement' => 'I have read and agree to the <strong>Terms of Service</strong> and the <strong>Rules</strong> of this event.',
+        'agreement' => 'I have read and agree to the <strong>Purchase Conditions</strong> and the <strong>Rules</strong> of this event.',
         'button' => 'Reserved Seat',
         'alert' => array(
             'cannotbereserved' => 'This seat cannot be reserved!',
