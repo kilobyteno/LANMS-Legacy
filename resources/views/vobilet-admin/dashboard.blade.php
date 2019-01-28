@@ -99,53 +99,59 @@
 
 <div class="row row-cards">
 	
-	<div class="col-sm-12 col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col">
-						<div class="text-muted">Active users</div>
-						<div class="h3 m-0"><b>{{ User::where('last_activity', '<>', '')->orWhere('isAnonymized', '0')->orWhere('deleted_at', '<>', '')->count() }} <small>/{{ User::withTrashed()->count() }}</small></b></div>
-					</div>
-					<div class="col-auto align-self-center">
-						<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", User::where('last_activity', '<>', '')->orWhere('isAnonymized', '1')->orWhere('deleted_at', '<>', '')->count() / User::withTrashed()->count()) }}" data-thickness="6" data-color="#0061da"><canvas width="40" height="40"></canvas></div>
+	@if(User::withTrashed()->count() > 0)
+		<div class="col-sm-12 col-md-6 col-lg-3">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<div class="text-muted">Active users</div>
+							<div class="h3 m-0"><b>{{ User::where('last_activity', '<>', '')->orWhere('isAnonymized', '0')->orWhere('deleted_at', '<>', '')->count() ?? 1 }} <small>/{{ User::withTrashed()->count() }}</small></b></div>
+						</div>
+						<div class="col-auto align-self-center">
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", User::where('last_activity', '<>', '')->orWhere('isAnonymized', '1')->orWhere('deleted_at', '<>', '')->count() / User::withTrashed()->count()) }}" data-thickness="6" data-color="#0061da"><canvas width="40" height="40"></canvas></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 
-	<div class="col-sm-12 col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col">
-						<div class="text-muted">Checkins</div>
-						<div class="h3 m-0"><b>{{ Checkin::thisYear()->count() }}</b></div>
-					</div>
-					<div class="col-auto align-self-center ">
-						<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", Checkin::thisYear()->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+	@if(Checkin::thisYear()->count() > 0)
+		<div class="col-sm-12 col-md-6 col-lg-3">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<div class="text-muted">Checkins</div>
+							<div class="h3 m-0"><b>{{ Checkin::thisYear()->count() }}</b></div>
+						</div>
+						<div class="col-auto align-self-center ">
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", Checkin::thisYear()->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 
-	<div class="col-sm-12 col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col">
-						<div class="text-muted">Paid Reservations</div>
-						<div class="h3 m-0"><b>{{ SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() }} <small>/{{ SeatReservation::thisYear()->count() }}</small></b></div>
-					</div>
-					<div class="col-auto align-self-center ">
-						<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+	@if(SeatReservation::thisYear()->count() > 0)
+		<div class="col-sm-12 col-md-6 col-lg-3">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<div class="text-muted">Paid Reservations</div>
+							<div class="h3 m-0"><b>{{ SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() }} <small>/{{ SeatReservation::thisYear()->count() }}</small></b></div>
+						</div>
+						<div class="col-auto align-self-center ">
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 
 </div>
 @stop
