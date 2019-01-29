@@ -37,32 +37,26 @@
 		<br><hr><br>
 
 		<div class="row">
-
 			<div class="col-md-6">
-
 				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
 				<hr>
-
 				@foreach($checkins as $checkin)
 					<div class="col-md-4">
-						{{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}
+						{{ $checkin->ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}
 					</div>
 				@endforeach
 			</div>
-
 			<div class="col-md-6">
-
-				<h1 class="text-center"><br><small>Seats not checked in: {{ $noncheckedin->count() }}</small></h1>
+				<h1 class="text-center">{{ $noncheckedin->count() }}<br><small>Has not checked in yet</small></h1>
 				<hr>
 				<div class="row">
 					@foreach($noncheckedin as $ticket)
 						<div class="col-md-4">
-							{{ $ticket->reservation->seat->name }} | {{ User::getFullnameAndNicknameByID($ticket->user->id) }}
+							{{ $ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($ticket->user->id) }}
 						</div>
 					@endforeach
 				</div>
 			</div>
-
 		</div>
 
 	</div>
