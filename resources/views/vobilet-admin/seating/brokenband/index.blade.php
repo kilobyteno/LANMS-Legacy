@@ -40,6 +40,7 @@
 							<th>checkin id</th>
 							<th>previous bandnumber</th>
 							<th>new bandnumber</th>
+							<th>changed</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,6 +49,7 @@
 								<td>{{ $brokenband->checkin_id }}</td>
 								<td>{{ $brokenband->previous_bandnumber }}</td>
 								<td>{{ $brokenband->new_bandnumber }}</td>
+								<td><span data-toggle="tooltip" title="{{ $brokenband->created_at }}">{{ $brokenband->created_at->diffForHumans() }}</span></td>
 							</tr>
 						@endforeach
 					</tbody>
