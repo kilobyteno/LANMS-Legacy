@@ -36,7 +36,7 @@ class CrewCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.*'])) {
             $crewcategories = CrewCategory::all();
-            return view('crew.category.admin')
+            return view('crew.category.index')
                         ->withCategories($crewcategories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -123,7 +123,7 @@ class CrewCategoryController extends Controller
     public function edit($id)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.update'])) {
-            $crewcategory = CrewCategory::find($id)->withTrashed();
+            $crewcategory = CrewCategory::withTrashed()->find($id);
             return view('crew.category.edit')->withCategory($crewcategory);
         } else {
             return Redirect::back()->with('messagetype', 'warning')

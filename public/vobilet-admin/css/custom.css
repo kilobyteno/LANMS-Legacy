@@ -1,0 +1,53 @@
+a, .breadcrumb-item a {
+	color:#3498db;
+}
+
+a:focus, a:hover, a:active {
+	color: #eee;
+}
+
+.app-sidebar__toggle::before {
+	content:none;
+}
+
+.app-sidebar__toggle {
+	font-size: 21px;
+}
+
+.app-sidebar__toggle:hover {
+	color: #eee;
+}
+
+.table-responsive {
+	overflow-x: hidden;
+}
+
+.slide-item.active, .slide-item:hover, .slide-item:focus {
+	background: #272b38;
+}
+
+.col-sm-3 a:hover {
+	border-radius: 0;
+	border: 1px solid #3f4759;
+}
+
+.list-group-item.active {
+	color:inherit
+}
+
+.richText .richText-editor ul, .richText .richText-editor ol {
+	list-style-type: unset;
+}
+
+.iti-flag {background-image: url("/vobilet-admin/images/intlTelInput/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti-flag {background-image: url("/vobilet-admin/images/intlTelInput/flags@2x.png");}
+}
+
+.intl-tel-input {
+	width: 100%;
+}
+
+.intl-tel-input .country-list .country.highlight {
+	margin: 0;

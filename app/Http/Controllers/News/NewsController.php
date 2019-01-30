@@ -79,10 +79,7 @@ class NewsController extends Controller
                 $active = true;
             }
 
-            $published_at_date = date_format(date_create_from_format('D, d F Y', $request->get('published_at_date')), 'Y-m-d');
-            ;
-            $datetime = new \DateTime($published_at_date);
-            $date = $datetime->format('Y-m-d');
+            $published_at_date = $request->get('published_at_date');
             $published_at_time = $request->get('published_at_time');
             $published_at = date('Y-m-d H:i:s', strtotime("$published_at_date $published_at_time"));
 
@@ -191,10 +188,7 @@ class NewsController extends Controller
                 $active = true;
             }
 
-            $published_at_date = date_format(date_create_from_format('D, d F Y', $request->get('published_at_date')), 'Y-m-d');
-            ;
-            $datetime = new \DateTime($published_at_date);
-            $date = $datetime->format('Y-m-d');
+            $published_at_date = $request->get('published_at_date');
             $published_at_time = $request->get('published_at_time');
             $published_at = date('Y-m-d H:i:s', strtotime("$published_at_date $published_at_time"));
 

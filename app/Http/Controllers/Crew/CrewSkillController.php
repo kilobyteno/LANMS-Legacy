@@ -36,7 +36,7 @@ class CrewSkillController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.*'])) {
             $skills = CrewSkill::all();
-            return view('crew.skill.admin')
+            return view('crew.skill.index')
                         ->withSkills($skills);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -84,7 +84,7 @@ class CrewSkillController extends Controller
             $crewskill->title           = $title;
             $crewskill->slug            = $slug;
             $crewskill->icon            = $request->get('icon');
-            $crewskill->label           = $request->get('label');
+            $crewskill->class           = $request->get('class');
             $crewskill->author_id       = Sentinel::getUser()->id;
             $crewskill->editor_id       = Sentinel::getUser()->id;
 
@@ -144,7 +144,7 @@ class CrewSkillController extends Controller
             $crewskill->title       = $request->get('title');
             $crewskill->slug        = $request->get('slug');
             $crewskill->icon        = $request->get('icon');
-            $crewskill->label       = $request->get('label');
+            $crewskill->class       = $request->get('class');
             $crewskill->editor_id   = Sentinel::getUser()->id;
 
             if ($crewskill->save()) {

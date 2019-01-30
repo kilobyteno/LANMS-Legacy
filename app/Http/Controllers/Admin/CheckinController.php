@@ -26,11 +26,11 @@ class CheckinController extends Controller
     public function index()
     {
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-            $checkedin              = Checkin::thisYear()->get();
+            $checkins              = Checkin::thisYear()->get();
             $ticketsnoncheckedin    = SeatTicket::noCheckin()->thisYear()->get();
             $reservedcount          = SeatTicket::thisYear()->count();
 
-            return view('seating.checkin.index')->withCheckedin($checkedin)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
+            return view('seating.checkin.index')->withCheckins($checkins)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -95,8 +95,7 @@ class CheckinController extends Controller
     public function show($id)
     {
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-            $barcode = $id;
-            $ticket = SeatTicket::where('barcode', '=', $barcode)->first();
+            $ticket = SeatTicket::where('barcode', '=', $id)->first();
             if ($ticket == null) {
                 return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
                                 ->with('message', 'Ticket not found!');
@@ -115,7 +114,7 @@ class CheckinController extends Controller
     public function check(CheckTicketRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
-            $barcode = $request->get('ticket_id');
+            $barcode = $request->get('barcode');
             $ticket = SeatTicket::where('barcode', '=', $barcode)->first();
             if ($ticket == null) {
                 return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
