@@ -35,7 +35,7 @@ class CreateCrewSkillAttachedTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('crew_skill_attached');
+		Schema::dropIfExists('crew_skill_attached');
 	}
 
 }

@@ -29,6 +29,6 @@ class UpdateCrewSkillAttachments extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('crew_crew_skill');
     }
 }
