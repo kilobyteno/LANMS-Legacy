@@ -8,7 +8,7 @@
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item">Seating</li>
-		<li class="breadcrumb-item"><a href="{{ route('admin-seating-reservations') }}">Reservations</a>/li>
+		<li class="breadcrumb-item"><a href="{{ route('admin-seating-reservations') }}">Reservations</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Edit Reservation: #{{ $reservation->id }}</li>
 	</ol>
 </div>
