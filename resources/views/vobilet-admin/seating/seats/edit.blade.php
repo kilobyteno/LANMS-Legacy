@@ -18,7 +18,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-seating-seat-store') }}" method="post">
+				<form action="{{ route('admin-seating-seat-update') }}" method="post">
 
 					<div class="row">
 
