@@ -31,7 +31,7 @@
 						<td>{{ $category->slug }}</td>
 						<td>{{ $category->name }}</td>
 						<td>
-							<a href="{{ route('news-category-show', $category->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
+							<!--<a href="{{ route('news-category-show', $category->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>-->
 							<a href="{{ route('admin-news-category-edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.news.destroy'))
 								<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
