@@ -17,7 +17,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-sponsor-store') }}" method="post" enctype="multipart/form-data">
+				<form action="{{ route('admin-sponsor-update') }}" method="post" enctype="multipart/form-data">
 
 					<div class="input-group mb-5">
 						<div class="input-group-prepend">
