@@ -109,7 +109,7 @@
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 									</li>
-									@if(count(\LANMS\Page::forMenu()) > 0)
+									@if(count(\LANMS\Page::orderBy('name', 'desc')->forMenu()) > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
