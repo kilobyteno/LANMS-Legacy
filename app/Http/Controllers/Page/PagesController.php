@@ -78,11 +78,7 @@ class PagesController extends Controller
             }
 
             $slug = $request->get('slug');
-
-            if ($slug == null) {
-                $slugarr = explode(' ', trim($slug));
-                $slug = strtolower($slugarr[0]);
-            }
+            $slug = str_slug($slug, '-');
 
             $page               = new Page;
             $page->title        = $request->get('title');
