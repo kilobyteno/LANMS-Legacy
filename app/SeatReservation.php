@@ -125,7 +125,7 @@ class SeatReservation extends Model
         $after = $time - time();
 
         if ($after < 0) {
-            return trans('global.time.expired');
+            return true;
         }
 
         if ($time == '0000-00-00 00:00:00') {
