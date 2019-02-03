@@ -18,7 +18,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-news-category-store') }}" method="post">
+				<form action="{{ route('admin-news-category-update', $category->id) }}" method="post">
 					<div class="row">
 						<div class="col-sm-5 @if($errors->has('name')) has-error @endif">
 							<div class="input-group">

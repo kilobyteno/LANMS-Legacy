@@ -17,7 +17,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-news-store') }}" method="post">
+				<form action="{{ route('admin-news-update', $article->id) }}" method="post">
 
 					<div class="input-group mb-5">
 						<input type="text" class="form-control input-lg" name="title" autocomplete="off" placeholder="Title" value="{{ (old('title')) ? old('title') : $article->title }}" />

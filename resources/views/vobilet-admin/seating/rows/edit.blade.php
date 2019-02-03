@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<form action="{{ route('admin-seating-row-update') }}" method="post">
+		<form action="{{ route('admin-seating-row-update', $row->id) }}" method="post">
 
 			<div class="row">
 				<div class="col-sm-10">
