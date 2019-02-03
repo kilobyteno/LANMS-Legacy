@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-blue mr-3">
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-purple mr-3">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-teal mr-3">
@@ -68,7 +68,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-cyan mr-3">
@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-lg-2">
+	<div class="col-sm-12 col-md-6 col-lg-3">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
