@@ -21,10 +21,48 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#releasenotes" href="#250" aria-expanded="true">Version 2.5.0</a>
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#251" aria-expanded="true">Version 2.5.1</a>
 							</h4>
 						</div>
-						<div id="250" class="panel-collapse collapse in" aria-expanded="true">
+						<div id="251" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-251'>LANMS-251</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-252'>LANMS-252</a>] - Posting news to social media generates wrong link
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-261'>LANMS-261</a>] - If no birthdate is filled, it throws an error
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-262'>LANMS-262</a>] - Slugs isn&#39;t always created or updated
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-263'>LANMS-263</a>] - Seatmap is not sizing correctly
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-264'>LANMS-264</a>] - User can change payment after expiry
+								</ul>
+
+								<h4>Task</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-257'>LANMS-257</a>] - Delete old themes and files
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-258'>LANMS-258</a>] - Change agreement when reserving
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-190'>LANMS-190</a>] - Update the Admin UI
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-238'>LANMS-238</a>] - Improve the check-in process for the person checking in attendees
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-250'>LANMS-250</a>] - Add chevron/caret down to user over menu
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-255'>LANMS-255</a>] - Improve crew and skill attachment
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-256'>LANMS-256</a>] - Change from label to class in crew skill
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-259'>LANMS-259</a>] - Add theme selection for users
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-260'>LANMS-260</a>] - Sort info pages on title
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#250">Version 2.5.0</a>
+							</h4>
+						</div>
+						<div id="250" class="panel-collapse collapse">
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
@@ -39,6 +77,7 @@
 								<ul>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-211'>LANMS-211</a>] - Add Translation Support</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-219'>LANMS-219</a>] - Add calendar/schedule system</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-244'>LANMS-244</a>] - Add Discord widget</li>
 								</ul>
 								<h4>Improvement</h4>
 								<ul>
