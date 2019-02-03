@@ -60,7 +60,7 @@ class AuthController extends Controller
 
             if ($active === false) {
                 return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.alert.notactive'));
+                                    ->with('message', trans('auth.alert.usernotactive'));
             } elseif ($active === true) {
                 try {
                     if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
