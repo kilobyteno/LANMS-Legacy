@@ -19,25 +19,25 @@
 			<div class="card-body">
 				<form action="{{ route('admin-seating-checkin-visitor-store') }}" method="post">
 					<div class="row">
-						<div class="col-sm-4 @if($errors->has('fullname')) has-error @endif">
+						<div class="col-lg-4">
 							<input type="text" class="form-control input-lg" name="fullname" placeholder="Full Name" value="{{ (old('fullname')) ? old('fullname') : '' }}" autocomplete="off" />
 							@if($errors->has('fullname'))
 								<p class="text-danger">{{ $errors->first('fullname') }}</p>
 							@endif
 						</div>
-						<div class="col-sm-4 @if($errors->has('telephonenumber')) has-error @endif">
+						<div class="col-lg-4">
 							<input type="tel" class="form-control input-lg" name="telephonenumber" placeholder="Telephone Number" value="{{ (old('telephonenumber')) ? old('telephonenumber') : '' }}" autocomplete="off" />
 							@if($errors->has('telephonenumber'))
 								<p class="text-danger">{{ $errors->first('telephonenumber') }}</p>
 							@endif
 						</div>
-						<div class="col-sm-2 @if($errors->has('bandnumber')) has-error @endif">
+						<div class="col-lg-2">
 							<input type="text" class="form-control input-lg" name="bandnumber" placeholder="Band Number" value="{{ (old('bandnumber')) ? old('bandnumber') : '' }}" autocomplete="off" />
 							@if($errors->has('bandnumber'))
 								<p class="text-danger">{{ $errors->first('bandnumber') }}</p>
 							@endif
 						</div>
-						<div class="col-sm-2">
+						<div class="col-lg-2">
 							<button type="submit" class="btn btn-success btn-block"><i class="fa fa-user-check mr-2"></i>Check-in</button>
 						</div>
 					</div>
