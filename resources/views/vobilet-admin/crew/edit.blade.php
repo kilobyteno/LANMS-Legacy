@@ -40,8 +40,8 @@
 										<i class="fas fa-tag"></i>
 									</div>
 								</div>
-								<input type="text" class="form-control input-lg" id="category" placeholder="Crew Category" value="{{ $crew->category->title }}" autocomplete="OFF">
-								<input type="hidden" id="category_id" name="category_id" value="{{ $crew->category->id }}">
+								<input type="text" class="form-control input-lg" id="category" placeholder="Crew Category" value="{{ $crew->category->title ?? '' }}" autocomplete="OFF">
+								<input type="hidden" id="category_id" name="category_id" value="{{ $crew->category->id ?? '' }}">
 							</div>
 							@if($errors->has('category_id'))
 								<p class="text-danger">{{ $errors->first('category_id') }}</p>
