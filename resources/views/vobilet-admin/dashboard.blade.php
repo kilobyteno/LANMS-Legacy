@@ -171,7 +171,6 @@
 					  },
 					  size: $this.height(),
 					  startAngle: -Math.PI / 4 * 2,
-					  emptyFill: '#343b4a',
 					  lineCap: 'round'
 					});
 				});
