@@ -34,6 +34,7 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-262'>LANMS-262</a>] - Slugs isn&#39;t always created or updated
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-263'>LANMS-263</a>] - Seatmap is not sizing correctly
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-264'>LANMS-264</a>] - User can change payment after expiry
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-266'>LANMS-266</a>] - Phone is not being saved on signup page</li>
 								</ul>
 
 								<h4>Task</h4>
