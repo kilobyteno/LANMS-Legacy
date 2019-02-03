@@ -23,8 +23,8 @@
 						<p class="mb-4 text-white">{{ trans('global.members') }}</p>
 					@endif
 					@if(\Sentinel::getUser()->id == $id)
-						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-light btn-sm"><i class="fa fa-pencil-alt"></i> {{ trans('user.profile.editprofile') }}</a>
-						<a href="{{ route('account-change-images') }}" class="btn btn-light btn-sm"><i class="fas fa-images"></i> {{ trans('user.profile.editimages') }}</a>
+						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-secondary btn-sm"><i class="fa fa-pencil-alt"></i> {{ trans('user.profile.editprofile') }}</a>
+						<a href="{{ route('account-change-images') }}" class="btn btn-secondary btn-sm"><i class="fas fa-images"></i> {{ trans('user.profile.editimages') }}</a>
 					@endif
 				</div>
 			</div>
