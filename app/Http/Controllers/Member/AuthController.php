@@ -109,6 +109,7 @@ class AuthController extends Controller
         $username           = $request->input('username');
         $password           = $request->input('password');
         $birthdate          = $request->input('birthdate');
+        $phone              = $request->input('phone');
 
         $referral           = \Session::get('referral');
         $referral_code      = str_random(15);
@@ -133,6 +134,7 @@ class AuthController extends Controller
                 'firstname'         => $firstname,
                 'lastname'          => $lastname,
                 'birthdate'         => $birthdate,
+                'phone'             => $phone,
                 'password'          => $password,
                 'referral'          => $referral,
                 'referral_code'     => $referral_code,
