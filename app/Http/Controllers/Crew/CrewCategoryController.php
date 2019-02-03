@@ -69,7 +69,11 @@ class CrewCategoryController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.create'])) {
             $title = $request->get('title');
             $slug = $request->get('slug');
-            $slug = str_slug($slug, '-');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
 
             $crewcategory                   = new CrewCategory;
             $crewcategory->title            = $title;
@@ -131,9 +135,16 @@ class CrewCategoryController extends Controller
     public function update($id, CrewCategoryEditRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.update'])) {
+            $slug = $request->get('slug');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
+            
             $crewcategory               = CrewCategory::find($id);
             $crewcategory->title        = $request->get('title');
-            $crewcategory->slug         = $request->get('slug');
+            $crewcategory->slug         = $slug;
             $crewcategory->editor_id    = Sentinel::getUser()->id;
 
             if ($crewcategory->save()) {

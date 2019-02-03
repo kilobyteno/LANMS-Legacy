@@ -69,7 +69,11 @@ class CrewSkillController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.create'])) {
             $title = $request->get('title');
             $slug = $request->get('slug');
-            $slug = str_slug($slug, '-');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
 
             $crewskill                  = new CrewSkill;
             $crewskill->title           = $title;
@@ -131,9 +135,16 @@ class CrewSkillController extends Controller
     public function update($id, CrewSkillEditRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.update'])) {
+            $slug = $request->get('slug');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
+            
             $crewskill              = CrewSkill::find($id);
             $crewskill->title       = $request->get('title');
-            $crewskill->slug        = $request->get('slug');
+            $crewskill->slug        = $slug;
             $crewskill->icon        = $request->get('icon');
             $crewskill->class       = $request->get('class');
             $crewskill->editor_id   = Sentinel::getUser()->id;

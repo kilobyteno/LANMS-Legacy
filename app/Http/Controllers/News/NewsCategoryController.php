@@ -69,7 +69,11 @@ class NewsCategoryController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.create'])) {
             $name = $request->get('name');
             $slug = $request->get('slug');
-            $slug = str_slug($slug, '-');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('name'), '-');
+            }
 
             $newscategory                   = new NewsCategory;
             $newscategory->name             = $name;
@@ -131,9 +135,16 @@ class NewsCategoryController extends Controller
     public function update($id, NewsCategoryEditRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.update'])) {
+            $slug = $request->get('slug');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
+
             $newscategory               = NewsCategory::find($id);
             $newscategory->name         = $request->get('name');
-            $newscategory->slug         = $request->get('slug');
+            $newscategory->slug         = $slug;
             $newscategory->author_id    = Sentinel::getUser()->id;
 
             if ($newscategory->save()) {

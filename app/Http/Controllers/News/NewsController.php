@@ -85,7 +85,11 @@ class NewsController extends Controller
 
             $title = $request->get('title');
             $slug = $request->get('slug');
-            $slug = str_slug($slug, '-');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
 
             $article                = new News;
             $article->title         = $title;
@@ -183,10 +187,18 @@ class NewsController extends Controller
             $published_at_time = $request->get('published_at_time');
             $published_at = date('Y-m-d H:i:s', strtotime("$published_at_date $published_at_time"));
 
+            $slug = $request->get('slug');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
+
             $article                = News::find($id);
             $article->title         = $request->get('title');
             $article->content       = $request->get('content');
             $article->active        = $active;
+            $article->slug          = $slug;
             $article->published_at  = $published_at;
             $article->category_id   = $request->get('category_id');
             $article->editor_id     = Sentinel::getUser()->id;

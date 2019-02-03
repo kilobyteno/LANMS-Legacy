@@ -78,7 +78,11 @@ class PagesController extends Controller
             }
 
             $slug = $request->get('slug');
-            $slug = str_slug($slug, '-');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
 
             $page               = new Page;
             $page->title        = $request->get('title');
@@ -156,11 +160,18 @@ class PagesController extends Controller
             if ($request->get('showinmenu') == "on") {
                 $showinmenu = true;
             }
+
+            $slug = $request->get('slug');
+            if (!is_null($slug)) {
+                $slug = str_slug($slug, '-');
+            } else {
+                $slug = str_slug($request->get('title'), '-');
+            }
             
             $page               = Page::find($id);
             $page->title        = $request->get('title');
             $page->content      = $request->get('content');
-            $page->slug         = $request->get('slug');
+            $page->slug         = $slug;
             $page->active       = $active;
             $page->showinmenu   = $showinmenu;
             $page->editor_id    = Sentinel::getUser()->id;
