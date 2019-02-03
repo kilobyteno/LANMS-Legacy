@@ -62,7 +62,7 @@
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
 											<span class="ml-2 d-none d-lg-block">
-												<span class="text-dark" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
+												<span class="@if(Sentinel::getUser()->theme == 'dark'){{ 'text-light' }}@else{{ 'text-dark' }}@endif" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
