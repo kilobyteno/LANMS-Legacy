@@ -39,8 +39,8 @@
 				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
 				<hr>
 				@foreach($checkins as $checkin)
-					<div class="col-md-4">
-						{{ $checkin->ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}
+					<div class="col-lg-4">
+						{{ $checkin->ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}  @if($checkin->ticket->reservation->payment) @if($checkin->ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span> @endif @endif
 					</div>
 				@endforeach
 			</div>
@@ -49,8 +49,8 @@
 				<hr>
 				<div class="row">
 					@foreach($noncheckedin as $ticket)
-						<div class="col-md-4">
-							{{ $ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($ticket->user->id) }}
+						<div class="col-lg-4">
+							{{ $ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($ticket->user->id) }}  @if($ticket->reservation->payment) @if($ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span> @endif @endif
 						</div>
 					@endforeach
 				</div>
