@@ -110,9 +110,6 @@
 </div>
 
 @stop
-@section('css')
-	<link href="{{ Theme::url('plugins/wysiwyag/richtext.min.css') }}" rel="stylesheet">
-@stop
 @section('javascript')
 	<script src="{{ Theme::url('plugins/wysiwyag/jquery.richtext.js') }}"></script>
 	<script type="text/javascript">
