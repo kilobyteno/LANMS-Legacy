@@ -79,7 +79,7 @@
 														<i class="fa fa-calendar"></i>
 													</div>
 												</div>
-												<input class="form-control datepicker" id="published_at_date" type="text" data-date-format="yyyy-mm-dd">
+												<input class="form-control datepicker" name="published_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('published_at_date')) ? old('published_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
 												@if($errors->has('published_at_date'))
 													<p class="text-danger">{{ $errors->first('published_at_date') }}</p>
 												@endif
@@ -93,7 +93,7 @@
 														<i class="fas fa-clock"></i>
 													</div>
 												</div>
-												<input class="form-control ui-timepicker-input @if($errors->has('published_at_time')) is-invalid state-invalid @endif" id="published_at_time" placeholder="Set time" type="text" autocomplete="off" name="published_at_time" value="{{ (old('published_at_time')) ? old('published_at_time') : date('h:i') }}">
+												<input class="form-control ui-timepicker-input @if($errors->has('published_at_time')) is-invalid state-invalid @endif" id="published_at_time" placeholder="Set time" type="text" autocomplete="off" name="published_at_time" value="{{ (old('published_at_time')) ? old('published_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
 												@if($errors->has('published_at_time'))
 													<p class="text-danger">{{ $errors->first('published_at_time') }}</p>
 												@endif
