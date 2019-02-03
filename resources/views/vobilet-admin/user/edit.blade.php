@@ -208,6 +208,18 @@
 										<p class="text-danger">{{ $errors->first('language') }}</p>
 									@endif
 								</div>
+								<div class="form-group">
+									<label class="form-label">Theme</label>
+									<select class="form-control" name="theme">
+										<option value="">-- {{ trans('global.pleaseselect') }} --</option>
+										@foreach(array_flip(config('app.themes')) as $lang)
+											<option value="{{ $lang }}" {{ ($user->theme == $lang) ? 'selected' : '' }}>{{ trans('theme.'.$lang) }}</option>
+										@endforeach
+									</select>
+									@if($errors->has('theme'))
+										<p class="text-danger">{{ $errors->first('theme') }}</p>
+									@endif
+								</div>
 							</div>
 						</div>
 					</div>

@@ -32,7 +32,7 @@
 			</div>
 			@if(\LANMS\Info::where('name', 'social_discord_server_id')->where('content', '<>', '')->first())
 				<div class="mb-4">
-					<iframe src="https://discordapp.com/widget?id={{ \LANMS\Info::where('name', 'social_discord_server_id')->first()->content }}&theme=light" height="300" allowtransparency="true" frameborder="0" style="width: 100%"></iframe>
+					<iframe src="https://discordapp.com/widget?id={{ \LANMS\Info::where('name', 'social_discord_server_id')->first()->content }}&theme=@if(Sentinel::getUser()->theme == 'default'){{ 'light' }} @else {{ Sentinel::getUser()->theme ?? 'light' }}@endif" height="300" allowtransparency="true" frameborder="0" style="width: 100%"></iframe>
 				</div>
 			@endif
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)

@@ -69,6 +69,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'showname',
         'showonline',
         'language',
+        'theme',
         'about',
     ];
 
@@ -102,6 +103,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'showname',
         'showonline',
         'language',
+        'theme',
         'about',
         'accepted_gdpr',
         'isAnonymized'

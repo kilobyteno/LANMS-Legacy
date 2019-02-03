@@ -23,7 +23,15 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+		@if(Sentinel::check())
+			@if(Sentinel::getUser()->theme)
+				<link href="{{ Theme::url('css/dashboard-'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet" />
+			@else
+				<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+			@endif
+		@else
+			<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+		@endif
 		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
 

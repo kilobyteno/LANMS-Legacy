@@ -108,6 +108,7 @@ return [
                 'fullname' => 'Fullname',
                 'onlinestatus' => 'Online Status',
                 'language' => 'Preffered Language',
+                'theme' => 'Preffered Theme',
             ),
 
             'confirmpassword' => array(

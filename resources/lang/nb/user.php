@@ -108,6 +108,7 @@ return [
                 'fullname' => 'Fullt navn',
                 'onlinestatus' => 'Online status',
                 'language' => 'Ønsket Språk',
+                'theme' => 'Ønsket Tema',
             ),
 
             'confirmpassword' => array(

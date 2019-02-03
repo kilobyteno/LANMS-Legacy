@@ -23,7 +23,15 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="{{ Theme::url('css/dashboard.css') }}" rel="stylesheet" />
+		@if(Sentinel::check())
+			@if(Sentinel::getUser()->theme)
+				<link href="{{ Theme::url('css/dashboard-'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet" />
+			@else
+				<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+			@endif
+		@else
+			<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+		@endif
 		<!-- Sidemenu Css -->
 		<link href="{{ Theme::url('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
 		<!-- c3.js Charts Plugin -->
