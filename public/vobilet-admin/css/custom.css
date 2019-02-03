@@ -51,3 +51,8 @@ a:focus, a:hover, a:active {
 
 .intl-tel-input .country-list .country.highlight {
 	margin: 0;
+}
+
+a, .btn-link, .breadcrumb-item a {
+	color: #2980b9;
+}
