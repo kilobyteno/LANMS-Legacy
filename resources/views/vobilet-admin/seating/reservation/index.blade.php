@@ -16,13 +16,13 @@
 	<div class="col-md-12">
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-lg-4">
 				@section('css')
 					<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
 				@stop
 				@include('seating.seatmap')
 			</div>
-			<div class="col-md-8">
+			<div class="col-lg-8">
 				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 					<thead>
 						<tr>

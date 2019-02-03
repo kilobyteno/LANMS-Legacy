@@ -23,7 +23,7 @@
 			@endif
 
 			<div class="row">	
-				<div class="col-md-6">
+				<div class="col-lg-6">
 
 					@if(Setting::get('SEATING_SHOW_MAP'))
 						@include('seating.seatmap')
@@ -34,7 +34,7 @@
 
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">{{ trans('seating.reservation.your') }}</h3>
