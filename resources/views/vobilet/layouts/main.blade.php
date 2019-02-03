@@ -49,7 +49,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())

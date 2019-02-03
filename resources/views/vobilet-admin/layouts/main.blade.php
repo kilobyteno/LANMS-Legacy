@@ -26,11 +26,14 @@
 		@if(Sentinel::check())
 			@if(Sentinel::getUser()->theme)
 				<link href="{{ Theme::url('css/dashboard-'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet" />
+				<link href="{{ Theme::url('plugins/wysiwyag/richtext.'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet">
 			@else
 				<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+				<link href="{{ Theme::url('plugins/wysiwyag/richtext.default.css') }}" rel="stylesheet">
 			@endif
 		@else
 			<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+			<link href="{{ Theme::url('plugins/wysiwyag/richtext.default.css') }}" rel="stylesheet">
 		@endif
 		<!-- Sidemenu Css -->
 		<link href="{{ Theme::url('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
