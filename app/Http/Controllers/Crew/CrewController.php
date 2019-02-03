@@ -70,6 +70,12 @@ class CrewController extends Controller
     public function store(CrewCreateRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.create'])) {
+            if (Crew::where('user_id', $request->get('user_id'))->count() > 0) {
+                return Redirect::route('admin-crew')
+                        ->with('messagetype', 'warning')
+                        ->with('message', 'This user has already been added to the crew.');
+            }
+
             $crew = Crew::create([
                 'user_id' => $request->get('user_id'),
                 'category_id' => $request->get('category_id'),
