@@ -22,8 +22,8 @@
 					<th>Category</th>
 					<th>Published at</th>
 					<th>Created by</th>
-					<th>Edited at</th>
-					<th>Edited by</th>
+					<th>Updated at</th>
+					<th>Updated by</th>
 					<th>Actions</th>
 				</tr>
 			</thead>

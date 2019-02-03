@@ -24,7 +24,7 @@
 							<th>Firstname</th>
 							<th>Lastname</th>
 							<th>Joined</th>
-							<th>Last Edited</th>
+							<th>Last Updated</th>
 							<th>Status</th>
 							<th>Actions</th>
 						</tr>
