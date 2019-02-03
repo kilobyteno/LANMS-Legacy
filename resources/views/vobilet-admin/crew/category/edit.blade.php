@@ -18,7 +18,7 @@
 		
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-crew-category-update') }}" method="post">
+				<form action="{{ route('admin-crew-category-update', $category->id) }}" method="post">
 
 					<div class="row">
 
