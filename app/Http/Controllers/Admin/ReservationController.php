@@ -108,20 +108,23 @@ class ReservationController extends Controller
     public function showPDF($slug)
     {
         $slug = strtolower($slug); // Just to be sure it is correct
-        $currentseat = Seats::where('slug', $slug)->first();
-        if ($currentseat == null) {
+        $seat = Seats::where('slug', $slug)->first();
+        if (is_null($seat)) {
             return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-                                ->with('message', 'Could not find seat.');
+                                ->with('message', trans('seating.alert.seatnotfound'));
         }
 
-        if ($currentseat->reservationsThisYear()->first() == null) {
+        if ($seat->reservationsThisYear()->first() == null) {
             return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
                                 ->with('message', 'Could not find valid ticket.');
         }
 
+        $ticket = $seat->reservationsThisYear()->first()->ticket;
+        $reservedfor = $seat->reservationsThisYear()->first()->reservedfor;
+        $payment = $seat->reservationsThisYear()->first()->payment;
+
         \Theme::set('vobilet');
-       
-        $html = view('seating.pdf.ticket')->with('currentseat', $currentseat)->render();
+        $html = view('seating.pdf.ticket')->with('seat', $seat)->with('payment', $payment)->with('reservedfor', $reservedfor)->with('ticket', $ticket)->render();
         $pdf = PDF::loadHTML($html);
         return $pdf->stream();
     }
