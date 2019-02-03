@@ -35,7 +35,7 @@
 						<td><a href="{{ route('admin-news-category') }}"><div class="badge badge-info"><i class="fa fa-tag"></i> {{ $article->category->name }}</div></a></td>
 						<td>{{ ucfirst(\Carbon::parse($article->published_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a></td>
-						<td>{{ ucfirst(\Carbon::parse($article->edited_at)->isoFormat('LLL')) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($article->updated_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('news-show', $article->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>

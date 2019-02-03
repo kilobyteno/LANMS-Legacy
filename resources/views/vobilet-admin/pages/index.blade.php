@@ -35,7 +35,7 @@
 						<td>{{ $page->title }}</td>
 						<td>{{ ucfirst(\Carbon::parse($page->created_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
-						<td>@if($page->edited_at){{ ucfirst(\Carbon::parse($page->edited_at)->isoFormat('LLL')) }}@endif</td>
+						<td>@if($page->updated_at){{ ucfirst(\Carbon::parse($page->updated_at)->isoFormat('LLL')) }}@endif</td>
 						<td>@if($page->editor->username)<a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a>@endif</td>
 						<td>
 							<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm"><i class="fa fa-eye mr-2"></i>View</a>
