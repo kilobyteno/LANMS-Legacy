@@ -56,3 +56,7 @@ a:focus, a:hover, a:active {
 a, .btn-link, .breadcrumb-item a {
 	color: #2980b9;
 }
+
+a:hover, .btn-link:hover {
+    color: #3498db;
+}
