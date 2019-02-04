@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', 'License Status - Admin')
+@section('title', 'License - Admin')
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">License Status</h4>
+	<h4 class="page-title">License</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-		<li class="breadcrumb-item active" aria-current="page">License Status</li>
+		<li class="breadcrumb-item active" aria-current="page">License</li>
 	</ol>
 </div>
 
@@ -16,29 +16,21 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<div class="expanel expanel-primary @if(Setting::get('APP_LICENSE_STATUS') == 'Active') expanel-success @else expanel-danger @endif" data-collapsed="0">
-					<div class="expanel-heading">
-						<div class="expanel-title">Status</div>
-					</div>
-					<div class="expanel-body">
-						<p>Status: @if(Setting::get('APP_LICENSE_STATUS') == 'Active') <strong class="text-success">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @else <strong class="text-danger">{{ Setting::get('APP_LICENSE_STATUS') }}</strong> @endif</p>
-						<p>@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em>@endif</p>
-						<a href="{{ route('admin-license-check') }}" class="btn btn-success btn-icon icon-left"><i class="fa fa-sync"></i> Check License Status</a>
-					</div>
-				</div>
-			</div>
 
-			<div class="col-md-6">
-				<div class="expanel expanel-primary @if($errors->has('APP_LICENSE_KEY')) expanel-danger @endif" data-collapsed="0">
-					<div class="expanel-heading">
-						<div class="expanel-title">Update License Key</div>
+				<div class="card">
+					<div class="card-header @if(Setting::get('APP_LICENSE_STATUS') == 'Active') bg-success @else bg-danger @endif">
+						<h3 class="card-title text-white">{{ Setting::get('APP_LICENSE_STATUS') }}</h3>
+						<div class="card-options">
+							<a href="{{ route('admin-license-check') }}" class="btn btn-secondary btn-sm"><i class="fas fa-sync"></i> Check License</a>
+						</div>
 					</div>
-					<div class="expanel-body">
+					<div class="card-body">
+						<p>@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em>@endif</p>
 						<form action="{{ route('admin-license-store') }}" method="post">
 							<div class="input-group">
-								<input type="text" class="form-control input-lg" name="licensekey" placeholder="LANMS-XXX-XXXXXXXXXXXXXX" value="{{ (old('licensekey')) ? old('licensekey') : Setting::get('APP_LICENSE_KEY') }}" />
+								<input type="text" class="form-control" name="licensekey" placeholder="LANMS-XXX-XXXXXXXXXXXXXX" value="{{ (old('licensekey')) ? old('licensekey') : Setting::get('APP_LICENSE_KEY') }}" />
 								<span class="input-group-append">
-									<button type="submit" class="btn btn-lg btn-success btn-icon mr-2"><i class="fa fa-save"></i> Save</button>
+									<button type="submit" class="btn btn-success"><i class="fas fa-save mr-1"></i> Save</button>
 								</span>
 							</div>
 							@if($errors->has('licensekey'))
@@ -48,7 +40,9 @@
 						</form>
 					</div>
 				</div>
+
 			</div>
+
 		</div>
 
 	</div>
