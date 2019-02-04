@@ -81,7 +81,7 @@
 						</div>
 					@elseif(Sentinel::getUser()->reservationsThisYear()->count() >= 5)
 						<div class="alert alert-warning" role="alert">
-							<i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ trans('seating.show.alert.reservationlimit') }}
+							<i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.show.alert.reservationlimit') !!}
 						</div>
 					@elseif(!Setting::get('SEATING_OPEN'))
 						<div class="alert alert-info" role="alert"> <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.show.alert.closed') }}</div>
