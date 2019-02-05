@@ -153,7 +153,7 @@
 								@if(Sentinel::inRole('superadmin'))
 									<li><a class="slide-item @if(Request::is('admin/system/settings*')){{'active'}} @endif" href="{{ route('admin-settings') }}"><i class="fas fa-cog mr-1"></i> Settings</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/logs*')){{'active'}} @endif" href="{{ route('admin-logs') }}"><i class="fas fa-clipboard-list mr-1"></i> System Logs</a></li>
-									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License Status</a></li>
+									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License</a></li>
 								@endif
 							</ul>
 						</li>
@@ -163,9 +163,9 @@
 					<div class="side-app">
 						<div style="min-height:80vh">
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-								<div class="alert alert-danger mt-5" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
+								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License page</a>.</div>
 							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-								<div class="alert alert-danger mt-5" role="alert"><i class="fa fa-frown-o mr-2" aria-hidden="true"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
 							@endif
 
 							@component('layouts.alert-session') @endcomponent
