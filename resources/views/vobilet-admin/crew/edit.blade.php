@@ -23,25 +23,20 @@
 					<div class="row">
 
 						<div class="col-sm-5">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="far fa-user"></i>
-									</div>
-								</div>
+							<div class="form-group">
+								<label class="form-label">User:</label>
 								<input type="text" class="form-control input-lg disabled" disabled="" value="{{ User::getFullnameAndNicknameByID($crew->user->id) }}" />
 							</div>
 						</div>
 
-						<div class="col-sm-5 @if($errors->has('category_id')) has-error @endif">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="fas fa-tag"></i>
-									</div>
-								</div>
-								<input type="text" class="form-control input-lg" id="category" placeholder="Crew Category" value="{{ $crew->category->title ?? '' }}" autocomplete="OFF">
-								<input type="hidden" id="category_id" name="category_id" value="{{ $crew->category->id ?? '' }}">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label class="form-label">Category:</label>
+								<select name="category_id" class="select2">
+									@foreach(\CrewCategory::all() as $category)
+										<option value="{{ $category->id }}" @if($crew->category->id == $category->id) selected="" @endif>{{ $category->title }}</option>
+									@endforeach
+								</select>
 							</div>
 							@if($errors->has('category_id'))
 								<p class="text-danger">{{ $errors->first('category_id') }}</p>
@@ -77,24 +72,9 @@
 
 @stop
 @section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
-		(function($) {
-			$(document).ready( function() { 
-				$('#category').typeahead({
-					onSelect: function(item) {
-						document.getElementById("category_id").value = item.value;
-						console.log(item.value);
-					},
-					ajax: {
-						url: "/ajax/crew/categories",
-						timeout: 500,
-						displayField: "title",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-			 });
-		})(jQuery);
+		$(function(){
+			$('.select2').select2();
+		});
 	</script>
 @stop

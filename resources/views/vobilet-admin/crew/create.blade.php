@@ -23,14 +23,14 @@
 					<!-- Title and Publish Buttons -->
 					<div class="row">
 
-						<div class="col-sm-5 @if($errors->has('user_id')) has-error @endif">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="far fa-user"></i>
-									</div>
-								</div>
-								<input type="text" class="form-control input-lg" id="username" placeholder="User" value="" autocomplete="OFF" />
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label class="form-label">User:</label>
+								<select name="user_id" class="select2">
+									@foreach(\User::all() as $user)
+										<option value="{{ $user->id }}">{{ $user->username }}</option>
+									@endforeach
+								</select>
 							</div>
 							<input type="hidden" id="user_id" name="user_id" value="{{ Sentinel::getUser()->id }}">
 							@if($errors->has('user_id'))
@@ -38,15 +38,14 @@
 							@endif
 						</div>
 
-						<div class="col-sm-5 @if($errors->has('category_id')) has-error @endif">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="fas fa-tag"></i>
-									</div>
-								</div>
-								<input type="text" class="form-control input-lg" id="category" placeholder="Crew Category" value="" autocomplete="OFF">
-								<input type="hidden" id="category_id" name="category_id" value="0">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label class="form-label">Category:</label>
+								<select name="category_id" class="select2">
+									@foreach(\CrewCategory::all() as $category)
+										<option value="{{ $category->id }}">{{ $category->title }}</option>
+									@endforeach
+								</select>
 							</div>
 							@if($errors->has('category_id'))
 								<p class="text-danger">{{ $errors->first('category_id') }}</p>
@@ -83,41 +82,9 @@
 
 @stop
 @section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
-		(function($) {
-			$(document).ready( function() { 
-				$('#username').typeahead({
-					onSelect: function(item) {
-						document.getElementById("user_id").value = item.value;
-						console.log(item.value);
-					},
-					ajax: {
-						url: "/ajax/usernames",
-						timeout: 500,
-						displayField: "name",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-			 });
-		})(jQuery);
-		(function($) {
-			$(document).ready( function() { 
-				$('#category').typeahead({
-					onSelect: function(item) {
-						document.getElementById("category_id").value = item.value;
-						console.log(item.value);
-					},
-					ajax: {
-						url: "/ajax/crew/categories",
-						timeout: 500,
-						displayField: "title",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-			 });
-		})(jQuery);
+		$(function(){
+			$('.select2').select2();
+		});
 	</script>
 @stop
