@@ -20,32 +20,39 @@
 			<div class="card-body">
 				<form action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
 					<div class="row">
-						<div class="col-sm-1 input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">Seat</div>
+						<div class="col-sm-1">
+							<div class="form-group">
+								<label class="form-label">Seat:</label>
+								<select name="seat_id" class="select2">
+									<option value="{{ $reservation->seat->id }}" selected="">{{ $reservation->seat->name }}</option>
+									@foreach(\Seats::doesntHave('reservationsThisYear')->get() as $seat)
+										<option value="{{ $seat->id }}">{{ $seat->name }}</option>
+									@endforeach
+								</select>
 							</div>
-							<input type="text" class="form-control" id="seat" value="{{ $reservation->seat->name }}" autocomplete="off">
-							<input type="hidden" id="seat_id" name="seat_id" value="{{ $reservation->seat->id }}">
 							@if($errors->has('seat_id'))
 								<p class="text-danger">{{ $errors->first('seat_id') }}</p>
 							@endif
 						</div>
 
-						<div class="col-sm-4 input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">Reserved by</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="form-label">Reserved by:</label>
+								<input type="text" class="form-control input-lg disabled" disabled="" value="{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}" />
 							</div>
-							<input type="text" class="form-control" id="seat" value="{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}" readonly="" disabled="">
 						</div>
 						
-						<div class="col-sm-4 input-group">
-							<div class="input-group-prepend">
-								<div class="input-group-text">Reserved for</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="form-label">Reserved for:</label>
+								<select name="reservedfor_id" class="select2">
+									@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+										<option value="{{ $user->id }}" @if($reservation->reservedfor->id == $user->id) selected="" @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+									@endforeach
+								</select>
 							</div>
-							<input type="text" class="form-control" id="reservedfor" value="{{ User::getFullnameAndNicknameByID($reservation->reservedfor->id) }}" autocomplete="off">
-							<input type="hidden" id="reservedfor_id" name="reservedfor_id" value="{{ $reservation->reservedfor->id }}">
-							@if($errors->has('reservedfor'))
-								<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
+							@if($errors->has('reservedfor_id'))
+								<p class="text-danger">{{ $errors->first('reservedfor_id') }}</p>
 							@endif
 						</div>
 
@@ -67,39 +74,10 @@
 </div>
 
 @stop
-
 @section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
-		(function($) {
-			$(document).ready(function() {
-				$('#seat').typeahead({
-					onSelect: function(item) {
-						document.getElementById("seat_id").value = item.value;
-						console.log("seat_id: " + item.value);
-					},
-					ajax: {
-						url: "/ajax/seats",
-						timeout: 500,
-						displayField: "name",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-				$('#reservedfor').typeahead({
-					onSelect: function(item) {
-						document.getElementById("reservedfor_id").value = item.value;
-						console.log("reservedfor_id: " + item.value);
-					},
-					ajax: {
-						url: "/ajax/usernames",
-						timeout: 500,
-						displayField: "name",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-			 });
-		})(jQuery);
+		$(function(){
+			$('.select2').select2();
+		});
 	</script>
 @stop
