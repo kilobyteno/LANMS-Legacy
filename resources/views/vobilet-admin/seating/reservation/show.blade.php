@@ -23,52 +23,35 @@
 				@include('seating.seatmap')
 			</div>
 			<div class="col-md-8">
-				<div class="card">
+				<form class="card" method="post" action="{{ route('admin-seating-reservation-reserve', $currentseat->slug) }}">
 					<div class="card-body">
-						<form class="form-horizontal" method="post" action="{{ route('admin-seating-reservation-reserve', $currentseat->slug) }}">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">Reserved for</div>
-								</div>
-								<input type="text" class="form-control" id="username" value="{{ User::getFullnameAndNicknameByID(Sentinel::getUser()->id) }}" autocomplete="off">
-								<span class="input-group-append">
-									<button class="btn btn-success" type="submit"><i class="fas fa-hand-paper mr-2"></i>Reserve Seat</button>
-								</span>
-								@if($errors->has('reservedfor'))
-									<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
-								@endif
-							</div>
-							<input type="hidden" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						</form>
+						<div class="form-group">
+							<label class="form-label">Reserved for:</label>
+							<select name="reservedfor_id" class="select2">
+								@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+									<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								@endforeach
+							</select>
+							@if($errors->has('reservedfor'))
+								<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
+							@endif
+						</div>
 					</div>
-				</div>
+					<div class="card-footer">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<button class="btn btn-success" type="submit"><i class="fas fa-hand-paper mr-2"></i>Reserve Seat</button>
+					</div>
+				</form>
 			</div>
 		</div>
 
 	</div>
 </div>
 @stop
-
 @section('javascript')
-	<script src="{{ Theme::url('js/bootstrap-typeahead.min.js') }}"></script>
 	<script type="text/javascript">
-		(function($) {
-			$(document).ready( function() { 
-				$('#username').typeahead({
-					onSelect: function(item) {
-						document.getElementById("reservedfor").value = item.value;
-						console.log(item.value);
-					},
-					ajax: {
-						url: "/ajax/usernames",
-						timeout: 500,
-						displayField: "name",
-						triggerLength: 1,
-						method: "get",
-					}
-				});
-			 });
-		})(jQuery);
+		$(function(){
+			$('.select2').select2();
+		});
 	</script>
 @stop
