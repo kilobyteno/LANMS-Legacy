@@ -27,20 +27,21 @@
 			@if(Sentinel::getUser()->theme)
 				<link href="{{ Theme::url('css/dashboard-'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet" />
 				<link href="{{ Theme::url('plugins/wysiwyag/richtext.'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet">
+				<link href="{{ Theme::url('plugins/select2/select2.'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet">
 			@else
 				<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
 				<link href="{{ Theme::url('plugins/wysiwyag/richtext.default.css') }}" rel="stylesheet">
+				<link href="{{ Theme::url('plugins/select2/select2.default.css') }}" rel="stylesheet">
 			@endif
 		@else
 			<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
 			<link href="{{ Theme::url('plugins/wysiwyag/richtext.default.css') }}" rel="stylesheet">
+			<link href="{{ Theme::url('plugins/select2/select2.default.css') }}" rel="stylesheet">
 		@endif
 		<!-- Sidemenu Css -->
 		<link href="{{ Theme::url('plugins/toggle-sidebar/css/sidemenu.css') }}" rel="stylesheet">
 		<!-- c3.js Charts Plugin -->
 		<link href="{{ Theme::url('plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
-		<!-- Select2 -->
-		<link href="{{ Theme::url('plugins/select2/select2.min.css') }}" rel="stylesheet">
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
 		<!---Custom-->
