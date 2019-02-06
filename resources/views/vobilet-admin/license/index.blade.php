@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<p>@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em>@endif</p>
+						@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")<p>Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em></p>@endif
 						<form action="{{ route('admin-license-store') }}" method="post">
 							<div class="input-group">
 								<input type="text" class="form-control" name="licensekey" placeholder="LANMS-XXX-XXXXXXXXXXXXXX" value="{{ (old('licensekey')) ? old('licensekey') : Setting::get('APP_LICENSE_KEY') }}" />
