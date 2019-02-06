@@ -19,7 +19,14 @@
 						{!! $page->content !!}
 					</div>
 				</div> 
-				<div class="card-footer">{{ trans('global.time.created') }}: {{ date(User::getUserDateFormat(), strtotime($page->created_at)) .' '.trans('global.time.at').' '. date(User::getUserTimeFormat(), strtotime($page->created_at)) }} {{ trans('global.by') }} <a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a> &middot; {{ trans('global.time.updated') }}: {{ date(User::getUserDateFormat(), strtotime($page->updated_at))  .' '.trans('global.time.at').' '. date(User::getUserTimeFormat(), strtotime($page->updated_at)) }} {{ trans('global.by') }} <a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a></div>
+				<div class="card-footer">
+					{{ trans('global.time.created') }}: {{ date(User::getUserDateFormat(), strtotime($page->created_at)) .' '.trans('global.time.at').' '. date(User::getUserTimeFormat(), strtotime($page->created_at)) }} {{ trans('global.by') }} <a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a> &middot; {{ trans('global.time.updated') }}: {{ date(User::getUserDateFormat(), strtotime($page->updated_at))  .' '.trans('global.time.at').' '. date(User::getUserTimeFormat(), strtotime($page->updated_at)) }} {{ trans('global.by') }} <a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a>
+					@if(Sentinel::check())
+						@if(Sentinel::hasAccess('admin.pages.update'))
+							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-warning btn-sm float-right"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
+						@endif
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
