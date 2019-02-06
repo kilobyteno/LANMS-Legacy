@@ -32,7 +32,6 @@
 									@endforeach
 								</select>
 							</div>
-							<input type="hidden" id="user_id" name="user_id" value="{{ Sentinel::getUser()->id }}">
 							@if($errors->has('user_id'))
 								<p class="text-danger">{{ $errors->first('user_id') }}</p>
 							@endif
