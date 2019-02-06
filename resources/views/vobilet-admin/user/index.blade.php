@@ -46,7 +46,7 @@
 										<a href="javascript:;" onclick="jQuery('#user-destroy-{{ $user->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fas fa-trash mr-2"></i>Deactivate</a>
 									@endif
 									@if(Sentinel::hasAccess('admin.users.restore') && $user->deleted_at)
-										<a href="{{ route('admin-user-restore', $user->id) }}" class="btn btn-primary btn-sm btn-icon icon-left"><i class="fa fa-redo"></i>Restore</a>
+										<a href="{{ route('admin-user-restore', $user->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
 									@endif
 								</td>
 							</tr>
