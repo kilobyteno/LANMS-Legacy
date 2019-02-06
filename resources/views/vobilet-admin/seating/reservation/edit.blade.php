@@ -14,62 +14,57 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-sm-12 col-md-12 col-lg-8">
 
-		<div class="card">
+		<form class="card" action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
 			<div class="card-body">
-				<form action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
-					<div class="row">
-						<div class="col-sm-1">
-							<div class="form-group">
-								<label class="form-label">Seat:</label>
-								<select name="seat_id" class="select2">
-									<option value="{{ $reservation->seat->id }}" selected="">{{ $reservation->seat->name }}</option>
-									@foreach(\Seats::doesntHave('reservationsThisYear')->get() as $seat)
-										<option value="{{ $seat->id }}">{{ $seat->name }}</option>
-									@endforeach
-								</select>
-							</div>
-							@if($errors->has('seat_id'))
-								<p class="text-danger">{{ $errors->first('seat_id') }}</p>
-							@endif
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="form-label">Seat:</label>
+							<select name="seat_id" class="select2">
+								<option value="{{ $reservation->seat->id }}" selected="">{{ $reservation->seat->name }}</option>
+								@foreach(\Seats::doesntHave('reservationsThisYear')->get() as $seat)
+									<option value="{{ $seat->id }}">{{ $seat->name }}</option>
+								@endforeach
+							</select>
 						</div>
-
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="form-label">Reserved by:</label>
-								<input type="text" class="form-control input-lg disabled" disabled="" value="{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}" />
-							</div>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="form-label">Reserved for:</label>
-								<select name="reservedfor_id" class="select2">
-									@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
-										<option value="{{ $user->id }}" @if($reservation->reservedfor->id == $user->id) selected="" @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
-									@endforeach
-								</select>
-							</div>
-							@if($errors->has('reservedfor_id'))
-								<p class="text-danger">{{ $errors->first('reservedfor_id') }}</p>
-							@endif
-						</div>
-
-						<div class="col-sm-3">
-							@if(!$reservation->ticket && $reservation->status_id != 1)
-								<a class="btn btn-orange btn-lg btn-block" href="{{ route('admin-seating-reservation-paylater', $reservation->seat->slug) }}"><i class="fas fa-door-open mr-2"></i>Mark as 'Pay at entrance'</a>
-							@endif
-							<button type="submit" class="btn btn-success btn-block"><i class="fas fa-save mr-2"></i>Save</button>
-						</div>
-						
+						@if($errors->has('seat_id'))
+							<p class="text-danger">{{ $errors->first('seat_id') }}</p>
+						@endif
 					</div>
 
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-				</form>
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label class="form-label">Reserved by:</label>
+							<input type="text" class="form-control input-lg disabled" disabled="" value="{{ User::getFullnameAndNicknameByID($reservation->reservedby->id) }}" />
+						</div>
+					</div>
+					
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label class="form-label">Reserved for:</label>
+							<select name="reservedfor_id" class="select2">
+								@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+									<option value="{{ $user->id }}" @if($reservation->reservedfor->id == $user->id) selected="" @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								@endforeach
+							</select>
+						</div>
+						@if($errors->has('reservedfor_id'))
+							<p class="text-danger">{{ $errors->first('reservedfor_id') }}</p>
+						@endif
+					</div>
+					
+				</div>
 			</div>
-		</div>
+			<div class="card-footer">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				@if(!$reservation->ticket && $reservation->status_id != 1)
+					<a class="btn btn-orange" href="{{ route('admin-seating-reservation-paylater', $reservation->seat->slug) }}"><i class="fas fa-door-open mr-2"></i>Mark as 'Pay at entrance'</a>
+				@endif
+				<button type="submit" class="btn btn-success float-right"><i class="fas fa-save mr-2"></i>Save</button>
+			</div>
+		</form>
 	</div>
 </div>
 
