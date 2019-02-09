@@ -22,6 +22,18 @@ class SponsorController extends Controller
      */
     public function index()
     {
+        
+        $sponsors = Sponsor::thisYear()->get();
+        return view('sponsor.index')->with('sponsors', $sponsors);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function admin()
+    {
         if (Sentinel::getUser()->hasAccess(['admin.sponsor.*'])) {
             $sponsors = Sponsor::all();
             return view('sponsor.index')

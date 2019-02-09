@@ -45,7 +45,7 @@
 				</div>
 			@endif
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
-				<h4>{{ trans('pages.home.sponsors') }}</h4>
+				<h4>{{ trans('header.sponsor') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 					<div class="card">
 						<div class="card-body d-flex flex-column">

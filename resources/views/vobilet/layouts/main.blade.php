@@ -137,6 +137,9 @@
 										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> {{ trans('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
+										<a class="nav-link @if(Request::is('sponsor')){{'active'}} @endif" href="{{ route('sponsor') }}"><i class="fas fa-money-check-alt"></i> {{ trans('header.sponsor') }}</a>
+									</li>
+									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> {{ trans('header.members') }}</a>
 									</li>
 								</ul>

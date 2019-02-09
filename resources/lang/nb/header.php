@@ -9,5 +9,6 @@ return [
     'members' => 'Medlemmer',
     'seating' => 'Sitteområde',
     'information' => 'Informasjon',
+    'sponsor' => 'Våre sponsorer',
 
 ];

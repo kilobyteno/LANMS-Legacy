@@ -9,5 +9,6 @@ return [
     'members' => 'Members',
     'seating' => 'Seating',
     'information' => 'Information',
-
+    'sponsor' => 'Our Sponsors',
+    
 ];

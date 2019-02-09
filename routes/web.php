@@ -69,6 +69,7 @@ Route::group([
                     'uses' => 'Crew\CrewController@index'
                 ]);
             });
+        Route::get('/sponsor', ['as' => 'sponsor', 'uses' => 'Admin\SponsorController@index']);
     });
 
 Route::group([
@@ -717,7 +718,7 @@ Route::group([
             ], function () {
                 Route::get('/', [
                     'as' => 'admin-sponsor',
-                    'uses' => 'Admin\SponsorController@index'
+                    'uses' => 'Admin\SponsorController@admin'
                 ]);
                 Route::get('/create', [
                     'as' => 'admin-sponsor-create',

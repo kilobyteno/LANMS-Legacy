@@ -144,7 +144,7 @@
 							<a class="side-menu__item @if(Request::is('admin/info')){{'active'}} @endif" href="{{ route('admin-info') }}"><i class="side-menu__icon fas fa-info-circle"></i><span class="side-menu__label">Info</span></a>
 						</li>
 						<li>
-							<a class="side-menu__item @if(Request::is('admin/sponsor')){{'active'}} @endif" href="{{ route('admin-sponsor') }}"><i class="side-menu__icon far fa-money-bill-alt"></i><span class="side-menu__label">Sponsor</span></a>
+							<a class="side-menu__item @if(Request::is('admin/sponsor')){{'active'}} @endif" href="{{ route('admin-sponsor') }}"><i class="side-menu__icon fas fa-money-check-alt"></i><span class="side-menu__label">Sponsor</span></a>
 						</li>
 						<li class="slide @if(Request::is('admin/system*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/system*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-cogs"></i><span class="side-menu__label">System</span><i class="angle fa fa-angle-right"></i></a>
