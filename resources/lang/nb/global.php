@@ -54,6 +54,8 @@ return [
     'reservedfor' => 'Reservert for',
     'reservedby' => 'Reservert av',
     'details' => 'Detaljer',
+    'reserved' => 'reservert',
+    'temporary_reserved' => 'midlertidig reservert',
 
     'payment' => array(
         'amount' => 'Beløp',

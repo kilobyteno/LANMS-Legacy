@@ -54,6 +54,8 @@ return [
     'reservedfor' => 'Reserved for',
     'reservedby' => 'Reserved by',
     'details' => 'Details',
+    'reserved' => 'reserved',
+    'temporary_reserved' => 'temporary reserved',
 
     'payment' => array(
         'amount' => 'Amount',
