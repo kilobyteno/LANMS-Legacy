@@ -66,6 +66,7 @@ return [
         'cardexp' => 'Card Exp.',
         'never' => 'never',
         'failure' => 'Failure',
+        'succeeded' => 'Succeeded',
         'message' => 'Message',
     ),
 

@@ -71,14 +71,14 @@
             <p><strong>{{ trans('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
             <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
             <p><strong>{{ trans('global.payment.currency') }}:</strong> {{ strtoupper($charge['currency']) }}</p>
-            <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? "Yes" : "No") }}</p>
-            <p><strong>{{ trans('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? "Yes - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : "No") }}</p>
+            <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</p>
+            <p><strong>{{ trans('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? trans('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : trans('global.no')) }}</p>
             <p>
                 <strong>{{ trans('global.status') }}:</strong>
                 @if($charge['failure_message'])
                     <a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="{{ trans('global.failure') }} {{ trans('global.payment.message') }}">{{ trans('global.payment.failure') }}</a>
                 @else
-                    {{ ucfirst($charge['status']) }}
+                    {{ trans('global.payment.'.$charge['status']) }}
                 @endif
             </p>
         </div>

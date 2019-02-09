@@ -65,7 +65,8 @@ return [
         'cardnumber' => 'Kortnummer',
         'cardexp' => 'Kortutløpsdato',
         'never' => 'aldri',
-        'failure' => 'Feil',
+        'failure' => 'Feilet',
+        'succeeded' => 'Lyktes',
         'message' => 'Melding',
     ),
 
