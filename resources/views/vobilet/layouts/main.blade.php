@@ -119,7 +119,7 @@
 									</li>
 									@if(count(\LANMS\Page::orderBy('name', 'desc')->forMenu()) > 0)
 										<li class="nav-item">
-											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fa fa-info"></i> {{ trans('header.information') }}</a>
+											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
 												@foreach(\LANMS\Page::forMenu() as $page)
 													<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
@@ -134,7 +134,7 @@
 										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fa fa-crown"></i> {{ trans('header.crew') }}</a>
+										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fas fa-crown"></i> {{ trans('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('sponsor')){{'active'}} @endif" href="{{ route('sponsor') }}"><i class="fas fa-money-check-alt"></i> {{ trans('header.sponsor') }}</a>
