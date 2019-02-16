@@ -10,5 +10,6 @@ return [
     'seating' => 'Sitteområde',
     'information' => 'Informasjon',
     'sponsor' => 'Våre sponsorer',
+    'compo' => 'Konkurranser',
 
 ];

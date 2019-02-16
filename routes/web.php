@@ -163,6 +163,18 @@ Route::group([
             'uses' => 'Crew\CrewController@index'
         ]);
         Route::group([
+            'prefix' => 'compo'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'compo',
+                    'uses' => 'CompoController@index'
+                ]);
+                Route::get('/{slug}', [
+                    'as' => 'compo-show',
+                    'uses' => 'CompoController@show'
+                ]);
+            });
+        Route::group([
             'prefix' => 'seating'
             ], function () {
                 Route::get('/', [

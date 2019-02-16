@@ -10,5 +10,6 @@ return [
     'seating' => 'Seating',
     'information' => 'Information',
     'sponsor' => 'Our Sponsors',
+    'compo' => 'Compo',
     
 ];
