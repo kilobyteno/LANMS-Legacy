@@ -119,7 +119,7 @@
 								<p>{{ trans('user.account.referral.desc') }}</p>
 								<input class="form-control" type="text" value="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/r/{{ Sentinel::getUser()->referral_code }}">
 								<br>
-								<p>{!! trans_choice('user.account.referral.users', ['value' => User::where('referral', Sentinel::getUser()->referral_code)->count()]) !!}</p>
+								<p>{!! trans_choice('user.account.referral.users', User::where('referral', Sentinel::getUser()->referral_code)->count()) !!}</p>
 							</div>
 						</div>
 					@endif
