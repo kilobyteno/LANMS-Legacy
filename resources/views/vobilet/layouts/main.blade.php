@@ -75,6 +75,9 @@
 											<a class="dropdown-item" href="{{ route('dashboard') }}">
 												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
 											</a>
+											<a class="dropdown-item" href="{{ route('members') }}">
+												<i class="fas fa-users"></i> {{ trans('header.members') }}
+											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
 												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
@@ -114,13 +117,12 @@
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ trans('header.home') }}</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
-									</li>
 									@if(count(\LANMS\Page::orderBy('name', 'desc')->forMenu()) > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
+												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
+												<div class="dropdown-divider"></div>
 												@foreach(\LANMS\Page::forMenu() as $page)
 													<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
 												@endforeach
@@ -141,9 +143,6 @@
 									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('sponsor')){{'active'}} @endif" href="{{ route('sponsor') }}"><i class="fas fa-money-check-alt"></i> {{ trans('header.sponsor') }}</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/members*')){{'active'}} @endif" href="{{ route('members') }}"><i class="fas fa-users"></i> {{ trans('header.members') }}</a>
 									</li>
 								</ul>
 							</div>
