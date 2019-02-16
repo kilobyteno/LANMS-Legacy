@@ -8,7 +8,6 @@ return [
     'rules' => 'Rules',
     'signup' => 'Sign Up',
     'info' => 'Info',
-    'brackets' => 'Brackets',
     'nobracketsyet' => 'The brackets has not been set up yet.',
     'type' => 'Type',
     'type.1' => 'Brackets',

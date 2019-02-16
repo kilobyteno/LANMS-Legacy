@@ -21,10 +21,10 @@
 					@if($compo->start_at)<p>{{ trans('compo.starts') }}: <br>{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->end_at)<p>{{ trans('compo.ends') }}: <br>{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}</p>@endif
+					<p>{{ trans('compo.type') }}: <br>{{ trans('compo.type.'.$compo->type) }}</p>
+					<p>{{ trans('compo.signup_type') }}: <br>{{ trans('compo.signup_type.'.$compo->signup_type) }}</p>
+					<p>{{ trans('compo.signup_size') }}: <br>{{ $compo->signup_size }} {{ trans_choice('compo.players', $compo->signup_size) }}</p>
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
-					<p>{{ trans('compo.type') }}: {{ trans('compo.type'.$compo->type) }}</p>
-					<p>{{ trans('compo.signup_type') }}: {{ trans('compo.signup_type'.$compo->signup_type) }}</p>
-					<p>{{ trans('compo.signup_size') }}: {{ trans('compo.signup_size'.$compo->signup_size) }}</p>
 				</div>
 				<div class="card-footer">
 					@if($compo->rules)<a class="btn btn-sm btn-warning" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
@@ -35,13 +35,17 @@
 		<div class="col-sm-12 col-md-6 col-lg-9 col-xl-9">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('compo.brackets') }}</h3>
+					<h3 class="card-title">{{ trans('compo.type.'.$compo->type) }}</h3>
 				</div>
 				<div class="card-body d-flex flex-column">
-					@if($compo->challonge_url)
-						<iframe src="https://{{ $compo->challonge_subdomain.'.' ?? ''}}challonge.com/{{ $compo->challonge_url }}/module?theme=6844&multiplier=0.9&match_width_multiplier=1.2&show_final_results=1" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
-					@else
-						<p>{{ trans('compo.nobracketsyet') }}</p>
+					@if($compo->type == 1)
+						@if($compo->challonge_url)
+							<iframe src="https://{{ $compo->challonge_subdomain.'.' ?? ''}}challonge.com/{{ $compo->challonge_url }}/module?theme=6844&multiplier=0.9&match_width_multiplier=1.2&show_final_results=1" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+						@else
+							<p>{{ trans('compo.nobracketsyet') }}</p>
+						@endif
+					@elseif($compo->type == 2)
+						<p>*insert submission stuff here*</p>
 					@endif
 				</div>
 			</div>

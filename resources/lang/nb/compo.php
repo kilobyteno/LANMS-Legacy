@@ -8,7 +8,6 @@ return [
     'rules' => 'Regler',
     'signup' => 'Bli med',
     'info' => 'Info',
-    'brackets' => 'Braketter',
     'nobracketsyet' => 'Brakettene er ikke konfigurert ennå.',
     'type' => 'Type',
     'type.1' => 'Braketter',
