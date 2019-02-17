@@ -17,5 +17,25 @@ return [
     'signup_type.2' => 'Individual',
     'signup_size' => 'Max Players',
     'players' => '{1} Player|[2,*] Players',
+    'teams' => 'Teams',
+    'teamleader' => 'Teamleader',
+    'player' => 'Player',
+    'team' => [
+        'alert' => [
+            'created' => 'The team has now been created.',
+            'updated' => 'The team has now been updated.',
+            'deleted' => 'The team has now been deleted.',
+        ],
+        'create' => [
+            'name' => 'Team Name',
+            'players' => 'Players',
+        ],
+        'delete' => [
+            'title' => 'Delete Team',
+            'question' => 'Are you sure you want to delete this team?',
+            'yes' => 'Yes, I want to delete it.',
+            'no' => 'No, take me away!',
+        ],
+    ],
     
 ];

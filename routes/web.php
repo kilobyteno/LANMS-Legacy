@@ -165,6 +165,34 @@ Route::group([
         Route::group([
             'prefix' => 'compo'
             ], function () {
+                Route::group([
+                    'prefix' => 'team'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'compo-team',
+                            'uses' => 'CompoTeamController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'compo-team-create',
+                            'uses' => 'CompoTeamController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'compo-team-store',
+                            'uses' => 'CompoTeamController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'compo-team-edit',
+                            'uses' => 'CompoTeamController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'compo-team-update',
+                            'uses' => 'CompoTeamController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'compo-team-destroy',
+                            'uses' => 'CompoTeamController@destroy'
+                        ]);
+                    });
                 Route::get('/', [
                     'as' => 'compo',
                     'uses' => 'CompoController@index'

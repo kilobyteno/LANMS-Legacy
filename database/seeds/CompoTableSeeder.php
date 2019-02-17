@@ -56,5 +56,15 @@ class CompoTableSeeder extends Seeder
             'signup_type' => 1,
             'signup_size' => 3,
         ]);
+        $team = \LANMS\CompoTeam::create([
+            'name' => 'A Cool Team',
+            'user_id' => 1,
+        ]);
+        $team->members()->attach([1,2,3]);
+        $team = \LANMS\CompoTeam::create([
+            'name' => 'Another Cool Team',
+            'user_id' => 2,
+        ]);
+        $team->members()->attach([1,2,3,4,5]);
     }
 }

@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.compo') }}</h4>
+		<h4 class="page-title">{{ trans('header.compo') }}<a class="btn btn-sm btn-info ml-2" href="{{ route('compo-team') }}"><i class="fa fa-user-shield mr-2"></i> {{ trans('compo.teams') }}</a></h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.compo') }}</li>
