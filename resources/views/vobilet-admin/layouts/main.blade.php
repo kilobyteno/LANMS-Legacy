@@ -138,6 +138,9 @@
 							</ul>
 						</li>
 						<li>
+							<a class="side-menu__item @if(Request::is('admin/compo')){{'active'}} @endif" href="{{ route('admin-compo') }}"><i class="side-menu__icon fas fa-compress-arrows-alt"></i><span class="side-menu__label">Compo</span></a>
+						</li>
+						<li>
 							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
 						</li>
 						<li>

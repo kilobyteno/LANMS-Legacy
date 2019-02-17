@@ -686,6 +686,34 @@ Route::group([
                     });
             });
         Route::group([
+            'prefix' => 'compo'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-compo',
+                    'uses' => 'Compo\CompoController@admin'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-compo-create',
+                    'uses' => 'Compo\CompoController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-compo-store',
+                    'uses' => 'Compo\CompoController@store'
+                ]);
+                Route::get('/{id}/edit', [
+                    'as' => 'admin-compo-edit',
+                    'uses' => 'Compo\CompoController@edit'
+                ]);
+                Route::post('/{id}/update', [
+                    'as' => 'admin-compo-update',
+                    'uses' => 'Compo\CompoController@update'
+                ]);
+                Route::get('/{id}/destroy', [
+                    'as' => 'admin-compo-destroy',
+                    'uses' => 'Compo\CompoController@destroy'
+                ]);
+            });
+        Route::group([
             'prefix' => 'pages'
             ], function () {
                 Route::get('/', [
