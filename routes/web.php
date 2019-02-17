@@ -170,36 +170,36 @@ Route::group([
                     ], function () {
                         Route::get('/', [
                             'as' => 'compo-team',
-                            'uses' => 'CompoTeamController@index'
+                            'uses' => 'Compo\CompoTeamController@index'
                         ]);
                         Route::get('/create', [
                             'as' => 'compo-team-create',
-                            'uses' => 'CompoTeamController@create'
+                            'uses' => 'Compo\CompoTeamController@create'
                         ]);
                         Route::post('/store', [
                             'as' => 'compo-team-store',
-                            'uses' => 'CompoTeamController@store'
+                            'uses' => 'Compo\CompoTeamController@store'
                         ]);
                         Route::get('/{id}/edit', [
                             'as' => 'compo-team-edit',
-                            'uses' => 'CompoTeamController@edit'
+                            'uses' => 'Compo\CompoTeamController@edit'
                         ]);
                         Route::post('/{id}/update', [
                             'as' => 'compo-team-update',
-                            'uses' => 'CompoTeamController@update'
+                            'uses' => 'Compo\CompoTeamController@update'
                         ]);
                         Route::get('/{id}/destroy', [
                             'as' => 'compo-team-destroy',
-                            'uses' => 'CompoTeamController@destroy'
+                            'uses' => 'Compo\CompoTeamController@destroy'
                         ]);
                     });
                 Route::get('/', [
                     'as' => 'compo',
-                    'uses' => 'CompoController@index'
+                    'uses' => 'Compo\CompoController@index'
                 ]);
                 Route::get('/{slug}', [
                     'as' => 'compo-show',
-                    'uses' => 'CompoController@show'
+                    'uses' => 'Compo\CompoController@show'
                 ]);
             });
         Route::group([
