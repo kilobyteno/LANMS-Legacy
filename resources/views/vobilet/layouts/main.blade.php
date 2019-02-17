@@ -26,8 +26,10 @@
 		@if(Sentinel::check())
 			@if(Sentinel::getUser()->theme)
 				<link href="{{ Theme::url('css/dashboard-'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet" />
+				<link href="{{ Theme::url('plugins/select2/select2.'.Sentinel::getUser()->theme.'.css') }}" rel="stylesheet">
 			@else
 				<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
+				<link href="{{ Theme::url('plugins/select2/select2.default.css') }}" rel="stylesheet">
 			@endif
 		@else
 			<link href="{{ Theme::url('css/dashboard-default.css') }}" rel="stylesheet" />
@@ -233,6 +235,7 @@
 		<script src="{{ Theme::url('js/vendors/selectize.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/jquery.tablesorter.min.js') }}"></script>
 		<script src="{{ Theme::url('js/vendors/circle-progress.min.js') }}"></script>
+		<script src="{{ Theme::url('plugins/select2/select2.full.min.js') }}"></script>
 
 		@yield('javascript')
 		
