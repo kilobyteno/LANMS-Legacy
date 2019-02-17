@@ -45,7 +45,7 @@
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 							@foreach(\User::active() as $user)
-								<option value="{{ $user->id }}" @if($team->players[0]->id === $user->id) selected=""@endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								<option value="{{ $user->id }}" @if($team->players->count() >= 1) @if($team->players->offsetGet(0)->id == $user->id) selected="" @endif @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -54,7 +54,7 @@
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 							@foreach(\User::active() as $user)
-								<option value="{{ $user->id }}" @if($team->players[1]->id === $user->id) selected=""@endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								<option value="{{ $user->id }}" @if($team->players->count() >= 2) @if($team->players->offsetGet(1)->id == $user->id) selected="" @endif @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -63,7 +63,7 @@
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 							@foreach(\User::active() as $user)
-								<option value="{{ $user->id }}" @if($team->players[2]->id === $user->id) selected=""@endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								<option value="{{ $user->id }}"  @if($team->players->count() >= 3) @if($team->players->offsetGet(2)->id == $user->id) selected="" @endif @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -72,7 +72,7 @@
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 							@foreach(\User::active() as $user)
-								<option value="{{ $user->id }}" @if($team->players[3]->id === $user->id) selected=""@endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								<option value="{{ $user->id }}" @if($team->players->count() >= 4) @if($team->players->offsetGet(3)->id == $user->id) selected="" @endif @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
 					</div>
