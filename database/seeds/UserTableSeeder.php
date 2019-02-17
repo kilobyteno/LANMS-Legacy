@@ -87,6 +87,11 @@ class UserTableSeeder extends Seeder
 
         $role->addPermission('admin');//admin panel access
 
+        $role->addPermission('admin.compo.create');
+        $role->addPermission('admin.compo.update');
+        $role->addPermission('admin.compo.destroy');
+        $role->addPermission('admin.compo.restore');
+
         $role->addPermission('admin.crew.create');
         $role->addPermission('admin.crew.update');
         $role->addPermission('admin.crew.destroy');
@@ -163,6 +168,11 @@ class UserTableSeeder extends Seeder
 
         $role->addPermission('admin');//admin panel access
 
+        $role->addPermission('admin.compo.create');
+        $role->addPermission('admin.compo.update');
+        $role->addPermission('admin.compo.destroy');
+        $role->addPermission('admin.compo.restore', false);
+
         $role->addPermission('admin.crew.create');
         $role->addPermission('admin.crew.update');
         $role->addPermission('admin.crew.destroy');
@@ -238,6 +248,11 @@ class UserTableSeeder extends Seeder
         $role = Sentinel::findRoleByName('Moderators');
 
         $role->addPermission('admin');//admin panel access
+
+        $role->addPermission('admin.compo.create');
+        $role->addPermission('admin.compo.update');
+        $role->addPermission('admin.compo.destroy', false);
+        $role->addPermission('admin.compo.restore', false);
 
         $role->addPermission('admin.crew.create');
         $role->addPermission('admin.crew.update');
