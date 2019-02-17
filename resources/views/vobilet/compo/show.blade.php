@@ -31,6 +31,7 @@
 				</div>
 				<div class="card-footer">
 					@if($compo->last_sign_up_at > \Carbon\Carbon::now())<a class="btn btn-sm btn-success" href=""><i class="fas fa-user-plus"></i> {{ trans('compo.signup') }}</a>@endif
+					@if(\Carbon\Carbon::now() > $compo->start_at && \Carbon\Carbon::now() < $compo->end_at)<a class="btn btn-sm btn-lime" href=""><i class="fas fa-file-import"></i> {{ trans('compo.submit') }}</a>@endif
 				</div>
 			</div>
 		</div>

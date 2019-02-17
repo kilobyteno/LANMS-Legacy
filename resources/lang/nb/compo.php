@@ -17,6 +17,7 @@ return [
     'signup_type.2' => 'Individuell',
     'signup_size' => 'Maks spillere',
     'players' => '{1} spiller|[2,*] spillere',
+    'submit' => 'Innsending',
     'teams' => 'Lag',
     'teamleader' => 'Lagleder',
     'player' => 'Spiller',

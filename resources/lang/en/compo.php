@@ -17,6 +17,7 @@ return [
     'signup_type.2' => 'Individual',
     'signup_size' => 'Max Players',
     'players' => '{1} Player|[2,*] Players',
+    'submit' => 'Submit',
     'teams' => 'Teams',
     'teamleader' => 'Teamleader',
     'player' => 'Player',
