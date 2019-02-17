@@ -60,11 +60,11 @@ class CompoTableSeeder extends Seeder
             'name' => 'A Cool Team',
             'user_id' => 1,
         ]);
-        $team->members()->attach([1,2,3]);
+        $team->players()->attach([1,2,3]);
         $team = \LANMS\CompoTeam::create([
             'name' => 'Another Cool Team',
             'user_id' => 2,
         ]);
-        $team->members()->attach([1,2,3,4,5]);
+        $team->players()->attach([1,2,3,4,5]);
     }
 }
