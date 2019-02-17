@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder {
 			'lastname'	 	=> 'SADMIN',
 			'username' 		=> 'sadmin',
 			'referral_code'	=> str_random(15),
+            'last_activity' => \Carbon\Carbon::now(),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test@rtrdt.ch',
@@ -23,6 +24,7 @@ class UserTableSeeder extends Seeder {
 			'lastname'	 	=> 'ADMIN',
 			'username' 		=> 'admin',
 			'referral_code'	=> str_random(15),
+            'last_activity' => \Carbon\Carbon::now(),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test2@rtrdt.ch',
@@ -31,6 +33,7 @@ class UserTableSeeder extends Seeder {
 			'lastname'	 	=> 'MOD',
 			'username' 		=> 'mod',
 			'referral_code'	=> str_random(15),
+            'last_activity' => \Carbon\Carbon::now(),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test3@rtrdt.ch',
@@ -39,6 +42,7 @@ class UserTableSeeder extends Seeder {
 			'lastname'	 	=> 'USER',
 			'username' 		=> 'user',
 			'referral_code'	=> str_random(15),
+            'last_activity' => \Carbon\Carbon::now(),
 		]);
 		Sentinel::registerAndActivate([
 			'email' 		=> 'test4@rtrdt.ch',
@@ -47,6 +51,7 @@ class UserTableSeeder extends Seeder {
 			'lastname'	 	=> 'USER2',
 			'username' 		=> 'user2',
 			'referral_code'	=> str_random(15),
+            'last_activity' => \Carbon\Carbon::now(),
 		]);
 
 		//Create Roles
