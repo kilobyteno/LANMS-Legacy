@@ -805,7 +805,7 @@ Route::group([
 
 Route::group(['prefix' => 'ajax','middleware' => ['sentinel.auth', 'ajax.check']], function () {
     Route::get('/usernames', function () {
-        $users = User::activeUsers();
+        $users = User::active();
         $usernames = array();
         foreach ($users as $user) {
             if ($user->showname) {
