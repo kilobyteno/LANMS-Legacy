@@ -16,6 +16,9 @@
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">{{ trans('compo.info') }}</h3>
+					<div class="card-options">
+						@if($compo->rules)<a class="btn btn-sm btn-orange float-right" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
+					</div>
 				</div>
 				<div class="card-body d-flex flex-column">
 					@if($compo->start_at)<p>{{ trans('compo.starts') }}: <br>{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}</p>@endif
@@ -27,7 +30,6 @@
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
 				</div>
 				<div class="card-footer">
-					@if($compo->rules)<a class="btn btn-sm btn-warning" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
 					@if($compo->last_sign_up_at > \Carbon\Carbon::now())<a class="btn btn-sm btn-success" href=""><i class="fas fa-user-plus"></i> {{ trans('compo.signup') }}</a>@endif
 				</div>
 			</div>
