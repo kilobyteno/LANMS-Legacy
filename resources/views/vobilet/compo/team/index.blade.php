@@ -7,7 +7,7 @@
 		<h4 class="page-title">{{ trans('compo.teams') }}<a class="btn btn-sm btn-success ml-2" href="{{ route('compo-team-create') }}"><i class="fa fa-plus mr-2"></i> {{ trans('global.add') }}</a></h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('compo') }}">{{ trans('header.compo') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('compo') }}">{{ trans('compo.title') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('compo.teams') }}</li>
 		</ol>
 	</div>

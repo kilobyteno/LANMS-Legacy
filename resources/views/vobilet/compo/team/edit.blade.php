@@ -7,7 +7,7 @@
 		<h4 class="page-title">{{ trans('global.edit') }} {{ trans('compo.teams') }} #{{ $team->id }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('compo') }}">{{ trans('header.compo') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('compo') }}">{{ trans('compo.title') }}</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('compo-team') }}">{{ trans('compo.teams') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('global.edit') }} {{ trans('compo.teams') }}</li>
 		</ol>

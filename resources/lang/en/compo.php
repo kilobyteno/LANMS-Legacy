@@ -2,6 +2,7 @@
 
 return [
 
+    'title' => 'Compo',
     'starts' => 'Starts',
     'lastsignup' => 'Last registration',
     'ends' => 'Ends',

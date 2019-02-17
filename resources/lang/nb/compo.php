@@ -2,6 +2,7 @@
 
 return [
 
+    'title' => 'Konkuranse',
     'starts' => 'Starter',
     'lastsignup' => 'Siste påmelding',
     'ends' => 'Slutter',
