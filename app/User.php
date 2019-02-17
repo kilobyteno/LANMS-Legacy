@@ -762,6 +762,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
     }
 
+    public function scopeActiveUsers()
+    {
+        return $this->orderBy('firstname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+    }
+
     public function scopeGetGenderIcon($query, $gender)
     {
         switch ($gender) {
