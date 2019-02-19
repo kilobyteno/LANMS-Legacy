@@ -193,6 +193,7 @@ Route::group([
                             'uses' => 'Compo\CompoTeamController@destroy'
                         ]);
                     });
+                
                 Route::get('/', [
                     'as' => 'compo',
                     'uses' => 'Compo\CompoController@index'
@@ -200,6 +201,14 @@ Route::group([
                 Route::get('/{slug}', [
                     'as' => 'compo-show',
                     'uses' => 'Compo\CompoController@show'
+                ]);
+                Route::get('/{slug}/signup', [
+                    'as' => 'compo-signup',
+                    'uses' => 'Compo\CompoSignUpController@create'
+                ]);
+                Route::post('/{slug}/signup/store', [
+                    'as' => 'compo-signup-store',
+                    'uses' => 'Compo\CompoSignUpController@store'
                 ]);
             });
         Route::group([

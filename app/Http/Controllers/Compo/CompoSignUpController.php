@@ -24,7 +24,8 @@ class CompoSignUpController extends Controller
      */
     public function create()
     {
-        //
+        $compo = Compo::where('slug', '=', $slug)->first();
+        return view('compo.signup.show')->withCompo($compo);
     }
 
     /**
@@ -35,7 +36,7 @@ class CompoSignUpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compo = Compo::where('slug', '=', $slug)->first();
     }
 
     /**
