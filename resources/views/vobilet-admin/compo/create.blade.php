@@ -24,12 +24,12 @@
 						
 						<div class="col-xl-12">
 							<div class="input-group">
-								<input type="text" class="form-control input-lg" name="title" autocomplete="off" placeholder="Title" value="{{ (old('title')) ? old('title') : '' }}" />
+								<input type="text" class="form-control input-lg" name="name" autocomplete="off" placeholder="Name" value="{{ (old('name')) ? old('name') : '' }}" />
 								<span class="input-group-append">
 									<button class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i> Save</button>
 								</span>
-								@if($errors->has('title'))
-									<p class="text-danger">{{ $errors->first('title') }}</p>
+								@if($errors->has('name'))
+									<p class="text-danger">{{ $errors->first('name') }}</p>
 								@endif
 							</div>
 						</div>
