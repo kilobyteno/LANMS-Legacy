@@ -102,13 +102,14 @@ class CompoController extends Controller
      * @param  \LANMS\Compo  $compo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Compo $compo)
+    public function edit($id)
     {
         if (!\Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
             return \Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return view('compo.edit');
+        $compo = Compo::find($id);
+        return view('compo.edit')->withCompo($compo);
     }
 
     /**
@@ -118,13 +119,13 @@ class CompoController extends Controller
      * @param  \LANMS\Compo  $compo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Compo $compo)
+    public function update(Request $request, $id)
     {
         if (!\Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
             return \Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-
+        $compo = Compo::find($id);
         $compo->update([
             'name' => $request->get('name'),
             'slug' => str_slug($request->get('name'), '-'),

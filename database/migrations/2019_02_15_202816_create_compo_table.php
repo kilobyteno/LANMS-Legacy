@@ -18,10 +18,10 @@ class CreateCompoTable extends Migration
             
             $table->string('name');
             $table->string('slug');
-            $table->string('description');
-            $table->integer('page_id')->default(0);
-            $table->string('challonge_subdomain');
-            $table->string('challonge_url');
+            $table->string('description')->nullable();
+            $table->integer('page_id')->nullable();
+            $table->string('challonge_subdomain')->nullable();
+            $table->string('challonge_url')->nullable();
             $table->integer('year')->default(1970);
 
             $table->integer('type')->default(1); // 1;Brackets, 2;Submissions
