@@ -46,6 +46,7 @@ return [
         'alert' => [
             'signedup' => '{1} Your team is now signed up!|{2} You are now signed up!',
             'alreadysignedup' => 'You have already signed up for this compo.',
+            'lastsignuppast' => 'Last sign up time has past, no sign up is possible.',
         ],
         'title' => 'Sign Up',
         'signedup' => 'You are signed up!',

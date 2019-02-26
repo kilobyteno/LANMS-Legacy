@@ -33,6 +33,11 @@ class CompoSignUpController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.alreadysignedup'));
         }
+        if ($compo->last_sign_up_at > \Carbon\Carbon::now()) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.lastsignuppast'));
+        }
         return view('compo.signup.show')->withCompo($compo);
     }
 
@@ -49,6 +54,12 @@ class CompoSignUpController extends Controller
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.alreadysignedup'));
+        }
+
+        if ($compo->last_sign_up_at > \Carbon\Carbon::now()) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.lastsignuppast'));
         }
 
         if ($compo->type == 1) {
