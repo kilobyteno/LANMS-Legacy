@@ -28,4 +28,14 @@ class CompoTeam extends Model
     {
         return $this->hasMany('LANMS\CompoSignUp', 'team_id', 'id');
     }
+
+    public function composignupsThisYear()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'team_id', 'id')->thisYear();
+    }
+
+    public function composignupsLastYear()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'team_id', 'id')->lastYear();
+    }
 }

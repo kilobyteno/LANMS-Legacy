@@ -59,7 +59,7 @@
 					</div>
 					<div class="card-body d-flex flex-column">
 						<div class="row"> 
-							@foreach($compo->signups as $signup)
+							@foreach($compo->signupsthisYear as $signup)
 								@if($signup->team_id)
 									<div class="col-lg-3">{{ $signup->team->name }}</div>
 								@elseif(!$signup->team_id && $signup->user_id)

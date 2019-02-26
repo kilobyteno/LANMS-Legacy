@@ -12,6 +12,7 @@ class CompoSignUp extends Model
         'compo_id',
         'team_id',
         'user_id',
+        'year',
     ];
 
     public function user()
@@ -22,5 +23,15 @@ class CompoSignUp extends Model
     public function team()
     {
         return $this->hasOne('\LANMS\CompoTeam', 'id', 'team_id');
+    }
+
+    public function scopeThisYear($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+    }
+
+    public function scopeLastYear($query)
+    {
+        return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
     }
 }

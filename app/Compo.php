@@ -60,4 +60,9 @@ class Compo extends Model
         return $this->hasMany('LANMS\CompoSignUp', 'compo_id', 'id');
     }
 
+    public function signupsThisYear()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'compo_id', 'id')->thisYear();
+    }
+
 }

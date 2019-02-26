@@ -61,6 +61,7 @@ class CompoSignUpController extends Controller
             'compo_id' => $compo->id,
             'team_id' => $team_id,
             'user_id' => \Sentinel::getUser()->id,
+            'year' => \Setting::get('SEATING_YEAR'),
         ]);
         return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'success')

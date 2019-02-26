@@ -20,6 +20,8 @@ class CreateCompoSignUpsTable extends Migration
             $table->integer('user_id');
             $table->integer('team_id')->nullable();
 
+            $table->integer('year')->default(1970);
+
             $table->timestamps();
             $table->softDeletes();
         });
