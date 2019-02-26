@@ -178,7 +178,7 @@
 						<div class="col-xl-4">
 							<div class="row">
 								<div class="col-xl-6">
-									<p>Start Date</p>
+									<p>End Date</p>
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<div class="input-group-text">
@@ -192,7 +192,7 @@
 									</div>
 								</div>
 								<div class="col-xl-6">
-									<p>Start Time</p>
+									<p>End Time</p>
 									<div class="input-group">
 										<div class="input-group-prepend">
 											<div class="input-group-text">
