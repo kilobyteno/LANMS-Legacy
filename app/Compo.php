@@ -25,6 +25,9 @@ class Compo extends Model
         'start_at',
         'last_sign_up_at',
         'end_at',
+        'type',
+        'signup_type',
+        'signup_size',
     ];
 
     public function scopeThisYear($query)
