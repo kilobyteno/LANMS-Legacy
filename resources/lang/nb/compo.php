@@ -28,6 +28,7 @@ return [
             'updated' => 'Laget er nå oppdatert.',
             'deleted' => 'Laget er nå slettet.',
             'notunique' => 'Alle spillere må være unike.',
+            'moreplayers' => 'Vennligst legg til flere spillere.',
         ],
         'create' => [
             'name' => 'Lagnavn',

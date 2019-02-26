@@ -45,10 +45,16 @@ class CompoTeamController extends Controller
 
         $players = $request->input('players');
         $array_not_unique = count($players) !== count(array_unique($players));
-        if ($array_not_unique || count($players) < 1) {
+        if (count($players) > 1 && $array_not_unique === true) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.notunique'));
+        }
+
+        if (count($players) == 0) {
+            return \Redirect::back()
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.team.alert.moreplayers'));
         }
         
         $team->players()->attach($players);
@@ -94,12 +100,17 @@ class CompoTeamController extends Controller
         $team->update([
             'name' => $request->get('name'),
         ]);
-        $players = $request->input('players');
+        $players = array_filter($request->input('players'));
         $array_not_unique = count($players) !== count(array_unique($players));
-        if ($array_not_unique || count($players) < 1) {
+        if ($array_not_unique === true) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.notunique'));
+        }
+        if (count($players) == 0) {
+            return \Redirect::back()
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.team.alert.moreplayers'));
         }
         $team->players()->detach();
         $team->players()->attach($players);

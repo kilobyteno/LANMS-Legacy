@@ -28,6 +28,7 @@ return [
             'updated' => 'The team has now been updated.',
             'deleted' => 'The team has now been deleted.',
             'notunique' => 'All players needs to be unique.',
+            'moreplayers' => 'Please add more players.',
         ],
         'create' => [
             'name' => 'Team Name',
