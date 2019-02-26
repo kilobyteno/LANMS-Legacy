@@ -38,11 +38,7 @@ class CompoTeamController extends Controller
      */
     public function store(CompoTeamCreateRequest $request)
     {
-        $team = \LANMS\CompoTeam::create([
-            'name' => $request->get('name'),
-            'user_id' => \Sentinel::getUser()->id,
-        ]);
-
+        
         $players = array_filter($request->input('players'));
         $array_not_unique = count($players) !== count(array_unique($players));
         if ($array_not_unique === true || in_array(\Sentinel::check()->id, $players)) {
@@ -56,6 +52,10 @@ class CompoTeamController extends Controller
                 ->with('message', trans('compo.team.alert.moreplayers'));
         }
         
+        $team = \LANMS\CompoTeam::create([
+            'name' => $request->get('name'),
+            'user_id' => \Sentinel::getUser()->id,
+        ]);
         $team->players()->attach($players);
 
         return \Redirect::route('compo-team')
