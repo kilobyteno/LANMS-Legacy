@@ -73,7 +73,7 @@ class RecoverController extends Controller
                     'username' => $user->username,
                 ),
                 function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject(trans('email.forgotpassword.title'));
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.forgotpassword.title'));
                 }
             );
             
