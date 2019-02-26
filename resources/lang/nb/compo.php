@@ -24,7 +24,10 @@ return [
     'player' => 'Spiller',
     'team' => [
         'alert' => [
-            'deleted' => 'The team has now been deleted.',
+            'created' => 'Laget er nå opprettet.',
+            'updated' => 'Laget er nå oppdatert.',
+            'deleted' => 'Laget er nå slettet.',
+            'notunique' => 'Alle spillere må være unike.',
         ],
         'create' => [
             'name' => 'Lagnavn',
