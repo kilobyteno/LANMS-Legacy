@@ -21,10 +21,43 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#releasenotes" href="#251" aria-expanded="true">Version 2.5.1</a>
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#252" aria-expanded="true">Version 2.5.2</a>
 							</h4>
 						</div>
-						<div id="251" class="panel-collapse collapse" aria-expanded="true">
+						<div id="252" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-247'>LANMS-247</a>] - Reserved status is not translated</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-248'>LANMS-248</a>] - Charge status from Stripe is not translated</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-269'>LANMS-269</a>] - Alert showing html in seating</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-271'>LANMS-271</a>] - Select2 has dark theme</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-274'>LANMS-274</a>] - Referral count does not show correctly</li>
+								</ul>
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-13'>LANMS-13</a>] - Create Team System</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-18'>LANMS-18</a>] - Create Compo System</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-270'>LANMS-270</a>] - Add a own sponsor page</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-275'>LANMS-275</a>] - Compo Signup System</li>
+								</ul>
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-254'>LANMS-254</a>] - Add &quot;admin buttons&quot; on news, pages etc</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-265'>LANMS-265</a>] - Autocomplete fields should be easier to use</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-267'>LANMS-267</a>] - Improve design of license page</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#251">Version 2.5.1</a>
+							</h4>
+						</div>
+						<div id="251" class="panel-collapse collapse">
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
