@@ -33,7 +33,7 @@ class CompoSignUpController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.alreadysignedup'));
         }
-        if ($compo->last_sign_up_at > \Carbon\Carbon::now()) {
+        if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
@@ -56,7 +56,7 @@ class CompoSignUpController extends Controller
                 ->with('message', trans('compo.signup.alert.alreadysignedup'));
         }
 
-        if ($compo->last_sign_up_at > \Carbon\Carbon::now()) {
+        if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
@@ -64,6 +64,14 @@ class CompoSignUpController extends Controller
 
         if ($compo->type == 1) {
             $team_id = $request->id;
+            $team = \LANMS\CompoTeam::find($team_id);
+            $players = $team->players->count();
+            $players += 1;
+            if ($compo->signup_size != $players) {
+                return \Redirect::route('compo-show', $compo->slug)
+                    ->with('messagetype', 'warning')
+                    ->with('message', trans('compo.signup.alert.signupsize'));
+            }
         } else {
             $team_id = null;
         }
