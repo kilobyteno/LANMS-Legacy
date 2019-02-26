@@ -61,6 +61,18 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
 
+        $start_at_date = $request->get('start_at_date');
+        $start_at_time = $request->get('start_at_time');
+        $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
+
+        $last_sign_up_at_date = $request->get('last_sign_up_at_date');
+        $last_sign_up_at_time = $request->get('last_sign_up_at_time');
+        $last_sign_up_at = date('Y-m-d H:i:s', strtotime("$last_sign_up_at_date $last_sign_up_at_time"));
+
+        $end_at_date = $request->get('end_at_date');
+        $end_at_time = $request->get('end_at_time');
+        $end_at = date('Y-m-d H:i:s', strtotime("$end_at_date $end_at_time"));
+
         \LANMS\Compo::create([
             'name' => $request->get('name'),
             'slug' => str_slug($request->get('name'), '-'),
@@ -72,9 +84,9 @@ class CompoController extends Controller
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
             'signup_size' => $request->get('signup_size'),
-            'start_at' => $request->get('start_at'),
-            'last_sign_up_at' => $request->get('last_sign_up_at'),
-            'end_at' => $request->get('end_at'),
+            'start_at' => $start_at ,
+            'last_sign_up_at' => $last_sign_up_at,
+            'end_at' => $end_at,
             'author_id' => \Sentinel::getUser()->id,
             'editor_id' => \Sentinel::getUser()->id,
         ]);
@@ -126,6 +138,19 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $compo = Compo::find($id);
+
+        $start_at_date = $request->get('start_at_date');
+        $start_at_time = $request->get('start_at_time');
+        $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
+
+        $last_sign_up_at_date = $request->get('last_sign_up_at_date');
+        $last_sign_up_at_time = $request->get('last_sign_up_at_time');
+        $last_sign_up_at = date('Y-m-d H:i:s', strtotime("$last_sign_up_at_date $last_sign_up_at_time"));
+
+        $end_at_date = $request->get('end_at_date');
+        $end_at_time = $request->get('end_at_time');
+        $end_at = date('Y-m-d H:i:s', strtotime("$end_at_date $end_at_time"));
+        
         $compo->update([
             'name' => $request->get('name'),
             'slug' => str_slug($request->get('name'), '-'),
@@ -137,9 +162,9 @@ class CompoController extends Controller
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
             'signup_size' => $request->get('signup_size'),
-            'start_at' => $request->get('start_at'),
-            'last_sign_up_at' => $request->get('last_sign_up_at'),
-            'end_at' => $request->get('end_at'),
+            'start_at' => $start_at ,
+            'last_sign_up_at' => $last_sign_up_at,
+            'end_at' => $end_at,
             'editor_id' => \Sentinel::getUser()->id,
         ]);
 
