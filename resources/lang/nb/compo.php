@@ -50,6 +50,7 @@ return [
             'signupsize' => 'Teamet ditt er ikke riktig størrelse.',
         ],
         'title' => 'Bli med',
+        'chooseteam' => 'Velg lag',
         'signedup' => '{1} Ditt lag er meldt på!|{2} Du er meldt på!',
         'invidual' => 'Du vil nå melde deg selv på.',
         'agreement' => '{1} Vi har lest og akseptert <strong>reglene</strong> for denne konkurransen.|{2} Jeg har lest og akseptert <strong>reglene</strong> for denne konkurransen.',

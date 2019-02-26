@@ -50,6 +50,7 @@ return [
             'signupsize' => 'Your team is not the correct size.',
         ],
         'title' => 'Sign Up',
+        'chooseteam' => 'Choose Team',
         'signedup' => 'You are signed up!',
         'invidual' => 'You will now sign up yourself.',
         'agreement' => '{1} We have read and accepted the <strong>rules</strong> for this compo.|{2} I have read and accepted the <strong>rules</strong> for this compo.',

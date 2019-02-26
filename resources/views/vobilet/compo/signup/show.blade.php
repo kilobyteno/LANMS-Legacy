@@ -50,7 +50,7 @@
 					@endif
 					@if($compo->type == 1)
 						<div class="form-group">
-							<label class="form-label">{{ trans('compo.team.create.name') }}</label>
+							<label class="form-label">{{ trans('compo.signup.chooseteam') }}</label>
 							<select name="id" class="select2">
 								<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 								@foreach(\LANMS\CompoTeam::where('user_id', \Sentinel::check()->id)->get() as $team)
@@ -88,7 +88,7 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('.select2').select2();
+			$('.select2').select2({minimumResultsForSearch:-1});
 		});
 	</script>
 @stop
