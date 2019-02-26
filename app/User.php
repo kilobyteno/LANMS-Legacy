@@ -578,6 +578,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         return $this->hasMany('LANMS\SeatPayment', 'user_id', 'id');
     }
 
+    public function composignups()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'user_id', 'id');
+    }
+
     public function scopeGetLastActivity($query, $id, $short = false)
     {
         $user       = $query->where('id', '=', $id)->first();

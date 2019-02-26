@@ -25,6 +25,7 @@ class CompoSignUpRequest extends FormRequest
     {
         return [
             'id' => 'required',
+            'read_rules' => 'accepted',
         ];
     }
 }

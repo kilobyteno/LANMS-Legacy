@@ -15,7 +15,13 @@ class CreateCompoSignUpsTable extends Migration
     {
         Schema::create('compo_sign_ups', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('compo_id');
+            $table->integer('user_id');
+            $table->integer('team_id')->nullable();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

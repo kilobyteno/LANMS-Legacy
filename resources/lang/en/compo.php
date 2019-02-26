@@ -7,7 +7,6 @@ return [
     'lastsignup' => 'Last registration',
     'ends' => 'Ends',
     'rules' => 'Rules',
-    'signup' => 'Sign Up',
     'info' => 'Info',
     'nobracketsyet' => 'The brackets has not been set up yet.',
     'type' => 'Type',
@@ -40,6 +39,16 @@ return [
             'yes' => 'Yes, I want to delete it.',
             'no' => 'No, take me away!',
         ],
+    ],
+    'signup' => [
+        'alert' => [
+            'signedup' => '{1} Your team is now signed up!|{2} You are now signed up!',
+            'alreadysignedup' => 'You have already signed up for this compo.',
+        ],
+        'title' => 'Sign Up',
+        'signedup' => 'You are signed up!',
+        'invidual' => 'You will now sign up yourself.',
+        'agreement' => '{1} We have read and accepted the <strong>rules</strong> for this compo.|{2} I have read and accepted the <strong>rules</strong> for this compo.',
     ],
     
 ];

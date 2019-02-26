@@ -7,7 +7,6 @@ return [
     'lastsignup' => 'Siste påmelding',
     'ends' => 'Slutter',
     'rules' => 'Regler',
-    'signup' => 'Bli med',
     'info' => 'Info',
     'nobracketsyet' => 'Brakettene er ikke konfigurert ennå.',
     'type' => 'Type',
@@ -40,6 +39,16 @@ return [
             'yes' => 'Ja, jeg vil slette den.',
             'no' => 'Nei, ta meg bort!',
         ],
+    ],
+    'signup' => [
+        'alert' => [
+            'signedup' => '{1} Ditt lag er nå meldt på!|{2} Du er nå meldt på!',
+            'alreadysignedup' => 'Du har allerede registrert deg for denne konkurransen.',
+        ],
+        'title' => 'Bli med',
+        'signedup' => '{1} Ditt lag er meldt på!|{2} Du er meldt på!',
+        'invidual' => 'Du vil nå melde deg selv på.',
+        'agreement' => '{1} Vi har lest og akseptert <strong>reglene</strong> for denne konkurransen.|{2} Jeg har lest og akseptert <strong>reglene</strong> for denne konkurransen.',
     ],
     
 ];

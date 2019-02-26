@@ -2,8 +2,11 @@
 
 namespace LANMS\Http\Controllers\Compo;
 
+use LANMS\Compo;
+use LANMS\CompoSignUp;
 use Illuminate\Http\Request;
 use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests\CompoSignUpRequest;
 
 class CompoSignUpController extends Controller
 {
@@ -22,9 +25,14 @@ class CompoSignUpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($slug)
     {
         $compo = Compo::where('slug', '=', $slug)->first();
+        if (\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.alreadysignedup'));
+        }
         return view('compo.signup.show')->withCompo($compo);
     }
 
@@ -34,9 +42,29 @@ class CompoSignUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompoSignUpRequest $request, $slug)
     {
         $compo = Compo::where('slug', '=', $slug)->first();
+        if (\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.alreadysignedup'));
+        }
+
+        if ($compo->type == 1) {
+            $team_id = $request->id;
+        } else {
+            $team_id = null;
+        }
+
+        $signup = \LANMS\CompoSignUp::create([
+            'compo_id' => $compo->id,
+            'team_id' => $team_id,
+            'user_id' => \Sentinel::getUser()->id,
+        ]);
+        return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'success')
+                ->with('message', trans_choice('compo.signup.alert.signedup', $compo->type));
     }
 
     /**

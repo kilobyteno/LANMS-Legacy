@@ -31,7 +31,7 @@
 						<div class="card-footer">
 							<a class="btn btn-sm btn-info" href="{{ route('compo-show', $compo->slug) }}"><i class="far fa-eye"></i> {{ trans('global.view') }}</a>
 							@if($compo->rules)<a class="btn btn-sm btn-orange" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
-							@if($compo->last_sign_up_at > \Carbon\Carbon::now())<a class="btn btn-sm btn-success" href=""><i class="fas fa-user-plus"></i> {{ trans('compo.signup') }}</a>@endif
+							@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a> @elseif(\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
 						</div>
 					</div>
 				</div>
