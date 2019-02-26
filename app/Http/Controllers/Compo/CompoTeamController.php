@@ -43,14 +43,13 @@ class CompoTeamController extends Controller
             'user_id' => \Sentinel::getUser()->id,
         ]);
 
-        $players = $request->input('players');
+        $players = array_filter($request->input('players'));
         $array_not_unique = count($players) !== count(array_unique($players));
-        if (count($players) > 1 && $array_not_unique === true) {
+        if ($array_not_unique === true || in_array(\Sentinel::check()->id, $players)) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.notunique'));
         }
-
         if (count($players) == 0) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
@@ -102,7 +101,7 @@ class CompoTeamController extends Controller
         ]);
         $players = array_filter($request->input('players'));
         $array_not_unique = count($players) !== count(array_unique($players));
-        if ($array_not_unique === true) {
+        if ($array_not_unique === true || in_array(\Sentinel::check()->id, $players)) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.notunique'));
