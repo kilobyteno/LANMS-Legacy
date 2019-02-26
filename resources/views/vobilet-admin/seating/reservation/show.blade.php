@@ -32,8 +32,8 @@
 									<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 								@endforeach
 							</select>
-							@if($errors->has('reservedfor'))
-								<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
+							@if($errors->has('reservedfor_id'))
+								<p class="text-danger">{{ $errors->first('reservedfor_id') }}</p>
 							@endif
 						</div>
 					</div>

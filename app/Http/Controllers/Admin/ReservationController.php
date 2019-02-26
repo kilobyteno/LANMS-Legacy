@@ -139,7 +139,7 @@ class ReservationController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
             $slug           = strtolower($slug); // Just to be sure it is correct
             $seat           = Seats::where('slug', $slug)->first();
-            $reservedforid  = $request->get('reservedfor');
+            $reservedforid  = $request->get('reservedfor_id');
             $reservedfor    = Sentinel::findById($reservedforid);
 
             if ($seat == null) {
@@ -219,7 +219,8 @@ class ReservationController extends Controller
             $updateseat->reservation_id     = $reservation->id;
             $updateseat->save();
 
-            if ($reservation->status_id == 1) { // 1 = Reserved, 2 = Temporary Reserved
+            if ($reservation->status_id == 1) {
+                // 1 = Reserved, 2 = Temporary Reserved
                 
                 if ($reservation->ticket) {
                     $reservation->ticket->delete();
