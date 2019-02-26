@@ -21,6 +21,7 @@ return [
     'teams' => 'Teams',
     'teamleader' => 'Teamleader',
     'player' => 'Player',
+    'attendees' => 'Attendees',
     'team' => [
         'alert' => [
             'created' => 'The team has now been created.',
@@ -28,6 +29,7 @@ return [
             'deleted' => 'The team has now been deleted.',
             'notunique' => 'All players needs to be unique.',
             'moreplayers' => 'Please add more players.',
+            'cantdelete' => 'Can\'t delete, you are signed up.',
         ],
         'create' => [
             'name' => 'Team Name',

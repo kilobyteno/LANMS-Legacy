@@ -128,6 +128,11 @@ class CompoTeamController extends Controller
     public function destroy($id)
     {
         $team = \LANMS\CompoTeam::find($id);
+        if ($team->composignups()->count() > 0) {
+            return \Redirect::route('compo-team', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.team.alert.cantdelete'));
+        }
         if ($team->user_id === \Sentinel::check()->id) {
             $team->delete();
             return \Redirect::route('compo-team')->with('messagetype', 'success')->with('message', trans('compo.team.alert.deleted'));

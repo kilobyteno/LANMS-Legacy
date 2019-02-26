@@ -21,6 +21,6 @@ class CompoSignUp extends Model
 
     public function team()
     {
-        return $this->hasOne('CompoTeam', 'id', 'team_id');
+        return $this->hasOne('\LANMS\CompoTeam', 'id', 'team_id');
     }
 }

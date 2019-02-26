@@ -48,10 +48,28 @@
 							<p>{{ trans('compo.nobracketsyet') }}</p>
 						@endif
 					@elseif($compo->type == 2)
-						<p>*insert submission stuff here*</p>
+						{{-- <p>*insert submission stuff here*</p> --}}
 					@endif
 				</div>
 			</div>
+			@if($compo->signups->count() > 0)
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">{{ trans('compo.attendees') }}</h3>
+					</div>
+					<div class="card-body d-flex flex-column">
+						<div class="row"> 
+							@foreach($compo->signups as $signup)
+								@if($signup->team_id)
+									<div class="col-lg-3">{{ $signup->team->name }}</div>
+								@elseif(!$signup->team_id && $signup->user_id)
+									<div class="col-lg-3">{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}</div>
+								@endif
+							@endforeach
+						</div>
+					</div>
+				</div>
+			@endif
 		</div>
 	</div>
 </div>

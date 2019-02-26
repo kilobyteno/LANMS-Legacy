@@ -21,6 +21,7 @@ return [
     'teams' => 'Lag',
     'teamleader' => 'Lagleder',
     'player' => 'Spiller',
+    'attendees' => 'Deltakere',
     'team' => [
         'alert' => [
             'created' => 'Laget er nå opprettet.',
@@ -28,6 +29,7 @@ return [
             'deleted' => 'Laget er nå slettet.',
             'notunique' => 'Alle spillere må være unike.',
             'moreplayers' => 'Vennligst legg til flere spillere.',
+            'cantdelete' => 'Kan ikke slette, du er meldt på konkurranse.',
         ],
         'create' => [
             'name' => 'Lagnavn',

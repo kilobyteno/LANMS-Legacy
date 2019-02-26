@@ -23,4 +23,9 @@ class CompoTeam extends Model
     {
         return $this->belongsToMany('LANMS\User');
     }
+
+    public function composignups()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'team_id', 'id');
+    }
 }

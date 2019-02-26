@@ -27,7 +27,7 @@
 						</div>
 						<div class="card-footer">
 							<a href="{{ route('compo-team-edit', $team->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-1"></i>{{ trans('global.edit') }}</a>
-							<a href="javascript:;" onclick="jQuery('#team-destroy-{{ $team->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-1"></i>{{ trans('global.delete') }}</a>
+							@if($team->composignups()->count() == 0)<a href="javascript:;" onclick="jQuery('#team-destroy-{{ $team->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-1"></i>{{ trans('global.delete') }}</a>@else <br><br><span class="badge badge-danger">{{ trans('compo.team.alert.cantdelete') }}</span>@endif
 						</div>
 					</div>
 				</div>

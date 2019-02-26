@@ -55,4 +55,9 @@ class Compo extends Model
         return $this->hasOne('User', 'id', 'editor_id')->withTrashed();
     }
 
+    public function signups()
+    {
+        return $this->hasMany('LANMS\CompoSignUp', 'compo_id', 'id');
+    }
+
 }
