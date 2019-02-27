@@ -27,6 +27,7 @@
         "rap2hpoutre/laravel-log-viewer": "^0.8.0",
         "sentry/sentry-laravel": "1.0.0",
         "spatie/laravel-activitylog": "^2.8",
+        "symfony/translation": "~4.1",
         "tom-lingham/searchy": "^2.0",
         "toolkito/larasap": "^1.2"
     },
