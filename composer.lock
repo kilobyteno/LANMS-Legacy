@@ -2455,7 +2455,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -4198,17 +4198,6 @@
         {
             "name": "sentry/sdk",
             "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/getsentry/sentry-php-sdk.git",
-                "reference": "7fb7c294de3524999046876f5f572005df89f0ec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php-sdk/zipball/7fb7c294de3524999046876f5f572005df89f0ec",
-                "reference": "7fb7c294de3524999046876f5f572005df89f0ec",
-                "shasum": ""
-            },
             "require": {
                 "guzzlehttp/psr7": "^1.0",
                 "php-http/curl-client": "^1.0",
