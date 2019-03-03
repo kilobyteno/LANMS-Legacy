@@ -28,7 +28,7 @@ class CheckinController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
             $checkins              = Checkin::thisYear()->get();
             $ticketsnoncheckedin    = SeatTicket::noCheckin()->thisYear()->get();
-            $reservedcount          = SeatTicket::thisYear()->count();
+            $reservedcount          = SeatReservation::thisYear()->count();
 
             return view('seating.checkin.index')->withCheckins($checkins)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
         } else {
