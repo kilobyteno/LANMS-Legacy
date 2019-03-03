@@ -35,7 +35,7 @@ class SponsorController extends Controller
     public function admin()
     {
         if (Sentinel::getUser()->hasAccess(['admin.sponsor.*'])) {
-            $sponsors = Sponsor::all();
+            $sponsors = Sponsor::thisYear()->get();
             return view('sponsor.index')
                         ->with('sponsors', $sponsors);
         } else {

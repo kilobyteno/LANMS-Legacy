@@ -8,7 +8,7 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         Setting::set('APP_NAME', 'LANMS');
-        Setting::set('APP_VERSION', '2.5.2');
+        Setting::set('APP_VERSION', '2.5.3');
         Setting::set('APP_VERSION_TYPE', 'Dev');
         Setting::set('APP_URL', 'http://lanms.xyz/');
         Setting::set('APP_LICENSE_STATUS', '');
@@ -27,7 +27,7 @@ class SettingsTableSeeder extends Seeder
         Setting::set('WEB_NAME', 'LANMS');
         Setting::set('WEB_LOGO', '/images/lanms_light.png');
         Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
-        Setting::set('WEB_COPYRIGHT', '2015-2018, Infihex');
+        Setting::set('WEB_COPYRIGHT', '2015-2019, Infihex');
 
         Setting::set('SEATING_OPEN', true);
         Setting::set('SEATING_SHOW_MAP', true);
@@ -35,7 +35,7 @@ class SettingsTableSeeder extends Seeder
         Setting::set('SEATING_SEAT_PRICE', 250);
         Setting::set('SEATING_SEAT_PRICE_ALT', 300);
         Setting::set('SEATING_SEAT_PRICE_CURRENCY', 'NOK');
-        Setting::set('SEATING_YEAR', 2019);
+        Setting::set('SEATING_YEAR', 2020);
         
         Setting::set('REFERRAL_ACTIVE', true);
         Setting::set('LOGIN_ENABLED', true);

@@ -61,7 +61,7 @@
 						<div class="row"> 
 							@foreach($compo->signupsthisYear as $signup)
 								@if($signup->team_id)
-									<div class="col-lg-3">
+									<div class="col-lg-3 mb-5">
 										<h5><strong>{{ $signup->team->name }}</strong></h5>
 										<p class="m-0"><i class="fas fa-user mr-2"></i>{{ \LANMS\User::getFullnameAndNicknameByID($signup->team->user_id) }}</p>
 										@foreach($signup->team->players as $player)
@@ -69,7 +69,7 @@
 										@endforeach
 									</div>
 								@elseif(!$signup->team_id && $signup->user_id)
-									<div class="col-lg-3">{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}</div>
+									<div class="col-lg-3 mb-4">{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}</div>
 								@endif
 							@endforeach
 						</div>
