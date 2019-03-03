@@ -118,12 +118,18 @@ class ReserveSeatingController extends Controller
                                 ->with('message', trans('seating.reservation.alert.alreadyreservedfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
 
+        if (\Setting::get('SEATING_YEAR')) {
+            $year = \Setting::get('SEATING_YEAR');
+        } else {
+            $year = \Carbon::now()->year;
+        }
+
         $seatreservation                    = new SeatReservation;
         $seatreservation->seat_id           = $seat->id;
         $seatreservation->reservedby_id     = Sentinel::getUser()->id;
         $seatreservation->reservedfor_id    = $reservedforid;
         $seatreservation->status_id         = 2; // 1 = Reserved, 2 = Temporary Reserved
-        $seatreservation->year              = \Setting::get('SEATING_YEAR');
+        $seatreservation->year              = $year;
 
         $seatreservationsave                = $seatreservation->save();
 
