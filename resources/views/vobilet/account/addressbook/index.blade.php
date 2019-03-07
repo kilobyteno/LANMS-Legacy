@@ -41,7 +41,7 @@
                                 <div class="card-footer">
                                     <a class="btn btn-sm btn-warning" href="{{ route('account-addressbook-edit', $address->id) }}"><i class="fas fa-edit"></i> {{ trans('global.edit') }}</a>
                                     @if(Sentinel::getUser()->reservations->count() == 0)
-                                        <button id="address-destroy-{{ $address->id }}" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i> {{ trans('global.delete') }}</a>
+                                        <button id="address-destroy-{{ $address->id }}" class="btn btn-danger btn-sm"><i class="fas fa-minus-circle"></i> {{ trans('global.delete') }}</button>
                                     @endif
                                 </div>
                             </div>
