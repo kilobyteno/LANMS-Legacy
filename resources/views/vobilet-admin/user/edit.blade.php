@@ -18,7 +18,7 @@
         <form action="{{ route('admin-user-update', $user->id) }}" method="post" class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    @if(\Activation::completed($user))<div class="badge badge-primary">Activated</div>@endif
+                    @if(\Activation::completed($user) && !$user->deleted_at)<div class="badge badge-primary">Activated</div>@endif
                     @if($user->last_login)<div class="badge badge-info">Has logged in</div>@endif
                     @if($user->deleted_at)<div class="badge badge-secondary">Deactivated</div>@endif
                     @if($user->isAnonymized)<div class="badge badge-danger">Anonymized</div>@endif

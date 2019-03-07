@@ -38,7 +38,7 @@
 								<td>{{ $user->lastname }}</td>
 								<td>{{ ucfirst(\Carbon::parse($user->created_at)->isoFormat('LLL')) }}</td>
 								<td>{{ ucfirst(\Carbon::parse($user->updated_at)->isoFormat('LLL')) }}</td>
-								<td>@if(\Activation::completed($user))<div class="badge badge-primary">Activated</div>@endif @if($user->last_login)<div class="badge badge-info">Has logged in</div>@endif @if($user->deleted_at)<div class="badge badge-secondary">Deactivated</div>@endif @if($user->isAnonymized)<div class="badge badge-danger">Anonymized</div>@endif</td>
+								<td>@if(\Activation::completed($user) && !$user->deleted_at)<div class="badge badge-primary">Activated</div>@endif @if($user->last_login)<div class="badge badge-info">Has logged in</div>@endif @if($user->deleted_at)<div class="badge badge-secondary">Deactivated</div>@endif @if($user->isAnonymized)<div class="badge badge-danger">Anonymized</div>@endif</td>
 								<td>
 									<a href="{{ route('user-profile', $user->username) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
 									<a href="{{ route('admin-user-edit', $user->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
