@@ -63,6 +63,12 @@ class ReservationController extends Controller
                                 ->with('message', 'There was no reservation found for this seat.');
         }
 
+        if (\Setting::get('SEATING_YEAR')) {
+            $year = \Setting::get('SEATING_YEAR');
+        } else {
+            $year = \Carbon::now()->year;
+        }
+
         $reservation                    = $seat->reservationsThisYear->first();
         $reservationid                  = $reservation->id;
 
@@ -70,7 +76,7 @@ class ReservationController extends Controller
         $seatticket->barcode            = mt_rand(1000000000, 2147483647);
         $seatticket->reservation_id     = $reservationid;
         $seatticket->user_id            = $reservation->reservedfor_id;
-        $seatticket->year               = \Setting::get('SEATING_YEAR');
+        $seatticket->year               = $year;
         $seatticket->save();
 
         $reservationchange              = SeatReservation::find($reservationid);
@@ -161,12 +167,18 @@ class ReservationController extends Controller
                                     ->with('message', $reservedfor->username.' already has reserved a seat.');
             }
 
+            if (\Setting::get('SEATING_YEAR')) {
+                $year = \Setting::get('SEATING_YEAR');
+            } else {
+                $year = \Carbon::now()->year;
+            }
+
             $seatreservation                    = new SeatReservation;
             $seatreservation->seat_id           = $seat->id;
             $seatreservation->reservedby_id     = Sentinel::getUser()->id;
             $seatreservation->reservedfor_id    = $reservedforid;
             $seatreservation->status_id         = 2; // 1 = Reserved, 2 = Temporary Reserved
-            $seatreservation->year              = \Setting::get('SEATING_YEAR');
+            $seatreservation->year              = $year;
 
             $seatreservationsave                = $seatreservation->save();
 
