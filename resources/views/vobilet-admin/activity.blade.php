@@ -20,6 +20,7 @@
             		<table class="table table-striped table-bordered dataTable no-footer" id="table-1" role="grid">
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Date and time</th>
 								<th>Log Name</th>
 								<th>Description</th>
@@ -32,6 +33,7 @@
 						<tbody>
 							@foreach($activities as $activity)
 								<tr>
+									<td>{{ $activity->id }}</td>
 									<td>{{ ucfirst(\Carbon::parse($activity->created_at)->isoFormat('LLL')) }}</td>
 									<td>{{ $activity->log_name }}</td>
 									<td>{{ $activity->description }}</td>
@@ -62,6 +64,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
+		    	order: [0, "desc"],
 		    	responsive: true
 		    });
 		} );

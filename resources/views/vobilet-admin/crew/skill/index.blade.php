@@ -18,7 +18,6 @@
 		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Title</th>
 					<th>Icon</th>
 					<th>Class</th>
@@ -28,7 +27,6 @@
 			<tbody>
 				@foreach($skills as $skill)
 					<tr>
-						<th scope="row">{{ $skill->id }}</th>
 						<td>{{ $skill->title }}</td>
 						<td><i class="{{ $skill->icon }}"></i> {{ $skill->icon }}</td>
 						<td><span class="{{ $skill->class }}">{{ $skill->class }}</span></td>
@@ -75,7 +73,9 @@
 	<script src="{{ Theme::url('plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    $('#table-1').DataTable();
+		    $('#table-1').DataTable({
+		    	order: [0, "asc"],
+		    });
 		} );
 	</script>
 @stop

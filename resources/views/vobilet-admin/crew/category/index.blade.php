@@ -18,7 +18,6 @@
 		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Title</th>
 					<th>Created at</th>
 					<th>Created by</th>
@@ -30,7 +29,6 @@
 			<tbody>
 				@foreach($categories as $category)
 					<tr>
-						<th scope="row">{{ $category->id }}</th>
 						<td>{{ $category->title }}</td>
 						<td>{{ ucfirst(\Carbon::parse($category->created_at)->isoFormat('LLL')) }}</td>
 						<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
@@ -79,7 +77,9 @@
 	<script src="{{ Theme::url('plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    $('#table-1').DataTable();
+		    $('#table-1').DataTable({
+		    	order: [0, "asc"],
+		    });
 		} );
 	</script>
 @stop

@@ -40,9 +40,9 @@
 								<tbody>
 									@foreach($logs as $key => $log)
 										<tr>
-											<td class="text-{{{$log['level_class']}}}"><span class="fas fa-exclamation-triangle" aria-hidden="true"></span> &nbsp;{{$log['level']}}</td>
-											<td class="text">{{$log['context']}}</td>
-											<td class="date">{{ ucfirst(\Carbon::parse($log['date'])->isoFormat('LLL')) }}</td>
+											<td class="text-{{{ $log['level_class'] }}}"><span class="fas fa-exclamation-triangle" aria-hidden="true"></span> &nbsp;{{$log['level']}}</td>
+											<td class="text">{{ $log['context'] }}</td>
+											<td class="date">{{ $log['date'] }}</td>
 											<td class="text">
 												@if ($log['stack']) <a class="pull-right expand btn btn-default btn-xs" data-display="stack{{{$key}}}"><span class="fas fa-search"></span></a>@endif
 												{{{$log['text']}}}
@@ -84,8 +84,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#table-log').DataTable({
-				"order": [ 1, 'desc' ],
-				"stateSave": true,
+				"order": [2, 'desc'],
 				responsive: true,
 				"stateSaveCallback": function (settings, data) {
 					window.localStorage.setItem("datatable", JSON.stringify(data));
