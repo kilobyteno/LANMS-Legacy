@@ -99,6 +99,7 @@ class UserController extends Controller
             'showonline'        => $request->get('showonline'),
             'language'          => $request->get('language'),
             'theme'             => $request->get('theme'),
+            'about'             => $request->get('about'),
         ];
 
         $updateuser = Sentinel::update($finduser, $info);

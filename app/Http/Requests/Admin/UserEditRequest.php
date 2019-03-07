@@ -39,6 +39,7 @@ class UserEditRequest extends FormRequest
             'showonline'        => 'integer',
             'language'          => '',
             'theme'             => '',
+            'about'             => 'nullable',
         ];
     }
 }

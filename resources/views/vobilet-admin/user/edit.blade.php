@@ -156,6 +156,13 @@
                                         <p class="text-danger">{{ $errors->first('phone') }}</p>
                                     @endif
                                 </div>
+                                <div class="form-group @if($errors->has('about')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.about') }}</label>
+                                    <textarea class="form-control" rows="2" name="about">{{ (old('about')) ? old('about') : $user->about }}</textarea>
+                                    @if($errors->has('about'))
+                                        <p class="text-danger">{{ $errors->first('about') }}</p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
