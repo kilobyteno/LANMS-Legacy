@@ -231,25 +231,31 @@
 
         <h3>Addresses</h3>
         <div class="row">
-            <?php $i=0; ?>
-            @foreach($user->addresses as $address)
-                <?php $i++; ?>
-                <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-header @if($address->main_address) bg-primary @endif br-tr-7 br-tl-7">
-                            <h3 class="card-title  @if($address->main_address) text-white @endif">{{ trans('user.addressbook.address') }} #{{ $i }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <address>
-                                <strong>{{ $address->address1 }}</strong>@if($address->address2), {{ $address->address2 }}@endif<br>
-                                {{ $address->postalcode }}, {{ $address->city }}<br>
-                                {{ $address->county }}<br>
-                                {{ $address->country }}
-                            </address>
+            @if(count($user->addresses) > 0)
+                <?php $i=0; ?>
+                @foreach($user->addresses as $address)
+                    <?php $i++; ?>
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-header @if($address->main_address) bg-primary @endif br-tr-7 br-tl-7">
+                                <h3 class="card-title  @if($address->main_address) text-white @endif">{{ trans('user.addressbook.address') }} #{{ $i }}</h3>
+                            </div>
+                            <div class="card-body">
+                                <address>
+                                    <strong>{{ $address->address1 }}</strong>@if($address->address2), {{ $address->address2 }}@endif<br>
+                                    {{ $address->postalcode }}, {{ $address->city }}<br>
+                                    {{ $address->county }}<br>
+                                    {{ $address->country }}
+                                </address>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+            @else
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <p>{{ trans('global.nodata') }}</p>
                 </div>
-            @endforeach
+            @endif
         </div>
 
     </div>
