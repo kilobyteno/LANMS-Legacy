@@ -29,15 +29,16 @@ class UserEditRequest extends FormRequest
             'lastname'          => 'required|between:3,250|string',
             'username'          => 'required|between:3,250|unique:users,username,'.$this->id.',id',
             'email'             => 'required|max:50|email|unique:users,email,'.$this->id.',id',
-            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
             'gender'            => '',
             'location'          => 'regex:/^[A-Za-z ,\']+$/|nullable',
             'occupation'        => 'regex:/^[A-Za-z ,\']+$/|nullable',
-            'showemail'         => 'integer',
+            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
+            'phone'             => 'required|phone:AUTO,NO',
             'showname'          => 'integer',
+            'showemail'         => 'integer',
             'showonline'        => 'integer',
-            'userdateformat'    => '',
-            'usertimeformat'    => '',
+            'language'          => '',
+            'theme'             => '',
         ];
     }
 }

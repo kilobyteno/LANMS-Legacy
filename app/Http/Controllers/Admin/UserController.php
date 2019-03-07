@@ -92,11 +92,13 @@ class UserController extends Controller
             'location'          => $request->get('location'),
             'occupation'        => $request->get('occupation'),
             'birthdate'         => $request->get('birthdate'),
+            'phone'             => $request->get('phone'),
+            'about'             => $request->get('about'),
             'showemail'         => $request->get('showemail'),
             'showname'          => $request->get('showname'),
             'showonline'        => $request->get('showonline'),
-            'userdateformat'    => $request->get('userdateformat'),
-            'usertimeformat'    => $request->get('usertimeformat'),
+            'language'          => $request->get('language'),
+            'theme'             => $request->get('theme'),
         ];
 
         $updateuser = Sentinel::update($finduser, $info);
