@@ -36,6 +36,8 @@ class ProfileRequest extends Request
             'showemail'         => 'integer',
             'showname'          => 'integer',
             'showonline'        => 'integer',
+            'language'          => '',
+            'theme'             => '',
             'about'             => 'nullable',
         ];
     }
