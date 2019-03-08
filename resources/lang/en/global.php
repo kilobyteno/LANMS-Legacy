@@ -68,6 +68,7 @@ return [
         'failure' => 'Failure',
         'succeeded' => 'Succeeded',
         'message' => 'Message',
+        'duedate' => 'Due Date',
     ),
 
     'time' => array(

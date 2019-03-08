@@ -63,6 +63,14 @@ return [
             'charges' => array(
                 'title' => 'Belastninger',
             ),
+            'invoice' => array(
+                'title' => 'Faktura',
+                'status' => array(
+                    'draft' => 'Utkast',
+                    'open' => 'Åpen',
+                    'paid' => 'Betalt',
+                ),
+            ),
         ),
         'referral' => array(
             'title' => 'Henvisning',

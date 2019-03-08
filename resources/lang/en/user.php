@@ -63,6 +63,14 @@ return [
             'charges' => array(
                 'title' => 'Charges',
             ),
+            'invoice' => array(
+                'title' => 'Invoice',
+                'status' => array(
+                    'draft' => 'Draft',
+                    'open' => 'Open',
+                    'paid' => 'Paid',
+                ),
+            ),
         ),
         'referral' => array(
             'title' => 'Referral',

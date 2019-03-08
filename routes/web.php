@@ -313,6 +313,14 @@ Route::group([
                             'as' => 'account-billing-charges' ,
                             'uses' => 'Member\BillingController@getCharges'
                         ]);
+                        Route::get('/invoice', [
+                            'as' => 'account-billing-invoice' ,
+                            'uses' => 'Billing\InvoiceController@index'
+                        ]);
+                        Route::get('/invoice/{id}', [
+                            'as' => 'account-billing-invoice-view' ,
+                            'uses' => 'Billing\InvoiceController@view'
+                        ]);
                     });
                 Route::group([
                     'prefix' => 'reservation'
