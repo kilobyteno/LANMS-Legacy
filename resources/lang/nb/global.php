@@ -68,7 +68,7 @@ return [
         'failure' => 'Feilet',
         'succeeded' => 'Lyktes',
         'message' => 'Melding',
-        'duedate' => 'Tidsfrist',
+        'duedate' => 'Forfallsdato',
     ),
 
     'time' => array(

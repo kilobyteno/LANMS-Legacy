@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', trans('user.account.billing.invoice.title').' #'.$invoice['number'])
+@section('title', trans('user.account.billing.invoice.payinvoice').' #'.$invoice['number'])
 @section('content')
 
 <div class="container">
@@ -14,12 +14,9 @@
             <li class="breadcrumb-item active" aria-current="page">#{{ $invoice['number'] }}</li>
         </ol>
     </div>
-    <div class="row">
-        <div class="col-md-12">
+	<div class="row">
+		<div class="col-md-8">
         	<div class="card">
-        		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
-					<h3 class="card-title">{{ trans('global.status') }}: {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</h3>
-				</div>
 				<div class="card-body">
 					<div class="row ">
 						<div class="col-lg-6">
@@ -98,14 +95,6 @@
 											<td class="text-right">{{ moneyFormat(floatval($invoice['amount_remaining']/100), strtoupper($invoice['currency'])) }}</td>
 										</tr>
 									@endif
-									<tr class="d-print-none">
-										<td colspan="5" class="text-right">
-											@if(!$invoice['paid'])
-												<a type="button" class="btn btn-success text-white" href="{{ route('account-billing-invoice-pay', $invoice['id']) }}"><i class="fas fa-shopping-cart"></i> {{ trans('user.account.billing.invoice.payinvoice') }}</a>
-											@endif
-											<button type="button" class="btn btn-secondary" onclick="javascript:window.print();"><i class="fas fa-print"></i> {{ trans('user.account.billing.invoice.printinvoice') }}</button>
-										</td>
-									</tr>
 								@endif
 							</tbody>
 						</table>
@@ -114,6 +103,32 @@
 				</div>
 			</div>
         </div>
-    </div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="alert alert-primary" role="alert"><i class="fas fa-info-circle"></i> {{ trans('user.account.billing.invoice.explination') }}</div>
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<a class="btn btn-success btn-lg btn-block" href="{{ route('account-billing-invoice-charge', $invoice['id']) }}" id="pay"><i class="fas fa-shopping-cart"></i> {{ trans('seating.pay.button') }}</a>
+							<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">
+								<i class="fas fa-spinner fa-spin"></i> {{ trans('seating.pay.processing') }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+@stop
+@section("javascript")
+	<script type="text/javascript">
+		jQuery(function ($) {
+			$('#pay').on('click', function() {
+				$("#pay").addClass("d-none");
+				$("#processing").removeClass("d-none");
+			});
+		});
+	</script>
 @stop

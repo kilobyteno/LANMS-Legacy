@@ -27,7 +27,6 @@
                                 <th>{{ trans('user.account.billing.invoice.title') }} #</th>
                                 <th>{{ trans('global.date') }}</th>
                                 <th>{{ trans('global.payment.amount') }}</th>
-                                <th>{{ trans('global.payment.currency') }}</th>
                                 <th>{{ trans('global.payment.duedate') }}</th>
                                 <th>{{ trans('global.payment.paid') }}</th>
                                 <th>{{ trans('global.status') }}</th>
@@ -38,12 +37,11 @@
                                     <tr>
                                         <td>{{ $invoice['number'] }}</td>
                                         <td>{{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</td>
-                                        <td>{{ substr($invoice['amount_due'], 0, -2) }}</td>
-                                        <td>{{ strtoupper($invoice['currency']) }}</td>
+                                        <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
                                         <td>{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</td>
-                                        <td>{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}</td>
+                                        <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
                                         <td>{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</td>
-                                        <td><a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ trans('global.view') }}</a></td>
+                                        <td><a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> {{ trans('global.view') }}</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

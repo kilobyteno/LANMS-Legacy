@@ -38,8 +38,41 @@ class InvoiceController extends Controller
     {
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
-        dd($invoice);
         return view('account.billing.invoice.view')->withInvoice($invoice);
+    }
+
+    /**
+     * Get the View instance for the invoice.
+     *
+     * @param  array  $data
+     * @return \Illuminate\View\View
+     */
+    public function pay($id)
+    {
+        $invoice = \Stripe::invoices()->find($id);
+        abort_unless($invoice, 404);
+        if ($invoice['paid'] == true) {
+            abort(403);
+        }
+        return view('account.billing.invoice.pay')->withInvoice($invoice);
+    }
+
+    /**
+     * Get the View instance for the invoice.
+     *
+     * @param  array  $data
+     * @return \Illuminate\View\View
+     */
+    public function charge($id)
+    {
+        $invoice = \Stripe::invoices()->find($id);
+        abort_unless($invoice, 404);
+        if ($invoice['paid'] == true) {
+            abort(403);
+        }
+        \Stripe::invoices()->pay($id);
+        return \Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
+                                ->with('message', trans('user.account.billing.invoice.alert.paid'));
     }
 
     /**
