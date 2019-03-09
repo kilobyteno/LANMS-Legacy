@@ -4,14 +4,15 @@
 
 <div class="container">
     <div class="page-header d-print-none">
-        <h4 class="page-title">{{ trans('user.account.billing.invoice.title') }} #{{ $invoice['number'] }}</h4>
+        <h4 class="page-title">{{ trans('user.account.billing.invoice.payinvoice') }} #{{ $invoice['number'] }}</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
             <li class="breadcrumb-item"><a href="{{ route('account-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">#{{ $invoice['number'] }}</li>
+            <li class="breadcrumb-item">#{{ $invoice['number'] }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.invoice.payinvoice') }}</li>
         </ol>
     </div>
 	<div class="row">
@@ -54,8 +55,8 @@
 									<th class="text-center" style="width: 5%">#</th>
 									<th>{{ trans('user.account.billing.invoice.product') }}</th>
 									<th class="text-center" style="width: 5%">{{ trans('user.account.billing.invoice.quantity') }}</th>
-									<th class="text-right" style="width: 10%">{{ trans('user.account.billing.invoice.unitprice') }}</th>
-									<th class="text-right" style="width: 10%">{{ trans('user.account.billing.invoice.amount') }}</th>
+									<th class="text-right" style="width: 15%">{{ trans('user.account.billing.invoice.unitprice') }}</th>
+									<th class="text-right" style="width: 15%">{{ trans('user.account.billing.invoice.amount') }}</th>
 								</tr>
 								@foreach($invoice['lines']['data'] as $line)
 									<tr>
@@ -108,7 +109,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="alert alert-primary" role="alert"><i class="fas fa-info-circle"></i> {{ trans('user.account.billing.invoice.explination') }}</div>
+							<div class="alert alert-primary" role="alert"><i class="fas fa-info-circle"></i> {!! trans('user.account.billing.invoice.explination', ['url' => route('account-billing-card')]) !!}</div>
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<a class="btn btn-success btn-lg btn-block" href="{{ route('account-billing-invoice-charge', $invoice['id']) }}" id="pay"><i class="fas fa-shopping-cart"></i> {{ trans('seating.pay.button') }}</a>
 							<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">

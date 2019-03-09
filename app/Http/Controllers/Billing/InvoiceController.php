@@ -70,6 +70,25 @@ class InvoiceController extends Controller
         if ($invoice['paid'] == true) {
             abort(403);
         }
+
+        $stripecust = \LANMS\StripeCustomer::where('user_id', \Sentinel::getUser()->id)->first();
+        if ($stripecust == null) {
+            $customer = \Stripe::customers()->create([
+                'email' => \Sentinel::getUser()->email,
+            ]);
+            $stripecustomer             = new \LANMS\StripeCustomer;
+            $stripecustomer->cus        = $customer['id'];
+            $stripecustomer->user_id    = \Sentinel::getUser()->id;
+            $stripecustomer->save();
+
+            $stripecust = $stripecustomer;
+        }
+        $customer = \Stripe::customers()->find($stripecust->cus);
+        if ($customer['sources']['total_count'] == 0) {
+            return \Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
+        }
+
         \Stripe::invoices()->pay($id);
         return \Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.invoice.alert.paid'));
