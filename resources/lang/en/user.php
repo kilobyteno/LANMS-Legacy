@@ -88,6 +88,16 @@ return [
                     'paid' => 'This invoice has now been paid.',
                 ),
             ),
+            'card' => array(
+                'title' => 'Credit Cards',
+                'alert' => array(
+                    'deleted' => 'The card has now been deleted.',
+                    'added' => 'The card has now been added.',
+                ),
+                'create' => array(
+                    'title' => 'Add Card',
+                ),
+            ),
         ),
         'referral' => array(
             'title' => 'Referral',

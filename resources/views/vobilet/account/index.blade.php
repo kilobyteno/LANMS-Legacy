@@ -87,6 +87,9 @@
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-reservation') }}" class="text-inherit"><i class="fa fa-street-view"></i> {{ trans('user.account.reservations.title') }} <span class="badge badge-default">{{ \Sentinel::getUser()->reservations->count() }}</span></a></td>
 									</tr>
+									<tr class="border-bottom">
+										<td><a href="{{ route('account-billing-payments') }}" class="text-inherit"><i class="fas fa-money-bill-alt"></i> {{ trans('user.account.billing.payments.title') }} <span class="badge badge-default">{{ \Sentinel::getUser()->seatpayments->count() }}</span></a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -99,13 +102,13 @@
 							<table class="table card-table">
 								<tbody>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-payments') }}" class="text-inherit"><i class="fas fa-money-bill-alt"></i> {{ trans('user.account.billing.payments.title') }} <span class="badge badge-default">{{ \Sentinel::getUser()->seatpayments->count() }}</span></a></td>
+										<td><a href="{{ route('account-billing-card') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ trans('user.account.billing.card.title') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-billing-invoice') }}" class="text-inherit"><i class="fas fa-file-invoice"></i> {{ trans('user.account.billing.invoice.title') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ trans('user.account.billing.charges.title') }}</a></td>
+										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fas fa-exchange-alt"></i> {{ trans('user.account.billing.charges.title') }}</a></td>
 									</tr>
 								</tbody>
 							</table>

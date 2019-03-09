@@ -9,9 +9,10 @@ return [
     'choosefile' => 'Velg fil',
     'confirm' => 'Bekreft',
     'new' => 'Nytt',
+    'default' => 'Standard',
     'current' => 'Nåværende',
     'nodata' => 'Vi kan ikke finne noen data for deg...',
-	'noaccess' => 'Du har ikke tilgang til denne siden!',
+    'noaccess' => 'Du har ikke tilgang til denne siden!',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
@@ -62,6 +63,13 @@ return [
         'currency' => 'Valuta',
         'paid' => 'Betalt',
         'refunded' => 'Refundert',
+        'cardbrand' => 'Merke',
+        'cardtype' => array(
+            'title' => 'Type',
+            'credit' => 'Kreditt',
+            'debit' => 'Debet',
+        ),
+        'cardname' => 'Navn på kort',
         'cardnumber' => 'Kortnummer',
         'cardexp' => 'Kortutløpsdato',
         'never' => 'aldri',

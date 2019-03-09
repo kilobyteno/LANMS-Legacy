@@ -88,6 +88,16 @@ return [
                     'paid' => 'Denne fakturaen er nå betalt.',
                 ),
             ),
+            'card' => array(
+                'title' => 'Kredittkort',
+                'alert' => array(
+                    'deleted' => 'Kortet er nå slettet.',
+                    'added' => 'Kortet er nå lagt til.',
+                ),
+                'create' => array(
+                    'title' => 'Legg til kort',
+                ),
+            ),
         ),
         'referral' => array(
             'title' => 'Henvisning',

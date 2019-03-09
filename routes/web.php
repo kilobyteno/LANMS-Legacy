@@ -329,6 +329,22 @@ Route::group([
                             'as' => 'account-billing-invoice-charge' ,
                             'uses' => 'Billing\InvoiceController@charge'
                         ]);
+                        Route::get('/card', [
+                            'as' => 'account-billing-card' ,
+                            'uses' => 'Billing\CardController@index'
+                        ]);
+                        Route::get('/card/create', [
+                            'as' => 'account-billing-card-create' ,
+                            'uses' => 'Billing\CardController@create'
+                        ]);
+                        Route::post('/card/store', [
+                            'as' => 'account-billing-card-store' ,
+                            'uses' => 'Billing\CardController@store'
+                        ]);
+                        Route::get('/card/{id}/destroy', [
+                            'as' => 'account-billing-card-destroy' ,
+                            'uses' => 'Billing\CardController@destroy'
+                        ]);
                     });
                 Route::group([
                     'prefix' => 'reservation'
