@@ -26,7 +26,6 @@
                             <thead>
                                 <th>{{ trans('global.date') }}</th>
                                 <th>{{ trans('global.payment.amount') }}</th>
-                                <th>{{ trans('global.payment.currency') }}</th>
                                 <th>{{ trans('global.payment.cardnumber') }}</th>
                                 <th>{{ trans('global.payment.cardexp') }}</th>
                                 <th>{{ trans('global.payment.paid') }}</th>
@@ -38,8 +37,7 @@
                                 @foreach($charges as $charge)
                                     <tr>
                                         <td>{{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</td>
-                                        <td>{{ substr($charge['amount'], 0, -2) }}</td>
-                                        <td>{{ strtoupper($charge['currency']) }}</td>
+                                        <td>{{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</td>
                                         <td>&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $charge['source']['last4'] }}</td>
                                         <td>{{ $charge['source']['exp_month'] }} / {{ $charge['source']['exp_year'] }}</td>
                                         <td>{{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</td>
@@ -55,8 +53,6 @@
                                             <?php $seatpayment = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->first(); ?>
                                             @if($seatpayment)
                                                 <a href="{{ route('account-billing-payment', $seatpayment->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ trans('global.view') }}</a>
-                                            @else
-                                                <em>N/A</em>
                                             @endif
                                         </td>
                                     </tr>
