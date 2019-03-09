@@ -83,9 +83,10 @@ return [
                 'amountremaining' => 'Beløp gjenstående',
                 'payinvoice' => 'Betal faktura',
                 'printinvoice' => 'Skriv ut faktura',
-                'explination' => 'Vi belaster kortet du brukte sist på denne nettsiden for å ta betalingen for denne fakturaen.',
+                'explination' => 'Vi belaster <a href=":url" class="alert-link">standardkortet</a> som er lagt til på kontoen din for å ta betalingen på denne fakturaen.',
                 'alert' => array(
                     'paid' => 'Denne fakturaen er nå betalt.',
+                    'nocards' => 'Det er ingen kort knyttet til kontoen din. Du kan legge til en <a href=":url" class="alert-link">her</a>.',
                 ),
             ),
             'card' => array(

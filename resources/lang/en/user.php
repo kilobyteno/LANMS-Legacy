@@ -83,9 +83,10 @@ return [
                 'amountremaining' => 'Amount Remaining',
                 'payinvoice' => 'Pay Invoice',
                 'printinvoice' => 'Print Invoice',
-                'explination' => 'We will charge the card you used last on this website to take care of this payment.',
+                'explination' => 'We will charge the default card added to your account to take care of this payment.',
                 'alert' => array(
                     'paid' => 'This invoice has now been paid.',
+                    'nocards' => 'There are no cards attached to your account. You can add one <a href=":url" class="alert-link">here</a>.',
                 ),
             ),
             'card' => array(

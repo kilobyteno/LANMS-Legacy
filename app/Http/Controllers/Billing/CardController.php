@@ -26,7 +26,6 @@ class CardController extends Controller
         } else {
             $cards = [];
         }
-        
         return view('account.billing.card.index')->withCards($cards);
     }
 
@@ -90,6 +89,34 @@ class CardController extends Controller
 
             return \Redirect::route('account-billing-card-create', $slug)->with('messagetype', 'danger')
                                 ->with('message', trans('seating.alert.carderror').': '.$message);
+        }
+
+        try {
+            \Stripe::cards()->create($stripecust->cus, $token['id']);
+        } catch (CardErrorException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+        } catch (ServerErrorException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
         return \Redirect::route('account-billing-card')->with('messagetype', 'success')

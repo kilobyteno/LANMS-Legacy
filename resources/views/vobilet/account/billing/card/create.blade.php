@@ -10,6 +10,7 @@
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('account-billing-card') }}">{{ trans('user.account.billing.card.title') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.card.create.title') }}</li>
         </ol>
     </div>
