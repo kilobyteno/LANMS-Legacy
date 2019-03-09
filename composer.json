@@ -15,6 +15,7 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "filp/whoops": "~2.0",
+        "gerardojbaez/money": "^0.3.1",
         "igaster/laravel-theme": "^2.0",
         "intervention/image": "2.*",
         "intervention/imagecache": "2.*",
