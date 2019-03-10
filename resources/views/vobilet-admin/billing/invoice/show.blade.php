@@ -6,11 +6,9 @@
     <div class="page-header d-print-none">
         <h4 class="page-title">{{ trans('user.account.billing.invoice.title') }} #{{ $invoice['number'] }}</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
-            <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-            <li class="breadcrumb-item"><a href="{{ route('account-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+	        <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
+	        <li class="breadcrumb-item">{{ trans('user.account.billing.invoice.title') }}</li>
             <li class="breadcrumb-item active" aria-current="page">#{{ $invoice['number'] }}</li>
         </ol>
     </div>

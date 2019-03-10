@@ -54,7 +54,7 @@ return [
         'billing' => array(
             'title' => 'Fakturering',
             'alert' => array(
-                'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke betale for fakturaer før du har lagt til en primæradresse. Du kan <a href=":url" class="alert-link">legge til en her</a>.',
+                'noaddress' => 'Det ser ut til at det ikke er adresser knyttet til denne kontoen. Det vil ikke være mulig å betale for fakturaer før det er en adresse på denne kontoen. Du kan <a href=":url" class="alert-link">legge til en her</a>.',
             ),
             'payments' => array(
                 'title' => 'Betalinger',

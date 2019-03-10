@@ -135,7 +135,44 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = \LANMS\User::find($request->get('user_id'));
+        if (is_null($user)) {
+            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+                                ->with('message', 'User not found.');
+        }
+        if ($user->addresses->count() == 0) {
+            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
+        $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
+        if ($stripecust == null) {
+            $customer = \Stripe::customers()->create([
+                'email' => $user->email,
+            ]);
+            $stripecustomer             = new \LANMS\StripeCustomer;
+            $stripecustomer->cus        = $customer['id'];
+            $stripecustomer->user_id    = $user->id;
+            $stripecustomer->save();
+
+            $stripecust = $stripecustomer;
+        }
+        try {
+            $invoice = \Stripe::invoices()->create($stripecust->cus);
+        } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', $message);
+        }
+        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'warning')
+                                ->with('message', 'Invoice has been created. Please edit it here.');
     }
 
     /**

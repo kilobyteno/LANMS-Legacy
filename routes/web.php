@@ -820,6 +820,10 @@ Route::group([
                             'as' => 'admin-billing-invoice-create',
                             'uses' => 'Billing\InvoiceController@create'
                         ]);
+                        Route::post('/store', [
+                            'as' => 'admin-billing-invoice-store',
+                            'uses' => 'Billing\InvoiceController@store'
+                        ]);
                         Route::get('/{id}', [
                             'as' => 'admin-billing-invoice-show',
                             'uses' => 'Billing\InvoiceController@show'
@@ -827,6 +831,10 @@ Route::group([
                         Route::get('/{id}/edit', [
                             'as' => 'admin-billing-invoice-edit',
                             'uses' => 'Billing\InvoiceController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-billing-invoice-update',
+                            'uses' => 'Billing\InvoiceController@update'
                         ]);
                         Route::get('/{id}/destroy', [
                             'as' => 'admin-billing-invoice-destroy',
