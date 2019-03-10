@@ -110,6 +110,12 @@
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/users')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
 						</li>
+						<li class="slide @if(Request::is('admin/billing*')){{'is-expanded'}} @endif">
+							<a class="side-menu__item @if(Request::is('admin/billing*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-money-bill-alt"></i><span class="side-menu__label">Billing</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item @if(Request::is('admin/billing/invoice*')){{'active'}} @endif" href="{{ route('admin-billing-invoice') }}"><i class="fas fa-file-invoice mr-1"></i> Invoice</a></li>
+							</ul>
+						</li>
 						<li class="slide @if(Request::is('admin/crew*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-crown"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
