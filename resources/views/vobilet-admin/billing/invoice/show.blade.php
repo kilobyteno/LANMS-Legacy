@@ -36,11 +36,11 @@
 						<div class="col-lg-6 text-right">
 							<p class="h3">{{ trans('user.account.billing.invoice.invoiceto') }}</p>
 							<address>
-								{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->address1 ?? '' }} {{ \Sentinel::getUser()->addresses->first()->address2 ?? '' }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->postalcode.', '.\Sentinel::getUser()->addresses->first()->city ?? '' }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->county.', '.\Sentinel::getUser()->addresses->first()->country ?? '' }}<br>
-								{{ \Sentinel::getUser()->email }}
+								{{ $user->firstname.' '.$user->lastname }}<br>
+								{{ $user->addresses->first()->address1 ?? '' }} {{ $user->addresses->first()->address2 ?? '' }}<br>
+								{{ $user->addresses->first()->postalcode.', '.$user->addresses->first()->city ?? '' }}<br>
+								{{ $user->addresses->first()->county.', '.$user->addresses->first()->country ?? '' }}<br>
+								{{ $user->email }}
 							</address>
 						</div>
 					</div>
@@ -111,9 +111,6 @@
 									@endif
 									<tr class="d-print-none">
 										<td colspan="5" class="text-right">
-											@if(!$invoice['paid'])
-												<a type="button" class="btn btn-success text-white" href="{{ route('account-billing-invoice-pay', $invoice['id']) }}"><i class="fas fa-shopping-cart"></i> {{ trans('user.account.billing.invoice.payinvoice') }}</a>
-											@endif
 											<button type="button" class="btn btn-secondary" onclick="javascript:window.print();"><i class="fas fa-print"></i> {{ trans('user.account.billing.invoice.printinvoice') }}</button>
 										</td>
 									</tr>

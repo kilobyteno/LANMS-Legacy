@@ -36,6 +36,10 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
+        if (\Sentinel::getUser()->addresses->count() == 0) {
+            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         return view('account.billing.invoice.view')->withInvoice($invoice);
@@ -49,6 +53,10 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
+        if (\Sentinel::getUser()->addresses->count() == 0) {
+            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['paid'] == true) {
@@ -65,6 +73,10 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
+        if (\Sentinel::getUser()->addresses->count() == 0) {
+            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['paid'] == true) {
@@ -101,7 +113,8 @@ class InvoiceController extends Controller
      */
     public function admin()
     {
-        //
+        $invoices = \Stripe::invoices()->all();
+        return view('billing.invoice.index')->withInvoices($invoices['data']);
     }
     
     /**
@@ -111,7 +124,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('billing.invoice.create');
     }
 
     /**
@@ -133,7 +146,23 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $invoice = \Stripe::invoices()->find($id);
+        } catch (\Cartalyst\Stripe\Exception\NotFoundException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', $message);
+        }
+        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first()->user;
+        return view('billing.invoice.show')->withInvoice($invoice)->withUser($user);
     }
 
     /**

@@ -53,6 +53,9 @@ return [
         ),
         'billing' => array(
             'title' => 'Billing',
+            'alert' => array(
+                'noaddress' => 'It seems like you do not have any addresses attached to your account. You will not be able pay for invoices before you have added one primary address. You can <a href=":url" class="alert-link">add one here</a>.',
+            ),
             'payments' => array(
                 'title' => 'Payments',
                 'payment' => array(
@@ -76,6 +79,7 @@ return [
                 'unitprice' => 'Unit Price',
                 'amount' => 'Amount',
                 'subtotal' => 'Sub Total',
+                'discount' => 'Discount',
                 'taxrate' => 'Tax Rate',
                 'taxdue' => 'Tax Due',
                 'totaldue' => 'Total Due',

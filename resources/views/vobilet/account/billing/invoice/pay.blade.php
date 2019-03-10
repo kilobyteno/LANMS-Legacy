@@ -47,6 +47,11 @@
 						<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} #:</span> {{ $invoice['number'] }}</p>
 						<p class="mb-1"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</p>
 						<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> {{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</p>
+						@if($invoice['custom_fields'] )
+							@foreach($invoice['custom_fields'] as $customfield)
+								<p class="mb-5"><span class="font-weight-semibold">{{ $customfield['name'] }}:</span> {{ $customfield['value'] }}</p>
+							@endforeach
+						@endif
 					</div>
 					<div class="table-responsive push">
 						<table class="table table-bordered table-hover">
@@ -71,6 +76,12 @@
 									<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.subtotal') }}</td>
 									<td class="text-right">{{ moneyFormat(floatval($invoice['subtotal']/100), strtoupper($invoice['currency'])) }}</td>
 								</tr>
+								@if($invoice['discount'])
+									<tr>
+										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.discount') }}: {{ $invoice['discount']['coupon']['name'] }} ({{ $invoice['discount']['coupon']['percent_off'] }}%)</td>
+										<td class="text-right">{{ moneyFormat(floatval(($invoice['subtotal']*($invoice['discount']['coupon']['percent_off']/100))/100), strtoupper($invoice['currency'])) }}</td>
+									</tr>
+								@endif
 								@if($invoice['tax_percent'] != 0)
 									<tr>
 										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxrate') }}</td>

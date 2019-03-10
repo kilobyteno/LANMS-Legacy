@@ -53,6 +53,9 @@ return [
         ),
         'billing' => array(
             'title' => 'Fakturering',
+            'alert' => array(
+                'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke betale for fakturaer før du har lagt til en primæradresse. Du kan <a href=":url" class="alert-link">legge til en her</a>.',
+            ),
             'payments' => array(
                 'title' => 'Betalinger',
                 'payment' => array(
@@ -76,6 +79,7 @@ return [
                 'unitprice' => 'Enhetspris',
                 'amount' => 'Beløp',
                 'subtotal' => 'Sub Total',
+                'discount' => 'Discount',
                 'taxrate' => 'MVA-sats',
                 'taxdue' => 'Merverdiavgift',
                 'totaldue' => 'Samlet beløp',

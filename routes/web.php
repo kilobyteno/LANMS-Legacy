@@ -807,6 +807,34 @@ Route::group([
                 ]);
             });
         Route::group([
+            'prefix' => 'billing'
+            ], function () {
+                Route::group([
+                    'prefix' => 'invoice'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-billing-invoice',
+                            'uses' => 'Billing\InvoiceController@admin'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-billing-invoice-create',
+                            'uses' => 'Billing\InvoiceController@create'
+                        ]);
+                        Route::get('/{id}', [
+                            'as' => 'admin-billing-invoice-show',
+                            'uses' => 'Billing\InvoiceController@show'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-billing-invoice-edit',
+                            'uses' => 'Billing\InvoiceController@edit'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-billing-invoice-destroy',
+                            'uses' => 'Billing\InvoiceController@destroy'
+                        ]);
+                    });
+            });
+        Route::group([
             'prefix' => 'info'
             ], function () {
                 Route::get('/', [

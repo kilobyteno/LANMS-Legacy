@@ -14,7 +14,10 @@
         </ol>
     </div>
     <div class="row">
-        <div class="col-md-12"> 
+        <div class="col-md-12">
+            @if(Sentinel::getUser()->addresses->count() == 0)
+                <div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('user.account.billing.alert.noaddress', ['url' => route('account-addressbook-create')]) !!}</div>
+            @endif
             <div class="card">
                 @if(count($invoices) == 0)
                     <div class="card-body">
