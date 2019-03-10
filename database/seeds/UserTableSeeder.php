@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LANMS\User;
 
 class UserTableSeeder extends Seeder
 {
@@ -10,48 +9,48 @@ class UserTableSeeder extends Seeder
 
         // Create Users
         Sentinel::registerAndActivate([
-            'email' 		=> 'd@rtrdt.ch',
-            'password' 		=> '12345678', // Den hash'r automatisk
-            'firstname' 	=> 'Daniel',
-            'lastname'	 	=> 'SADMIN',
-            'username' 		=> 'sadmin',
-            'referral_code'	=> str_random(15),
+            'email'         => 'test@infihex.com',
+            'password'      => '12345678', // Den hash'r automatisk
+            'firstname'     => 'Daniel',
+            'lastname'      => 'SADMIN',
+            'username'      => 'sadmin',
+            'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
         Sentinel::registerAndActivate([
-            'email' 		=> 'test@rtrdt.ch',
-            'password' 		=> '12345678', // Den hash'r automatisk
-            'firstname' 	=> 'John',
-            'lastname'	 	=> 'ADMIN',
-            'username' 		=> 'admin',
-            'referral_code'	=> str_random(15),
+            'email'         => 'test2@infihex.com',
+            'password'      => '12345678', // Den hash'r automatisk
+            'firstname'     => 'John',
+            'lastname'      => 'ADMIN',
+            'username'      => 'admin',
+            'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
         Sentinel::registerAndActivate([
-            'email' 		=> 'test2@rtrdt.ch',
-            'password' 		=> '12345678', // Den hash'r automatisk
-            'firstname' 	=> 'John',
-            'lastname'	 	=> 'MOD',
-            'username' 		=> 'mod',
-            'referral_code'	=> str_random(15),
+            'email'         => 'test3@infihex.com',
+            'password'      => '12345678', // Den hash'r automatisk
+            'firstname'     => 'John',
+            'lastname'      => 'MOD',
+            'username'      => 'mod',
+            'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
         Sentinel::registerAndActivate([
-            'email' 		=> 'test3@rtrdt.ch',
-            'password' 		=> '12345678', // Den hash'r automatisk
-            'firstname' 	=> 'John',
-            'lastname'	 	=> 'USER',
-            'username' 		=> 'user',
-            'referral_code'	=> str_random(15),
+            'email'         => 'test4@infihex.com',
+            'password'      => '12345678', // Den hash'r automatisk
+            'firstname'     => 'John',
+            'lastname'      => 'USER',
+            'username'      => 'user',
+            'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
         Sentinel::registerAndActivate([
-            'email' 		=> 'test4@rtrdt.ch',
-            'password' 		=> '12345678', // Den hash'r automatisk
-            'firstname' 	=> 'John',
-            'lastname'	 	=> 'USER2',
-            'username' 		=> 'user2',
-            'referral_code'	=> str_random(15),
+            'email'         => 'test5@infihex.com',
+            'password'      => '12345678', // Den hash'r automatisk
+            'firstname'     => 'John',
+            'lastname'      => 'USER2',
+            'username'      => 'user2',
+            'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
 
