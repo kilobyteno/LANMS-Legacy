@@ -36,6 +36,10 @@ class CardController extends Controller
      */
     public function create()
     {
+        if (\Sentinel::getUser()->addresses->count() == 0) {
+            return \Redirect::route('account-billing-card')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
         return view('account.billing.card.create');
     }
 
@@ -47,6 +51,11 @@ class CardController extends Controller
      */
     public function store(PaymentRequest $request)
     {
+        if (\Sentinel::getUser()->addresses->count() == 0) {
+            return \Redirect::route('account-billing-card')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
+
         $stripecust = \LANMS\StripeCustomer::where('user_id', \Sentinel::getUser()->id)->first();
         
         if ($stripecust == null) {
@@ -87,7 +96,7 @@ class CardController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('account-billing-card-create', $slug)->with('messagetype', 'danger')
+            return \Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
                                 ->with('message', trans('seating.alert.carderror').': '.$message);
         }
 
@@ -103,7 +112,7 @@ class CardController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+            return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
                                 ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         } catch (ServerErrorException $e) {
             // Get the status code
@@ -115,7 +124,7 @@ class CardController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+            return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
                                 ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
