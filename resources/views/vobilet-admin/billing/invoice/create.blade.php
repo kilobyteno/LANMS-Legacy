@@ -13,7 +13,7 @@
 </div>
 
 
-<div class="row">
+<form class="row" method="post" action="{{ route('admin-billing-invoice-store') }}">
 	<div class="col-xl-8">
 		<div class="card">
 			<div class="card-body">
@@ -128,11 +128,12 @@
 		</div>
 	</div>
 	<div class="col-md-4">
-		<form class="card" method="post" action="{{ route('admin-billing-invoice-store') }}">
+		<div class="card">
 			<div class="card-body">
 				<div class="form-group">
 					<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
 					<select name="user_id" class="select2">
+						<option value="">--- Please Select ---</option>
 						@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
 							<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 						@endforeach
@@ -146,9 +147,9 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<button class="btn btn-success" type="submit"><i class="fas fa-save mr-2"></i>{{ trans('global.savechanges') }}</button>
 			</div>
-		</form>
+		</div>
 	</div>
-</div>
+</form>
 @stop
 @section('javascript')
 	<script type="text/javascript">

@@ -135,6 +135,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $user = \LANMS\User::find($request->get('user_id'));
         if (is_null($user)) {
             return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
@@ -153,7 +154,6 @@ class InvoiceController extends Controller
             $stripecustomer->cus        = $customer['id'];
             $stripecustomer->user_id    = $user->id;
             $stripecustomer->save();
-
             $stripecust = $stripecustomer;
         }
         try {
