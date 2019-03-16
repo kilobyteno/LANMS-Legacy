@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
         	<div class="card">
-        		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
+        		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
 					<h3 class="card-title">{{ trans('global.status') }}: {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</h3>
 				</div>
 				<div class="card-body">
@@ -34,11 +34,15 @@
 						<div class="col-lg-6 text-right">
 							<p class="h3">{{ trans('user.account.billing.invoice.invoiceto') }}</p>
 							<address>
-								{{ $user->firstname.' '.$user->lastname }}<br>
-								{{ $user->addresses->first()->address1 ?? '' }} {{ $user->addresses->first()->address2 ?? '' }}<br>
-								{{ $user->addresses->first()->postalcode.', '.$user->addresses->first()->city ?? '' }}<br>
-								{{ $user->addresses->first()->county.', '.$user->addresses->first()->country ?? '' }}<br>
-								{{ $user->email }}
+								@if($user)
+									{{ $user->firstname.' '.$user->lastname }}<br>
+									{{ $user->addresses->first()->address1 ?? '' }} {{ $user->addresses->first()->address2 ?? '' }}<br>
+									{{ $user->addresses->first()->postalcode.', '.$user->addresses->first()->city ?? '' }}<br>
+									{{ $user->addresses->first()->county.', '.$user->addresses->first()->country ?? '' }}<br>
+									{{ $user->email }}
+								@else
+									<em>N/A</em>
+								@endif
 							</address>
 						</div>
 					</div>

@@ -198,7 +198,7 @@ class InvoiceController extends Controller
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first()->user;
+        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
         return view('billing.invoice.show')->withInvoice($invoice)->withUser($user);
     }
 

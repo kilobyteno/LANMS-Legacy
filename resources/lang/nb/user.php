@@ -73,6 +73,8 @@ return [
                     'draft' => 'Utkast',
                     'open' => 'Åpen',
                     'paid' => 'Betalt',
+                    'void' => 'Annullert',
+                    'uncollectible' => 'Tap i penger',
                 ),
                 'product' => 'Produkt',
                 'quantity' => 'Antall',

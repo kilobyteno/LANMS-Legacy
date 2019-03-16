@@ -35,8 +35,8 @@
                             @foreach($invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice['number'] }}</td>
-                                    <?php $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first()->user; ?>
-                                    <td><a href="{{ route('admin-user-edit', $user->id) }}">{{ $user->firstname . ' "' . $user->username . '" ' . $user->lastname }}</a></td>
+                                    <?php $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first() or null; ?>
+                                    <td>@if($user)<a href="{{ route('admin-user-edit', $user->user->id) }}">{{ $user->user->firstname . ' "' . $user->user->username . '" ' . $user->user->lastname }}</a>@endif</td>
                                     <td>{{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</td>
                                     <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
                                     <td>{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</td>

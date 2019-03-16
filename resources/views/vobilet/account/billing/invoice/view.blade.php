@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-md-12">
         	<div class="card">
-        		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
+        		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
 					<h3 class="card-title">{{ trans('global.status') }}: {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</h3>
 				</div>
 				<div class="card-body">

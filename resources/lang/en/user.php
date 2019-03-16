@@ -73,6 +73,8 @@ return [
                     'draft' => 'Draft',
                     'open' => 'Open',
                     'paid' => 'Paid',
+                    'void' => 'Void',
+                    'uncollectible' => 'Uncollectible',
                 ),
                 'product' => 'Product',
                 'quantity' => 'Quantity',
