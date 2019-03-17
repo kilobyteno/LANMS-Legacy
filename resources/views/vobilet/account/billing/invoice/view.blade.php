@@ -37,9 +37,9 @@
 							<p class="h3">{{ trans('user.account.billing.invoice.invoiceto') }}</p>
 							<address>
 								{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->address1 ?? '' }} {{ \Sentinel::getUser()->addresses->first()->address2 ?? '' }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->postalcode.', '.\Sentinel::getUser()->addresses->first()->city ?? '' }}<br>
-								{{ \Sentinel::getUser()->addresses->first()->county.', '.\Sentinel::getUser()->addresses->first()->country ?? '' }}<br>
+								{{ \Sentinel::getUser()->address->address1 ?? '' }} {{ \Sentinel::getUser()->address->address2 ?? '' }}<br>
+								{{ \Sentinel::getUser()->address->postalcode.', '.\Sentinel::getUser()->address->city ?? '' }}<br>
+								{{ \Sentinel::getUser()->address->county.', '.\Sentinel::getUser()->address->country ?? '' }}<br>
 								{{ \Sentinel::getUser()->email }}
 							</address>
 						</div>

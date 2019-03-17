@@ -36,9 +36,9 @@
 							<address>
 								@if($user)
 									{{ $user->firstname.' '.$user->lastname }}<br>
-									{{ $user->addresses->first()->address1 ?? '' }} {{ $user->addresses->first()->address2 ?? '' }}<br>
-									{{ $user->addresses->first()->postalcode.', '.$user->addresses->first()->city ?? '' }}<br>
-									{{ $user->addresses->first()->county.', '.$user->addresses->first()->country ?? '' }}<br>
+									{{ $user->address->address1 }} {{ $user->address->address2 }}<br>
+									{{ $user->address->postalcode.', '.$user->address->city }}<br>
+									{{ $user->address->county.', '.$user->address->country }}<br>
 									{{ $user->email }}
 								@else
 									<em>N/A</em>
