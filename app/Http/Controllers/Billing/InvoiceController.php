@@ -135,7 +135,6 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $user = \LANMS\User::find($request->get('user_id'));
         if (is_null($user)) {
             return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
@@ -157,7 +156,20 @@ class InvoiceController extends Controller
             $stripecust = $stripecustomer;
         }
         try {
-            $invoice = \Stripe::invoices()->create($stripecust->cus);
+            for ($i=0; $i < count($request->get('description')); $i++) {
+                \Stripe::invoiceItems()->create($stripecust->cus, [
+                    'description' => $request->get('description')[$i],
+                    'unit_amount' => ($request->get('price')[$i]*100),
+                    'quantity' => $request->get('qty')[$i],
+                    'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                ]);
+            }
+            $invoice = \Stripe::invoices()->create($stripecust->cus, [
+                'billing' => 'send_invoice',
+                'days_until_due' => 14,
+                'footer' => $request->get('footer'),
+                'tax_percent' => $request->get('tax_percent'),
+            ]);
         } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -199,6 +211,7 @@ class InvoiceController extends Controller
                                 ->with('message', $message);
         }
         $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        $user = \LANMS\User::find($user->id);
         return view('billing.invoice.show')->withInvoice($invoice)->withUser($user);
     }
 
@@ -210,7 +223,10 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice = \Stripe::invoices()->find($id);
+        abort_unless($invoice, 404);
+        dd($invoice);
+        return view('billing.invoice.index')->withInvoices($invoice);
     }
 
     /**

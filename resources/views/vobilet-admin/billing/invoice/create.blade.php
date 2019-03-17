@@ -41,8 +41,8 @@
 					<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> </p>
 					<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> </p>
 					<p class="mb-2">
-						<button id="add_row" class="btn btn-outline-success d-inline">Add Row</button>
-						<button id="delete_row" class="btn btn-outline-danger d-inline">Delete Row</button>
+						<button type="button" id="add_row" class="btn btn-outline-success d-inline">Add Row</button>
+						<button type="button" id="delete_row" class="btn btn-outline-danger d-inline">Delete Row</button>
 					</p>
 				</div>
 				<div class="table-responsive push">
@@ -58,9 +58,9 @@
 
 							<tr id="addr0">
 								<td class="text-center">1</td>
-								<td><input type="text" name="product[]" placeholder="Enter Product Name" class="form-control" /></td>
-								<td><input type="number" name="qty[]" placeholder="Enter Qty" class="form-control qty" min="0" /></td>
-								<td><input type="number" name="price[]" placeholder="Enter Unit Price" class="form-control price" min="0" step="0.01" /></td>
+								<td><input type="text" name="description[]" placeholder="Description" class="form-control" /></td>
+								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" /></td>
+								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" /></td>
 								<td>
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total[]" placeholder="0" class="form-control total" readonly />
@@ -88,7 +88,7 @@
 								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxrate') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
-						                <input type="number" class="form-control" id="tax" placeholder="0" min="0" max="100" value="0">
+						                <input type="number" class="form-control" name="tax_percent" id="tax" placeholder="0" min="0" max="100" value="0">
 						                <div class="input-group-append">
 						                	<span class="input-group-text">%</span>
 						                </div>
@@ -121,8 +121,8 @@
 					</table>
 				</div>
 				<p class="text-muted text-center">
-					<label>Description/Memo:</label>
-					<textarea name="description" class="form-control" placeholder="Add a memo here for the user to read."></textarea>
+					<label>Footer:</label>
+					<textarea name="footer" class="form-control" placeholder="Add a memo here for the user to read."></textarea>
 				</p>
 			</div>
 		</div>
