@@ -68,7 +68,7 @@
 								@foreach($invoice['lines']['data'] as $line)
 									<tr>
 										<td class="text-center">{{ (array_search($line, $invoice['lines']['data'])+1) }}</td>
-										<td><p class="font-w600 mb-1">{{ $line['description'] }}</p></td>
+										<td><p class="font-w600 mb-1">{{ $line['description'] ?? $line['plan']['name'].' ('.ucfirst($line['plan']['interval']).')' }}</p></td>
 										<td class="text-center">{{ $line['quantity'] }}</td>
 										<td class="text-right">{{ moneyFormat(floatval(($line['amount']/100) / $line['quantity']), strtoupper($invoice['currency'])) }}</td>
 										<td class="text-right">{{ moneyFormat(floatval($line['amount']/100), strtoupper($invoice['currency'])) }}</td>
