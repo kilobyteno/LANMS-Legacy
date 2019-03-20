@@ -225,8 +225,9 @@ class InvoiceController extends Controller
     {
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
-        dd($invoice);
-        return view('billing.invoice.index')->withInvoices($invoice);
+        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        $user = \LANMS\User::find($user->id);
+        return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
     }
 
     /**
@@ -238,7 +239,62 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = \LANMS\User::find($request->get('user_id'));
+        if (is_null($user)) {
+            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+                                ->with('message', 'User not found.');
+        }
+        if ($user->addresses->count() == 0) {
+            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+                                ->with('message', trans('user.account.billing.alert.noaddress'));
+        }
+        $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
+        if ($stripecust == null) {
+            $customer = \Stripe::customers()->create([
+                'email' => $user->email,
+            ]);
+            $stripecustomer             = new \LANMS\StripeCustomer;
+            $stripecustomer->cus        = $customer['id'];
+            $stripecustomer->user_id    = $user->id;
+            $stripecustomer->save();
+            $stripecust = $stripecustomer;
+        }
+        try {
+            for ($i=0; $i < count($request->get('description')); $i++) {
+                if (!is_null($request->get('invoiceitem')[$i])) {
+                    \Stripe::invoiceItems()->update($request->get('invoiceitem')[$i], [
+                        'description' => $request->get('description')[$i],
+                        'unit_amount' => ($request->get('price')[$i]*100),
+                        'quantity' => $request->get('qty')[$i],
+                    ]);
+                } else {
+                    \Stripe::invoiceItems()->create($stripecust->cus, [
+                        'description' => $request->get('description')[$i],
+                        'unit_amount' => ($request->get('price')[$i]*100),
+                        'quantity' => $request->get('qty')[$i],
+                        'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                    ]);
+                }
+            }
+            $invoice = \Stripe::invoices()->update($id, [
+                'footer' => $request->get('footer'),
+                'tax_percent' => $request->get('tax_percent'),
+            ]);
+        } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', $message);
+        }
+        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'warning')
+                                ->with('message', 'Invoice has been created. Please edit it here.');
     }
 
     /**
