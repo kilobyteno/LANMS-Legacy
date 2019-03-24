@@ -167,7 +167,7 @@ class InvoiceController extends Controller
             $invoice = \Stripe::invoices()->create($stripecust->cus, [
                 'billing' => 'send_invoice',
                 'days_until_due' => $request->get('days_until_due'),
-                'footer' => $request->get('footer'),
+                'description' => $request->get('memo'),
                 'tax_percent' => $request->get('tax_percent'),
             ]);
         } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
@@ -183,8 +183,8 @@ class InvoiceController extends Controller
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'warning')
-                                ->with('message', 'Invoice has been created. Please edit it here.');
+        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been created.');
     }
 
     /**
@@ -274,7 +274,7 @@ class InvoiceController extends Controller
                 array_push($ii, $line['id']);
             }
             $invoice = \Stripe::invoices()->update($id, [
-                'footer' => $request->get('footer'),
+                'description' => $request->get('memo'),
                 'tax_percent' => $request->get('tax_percent'),
             ]);
         } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {

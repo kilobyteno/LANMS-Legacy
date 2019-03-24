@@ -152,19 +152,21 @@
 						</tfoot>
 					</table>
 				</div>
-				<p class="text-muted text-center">
-					<label>Memo:</label>
-					<textarea name="memo" class="form-control" placeholder="Add a memo here for the user to read."></textarea>
-				</p>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="card">
 			<div class="card-body">
-				<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
-				<p>{{ User::getFullnameAndNicknameByID($user->id) }}</p>
-				<input type="hidden" name="user_id" value="{{ $user->id }}">
+				<div class="form-group">
+					<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
+					<p>{{ User::getFullnameAndNicknameByID($user->id) }}</p>
+					<input type="hidden" name="user_id" value="{{ $user->id }}">
+				</div>
+				<div class="form-group">
+					<label class="form-label">Memo:</label>
+					<textarea name="memo" class="form-control" placeholder="Add a memo here for the user to read.">{{ $invoice['description'] }}</textarea>
+				</div>
 			</div>
 			<div class="card-footer">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">

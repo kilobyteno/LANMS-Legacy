@@ -113,10 +113,6 @@
 						</tfoot>
 					</table>
 				</div>
-				<p class="text-muted text-center">
-					<label>Footer:</label>
-					<textarea name="footer" class="form-control" placeholder="Add a memo here for the user to read."></textarea>
-				</p>
 			</div>
 		</div>
 	</div>
@@ -125,7 +121,7 @@
 			<div class="card-body">
 				<div class="form-group">
 					<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
-					<select name="user_id" class="select2">
+					<select name="user_id" class="select2" required="required">
 						<option value="">--- Please Select ---</option>
 						@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
 							<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
@@ -140,6 +136,13 @@
 					<input type="number" class="form-control" name="days_until_due" min="14" max="60" value="30">
 					@if($errors->has('days_until_due'))
 						<p class="text-danger">{{ $errors->first('days_until_due') }}</p>
+					@endif
+				</div>
+				<div class="form-group">
+					<label class="form-label">Memo:</label>
+					<textarea name="memo" class="form-control" placeholder="Add a memo here for the user to read."></textarea>
+					@if($errors->has('memo'))
+						<p class="text-danger">{{ $errors->first('memo') }}</p>
 					@endif
 				</div>
 			</div>

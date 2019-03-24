@@ -61,9 +61,12 @@
 						<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> {{ \Carbon::parse($invoice['due_date'])->isoFormat('LL') }}</p>
 						@if($invoice['custom_fields'] )
 							@foreach($invoice['custom_fields'] as $customfield)
-								<p class="mb-5"><span class="font-weight-semibold">{{ $customfield['name'] }}:</span> {{ $customfield['value'] }}</p>
+								<p class="mb-1"><span class="font-weight-semibold">{{ $customfield['name'] }}:</span> {{ $customfield['value'] }}</p>
 							@endforeach
 						@endif
+						<blockquote class="mt-5 mb-5">
+							{{ $invoice['description'] }}
+						</blockquote>
 					</div>
 					<div class="table-responsive push">
 						<table class="table table-bordered table-hover">
@@ -128,7 +131,6 @@
 							</tbody>
 						</table>
 					</div>
-					<p class="text-muted text-center">{{ $invoice['description'] }}</p>
 				</div>
 			</div>
         </div>
