@@ -31,9 +31,9 @@
 					<tr>
 						<td scope="row">{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
 						<td>{{ $crew->category->title ?? 'N/A' }}</td>
-						<td>{{ ucfirst(\Carbon::parse($crew->created_at)->isoFormat('LLL')) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($crew->created_at)->toDateTimeString()) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
-						<td>{{ ucfirst(\Carbon::parse($crew->updated_at)->isoFormat('LLL')) }}</td>
+						<td>{{ ucfirst(\Carbon::parse($crew->updated_at)->toDateTimeString()) }}</td>
 						<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>

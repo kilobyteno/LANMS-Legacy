@@ -38,9 +38,9 @@
 								<td>{{ $seat->name }}</td>
 								<td>{{ $seat->slug }}</td>
 								<td>{{ $seat->row->name ?? 'N/A' }}</td>
-								<td>{{ ucfirst(\Carbon::parse($seat->created_at)->isoFormat('LLL')) }}</td>
+								<td>{{ \Carbon::parse($seat->created_at)->toDateTimeString() }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->author->username) }}">{{ User::getFullnameByID($seat->author->id) }}</a></td>
-								<td>{{ ucfirst(\Carbon::parse($seat->updated_at)->isoFormat('LLL')) }}</td>
+								<td>{{ \Carbon::parse($seat->updated_at)->toDateTimeString() }}</td>
 								<td><a href="{{ URL::route('user-profile', $seat->editor->username) }}">{{ User::getFullnameByID($seat->editor->id) }}</a></td>
 								<td>
 									<a href="{{ route('admin-seating-seat-edit', $seat->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>

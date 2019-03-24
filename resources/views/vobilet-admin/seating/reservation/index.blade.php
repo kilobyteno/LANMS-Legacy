@@ -43,7 +43,7 @@
 								<td>{{ $reservation->payment->id ?? 'N/A' }}</td>
 								<td><a href="{{ URL::route('user-profile', $reservation->reservedfor->username) }}">{{ User::getFullnameByID($reservation->reservedfor->id) }}</a></td>
 								<td><a href="{{ URL::route('user-profile', $reservation->reservedby->username) }}">{{ User::getFullnameByID($reservation->reservedby->id) }}</a></td>
-								<td>{{ ucfirst(\Carbon::parse($reservation->created_at)->isoFormat('LLL')) }}</td>
+								<td>{{ (\Carbon::parse($reservation->created_at)->toDateTimeString() }}</td>
 								<td>
 									<a href="{{ route('admin-seating-reservation-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
 									<a href="{{ route('admin-seating-reservation-edit', $reservation->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>

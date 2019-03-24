@@ -28,9 +28,9 @@
 				@foreach($compos as $compo)
 					<tr>
 						<td>{{ $compo->name }}</td>
-						<td>{{ ucfirst(\Carbon::parse($compo->start_at)->isoFormat('LLL')) }}</td>
-						<td>{{ ucfirst(\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL')) }}</td>
-						<td>{{ ucfirst(\Carbon::parse($compo->end_at)->isoFormat('LLL')) }}</td>
+						<td>{{ \Carbon::parse($compo->start_at)->toDateTimeString() }}</td>
+						<td>{{ \Carbon::parse($compo->last_sign_up_at)->toDateTimeString() }}</td>
+						<td>{{ \Carbon::parse($compo->end_at)->toDateTimeString() }}</td>
 						<td>
 							<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.compo.destroy'))

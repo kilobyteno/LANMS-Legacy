@@ -30,9 +30,9 @@
 				@foreach($categories as $category)
 					<tr>
 						<td>{{ $category->title }}</td>
-						<td>{{ ucfirst(\Carbon::parse($category->created_at)->isoFormat('LLL')) }}</td>
+						<td>{{ \Carbon::parse($category->created_at)->toDateTimeString() }}</td>
 						<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
-						<td>{{ ucfirst(\Carbon::parse($category->updated_at)->isoFormat('LLL')) }}</td>
+						<td>{{ \Carbon::parse($category->updated_at)->toDateTimeString() }}</td>
 						<td><a href="{{ URL::route('user-profile', $category->editor->username) }}">{{ User::getFullnameByID($category->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
