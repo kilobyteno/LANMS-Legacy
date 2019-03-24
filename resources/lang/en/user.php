@@ -75,6 +75,7 @@ return [
                     'paid' => 'Paid',
                     'void' => 'Void',
                     'uncollectible' => 'Uncollectible',
+                    'scheduled' => 'Scheduled',
                 ),
                 'product' => 'Product',
                 'quantity' => 'Quantity',
@@ -93,6 +94,7 @@ return [
                 'alert' => array(
                     'paid' => 'This invoice has now been paid.',
                     'nocards' => 'There are no cards attached to your account. You can add one <a href=":url" class="alert-link">here</a>.',
+                    'scheduled' => 'This draft invoice can be edited until it\'s automatically finalized :time.'
                 ),
             ),
             'card' => array(

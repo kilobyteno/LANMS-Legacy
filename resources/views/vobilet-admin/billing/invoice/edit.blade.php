@@ -12,12 +12,21 @@
 	</ol>
 </div>
 
+@if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
+	<div class="alert alert-info" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
+	</div>
+@endif
 
 <form class="row" method="post" action="{{ route('admin-billing-invoice-update', $invoice['id']) }}">
 	<div class="col-xl-8">
 		<div class="card">
+			<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
+				<h3 class="card-title">{{ trans('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
+			</div>
 			<div class="card-body">
-				<div class="row ">
+				<div class="row">
 					<div class="col-lg-6">
 						<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img d-print-none" alt="{{ Setting::get('WEB_NAME') }}">
 						<img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="d-none d-print-inline" style="width:auto;height:auto;max-width:700px;max-height:75px;">
@@ -66,9 +75,9 @@
 							@for($i = 0; $i < count($invoice['lines']['data']); $i++)
 								<tr id="{{ 'addr'.string($i) }}">
 									<td class="text-center">{{ $i+1 }}<input type="hidden" name="invoiceitem[]" value="{{ $invoice['lines']['data'][$i]['id'] }}" /><button type="button" class="btn btn-sm btn-danger" onClick="$(this).closest('tr').remove();calc_total();">&times;</button></td>
-									<td><input type="text" name="description[]" placeholder="Description" class="form-control" value="{{ $invoice['lines']['data'][$i]['description'] ?? $invoice['lines']['data'][$i]['plan']['name'].' ('.ucfirst($invoice['lines']['data'][$i]['plan']['interval']).')' }}" /></td>
-									<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" value="{{ $invoice['lines']['data'][$i]['quantity'] ?? '' }}" /></td>
-									<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" value="{{ (($invoice['lines']['data'][$i]['amount']/100) / $invoice['lines']['data'][$i]['quantity']) ?? '' }}" /></td>
+									<td><input type="text" name="description[]" placeholder="Description" class="form-control" required="required" value="{{ $invoice['lines']['data'][$i]['description'] ?? $invoice['lines']['data'][$i]['plan']['name'].' ('.ucfirst($invoice['lines']['data'][$i]['plan']['interval']).')' }}" /></td>
+									<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="1" value="{{ $invoice['lines']['data'][$i]['quantity'] ?? '' }}" /></td>
+									<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0.01" step="0.01" value="{{ (($invoice['lines']['data'][$i]['amount']/100) / $invoice['lines']['data'][$i]['quantity']) ?? '' }}" /></td>
 									<td>
 										<div class="input-group mb-2 mb-sm-0">
 											<input type="text" name="total[]" placeholder="0" class="form-control total" readonly value="{{ ($invoice['lines']['data'][$i]['amount']/100) }}" />
@@ -81,9 +90,9 @@
 							@endfor
 							<tr id="{{ 'addr'.string($i) }}">
 								<td class="text-center">{{ count($invoice['lines']['data'])+1 }}</td>
-								<td><input type="text" name="description[]" placeholder="Description" class="form-control" /></td>
-								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" /></td>
-								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" /></td>
+								<td><input type="text" name="description[]" placeholder="Description" class="form-control" required="required" /></td>
+								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="1" /></td>
+								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0.01" step="0.01" /></td>
 								<td>
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total[]" placeholder="0" class="form-control total" readonly />

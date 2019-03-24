@@ -75,6 +75,7 @@ return [
                     'paid' => 'Betalt',
                     'void' => 'Annullert',
                     'uncollectible' => 'Tap i penger',
+                    'scheduled' => 'Planlagt',
                 ),
                 'product' => 'Produkt',
                 'quantity' => 'Antall',
@@ -93,6 +94,7 @@ return [
                 'alert' => array(
                     'paid' => 'Denne fakturaen er nå betalt.',
                     'nocards' => 'Det er ingen kort knyttet til kontoen din. Du kan legge til en <a href=":url" class="alert-link">her</a>.',
+                    'scheduled' => 'Denne utkastfakturaen kan redigeres til den automatisk blir ferdigstilt :time.'
                 ),
             ),
             'card' => array(

@@ -14,9 +14,17 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+
+        	@if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
+				<div class="alert alert-info" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
+				</div>
+			@endif
+
         	<div class="card">
         		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
-					<h3 class="card-title">{{ trans('global.status') }}: {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</h3>
+					<h3 class="card-title">{{ trans('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
 				</div>
 				<div class="card-body">
 					<div class="row ">

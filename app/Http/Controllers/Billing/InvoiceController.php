@@ -225,6 +225,10 @@ class InvoiceController extends Controller
     {
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
+        if ($invoice['status'] != 'draft') {
+            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
+                                ->with('message', 'You can\'t edit this invoice after it has been sent.');
+        }
         $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
         $user = \LANMS\User::find($user->id);
         return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
@@ -261,6 +265,10 @@ class InvoiceController extends Controller
         }
         try {
             $invoice = \Stripe::invoices()->find($id);
+            if ($invoice['status'] != 'draft') {
+                return \Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
+                                    ->with('message', 'You can\'t edit this invoice after it has been sent.');
+            }
             $ii = array();
             foreach ($invoice['lines']['data'] as $line) {
                 array_push($ii, $line['id']);

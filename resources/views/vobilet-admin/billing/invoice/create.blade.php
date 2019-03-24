@@ -51,9 +51,9 @@
 
 							<tr id="addr0">
 								<td class="text-center">1</td>
-								<td><input type="text" name="description[]" placeholder="Description" class="form-control" /></td>
-								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" /></td>
-								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" /></td>
+								<td><input type="text" name="description[]" placeholder="Description" class="form-control" required="required" /></td>
+								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="1" required="required" /></td>
+								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0.01" step="0.01" required="required"/></td>
 								<td>
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total[]" placeholder="0" class="form-control total" readonly />
