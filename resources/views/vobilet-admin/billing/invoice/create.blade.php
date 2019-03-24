@@ -29,17 +29,10 @@
 							{{ \Setting::get('MAIL_MAIN_EMAIL') }}
 						</address>
 					</div>
-					<div class="col-lg-6 text-right">
-						<p class="h3"></p>
-						<address>
-							
-						</address>
-					</div>
 				</div>
 				
 				<div>
-					<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> </p>
-					<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> </p>
+					<p class="mb-1 mt-5 mb-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::now()->isoFormat('LLLL')) }}</p>
 					<p class="mb-2">
 						<button type="button" id="add_row" class="btn btn-outline-success d-inline">Add Row</button>
 						<button type="button" id="delete_row" class="btn btn-outline-danger d-inline">Delete Row</button>
@@ -140,6 +133,13 @@
 					</select>
 					@if($errors->has('user_id'))
 						<p class="text-danger">{{ $errors->first('user_id') }}</p>
+					@endif
+				</div>
+				<div class="form-group">
+					<label class="form-label">Days until due:</label>
+					<input type="number" class="form-control" name="days_until_due" min="14" max="60" value="30">
+					@if($errors->has('days_until_due'))
+						<p class="text-danger">{{ $errors->first('days_until_due') }}</p>
 					@endif
 				</div>
 			</div>

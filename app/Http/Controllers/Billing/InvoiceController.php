@@ -166,7 +166,7 @@ class InvoiceController extends Controller
             }
             $invoice = \Stripe::invoices()->create($stripecust->cus, [
                 'billing' => 'send_invoice',
-                'days_until_due' => 14,
+                'days_until_due' => $request->get('days_until_due'),
                 'footer' => $request->get('footer'),
                 'tax_percent' => $request->get('tax_percent'),
             ]);
