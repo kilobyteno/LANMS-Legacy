@@ -5,15 +5,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		
-		<meta name="msapplication-TileColor" content="#0061da">
-		<meta name="theme-color" content="#1643a3">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="HandheldFriendly" content="True">
 		<meta name="MobileOptimized" content="320">
-		<link rel="icon" href="{{ Theme::url('favicon.ico') }}" type="image/x-icon"/>
-		<link rel="shortcut icon" type="image/x-icon" href="{{ Theme::url('favicon.ico') }}" />
+
+		<link rel="apple-touch-icon" sizes="180x180" href="{{ Theme::url('favicon/apple-touch-icon.png') }}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ Theme::url('favicon/favicon-32x32.png') }}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ Theme::url('favicon/favicon-16x16.png') }}">
+		<link rel="manifest" href="{{ Theme::url('favicon/site.webmanifest') }}">
+		<link rel="mask-icon" href="{{ Theme::url('favicon/safari-pinned-tab.svg') }}" color="#000000">
+		<meta name="msapplication-TileColor" content="#2b5797">
+		<meta name="theme-color" content="#ffffff">
 
 		<!-- Title -->
 		<title>@yield('title') - {{ Setting::get('WEB_NAME') }}</title>
