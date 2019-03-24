@@ -133,6 +133,24 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="card">
+        		<div class="card-header">
+					<h3 class="card-title">Events</h3>
+				</div>
+				<div class="table-responsive">
+					<table class="table card-table table-vcenter text-nowrap">
+						<tbody>
+							@foreach($events as $event)
+								<tr>
+									<td>{{ trans('user.account.billing.invoice.event.'.$event['type']) }}</td>
+									<td width="10%" class="text-muted">{{ \Carbon::parse($event['created'])->isoFormat('LLLL') }}</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
         </div>
     </div>
 </div>

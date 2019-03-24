@@ -197,6 +197,8 @@ class InvoiceController extends Controller
     {
         try {
             $invoice = \Stripe::invoices()->find($id);
+            $events = \Stripe::events()->all(['object_id' => $id]);
+            $events = $events['data'];
         } catch (\Cartalyst\Stripe\Exception\NotFoundException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -212,7 +214,7 @@ class InvoiceController extends Controller
         }
         $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
         $user = \LANMS\User::find($user->id);
-        return view('billing.invoice.show')->withInvoice($invoice)->withUser($user);
+        return view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
     }
 
     /**

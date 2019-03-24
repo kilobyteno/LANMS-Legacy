@@ -77,6 +77,14 @@ return [
                     'uncollectible' => 'Uncollectible',
                     'scheduled' => 'Scheduled',
                 ),
+                'event' => array(
+                    'invoice' => array(
+                        'created' => 'The draft invoice was created.',
+                        'updated' => 'Invoice was updated.',
+                        'finalized' => 'The draft invoice was finalized.',
+                        'sent' => 'Invoice was sent.',
+                    ),
+                ),
                 'product' => 'Product',
                 'quantity' => 'Quantity',
                 'unitprice' => 'Unit Price',
