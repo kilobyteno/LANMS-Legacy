@@ -260,21 +260,10 @@ class InvoiceController extends Controller
             $stripecust = $stripecustomer;
         }
         try {
-            for ($i=0; $i < count($request->get('description')); $i++) {
-                if (!is_null($request->get('invoiceitem')[$i])) {
-                    \Stripe::invoiceItems()->update($request->get('invoiceitem')[$i], [
-                        'description' => $request->get('description')[$i],
-                        'unit_amount' => ($request->get('price')[$i]*100),
-                        'quantity' => $request->get('qty')[$i],
-                    ]);
-                } else {
-                    \Stripe::invoiceItems()->create($stripecust->cus, [
-                        'description' => $request->get('description')[$i],
-                        'unit_amount' => ($request->get('price')[$i]*100),
-                        'quantity' => $request->get('qty')[$i],
-                        'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
-                    ]);
-                }
+            $invoice = \Stripe::invoices()->find($id);
+            $ii = array();
+            foreach ($invoice['lines']['data'] as $line) {
+                array_push($ii, $line['id']);
             }
             $invoice = \Stripe::invoices()->update($id, [
                 'footer' => $request->get('footer'),
@@ -291,10 +280,48 @@ class InvoiceController extends Controller
             $type = $e->getErrorType();
 
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
-                                ->with('message', $message);
+                                ->with('message', 'I: '.$message);
         }
-        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'warning')
-                                ->with('message', 'Invoice has been created. Please edit it here.');
+        try {
+            for ($i=0; $i < count($request->get('description')); $i++) {
+                if (!is_null($request->get('invoiceitem')[$i])) {
+                    $invoiceitem = $request->get('invoiceitem')[$i];
+                    $pos = array_search($invoiceitem, $ii); // Find Invoice Item in array
+                    unset($ii[$pos]); // Remove Invoice Item from array
+                    \Stripe::invoiceItems()->update($invoiceitem, [
+                        'description' => $request->get('description')[$i],
+                        'unit_amount' => ($request->get('price')[$i]*100),
+                        'quantity' => $request->get('qty')[$i],
+                    ]);
+                } elseif (!is_null($request->get('description')[$i]) && !is_null($request->get('price')[$i]) && !is_null($request->get('qty')[$i])) {
+                    \Stripe::invoiceItems()->create($stripecust->cus, [
+                        'description' => $request->get('description')[$i],
+                        'unit_amount' => ($request->get('price')[$i]*100),
+                        'quantity' => $request->get('qty')[$i],
+                        'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                    ]);
+                }
+            }
+            if (count($ii) > 0) { // Check if there is any lines left to delete
+                foreach ($ii as $id) {
+                     \Stripe::invoiceItems()->delete($id); // delete lines left
+                }
+            }
+        } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', 'II: '.$message);
+        }
+        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been updated.');
     }
 
     /**

@@ -65,7 +65,7 @@
 							</tr>
 							@for($i = 0; $i < count($invoice['lines']['data']); $i++)
 								<tr id="{{ 'addr'.string($i) }}">
-									<td class="text-center">{{ $i+1 }}<input type="hidden" name="invoiceitem[]" value="{{ $invoice['lines']['data'][$i]['id'] }}" /></td>
+									<td class="text-center">{{ $i+1 }}<input type="hidden" name="invoiceitem[]" value="{{ $invoice['lines']['data'][$i]['id'] }}" /><button type="button" class="btn btn-sm btn-danger" onClick="$(this).closest('tr').remove();calc_total();">&times;</button></td>
 									<td><input type="text" name="description[]" placeholder="Description" class="form-control" value="{{ $invoice['lines']['data'][$i]['description'] ?? $invoice['lines']['data'][$i]['plan']['name'].' ('.ucfirst($invoice['lines']['data'][$i]['plan']['interval']).')' }}" /></td>
 									<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" value="{{ $invoice['lines']['data'][$i]['quantity'] ?? '' }}" /></td>
 									<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" value="{{ (($invoice['lines']['data'][$i]['amount']/100) / $invoice['lines']['data'][$i]['quantity']) ?? '' }}" /></td>
@@ -80,7 +80,7 @@
 								</tr>
 							@endfor
 							<tr id="{{ 'addr'.string($i) }}">
-								<td class="text-center">{{ count($invoice['lines']['data'])+1 }}<input type="hidden" name="invoiceitem[]" /></td>
+								<td class="text-center">{{ count($invoice['lines']['data'])+1 }}<input type="hidden" name="invoiceitem[]" /><button type="button" class="btn btn-sm btn-danger" onClick="$(this).closest('tr').remove();calc_total();">&times;</button></td>
 								<td><input type="text" name="description[]" placeholder="Description" class="form-control" /></td>
 								<td><input type="number" name="qty[]" placeholder="Qty" class="form-control qty" min="0" /></td>
 								<td><input type="number" name="price[]" placeholder="Unit Price" class="form-control price" min="0" step="0.01" /></td>
