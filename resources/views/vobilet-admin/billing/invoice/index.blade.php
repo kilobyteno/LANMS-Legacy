@@ -38,7 +38,7 @@
                                     <?php $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first() or null; ?>
                                     <td>@if($user)<a href="{{ route('admin-user-edit', $user->user->id) }}">{{ $user->user->firstname . ' "' . $user->user->username . '" ' . $user->user->lastname }}</a>@endif</td>
                                     <td>{{ \Carbon::parse($invoice['date'])->toDateTimeString() }}</td>
-                                    <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
+                                    <td>{{ floatval($invoice['total']/100).' '.strtoupper($invoice['currency']) }}</td>
                                     <td>{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</td>
                                     <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
                                     <td>@if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</td>
