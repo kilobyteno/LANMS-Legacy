@@ -10,7 +10,7 @@
 		@elseif(Session::get('messagetype') == 'success')
 			<i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
 		@endif
-		{{ Session::get('message') }}
+		{!! Session::get('message') !!}
 	</div>
 @endif
 
