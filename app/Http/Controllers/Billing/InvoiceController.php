@@ -213,7 +213,9 @@ class InvoiceController extends Controller
                                 ->with('message', $message);
         }
         $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        $user = \LANMS\User::find($user->id);
+        if (!is_null($user)) {
+            $user = \LANMS\User::find($user->id);
+        }
         return view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
     }
 
@@ -232,7 +234,9 @@ class InvoiceController extends Controller
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
         $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        $user = \LANMS\User::find($user->id);
+        if (!is_null($user)) {
+            $user = \LANMS\User::find($user->id);
+        }
         return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
     }
 
