@@ -44,8 +44,8 @@
 							@if($user)
 								{{ $user->firstname.' '.$user->lastname }}<br>
 								{{ $user->address->address1 ?? '' }} {{ $user->address->address2 ?? '' }}<br>
-								{{ $user->address->postalcode.', '.$user->address->city ?? '' }}<br>
-								{{ $user->address->county.', '.$user->address->country ?? '' }}<br>
+								{{ $user->address->postalcode ?? '' }} {{ $user->address->city ?? '' }}<br>
+								{{ $user->address->county ?? '' }} {{ $user->address->country ?? '' }}<br>
 								{{ $user->email }}
 							@else
 								<em>N/A</em>

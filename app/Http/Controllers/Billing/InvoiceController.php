@@ -183,7 +183,7 @@ class InvoiceController extends Controller
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'success')
+        return \Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been created.');
     }
 
@@ -212,9 +212,9 @@ class InvoiceController extends Controller
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        if (!is_null($user)) {
-            $user = \LANMS\User::find($user->id);
+        $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        if (!is_null($stripecustomer)) {
+            $user = \LANMS\User::find($stripecustomer->user_id);
         }
         return view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
     }
@@ -233,9 +233,9 @@ class InvoiceController extends Controller
             return \Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
-        $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        if (!is_null($user)) {
-            $user = \LANMS\User::find($user->id);
+        $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        if (!is_null($stripecustomer)) {
+            $user = \LANMS\User::find($stripecustomer->user_id);
         }
         return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
     }
