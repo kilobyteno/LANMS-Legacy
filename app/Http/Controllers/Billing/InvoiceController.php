@@ -113,7 +113,7 @@ class InvoiceController extends Controller
      */
     public function admin()
     {
-        $invoices = \Stripe::invoices()->all();
+        $invoices = \Stripe::invoices()->all(array('limit' => 100));
         return view('billing.invoice.index')->withInvoices($invoices['data']);
     }
     
