@@ -83,6 +83,8 @@ return [
                         'updated' => 'Invoice was updated.',
                         'finalized' => 'The draft invoice was finalized.',
                         'sent' => 'Invoice was sent.',
+                        'marked_uncollectible' => 'Invoice was marked uncollectible.',
+                        'voided' => 'Invoice was voided.',
                     ),
                 ),
                 'product' => 'Product',

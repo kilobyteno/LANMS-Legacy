@@ -79,10 +79,12 @@ return [
                 ),
                 'event' => array(
                     'invoice' => array(
-                        'created' => 'The draft invoice was created.',
-                        'updated' => 'Invoice was updated.',
-                        'finalized' => 'The draft invoice was finalized.',
-                        'sent' => 'Invoice was sent.',
+                        'created' => 'Utkastet fakturaen ble opprettet.',
+                        'updated' => 'Fakturaen ble oppdatert.',
+                        'finalized' => 'Utkastet fakturaen ble avsluttet.',
+                        'sent' => 'Faktura ble sendt.',
+                        'marked_uncollectible' => 'Fakturaen ble merket for tap.',
+                        'voided' => 'Fakturaen ble ugyldig.',
                     ),
                 ),
                 'product' => 'Produkt',
