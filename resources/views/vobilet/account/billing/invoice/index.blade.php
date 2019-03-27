@@ -46,7 +46,7 @@
                                         <td>{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</td>
                                         <td>
                                             <a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> {{ trans('global.view') }}</a>
-                                            @if(!$invoice['paid'])
+                                            @if(!$invoice['paid'] && $invoice['status'] != 'draft')
                                                 <a type="button" class="btn btn-sm btn-success text-white" href="{{ route('account-billing-invoice-pay', $invoice['id']) }}"><i class="fas fa-shopping-cart"></i> {{ trans('user.account.billing.invoice.payinvoice') }}</a>
                                             @endif
                                         </td>
