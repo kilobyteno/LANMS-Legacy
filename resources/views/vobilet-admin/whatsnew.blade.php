@@ -21,6 +21,41 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#253" aria-expanded="true">Version 2.5.3</a>
+							</h4>
+						</div>
+						<div id="253" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-278'>LANMS-278</a>] - Email title not translated</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-282'>LANMS-282</a>] - Sometimes tickets gets 1970 year</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-285'>LANMS-285</a>] - Admin page for sponsors shows sponsors for prev year</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-290'>LANMS-290</a>] - Sponsors show all on admin page</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-294'>LANMS-294</a>] - Changing users phone, language or theme does not save</li>
+								</ul>
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-289'>LANMS-289</a>] - Invoice system</li>
+								</ul>
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-279'>LANMS-279</a>] - Add addresses to users in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-292'>LANMS-292</a>] - Add anonymized badge to users in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-293'>LANMS-293</a>] - Make address2-field required</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-295'>LANMS-295</a>] - Add about-field to user in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-296'>LANMS-296</a>] - Improve order of tables in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-297'>LANMS-297</a>] - Implement Stripe Cards</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-300'>LANMS-300</a>] - Update the browser icon</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-304'>LANMS-304</a>] - Change dates in admin panel for table sorting</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#252" aria-expanded="true">Version 2.5.2</a>
 							</h4>
 						</div>
