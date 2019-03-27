@@ -41,7 +41,7 @@ class CheckLicense extends Command
      */
     public function handle()
     {
-        function check_license($licensekey, $localkey='')
+        function checkLicense($licensekey, $localkey = '')
         {
             $whmcsurl = 'https://my.infihex.com/';
             $licensing_secret_key = 'InfihexLANMS';
@@ -115,7 +115,7 @@ class CheckLicense extends Command
                     $postfields['check_token'] = $check_token;
                 }
                 $query_string = '';
-                foreach ($postfields as $k=>$v) {
+                foreach ($postfields as $k => $v) {
                     $query_string .= $k.'='.urlencode($v).'&';
                 }
                 if (function_exists('curl_exec')) {
@@ -170,7 +170,7 @@ class CheckLicense extends Command
                 } else {
                     preg_match_all('/<(.*?)>([^<]+)<\/\\1>/i', $data, $matches);
                     $results = array();
-                    foreach ($matches[1] as $k=>$v) {
+                    foreach ($matches[1] as $k => $v) {
                         $results[$v] = $matches[2][$k];
                     }
                 }
@@ -199,7 +199,7 @@ class CheckLicense extends Command
                 }
                 $results['remotecheck'] = true;
             }
-            unset($postfields,$data,$matches,$whmcsurl,$licensing_secret_key,$checkdate,$usersip,$localkeydays,$allowcheckfaildays,$md5hash);
+            unset($postfields, $data, $matches, $whmcsurl, $licensing_secret_key, $checkdate, $usersip, $localkeydays, $allowcheckfaildays, $md5hash);
             return $results;
         }
         $this->info("Hostname: ".Request::server("SERVER_NAME"));
@@ -214,7 +214,7 @@ class CheckLicense extends Command
             Setting::save();
         } else {
             $this->info('Checking License...');
-            $results = check_license($app_licensekey, $app_localkey); // Validate the license key information
+            $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
             $status = $results['status'];
             if (isset($results['message'])) {
                 $status_message = $results['message'];
@@ -233,7 +233,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->info('Status: '.$status);
-                    \Artisan::call('up');
+                    #\Artisan::call('up');
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
@@ -253,7 +253,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
-                    \Artisan::call('down');
+                    #\Artisan::call('down');
                     break;
                 default:
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
