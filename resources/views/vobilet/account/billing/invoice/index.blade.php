@@ -41,10 +41,15 @@
                                         <td>{{ $invoice['number'] }}</td>
                                         <td>{{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</td>
                                         <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
-                                        <td>{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</td>
+                                        <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && !$invoice['paid'])<span class="badge badge-danger">{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LL')) }}</span> @else {{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LL')) }}@endif</td>
                                         <td>@if($invoice['status']=='draft') - @else <span @if(!$invoice['paid']) class="badge badge-danger" @elseif($invoice['paid']) class="badge badge-success" @endif>{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}</span>@endif</td>
                                         <td>{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</td>
-                                        <td><a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> {{ trans('global.view') }}</a></td>
+                                        <td>
+                                            <a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> {{ trans('global.view') }}</a>
+                                            @if(!$invoice['paid'])
+                                                <a type="button" class="btn btn-sm btn-success text-white" href="{{ route('account-billing-invoice-pay', $invoice['id']) }}"><i class="fas fa-shopping-cart"></i> {{ trans('user.account.billing.invoice.payinvoice') }}</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

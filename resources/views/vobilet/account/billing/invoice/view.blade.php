@@ -48,7 +48,7 @@
 					<div>
 						<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} #:</span> {{ $invoice['number'] }}</p>
 						<p class="mb-1"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</p>
-						<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> {{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</p>
+						<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> @if(\Carbon::parse($invoice['due_date'])->isPast() && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LL')) }}</span> @else {{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LL')) }}@endif</p>
 						@if($invoice['custom_fields'])
 							@foreach($invoice['custom_fields'] as $customfield)
 								<p class="mb-1"><span class="font-weight-semibold">{{ $customfield['name'] }}:</span> {{ $customfield['value'] }}</p>
