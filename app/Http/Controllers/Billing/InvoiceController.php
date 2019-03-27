@@ -213,6 +213,7 @@ class InvoiceController extends Controller
                                 ->with('message', $message);
         }
         $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        $user = null;
         if (!is_null($stripecustomer)) {
             $user = \LANMS\User::find($stripecustomer->user_id);
         }
@@ -234,6 +235,7 @@ class InvoiceController extends Controller
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
         $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
+        $user = null;
         if (!is_null($stripecustomer)) {
             $user = \LANMS\User::find($stripecustomer->user_id);
         }

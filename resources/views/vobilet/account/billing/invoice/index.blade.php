@@ -42,7 +42,7 @@
                                         <td>{{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</td>
                                         <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
                                         <td>{{ ucfirst(\Carbon::parse($invoice['due_date'])->isoFormat('LLLL')) }}</td>
-                                        <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
+                                        <td>@if($invoice['status']=='draft') - @else <span @if(!$invoice['paid']) class="badge badge-danger" @elseif($invoice['paid']) class="badge badge-success" @endif>{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}</span>@endif</td>
                                         <td>{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}</td>
                                         <td><a href="{{ route('account-billing-invoice-view', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> {{ trans('global.view') }}</a></td>
                                     </tr>
