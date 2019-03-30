@@ -23,7 +23,7 @@
 	<body>
 		<div class="row">
 			<div class="col-md-12" style="text-align: center;">
-				<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:auto;height:auto;max-width:700px;max-height:75px;">
+				<img src=".{{ Setting::get('WEB_LOGO_ALT') }}" style="width:auto;height:auto;max-width:700px;max-height:75px;">
 			</div>
 		</div>
 		<div class="row">
