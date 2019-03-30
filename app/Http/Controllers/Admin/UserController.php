@@ -115,6 +115,54 @@ class UserController extends Controller
         }
     }
 
+    public function getForgotPassword($id)
+    {
+        $user = \User::find($id);
+        if ($user == null) {
+            return Redirect::route('admin-user')->with('messagetype', 'error')
+                                    ->with('message', trans('auth.alert.usernotfound'));
+        }
+
+        $actex = \Activation::exists($user);
+        $actco = \Activation::completed($user);
+        $active = false;
+        if ($actex) {
+            $active = false;
+        } elseif ($actco) {
+            $active = true;
+        }
+
+        if ($active == false) {
+            return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
+                                    ->with('message', trans('auth.forgot.alert.notactive'));
+        }
+
+        $reminder = \Reminder::exists($user);
+        if (!$reminder) {
+            $reminder = \Reminder::create($user);
+        }
+        $reminder_code  = $reminder->code;
+
+        try {
+            \Mail::send(
+                'emails.auth.forgot-password',
+                array(
+                    'link' => \URL::route('account-reset-password', $reminder_code),
+                    'firstname' => $user->firstname,
+                    'username' => $user->username,
+                ),
+                function ($message) use ($user) {
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.forgotpassword.title'));
+                }
+            );
+        } catch (\Swift_TransportException $e) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                                ->with('message', trans('auth.forgot.alert.emailfailure').' Error: '. $e->getMessage());
+        }
+        return Redirect::route('admin-user-edit', $id)->with('messagetype', 'success')
+                                ->with('message', trans('auth.forgot.alert.emailsuccess'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
