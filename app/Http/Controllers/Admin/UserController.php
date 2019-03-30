@@ -156,7 +156,7 @@ class UserController extends Controller
     {
         $user = \User::find($id);
         if (is_null($user)) {
-            return Redirect::route('admin-user')->with('messagetype', 'error')
+            return Redirect::route('admin-users')->with('messagetype', 'error')
                                     ->with('message', trans('auth.alert.usernotfound'));
         }
 
