@@ -34,7 +34,7 @@ return [
                     <li>Vil ikke frigi digitale bildekopier av barnet uten spesifikt samtykke fra de foresatte.</li>',
         'moreinfo' => 'Vi har samlet informasjon til omsorgsperson på nettsidene våre: <br><strong><em>:url</em></strong>',
         'permission' => 'Tillatelse til å delta på :event',
-        'permissiondesc' => 'Jeg gir med dette tillatelse til at :name som er født :birthdate kan delta på arrangementet ":event" i :location. Jeg gir med dette tillatelse til arrangørene som nevnt i punkt(ene) over.',
+        'permissiondesc' => 'Jeg gir med dette tillatelse til at <em>:name</em> som er født <em>:birthdate</em> kan delta på arrangementet ":event" i :location. Jeg gir med dette tillatelse til arrangørene som nevnt i punkt(ene) over.',
         'myrelationship' => 'Mitt forhold til deltakeren (sett strek under); <strong><em>mor</em></strong>, <strong><em>far</em></strong> eller <strong><em>annen omsorgsperson</em></strong> (spesifiser under).',
         'contact' => 'Kontaktinformasjon til omsorgsperson, om det skulle bli nødvendig (<strong>skriv tydelig</strong>)',
         'icanbecontacted' => 'Jeg kan treffes på telefon hele døgnet om det skulle oppstå en nødsituasjon og jeg er inneforstått med at arrangøren kan ringe for å kontrollere gyldigheten av denne tillatelsen.',

@@ -34,7 +34,7 @@ return [
                     <li>Will not release digital photo copies of the child without the specific consent of the guardians.</li>',
         'moreinfo' => 'We have collected information for the caregiver on our website: <br><strong><em>:url</em></strong>',
         'permission' => 'Permission to attend :event',
-        'permissiondesc' => 'With this permission I give that :name born :birthdate can attend the event ":event" in :location. With this permission I give to the organizers as mentioned in point(s) above.',
+        'permissiondesc' => 'With this permission I give that <em>:name</em> born <em>:birthdate</em> can attend the event ":event" in :location. With this permission I give to the organizers as mentioned in point(s) above.',
         'myrelationship' => 'My relationship with the participant (seen below); <strong><em>mother</em></strong>, <strong><em>father</em></strong> or <strong><em>another caregiver</em></strong> (specify below).',
         'contact' => 'Contact information for a caregiver, if necessary (<strong>write clearly</strong>)',
         'icanbecontacted' => 'I can be reached by phone 24 hours a day if an emergency should arise and I understand that the organizer may call to verify the validity of this permit.',
