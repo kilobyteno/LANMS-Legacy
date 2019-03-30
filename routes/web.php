@@ -799,6 +799,10 @@ Route::group([
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
                 ]);
+                Route::get('/{id}/forgotpassword', [
+                    'as' => 'admin-user-forgotpassword',
+                    'uses' => 'Admin\UserController@getForgotPassword'
+                ]);
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-user-destroy',
                     'uses' => 'Admin\UserController@destroy'
