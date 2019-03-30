@@ -24,6 +24,7 @@
                     @if($user->isAnonymized)<div class="badge badge-danger">Anonymized</div>@endif
                 </h3>
                 <div class="card-options">
+                    <a class="btn btn-info mr-2" href="{{ route('admin-user-resendverification', $user->id) }}"><i class="fas fa-user-check mr-2"></i>Resend Activation Email</a>
                     <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save</button>
                 </div>
             </div>

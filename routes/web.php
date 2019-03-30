@@ -798,6 +798,10 @@ Route::group([
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
                 ]);
+                Route::get('/{id}/resendverification', [
+                    'as' => 'admin-user-resendverification',
+                    'uses' => 'Admin\UserController@resendverification'
+                ]);
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-user-destroy',
                     'uses' => 'Admin\UserController@destroy'
