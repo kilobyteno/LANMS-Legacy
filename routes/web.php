@@ -799,6 +799,9 @@ Route::group([
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
                 ]);
+                Route::get('/{id}/resendverification', [
+                    'as' => 'admin-user-resendverification',
+                    'uses' => 'Admin\UserController@resendverification'
                 Route::get('/{id}/forgotpassword', [
                     'as' => 'admin-user-forgotpassword',
                     'uses' => 'Admin\UserController@getForgotPassword'

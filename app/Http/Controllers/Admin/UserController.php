@@ -115,6 +115,43 @@ class UserController extends Controller
         }
     }
 
+    public function resendverification($id)
+    {
+        $user = \User::find($id);
+        if (is_null($user)) {
+            return Redirect::route('admin-users')->with('messagetype', 'danger')
+                                ->with('message', trans('auth.alert.usernotfound'));
+        }
+
+        $activation = \Activation::exists($user);
+        $actco = \Activation::completed($user);
+        if (!$activation) {
+            $activation = \Activation::create($user);
+        } elseif ($activation && !$actco) {
+            $activation = \Activation::exists($user);
+        }
+        $activation_code = $activation->code;
+
+        try {
+            \Mail::send(
+                'emails.auth.activate',
+                array(
+                    'link' => \URL::route('account-activate', $activation_code),
+                    'firstname' => $user->firstname
+                ),
+                function ($message) use ($user) {
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
+                }
+            );
+        } catch (\Swift_TransportException $e) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                    ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
+        }
+
+        return Redirect::route('admin-users')->with('messagetype', 'success')
+                                ->with('message', 'Email was sent.');
+    }
+
     public function getForgotPassword($id)
     {
         $user = \User::find($id);
@@ -157,10 +194,11 @@ class UserController extends Controller
             );
         } catch (\Swift_TransportException $e) {
             return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
-                                ->with('message', trans('auth.forgot.alert.emailfailure').' Error: '. $e->getMessage());
+                                ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
         }
+        
         return Redirect::route('admin-user-edit', $id)->with('messagetype', 'success')
-                                ->with('message', trans('auth.forgot.alert.emailsuccess'));
+                        ->with('message', trans('auth.forgot.alert.emailsuccess'));
     }
 
     /**
