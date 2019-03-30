@@ -801,7 +801,8 @@ Route::group([
                 ]);
                 Route::get('/{id}/resendverification', [
                     'as' => 'admin-user-resendverification',
-                    'uses' => 'Admin\UserController@resendverification'
+                    'uses' => 'Admin\UserController@getResendVerification'
+                ]);
                 Route::get('/{id}/forgotpassword', [
                     'as' => 'admin-user-forgotpassword',
                     'uses' => 'Admin\UserController@getForgotPassword'

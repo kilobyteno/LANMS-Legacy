@@ -115,7 +115,7 @@ class UserController extends Controller
         }
     }
 
-    public function resendverification($id)
+    public function getResendVerification($id)
     {
         $user = \User::find($id);
         if (is_null($user)) {
@@ -155,7 +155,7 @@ class UserController extends Controller
     public function getForgotPassword($id)
     {
         $user = \User::find($id);
-        if ($user == null) {
+        if (is_null($user)) {
             return Redirect::route('admin-user')->with('messagetype', 'error')
                                     ->with('message', trans('auth.alert.usernotfound'));
         }
