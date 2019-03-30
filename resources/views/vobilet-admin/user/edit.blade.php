@@ -32,6 +32,19 @@
                     <div class="col-sm-4">
                         <div class="expanel expanel-default" data-collapsed="0">
                             <div class="expanel-heading">
+                                <div class="expanel-title">User Information</div>
+                            </div>
+                            <div class="expanel-body">
+                                <label class="form-label">Last Login:</label>
+                                <p>{{ ucfirst(\Carbon::parse($user->last_login)->isoFormat('LLLL')) }}</p>
+                                <label class="form-label">Last Activity:</label>
+                                <p>{{ ucfirst(\Carbon::parse($user->last_activity)->isoFormat('LLLL')) }}</p>
+                                <label class="form-label">Accepted GDPR:</label>
+                                @if($user->accepted_gdpr){{ trans('global.yes') }}@elseif(!$user->accepted_gdpr){{ trans('global.no') }}@endif
+                            </div>
+                        </div>
+                        <div class="expanel expanel-default" data-collapsed="0">
+                            <div class="expanel-heading">
                                 <div class="expanel-title">User Details</div>
                             </div>
                             <div class="expanel-body">
