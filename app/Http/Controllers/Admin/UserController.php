@@ -154,7 +154,7 @@ class UserController extends Controller
 
     public function getForgotPassword($id)
     {
-        $user = \User::find($id);
+        $user = \User::withTrashed()->find($id);
         if (is_null($user)) {
             return Redirect::route('admin-users')->with('messagetype', 'error')
                                     ->with('message', trans('auth.alert.usernotfound'));
@@ -163,7 +163,7 @@ class UserController extends Controller
         $actex = \Activation::exists($user);
         $actco = \Activation::completed($user);
         $active = false;
-        if ($actex) {
+        if ($actex && !$actco) {
             $active = false;
         } elseif ($actco) {
             $active = true;
