@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function getResendVerification($id)
     {
-        $user = \User::find($id);
+        $user = \User::withTrashed()->find($id);
         if (is_null($user)) {
             return Redirect::route('admin-users')->with('messagetype', 'danger')
                                 ->with('message', trans('auth.alert.usernotfound'));
