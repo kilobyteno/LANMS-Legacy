@@ -52,10 +52,10 @@
 				<p>{!! trans('pdf.consentform.moreinfo', ['url'=>Setting::get('WEB_PROTOCOL').'://'.Setting::get('WEB_DOMAIN').'/tilforeldre']) !!}</p>
 				<hr>
 				<h2>{!! trans('pdf.consentform.permission', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR')]) !!}</h2>
-				<p>{!! trans('pdf.consentform.permissiondesc', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR'), 'name'=>strtoupper(Sentinel::getUser()->firstname . ' ' . Sentinel::getUser()->lastname), 'birthdate'=>(Sentinel::getUser()->birthdate ? Sentinel::getUser()->birthdate : '__________________'), 'location'=>LANMS\Info::getContent('where').' '.LANMS\Info::getContent('when')]) !!}</p>
+				<p>{!! trans('pdf.consentform.permissiondesc', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR'), 'name' => ($user ? LANMS\User::getFullnameByID($user->id) : '______________________________________________________'), 'birthdate' => ($user ? $user->birthdate : '__________________'), 'location'=>LANMS\Info::getContent('where').' '.LANMS\Info::getContent('when')]) !!}</p>
 				<p>{!! trans('pdf.consentform.myrelationship') !!}<br>______________________________________________________________________</p>
 				<p>{!! trans('pdf.consentform.contact') !!}:</p>
-				<p>{{ trans('global.fullname') }}: ____________________________________________________________________<br>{{ trans('global.phonenumber') }}: _________________________________<br>{{ trans('global.email') }}: _________________________________</p>
+				<p>{{ trans('global.fullname') }}: ____________________________________________________________________<br>{{ trans('global.phone') }}: _________________________________<br>{{ trans('global.email') }}: _________________________________</p>
 				<p>{{ trans('pdf.consentform.icanbecontacted') }}</p>
 			</div>
 		</div>
