@@ -46,6 +46,7 @@ Route::group([
         Route::get('/schedule', ['as' => 'schedule', 'uses' => 'HomeController@schedule']);
         Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
+        Route::get('/consentform', ['as' => 'consentform', 'uses' => 'Seating\ReserveSeatingController@consentform']);
         Route::group([
             'prefix' => 'news'
             ], function () {
