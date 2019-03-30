@@ -169,9 +169,9 @@ class UserController extends Controller
             $active = true;
         }
 
-        if ($active == false) {
-            return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.forgot.alert.notactive'));
+        if ($active) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                                    ->with('message', 'User is already active.');
         }
 
         $reminder = \Reminder::exists($user);
@@ -198,7 +198,7 @@ class UserController extends Controller
         }
         
         return Redirect::route('admin-user-edit', $id)->with('messagetype', 'success')
-                        ->with('message', trans('auth.forgot.alert.emailsuccess'));
+                        ->with('message', 'Email was sent.');
     }
 
     /**
