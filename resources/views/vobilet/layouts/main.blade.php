@@ -140,7 +140,7 @@
 										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ trans('header.compo') }}</a>
+										<a class="nav-link @if(Request::is('compo*') || Request::is('user/compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ trans('header.compo') }}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
