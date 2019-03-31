@@ -59,16 +59,19 @@ class RowsController extends Controller
             $row->slug          = strtolower($request->name);
             $row->editor_id     = Sentinel::getUser()->id;
             $row->author_id     = Sentinel::getUser()->id;
+            $row->save();
 
-            if ($row->save()) {
-                return Redirect::route('admin-seating-rows')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The row has now been created!');
-            } else {
-                return Redirect::route('admin-seating-row-create')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the row.');
+            for ($i=0; $i < $request->seat_count; $i++) {
+                $seat = new \LANMS\Seats;
+                $seat->name = string($request->name.($i+1));
+                $seat->slug = strtolower(string($request->name.($i+1)));
+                $seat->row_id = $row->id;
+                $seat->save();
             }
+
+            return Redirect::route('admin-seating-rows')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The row has now been created!');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
