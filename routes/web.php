@@ -72,6 +72,18 @@ Route::group([
                 ]);
             });
         Route::get('/sponsor', ['as' => 'sponsor', 'uses' => 'Admin\SponsorController@index']);
+        Route::group([
+            'prefix' => 'compo'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'compo',
+                    'uses' => 'Compo\CompoController@index'
+                ]);
+                Route::get('/{slug}', [
+                    'as' => 'compo-show',
+                    'uses' => 'Compo\CompoController@show'
+                ]);
+            });
     });
 
 Route::group([
@@ -195,15 +207,6 @@ Route::group([
                             'uses' => 'Compo\CompoTeamController@destroy'
                         ]);
                     });
-                
-                Route::get('/', [
-                    'as' => 'compo',
-                    'uses' => 'Compo\CompoController@index'
-                ]);
-                Route::get('/{slug}', [
-                    'as' => 'compo-show',
-                    'uses' => 'Compo\CompoController@show'
-                ]);
                 Route::get('/{slug}/signup', [
                     'as' => 'compo-signup',
                     'uses' => 'Compo\CompoSignUpController@create'
