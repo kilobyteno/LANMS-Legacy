@@ -23,15 +23,12 @@ if (Config::get('app.debug')) {
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test', function () {
-        App::abort(404);
-        /*\Toolkito\Larasap\SendTo::Facebook(
-            'link',
-            [
-                'link' => 'https://downlinkdg.no/',
-                'message' => 'Test'
-            ]
-        );*/
-        //\Toolkito\Larasap\SendTo::Twitter('https://downlinkdg.no/');
+        //App::abort(404);
+        try {
+            return \Twilio::message('+4790089944', 'TEST');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
