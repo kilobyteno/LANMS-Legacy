@@ -23,12 +23,7 @@ if (Config::get('app.debug')) {
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test', function () {
-        //App::abort(404);
-        try {
-            return \Twilio::message('+4790089944', 'TEST');
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        App::abort(404);
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
@@ -882,6 +877,22 @@ Route::group([
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-sponsor-destroy',
                     'uses' => 'Admin\SponsorController@destroy'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'sms'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-sms',
+                    'uses' => 'Admin\SMSController@index'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-sms-create',
+                    'uses' => 'Admin\SMSController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-sms-store',
+                    'uses' => 'Admin\SMSController@store'
                 ]);
             });
         Route::group([
