@@ -13,6 +13,9 @@ return [
     'current' => 'Current',
     'nodata' => 'We can\'t find any data for you...',
     'noaccess' => 'You do not have access to this page!',
+    'verification' => 'Verification',
+    'verified' => 'verified',
+    'notverified' => 'not verified',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
