@@ -287,6 +287,14 @@ Route::group([
                     'as' => 'account-gdpr-delete-post' ,
                     'uses' => 'Member\AccountController@postGDPRDelete'
                 ]);
+                Route::get('/verifyphone', [
+                    'as' => 'account-verifyphone',
+                    'uses' => 'Auth\PhoneVerificationController@startVerification'
+                ]);
+                Route::post('/verifycode', [
+                    'as' => 'account-verifycode',
+                    'uses' => 'Auth\PhoneVerificationController@verifyCode'
+                ]);
                 Route::group([
                     'prefix' => 'billing'
                     ], function () {
