@@ -24,6 +24,7 @@
         "laravel/tinker": "^1.0",
         "milon/barcode": "^5.3",
         "nesbot/carbon": "2.16.1 as 1.37.0",
+        "propaganistas/laravel-intl": "2.*",
         "propaganistas/laravel-phone": "^4.1",
         "rap2hpoutre/laravel-log-viewer": "^0.8.0",
         "sentry/sentry-laravel": "1.0.0",
