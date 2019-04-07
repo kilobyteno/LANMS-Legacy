@@ -47,14 +47,18 @@ class AccountController extends Controller
 
     public function postEditProfile(ProfileRequest $request)
     {
-        $finduser = Sentinel::findById(Sentinel::getUser()->id);
-
         $credentials = [
             'login'         => Sentinel::getUser()->username,
             'password'      => $request->get('password'),
         ];
 
         if (Sentinel::authenticate($credentials)) {
+            if ($request->get('phone') != Sentinel::getUser()->phone) {
+                $phone_verified_at = null;
+            } else {
+                $phone_verified_at = Sentinel::getUser()->phone_verified_at;
+            }
+
             $info = [
                 'firstname'         => $request->get('firstname'),
                 'lastname'          => $request->get('lastname'),
@@ -64,6 +68,7 @@ class AccountController extends Controller
                 'birthdate'         => $request->get('birthdate'),
                 'phone'             => $request->get('phone'),
                 'phone_country'     => $request->get('phone_country'),
+                'phone_verified_at' => $phone_verified_at,
                 'about'             => $request->get('about'),
                 'showemail'         => $request->get('showemail'),
                 'showname'          => $request->get('showname'),
@@ -72,7 +77,7 @@ class AccountController extends Controller
                 'theme'             => $request->get('theme'),
             ];
 
-            $updateuser = Sentinel::update($finduser, $info);
+            $updateuser = Sentinel::update(Sentinel::getUser(), $info);
 
             if ($updateuser) {
                 return Redirect::route('user-profile', Sentinel::getUser()->username)
