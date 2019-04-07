@@ -63,6 +63,7 @@ class AccountController extends Controller
                 'occupation'        => $request->get('occupation'),
                 'birthdate'         => $request->get('birthdate'),
                 'phone'             => $request->get('phone'),
+                'phone_country'     => $request->get('phone_country'),
                 'about'             => $request->get('about'),
                 'showemail'         => $request->get('showemail'),
                 'showname'          => $request->get('showname'),
