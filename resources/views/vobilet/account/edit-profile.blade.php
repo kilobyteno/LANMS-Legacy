@@ -131,7 +131,7 @@
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
-								<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+								<label class="form-label">{{ trans('global.phone') }} @if(!$phone_verified_at) <a class="badge badge-danger" href="{{ route('account-verifyphone') }}">{{ ucfirst(trans('global.notverified')) }}</a> @else &middot; <span class="text-success">{{ ucfirst(trans('global.verified')) }}</span> @endif <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 								<div class="input-group">
 									<input class="form-control" type="tel" id="phone" name="phone" placeholder="22225555" value="{{ $phone ?? old('phone') }}">
 									<input type="hidden" name="phone_country" id="phone_country" value="{{ $phone_country ?? old('phone_country') }}">
