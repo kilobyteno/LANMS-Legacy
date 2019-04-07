@@ -24,14 +24,6 @@ if (Config::get('app.debug')) {
     });
     Route::get('/test', function () {
         App::abort(404);
-        /*\Toolkito\Larasap\SendTo::Facebook(
-            'link',
-            [
-                'link' => 'https://downlinkdg.no/',
-                'message' => 'Test'
-            ]
-        );*/
-        //\Toolkito\Larasap\SendTo::Twitter('https://downlinkdg.no/');
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
@@ -885,6 +877,22 @@ Route::group([
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-sponsor-destroy',
                     'uses' => 'Admin\SponsorController@destroy'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'sms'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-sms',
+                    'uses' => 'Admin\SMSController@index'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-sms-create',
+                    'uses' => 'Admin\SMSController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-sms-store',
+                    'uses' => 'Admin\SMSController@store'
                 ]);
             });
         Route::group([

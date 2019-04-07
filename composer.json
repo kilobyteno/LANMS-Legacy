@@ -30,7 +30,8 @@
         "spatie/laravel-activitylog": "^2.8",
         "symfony/translation": "~4.1",
         "tom-lingham/searchy": "^2.0",
-        "toolkito/larasap": "^1.2"
+        "toolkito/larasap": "^1.2",
+        "twilio/sdk": "^5.31"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
