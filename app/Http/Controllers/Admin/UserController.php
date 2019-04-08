@@ -169,9 +169,9 @@ class UserController extends Controller
             $active = true;
         }
 
-        if ($active) {
+        if (!$active) {
             return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
-                                    ->with('message', 'User is already active.');
+                                    ->with('message', 'User is not active.');
         }
 
         $reminder = \Reminder::exists($user);
