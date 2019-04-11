@@ -133,6 +133,18 @@ return [
             'editpassword' => 'Rediger passordet ditt',
             'button' => 'Oppdater passord',
         ),
+        'verifyphone' => array(
+            'title' => 'Bekreft telefonnummer',
+            'alert' => array(
+                'saved' => 'Telefonnummeret ble bekreftet.',
+                'failed' => 'Bekreftelsen mislyktes!',
+                'nophone' => 'Ingen telefonnummer lagret.',
+                'alreadyverified' => 'Telefonen er allerede bekreftet.',
+                'info' => 'Verifikasjonstoken er sendt! Vennligst vent opptil ett minutt.',
+            ),
+            'typecode' => 'Skriv inn koden du mottok på en SMS',
+            'button' => 'Bekreft',
+        ),
     ),
 
     'profile' => array(

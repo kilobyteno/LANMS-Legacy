@@ -28,7 +28,12 @@ class PhoneVerificationController extends Controller
         if (Sentinel::getUser()->phone_verified_at) {
             return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                             ->with('messagetype', 'warning')
-                            ->with('message', 'Phone has already been verified.');
+                            ->with('message', trans('user.account.verifyphone.alert.alreadyverified'));
+        }
+        if (is_null(Sentinel::getUser()->phone) && is_null(Sentinel::getUser()->phone_country)) {
+            return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
+                            ->with('messagetype', 'warning')
+                            ->with('message', trans('user.account.verifyphone.alert.nophone'));
         }
         try {
             $response = $this->authyApi->phoneVerificationStart(Sentinel::getUser()->phone, \libphonenumber\PhoneNumberUtil::getInstance()->getCountryCodeForRegion(strtoupper(Sentinel::getUser()->phone_country)), 'sms');
@@ -37,12 +42,12 @@ class PhoneVerificationController extends Controller
             } else {
                 return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                         ->with('messagetype', 'danger')
-                        ->with('message', 'Verification token could not be sent! '.$response->message());
+                        ->with('message', trans('user.account.verifyphone.alert.failed').' '.$response->message());
             }
         } catch (Exception $e) {
             return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                     ->with('messagetype', 'danger')
-                    ->with('message', 'Verification token could not be sent! E: '.$e->getMessage());
+                    ->with('message', trans('user.account.verifyphone.alert.failed').' '.$e->getMessage());
         }
     }
 
@@ -57,7 +62,12 @@ class PhoneVerificationController extends Controller
         if (Sentinel::getUser()->phone_verified_at) {
             return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                             ->with('messagetype', 'warning')
-                            ->with('message', 'Phone has already been verified.');
+                            ->with('message', trans('user.account.verifyphone.alert.alreadyverified'));
+        }
+        if (is_null(Sentinel::getUser()->phone) && is_null(Sentinel::getUser()->phone_country)) {
+            return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
+                            ->with('messagetype', 'warning')
+                            ->with('message', trans('user.account.verifyphone.alert.nophone'));
         }
         $data = $request->all();
         $validator = Validator::make($data, [
@@ -71,7 +81,7 @@ class PhoneVerificationController extends Controller
                     Sentinel::update(Sentinel::getUser()->id, ['phone_verified_at' => \Carbon::now()]);
                     return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                         ->with('messagetype', 'success')
-                        ->with('message', 'Phonenumber was verified!');
+                        ->with('message', trans('user.account.verifyphone.alert.saved'));
                 } else {
                     return Redirect::back()
                                     ->with('messagetype', 'danger')
@@ -80,7 +90,7 @@ class PhoneVerificationController extends Controller
             } catch (Exception $e) {
                 return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                         ->with('messagetype', 'danger')
-                        ->with('message', 'Phonenumber could not be verified! E: '.$e->getMessage());
+                        ->with('message', trans('user.account.verifyphone.alert.failed').' '.$e->getMessage());
             }
         } else {
             return Redirect::back()->withErrors();
