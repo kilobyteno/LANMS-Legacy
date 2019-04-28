@@ -834,6 +834,38 @@ Route::group([
                             'uses' => 'Billing\InvoiceController@destroy'
                         ]);
                     });
+                Route::group([
+                    'prefix' => 'products'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-billing-products',
+                            'uses' => 'Billing\ProductsController@admin'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-billing-products-create',
+                            'uses' => 'Billing\ProductsController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-billing-products-store',
+                            'uses' => 'Billing\ProductsController@store'
+                        ]);
+                        Route::get('/{id}', [
+                            'as' => 'admin-billing-products-show',
+                            'uses' => 'Billing\ProductsController@show'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-billing-products-edit',
+                            'uses' => 'Billing\ProductsController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-billing-products-update',
+                            'uses' => 'Billing\ProductsController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-billing-products-destroy',
+                            'uses' => 'Billing\ProductsController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'info'

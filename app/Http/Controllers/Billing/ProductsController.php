@@ -18,6 +18,18 @@ class ProductsController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin()
+    {
+        $products = \Stripe::products()->all(array('limit' => 100));
+        dd($products['data']);
+        return view('billing.products.index')->withProducts($products['data']);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
