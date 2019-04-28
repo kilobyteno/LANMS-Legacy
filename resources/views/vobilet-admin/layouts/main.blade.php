@@ -115,6 +115,7 @@
 							<a class="side-menu__item @if(Request::is('admin/billing*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fab fa-stripe"></i><span class="side-menu__label">Billing</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item @if(Request::is('admin/billing/invoice*')){{'active'}} @endif" href="{{ route('admin-billing-invoice') }}"><i class="fas fa-file-invoice mr-1"></i> Invoice</a></li>
+								<li><a class="slide-item @if(Request::is('admin/billing/products*')){{'active'}} @endif" href="{{ route('admin-billing-products') }}"><i class="fas fa-file-invoice mr-1"></i> Products</a></li>
 							</ul>
 						</li>
 						<li>
