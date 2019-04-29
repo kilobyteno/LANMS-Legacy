@@ -25,7 +25,6 @@ class ProductsController extends Controller
     public function admin()
     {
         $products = \Stripe::products()->all(array('limit' => 100));
-        dd($products['data']);
         return view('billing.products.index')->withProducts($products['data']);
     }
 
@@ -58,7 +57,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = \Stripe::products()->find($id);
+        dd($product);
+        abort_unless($product, 404);
+        return view('account.billing.products.view')->withProduct($product);
     }
 
     /**
