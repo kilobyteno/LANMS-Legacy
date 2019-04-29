@@ -110,6 +110,9 @@
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fas fa-exchange-alt"></i> {{ trans('user.account.billing.charges.title') }}</a></td>
 									</tr>
+									<tr class="border-bottom">
+										<td><a href="{{ route('account-billing-subscriptions') }}" class="text-inherit"><i class="fas fa-sync-alt"></i> {{ trans('user.account.billing.subscriptions.title') }}</a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

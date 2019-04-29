@@ -48,4 +48,22 @@ class BillingController extends Controller
         
         return view('account.billing.charges')->with('charges', $charges);
     }
+
+    public function getSubscriptions()
+    {
+        $user       = Sentinel::getUser();
+        $scus       = $user->stripecustomer;
+
+        if ($scus) {
+            $sccus = $scus->cus;
+            $subscriptions = \Stripe::subscriptions()->all($sccus);
+            $subscriptions = $subscriptions['data'];
+        } else {
+            $subscriptions = [];
+        }
+
+        dd($subscriptions);
+        
+        return view('account.billing.subscriptions')->with('subscriptions', $subscriptions);
+    }
 }
