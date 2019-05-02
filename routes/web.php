@@ -310,6 +310,10 @@ Route::group([
                             'as' => 'account-billing-subscriptions' ,
                             'uses' => 'Member\BillingController@getSubscriptions'
                         ]);
+                        Route::get('/subscription/{id}', [
+                            'as' => 'account-billing-subscription' ,
+                            'uses' => 'Member\BillingController@getSubscription'
+                        ]);
                         Route::get('/invoice', [
                             'as' => 'account-billing-invoice' ,
                             'uses' => 'Billing\InvoiceController@index'
