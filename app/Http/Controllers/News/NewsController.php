@@ -144,6 +144,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $article = News::where('slug', '=', $id)->first();
+        abort_unless($article, 404);
         $pagesinmenu = Page::where('active', '=', true)->where('showinmenu', '=', true)->get(); // This needs to be included in all the frontend pages
 
         return view('news.article')
