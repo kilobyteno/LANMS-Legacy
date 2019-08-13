@@ -839,7 +839,7 @@ Route::group([
                     ], function () {
                         Route::get('/', [
                             'as' => 'admin-billing-products',
-                            'uses' => 'Billing\ProductsController@admin'
+                            'uses' => 'Billing\ProductsController@index'
                         ]);
                         Route::get('/create', [
                             'as' => 'admin-billing-products-create',

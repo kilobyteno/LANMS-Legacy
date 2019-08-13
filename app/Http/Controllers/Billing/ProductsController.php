@@ -14,16 +14,6 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function admin()
-    {
         $products = \Stripe::products()->all(array('limit' => 100));
         return view('billing.products.index')->withProducts($products['data']);
     }
@@ -58,9 +48,11 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = \Stripe::products()->find($id);
-        dd($product);
+        $events = \Stripe::events()->all(['object_id' => $id]);
+        $events = $events['data'];
+        //dd($product);
         abort_unless($product, 404);
-        return view('account.billing.products.view')->withProduct($product);
+        return view('billing.products.show')->withProduct($product)->withEvents($events);
     }
 
     /**
