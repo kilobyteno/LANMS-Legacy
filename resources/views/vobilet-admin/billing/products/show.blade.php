@@ -18,7 +18,11 @@
             <div class="col-5">
                 <div class="card">
                     <div class="card-header">
-                        Details
+                        <h3 class="card-title">Details</h3>
+                        <div class="card-options">
+                            <a href="#" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a></a>
+                            <a href="#" class="btn btn-danger btn-sm ml-2"><i class="fas fa-trash mr-2"></i>Delete</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -44,7 +48,7 @@
             <div class="col-7">
                 <div class="card">
                     <div class="card-header">
-                        Inventory (SKU)
+                        <h3 class="card-title">Inventory (SKU)</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table card-table table-vcenter text-nowrap">
