@@ -10,7 +10,7 @@
         "barryvdh/laravel-dompdf": "^0.8.2",
         "cartalyst/sentinel": "2.0.*",
         "cartalyst/stripe": "~2.0",
-        "cartalyst/stripe-laravel": "9.0.*",
+        "cartalyst/stripe-laravel": "~9.0",
         "dialect/laravel-gdpr-compliance": "^1.4",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",

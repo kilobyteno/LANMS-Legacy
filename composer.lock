@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48249c3db6f9cef2dbe7e4c7406b7ea8",
+    "content-hash": "e76779ca82956252f7c250a8be1bb08f",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -307,16 +307,16 @@
         },
         {
             "name": "cartalyst/stripe",
-            "version": "v2.2.0",
+            "version": "v2.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/stripe.git",
-                "reference": "be3a233d3123fe01600c50fb47b8dc5bcdbc482b"
+                "reference": "78f3242a061eea29326d9e938c318c030076f625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/be3a233d3123fe01600c50fb47b8dc5bcdbc482b",
-                "reference": "be3a233d3123fe01600c50fb47b8dc5bcdbc482b",
+                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/78f3242a061eea29326d9e938c318c030076f625",
+                "reference": "78f3242a061eea29326d9e938c318c030076f625",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 "php",
                 "stripe"
             ],
-            "time": "2019-04-21T16:20:14+00:00"
+            "time": "2019-07-15T00:04:16+00:00"
         },
         {
             "name": "cartalyst/stripe-laravel",
