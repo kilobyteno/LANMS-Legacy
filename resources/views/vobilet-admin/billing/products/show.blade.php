@@ -103,7 +103,7 @@
                     <tbody>
                         @foreach($events as $event)
                             <tr>
-                                <td>{{ trans('user.account.billing.event.'.$event['type']) }}</td>
+                                <td>{!! trans('billing.event.'.$event['type'], ['id' => $event['data']['object']['id']]) !!}</td>
                                 <td width="10%" class="text-muted">{{ \Carbon::parse($event['created'])->isoFormat('LLLL') }}</td>
                             </tr>
                         @endforeach

@@ -48,9 +48,19 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = \Stripe::products()->find($id);
-        $events = \Stripe::events()->all(['object_id' => $id]);
-        $events = $events['data'];
-        //dd($product);
+        /** GET EVENTS FOR PRODUCT AND SKUS - START **/
+        $ids = array_column($product['skus']['data'], 'id');
+        array_push($ids, $id);
+        $events = [];
+        foreach ($ids as $id) {
+            $id_events = \Stripe::events()->all(['object_id' => $id]);
+            foreach ($id_events['data'] as $id_event) {
+                array_push($events, $id_event);
+            }
+        }
+        $created = array_column($events, 'created'); # FIND CREATED COLUMN VALUES
+        array_multisort($created, SORT_DESC, $events); # SORT ARRAY ON CREATED COLUMN
+        /** GET EVENTS FOR PRODUCT AND SKUS - END**/
         abort_unless($product, 404);
         return view('billing.products.show')->withProduct($product)->withEvents($events);
     }

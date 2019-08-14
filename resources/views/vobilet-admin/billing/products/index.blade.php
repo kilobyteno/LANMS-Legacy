@@ -37,7 +37,7 @@
                                     <td>{{ \Carbon::parse($product['created'])->toDateTimeString() }}</td>
                                     <td>{{ ucfirst($product['type']) }}</td>
                                     <td>{{ $product['skus']['total_count'] ?? '' }}</td>
-                                    <td>{{ $product['shippable'] }}</td>
+                                    <td>@if($product['shippable']){{ trans('global.yes') }}@else{{ trans('global.no') }}@endif</td>
                                     <td>@if($product['active']){{ trans('global.yes') }}@else{{ trans('global.no') }}@endif</td>
                                     <td>
                                         <a href="{{ route('admin-billing-products-show', $product['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>{{ trans('global.view') }}</a>
