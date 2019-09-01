@@ -307,16 +307,16 @@
         },
         {
             "name": "cartalyst/stripe",
-            "version": "v2.1.4",
+            "version": "v2.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/stripe.git",
-                "reference": "a507598048314fc22b3418b55956bcbefc07e8af"
+                "reference": "78f3242a061eea29326d9e938c318c030076f625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/a507598048314fc22b3418b55956bcbefc07e8af",
-                "reference": "a507598048314fc22b3418b55956bcbefc07e8af",
+                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/78f3242a061eea29326d9e938c318c030076f625",
+                "reference": "78f3242a061eea29326d9e938c318c030076f625",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
             "extra": {
                 "component": "package",
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -357,7 +357,7 @@
                 "php",
                 "stripe"
             ],
-            "time": "2018-04-11T12:19:25+00:00"
+            "time": "2019-07-15T00:04:16+00:00"
         },
         {
             "name": "cartalyst/stripe-laravel",
@@ -1344,8 +1344,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/filp"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -2498,8 +2498,8 @@
             "authors": [
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
-                    "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "lcobucci@gmail.com"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2874,9 +2874,9 @@
             "authors": [
                 {
                     "name": "Tim Lytle",
+                    "role": "Developer",
                     "email": "tim@nexmo.com",
-                    "homepage": "http://twitter.com/tjlytle",
-                    "role": "Developer"
+                    "homepage": "http://twitter.com/tjlytle"
                 }
             ],
             "description": "PHP Client for using Nexmo's API.",
@@ -4243,17 +4243,6 @@
         {
             "name": "sentry/sdk",
             "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/getsentry/sentry-php-sdk.git",
-                "reference": "3ea263b7fad78365ae3e4a6e1891babaee026305"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php-sdk/zipball/3ea263b7fad78365ae3e4a6e1891babaee026305",
-                "reference": "3ea263b7fad78365ae3e4a6e1891babaee026305",
-                "shasum": ""
-            },
             "require": {
                 "guzzlehttp/psr7": "^1.0",
                 "php-http/curl-client": "^1.0|^2.0",
@@ -5209,7 +5198,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -6168,9 +6157,9 @@
             "authors": [
                 {
                     "name": "Marcel Pociot",
+                    "role": "Developer",
                     "email": "marcel@beyondco.de",
-                    "homepage": "https://beyondcode.de",
-                    "role": "Developer"
+                    "homepage": "https://beyondcode.de"
                 }
             ],
             "description": "Symfony Var-Dump Server for Laravel",
@@ -7021,8 +7010,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -7152,8 +7141,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -7815,8 +7804,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",

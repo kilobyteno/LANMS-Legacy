@@ -23,7 +23,7 @@ class SeatReserveRequest extends Request
     public function rules()
     {
         return [
-            'reservedfor_id' => 'required',
+            'reservedfor' => 'required',
         ];
     }
 }
