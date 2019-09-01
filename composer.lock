@@ -307,16 +307,16 @@
         },
         {
             "name": "cartalyst/stripe",
-            "version": "v2.1.4",
+            "version": "v2.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/stripe.git",
-                "reference": "a507598048314fc22b3418b55956bcbefc07e8af"
+                "reference": "78f3242a061eea29326d9e938c318c030076f625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/a507598048314fc22b3418b55956bcbefc07e8af",
-                "reference": "a507598048314fc22b3418b55956bcbefc07e8af",
+                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/78f3242a061eea29326d9e938c318c030076f625",
+                "reference": "78f3242a061eea29326d9e938c318c030076f625",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
             "extra": {
                 "component": "package",
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.2.x-dev"
                 }
             },
             "autoload": {
@@ -357,7 +357,7 @@
                 "php",
                 "stripe"
             ],
-            "time": "2018-04-11T12:19:25+00:00"
+            "time": "2019-07-15T00:04:16+00:00"
         },
         {
             "name": "cartalyst/stripe-laravel",
