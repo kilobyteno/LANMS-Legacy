@@ -2,25 +2,23 @@
 
 namespace LANMS\Http\Controllers\Seating;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Exception\CardErrorException;
+use Cartalyst\Stripe\Exception\MissingParameterExeption;
+use Cartalyst\Stripe\Exception\ServerErrorException;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
-use LANMS\SeatRows;
-use LANMS\Seats;
-use LANMS\SeatReservation;
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Requests\Seating\PaymentRequest;
 use LANMS\SeatPayment;
+use LANMS\SeatReservation;
+use LANMS\SeatRows;
 use LANMS\SeatTicket;
+use LANMS\Seats;
 use LANMS\StripeCustomer;
 use anlutro\LaravelSettings\Facade as Setting;
-
-use LANMS\Http\Requests\Seating\PaymentRequest;
-
-use Cartalyst\Stripe\Exception\CardErrorException;
-use Cartalyst\Stripe\Exception\ServerErrorException;
 
 class PaymentSeatingController extends Controller
 {
@@ -96,7 +94,7 @@ class PaymentSeatingController extends Controller
         $stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
         
         if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
+            $customer = Stripe::customers()->create([
                 'email' => Sentinel::getUser()->email,
             ]);
             $stripecustomer             = new StripeCustomer;
@@ -118,7 +116,7 @@ class PaymentSeatingController extends Controller
         $nameOnCard         = $request->get('name');
 
         try {
-            $token = \Stripe::tokens()->create([
+            $token = Stripe::tokens()->create([
                 'card' => [
                     'number'    => $cardNumber,
                     'exp_month' => $cardMonthExpiry,
@@ -142,7 +140,7 @@ class PaymentSeatingController extends Controller
         }
 
         try {
-            $customer = \Stripe::customers()->update($stripecust->cus, [
+            $customer = Stripe::customers()->update($stripecust->cus, [
                 'source' => $token['id'],
             ]);
         } catch (CardErrorException $e) {
@@ -172,10 +170,14 @@ class PaymentSeatingController extends Controller
         }
 
         try {
-            $charge = \Stripe::charges()->create([
+            $pi = Stripe::PaymentIntents()->create([
                 'customer'  => $stripecust->cus,
                 'currency'  => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
                 'amount'    => Setting::get('SEATING_SEAT_PRICE'),
+                'payment_method_types' => ['card'],
+            ]);
+            $pic = Stripe::PaymentIntents()->confirm($pi['id'], [
+              'payment_method' => 'pm_card_visa',
             ]);
         } catch (CardErrorException $e) {
             // Get the status code
@@ -190,6 +192,13 @@ class PaymentSeatingController extends Controller
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
                                 ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
+
+        if($pic['status'] != 'succeeded') {
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'Failed to confirm payment. '.trans('seating.alert.pleasetryagain'));
+        }
+
+        $charge = $pic['charges']['data'][0];
 
         $reservation                    = $seat->reservationsThisYear->first();
         $reservationid                  = $reservation->id;
