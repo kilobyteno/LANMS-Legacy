@@ -17,9 +17,6 @@
 
 		<div class="row">
 			<div class="col-lg-4">
-				@section('css')
-					<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-				@stop
 				@include('seating.seatmap')
 			</div>
 			<div class="col-lg-8">

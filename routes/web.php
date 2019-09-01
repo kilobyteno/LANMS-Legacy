@@ -730,6 +730,30 @@ Route::group([
                             'uses' => 'Admin\PrintSeatController@printSeat'
                         ]);
                     });
+                Route::group([
+                    'prefix' => 'styling'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-styling',
+                            'uses' => 'Admin\Seating\StylingController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-styling-create',
+                            'uses' => 'Admin\Seating\StylingController@create'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-styling-edit',
+                            'uses' => 'Admin\Seating\StylingController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-styling-update',
+                            'uses' => 'Admin\Seating\StylingController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-styling-destroy',
+                            'uses' => 'Admin\Seating\StylingController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'compo'
