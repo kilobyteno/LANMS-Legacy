@@ -73,7 +73,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = \Stripe::products()->find($id);
+        abort_unless($product, 404);
+        return view('billing.products.edit')->withProduct($product);
     }
 
     /**
