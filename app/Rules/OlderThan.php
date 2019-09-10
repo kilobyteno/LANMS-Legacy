@@ -25,7 +25,10 @@ class OlderThan implements Rule
      */
     public function passes($attribute, $value)
     {
-        return \Carbon::now()->diff(\Carbon::createFromFormat('Y-m-d', \Carbon::parse($value)))->y >= $this->minAge;
+        if (\Carbon::createFromFormat('Y-m-d', $value) !== false) {
+            return \Carbon::now()->diff(\Carbon::createFromFormat('Y-m-d', $value))->y >= $this->minAge;
+        }
+        
     }
 
     /**
