@@ -31,6 +31,7 @@
 									<td scope="row">{{ substr($file, strrpos($file, '/') + 1) }}</td>
 									<td>
 										<a href="{{ route('admin-seating-styling-edit', substr($file, strrpos($file, '/') + 1)) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
+										<a href="javascript:;" onclick="jQuery('#destroy-{{ str_replace('.css', '', substr($file, strrpos($file, '/') + 1)) }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
 									</td>
 								</tr>
 							@endforeach
@@ -41,7 +42,28 @@
 		</div>
 	</div>
 </div>
+
+@foreach($files as $file)
+	<div class="modal fade" id="destroy-{{ str_replace('.css', '', substr($file, strrpos($file, '/') + 1)) }}" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title"><strong>Delete file:</strong> {{ substr($file, strrpos($file, '/') + 1) }}</h4>
+				</div>
+				<div class="modal-body text-center">
+					<h4 class="text-danger"><strong>Are you sure you want to delete this file?</strong></h4>
+				</div>
+				<div class="modal-footer">
+					<a href="{{ route('admin-seating-styling-destroy', substr($file, strrpos($file, '/') + 1)) }}" class="btn btn-danger">Yes, I want to delete it.</a>
+					<button type="button" class="btn btn-success" data-dismiss="modal">No, take me away!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+@endforeach
+
 @stop
+
 @section('css')
 	<link href="{{ Theme::url('plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 	<link href="{{ Theme::url('plugins/datatable/responsive/css/responsive.bootstrap4.css') }}" rel="stylesheet">

@@ -127,6 +127,9 @@ class StylingController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        dd('styling');
+        Storage::delete($this->folder_path.$id);
+        return Redirect::route('admin-seating-styling')
+                        ->with('messagetype', 'success')
+                        ->with('message', 'The file has now been deleted!');
     }
 }
