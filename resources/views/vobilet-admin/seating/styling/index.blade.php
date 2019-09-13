@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Styling</h4>
+	<h4 class="page-title">Styling <a class="btn btn-sm btn-success ml-2" href="{{ route('admin-seating-styling-create') }}"><i class="fa fa-plus mr-2"></i> Create</a></h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>

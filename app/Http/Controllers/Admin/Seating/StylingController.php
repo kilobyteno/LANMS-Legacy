@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use LANMS\Http\Controllers\Controller;
 
 class StylingController extends Controller
@@ -50,13 +51,28 @@ class StylingController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         if (!Sentinel::getUser()->hasAccess(['admin.seating.styling'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        dd('styling');
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|string',
+            'title' => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        $filename = Str::slug($request->input('title'), '-').'.css';
+        if (Storage::exists($this->folder_path.$filename)) {
+            return Redirect::back()->withInput()->with('messagetype', 'warning')
+                        ->with('message', 'File name already exists.');
+        }
+        Storage::put($this->folder_path.$filename, $request->input('content'));
+        return Redirect::route('admin-seating-styling')
+                        ->with('messagetype', 'success')
+                        ->with('message', 'The styling has now been saved!');
     }
 
     /**

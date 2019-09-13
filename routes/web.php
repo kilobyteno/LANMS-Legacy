@@ -741,6 +741,10 @@ Route::group([
                             'as' => 'admin-seating-styling-create',
                             'uses' => 'Admin\Seating\StylingController@create'
                         ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-styling-store',
+                            'uses' => 'Admin\Seating\StylingController@store'
+                        ]);
                         Route::get('/{id}/edit', [
                             'as' => 'admin-seating-styling-edit',
                             'uses' => 'Admin\Seating\StylingController@edit'
