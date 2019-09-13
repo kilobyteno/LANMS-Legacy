@@ -60,3 +60,7 @@ a, .btn-link, .breadcrumb-item a {
 a:hover, .btn-link:hover {
     color: #3498db;
 }
+
+.avatar {
+	background: #fff no-repeat center/cover;
+}
