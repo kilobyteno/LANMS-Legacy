@@ -1,6 +1,6 @@
 @section('css')
 	@foreach(Storage::files('/public/seating/') as $file)
-		<link rel="stylesheet" href="{{ asset($file) }}">
+		<link rel="stylesheet" href="{{ asset('storage/'.str_replace('public/', '', $file)) }}">
 	@endforeach
 @stop
 <div class="seatmap">
