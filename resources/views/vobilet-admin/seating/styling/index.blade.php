@@ -21,7 +21,7 @@
 					<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 						<thead>
 							<tr>
-								<th>File</th>
+								<th>Filename</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
