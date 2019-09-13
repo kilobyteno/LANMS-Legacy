@@ -21,6 +21,35 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#255" aria-expanded="true">Version 2.5.5</a>
+							</h4>
+						</div>
+						<div id="255" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-329">LANMS-329</a>] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-320">LANMS-320</a>] - Custom seating CSS from admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-321">LANMS-321</a>] - Add Stripe PaymentIntent (SCA)</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-323">LANMS-323</a>] - Update to L5.8</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-326">LANMS-326</a>] - Crew Skill Badge view in admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-327">LANMS-327</a>] - Improve dashboard design</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#253" aria-expanded="true">Version 2.5.3</a>
 							</h4>
 						</div>
