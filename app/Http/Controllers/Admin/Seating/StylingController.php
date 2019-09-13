@@ -11,7 +11,6 @@ use LANMS\Http\Controllers\Controller;
 
 class StylingController extends Controller
 {
-
     public function __construct()
     {
         $this->folder_path = '/public/seating/';
