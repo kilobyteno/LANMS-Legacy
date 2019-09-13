@@ -63,7 +63,7 @@
 										<i class="fab fa-font-awesome"></i>
 									</div>
 								</div>
-								<input type="text" class="form-control input-lg" placeholder="Icon" value="{{ (old('icon')) ? old('icon') : '' }}" name="icon">
+								<input type="text" class="form-control input-lg" placeholder="Icon" value="{{ (old('icon')) ? old('icon') : 'fas fa-user' }}" name="icon">
 							</div>
 							<p>Icons can be found here: <a href="http://fontawesome.io/icons/" target="_blank">fontawesome.io/icons</a></p>
 							@if($errors->has('icon'))
