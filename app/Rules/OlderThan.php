@@ -3,6 +3,7 @@
 namespace LANMS\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use InvalidArgumentException;
 
 class OlderThan implements Rule
 {
@@ -25,10 +26,11 @@ class OlderThan implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (\Carbon::createFromFormat('Y-m-d', $value) !== false) {
+        try {
             return \Carbon::now()->diff(\Carbon::createFromFormat('Y-m-d', $value))->y >= $this->minAge;
+        } catch (InvalidArgumentException $e) {
+            return false;
         }
-        
     }
 
     /**
