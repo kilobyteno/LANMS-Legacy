@@ -26,8 +26,8 @@ class ProfileRequest extends Request
     public function rules()
     {
         return [
-            'firstname'         => 'required|between:3,250|string',
-            'lastname'          => 'required|between:3,250|string',
+            'firstname'         => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
+            'lastname'          => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
             'phone'             => 'required|phone:AUTO,NO',
             'gender'            => '',
