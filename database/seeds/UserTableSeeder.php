@@ -16,42 +16,42 @@ class UserTableSeeder extends Seeder
             'last_activity' => \Carbon\Carbon::now(),
         ]);
         if (Config::get('app.debug')) {
-        Sentinel::registerAndActivate([
-            'email'         => 'test2@infihex.com',
-            'password'      => '12345678', // Den hash'r automatisk
-            'firstname'     => 'John',
-            'lastname'      => 'ADMIN',
-            'username'      => 'admin',
-            'referral_code' => str_random(15),
-            'last_activity' => \Carbon\Carbon::now(),
-        ]);
-        Sentinel::registerAndActivate([
-            'email'         => 'test3@infihex.com',
-            'password'      => '12345678', // Den hash'r automatisk
-            'firstname'     => 'John',
-            'lastname'      => 'MOD',
-            'username'      => 'mod',
-            'referral_code' => str_random(15),
-            'last_activity' => \Carbon\Carbon::now(),
-        ]);
-        Sentinel::registerAndActivate([
-            'email'         => 'test4@infihex.com',
-            'password'      => '12345678', // Den hash'r automatisk
-            'firstname'     => 'John',
-            'lastname'      => 'USER',
-            'username'      => 'user',
-            'referral_code' => str_random(15),
-            'last_activity' => \Carbon\Carbon::now(),
-        ]);
-        Sentinel::registerAndActivate([
-            'email'         => 'test5@infihex.com',
-            'password'      => '12345678', // Den hash'r automatisk
-            'firstname'     => 'John',
-            'lastname'      => 'USER2',
-            'username'      => 'user2',
-            'referral_code' => str_random(15),
-            'last_activity' => \Carbon\Carbon::now(),
-        ]);
+            Sentinel::registerAndActivate([
+                'email'         => 'test2@infihex.com',
+                'password'      => '12345678', // Den hash'r automatisk
+                'firstname'     => 'John',
+                'lastname'      => 'ADMIN',
+                'username'      => 'admin',
+                'referral_code' => str_random(15),
+                'last_activity' => \Carbon\Carbon::now(),
+            ]);
+            Sentinel::registerAndActivate([
+                'email'         => 'test3@infihex.com',
+                'password'      => '12345678', // Den hash'r automatisk
+                'firstname'     => 'John',
+                'lastname'      => 'MOD',
+                'username'      => 'mod',
+                'referral_code' => str_random(15),
+                'last_activity' => \Carbon\Carbon::now(),
+            ]);
+            Sentinel::registerAndActivate([
+                'email'         => 'test4@infihex.com',
+                'password'      => '12345678', // Den hash'r automatisk
+                'firstname'     => 'John',
+                'lastname'      => 'USER',
+                'username'      => 'user',
+                'referral_code' => str_random(15),
+                'last_activity' => \Carbon\Carbon::now(),
+            ]);
+            Sentinel::registerAndActivate([
+                'email'         => 'test5@infihex.com',
+                'password'      => '12345678', // Den hash'r automatisk
+                'firstname'     => 'John',
+                'lastname'      => 'USER2',
+                'username'      => 'user2',
+                'referral_code' => str_random(15),
+                'last_activity' => \Carbon\Carbon::now(),
+            ]);
         }
 
         //Create Roles
@@ -157,6 +157,10 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.users.destroy');
         $role->addPermission('admin.users.restore');
 
+        $role->addPermission('admin.role.create');
+        $role->addPermission('admin.role.update');
+        $role->addPermission('admin.role.destroy');
+
         $role->addPermission('admin.billing.create');
         $role->addPermission('admin.billing.update');
         $role->addPermission('admin.billing.destroy');
@@ -242,6 +246,10 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.users.destroy');
         $role->addPermission('admin.users.restore', false);
 
+        $role->addPermission('admin.role.create', false);
+        $role->addPermission('admin.role.update', false);
+        $role->addPermission('admin.role.destroy', false);
+
         $role->addPermission('admin.billing.create');
         $role->addPermission('admin.billing.update');
         $role->addPermission('admin.billing.destroy', false);
@@ -326,6 +334,10 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.users.update', false);
         $role->addPermission('admin.users.destroy', false);
         $role->addPermission('admin.users.restore', false);
+
+        $role->addPermission('admin.role.create', false);
+        $role->addPermission('admin.role.update', false);
+        $role->addPermission('admin.role.destroy', false);
 
         $role->addPermission('admin.billing.create', false);
         $role->addPermission('admin.billing.update', false);
