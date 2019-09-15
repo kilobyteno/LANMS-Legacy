@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', 'Create Sponsor - Admin')
+@section('title', 'Edit Sponsor - Admin')
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Create Sponsor</h4>
+	<h4 class="page-title">Edit Sponsor</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin-sponsor') }}">Sponsor</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Create Sponsor</li>
+		<li class="breadcrumb-item active" aria-current="page">Edit Sponsor</li>
 	</ol>
 </div>
 
@@ -17,7 +17,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-sponsor-update') }}" method="post" enctype="multipart/form-data">
+				<form action="{{ route('admin-sponsor-update', $sponsor->id) }}" method="post" enctype="multipart/form-data">
 
 					<div class="input-group mb-5">
 						<div class="input-group-prepend">
