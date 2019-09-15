@@ -115,7 +115,28 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.role.update'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $role = Sentinel::findRoleBySlug($id);
+        abort_unless($role, 404);
+        $request->validate([
+            'name' => 'required|unique:roles,name,'.$role->id.',id|max:255',
+            'permission-*' => 'accepted',
+        ]);
+        foreach ($role->permissions as $key => $value) {
+            $role->updatePermission($key, false)->save();
+        }
+        foreach ($request->all() as $key => $value) {
+            if (strpos($key, 'permission-') !== false) {
+                $permission = str_replace('_', '.', str_replace('permission-', '', $key));
+                $role->updatePermission($permission, true)->save();
+            }
+        }
+        return Redirect::route('admin-role-edit', $id)
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The role has now been updated!');
     }
 
     /**
