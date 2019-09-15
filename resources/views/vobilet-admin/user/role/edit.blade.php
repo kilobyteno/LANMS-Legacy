@@ -23,7 +23,7 @@
 						<div class="input-group-prepend">
 							<div class="input-group-text">Name:</div>
 						</div>
-						<input type="text" class="form-control input-lg" name="name" autocomplete="off" placeholder="Alphabet Inc." value="{{ (old('name')) ? old('name') : $role->name }}" />
+						<input type="text" class="form-control input-lg" name="name" autocomplete="off" placeholder="Editor" value="{{ (old('name')) ? old('name') : $role->name }}" />
 						<span class="input-group-append">
 							<button class="btn btn-success" type="submit"><i class="fa fa-save mr-2"></i> Save</button>
 						</span>
@@ -32,8 +32,13 @@
 						@endif
 					</div>
 
-					<div class="row">
-						
+					<div class="input-group">
+						@foreach($role->permissions as $k => $v)
+							<label class="custom-control custom-checkbox mr-3 mb-2">
+								<input type="checkbox" class="custom-control-input" type="checkbox" name="permission-{{ $k }}" {{ $v ? 'checked' : '' }}>
+								<span class="custom-control-label">{{ $k }}</span>
+							</label>
+						@endforeach
 					</div>
 
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
