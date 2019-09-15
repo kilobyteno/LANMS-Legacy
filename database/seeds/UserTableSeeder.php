@@ -6,8 +6,6 @@ class UserTableSeeder extends Seeder
 {
     public function run()
     {
-
-        // Create Users
         Sentinel::registerAndActivate([
             'email'         => 'test@infihex.com',
             'password'      => '12345678', // Den hash'r automatisk
@@ -17,6 +15,7 @@ class UserTableSeeder extends Seeder
             'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
+        if (Config::get('app.debug')) {
         Sentinel::registerAndActivate([
             'email'         => 'test2@infihex.com',
             'password'      => '12345678', // Den hash'r automatisk
@@ -53,6 +52,7 @@ class UserTableSeeder extends Seeder
             'referral_code' => str_random(15),
             'last_activity' => \Carbon\Carbon::now(),
         ]);
+        }
 
         //Create Roles
         $role = Sentinel::getRoleRepository()->createModel()->create([
