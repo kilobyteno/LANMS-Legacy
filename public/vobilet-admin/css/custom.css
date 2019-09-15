@@ -64,3 +64,14 @@ a:hover, .btn-link:hover {
 .avatar {
 	background: #fff no-repeat center/cover;
 }
+
+.tag {
+	display: inline-block;
+	padding: 0.4em;
+	font-size: 100% !important;
+	line-height: 1;
+}
+
+.badge {
+	padding: 0.4em;
+}
