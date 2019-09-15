@@ -818,6 +818,34 @@ Route::group([
                     'as' => 'admin-user-restore',
                     'uses' => 'Admin\UserController@restore'
                 ]);
+                Route::group([
+                    'prefix' => 'roles'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-roles',
+                            'uses' => 'Admin\RoleController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-role-create',
+                            'uses' => 'Admin\RoleController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-role-store',
+                            'uses' => 'Admin\RoleController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-role-edit',
+                            'uses' => 'Admin\RoleController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-role-update',
+                            'uses' => 'Admin\RoleController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-role-destroy',
+                            'uses' => 'Admin\RoleController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'billing'
