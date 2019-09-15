@@ -126,6 +126,19 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.role.update'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $role = Sentinel::findRoleBySlug($id);
+        if ($role->name === 'Super Administrators') {
+            return Redirect::route('admin-roles')->with('messagetype', 'warning')
+                                ->with('message', 'This role cannot be deleted.');
+        }
+        abort_unless($role, 404);
+        EloquentRole::find($role->id)->delete();
+        return Redirect::route('admin-roles')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The role has now been deleted!');
     }
 }
