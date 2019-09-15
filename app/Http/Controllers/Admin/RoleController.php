@@ -6,6 +6,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use LANMS\Http\Controllers\Controller;
 
 class RoleController extends Controller
@@ -32,7 +33,13 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.role.create'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $role = Sentinel::findRoleBySlug('superadmin');
+        abort_unless($role, 501);
+        return view('user.role.create')->with('role', $role);
     }
 
     /**
@@ -43,7 +50,32 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.role.create'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $request->validate([
+            'name' => 'required|unique:roles|max:255',
+            'permission-*' => 'accepted',
+        ]);
+        $slug = Str::slug($request->name);
+        $role = Sentinel::getRoleRepository()->createModel()->create([
+            'name' => $request->name,
+            'slug' => $slug,
+        ]);
+        $superadmin = Sentinel::findRoleBySlug('superadmin');
+        foreach ($superadmin->permissions as $key => $value) {
+            $role->addPermission($key, false)->save();
+        }
+        foreach ($request->all() as $key => $value) {
+            if (strpos($key, 'permission-') !== false) {
+                $permission = str_replace('_', '.', str_replace('permission-', '', $key));
+                $role->updatePermission($permission, true)->save();
+            }
+        }
+        return Redirect::route('admin-role-edit', $slug)
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The role has now been saved!');
     }
 
     /**
