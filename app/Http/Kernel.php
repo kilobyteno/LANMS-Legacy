@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \LANMS\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \LANMS\Http\Middleware\Localization::class,
+            \LANMS\Http\Middleware\HttpsProtocol::class,
         ],
 
         'api' => [
