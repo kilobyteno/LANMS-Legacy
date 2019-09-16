@@ -802,6 +802,10 @@ Route::group([
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
                 ]);
+                Route::post('/{id}/update/permission', [
+                    'as' => 'admin-user-update-permission',
+                    'uses' => 'Admin\UserController@updatePermission'
+                ]);
                 Route::get('/{id}/resendverification', [
                     'as' => 'admin-user-resendverification',
                     'uses' => 'Admin\UserController@getResendVerification'
