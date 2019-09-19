@@ -14,7 +14,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<div class="alert alert-danger" role="alert"><strong><i class="fa fa-exclamation-triangle mr-2"></i> IMPORTANT!</strong> You need to know what you are doing. Deleting or doing major changes to permissions can cause big permission issues. Please be careful!</div>
+		<div class="alert alert-warning" role="alert"><strong><i class="fa fa-exclamation-triangle mr-2"></i> IMPORTANT!</strong> You need to know what you are doing. Deleting or doing major changes to permissions can cause big permission issues. Please be careful!</div>
 
 		<div class="card">
 			<div class="card-body">
