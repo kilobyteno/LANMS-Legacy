@@ -133,6 +133,14 @@ class UserController extends Controller
             'role-*' => 'accepted',
         ]);
 
+        $sadmin = Sentinel::findRoleBySlug('superadmin');
+
+        if ($sadmin->users()->count() <= 2 && !$request->input('role-superadmin') && $sadmin->users()->pluck('id')->contains($id)) {
+            return Redirect::route('admin-user-edit', $id)
+                            ->with('messagetype', 'warning')
+                            ->with('message', 'Cannot update permissions, there can\'t be less than two Super Administrators!');
+        }
+
         $user = Sentinel::findById($id);
 
         foreach ($user->roles as $role) {
