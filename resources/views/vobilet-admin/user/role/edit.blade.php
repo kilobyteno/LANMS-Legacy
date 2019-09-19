@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-8">
 
 		<div class="card">
 			<div class="card-body">
@@ -47,6 +47,32 @@
 			</div>
 		</div>
 
+	</div>
+	<div class="col-4">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Members</h3>
+			</div>
+			<div class="card-body o-auto" style="min-height: 30em">
+				<ul class="list-unstyled list-separated">
+					@foreach($role->users as $member)
+						<li class="list-separated-item">
+							<div class="row align-items-center">
+								<div class="col-auto">
+									<span class="avatar brround avatar-md d-block" style="background-image: url({{ $member->profilepicture ?? '/images/profilepicture/0.png' }})"></span>
+								</div>
+								<div class="col">
+									<div>
+										<a href="{{ route('admin-user-edit', $member->id) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a>
+									</div>
+									<small class="d-block item-except text-sm text-muted h-1x">{{ $member->username }}</small>
+								</div>
+							</div>
+						</li>
+					@endforeach
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 
