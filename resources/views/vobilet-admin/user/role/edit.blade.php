@@ -35,7 +35,7 @@
 					<div class="input-group">
 						@foreach($role->permissions as $k => $v)
 							<label class="custom-control custom-checkbox mr-3 mb-2">
-								<input type="checkbox" class="custom-control-input" type="checkbox" name="permission-{{ $k }}" {{ $v ? 'checked' : '' }}>
+								<input type="checkbox" class="custom-control-input" type="checkbox" name="permission-{{ $k }}" {{ $v ? 'checked' : '' }} {{ $role->slug == 'superadmin' ? 'disabled' : '' }}>
 								<span class="custom-control-label">{{ $k }}</span>
 							</label>
 						@endforeach

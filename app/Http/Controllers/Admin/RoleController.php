@@ -121,6 +121,11 @@ class RoleController extends Controller
         }
         $role = Sentinel::findRoleBySlug($id);
         abort_unless($role, 404);
+        if ($role->slug == 'superadmin') {
+            return Redirect::route('admin-role-edit', $id)
+                            ->with('messagetype', 'warning')
+                            ->with('message', 'Cannot update permissions for this role.');
+        }
         $request->validate([
             'name' => 'required|unique:roles,name,'.$role->id.',id|max:255',
             'permission-*' => 'accepted',
