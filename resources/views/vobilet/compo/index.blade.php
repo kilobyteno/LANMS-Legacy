@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.compo') }}<a class="btn btn-sm btn-info ml-2" href="{{ route('compo-team') }}"><i class="fa fa-user-shield mr-2"></i> {{ trans('compo.teams') }}</a></h4>
+		<h4 class="page-title">{{ trans('header.compo') }}@if(\Sentinel::check())<a class="btn btn-sm btn-info ml-2" href="{{ route('compo-team') }}"><i class="fa fa-user-shield mr-2"></i> {{ trans('compo.teams') }}</a>@endif</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.compo') }}</li>
@@ -31,7 +31,9 @@
 						<div class="card-footer">
 							<a class="btn btn-sm btn-info" href="{{ route('compo-show', $compo->slug) }}"><i class="far fa-eye"></i> {{ trans('global.view') }}</a>
 							@if($compo->rules)<a class="btn btn-sm btn-orange" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
-							@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a> @elseif(\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
+							@if(\Sentinel::check())
+								@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a> @elseif(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
+							@endif
 						</div>
 					</div>
 				</div>

@@ -115,6 +115,92 @@ class UserController extends Controller
         }
     }
 
+    public function getResendVerification($id)
+    {
+        $user = \User::withTrashed()->find($id);
+        if (is_null($user)) {
+            return Redirect::route('admin-users')->with('messagetype', 'danger')
+                                ->with('message', trans('auth.alert.usernotfound'));
+        }
+
+        $activation = \Activation::exists($user);
+        $actco = \Activation::completed($user);
+        if (!$activation) {
+            $activation = \Activation::create($user);
+        } elseif ($activation && !$actco) {
+            $activation = \Activation::exists($user);
+        }
+        $activation_code = $activation->code;
+
+        try {
+            \Mail::send(
+                'emails.auth.activate',
+                array(
+                    'link' => \URL::route('account-activate', $activation_code),
+                    'firstname' => $user->firstname
+                ),
+                function ($message) use ($user) {
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
+                }
+            );
+        } catch (\Swift_TransportException $e) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                    ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
+        }
+
+        return Redirect::route('admin-users')->with('messagetype', 'success')
+                                ->with('message', 'Email was sent.');
+    }
+
+    public function getForgotPassword($id)
+    {
+        $user = \User::withTrashed()->find($id);
+        if (is_null($user)) {
+            return Redirect::route('admin-users')->with('messagetype', 'error')
+                                    ->with('message', trans('auth.alert.usernotfound'));
+        }
+
+        $actex = \Activation::exists($user);
+        $actco = \Activation::completed($user);
+        $active = false;
+        if ($actex && !$actco) {
+            $active = false;
+        } elseif ($actco) {
+            $active = true;
+        }
+
+        if (!$active) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                                    ->with('message', 'User is not active.');
+        }
+
+        $reminder = \Reminder::exists($user);
+        if (!$reminder) {
+            $reminder = \Reminder::create($user);
+        }
+        $reminder_code  = $reminder->code;
+
+        try {
+            \Mail::send(
+                'emails.auth.forgot-password',
+                array(
+                    'link' => \URL::route('account-reset-password', $reminder_code),
+                    'firstname' => $user->firstname,
+                    'username' => $user->username,
+                ),
+                function ($message) use ($user) {
+                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.forgotpassword.title'));
+                }
+            );
+        } catch (\Swift_TransportException $e) {
+            return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
+                                ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
+        }
+        
+        return Redirect::route('admin-user-edit', $id)->with('messagetype', 'success')
+                        ->with('message', 'Email was sent.');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

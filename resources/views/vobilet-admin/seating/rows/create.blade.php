@@ -19,7 +19,7 @@
 		<form action="{{ route('admin-seating-row-store') }}" method="post">
 
 			<div class="row">
-				<div class="col-sm-10">
+				<div class="col-sm-5">
 					<div class="expanel expanel-default @if($errors->has('name')) panel-danger @endif" data-collapsed="0">
 						<div class="expanel-heading">
 							<div class="expanel-title">Name</div>
@@ -28,6 +28,19 @@
 							<input type="text" class="form-control input-lg" name="name" placeholder="A" value="{{ (old('name')) ? old('name') : '' }}" />
 							@if($errors->has('name'))
 								<p class="text-danger">{{ $errors->first('name') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="expanel expanel-default @if($errors->has('seat_count')) panel-danger @endif" data-collapsed="0">
+						<div class="expanel-heading">
+							<div class="expanel-title">Seats to add</div>
+						</div>
+						<div class="expanel-body">
+							<input type="number" class="form-control input-lg" name="seat_count" placeholder="0" min="0" max="100" value="{{ (old('seat_count')) ? old('seat_count') : '' }}" />
+							@if($errors->has('seat_count'))
+								<p class="text-danger">{{ $errors->first('seat_count') }}</p>
 							@endif
 						</div>
 					</div>

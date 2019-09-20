@@ -21,6 +21,44 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#254" aria-expanded="true">Version 2.5.4</a>
+							</h4>
+						</div>
+						<div id="254" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-140">LANMS-140</a>] - InvalidArgumentException: Malformed UTF-8 characters, possibly incorrectly encoded</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-305">LANMS-305</a>] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-312">LANMS-312</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-316">LANMS-316</a>] - News article does not throw 404 when article does not exist</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-273">LANMS-273</a>] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-288">LANMS-288</a>] - Reset password for user via admin panel</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-240">LANMS-240</a>] - Add logging to more than just users</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-280">LANMS-280</a>] - Seatmap in checkin, with own colors for checked in seats</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-283">LANMS-283</a>] - Blank consent form more easily available</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-284">LANMS-284</a>] - Compo to be moved to public</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-306">LANMS-306</a>] - Add more user info in the adminpanel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-307">LANMS-307</a>] - Resend activation email for user via admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-309">LANMS-309</a>] - Add cleanup command for activity log</li>
+								</ul>
+    
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#253" aria-expanded="true">Version 2.5.3</a>
 							</h4>
 						</div>
@@ -33,6 +71,9 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-285'>LANMS-285</a>] - Admin page for sponsors shows sponsors for prev year</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-290'>LANMS-290</a>] - Sponsors show all on admin page</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-294'>LANMS-294</a>] - Changing users phone, language or theme does not save</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-318'>LANMS-318</a>] - InvalidArgumentException: A two digit month could not be found</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-325'>LANMS-325</a>] - InvalidArgumentException: Trailing data</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-330'>LANMS-330</a>] - InvalidArgumentException: Data missing</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
@@ -48,6 +89,7 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-297'>LANMS-297</a>] - Implement Stripe Cards</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-300'>LANMS-300</a>] - Update the browser icon</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-304'>LANMS-304</a>] - Change dates in admin panel for table sorting</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-331'>LANMS-331</a>] - Allow spaces in names</li>
 								</ul>
 							</div>
 						</div>

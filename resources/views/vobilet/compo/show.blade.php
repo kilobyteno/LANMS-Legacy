@@ -30,7 +30,9 @@
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
 				</div>
 				<div class="card-footer">
-					@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>@elseif(\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
+					@if(\Sentinel::check())
+						@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a> @elseif(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
+					@endif
 					{{-- @if(\Carbon\Carbon::now() > $compo->start_at && \Carbon\Carbon::now() < $compo->end_at)<a class="btn btn-sm btn-lime" href=""><i class="fas fa-file-import"></i> {{ trans('compo.submit') }}</a>@endif --}}
 				</div>
 			</div>
