@@ -71,6 +71,9 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-285'>LANMS-285</a>] - Admin page for sponsors shows sponsors for prev year</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-290'>LANMS-290</a>] - Sponsors show all on admin page</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-294'>LANMS-294</a>] - Changing users phone, language or theme does not save</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-318'>LANMS-318</a>] - InvalidArgumentException: A two digit month could not be found</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-325'>LANMS-325</a>] - InvalidArgumentException: Trailing data</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-330'>LANMS-330</a>] - InvalidArgumentException: Data missing</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
@@ -86,6 +89,7 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-297'>LANMS-297</a>] - Implement Stripe Cards</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-300'>LANMS-300</a>] - Update the browser icon</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-304'>LANMS-304</a>] - Change dates in admin panel for table sorting</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-331'>LANMS-331</a>] - Allow spaces in names</li>
 								</ul>
 							</div>
 						</div>
