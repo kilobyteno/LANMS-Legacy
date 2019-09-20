@@ -204,7 +204,7 @@ class PagesController extends Controller
             if ($page->delete()) {
                 return Redirect::route('admin-pages')
                         ->with('messagetype', 'success')
-                        ->with('message', 'The article has now been deleted!');
+                        ->with('message', 'The page has now been deleted!');
             } else {
                 return Redirect::route('admin-pages')
                     ->with('messagetype', 'danger')
