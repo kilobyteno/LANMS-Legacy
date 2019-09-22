@@ -26,8 +26,8 @@ class SignUpRequest extends FormRequest
     {
         return [
             'email'             => 'required|email|unique:users,email',
-            'firstname'         => 'required|between:3,250|alpha_dash',
-            'lastname'          => 'required|between:3,250|alpha_dash',
+            'firstname'         => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
+            'lastname'          => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'username'          => 'required|unique:users,username',
             'password'          => 'required|confirmed|min:8|max:64',
             'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],

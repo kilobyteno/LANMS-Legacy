@@ -22,6 +22,7 @@ return [
         'usernameactivationfailure' => 'Username and activation code does not match.',
         'accountactivated' => 'Your account has been activated!',
         'accountactivationfailure' => 'Something went wrong while activating your account. Please try again later.',
+        'resetpassword' => 'You have reset your password, please check your email.',
     ),
 
     'signout' => 'Sign out',

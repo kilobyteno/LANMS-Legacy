@@ -53,7 +53,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         return random_bytes(10);
     }
 
-    protected static $logName = 'user_change';
+    protected static $logName = 'user';
     protected static $logOnlyDirty = true;
     protected static $logAttributes = [
         'email',

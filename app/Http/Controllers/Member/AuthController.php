@@ -2,15 +2,13 @@
 
 namespace LANMS\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
-
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Illuminate\Support\Facades\Redirect;
-
 use LANMS\Act;
-
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests\Auth\ActivateRequest;
 use LANMS\Http\Requests\Auth\SignInRequest;
 use LANMS\Http\Requests\Auth\SignUpRequest;
-use LANMS\Http\Requests\Auth\ActivateRequest;
 
 class AuthController extends Controller
 {
@@ -61,6 +59,9 @@ class AuthController extends Controller
             if ($active === false) {
                 return Redirect::route('account-signin')->with('messagetype', 'warning')
                                     ->with('message', trans('auth.alert.usernotactive'));
+            } elseif (\Reminder::exists($user)) {
+                return Redirect::route('account-signin')->with('messagetype', 'warning')
+                                    ->with('message', trans('auth.alert.resetpassword'));
             } elseif ($active === true) {
                 try {
                     if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
