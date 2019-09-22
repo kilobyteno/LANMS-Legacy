@@ -36,8 +36,18 @@
 				<div class="col-lg-8 col-lg-8 col-sm-8">
 					@foreach($news as $article)
 						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title"><a href="{{ route('news-show', $article->slug) }}">{{ $article->title }}</a></h3>
+								<div class="card-options">
+									<a href="{{ route('news-category-show', $article->category->slug) }}" class="badge badge-light"><i class="fas fa-tag mr-2"></i>{{ $article->category->name }}</a>
+									@if(Sentinel::check())
+										@if(Sentinel::hasAccess('admin.news.update'))
+											<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
+										@endif
+									@endif
+								</div>
+							</div>
 							<div class="card-body d-flex flex-column">
-								<h4><a href="{{ route('news-show', $article->slug) }}">{{ $article->title }}</a></h4>
 								<div class="text-muted">{!! substr($article->content, 0, 1000) !!}@if(strlen($article->content) >= 1000)...@endif</div>
 								<div class="d-flex align-items-center pt-5 mt-auto">
 									<div class="avatar brround avatar-md mr-3" style="background-image: url(@if($article->author->profilepicturesmall){{ $article->author->profilepicturesmall }} @else {{ '/images/profilepicture/0_small.png' }}@endif)"></div>
