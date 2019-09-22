@@ -49,3 +49,14 @@ a, .btn-link, .breadcrumb-item a {
 a:hover, .btn-link:hover {
     color: #3498db;
 }
+
+.tag {
+	display: inline-block;
+	padding: 0.4em;
+	font-size: 100% !important;
+	line-height: 1;
+}
+
+.badge {
+	padding: 0.4em;
+}

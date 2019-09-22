@@ -30,7 +30,13 @@ class BillingController extends Controller
             abort(403);
         }
         $charge = \Stripe::charges()->find($seatpayment->stripecharge);
-        return view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge);
+        $card = [];
+        if($charge['source']) {
+            $card = $charge['source'];
+        } elseif ($charge['payment_method_details']) {
+            $card = $charge['payment_method_details']['card'];
+        }
+        return view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge)->with('card', $card);
     }
 
     public function getCharges()

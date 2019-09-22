@@ -18,7 +18,7 @@
             
             <div class="card-wrapper" data-jp-card-initialized="true">
                <div class="jp-card-container">
-                  <div class="jp-card @if(in_array(strtolower($charge['source']['brand']), array('elo', 'visa', 'visaelectron', 'mastercard', 'maestro', 'amex', 'discover', 'dinersclub', 'dankkort', 'jcb'))){{ 'jp-card-'.strtolower($charge['source']['brand']).' jp-card-identified' }}@endif">
+                  <div class="jp-card @if(in_array(strtolower($card['brand']), array('elo', 'visa', 'visaelectron', 'mastercard', 'maestro', 'amex', 'discover', 'dinersclub', 'dankkort', 'jcb'))){{ 'jp-card-'.strtolower($card['brand']).' jp-card-identified' }}@endif">
                      <div class="jp-card-front">
                         <div class="jp-card-logo jp-card-elo">
                            <div class="e">e</div>
@@ -49,10 +49,10 @@
                         <div class="jp-card-lower">
                            <div class="jp-card-shiny"></div>
                            <div class="jp-card-cvc jp-card-display">&#8226;&#8226;&#8226;</div>
-                           <div class="jp-card-number jp-card-display jp-card-invalid">&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $charge['source']['last4'] }}</div>
-                           <div class="jp-card-name jp-card-display">{{ $charge['source']['name'] ?? '' }}</div>
+                           <div class="jp-card-number jp-card-display jp-card-invalid">&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $card['last4'] }}</div>
+                           <div class="jp-card-name jp-card-display">{{ $card['name'] ?? '' }}</div>
                            <div class="jp-card-expiry jp-card-display" data-before="month/year" data-after="valid
-                              thru">{{ $charge['source']['exp_month'] }}/{{ $charge['source']['exp_year'] }}</div>
+                              thru">{{ $card['exp_month'] }}/{{ $card['exp_year'] }}</div>
                         </div>
                      </div>
                      <div class="jp-card-back">

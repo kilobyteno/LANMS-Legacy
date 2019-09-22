@@ -21,6 +21,34 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#255" aria-expanded="true">Version 2.5.5</a>
+							</h4>
+						</div>
+						<div id="255" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-329">LANMS-329</a>] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
+								</ul>
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-272">LANMS-272</a>] - Add possibility to edit permissions for users</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-320">LANMS-320</a>] - Custom seating CSS from admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-321">LANMS-321</a>] - Add Stripe PaymentIntent (SCA)</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-323">LANMS-323</a>] - Update to L5.8</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-326">LANMS-326</a>] - Crew Skill Badge view in admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-327">LANMS-327</a>] - Improve dashboard design</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#254" aria-expanded="true">Version 2.5.4</a>
 							</h4>
 						</div>
@@ -32,11 +60,11 @@
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-305">LANMS-305</a>] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-312">LANMS-312</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-316">LANMS-316</a>] - News article does not throw 404 when article does not exist</li>
-									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
 								</ul>
-								    
 								<h4>New Feature</h4>
 								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
+
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-273">LANMS-273</a>] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-288">LANMS-288</a>] - Reset password for user via admin panel</li>
 								</ul>
@@ -51,7 +79,6 @@
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-307">LANMS-307</a>] - Resend activation email for user via admin panel</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-309">LANMS-309</a>] - Add cleanup command for activity log</li>
 								</ul>
-    
 							</div>
 						</div>
 					</div>

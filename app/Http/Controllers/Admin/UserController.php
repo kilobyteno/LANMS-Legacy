@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use LANMS\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Roles\EloquentRole;
 
 use LANMS\User;
 
@@ -61,7 +62,8 @@ class UserController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.users.update'])) {
             $user = User::withTrashed()->find($id);
-            return view('user.edit')->withUser($user);
+            $roles = EloquentRole::all();
+            return view('user.edit')->withUser($user)->withRoles($roles);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -113,6 +115,54 @@ class UserController extends Controller
                 ->with('messagetype', 'danger')
                 ->with('message', 'Something went wrong when saving your details.');
         }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function updatePermission($id, Request $request)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.users.update'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $request->validate([
+            'role-*' => 'accepted',
+        ]);
+
+        $sadmin = Sentinel::findRoleBySlug('superadmin');
+
+        if ($sadmin->users()->count() <= 2 && !$request->input('role-superadmin') && $sadmin->users()->pluck('id')->contains($id)) {
+            return Redirect::route('admin-user-edit', $id)
+                            ->with('messagetype', 'warning')
+                            ->with('message', 'Cannot update permissions, there can\'t be less than two Super Administrators!');
+        }
+
+        $user = Sentinel::findById($id);
+
+        foreach ($user->roles as $role) {
+            $role->users()->detach($user);
+        }
+
+        foreach ($request->all() as $key => $value) {
+            if (strpos($key, 'role-') !== false) {
+                $roleslug = str_replace('role-', '', $key);
+                $role = Sentinel::findRoleBySlug($roleslug);
+                if (!$role) {
+                    return Redirect::route('admin-user-edit', $id)
+                            ->with('messagetype', 'warning')
+                            ->with('message', 'Did not find role!');
+                }
+                $role->users()->attach($user);
+            }
+        }
+
+        return Redirect::route('admin-user-edit', $id)
+                ->with('messagetype', 'success')
+                ->with('message', 'The permissions has been saved!');
     }
 
     public function getResendVerification($id)

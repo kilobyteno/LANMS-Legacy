@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-blue mr-3">
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-purple mr-3">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-teal mr-3">
@@ -68,7 +68,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-cyan mr-3">
@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<div class="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
@@ -100,7 +100,7 @@
 <div class="row row-cards">
 	
 	@if(User::withTrashed()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
@@ -118,7 +118,7 @@
 	@endif
 
 	@if(Checkin::thisYear()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
@@ -136,7 +136,7 @@
 	@endif
 
 	@if(SeatReservation::thisYear()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
