@@ -165,6 +165,7 @@
 								<li><a class="slide-item @if(Request::is('admin/system/whatsnew*')){{'active'}} @endif" href="{{ route('admin-whatsnew') }}"><i class="far fa-lightbulb mr-1"></i> What's New?</a></li>
 								<li><a class="slide-item @if(Request::is('admin/system/activity*')){{'active'}} @endif" href="{{ route('admin-activity') }}"><i class="fas fa-chart-line mr-1"></i> Activity Log</a></li>
 								@if(Sentinel::inRole('superadmin'))
+									<li><a class="slide-item @if(Request::is('admin/system/emails*')){{'active'}} @endif" href="{{ route('admin-emails') }}"><i class="fas fa-envelope mr-1"></i> Emails</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/settings*')){{'active'}} @endif" href="{{ route('admin-settings') }}"><i class="fas fa-cog mr-1"></i> Settings</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/logs*')){{'active'}} @endif" href="{{ route('admin-logs') }}"><i class="fas fa-clipboard-list mr-1"></i> System Logs</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License</a></li>
