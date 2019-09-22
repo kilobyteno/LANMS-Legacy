@@ -3,13 +3,22 @@
 namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class CompoTeam extends Model
 {
+    use LogsActivity;
 
     protected $table = 'compo_teams';
 
     protected $fillable = [
+        'name',
+        'user_id',
+    ];
+
+    protected static $logName = 'compo_team';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
         'name',
         'user_id',
     ];
