@@ -161,6 +161,9 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.billing.update');
         $role->addPermission('admin.billing.destroy');
 
+        $role->addPermission('admin.emails.show');
+        $role->addPermission('admin.emails.create');
+
         $role->addPermission('admin.settings.update');
         $role->addPermission('admin.license.update');
 
@@ -246,6 +249,9 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.billing.update');
         $role->addPermission('admin.billing.destroy', false);
 
+        $role->addPermission('admin.emails.show');
+        $role->addPermission('admin.emails.create', false);
+
         $role->addPermission('admin.settings.update', false);
         $role->addPermission('admin.license.update', false);
 
@@ -330,6 +336,9 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.billing.create', false);
         $role->addPermission('admin.billing.update', false);
         $role->addPermission('admin.billing.destroy', false);
+
+        $role->addPermission('admin.emails.show', false);
+        $role->addPermission('admin.emails.create', false);
 
         $role->addPermission('admin.settings.update', false);
         $role->addPermission('admin.license.update', false);
