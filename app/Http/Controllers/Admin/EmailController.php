@@ -3,6 +3,7 @@
 namespace LANMS\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use LANMS\Email;
 use LANMS\Http\Controllers\Controller;
 
 class EmailController extends Controller
@@ -14,7 +15,7 @@ class EmailController extends Controller
      */
     public function index()
     {
-        //
+        dd(Email::find(1)->users);
     }
 
     /**
