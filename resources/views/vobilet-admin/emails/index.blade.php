@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Emails</h4>
+	<h4 class="page-title">Emails @if(Sentinel::hasAccess('admin.emails.create'))<a class="btn btn-sm btn-success ml-2" href="{{ route('admin-emails-create') }}"><i class="fa fa-plus mr-2"></i> Create</a>@endif</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
@@ -13,7 +13,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		
+
 		<div class="card">
 			<div class="card-body">
 				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
