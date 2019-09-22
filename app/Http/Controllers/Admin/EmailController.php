@@ -2,6 +2,7 @@
 
 namespace LANMS\Http\Controllers\Admin;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use LANMS\Email;
 use LANMS\Http\Controllers\Controller;
