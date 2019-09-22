@@ -4,10 +4,11 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Address extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
@@ -21,6 +22,18 @@ class Address extends Model
         'main_address'
     ];
     protected $table = 'addresses';
+
+    protected static $logName = 'address';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'address1',
+        'address2',
+        'postalcode',
+        'city',
+        'county',
+        'country',
+        'main_address'
+    ];
 
     public function user()
     {

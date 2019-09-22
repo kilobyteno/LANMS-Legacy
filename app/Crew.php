@@ -2,10 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Crew extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at'];
     protected $table = 'crew';
@@ -16,6 +17,13 @@ class Crew extends Model
         'year',
         'author_id',
         'editor_id',
+    ];
+
+    protected static $logName = 'crew';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'user_id',
+        'category_id',
     ];
 
     public function scopeThisYear($query)

@@ -170,7 +170,12 @@ class ReserveSeatingController extends Controller
 
     public function consentform()
     {
-        $html = view('seating.pdf.consentform')->render();
+        if (Sentinel::check()) {
+            $user = Sentinel::getUser();
+        } else {
+            $user = null;
+        }
+        $html = view('seating.pdf.consentform')->withUser($user)->render();
         return PDF::loadHTML($html)->stream();
     }
 

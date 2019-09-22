@@ -24,12 +24,27 @@
                     @if($user->isAnonymized)<div class="badge badge-danger">Anonymized</div>@endif
                 </h3>
                 <div class="card-options">
+                    <a class="btn btn-info mr-2" href="{{ route('admin-user-resendverification', $user->id) }}"><i class="fas fa-user-check mr-2"></i>Resend Activation Email</a>
+                    <a class="btn btn-info mr-2" href="{{ route('admin-user-forgotpassword', $user->id) }}"><i class="fas fa-asterisk mr-2"></i>Reset password</a>
                     <button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save</button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-4">
+                        <div class="expanel expanel-default" data-collapsed="0">
+                            <div class="expanel-heading">
+                                <div class="expanel-title">User Information</div>
+                            </div>
+                            <div class="expanel-body">
+                                <label class="form-label">Last Login:</label>
+                                <p>{{ ucfirst(\Carbon::parse($user->last_login)->isoFormat('LLLL')) }}</p>
+                                <label class="form-label">Last Activity:</label>
+                                <p>{{ ucfirst(\Carbon::parse($user->last_activity)->isoFormat('LLLL')) }}</p>
+                                <label class="form-label">Accepted GDPR:</label>
+                                @if($user->accepted_gdpr){{ trans('global.yes') }}@elseif(!$user->accepted_gdpr){{ trans('global.no') }}@endif
+                            </div>
+                        </div>
                         <div class="expanel expanel-default" data-collapsed="0">
                             <div class="expanel-heading">
                                 <div class="expanel-title">User Details</div>

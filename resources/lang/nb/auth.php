@@ -22,6 +22,7 @@ return [
         'usernameactivationfailure' => 'Brukernavn og aktiveringskode stemmer ikke overens.',
         'accountactivated' => 'Kontoen din har blitt aktivert!',
         'accountactivationfailure' => 'Noe gikk galt mens du aktiverte kontoen din. Prøv igjen senere.',
+        'resetpassword' => 'Du har tilbakestilt passordet ditt, vennligst sjekk e-posten din.',
     ),
 
     'signout' => 'Logg ut',

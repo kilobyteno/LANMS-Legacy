@@ -46,6 +46,7 @@ Route::group([
         Route::get('/schedule', ['as' => 'schedule', 'uses' => 'HomeController@schedule']);
         Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
+        Route::get('/consentform', ['as' => 'consentform', 'uses' => 'Seating\ReserveSeatingController@consentform']);
         Route::group([
             'prefix' => 'news'
             ], function () {
@@ -71,6 +72,18 @@ Route::group([
                 ]);
             });
         Route::get('/sponsor', ['as' => 'sponsor', 'uses' => 'Admin\SponsorController@index']);
+        Route::group([
+            'prefix' => 'compo'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'compo',
+                    'uses' => 'Compo\CompoController@index'
+                ]);
+                Route::get('/{slug}', [
+                    'as' => 'compo-show',
+                    'uses' => 'Compo\CompoController@show'
+                ]);
+            });
     });
 
 Route::group([
@@ -194,15 +207,6 @@ Route::group([
                             'uses' => 'Compo\CompoTeamController@destroy'
                         ]);
                     });
-                
-                Route::get('/', [
-                    'as' => 'compo',
-                    'uses' => 'Compo\CompoController@index'
-                ]);
-                Route::get('/{slug}', [
-                    'as' => 'compo-show',
-                    'uses' => 'Compo\CompoController@show'
-                ]);
                 Route::get('/{slug}/signup', [
                     'as' => 'compo-signup',
                     'uses' => 'Compo\CompoSignUpController@create'
@@ -797,6 +801,14 @@ Route::group([
                 Route::post('/{id}/update', [
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
+                ]);
+                Route::get('/{id}/resendverification', [
+                    'as' => 'admin-user-resendverification',
+                    'uses' => 'Admin\UserController@getResendVerification'
+                ]);
+                Route::get('/{id}/forgotpassword', [
+                    'as' => 'admin-user-forgotpassword',
+                    'uses' => 'Admin\UserController@getForgotPassword'
                 ]);
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-user-destroy',
