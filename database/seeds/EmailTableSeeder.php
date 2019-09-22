@@ -92,6 +92,7 @@ If you have any questions at all, feel free to contact us!<br>
 </body>
 </html>  
 ',
+            'subject' => 'Test Email',
             'author_id' => 1,
         ))->users()->attach([1,2,3]);
     }
