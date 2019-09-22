@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Edit Sponsor: '.$sponsor->name.' - Admin')
+@section('title', 'Edit Sponsor - Admin')
 @section('content')
 
 <div class="page-header">
