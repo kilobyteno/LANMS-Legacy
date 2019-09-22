@@ -26,19 +26,4 @@ class NewsCategory extends Model
     {
         return $this->hasMany('News', 'category_id');
     }
-
-    public function articles()
-    {
-        return $this->hasMany('News', 'category_id');
-    }
-
-    public function author()
-    {
-        return $this->hasOne('User', 'id', 'author_id')->withTrashed();
-    }
-
-    public function editor()
-    {
-        return $this->hasOne('User', 'id', 'editor_id')->withTrashed();
-    }
 }
