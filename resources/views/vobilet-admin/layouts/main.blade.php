@@ -161,7 +161,7 @@
 						</li>
 						@if(Sentinel::getUser()->hasAccess(['admin.emails.*']))
 							<li>
-								<a class="side-menu__item @if(Request::is('admin/emails*')){{'active'}} @endif" href="{{ route('admin-emails') }}"><i class="side-menu__icon fas fa-envelope"></i><span class="side-menu__label">Emails</span></a>
+								<a class="side-menu__item @if(Request::is('admin/email*')){{'active'}} @endif" href="{{ route('admin-emails') }}"><i class="side-menu__icon fas fa-envelope"></i><span class="side-menu__label">Emails</span></a>
 							</li>
 						@endif
 						<li class="slide @if(Request::is('admin/system*')){{'is-expanded'}} @endif">
