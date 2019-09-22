@@ -2,21 +2,29 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
-class NewsCategory extends Model {
+class NewsCategory extends Model
+{
+    use SoftDeletes, LogsActivity;
 
-	use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'creator_id',
+    ];
+    protected $table = 'news_categories';
 
-	protected $dates = ['deleted_at'];
-	protected $fillable = [
-		'name',
-		'slug',
-		'creator_id',
-	];
-	protected $table = 'news_categories';
+    protected static $logName = 'news_category';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'name',
+        'slug',
+    ];
 
-	public function categories() {
-		return $this->hasMany('News', 'category_id');
-	}
-
+    public function categories()
+    {
+        return $this->hasMany('News', 'category_id');
+    }
 }

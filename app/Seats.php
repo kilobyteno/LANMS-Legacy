@@ -4,10 +4,11 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Seats extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at'];
     protected $table = 'seats';
@@ -18,6 +19,14 @@ class Seats extends Model
         'row_id',
         'author_id',
         'editor_id',
+    ];
+
+    protected static $logName = 'seat';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'name',
+        'slug',
+        'row_id',
     ];
 
     public function row()
