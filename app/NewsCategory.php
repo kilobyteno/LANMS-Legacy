@@ -22,6 +22,11 @@ class NewsCategory extends Model
         'slug',
     ];
 
+    public function categories()
+    {
+        return $this->hasMany('News', 'category_id');
+    }
+
     public function articles()
     {
         return $this->hasMany('News', 'category_id');
