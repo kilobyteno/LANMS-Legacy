@@ -1,19 +1,20 @@
 @extends('layouts.main')
-@section('title', trans('header.news'))
+@section('title', $category->name.' - '.trans('header.news'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.news') }}</h4>
+		<h4 class="page-title">{{ trans('header.news') }}: {{ $category->name }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.news') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('news') }}">{{ trans('header.news') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
 		</ol>
 	</div>
 	<div class="row">
-		<div class="col-md-12 col-lg-12 col-sm-12">
-			@foreach($news as $article)
-				<div class="card">
+		<div class="col-12">
+			@foreach($articles as $article)
+				<div class="card"> 
 					<div class="card-header">
 						<h3 class="card-title"><a href="{{ route('news-show', $article->slug) }}">{{ $article->title }}</a></h3>
 						<div class="card-options">
@@ -35,7 +36,7 @@
 					</div>
 				</div>
 			@endforeach
-			{{ $news->links('layouts.pagination') }}
+			{{ $articles->links('layouts.pagination') }}
 		</div>
 	</div>
 </div>
