@@ -174,7 +174,11 @@ class NewsCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.destroy'])) {
             $newscategory = NewsCategory::find($id);
-            if ($newscategory->delete()) {
+            if ($newscategory->articles->count() > 0) {
+                return Redirect::route('admin-news-category')
+                        ->with('messagetype', 'warning')
+                        ->with('message', 'Cannot delete category, there are '.$newscategory->articles->count().' articles attached to this category!');
+            } elseif ($newscategory->delete()) {
                 return Redirect::route('admin-news-category')
                         ->with('messagetype', 'success')
                         ->with('message', 'The category has now been deleted!');
