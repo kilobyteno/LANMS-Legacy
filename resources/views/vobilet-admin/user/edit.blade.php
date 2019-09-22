@@ -13,7 +13,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
 
         <form action="{{ route('admin-user-update', $user->id) }}" method="post" class="card">
             <div class="card-header">
@@ -250,36 +250,65 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         </form>
+    </div>
+</div>
 
-        <h3>Addresses</h3>
-        <div class="row">
-            @if(count($user->addresses) > 0)
-                <?php $i=0; ?>
-                @foreach($user->addresses as $address)
-                    <?php $i++; ?>
-                    <div class="col-xl-4">
-                        <div class="card">
-                            <div class="card-header @if($address->main_address) bg-primary @endif br-tr-7 br-tl-7">
-                                <h3 class="card-title  @if($address->main_address) text-white @endif">{{ trans('user.addressbook.address') }} #{{ $i }}</h3>
-                            </div>
-                            <div class="card-body">
-                                <address>
-                                    <strong>{{ $address->address1 }}</strong>@if($address->address2), {{ $address->address2 }}@endif<br>
-                                    {{ $address->postalcode }}, {{ $address->city }}<br>
-                                    {{ $address->county }}<br>
-                                    {{ $address->country }}
-                                </address>
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Addresses</h3>
+            </div>
+            <div class="card-body row">
+                @if(count($user->addresses) > 0)
+                    <?php $i=0; ?>
+                    @foreach($user->addresses as $address)
+                        <?php $i++; ?>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header @if($address->main_address) bg-primary @endif br-tr-7 br-tl-7">
+                                    <h3 class="card-title  @if($address->main_address) text-white @endif">{{ trans('user.addressbook.address') }} #{{ $i }}</h3>
+                                </div>
+                                <div class="card-body">
+                                    <address>
+                                        <strong>{{ $address->address1 }}</strong>@if($address->address2), {{ $address->address2 }}@endif<br>
+                                        {{ $address->postalcode }}, {{ $address->city }}<br>
+                                        {{ $address->county }}<br>
+                                        {{ $address->country }}
+                                    </address>
+                                </div>
                             </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="col-12">
+                        <p>{{ trans('global.nodata') }}</p>
                     </div>
-                @endforeach
-            @else
-                <div class="col-md-12 col-lg-12 col-sm-12">
-                    <p>{{ trans('global.nodata') }}</p>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
+    </div>
 
+    <div class="col-4">
+        <form action="{{ route('admin-user-update-permission', $user->id) }}" method="post" class="card">
+            <div class="card-header">
+                <h3 class="card-title">Permission Roles</h3>
+                <div class="card-options">
+                    <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save mr-2"></i>Update Permissions</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    @foreach($roles as $role)
+                        <label class="custom-control custom-checkbox mr-3 mb-2">
+                            <input type="checkbox" class="custom-control-input" type="checkbox" name="role-{{ $role->slug }}" {{ $user->inRole($role) ? 'checked' : '' }}>
+                            <span class="custom-control-label">{{ $role->name }}</span>
+                        </label>
+                    @endforeach
+                </div>
+            </div>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </form>
     </div>
 </div>
 
