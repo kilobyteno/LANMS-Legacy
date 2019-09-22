@@ -25,7 +25,11 @@ class EmailController extends Controller
      */
     public function create()
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
+            return Redirect::back('admin')->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        dd(Email::find(1));
     }
 
     /**
@@ -36,7 +40,11 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
+            return Redirect::back('admin')->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        dd(Email::find(1));
     }
 
     /**
@@ -47,7 +55,11 @@ class EmailController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
+            return Redirect::back('admin')->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        dd(Email::find($id));
     }
 
     /**
