@@ -15,7 +15,12 @@ class EmailController extends Controller
      */
     public function index()
     {
-        dd(Email::find(1)->users);
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
+            return Redirect::back('admin')->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $emails = Email::all();
+        return view('emails.index')->withEmails($emails);
     }
 
     /**
