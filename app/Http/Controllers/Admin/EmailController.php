@@ -35,7 +35,7 @@ class EmailController extends Controller
             return Redirect::back('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        dd(Email::find(1));
+        return view('emails.create');
     }
 
     /**
