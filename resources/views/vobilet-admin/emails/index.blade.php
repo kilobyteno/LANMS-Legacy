@@ -20,8 +20,8 @@
 					<thead>
 						<tr>
 							<th>Sent</th>
-							<th>Receivers</th>
 							<th>Subject</th>
+							<th>Sent to</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -29,8 +29,8 @@
 						@foreach($emails as $email)
 							<tr>
 								<td scope="row">{{ $email->created_at }}</td>
-								<td>{{ $email->users->count() ?? 'N/A' }}</td>
 								<td>{{ $email->subject ?? 'N/A' }}</td>
+								<td>{{ $email->users->count() }} users</td>
 								<td>
 									<a href="{{ route('admin-emails-show', $email->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>Show</a>
 								</td>
