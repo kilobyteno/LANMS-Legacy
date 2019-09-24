@@ -30,7 +30,7 @@
 							<tr>
 								<td scope="row">{{ $email->created_at }}</td>
 								<td>{{ $email->subject ?? 'N/A' }}</td>
-								<td>{{ $email->users->count() }} users</td>
+								<td>{{ ($email->users->count() == 1) ? $email->users->count().' user' : $email->users->count().' users' }}</td>
 								<td>
 									<a href="{{ route('admin-emails-show', $email->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>Show</a>
 								</td>
@@ -56,7 +56,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
-		    	responsive: true
+		    	responsive: true,
+		    	"order": [0, "desc"]
 		    });
 		} );
 	</script>
