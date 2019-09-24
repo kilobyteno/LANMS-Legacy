@@ -64,7 +64,7 @@ class EmailController extends Controller
             $user = User::find($request->user);
             if (!$user) {
                 return Redirect::route('admin-emails-create')->with('messagetype', 'warning')
-                                ->with('message', 'User not found! '.$request->user)->withInput();
+                                ->with('message', 'User not found! ')->withInput();
             }
             $dbcontent = view('emails.admin.message')->withFirstname($user->firstname)->withSubject($request->subject)->withContent($request->content)->render();
             $subject = $request->subject;
