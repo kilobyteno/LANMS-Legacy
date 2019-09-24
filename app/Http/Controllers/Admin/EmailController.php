@@ -4,6 +4,7 @@ namespace LANMS\Http\Controllers\Admin;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use LANMS\Email;
 use LANMS\Http\Controllers\Controller;
 
@@ -17,7 +18,7 @@ class EmailController extends Controller
     public function index()
     {
         if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
-            return Redirect::back('admin')->with('messagetype', 'warning')
+            return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $emails = Email::all();
@@ -31,8 +32,8 @@ class EmailController extends Controller
      */
     public function create()
     {
-        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
-            return Redirect::back('admin')->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.create'])) {
+            return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         return view('emails.create');
@@ -46,8 +47,8 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
-            return Redirect::back('admin')->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.create'])) {
+            return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         dd(Email::find(1));
@@ -62,7 +63,7 @@ class EmailController extends Controller
     public function show($id)
     {
         if (!Sentinel::getUser()->hasAccess(['admin.emails.*'])) {
-            return Redirect::back('admin')->with('messagetype', 'warning')
+            return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $email = Email::find($id);
