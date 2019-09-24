@@ -4,6 +4,8 @@ return [
 
     'youreceived' => 'You received this email because you registered on:',
 
+    'hello' => 'Hello :firstname!',
+
     'auth' => array(
 
         'activate' => array(
