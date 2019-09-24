@@ -15,36 +15,70 @@
 <div class="row">
 	<div class="col-6">
 
-		<div class="card">
+		<form class="card" action="{{ route('admin-emails-store') }}" method="post">
+			<div class="card-header">
+				<div class="card-title">
+					Details
+				</div>
+				<div class="card-options">
+					<button class="btn btn-success" type="submit"><i class="far fa-paper-plane"></i> Send</button>
+				</div>
+			</div>
 			<div class="card-body">
-				<form action="{{ route('admin-emails-store') }}" method="post">
-
-					<div class="input-group mb-5">
-						<input type="text" class="form-control input-lg" id="subject_input" name="subject" autocomplete="off" placeholder="Subject" value="{{ (old('subject')) ? old('subject') : '' }}" />
-						<span class="input-group-append">
-							<button class="btn btn-success" type="submit"><i class="far fa-paper-plane"></i> Send</button>
-						</span>
-						@if($errors->has('title'))
-							<p class="text-danger">{{ $errors->first('title') }}</p>
-						@endif
-					</div>
-					<div class="row">
-						<div class="col-sm-12 @if($errors->has('message')) has-error @endif">
-							<label class="form-control-label">Message (HTML is allowed):</label>
-							<textarea name="message" class="form-control" id="message_input" rows="8">
-								{{ (old('message')) ? old('message') : '' }}
-							</textarea>
-							@if($errors->has('message'))
-								<p class="text-danger">{{ $errors->first('message') }}</p>
+				<div class="row">
+					<div class="col-5">
+						<div class="form-group">
+							<label class="form-label">User:</label>
+							<select name="user" class="select2" id="user">
+								<option value="">-- None --</option>
+								@foreach(\User::all() as $user)
+									<option value="{{ $user->id }}" {{ (old('user') == $user->id) ? 'selected' : '' }}>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+								@endforeach
+							</select>
+							@if($errors->has('user'))
+								<p class="text-danger">{{ $errors->first('user') }}</p>
 							@endif
 						</div>
 					</div>
+					<div class="col-2 text-center">
+						<em>~ or ~</em>
+					</div>
+					<div class="col-5">
+						<div class="form-group">
+							<label class="form-label">Bulk send (one email to each user):</label>
+							<select name="bulk" class="select2" id="bulk">
+								<option value="">-- None --</option>
+								<option value="1" {{ (old('bulk')) ? 'selected' : '' }}>All active users</option>
+								<option value="2" {{ (old('bulk')) ? 'selected' : '' }}>All users with a ticket for this event</option>
+								<option value="3" {{ (old('bulk')) ? 'selected' : '' }}>All users with a ticket for -last- event</option>
+							</select>
+							@if($errors->has('bulk'))
+								<p class="text-danger">{{ $errors->first('bulk') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
 
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<div class="form-group">
+					<label class="form-label">Subject</label>
+					<input type="text" class="form-control" id="subject_input" name="subject" autocomplete="off" placeholder="Subject" value="{{ (old('subject')) ? old('subject') : '' }}" />
+					@if($errors->has('subject'))
+						<p class="text-danger">{{ $errors->first('subject') }}</p>
+					@endif
+				</div>
+				<div class="row">
+					<div class="col-sm-12 @if($errors->has('content')) has-error @endif">
+						<label class="form-label">Content (HTML is allowed):</label>
+						<textarea name="content" class="form-control" id="message_input" rows="8">{{ (old('content')) ? old('content') : '' }}</textarea>
+						@if($errors->has('content'))
+							<p class="text-danger">{{ $errors->first('content') }}</p>
+						@endif
+					</div>
+				</div>
 
-				</form>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</div>
-		</div>
+		</form>
 
 	</div>
 
@@ -132,12 +166,24 @@
 @section('javascript')
 	<script type="text/javascript">
 		$(document).ready(function(){
+			@if(old('subject'))
+				$("#email_subject").text($("#subject_input").val());
+			@endif
+			@if(old('message'))
+				$("#email_message").html($("#message_input").val());
+			@endif
 		    $("#subject_input").on("input", function(){
 		        $("#email_subject").text($(this).val());
 		    });
 		    $("#message_input").on("input", function(){
 		        $("#email_message").html($(this).val());
 		    });
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function(){
+			$('.select2').select2();
 		});
 	</script>
 @stop
