@@ -75,9 +75,9 @@ class EmailController extends Controller
             ]);
             $email->users()->attach($user->id);
             
-            \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $user->firstname), function ($message) use ($user, $subject) {
-                $message->to($user->email, $user->firstname)->subject($subject);
-            });
+                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $user->firstname), function ($message) use ($user, $subject) {
+                    $message->to($user->email, $user->firstname)->subject($subject);
+                });
         } elseif ($request->bulk) {
             $bulk = $request->bulk;
             $users = null;
