@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Email;
 use LANMS\Http\Controllers\Controller;
+use LANMS\SeatTicket;
+use LANMS\User;
 
 class EmailController extends Controller
 {
@@ -51,7 +53,67 @@ class EmailController extends Controller
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        dd(Email::find(1));
+        $request->validate([
+            'user' => 'required_without:bulk',
+            'bulk' => 'required_without:user',
+            'subject' => 'required|string',
+            'content' => 'required|string',
+        ]);
+
+        if ($request->user) {
+            $user = User::find($request->user);
+            if (!$user) {
+                return Redirect::route('admin-emails-create')->with('messagetype', 'warning')
+                                ->with('message', 'User not found! '.$request->user)->withInput();
+            }
+            $dbcontent = view('emails.admin.message')->withFirstname($user->firstname)->withSubject($request->subject)->withContent($request->content)->render();
+            $subject = $request->subject;
+            $email = Email::create([
+                'content' => $dbcontent,
+                'subject' => $subject,
+                'author_id' => Sentinel::getUser()->id,
+            ]);
+            $email->users()->attach($user->id);
+            
+            \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $user->firstname), function ($message) use ($user, $subject) {
+                $message->to($user->email, $user->firstname)->subject($subject);
+            });
+        } elseif ($request->bulk) {
+            $bulk = $request->bulk;
+            $users = null;
+            if ($bulk == 1) { // ALL ACTIVE USERS
+                $users = User::where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+            } elseif ($bulk == 2) { // ALL USERS WITH A TICKET FOR THIS EVENT
+                $users = SeatTicket::thisYear()->with('user')->get()->pluck('user')->flatten();
+            } elseif ($bulk == 3) { // ALL USERS WITH A TICKET FOR -LAST- EVENT
+                $users = SeatTicket::lastYear()->with('user')->get()->pluck('user')->flatten();
+            } else {
+                return Redirect::route('admin-emails-create')->with('messagetype', 'danger')
+                                ->with('message', 'Not a valid bulk has been selected. '.$bulk)->withInput();
+            }
+            if (!$users) {
+                return Redirect::route('admin-emails-create')->with('messagetype', 'danger')
+                                ->with('message', 'Could not find users for this bulk.')->withInput();
+            }
+            // SEND EMAIL TO ALL USERS IN LIST
+            foreach ($users as $user) {
+                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $request->subject, 'firstname' => $user->firstname), function ($message) use ($user, $request) {
+                    $message->to($user->email, $user->firstname)->subject($request->subject);
+                });
+            }
+            $dbcontent = view('emails.admin.message')->withFirstname('firstname')->withSubject($request->subject)->withContent($request->content)->render();
+            $subject = $request->subject;
+            $email = Email::create([
+                'content' => $dbcontent,
+                'subject' => $subject,
+                'author_id' => Sentinel::getUser()->id,
+            ]);
+            $email->users()->attach($users->pluck('id'));
+        }
+
+        return Redirect::route('admin-emails')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The email has now been sent!');
     }
 
     /**
