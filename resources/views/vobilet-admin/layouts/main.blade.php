@@ -178,6 +178,7 @@
 									<li><a class="slide-item @if(Request::is('admin/system/logs*')){{'active'}} @endif" href="{{ route('admin-logs') }}"><i class="fas fa-clipboard-list mr-1"></i> System Logs</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License</a></li>
 								@endif
+								<li><a class="slide-item @if(Request::is('admin/system/info*')){{'active'}} @endif" href="{{ route('admin-systeminfo') }}"><i class="fas fa-microchip mr-1"></i> System Info</a></li>
 							</ul>
 						</li>
 					</ul>
