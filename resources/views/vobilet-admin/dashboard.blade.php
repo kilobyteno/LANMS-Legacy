@@ -12,6 +12,78 @@
 </div>
 
 <div class="row">
+
+	@if(!env('STRIPE_API_KEY'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
+				<hr class="message-inner-separator">
+				<p>The Stripe API key has not been set in the environment file. You will not be able to accept payments!</p>
+			</div>
+		</div>
+	@endif
+
+	@if(!env('MAIL_DRIVER') || !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION') || !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
+				<hr class="message-inner-separator">
+				<p>One or more mail keys in the environment file. Users will not be able get emails from this application!</p>
+			</div>
+		</div>
+	@endif
+
+
+	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-warning">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
+				<hr class="message-inner-separator">
+				<p>You are missing one or more Twilio keys in the environment file. Users will not be able to verify their phonenumbers!</p>
+			</div>
+		</div>
+	@endif
+
+	@if(!env('AUTHY_API_KEY'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-warning">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
+				<hr class="message-inner-separator">
+				<p>You are missing the Authy keys in the environment file. Users will not be able to setup two factor authentication!</p>
+			</div>
+		</div>
+	@endif
+
+	@if(env('APP_ENV') == 'development' || env('APP_ENV') == 'local')
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-warning">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environemnt Warning</strong>
+				<hr class="message-inner-separator">
+				<p>You have set '{{ env('APP_ENV') }}' as the environment file.</p>
+			</div>
+		</div>
+	@endif
+
+	@if(!env('SENTRY_LARAVEL_DSN'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-warning">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
+				<hr class="message-inner-separator">
+				<p>There is no value for Sentry in the environment file. If this is not set, the developers will not get application error alerts.</p>
+			</div>
+		</div>
+	@endif
+
+</div>
+
+<div class="row">
+
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
 		<div class="card p-3">
 			<div class="d-flex align-items-center">
