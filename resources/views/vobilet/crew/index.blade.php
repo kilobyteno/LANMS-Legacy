@@ -21,7 +21,7 @@
 								<div class="card-body d-flex flex-column">
 									<div class="text-muted"><small>
 										@foreach($crew->skills as $skill)
-											<span class="{{ $skill->class }}"><i class="{{ $skill->icon }}"></i> {{ $skill->title }}</span>
+											<span class="{{ $skill->class }} mb-1"><i class="{{ $skill->icon }}"></i> {{ $skill->title }}</span>
 										@endforeach
 									</small></div>
 									<div class="d-flex align-items-center pt-5 mt-auto">
