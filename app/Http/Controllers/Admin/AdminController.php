@@ -20,6 +20,11 @@ class AdminController extends Controller
         return view('whatsnew');
     }
 
+    public function systeminfo()
+    {
+        return view('systeminfo');
+    }
+
     public function activity()
     {
         if (!Sentinel::getUser()->hasAccess(['admin.*'])) {
