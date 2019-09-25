@@ -2,19 +2,17 @@
 
 namespace LANMS\Http\Controllers\Crew;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
 use LANMS\Crew;
 use LANMS\CrewCategory;
-use LANMS\Page;
-
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests;
 use LANMS\Http\Requests\Admin\Crew\CrewCreateRequest;
 use LANMS\Http\Requests\Admin\Crew\CrewEditRequest;
+use LANMS\Page;
+use LANMS\User;
 
 class CrewController extends Controller
 {
@@ -55,7 +53,14 @@ class CrewController extends Controller
     public function create()
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.*'])) {
-            return view('crew.create');
+            $users = User::all();
+            $crew_user_ids = Crew::thisYear()->pluck('user_id')->toArray();
+            foreach ($users as $key => $user) {
+                if (in_array($user->id, array_values($crew_user_ids))) {
+                    $users->forget($key);
+                }
+            }
+            return view('crew.create')->withUsers($users);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

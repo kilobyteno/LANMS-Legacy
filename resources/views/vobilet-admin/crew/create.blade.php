@@ -27,7 +27,7 @@
 							<div class="form-group">
 								<label class="form-label">User:</label>
 								<select name="user_id" class="select2">
-									@foreach(\User::all() as $user)
+									@foreach($users as $user)
 										<option value="{{ $user->id }}">{{ $user->username }}</option>
 									@endforeach
 								</select>
