@@ -154,6 +154,7 @@
 								<li><a class="slide-item @if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin') }}"><i class="fas fa-ticket-alt mr-1"></i> Atendee Check-in</a></li>
 								<li><a class="slide-item @if(!Request::is('admin/seating/checkin*') && Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin-visitor') }}"><i class="fas fa-user-astronaut mr-1"></i> Visitor Check-in</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/print*')){{'active'}} @endif" href="{{ route('admin-seating-print') }}"><i class="fas fa-print mr-1"></i> Print Seat</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/styling*')){{'active'}} @endif" href="{{ route('admin-seating-styling') }}"><i class="far fa-file-code mr-1"></i> Styling</a></li>
 							</ul>
 						</li>
 						<li>
