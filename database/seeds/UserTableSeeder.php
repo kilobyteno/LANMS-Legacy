@@ -55,31 +55,36 @@ class UserTableSeeder extends Seeder
         }
 
         //Create Roles
-        $role = Sentinel::getRoleRepository()->createModel()->create([
-            'name' => 'Moderators',
-            'slug' => 'mod',
-        ]);
-        $role = Sentinel::getRoleRepository()->createModel()->create([
-            'name' => 'Administrators',
-            'slug' => 'admin',
-        ]);
+        Artisan::call('lanms:refreshpermissions');
         $role = Sentinel::getRoleRepository()->createModel()->create([
             'name' => 'Super Administrators',
             'slug' => 'superadmin',
         ]);
+        if (Config::get('app.debug')) {
+            $role = Sentinel::getRoleRepository()->createModel()->create([
+                'name' => 'Administrators',
+                'slug' => 'admin',
+            ]);
+            $role = Sentinel::getRoleRepository()->createModel()->create([
+                'name' => 'Moderators',
+                'slug' => 'mod',
+            ]);
+        }
 
         // Add users to groups
         $user = Sentinel::findById(1);
         $role = Sentinel::findRoleByName('Super Administrators');
         $role->users()->attach($user);
 
-        $user = Sentinel::findById(2);
-        $role = Sentinel::findRoleByName('Administrators');
-        $role->users()->attach($user);
+        if (Config::get('app.debug')) {
+            $user = Sentinel::findById(2);
+            $role = Sentinel::findRoleByName('Administrators');
+            $role->users()->attach($user);
 
-        $user = Sentinel::findById(3);
-        $role = Sentinel::findRoleByName('Moderators');
-        $role->users()->attach($user);
+            $user = Sentinel::findById(3);
+            $role = Sentinel::findRoleByName('Moderators');
+            $role->users()->attach($user);
+        }
 
         //Add permissions to roles
         $role = Sentinel::findRoleByName('Super Administrators');
@@ -172,186 +177,119 @@ class UserTableSeeder extends Seeder
 
         $role->save();
 
+        if (Config::get('app.debug')) {
+            $role = Sentinel::findRoleByName('Administrators');
 
-        $role = Sentinel::findRoleByName('Administrators');
+            $role->addPermission('admin');//admin panel access
 
-        $role->addPermission('admin');//admin panel access
+            $role->addPermission('admin.compo.create');
+            $role->addPermission('admin.compo.update');
+            $role->addPermission('admin.compo.destroy');
 
-        $role->addPermission('admin.compo.create');
-        $role->addPermission('admin.compo.update');
-        $role->addPermission('admin.compo.destroy');
-        $role->addPermission('admin.compo.restore', false);
+            $role->addPermission('admin.crew.create');
+            $role->addPermission('admin.crew.update');
+            $role->addPermission('admin.crew.destroy');
 
-        $role->addPermission('admin.crew.create');
-        $role->addPermission('admin.crew.update');
-        $role->addPermission('admin.crew.destroy');
-        $role->addPermission('admin.crew.restore', false);
+            $role->addPermission('admin.crew-category.create');
+            $role->addPermission('admin.crew-category.update');
+            $role->addPermission('admin.crew-category.destroy');
 
-        $role->addPermission('admin.crew-category.create');
-        $role->addPermission('admin.crew-category.update');
-        $role->addPermission('admin.crew-category.destroy');
-        $role->addPermission('admin.crew-category.restore', false);
+            $role->addPermission('admin.crew-skill.create');
+            $role->addPermission('admin.crew-skill.update');
+            $role->addPermission('admin.crew-skill.destroy');
 
-        $role->addPermission('admin.crew-skill.create');
-        $role->addPermission('admin.crew-skill.update');
-        $role->addPermission('admin.crew-skill.destroy');
-        $role->addPermission('admin.crew-skill.restore', false);
+            $role->addPermission('admin.news.create');
+            $role->addPermission('admin.news.update');
+            $role->addPermission('admin.news.destroy');
 
-        $role->addPermission('admin.news.create');
-        $role->addPermission('admin.news.update');
-        $role->addPermission('admin.news.destroy');
-        $role->addPermission('admin.news.restore', false);
+            $role->addPermission('admin.newscategory.create');
+            $role->addPermission('admin.newscategory.update');
+            $role->addPermission('admin.newscategory.destroy');
 
-        $role->addPermission('admin.newscategory.create');
-        $role->addPermission('admin.newscategory.update');
-        $role->addPermission('admin.newscategory.destroy');
-        $role->addPermission('admin.newscategory.restore', false);
+            $role->addPermission('admin.pages.create');
+            $role->addPermission('admin.pages.update');
+            $role->addPermission('admin.pages.destroy');
 
-        $role->addPermission('admin.pages.create');
-        $role->addPermission('admin.pages.update');
-        $role->addPermission('admin.pages.destroy');
-        $role->addPermission('admin.pages.restore', false);
+            $role->addPermission('admin.seating.row.create');
+            $role->addPermission('admin.seating.row.update');
+            $role->addPermission('admin.seating.row.destroy');
 
-        $role->addPermission('admin.seating.row.create');
-        $role->addPermission('admin.seating.row.update');
-        $role->addPermission('admin.seating.row.destroy');
-        $role->addPermission('admin.seating.row.restore', false);
+            $role->addPermission('admin.seating.seat.create');
+            $role->addPermission('admin.seating.seat.update');
+            $role->addPermission('admin.seating.seat.destroy');
 
-        $role->addPermission('admin.seating.seat.create');
-        $role->addPermission('admin.seating.seat.update');
-        $role->addPermission('admin.seating.seat.destroy');
-        $role->addPermission('admin.seating.seat.restore', false);
+            $role->addPermission('admin.seating.styling');
 
-        $role->addPermission('admin.seating.styling');
+            $role->addPermission('admin.reservation.create');
+            $role->addPermission('admin.reservation.update');
+            $role->addPermission('admin.reservation.destroy');
 
-        $role->addPermission('admin.reservation.create');
-        $role->addPermission('admin.reservation.update');
-        $role->addPermission('admin.reservation.destroy');
-        $role->addPermission('admin.reservation.restore', false);
+            $role->addPermission('admin.checkin.create');
+            $role->addPermission('admin.checkin.update');
+            $role->addPermission('admin.checkin.destroy');
 
-        $role->addPermission('admin.checkin.create');
-        $role->addPermission('admin.checkin.update');
-        $role->addPermission('admin.checkin.destroy');
-        $role->addPermission('admin.checkin.restore', false);
+            $role->addPermission('admin.print.create');
+            $role->addPermission('admin.print.update');
+            $role->addPermission('admin.print.destroy');
 
-        $role->addPermission('admin.print.create');
-        $role->addPermission('admin.print.update');
-        $role->addPermission('admin.print.destroy');
-        $role->addPermission('admin.print.restore', false);
+            $role->addPermission('admin.info.update');
 
-        $role->addPermission('admin.info.update');
+            $role->addPermission('admin.sponsor.create');
+            $role->addPermission('admin.sponsor.update');
+            $role->addPermission('admin.sponsor.destroy');
 
-        $role->addPermission('admin.sponsor.create');
-        $role->addPermission('admin.sponsor.update');
-        $role->addPermission('admin.sponsor.destroy');
-        $role->addPermission('admin.sponsor.restore', false);
+            $role->addPermission('admin.users.update');
+            $role->addPermission('admin.users.destroy');
 
-        $role->addPermission('admin.users.update');
-        $role->addPermission('admin.users.destroy');
-        $role->addPermission('admin.users.restore', false);
+            $role->addPermission('admin.billing.create');
+            $role->addPermission('admin.billing.update');
 
-        $role->addPermission('admin.role.create', false);
-        $role->addPermission('admin.role.update', false);
-        $role->addPermission('admin.role.destroy', false);
+            $role->save();
 
-        $role->addPermission('admin.billing.create');
-        $role->addPermission('admin.billing.update');
-        $role->addPermission('admin.billing.destroy', false);
+            $role = Sentinel::findRoleByName('Moderators');
 
-        $role->addPermission('admin.settings.update', false);
-        $role->addPermission('admin.license.update', false);
+            $role->addPermission('admin');//admin panel access
 
-        $role->save();
+            $role->addPermission('admin.compo.create');
+            $role->addPermission('admin.compo.update');
 
+            $role->addPermission('admin.crew.create');
+            $role->addPermission('admin.crew.update');
 
-        $role = Sentinel::findRoleByName('Moderators');
+            $role->addPermission('admin.crew-category.create');
+            $role->addPermission('admin.crew-category.update');
 
-        $role->addPermission('admin');//admin panel access
+            $role->addPermission('admin.crew-skill.create');
+            $role->addPermission('admin.crew-skill.update');
 
-        $role->addPermission('admin.compo.create');
-        $role->addPermission('admin.compo.update');
-        $role->addPermission('admin.compo.destroy', false);
-        $role->addPermission('admin.compo.restore', false);
+            $role->addPermission('admin.news.create');
+            $role->addPermission('admin.news.update');
 
-        $role->addPermission('admin.crew.create');
-        $role->addPermission('admin.crew.update');
-        $role->addPermission('admin.crew.destroy', false);
-        $role->addPermission('admin.crew.restore', false);
+            $role->addPermission('admin.newscategory.create');
+            $role->addPermission('admin.newscategory.update');
 
-        $role->addPermission('admin.crew-category.create');
-        $role->addPermission('admin.crew-category.update');
-        $role->addPermission('admin.crew-category.destroy', false);
-        $role->addPermission('admin.crew-category.restore', false);
+            $role->addPermission('admin.pages.create');
+            $role->addPermission('admin.pages.update');
 
-        $role->addPermission('admin.crew-skill.create');
-        $role->addPermission('admin.crew-skill.update');
-        $role->addPermission('admin.crew-skill.destroy', false);
-        $role->addPermission('admin.crew-skill.restore', false);
+            $role->addPermission('admin.seating.row.create');
+            $role->addPermission('admin.seating.row.update');
 
-        $role->addPermission('admin.news.create');
-        $role->addPermission('admin.news.update');
-        $role->addPermission('admin.news.destroy', false);
-        $role->addPermission('admin.news.restore', false);
+            $role->addPermission('admin.reservation.create');
+            $role->addPermission('admin.reservation.update');
 
-        $role->addPermission('admin.newscategory.create');
-        $role->addPermission('admin.newscategory.update');
-        $role->addPermission('admin.newscategory.destroy', false);
-        $role->addPermission('admin.newscategory.restore', false);
+            $role->addPermission('admin.seating.seat.create');
+            $role->addPermission('admin.seating.seat.update');
 
-        $role->addPermission('admin.pages.create');
-        $role->addPermission('admin.pages.update');
-        $role->addPermission('admin.pages.destroy', false);
-        $role->addPermission('admin.pages.restore', false);
+            $role->addPermission('admin.checkin.create');
+            $role->addPermission('admin.checkin.update');
 
-        $role->addPermission('admin.seating.row.create');
-        $role->addPermission('admin.seating.row.update');
-        $role->addPermission('admin.seating.row.destroy', false);
-        $role->addPermission('admin.seating.row.restore', false);
+            $role->addPermission('admin.print.create');
+            $role->addPermission('admin.print.update');
 
-        $role->addPermission('admin.reservation.create');
-        $role->addPermission('admin.reservation.update');
-        $role->addPermission('admin.reservation.destroy', false);
-        $role->addPermission('admin.reservation.restore', false);
+            $role->addPermission('admin.sponsor.create');
+            $role->addPermission('admin.sponsor.update');
 
-        $role->addPermission('admin.seating.seat.create');
-        $role->addPermission('admin.seating.seat.update');
-        $role->addPermission('admin.seating.seat.destroy', false);
-        $role->addPermission('admin.seating.seat.restore', false);
-
-        $role->addPermission('admin.seating.styling', false);
-
-        $role->addPermission('admin.checkin.create');
-        $role->addPermission('admin.checkin.update');
-        $role->addPermission('admin.checkin.destroy', false);
-        $role->addPermission('admin.checkin.restore', false);
-
-        $role->addPermission('admin.print.create');
-        $role->addPermission('admin.print.update');
-        $role->addPermission('admin.print.destroy', false);
-        $role->addPermission('admin.print.restore', false);
-
-        $role->addPermission('admin.info.update', false);
-
-        $role->addPermission('admin.sponsor.create');
-        $role->addPermission('admin.sponsor.update');
-        $role->addPermission('admin.sponsor.destroy', false);
-        $role->addPermission('admin.sponsor.restore', false);
-
-        $role->addPermission('admin.users.update', false);
-        $role->addPermission('admin.users.destroy', false);
-        $role->addPermission('admin.users.restore', false);
-
-        $role->addPermission('admin.role.create', false);
-        $role->addPermission('admin.role.update', false);
-        $role->addPermission('admin.role.destroy', false);
-
-        $role->addPermission('admin.billing.create', false);
-        $role->addPermission('admin.billing.update', false);
-        $role->addPermission('admin.billing.destroy', false);
-
-        $role->addPermission('admin.settings.update', false);
-        $role->addPermission('admin.license.update', false);
-
-        $role->save();
+            $role->save();
+        }
     }
 }

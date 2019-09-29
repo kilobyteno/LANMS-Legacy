@@ -857,6 +857,10 @@ Route::group([
                             'as' => 'admin-roles',
                             'uses' => 'Admin\RoleController@index'
                         ]);
+                        Route::get('/refreshpermissions', [
+                            'as' => 'admin-roles-refreshpermissions',
+                            'uses' => 'Admin\RoleController@refreshpermissions'
+                        ]);
                         Route::get('/create', [
                             'as' => 'admin-role-create',
                             'uses' => 'Admin\RoleController@create'
