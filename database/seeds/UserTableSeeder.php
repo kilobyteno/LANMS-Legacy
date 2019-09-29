@@ -172,6 +172,9 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.billing.update');
         $role->addPermission('admin.billing.destroy');
 
+        $role->addPermission('admin.emails.show');
+        $role->addPermission('admin.emails.create');
+
         $role->addPermission('admin.settings.update');
         $role->addPermission('admin.license.update');
 
