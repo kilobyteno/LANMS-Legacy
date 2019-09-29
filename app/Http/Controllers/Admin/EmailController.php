@@ -74,9 +74,9 @@ class EmailController extends Controller
                 'author_id' => Sentinel::getUser()->id,
             ]);
             $email->users()->attach($user->id);
-            
-                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $user->firstname), function ($message) use ($user, $subject) {
-                    $message->to($user->email, $user->firstname)->subject($subject);
+                $firstname = ($user->firstname) ? $user->firstname : $user->username;
+                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $firstname), function ($message) use ($user, $subject, $firstname) {
+                    $message->to($user->email, $firstname)->subject($subject);
                 });
         } elseif ($request->bulk) {
             $bulk = $request->bulk;
@@ -97,8 +97,9 @@ class EmailController extends Controller
             }
             // SEND EMAIL TO ALL USERS IN LIST
             foreach ($users as $user) {
-                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $request->subject, 'firstname' => $user->firstname), function ($message) use ($user, $request) {
-                    $message->to($user->email, $user->firstname)->subject($request->subject);
+                $firstname = ($user->firstname) ? $user->firstname : $user->username;
+                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $request->subject, 'firstname' => $firstname), function ($message) use ($user, $request, $firstname) {
+                    $message->to($user->email, $firstname)->subject($request->subject);
                 });
             }
             $dbcontent = view('emails.admin.message')->withFirstname('firstname')->withSubject($request->subject)->withContent($request->content)->render();
