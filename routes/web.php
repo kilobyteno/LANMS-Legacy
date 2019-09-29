@@ -978,6 +978,10 @@ Route::group([
                     'as' => 'admin-whatsnew' ,
                     'uses' => 'Admin\AdminController@whatsnew'
                 ]);
+                Route::get('/info', [
+                    'as' => 'admin-systeminfo' ,
+                    'uses' => 'Admin\AdminController@systeminfo'
+                ]);
                 Route::group([
                     'prefix' => 'license'
                     ], function () {
