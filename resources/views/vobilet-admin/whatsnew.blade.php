@@ -60,6 +60,7 @@
 								<h4>Bug</h4>
 								<ul>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-329">LANMS-329</a>] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-335">LANMS-335</a>] - Update translation for profile</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
@@ -91,11 +92,10 @@
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-305">LANMS-305</a>] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-312">LANMS-312</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-316">LANMS-316</a>] - News article does not throw 404 when article does not exist</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
-
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-273">LANMS-273</a>] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-288">LANMS-288</a>] - Reset password for user via admin panel</li>
 								</ul>
