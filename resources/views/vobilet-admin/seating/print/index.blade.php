@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('title', 'Print Seat - Admin')
+@section('css')
+	@foreach(Storage::files('/public/seating/') as $file)
+		<link rel="stylesheet" href="{{ asset($file) }}">
+	@endforeach
+@stop
 @section('content')
 
 <div class="page-header">
@@ -17,9 +22,6 @@
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-4">
-				@section('css')
-					<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-				@stop
 				<div class="seatmap">
 					<ul>
 						<li class="scene">{{ trans('seating.map.scene') }}</li>

@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('title', trans('header.seating'))
-@section('css')
-	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-@stop
 @section('content')
 
 <div class="container">

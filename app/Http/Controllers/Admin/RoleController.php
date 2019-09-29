@@ -5,6 +5,7 @@ namespace LANMS\Http\Controllers\Admin;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use LANMS\Http\Controllers\Controller;
@@ -37,7 +38,7 @@ class RoleController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $role = Sentinel::findRoleBySlug('superadmin');
+        $role = Sentinel::findRoleBySlug('default');
         abort_unless($role, 501);
         return view('user.role.create')->with('role', $role);
     }
@@ -63,8 +64,8 @@ class RoleController extends Controller
             'name' => $request->name,
             'slug' => $slug,
         ]);
-        $superadmin = Sentinel::findRoleBySlug('superadmin');
-        foreach ($superadmin->permissions as $key => $value) {
+        $default = Sentinel::findRoleBySlug('default');
+        foreach ($default->permissions as $key => $value) {
             $role->addPermission($key, false)->save();
         }
         foreach ($request->all() as $key => $value) {
@@ -78,15 +79,12 @@ class RoleController extends Controller
                     ->with('message', 'The role has now been saved!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function refreshpermissions()
     {
-        //
+        Artisan::call('lanms:refreshpermissions');
+        return Redirect::route('admin-roles')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'Permissions for all roles has been refreshed!');
     }
 
     /**
@@ -121,7 +119,7 @@ class RoleController extends Controller
         }
         $role = Sentinel::findRoleBySlug($id);
         abort_unless($role, 404);
-        if ($role->slug == 'superadmin') {
+        if ($role->slug == 'superadmin' || $role->slug == 'default') {
             return Redirect::route('admin-role-edit', $id)
                             ->with('messagetype', 'warning')
                             ->with('message', 'Cannot update permissions for this role.');
@@ -157,7 +155,7 @@ class RoleController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $role = Sentinel::findRoleBySlug($id);
-        if ($role->name === 'Super Administrators') {
+        if ($role->slug == 'superadmin' || $role->slug == 'default') {
             return Redirect::route('admin-roles')->with('messagetype', 'warning')
                                 ->with('message', 'This role cannot be deleted.');
         }

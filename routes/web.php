@@ -730,6 +730,34 @@ Route::group([
                             'uses' => 'Admin\PrintSeatController@printSeat'
                         ]);
                     });
+                Route::group([
+                    'prefix' => 'styling'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-styling',
+                            'uses' => 'Admin\Seating\StylingController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-styling-create',
+                            'uses' => 'Admin\Seating\StylingController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-styling-store',
+                            'uses' => 'Admin\Seating\StylingController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-styling-edit',
+                            'uses' => 'Admin\Seating\StylingController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-styling-update',
+                            'uses' => 'Admin\Seating\StylingController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-styling-destroy',
+                            'uses' => 'Admin\Seating\StylingController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'compo'
@@ -828,6 +856,10 @@ Route::group([
                         Route::get('/', [
                             'as' => 'admin-roles',
                             'uses' => 'Admin\RoleController@index'
+                        ]);
+                        Route::get('/refreshpermissions', [
+                            'as' => 'admin-roles-refreshpermissions',
+                            'uses' => 'Admin\RoleController@refreshpermissions'
                         ]);
                         Route::get('/create', [
                             'as' => 'admin-role-create',
@@ -965,6 +997,10 @@ Route::group([
                 Route::get('/whatsnew', [
                     'as' => 'admin-whatsnew' ,
                     'uses' => 'Admin\AdminController@whatsnew'
+                ]);
+                Route::get('/info', [
+                    'as' => 'admin-systeminfo' ,
+                    'uses' => 'Admin\AdminController@systeminfo'
                 ]);
                 Route::group([
                     'prefix' => 'license'
