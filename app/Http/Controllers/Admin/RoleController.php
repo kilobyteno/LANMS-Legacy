@@ -5,6 +5,7 @@ namespace LANMS\Http\Controllers\Admin;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use LANMS\Http\Controllers\Controller;
@@ -78,15 +79,12 @@ class RoleController extends Controller
                     ->with('message', 'The role has now been saved!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function refreshpermissions()
     {
-        //
+        Artisan::call('lanms:refreshpermissions');
+        return Redirect::route('admin-roles')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'Permissions for all roles has been refreshed!');
     }
 
     /**
