@@ -85,8 +85,10 @@ class EmailController extends Controller
                 $users = User::where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
             } elseif ($bulk == 2) { // ALL USERS WITH A TICKET FOR THIS EVENT
                 $users = SeatTicket::thisYear()->with('user')->get()->pluck('user')->flatten();
+                $users = $users->where('isAnonymized', '0')->unique();
             } elseif ($bulk == 3) { // ALL USERS WITH A TICKET FOR -LAST- EVENT
                 $users = SeatTicket::lastYear()->with('user')->get()->pluck('user')->flatten();
+                $users = $users->where('isAnonymized', '0')->unique();
             } else {
                 return Redirect::route('admin-emails-create')->with('messagetype', 'danger')
                                 ->with('message', 'Not a valid bulk has been selected. '.$bulk)->withInput();
