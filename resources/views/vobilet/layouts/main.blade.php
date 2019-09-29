@@ -219,7 +219,19 @@
 								</ul>
 							</div>
 							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
-							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b><br>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b><br>@endif
+							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has expired for this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has been suspended for this software!</strong>
+								</div>
+							@endif
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 							@endif
