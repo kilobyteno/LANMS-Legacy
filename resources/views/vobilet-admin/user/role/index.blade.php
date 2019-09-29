@@ -33,7 +33,7 @@
 								<td>{{ $role->name }}</td>
 								<td>
 									<a href="{{ route('admin-role-edit', $role->slug) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
-									@if(Sentinel::hasAccess('admin.role.destroy') && $role->name !== 'Super Administrators')
+									@if(Sentinel::hasAccess('admin.role.destroy') && $role->slug !== 'superadmin' && $role->slug !== 'default' )
 										<a href="javascript:;" onclick="jQuery('#destroy-{{ $role->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="fas fa-trash mr-2"></i>Delete</a>
 									@endif
 								</td>
