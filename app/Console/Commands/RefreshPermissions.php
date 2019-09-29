@@ -141,8 +141,13 @@ class RefreshPermissions extends Command
 
         $roles = EloquentRole::all();
         foreach ($roles as $role) {
+            if ($role->slug == 'superadmin') {
+                $perm = true;
+            } else {
+                $perm = false;
+            }
             foreach ($default_role->permissions as $key => $value) {
-                $role->addPermission($key, false)->save();
+                $role->addPermission($key, $perm)->save();
                 $this->info('Adding '.$key.' to '.$role->name);
             }
         }
