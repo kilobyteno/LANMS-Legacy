@@ -131,6 +131,7 @@ class RefreshPermissions extends Command
         $default_role->addPermission('admin.billing.update', false);
         $default_role->addPermission('admin.billing.destroy', false);
 
+        $default_role->addPermission('admin.emails.create', false);
         $default_role->addPermission('admin.settings.update', false);
         $default_role->addPermission('admin.license.update', false);
 
