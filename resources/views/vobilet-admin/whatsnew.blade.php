@@ -21,6 +21,37 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#256" aria-expanded="true">Version 2.5.6</a>
+							</h4>
+						</div>
+						<div id="256" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-336">LANMS-336</a>] - Send emails to users from admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-337">LANMS-337</a>] - System Info</li>
+								</ul>
+								    
+								<h4>Task</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-342">LANMS-342</a>] - Update Sentry to version 1.3.0</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-333">LANMS-333</a>] - Implement news categories</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-338">LANMS-338</a>] - Add description to info items</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-339">LANMS-339</a>] - User already added to crew should not be listed on create crew page</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-340">LANMS-340</a>] - Add command to refresh permissions for roles</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-341">LANMS-341</a>] - Add warnings for env setting</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-345">LANMS-345</a>] - Add update command</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#255" aria-expanded="true">Version 2.5.5</a>
 							</h4>
 						</div>
