@@ -13,6 +13,7 @@ class Info extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'content',
+        'description',
         'author_id',
         'editor_id',
     ];
