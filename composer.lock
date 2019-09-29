@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74163073a81779ecae7fdeaea9ec43c6",
+    "content-hash": "27820c7e1194ea6b5062c7f8ffdf1b16",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
