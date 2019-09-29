@@ -21,6 +21,37 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#256" aria-expanded="true">Version 2.5.6</a>
+							</h4>
+						</div>
+						<div id="256" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-336">LANMS-336</a>] - Send emails to users from admin panel</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-337">LANMS-337</a>] - System Info</li>
+								</ul>
+								    
+								<h4>Task</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-342">LANMS-342</a>] - Update Sentry to version 1.3.0</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-333">LANMS-333</a>] - Implement news categories</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-338">LANMS-338</a>] - Add description to info items</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-339">LANMS-339</a>] - User already added to crew should not be listed on create crew page</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-340">LANMS-340</a>] - Add command to refresh permissions for roles</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-341">LANMS-341</a>] - Add warnings for env setting</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-345">LANMS-345</a>] - Add update command</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#255" aria-expanded="true">Version 2.5.5</a>
 							</h4>
 						</div>
@@ -29,6 +60,7 @@
 								<h4>Bug</h4>
 								<ul>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-329">LANMS-329</a>] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-335">LANMS-335</a>] - Update translation for profile</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
@@ -60,11 +92,10 @@
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-305">LANMS-305</a>] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-312">LANMS-312</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-316">LANMS-316</a>] - News article does not throw 404 when article does not exist</li>
+									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href="http://jira.infihex.com/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
-
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-273">LANMS-273</a>] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
 									<li>[<a href="http://jira.infihex.com/browse/LANMS-288">LANMS-288</a>] - Reset password for user via admin panel</li>
 								</ul>

@@ -169,6 +169,11 @@
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/sponsor')){{'active'}} @endif" href="{{ route('admin-sponsor') }}"><i class="side-menu__icon fas fa-money-check-alt"></i><span class="side-menu__label">Sponsor</span></a>
 						</li>
+						@if(Sentinel::getUser()->hasAccess(['admin.emails.*']))
+							<li>
+								<a class="side-menu__item @if(Request::is('admin/email*')){{'active'}} @endif" href="{{ route('admin-emails') }}"><i class="side-menu__icon fas fa-envelope"></i><span class="side-menu__label">Emails</span></a>
+							</li>
+						@endif
 						<li class="slide @if(Request::is('admin/system*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/system*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-cogs"></i><span class="side-menu__label">System</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
@@ -179,6 +184,7 @@
 									<li><a class="slide-item @if(Request::is('admin/system/logs*')){{'active'}} @endif" href="{{ route('admin-logs') }}"><i class="fas fa-clipboard-list mr-1"></i> System Logs</a></li>
 									<li><a class="slide-item @if(Request::is('admin/system/license*')){{'active'}} @endif" href="{{ route('admin-license') }}"><i class="far fa-id-card mr-1"></i> License</a></li>
 								@endif
+								<li><a class="slide-item @if(Request::is('admin/system/info*')){{'active'}} @endif" href="{{ route('admin-systeminfo') }}"><i class="fas fa-microchip mr-1"></i> System Info</a></li>
 							</ul>
 						</li>
 					</ul>

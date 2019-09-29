@@ -857,6 +857,10 @@ Route::group([
                             'as' => 'admin-roles',
                             'uses' => 'Admin\RoleController@index'
                         ]);
+                        Route::get('/refreshpermissions', [
+                            'as' => 'admin-roles-refreshpermissions',
+                            'uses' => 'Admin\RoleController@refreshpermissions'
+                        ]);
                         Route::get('/create', [
                             'as' => 'admin-role-create',
                             'uses' => 'Admin\RoleController@create'
@@ -960,6 +964,26 @@ Route::group([
                 ]);
             });
         Route::group([
+            'prefix' => 'email'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-emails',
+                    'uses' => 'Admin\EmailController@index'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-emails-create',
+                    'uses' => 'Admin\EmailController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-emails-store',
+                    'uses' => 'Admin\EmailController@store'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'admin-emails-show',
+                    'uses' => 'Admin\EmailController@show'
+                ]);
+            });
+        Route::group([
             'prefix' => 'system'
             ], function () {
                 Route::get('logs', [
@@ -973,6 +997,10 @@ Route::group([
                 Route::get('/whatsnew', [
                     'as' => 'admin-whatsnew' ,
                     'uses' => 'Admin\AdminController@whatsnew'
+                ]);
+                Route::get('/info', [
+                    'as' => 'admin-systeminfo' ,
+                    'uses' => 'Admin\AdminController@systeminfo'
                 ]);
                 Route::group([
                     'prefix' => 'license'
