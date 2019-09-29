@@ -51,6 +51,19 @@
 		<!---Custom-->
 		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.app-header, .card, .footer, .app-sidebar, .slide.is-expanded [data-toggle="slide"], .slide-menu, .slide.is-expanded .slide-menu li a:hover  {
+					background:#f5c6cb;
+				}
+				.side-menu__item, .slide.is-expanded a{
+					color:#6b1110;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="app sidebar-mini rtl">
 		<div id="global-loader"></div>

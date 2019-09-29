@@ -46,6 +46,16 @@
 
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.header, .collapse:not(.show), .card, .footer, .dropdown-menu {
+					background:#f5c6cb;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="">
 		<div id="global-loader"></div>
