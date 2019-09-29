@@ -19,6 +19,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Content</th>
+					<th>Description</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -27,6 +28,7 @@
 					<tr>
 						<td scope="row">{{ $info->name }}</td>
 						<td>{{ $info->content }}</td>
+						<td>{{ $info->description ?? '' }}</td>
 						<td>
 							<a href="{{ route('admin-info-edit', $info->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
 						</td>
