@@ -3,6 +3,6 @@
 @section('content') 
 
 <p>{{ trans('email.hello', ['firstname' => $firstname]) }}</p>
-{{ $content }}
+{!! $content !!}
 
 @stop
