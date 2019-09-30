@@ -21,10 +21,13 @@
 					Details
 				</div>
 				<div class="card-options">
-					<button class="btn btn-success" type="submit"><i class="far fa-paper-plane"></i> Send</button>
+					<button class="btn btn-success" type="submit" id="send"><i class="far fa-paper-plane"></i> Send</button>
 				</div>
 			</div>
 			<div class="card-body">
+				<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">
+					<i class="fas fa-spinner fa-spin"></i> Processing...
+				</div>
 				<div class="row">
 					<div class="col-5">
 						<div class="form-group">
@@ -184,6 +187,15 @@
 	<script type="text/javascript">
 		$(function(){
 			$('.select2').select2();
+		});
+	</script>
+
+	<script type="text/javascript">
+		jQuery(function ($) {
+			$('#send').on('click', function() {
+				$("#send").prop("disabled", true);
+				$("#processing").removeClass("d-none");
+			});
 		});
 	</script>
 @stop
