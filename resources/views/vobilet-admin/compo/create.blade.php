@@ -109,6 +109,38 @@
 
 					<div class="row mt-5">
 						
+						<div class="col-xl-3">
+							<div class="form-group">
+								<label class="form-label">Prize Pool Total: <small>Example: 10000</small></label>
+								<input type="number" class="form-control" name="prize_pool_total" value="{{ (old('prize_pool_total')) ? old('prize_pool_total') : '' }}">
+							</div>
+						</div>
+
+						<div class="col-xl-3">
+							<div class="form-group">
+								<label class="form-label">Prize Pool First:</label>
+								<input type="text" class="form-control input-lg" name="prize_pool_first" autocomplete="off" placeholder="5000kr + 2 tickets" value="{{ (old('prize_pool_first')) ? old('prize_pool_first') : '' }}" />
+							</div>
+						</div>
+
+						<div class="col-xl-3">
+							<div class="form-group">
+								<label class="form-label">Prize Pool Second:</label>
+								<input type="text" class="form-control input-lg" name="prize_pool_second" autocomplete="off" placeholder="3000kr + 2 sodas" value="{{ (old('prize_pool_second')) ? old('prize_pool_second') : '' }}" />
+							</div>
+						</div>
+
+						<div class="col-xl-3">
+							<div class="form-group">
+								<label class="form-label">Prize Pool Third:</label>
+								<input type="text" class="form-control input-lg" name="prize_pool_third" autocomplete="off" placeholder="2000kr" value="{{ (old('prize_pool_third')) ? old('prize_pool_third') : '' }}" />
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="row mt-5">
+						
 						<div class="col-xl-4">
 							<div class="row">
 								<div class="col-xl-6">
