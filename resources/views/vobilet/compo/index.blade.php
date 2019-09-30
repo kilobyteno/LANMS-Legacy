@@ -17,6 +17,9 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">{{ $compo->name }}</h3>
+							<div class="card-options">
+								{!! $compo->prize_pool_total ? '<span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>'.$compo->prize_pool_total.'</span>' : '' !!}
+							</div>
 						</div>
 						<div class="card-body d-flex flex-column">
 							@if($compo->start_at)<p>{{ trans('compo.starts') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}">{{ $compo->start_at->diffForHumans() }}</span></p>@endif
@@ -26,7 +29,13 @@
 							<p>{{ trans('compo.signup_type') }}: {{ trans('compo.signup_type.'.$compo->signup_type) }}</p>
 							<p>{{ trans('compo.signup_size') }}: {{ $compo->signup_size }} {{ trans_choice('compo.players', $compo->signup_size) }}</p>
 							@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
-
+							@if($compo->prize_pool_first || $compo->prize_pool_second || $compo->prize_pool_third)
+								<p>{{ trans('compo.prize_pool') }}:<br>
+									{!! $compo->prize_pool_first ? '1. '.$compo->prize_pool_first.'<br>' : '' !!}
+									{!! $compo->prize_pool_second ? '2. '.$compo->prize_pool_second.'<br>' : '' !!}
+									{!! $compo->prize_pool_third ? '3. '.$compo->prize_pool_third.'<br>' : '' !!}
+								</p>
+							@endif
 						</div>
 						<div class="card-footer">
 							<a class="btn btn-sm btn-info" href="{{ route('compo-show', $compo->slug) }}"><i class="far fa-eye"></i> {{ trans('global.view') }}</a>

@@ -16,6 +16,7 @@ return [
     'signup_type.1' => 'Team',
     'signup_type.2' => 'Individual',
     'signup_size' => 'Max Players',
+    'prize_pool' => 'Prize Pool',
     'players' => '{1} Player|[2,*] Players',
     'submit' => 'Submit',
     'teams' => 'Teams',
