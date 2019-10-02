@@ -96,6 +96,11 @@ class CompoTeamController extends Controller
     public function update(CompoTeamUpdateRequest $request, $id)
     {
         $team = \LANMS\CompoTeam::find($id);
+        if ($team->composignupsThisYear()->count() > 0) {
+            return \Redirect::route('compo-team', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.team.alert.cantdelete'));
+        }
         $team->update([
             'name' => $request->get('name'),
         ]);
@@ -128,7 +133,7 @@ class CompoTeamController extends Controller
     public function destroy($id)
     {
         $team = \LANMS\CompoTeam::find($id);
-        if ($team->composignups()->count() > 0) {
+        if ($team->composignupsThisYear()->count() > 0) {
             return \Redirect::route('compo-team', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.cantdelete'));

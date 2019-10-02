@@ -29,7 +29,7 @@ return [
             'deleted' => 'Laget er nå slettet.',
             'notunique' => 'Alle spillere må være unike.',
             'moreplayers' => 'Vennligst legg til flere spillere.',
-            'cantdelete' => 'Kan ikke slette, du er meldt på konkurranse.',
+            'cantdelete' => 'Kan ikke slette eller endre på laget etter du er meldt på en konkurranse.',
         ],
         'create' => [
             'name' => 'Lagnavn',

@@ -29,7 +29,7 @@ return [
             'deleted' => 'The team has now been deleted.',
             'notunique' => 'All players needs to be unique.',
             'moreplayers' => 'Please add more players.',
-            'cantdelete' => 'Can\'t delete, you are signed up.',
+            'cantdelete' => 'Cannot delete or change team after entering a compo.',
         ],
         'create' => [
             'name' => 'Team Name',
