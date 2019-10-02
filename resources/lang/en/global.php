@@ -111,5 +111,10 @@ return [
         'dismiss' => 'I ACCEPT',
         'link' => 'Learn more',
     ),
+
+    'notification' => array(
+        'nothing' => 'No new notifications.',
+        'viewall' => 'View all notifications',
+    ),
     
 ];

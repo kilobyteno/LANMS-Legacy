@@ -111,5 +111,10 @@ return [
         'dismiss' => 'JEG AKSEPTERER',
         'link' => 'Lær mer',
     ),
+
+    'notification' => array(
+        'nothing' => 'No new notifications.',
+        'viewall' => 'View all notifications',
+    ),
     
 ];

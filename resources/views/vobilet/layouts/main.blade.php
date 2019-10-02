@@ -64,6 +64,30 @@
 										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
 									</div>
 								@else
+									<div class="dropdown d-none d-md-flex">
+										<a class="nav-link icon" data-toggle="dropdown">
+											<i class="fas fa-bell"></i>
+											@if(Sentinel::getUser()->unreadNotifications->count() > 0)
+												<span class="nav-unread bg-danger"></span>
+											@endif
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
+											    <a href="#" class="dropdown-item d-flex pb-3">
+													<div class="notifyimg bg-danger">
+														<i class="fas fa-exclamation-circle"></i>
+													</div>
+													<div>
+														<strong>{{ $notification->type }}: {{ $notification->type }}</strong>
+														<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+													</div>
+												</a>
+											@endforeach
+											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
+												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
+											@endif
+										</div>
+									</div>
 									<div class="dropdown">
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
