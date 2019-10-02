@@ -47,7 +47,7 @@ return [
             'signedup' => '{1} Ditt lag er nå meldt på!|{2} Du er nå meldt på!',
             'alreadysignedup' => 'Du har allerede registrert deg for denne konkurransen.',
             'lastsignuppast' => 'Siste påmeldingstid er forbi, det er ikke mulig å registrere seg.',
-            'signupsize' => 'Laget ditt er ikke riktig størrelse.',
+            'signupsize' => 'Laget ditt har ikke riktig antall medlemmer.',
         ],
         'title' => 'Bli med',
         'chooseteam' => 'Velg lag',
