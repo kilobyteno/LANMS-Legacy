@@ -115,7 +115,7 @@ return [
     'notification' => array(
         'nothing' => 'No new notifications.',
         'viewall' => 'View all notifications',
-        'invoiceunpaid' => 'Du har en ubetalt faktura for :amount som forfaller på :date!',
+        'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
     ),
     
 ];
