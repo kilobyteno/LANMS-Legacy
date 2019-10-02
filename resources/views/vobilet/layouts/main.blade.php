@@ -78,7 +78,7 @@
 														<div class="notifyimg bg-danger">
 															<i class="fas fa-exclamation-circle"></i>
 														</div>
-														<div>
+														<div class="message">
 															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
 															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
 														</div>
