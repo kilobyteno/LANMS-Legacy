@@ -68,7 +68,7 @@
 										<a class="nav-link icon" data-toggle="dropdown">
 											<i class="far fa-bell"></i>
 											@if(Sentinel::getUser()->unreadNotifications->count() > 0)
-												<span class="nav-unread bg-danger"></span>
+												<span class="nav-unread badge badge-danger badge-pill">{{ Sentinel::getUser()->unreadNotifications->count() }}</span>
 											@endif
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
