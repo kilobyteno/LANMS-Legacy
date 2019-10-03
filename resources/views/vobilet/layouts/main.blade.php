@@ -80,7 +80,7 @@
 														</div>
 														<div class="message">
 															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">Dismiss</button></div>
 														</div>
 													@else
 														<div class="notifyimg bg-info">
@@ -335,6 +335,10 @@
 			$('#usermenu').click(function() {
 				$("i", this).toggleClass("fa-caret-up fa-caret-down");
 			});
+			function notificationDismiss (url) {
+				event.preventDefault();
+				window.location.href = url;
+			}
 		</script>
 
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
