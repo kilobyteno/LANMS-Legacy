@@ -66,7 +66,7 @@
 								@else
 									<div class="dropdown d-none d-md-flex">
 										<a class="nav-link icon" data-toggle="dropdown">
-											<i class="fas fa-bell"></i>
+											<i class="far fa-bell"></i>
 											@if(Sentinel::getUser()->unreadNotifications->count() > 0)
 												<span class="nav-unread bg-danger"></span>
 											@endif
