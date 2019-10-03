@@ -60,3 +60,16 @@ a:hover, .btn-link:hover {
 .badge {
 	padding: 0.4em;
 }
+
+.dropdown-menu {
+	min-width: 25rem;
+}
+
+.dropdown-item {
+	white-space:normal;
+}
+
+.dropdown-item .notifyimg {
+	min-height:40px;
+	min-width:40px;
+}

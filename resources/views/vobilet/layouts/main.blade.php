@@ -73,14 +73,24 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
-											    <a href="#" class="dropdown-item d-flex pb-3">
-													<div class="notifyimg bg-danger">
-														<i class="fas fa-exclamation-circle"></i>
-													</div>
-													<div>
-														<strong>{{ $notification->type }}: {{ $notification->type }}</strong>
-														<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
-													</div>
+											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
+											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
+														<div class="notifyimg bg-danger">
+															<i class="fas fa-exclamation-circle"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+														</div>
+													@else
+														<div class="notifyimg bg-info">
+															<i class="fas fa-info"></i>
+														</div>
+														<div>
+														<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+														</div>
+													@endif
 												</a>
 											@endforeach
 											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
