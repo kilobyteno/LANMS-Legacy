@@ -83,6 +83,16 @@ class ReserveSeatingController extends Controller
         }
 
         /* LOGGED IN USER */
+        if (Sentinel::getUser()->stripecustomer) {
+            $stripe_customer_code = Sentinel::getUser()->stripecustomer->cus;
+            $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+            foreach ($invoices['data'] as $invoice) {
+                if ($invoice['paid'] == false) {
+                    return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.unpaidinvoice'));
+                }
+            }
+        }
         if (!Sentinel::getUser()->birthdate) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthday'));
