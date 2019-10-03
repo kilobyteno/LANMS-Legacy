@@ -71,7 +71,7 @@
 												<span class="nav-unread bg-danger"></span>
 											@endif
 										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
 											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
 											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
 											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
