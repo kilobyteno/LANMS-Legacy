@@ -71,12 +71,12 @@
 												<span class="nav-unread bg-danger"></span>
 											@endif
 										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
 											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
 											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
 											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
 														<div class="notifyimg bg-danger">
-															<i class="fas fa-exclamation-circle"></i>
+															<i class="fas fa-exclamation"></i>
 														</div>
 														<div class="message">
 															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>

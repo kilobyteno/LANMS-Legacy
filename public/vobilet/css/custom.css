@@ -61,15 +61,15 @@ a:hover, .btn-link:hover {
 	padding: 0.4em;
 }
 
-.dropdown-menu {
+.dropdown-menu.notifications {
 	min-width: 25rem;
 }
 
-.dropdown-item {
+.notifications > .dropdown-item {
 	white-space:normal;
 }
 
-.dropdown-item .notifyimg {
+.notifications > .dropdown-item > .notifyimg {
 	min-height:40px;
 	min-width:40px;
 }
