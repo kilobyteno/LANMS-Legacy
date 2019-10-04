@@ -113,10 +113,10 @@ return [
     ),
 
     'notification' => array(
-        'nothing' => 'No new notifications.',
-        'viewall' => 'View all notifications',
-        'dismissall' => 'Dismiss all notifications',
-        'dismiss' => 'Dismiss',
+        'nothing' => 'Ingen nye varsler.',
+        'viewall' => 'Vis alle varsler',
+        'dismissall' => 'Avvis alle varslene',
+        'dismiss' => 'Avvis',
         'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
     ),
     

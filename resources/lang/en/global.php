@@ -115,6 +115,8 @@ return [
     'notification' => array(
         'nothing' => 'No new notifications.',
         'viewall' => 'View all notifications',
+        'dismissall' => 'Dismiss all notifications',
+        'dismiss' => 'Dismiss',
         'invoiceunpaid' => 'You have an unpaid invoice for :amount that is due on :date!',
     ),
     
