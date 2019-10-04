@@ -72,6 +72,10 @@
 											@endif
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
+											@if(Sentinel::getUser()->unreadNotifications->count() > 1 && Sentinel::getUser()->unreadNotifications->count() <= 5)
+												<a href="#" class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.dismissall') }}</a>
+												<div class="dropdown-divider"></div>
+											@endif
 											@foreach (Sentinel::getUser()->unreadNotifications->take(5) as $notification)
 											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
 											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
