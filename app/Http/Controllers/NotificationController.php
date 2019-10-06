@@ -34,4 +34,16 @@ class NotificationController extends Controller
         }
         return Redirect::back();
     }
+
+    /**
+     * Dismiss all the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function dismissall()
+    {
+        $notification = Sentinel::getUser()->unreadNotifications->markAsRead();
+        return Redirect::back();
+    }
 }

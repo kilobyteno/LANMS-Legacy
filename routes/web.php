@@ -168,6 +168,10 @@ Route::group([
             'as' => 'user-notifications',
             'uses' => 'NotificationController@show'
         ]);
+        Route::get('/notifications/dismissall', [
+            'as' => 'user-notifications-dismissall',
+            'uses' => 'NotificationController@dismissall'
+        ]);
         Route::get('/notification/{id}/dismiss', [
             'as' => 'user-notification-dismiss',
             'uses' => 'NotificationController@dismiss'
