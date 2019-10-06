@@ -113,6 +113,9 @@ return [
     ),
 
     'notification' => array(
+        'title' => 'Notifications',
+        'time' => 'Time',
+        'message' => 'Message',
         'nothing' => 'No new notifications.',
         'viewall' => 'View all notifications',
         'dismissall' => 'Dismiss all notifications',

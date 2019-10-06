@@ -97,12 +97,11 @@
 													@endif
 												</a>
 											@endforeach
-											@if(Sentinel::getUser()->unreadNotifications->count() > 5)
-												<div class="dropdown-divider"></div>
-												<a href="#" class="dropdown-item text-center text-muted-dark">{{ trans('global.notification.viewall') }}</a>
-											@elseif(Sentinel::getUser()->unreadNotifications->count() === 0)
+											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
 												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
 											@endif
+											<div class="dropdown-divider"></div>
+											<a href="{{ route('user-notifications') }}" class="dropdown-item text-center text-muted-dark">{{ trans('global.notification.viewall') }}</a>
 										</div>
 									</div>
 									<div class="dropdown">

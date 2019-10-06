@@ -113,6 +113,9 @@ return [
     ),
 
     'notification' => array(
+        'title' => 'Varsler',
+        'time' => 'Tidspunkt',
+        'message' => 'Melding',
         'nothing' => 'Ingen nye varsler.',
         'viewall' => 'Vis alle varsler',
         'dismissall' => 'Avvis alle varslene',
