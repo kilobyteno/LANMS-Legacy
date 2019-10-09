@@ -40,7 +40,7 @@
 									<div class="input-group-text">Row</div>
 								</div>
 								<input type="text" class="form-control input-lg" id="row" placeholder="A" value="{{ $seat->row->name ?? '' }}" autocomplete="off" />
-								<input type="hidden" class="hidden" id="row_id" name="row_id" value="{{ ($seat->row->id) ? $seat->row->id : old('row_id') }}">
+								<input type="hidden" class="hidden" id="row_id" name="row_id" value="{{ ($seat->row) ? $seat->row->id : old('row_id') }}">
 								@if($errors->has('row_id'))
 									<p class="text-danger">{{ $errors->first('row_id') }}</p>
 								@endif
