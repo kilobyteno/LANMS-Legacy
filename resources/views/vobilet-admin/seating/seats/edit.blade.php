@@ -23,10 +23,8 @@
 					<div class="row">
 
 						<div class="col-sm-5">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">Name</div>
-								</div>
+							<div class="form-group">
+								<label class="form-control-label">Name</label>
 								<input type="text" class="form-control input-lg" name="name" placeholder="A1" value="{{ (old('name')) ? old('name') : $seat->name }}" />
 								@if($errors->has('name'))
 									<p class="text-danger">{{ $errors->first('name') }}</p>
@@ -35,12 +33,13 @@
 						</div>
 
 						<div class="col-sm-5">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">Row</div>
-								</div>
-								<input type="text" class="form-control input-lg" id="row" placeholder="A" value="{{ $seat->row->name ?? '' }}" autocomplete="off" />
-								<input type="hidden" class="hidden" id="row_id" name="row_id" value="{{ ($seat->row) ? $seat->row->id : old('row_id') }}">
+							<div class="form-group">
+								<label class="form-control-label">Row</label>
+								<select name="row_id" class="select2">
+									@foreach(\LANMS\SeatRows::withTrashed()->get() as $row)
+										<option value="{{ $row->id }}" @if($seat->row) @if($row->id == $seat->row->id) selected @endif @endif>{{ $row->name }}</option>
+									@endforeach
+								</select>
 								@if($errors->has('row_id'))
 									<p class="text-danger">{{ $errors->first('row_id') }}</p>
 								@endif
@@ -81,6 +80,7 @@
 					}
 				});
 			 });
+			$('.select2').select2();
 		})(jQuery);
 	</script>
 @stop
