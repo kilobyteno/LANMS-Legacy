@@ -24,6 +24,7 @@
 							<th>Name</th>
 							<th>Slug</th>
 							<th>Status</th>
+							<th>Seats</th>
 							<th>Updated at</th>
 							<th>Updated by</th>
 							<th>Actions</th>
@@ -36,6 +37,7 @@
 								<td>{{ $row->name }}</td>
 								<td>{{ $row->slug }}</td>
 								<td>{!! ($row->deleted_at) ? '<span class="badge badge-danger">Deleted</span>' : '<span class="badge badge-info">Active</span>' !!}</td>
+								<td>{{ $row->seats->count() }}</td>
 								<td>{{ \Carbon::parse($row->updated_at)->toDateTimeString() }}</td>
 								<td><a href="{{ URL::route('user-profile', $row->editor->username) }}">{{ User::getFullnameByID($row->editor->id) }}</a></td>
 								<td>
