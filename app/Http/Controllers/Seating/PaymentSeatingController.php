@@ -200,9 +200,7 @@ class PaymentSeatingController extends Controller
                 'amount'    => Setting::get('SEATING_SEAT_PRICE'),
                 'payment_method_types' => ['card'],
             ]);
-            $pic = Stripe::PaymentIntents()->confirm($pi['id'], [
-              'payment_method' => 'pm_card_visa',
-            ]);
+            $pic = Stripe::PaymentIntents()->confirm($pi['id']);
         } catch (CardErrorException $e) {
             // Get the status code
             $code = $e->getCode();
