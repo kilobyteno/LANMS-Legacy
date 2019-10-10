@@ -23,8 +23,7 @@
 							<th>ID</th>
 							<th>Name</th>
 							<th>Slug</th>
-							<th>Created at</th>
-							<th>Created by</th>
+							<th>Status</th>
 							<th>Updated at</th>
 							<th>Updated by</th>
 							<th>Actions</th>
@@ -36,14 +35,16 @@
 								<th scope="row">{{ $row->id }}</th>
 								<td>{{ $row->name }}</td>
 								<td>{{ $row->slug }}</td>
-								<td>{{ \Carbon::parse($row->created_at)->toDateTimeString() }}</td>
-								<td><a href="{{ URL::route('user-profile', $row->author->username) }}">{{ User::getFullnameByID($row->author->id) }}</a></td>
+								<td>{!! ($row->deleted_at) ? '<span class="badge badge-danger">Deleted</span>' : '<span class="badge badge-info">Active</span>' !!}</td>
 								<td>{{ \Carbon::parse($row->updated_at)->toDateTimeString() }}</td>
 								<td><a href="{{ URL::route('user-profile', $row->editor->username) }}">{{ User::getFullnameByID($row->editor->id) }}</a></td>
 								<td>
 									<a href="{{ route('admin-seating-row-edit', $row->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-									@if(Sentinel::hasAccess('admin.seating.row.destroy'))
+									@if(Sentinel::hasAccess('admin.seating.row.destroy') && !$row->deleted_at)
 										<a href="javascript:;" onclick="jQuery('#row-destroy-{{ $row->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@endif
+									@if(Sentinel::hasAccess('admin.seating.row.destroy') && $row->deleted_at)
+										<a href="{{ route('admin-seating-row-restore', $row->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
 									@endif
 								</td>
 							</tr>
