@@ -31,7 +31,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="{{ Setting::get('WEB_LOGO_ALT') }}" style="width:100%; max-width:300px;">
+                                <img src="{{ Setting::get('WEB_LOGO_DARK') }}" style="width:100%; max-width:300px;">
                             </td>
                             <td>
                                 {{ trans('pdf.receipt.reservationnumber') }}: {{ $payment->reservation->id }}<br>
