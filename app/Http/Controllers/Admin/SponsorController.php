@@ -184,7 +184,31 @@ class SponsorController extends Controller
                     ->with('messagetype', 'danger')
                     ->with('message', 'Something went wrong while deleting the page.');
             }
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.restore'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $sponsor = Sponsor::withTrashed()->find($id);
+        if ($sponsor->restore()) {
+            return Redirect::route('admin-sponsor')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The sponsor has now been deleted!');
         } else {
+            return Redirect::route('admin-sponsor')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while deleting the page.');
+        }
+    }
 
     /**
      * Duplicate the specified resource from storage.
