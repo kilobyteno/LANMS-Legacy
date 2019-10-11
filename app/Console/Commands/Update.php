@@ -4,6 +4,7 @@ namespace LANMS\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use anlutro\LaravelSettings\Facade as Setting;
 
 class Update extends Command
 {
@@ -38,9 +39,22 @@ class Update extends Command
      */
     public function handle()
     {
+        $rev = exec('git rev-parse --short HEAD');
+        $branch = exec('git describe --tags --abbrev=0');
+        $lanms_ver = $branch.' ('.$rev.')';
+
         Artisan::call('migrate --force');
         Artisan::call('lanms:refreshpermissions');
         Artisan::call('lanms:refreshinfo');
         Artisan::call('lanms:checklicense');
+        if (Setting::has('APP_VERSION_TYPE')) {
+            Setting::forget('APP_VERSION_TYPE');
+        }
+        if (Setting::get('APP_VERSION') != $lanms_ver) {
+            $this->info('Current version: '.Setting::get('APP_VERSION'));
+            Setting::set('APP_VERSION', $lanms_ver);
+            $this->info('Updated version to: '.Setting::get('APP_VERSION'));
+            Setting::save();
+        }
     }
 }
