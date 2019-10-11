@@ -35,7 +35,7 @@
 		</div>
 	@endif
 
-
+	{{--
 	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
@@ -57,6 +57,7 @@
 			</div>
 		</div>
 	@endif
+	--}}
 
 	@if(env('APP_ENV') == 'development' || env('APP_ENV') == 'local')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
