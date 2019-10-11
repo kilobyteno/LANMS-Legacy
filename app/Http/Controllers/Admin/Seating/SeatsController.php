@@ -22,7 +22,7 @@ class SeatsController extends Controller
     public function index()
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.seat.*'])) {
-            $seats = Seats::all();
+            $seats = Seats::withTrashed()->get();
             return view('seating.seats.index')
                         ->with('allseats', $seats);
         } else {
@@ -84,7 +84,7 @@ class SeatsController extends Controller
     public function edit($id)
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.seat.update'])) {
-            $seat = Seats::find($id);
+            $seat = Seats::withTrashed()->find($id);
             return view('seating.seats.edit')->withSeat($seat);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -101,7 +101,7 @@ class SeatsController extends Controller
     public function update($id, SeatEditRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.seat.update'])) {
-            $seat               = Seats::find($id);
+            $seat               = Seats::withTrashed()->find($id);
             $seat->name             = $request->name;
             $seat->slug             = strtolower($request->name);
             $seat->row_id           = $request->row_id;
@@ -139,6 +139,24 @@ class SeatsController extends Controller
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+    }
+
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.seat.destroy'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $seat = Seats::withTrashed()->find($id);
+        if ($seat->restore()) {
+            return Redirect::route('admin-seating-seats')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The seat has now been restored!');
+        } else {
+            return Redirect::route('admin-seating-seats')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while restoring the seat.');
         }
     }
 }
