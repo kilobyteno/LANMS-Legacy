@@ -35,7 +35,7 @@
 							{{ LANMS\Info::getContent('address_street') }}<br>
 							{{ LANMS\Info::getContent('address_postal_code') }}, {{ LANMS\Info::getContent('address_city') }}<br>
 							{{ LANMS\Info::getContent('address_county') }}, {{ LANMS\Info::getContent('address_country') }}<br>
-							{{ \Setting::get('MAIL_MAIN_EMAIL') }}
+							{{ env('MAIL_FROM_ADDRESS') }}
 						</address>
 					</div>
 					<div class="col-lg-6 text-right">
