@@ -2,8 +2,9 @@
 
 namespace LANMS\Http\Controllers;
 
-use LANMS\Page;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use LANMS\News;
+use LANMS\Page;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,19 @@ class HomeController extends Controller
             if (in_array($locale, array_keys(config('app.locales')))) {
                 \Session::put('locale', $locale);
             }
+        }
+        return redirect()->back();
+    }
+
+    public function theme()
+    {
+        if (Sentinel::check()) {
+            if (Sentinel::getUser()->theme == 'default') {
+                $theme = 'dark';
+            } else {
+                $theme = 'default';
+            }
+            Sentinel::update(Sentinel::getUser(), ['theme' => $theme]);
         }
         return redirect()->back();
     }
