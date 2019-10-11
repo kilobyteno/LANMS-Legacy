@@ -182,7 +182,7 @@
 							        <div class="carousel-inner row w-100 mx-auto" role="listbox">
 							        	@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 								            <div class="carousel-item col-md-4 @if($sponsor->sort_order == 0) active @endif">
-								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a>
+								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }}" alt="{{ $sponsor->name }}"></a>
 								            </div>
 							            @endforeach
 							        </div>
