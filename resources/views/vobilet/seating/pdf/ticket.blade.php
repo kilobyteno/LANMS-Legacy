@@ -24,7 +24,7 @@
 		<div class="col-md-12">
 			<div class="text-center">
 				<br>
-				<img src=".{{ Setting::get('WEB_LOGO') }}" style="max-width:50%;display: inline-block;">
+				<img src=".{{ Setting::get('WEB_LOGO_ALT') }}" style="max-width:50%;display: inline-block;">
 				<br>
 				<h1>{{ trans('pdf.ticket.title') }}</h1>
 				<br>

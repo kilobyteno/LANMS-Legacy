@@ -6,7 +6,7 @@
 		@elseif(Session::get('messagetype') == 'warning')
 			<i class="fas fa-exclamation mr-2" aria-hidden="true"></i>
 		@elseif(Session::get('messagetype') == 'danger')
-			<i class="fas fa-frown mr-2" aria-hidden="true"></i>
+			<i class="far fa-frown mr-2" aria-hidden="true"></i>
 		@elseif(Session::get('messagetype') == 'success')
 			<i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
 		@endif
