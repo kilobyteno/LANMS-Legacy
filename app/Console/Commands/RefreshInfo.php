@@ -61,10 +61,12 @@ class RefreshInfo extends Command
             'social_discord_server_id' => 'Find the server ID under "Widget" in the server settings. Remeber to have "Enable Server Widget" enabled under the same page.',
         );
         foreach ($infos as $info) {
-            if (is_null($info->description) && $descriptions[$info->name]) {
-                $info->description = $descriptions[$info->name];
-                $info->save();
-                $this->info('Updated description for '.$info->name);
+            if (array_key_exists($info->name, $descriptions)) {
+                if (is_null($info->description) || $info->description != $descriptions[$info->name]) {
+                    $info->description = $descriptions[$info->name];
+                    $info->save();
+                    $this->info('Updated description for '.$info->name);
+                }
             }
         }
     }
