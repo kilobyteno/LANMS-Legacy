@@ -55,6 +55,9 @@ class Update extends Command
         if (Setting::has('APP_VERSION_TYPE')) {
             Setting::forget('APP_VERSION_TYPE');
         }
+        if (Setting::has('GOOGLE_MAPS_API_KEY')) {
+            Setting::forget('GOOGLE_MAPS_API_KEY');
+        }
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
             Setting::set('APP_VERSION', $ver);
