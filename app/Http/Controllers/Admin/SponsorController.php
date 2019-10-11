@@ -21,7 +21,6 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        
         $sponsors = Sponsor::thisYear()->get();
         return view('sponsor.index')->with('sponsors', $sponsors);
     }
@@ -48,12 +47,11 @@ class SponsorController extends Controller
      */
     public function create()
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
-            return view('sponsor.create');
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        return view('sponsor.create');
     }
 
     /**
@@ -63,39 +61,38 @@ class SponsorController extends Controller
      */
     public function store(SponsorCreateRequest $request)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
-            $image      = $request->file('image');
-            $name       = $request->get('name');
-            $cleanname  = strtolower(str_replace(' ', '', $name));
-                
-            $filename           = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '.' . $image->getClientOriginalExtension();
-            $path               = public_path() . '/images/sponsor/' . $filename;
-            $webpath            = '/images/sponsor/' . $filename;
-
-            $imagesave          = Image::make($image->getRealPath())->fit(335, 90)->save($path);
-
-            $sponsor                = new Sponsor;
-            $sponsor->name          = $name;
-            $sponsor->url           = $request->get('url');
-            $sponsor->description   = $request->get('description');
-            $sponsor->sort_order    = $request->get('sort_order');
-            $sponsor->image         = $webpath;
-            $sponsor->year          = \Setting::get('SEATING_YEAR');
-            $sponsor->editor_id     = Sentinel::getUser()->id;
-            $sponsor->author_id     = Sentinel::getUser()->id;
-
-            if ($sponsor->save() && $imagesave) {
-                return Redirect::route('admin-sponsor')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The sponsor has now been created!');
-            } else {
-                return Redirect::route('admin-sponsor-create')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the sponsor.');
-            }
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+        $image      = $request->file('image');
+        $name       = $request->get('name');
+        $cleanname  = strtolower(str_replace(' ', '', $name));
+            
+        $filename           = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '.' . $image->getClientOriginalExtension();
+        $path               = public_path() . '/images/sponsor/' . $filename;
+        $webpath            = '/images/sponsor/' . $filename;
+
+        $imagesave          = Image::make($image->getRealPath())->fit(335, 90)->save($path);
+
+        $sponsor                = new Sponsor;
+        $sponsor->name          = $name;
+        $sponsor->url           = $request->get('url');
+        $sponsor->description   = $request->get('description');
+        $sponsor->sort_order    = $request->get('sort_order');
+        $sponsor->image         = $webpath;
+        $sponsor->year          = \Setting::get('SEATING_YEAR');
+        $sponsor->editor_id     = Sentinel::getUser()->id;
+        $sponsor->author_id     = Sentinel::getUser()->id;
+
+        if ($sponsor->save() && $imagesave) {
+            return Redirect::route('admin-sponsor')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The sponsor has now been created!');
+        } else {
+            return Redirect::route('admin-sponsor-create')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while saving the sponsor.');
         }
     }
 
@@ -108,13 +105,12 @@ class SponsorController extends Controller
      */
     public function edit($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.update'])) {
-            $sponsor = Sponsor::find($id);
-            return view('sponsor.edit')->withSponsor($sponsor);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.update'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $sponsor = Sponsor::find($id);
+            return view('sponsor.edit')->withSponsor($sponsor);
     }
 
     /**
@@ -125,43 +121,41 @@ class SponsorController extends Controller
      */
     public function update($id, SponsorEditRequest $request)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
-            $image      = $request->file('image');
-            $name       = $request->get('name');
-            $cleanname  = strtolower(str_replace(' ', '', $name));
-
-            if ($image) {
-                $filename           = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '.' . $image->getClientOriginalExtension();
-                $path               = public_path() . '/images/sponsor/' . $filename;
-                $webpath            = '/images/sponsor/' . $filename;
-
-                $imagesave          = Image::make($image->getRealPath())->fit(335, 90)->save($path);
-            }
-
-            $sponsor                = Sponsor::find($id);
-            $sponsor->name          = $name;
-            $sponsor->url           = $request->get('url');
-            $sponsor->description   = $request->get('description');
-            $sponsor->sort_order    = $request->get('sort_order');
-
-            if ($image) {
-                $sponsor->image         = $webpath;
-            }
-            
-            $sponsor->editor_id     = Sentinel::getUser()->id;
-
-            if ($sponsor->save()) {
-                return Redirect::route('admin-sponsor')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The sponsor has now been updated!');
-            } else {
-                return Redirect::route('admin-sponsor-create')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the sponsor.');
-            }
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+        $image      = $request->file('image');
+        $name       = $request->get('name');
+        $cleanname  = strtolower(str_replace(' ', '', $name));
+
+        if ($image) {
+            $filename           = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '.' . $image->getClientOriginalExtension();
+            $path               = public_path() . '/images/sponsor/' . $filename;
+            $webpath            = '/images/sponsor/' . $filename;
+            $imagesave          = Image::make($image->getRealPath())->fit(335, 90)->save($path);
+        }
+
+        $sponsor                = Sponsor::find($id);
+        $sponsor->name          = $name;
+        $sponsor->url           = $request->get('url');
+        $sponsor->description   = $request->get('description');
+        $sponsor->sort_order    = $request->get('sort_order');
+
+        if ($image) {
+            $sponsor->image         = $webpath;
+        }
+        
+        $sponsor->editor_id     = Sentinel::getUser()->id;
+
+        if ($sponsor->save()) {
+            return Redirect::route('admin-sponsor')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The sponsor has now been updated!');
+        } else {
+            return Redirect::route('admin-sponsor-create')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while saving the sponsor.');
         }
     }
 
@@ -173,17 +167,20 @@ class SponsorController extends Controller
      */
     public function destroy($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.destroy'])) {
-            $sponsor = Sponsor::find($id);
-            if ($sponsor->delete()) {
-                return Redirect::route('admin-sponsor')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The sponsor has now been deleted!');
-            } else {
-                return Redirect::route('admin-sponsor')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while deleting the page.');
-            }
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.destroy'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $sponsor = Sponsor::find($id);
+        if ($sponsor->delete()) {
+            return Redirect::route('admin-sponsor')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The sponsor has now been deleted!');
+        } else {
+            return Redirect::route('admin-sponsor')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while deleting the page.');
+        }
     }
 
     /**
