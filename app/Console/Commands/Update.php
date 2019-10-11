@@ -43,10 +43,15 @@ class Update extends Command
         $branch = exec('git describe --tags --abbrev=0');
         $ver = $branch.' ('.$rev.')';
 
+        $this->info('Migrating...');
         Artisan::call('migrate --force');
+        $this->info('Refreshing permissions...');
         Artisan::call('lanms:refreshpermissions');
+        $this->info('Refreshing info descriptions...');
         Artisan::call('lanms:refreshinfo');
+        $this->info('Checking license...');
         Artisan::call('lanms:checklicense');
+        $this->info('Updating version...');
         if (Setting::has('APP_VERSION_TYPE')) {
             Setting::forget('APP_VERSION_TYPE');
         }
@@ -56,5 +61,6 @@ class Update extends Command
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
+        $this->info('Done.');
     }
 }
