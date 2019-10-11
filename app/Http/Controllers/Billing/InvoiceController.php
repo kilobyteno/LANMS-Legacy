@@ -125,6 +125,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
+        }
         return view('billing.invoice.create');
     }
 
@@ -136,6 +140,10 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
+        }
         $user = \LANMS\User::find($request->get('user_id'));
         if (is_null($user)) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
