@@ -15,14 +15,14 @@ class InfoTableSeeder extends Seeder
     {
         Info::create([
 			'name' 		=> 'when',
-			'content'	=> '26. feb - 26. feb 2019',
+            'content'   => '01. jan - 02. jan 1970',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
 
 		Info::create([
 			'name' 		=> 'where',
-			'content'	=> 'Gausdal Ungdomskole',
+            'content'   => 'Infihex Arena',
 			'author_id'	=> 1,
 			'editor_id'	=> 1,
 		]);
