@@ -2,16 +2,15 @@
 
 namespace LANMS\Http\Controllers\Admin;
 
-use LANMS\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
-
-use LANMS\Sponsor;
-
+use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Admin\Sponsor\SponsorCreateRequest;
 use LANMS\Http\Requests\Admin\Sponsor\SponsorEditRequest;
+use LANMS\Sponsor;
 
 class SponsorController extends Controller
 {
@@ -34,14 +33,12 @@ class SponsorController extends Controller
      */
     public function admin()
     {
-        if (Sentinel::getUser()->hasAccess(['admin.sponsor.*'])) {
-            $sponsors = Sponsor::thisYear()->get();
-            return view('sponsor.index')
-                        ->with('sponsors', $sponsors);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.*'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $sponsors = Sponsor::twoLastYears()->withTrashed()->orderBy('year', 'DESC')->get();
+        return view('sponsor.index')->with('sponsors', $sponsors);
     }
 
     /**
@@ -188,8 +185,35 @@ class SponsorController extends Controller
                     ->with('message', 'Something went wrong while deleting the page.');
             }
         } else {
+
+    /**
+     * Duplicate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function duplicate($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.sponsor.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $sponsor = Sponsor::withTrashed()->find($id);
+        $dupe_sponsor = $sponsor->replicate();
+        $dupe_sponsor->year = \Setting::get('SEATING_YEAR');
+
+        if ($sponsor->image) {
+            $filename = strtolower(str_replace(' ', '', $dupe_sponsor->name)) . '_' . \Setting::get('SEATING_YEAR') . '.' . File::extension(public_path() . $sponsor->image);
+            $path = public_path() . $dupe_sponsor->image;
+            $webpath = '/images/sponsor/' . $filename;
+            $new_path = public_path() . $dupe_sponsor->image;
+            File::copy($path, $new_path);
+            $dupe_sponsor->image = $webpath;
+        }
+
+        $dupe_sponsor->save();
+        return Redirect::route('admin-sponsor')
+                ->with('messagetype', 'success')
+                ->with('message', 'The sponsor has now been duplicated!');
     }
 }

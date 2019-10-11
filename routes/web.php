@@ -971,6 +971,10 @@ Route::group([
                     'as' => 'admin-sponsor-destroy',
                     'uses' => 'Admin\SponsorController@destroy'
                 ]);
+                Route::get('/{id}/duplicate', [
+                    'as' => 'admin-sponsor-duplicate',
+                    'uses' => 'Admin\SponsorController@duplicate'
+                ]);
             });
         Route::group([
             'prefix' => 'email'
