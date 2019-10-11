@@ -20,6 +20,7 @@ if (Config::get('app.debug')) {
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
         Artisan::call('db:seed');
+        Artisan::call('lanms:update');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test', function () {
