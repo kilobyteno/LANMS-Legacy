@@ -24,16 +24,18 @@
 							<tr>
 								<th>Key</th>
 								<th>Value</th>
+								<th>Description</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($settings as $key => $value)
+							@foreach($settings as $setting)
 								<tr>
-									<td scope="row">{{ $key }}</td>
-									<td>{{ $value }}</td>
+									<td scope="row">{{ $setting->key }}</td>
+									<td>{{ $setting->value }}</td>
+									<td>{!! $setting->description !!}</td>
 									<td>
-										<a href="{{ route('admin-settings-edit', $key) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
+										<a href="{{ route('admin-settings-edit', $setting->key) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
 									</td>
 								</tr>
 							@endforeach
