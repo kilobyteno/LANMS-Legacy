@@ -12,7 +12,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
         <div class="card">
             @if(count($invoices) == 0)
                 <div class="card-body">
