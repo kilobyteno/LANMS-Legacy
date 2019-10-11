@@ -41,7 +41,7 @@ class Update extends Command
     {
         $rev = exec('git rev-parse --short HEAD');
         $branch = exec('git describe --tags --abbrev=0');
-        $lanms_ver = $branch.' ('.$rev.')';
+        $ver = $branch.' ('.$rev.')';
 
         Artisan::call('migrate --force');
         Artisan::call('lanms:refreshpermissions');
@@ -50,9 +50,9 @@ class Update extends Command
         if (Setting::has('APP_VERSION_TYPE')) {
             Setting::forget('APP_VERSION_TYPE');
         }
-        if (Setting::get('APP_VERSION') != $lanms_ver) {
+        if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
-            Setting::set('APP_VERSION', $lanms_ver);
+            Setting::set('APP_VERSION', $ver);
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
