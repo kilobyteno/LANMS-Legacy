@@ -2,8 +2,10 @@
 
 namespace LANMS\Http\Controllers\Compo;
 
-use LANMS\Compo;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use LANMS\Compo;
 use LANMS\Http\Controllers\Controller;
 
 class CompoController extends Controller
@@ -26,8 +28,8 @@ class CompoController extends Controller
      */
     public function admin()
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.*'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.*'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $compos = Compo::thisYear()->get();
@@ -41,8 +43,8 @@ class CompoController extends Controller
      */
     public function create()
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.create'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.create'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         return view('compo.create');
@@ -56,8 +58,8 @@ class CompoController extends Controller
      */
     public function store(Request $request)
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.create'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.create'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
 
@@ -87,11 +89,11 @@ class CompoController extends Controller
             'start_at' => $start_at ,
             'last_sign_up_at' => $last_sign_up_at,
             'end_at' => $end_at,
-            'author_id' => \Sentinel::getUser()->id,
-            'editor_id' => \Sentinel::getUser()->id,
+            'author_id' => Sentinel::getUser()->id,
+            'editor_id' => Sentinel::getUser()->id,
         ]);
 
-        return \Redirect::route('admin-compo')
+        return Redirect::route('admin-compo')
                 ->with('messagetype', 'success')
                 ->with('message', 'Created compo successfully!');
     }
@@ -116,8 +118,8 @@ class CompoController extends Controller
      */
     public function edit($id)
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $compo = Compo::find($id);
@@ -133,8 +135,8 @@ class CompoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.update'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $compo = Compo::find($id);
@@ -165,10 +167,10 @@ class CompoController extends Controller
             'start_at' => $start_at ,
             'last_sign_up_at' => $last_sign_up_at,
             'end_at' => $end_at,
-            'editor_id' => \Sentinel::getUser()->id,
+            'editor_id' => Sentinel::getUser()->id,
         ]);
 
-        return \Redirect::route('admin-compo')
+        return Redirect::route('admin-compo')
                 ->with('messagetype', 'success')
                 ->with('message', 'Updated compo successfully!');
     }
@@ -181,13 +183,13 @@ class CompoController extends Controller
      */
     public function destroy($id)
     {
-        if (!\Sentinel::getUser()->hasAccess(['admin.compo.destroy'])) {
-            return \Redirect::back()->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.destroy'])) {
+            return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
         $compo = \LANMS\Compo::find($id);
         $compo->delete();
-        return \Redirect::route('admin-compo')
+        return Redirect::route('admin-compo')
                 ->with('messagetype', 'success')
                 ->with('message', 'Deleted compo successfully!');
     }

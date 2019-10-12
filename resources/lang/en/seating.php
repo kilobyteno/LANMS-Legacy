@@ -17,6 +17,7 @@ return [
         'paymentcantchange' => 'You can\'t change your payment of your reservation after the first 48 hours.',
         'youcanchangepayment' => 'You can now change your payment of your reservation.',
         'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
+        'unpaidinvoice' => 'You have one or more unpaid invoices, please pay these first. You will be able to reserve a seat once this has been taken care of.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',

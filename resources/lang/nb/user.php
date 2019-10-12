@@ -79,12 +79,12 @@ return [
                 ),
                 'event' => array(
                     'invoice' => array(
-                        'created' => 'Utkastet fakturaen ble opprettet.',
+                        'created' => 'Utkast faktura ble opprettet.',
                         'updated' => 'Fakturaen ble oppdatert.',
-                        'finalized' => 'Utkastet fakturaen ble avsluttet.',
+                        'finalized' => 'Utkast faktura ble avsluttet.',
                         'sent' => 'Faktura ble sendt.',
-                        'marked_uncollectible' => 'Fakturaen ble merket for tap.',
-                        'voided' => 'Fakturaen ble ugyldig.',
+                        'marked_uncollectible' => 'Fakturaen ble merket som tap.',
+                        'voided' => 'Fakturaen ble merket som ugyldig.',
                     ),
                 ),
                 'product' => 'Produkt',
