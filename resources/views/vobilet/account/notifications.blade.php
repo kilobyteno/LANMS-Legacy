@@ -34,10 +34,13 @@
 									<td>{{ $notification->created_at->diffForHumans() }}</td>
 									<td>
 										@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
-											<i class="fas fa-exclamation mr-2"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}
+											<i class="fas fa-exclamation mr-2 text-danger"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}
 											</div>
 										@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpires')
-											<i class="fas fa-chair mr-2"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}
+											<i class="fas fa-chair mr-2 text-warning"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}
+											</div>
+										@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpired')
+											<i class="fas fa-chair mr-2 text-danger"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}
 											</div>
 										@else
 											<i class="fas fa-info mr-2"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}
