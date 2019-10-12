@@ -88,8 +88,8 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Address',
-        'address2' => 'Address 2',
+        'address1' => 'Street',
+        'address2' => 'House Number',
         'postalcode' => 'Postal Code',
         'city' => 'City',
         'county' => 'County',
