@@ -63,6 +63,25 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
 
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable|string',
+            'page_id' => 'nullable|integer',
+            'challonge_subdomain' => 'nullable|string',
+            'challonge_url' => 'nullable|string',
+            'type' => 'integer',
+            'signup_type' => 'integer',
+            'signup_size' => 'required|integer',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+            'last_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'last_sign_up_at_time' => 'required|date_format:H:i',
+            'end_at_date' => 'required|date_format:Y-m-d',
+            'end_at_time' => 'required|date_format:H:i',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+        ]);
+
         $start_at_date = $request->get('start_at_date');
         $start_at_time = $request->get('start_at_time');
         $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
@@ -139,6 +158,26 @@ class CompoController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable|string',
+            'page_id' => 'nullable|integer',
+            'challonge_subdomain' => 'nullable|string',
+            'challonge_url' => 'nullable|string',
+            'type' => 'integer',
+            'signup_type' => 'integer',
+            'signup_size' => 'required|integer',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+            'last_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'last_sign_up_at_time' => 'required|date_format:H:i',
+            'end_at_date' => 'required|date_format:Y-m-d',
+            'end_at_time' => 'required|date_format:H:i',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+        ]);
+        
         $compo = Compo::find($id);
 
         $start_at_date = $request->get('start_at_date');
