@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SeatReservationExpires extends Notification
+class SeatReservationExpired extends Notification
 {
     use Queueable;
 
@@ -20,7 +20,7 @@ class SeatReservationExpires extends Notification
     {
         $this->reservation = $reservation;
         $this->route_id = $this->reservation->seat->name;
-        $this->route = 'seating-pay';
+        $this->route = 'seating-show';
     }
 
     /**
@@ -43,9 +43,9 @@ class SeatReservationExpires extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(trans('mail.reservation.expires.title'))
-                    ->line(trans('mail.reservation.expires.title'))
-                    ->line(trans('mail.reservation.expires.desc', ['seatname' => $this->route_id]))
+                    ->subject(trans('mail.reservation.expired.title'))
+                    ->line(trans('mail.reservation.expired.title'))
+                    ->line(trans('mail.reservation.expired.desc', ['seatname' => $this->route_id]))
                     ->action(trans('global.view'), route($this->route, $this->route_id));
     }
 
@@ -58,7 +58,7 @@ class SeatReservationExpires extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'id' => $this->route_id,
+            'id' => $this->reservation->seat->name,
             'route' => $this->route,
         ];
     }
