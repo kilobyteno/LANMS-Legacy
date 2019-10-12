@@ -2,7 +2,11 @@
 
 namespace LANMS\Console\Commands;
 
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
+use LANMS\Notifications\InvoiceUnPaid as InvUnpaid;
+use LANMS\User;
 
 class UpdateNotifications extends Command
 {
@@ -18,7 +22,7 @@ class UpdateNotifications extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Checks for things needing a notification for a user and creates a notification.';
 
     /**
      * Create a new command instance.
@@ -37,6 +41,28 @@ class UpdateNotifications extends Command
      */
     public function handle()
     {
-        //
+        foreach (User::active() as $user) {
+            if ($user->stripecustomer) {
+                $stripe_customer_code = $user->stripecustomer->cus;
+                $invoices = Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+                $invoices = $invoices['data'];
+                foreach ($invoices as $invoice) {
+                    if ($invoice['paid'] == false && $invoice['status'] != 'draft') {
+                        $data = [
+                            'amount_due' => $invoice['amount_due'],
+                            'due_date' => $invoice['due_date'],
+                            'currency' => $invoice['currency'],
+                            'url' => route('account-billing-invoice-view', $invoice['id']),
+                        ];
+                        $db_data = collect($data)->toJson();
+                        // Check if there is a notification already
+                        $notification = DB::table('notifications')->where('data', $db_data)->where('read_at', null)->first();
+                        if (!$notification) {
+                            Notification::send($user, new InvUnpaid($invoice));
+                        }
+                    }
+                }
+            }
+        }
     }
 }
