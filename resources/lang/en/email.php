@@ -21,18 +21,4 @@ return [
 
     ),
 
-    'seat' => array(
-
-        'removed' => array(
-            'title' => 'Reservation removed!',
-            'desc' => 'Your reservation for the :seatname seat has been removed, since you have not paid for it within 48 hours of reservation time.'
-        ),
-        'removedsoon' => array(
-            'title' => 'Your reservation will be removed soon!',
-            'desc' => 'Your reservation for the :seatname seat will be removed in 24 hours, if you do not pay for the reservation.',
-        ),
-
-
-    ),
-
 ];
