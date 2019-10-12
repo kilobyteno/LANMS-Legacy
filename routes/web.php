@@ -165,6 +165,10 @@ Route::group([
             'as' => 'user-profile-edit-post',
             'uses' => 'Member\AccountController@postEditProfile'
         ]);
+        Route::get('/notification/{username}/dismiss', [
+            'as' => 'user-notification-dismiss',
+            'uses' => 'NotificationController@dismiss'
+        ]);
         Route::get('/members', [
             'as' => 'members',
             'uses' => 'Member\MemberController@index'

@@ -64,6 +64,40 @@
 										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
 									</div>
 								@else
+									<div class="dropdown d-none d-md-flex">
+										<a class="nav-link icon" data-toggle="dropdown">
+											<i class="far fa-bell"></i>
+											@if(Sentinel::getUser()->unreadNotifications->count() > 0)
+												<span class="nav-unread badge badge-danger badge-pill">{{ Sentinel::getUser()->unreadNotifications->count() }}</span>
+											@endif
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
+											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
+											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
+											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
+														<div class="notifyimg bg-danger">
+															<i class="fas fa-exclamation"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">Dismiss</button></div>
+														</div>
+													@else
+														<div class="notifyimg bg-info">
+															<i class="fas fa-info"></i>
+														</div>
+														<div>
+														<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+														</div>
+													@endif
+												</a>
+											@endforeach
+											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
+												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
+											@endif
+										</div>
+									</div>
 									<div class="dropdown">
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
@@ -301,6 +335,10 @@
 			$('#usermenu').click(function() {
 				$("i", this).toggleClass("fa-caret-up fa-caret-down");
 			});
+			function notificationDismiss (url) {
+				event.preventDefault();
+				window.location.href = url;
+			}
 		</script>
 
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))

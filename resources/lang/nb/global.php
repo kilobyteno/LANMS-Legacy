@@ -111,5 +111,11 @@ return [
         'dismiss' => 'JEG AKSEPTERER',
         'link' => 'Lær mer',
     ),
+
+    'notification' => array(
+        'nothing' => 'No new notifications.',
+        'viewall' => 'View all notifications',
+        'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
+    ),
     
 ];
