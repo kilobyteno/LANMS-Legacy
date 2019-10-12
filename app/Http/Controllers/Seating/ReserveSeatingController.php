@@ -87,7 +87,7 @@ class ReserveSeatingController extends Controller
             $stripe_customer_code = Sentinel::getUser()->stripecustomer->cus;
             $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
             foreach ($invoices['data'] as $invoice) {
-                if ($invoice['paid'] == false) {
+                if ($invoice['paid'] == false && $invoice['status'] != 'draft') {
                     return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.unpaidinvoice'));
                 }
