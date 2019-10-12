@@ -47,7 +47,7 @@ class InvoiceUnpaid extends Command
                 $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
                 $invoices = $invoices['data'];
                 foreach ($invoices as $invoice) {
-                    if ($invoice['paid'] == false) {
+                    if ($invoice['paid'] == false && $invoice['status'] != 'draft') {
                         $data = [
                             'amount_due' => $invoice['amount_due'],
                             'due_date' => $invoice['due_date'],
