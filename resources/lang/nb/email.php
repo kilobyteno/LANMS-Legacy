@@ -27,7 +27,7 @@ return [
         ),
         'removedsoon' => array(
             'title' => 'Din reservasjon vil bli fjernet snart!',
-            'desc' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for setet.',
+            'desc' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for reservasjonen.',
         ),
 
 

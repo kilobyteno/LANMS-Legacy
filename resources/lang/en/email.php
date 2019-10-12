@@ -29,7 +29,7 @@ return [
         ),
         'removedsoon' => array(
             'title' => 'Your reservation will be removed soon!',
-            'desc' => 'Your reservation for the :seatname seat will be removed in 24 hours, if you do not pay for the seat.',
+            'desc' => 'Your reservation for the :seatname seat will be removed in 24 hours, if you do not pay for the reservation.',
         ),
 
 

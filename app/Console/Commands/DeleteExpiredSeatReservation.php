@@ -3,6 +3,8 @@
 namespace LANMS\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
+use LANMS\Notifications\SeatReservationExpires;
 
 class DeleteExpiredSeatReservation extends Command
 {
@@ -50,11 +52,13 @@ class DeleteExpiredSeatReservation extends Command
                 \Mail::send('emails.seat.removedsoon', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
                     $message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
                 });
+                Notification::send($reservation->reservedby, new SeatReservationExpires($reservation));
                 $res = \SeatReservation::find($reservation->id);
                 $res->reminder_email_sent = 1;
                 $res->save();
                 $this->info('Reminder sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
             }
+            $this->info($reservation->expiretimeinhours());
         }
         $this->info('Done.');
     }

@@ -121,6 +121,7 @@ return [
         'dismissall' => 'Avvis alle varslene',
         'dismiss' => 'Avvis',
         'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
+        'seatreservationexpires' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for reservasjonen.',
     ),
     
 ];
