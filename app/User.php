@@ -19,7 +19,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Dialect\Gdpr\Portable;
 use Dialect\Gdpr\Anonymizable;
 
-class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
+use Illuminate\Contracts\Translation\HasLocalePreference;
+
+class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
     use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable;
 
@@ -109,6 +111,16 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'accepted_gdpr',
         'isAnonymized'
     ];
+
+    /**
+     * Get the user's preferred locale.
+     *
+     * @return string
+     */
+    public function preferredLocale()
+    {
+        return $this->language;
+    }
 
     /**
      * {@inheritDoc}
