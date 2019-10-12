@@ -72,7 +72,7 @@
 											@endif
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
-											@if(Sentinel::getUser()->unreadNotifications->count() > 1 && Sentinel::getUser()->unreadNotifications->count() <= 5)
+											@if(Sentinel::getUser()->unreadNotifications->count() > 1)
 												<p class="text-center m-3"><a href="{{ route('user-notifications-dismissall') }}" class="btn btn-info btn-sm">{{ trans('global.notification.dismissall') }}</a></p>
 												<div class="dropdown-divider"></div>
 											@endif
