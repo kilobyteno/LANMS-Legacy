@@ -73,3 +73,8 @@ a:hover, .btn-link:hover {
 	min-height:40px;
 	min-width:40px;
 }
+
+.nav-unread.badge {
+    width: 1.4rem;
+    height: 1.4rem;
+}
