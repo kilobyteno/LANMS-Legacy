@@ -21,6 +21,7 @@
 					</div>
 				</div>
 				<div class="card-body d-flex flex-column">
+					{!! $compo->prize_pool_total ? '<p><span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>'.$compo->prize_pool_total.'</span></p>' : '' !!}
 					@if($compo->start_at)<p>{{ trans('compo.starts') }}: <br>{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->end_at)<p>{{ trans('compo.ends') }}: <br>{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}</p>@endif
@@ -28,6 +29,13 @@
 					<p>{{ trans('compo.signup_type') }}: <br>{{ trans('compo.signup_type.'.$compo->signup_type) }}</p>
 					<p>{{ trans('compo.signup_size') }}: <br>{{ $compo->signup_size }} {{ trans_choice('compo.players', $compo->signup_size) }}</p>
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
+					@if($compo->prize_pool_first || $compo->prize_pool_second || $compo->prize_pool_third)
+						<p>{{ trans('compo.prize_pool') }}:<br>
+							{!! $compo->prize_pool_first ? '1. '.$compo->prize_pool_first.'<br>' : '' !!}
+							{!! $compo->prize_pool_second ? '2. '.$compo->prize_pool_second.'<br>' : '' !!}
+							{!! $compo->prize_pool_third ? '3. '.$compo->prize_pool_third.'<br>' : '' !!}
+						</p>
+					@endif
 				</div>
 				<div class="card-footer">
 					@if(\Sentinel::check())

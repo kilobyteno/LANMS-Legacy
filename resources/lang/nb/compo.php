@@ -16,6 +16,7 @@ return [
     'signup_type.1' => 'Lag',
     'signup_type.2' => 'Individuell',
     'signup_size' => 'Maks spillere',
+    'prize_pool' => 'Premiepott',
     'players' => '{1} spiller|[2,*] spillere',
     'submit' => 'Innsending',
     'teams' => 'Lag',

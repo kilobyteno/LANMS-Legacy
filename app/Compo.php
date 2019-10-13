@@ -29,6 +29,10 @@ class Compo extends Model
         'type',
         'signup_type',
         'signup_size',
+        'prize_pool_total',
+        'prize_pool_first',
+        'prize_pool_second',
+        'prize_pool_third',
     ];
 
     protected static $logName = 'compo';
@@ -46,6 +50,10 @@ class Compo extends Model
         'type',
         'signup_type',
         'signup_size',
+        'prize_pool_total',
+        'prize_pool_first',
+        'prize_pool_second',
+        'prize_pool_third',
     ];
 
     public function scopeThisYear($query)
