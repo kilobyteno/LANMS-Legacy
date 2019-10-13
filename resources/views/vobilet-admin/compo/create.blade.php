@@ -69,9 +69,9 @@
 					<div class="col-xl-3">
 						<div class="input-group">
 							<label class="form-label">Type:</label>
-							<select name="type" class="select2">
-								<option value="1" selected="">Brackets</option>
-								<option value="2">Submissions</option>
+							<select name="type" class="select2 {{ ($errors->has('type')) ? 'is-invalid state-invalid' : '' }}">
+								<option value="1" {{ (old('type') == 1) ? 'selected' : '' }}>Brackets</option>
+								<option value="2" {{ (old('type') == 1) ? 'selected' : '' }}>Submissions</option>
 							</select>
 							@if($errors->has('type'))
 								<div class="invalid-feedback">{{ $errors->first('type') }}</div>
@@ -82,9 +82,9 @@
 					<div class="col-xl-3">
 						<div class="input-group">
 							<label class="form-label">Signup Type:</label>
-							<select name="signup_type" id="signup_type" class="select2">
-								<option value="1" selected="">Team</option>
-								<option value="2">Individual</option>
+							<select name="signup_type" id="signup_type" class="select2 {{ ($errors->has('signup_type')) ? 'is-invalid state-invalid' : '' }}">
+								<option value="1" {{ (old('signup_type') == 1) ? 'selected' : '' }}>Team</option>
+								<option value="2" {{ (old('signup_type') == 2) ? 'selected' : '' }}>Individual</option>
 							</select>
 							@if($errors->has('signup_type'))
 								<div class="invalid-feedback">{{ $errors->first('signup_type') }}</div>
@@ -95,7 +95,7 @@
 					<div class="col-xl-3">
 						<div class="form-group">
 							<label class="form-label">Signup Size:</label>
-							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}" name="signup_size" id="signup_size">
+							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}" name="signup_size" id="signup_size" value="{{ (old('signup_size')) ? old('signup_size') : '' }}">
 							@if($errors->has('signup_size'))
 								<div class="invalid-feedback">{{ $errors->first('signup_size') }}</div>
 							@endif
@@ -105,12 +105,15 @@
 					<div class="col-xl-3">
 						<div class="form-group">
 							<label class="form-label">Rules Page:</label>
-							<select name="page_id" id="page_id" class="select2">
+							<select name="page_id" id="page_id" class="select2 {{ ($errors->has('page_id')) ? 'is-invalid state-invalid' : '' }}">
 								<option value="">--- {{ trans('global.pleaseselect') }} ---</option>
 								@foreach(\LANMS\Page::all() as $page)
-									<option value="{{ $page->id }}">{{ $page->title }}</option>
+									<option value="{{ $page->id }}" {{ (old('page_id') == $page->id) ? 'selected' : '' }}>{{ $page->title }}</option>
 								@endforeach
 							</select>
+							@if($errors->has('page_id'))
+								<div class="invalid-feedback">{{ $errors->first('page_id') }}</div>
+							@endif
 						</div>
 					</div>
 					

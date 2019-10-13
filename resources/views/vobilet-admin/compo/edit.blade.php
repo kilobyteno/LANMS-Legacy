@@ -28,7 +28,7 @@
 					
 					<div class="col-xl-12">
 						<div class="input-group">
-							<input type="text" class="form-control input-lg {{ ($errors->has('name')) ? 'is-invalid' : '' }}" name="name" autocomplete="off" placeholder="Name" value="{{ (old('name')) ? old('name') : $compo->name }}" />
+							<input type="text" class="form-control input-lg {{ ($errors->has('name')) ? 'is-invalid state-invalid' : '' }}" name="name" autocomplete="off" placeholder="Name" value="{{ (old('name')) ? old('name') : $compo->name }}" />
 							@if($errors->has('name'))
 								<div class="invalid-feedback">{{ $errors->first('name') }}</div>
 							@endif
@@ -44,7 +44,7 @@
 							<span class="input-group-prepend">
 								<span class="input-group-text">Challonge Subdomain</span>
 							</span>
-							<input type="text" class="form-control input-lg {{ ($errors->has('challonge_subdomain')) ? 'is-invalid' : '' }}" name="challonge_subdomain" autocomplete="off" placeholder="Challonge Subdomain" value="{{ (old('challonge_subdomain')) ? old('challonge_subdomain') : $compo->challonge_subdomain }}" />
+							<input type="text" class="form-control input-lg {{ ($errors->has('challonge_subdomain')) ? 'is-invalid state-invalid' : '' }}" name="challonge_subdomain" autocomplete="off" placeholder="Challonge Subdomain" value="{{ (old('challonge_subdomain')) ? old('challonge_subdomain') : $compo->challonge_subdomain }}" />
 							@if($errors->has('challonge_subdomain'))
 								<div class="invalid-feedback">{{ $errors->first('challonge_subdomain') }}</div>
 							@endif
@@ -56,7 +56,7 @@
 							<span class="input-group-prepend">
 								<span class="input-group-text">Challonge URL</span>
 							</span>
-							<input type="text" class="form-control input-lg {{ ($errors->has('challonge_url')) ? 'is-invalid' : '' }}" name="challonge_url" autocomplete="off" placeholder="Challonge URL" value="{{ (old('challonge_url')) ? old('challonge_url') : $compo->challonge_url }}" />
+							<input type="text" class="form-control input-lg {{ ($errors->has('challonge_url')) ? 'is-invalid state-invalid' : '' }}" name="challonge_url" autocomplete="off" placeholder="Challonge URL" value="{{ (old('challonge_url')) ? old('challonge_url') : $compo->challonge_url }}" />
 							@if($errors->has('challonge_url'))
 								<div class="invalid-feedback">{{ $errors->first('challonge_url') }}</div>
 							@endif
@@ -70,7 +70,7 @@
 					<div class="col-xl-3">
 						<div class="input-group">
 							<label class="form-label">Type:</label>
-							<select name="type" class="select2">
+							<select name="type" class="select2 {{ ($errors->has('type')) ? 'is-invalid state-invalid' : '' }}">
 								<option value="1" {{ ($compo->type == 1) ? 'selected' : '' }}>Brackets</option>
 								<option value="2" {{ ($compo->type == 2) ? 'selected' : '' }}>Submissions</option>
 							</select>
@@ -83,7 +83,7 @@
 					<div class="col-xl-3">
 						<div class="input-group">
 							<label class="form-label">Signup Type:</label>
-							<select name="signup_type" id="signup_type" class="select2">
+							<select name="signup_type" id="signup_type" class="select2 {{ ($errors->has('signup_type')) ? 'is-invalid state-invalid' : '' }}">
 								<option value="1" {{ ($compo->signup_type == 1) ? 'selected' : '' }}>Team</option>
 								<option value="2" {{ ($compo->signup_type == 2) ? 'selected' : '' }}>Individual</option>
 							</select>
@@ -96,7 +96,7 @@
 					<div class="col-xl-3">
 						<div class="form-group">
 							<label class="form-label">Signup Size:</label>
-							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid' : '' }}" name="signup_size" id="signup_size" value="{{ (old('signup_size')) ? old('signup_size') : $compo->signup_size }}">
+							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}" name="signup_size" id="signup_size" value="{{ (old('signup_size')) ? old('signup_size') : $compo->signup_size }}">
 							@if($errors->has('signup_size'))
 								<div class="invalid-feedback">{{ $errors->first('signup_size') }}</div>
 							@endif
@@ -106,12 +106,15 @@
 					<div class="col-xl-3">
 						<div class="form-group">
 							<label class="form-label">Rules Page:</label>
-							<select name="page_id" id="page_id" class="select2">
+							<select name="page_id" id="page_id" class="select2 {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}">
 								<option value="">--- {{ trans('global.pleaseselect') }} ---</option>
 								@foreach(\LANMS\Page::all() as $page)
 									<option value="{{ $page->id }}" {{ ($compo->page_id == $page->id) ? 'selected' : '' }}>{{ $page->title }}</option>
 								@endforeach
 							</select>
+							@if($errors->has('page_id'))
+								<div class="invalid-feedback">{{ $errors->first('page_id') }}</div>
+							@endif
 						</div>
 					</div>
 					
