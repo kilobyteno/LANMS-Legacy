@@ -192,6 +192,7 @@
 				<div class="app-content my-3 my-md-5">
 					<div class="side-app">
 						<div style="min-height:80vh">
+							
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
 								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License page</a>.</div>
 							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
@@ -200,8 +201,16 @@
 
 							@component('layouts.alert-session') @endcomponent
 
-							
+							@if($errors->any())
+								@component('layouts.alert-form')
+								    @foreach ($errors->all() as $message)
+										<p>{{ $message }}</p>
+									@endforeach
+								@endcomponent
+							@endif
+
 							@yield('content')
+
 						</div>
 					</div>
 					<footer class="footer">

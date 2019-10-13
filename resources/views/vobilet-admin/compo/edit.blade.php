@@ -119,6 +119,51 @@
 
 				<div class="form-row mt-5">
 					
+					<div class="col-xl-3">
+						<div class="form-group">
+							<label class="form-label">Prize Pool Total: <small>Example: 10000</small></label>
+							<input type="number" class="form-control {{ ($errors->has('prize_pool_total')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_total" value="{{ (old('prize_pool_total')) ? old('prize_pool_total') : $compo->prize_pool_total }}">
+							@if($errors->has('start_at_date'))
+								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-xl-3">
+						<div class="form-group">
+							<label class="form-label">Prize Pool First:</label>
+							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_first')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_first" autocomplete="off" placeholder="5000kr + 2 tickets" value="{{ (old('prize_pool_first')) ? old('prize_pool_first') : $compo->prize_pool_first }}" />
+							@if($errors->has('start_at_date'))
+								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-xl-3">
+						<div class="form-group">
+							<label class="form-label">Prize Pool Second:</label>
+							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_second')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_second" autocomplete="off" placeholder="3000kr + 2 sodas" value="{{ (old('prize_pool_second')) ? old('prize_pool_second') : $compo->prize_pool_second }}" />
+							@if($errors->has('start_at_date'))
+								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-xl-3">
+						<div class="form-group">
+							<label class="form-label">Prize Pool Third:</label>
+							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_third')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_third" autocomplete="off" placeholder="2000kr" value="{{ (old('prize_pool_third')) ? old('prize_pool_third') : $compo->prize_pool_third }}" />
+							@if($errors->has('start_at_date'))
+								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@endif
+						</div>
+					</div>
+					
+				</div>
+
+
+				<div class="form-row mt-5">
+						
 					<div class="col-xl-4">
 						<div class="form-row">
 							<div class="col-xl-6">
@@ -129,7 +174,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker" name="start_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('start_at_date')) ? old('start_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('start_at_date')) ? 'is-invalid state-invalid' : '' }}" name="start_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('start_at_date')) ? old('start_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('start_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
 									@endif
@@ -143,7 +188,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input @if($errors->has('start_at_time')) is-invalid state-invalid @endif" id="start_at_time" placeholder="Set time" type="text" autocomplete="off" name="start_at_time" value="{{ (old('start_at_time')) ? old('start_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('start_at_time')) ? 'is-invalid state-invalid' : '' }}" id="start_at_time" placeholder="Set time" type="text" autocomplete="off" name="start_at_time" value="{{ (old('start_at_time')) ? old('start_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
 									@if($errors->has('start_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('start_at_time') }}</div>
 									@endif
@@ -162,7 +207,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('last_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('last_sign_up_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_date') }}</div>
 									@endif
@@ -176,7 +221,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input @if($errors->has('last_sign_up_at_time')) is-invalid state-invalid @endif" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('last_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
 									@if($errors->has('last_sign_up_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_time') }}</div>
 									@endif
@@ -195,7 +240,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker" name="end_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('end_at_date')) ? old('end_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('end_at_date')) ? 'is-invalid state-invalid' : '' }}" name="end_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('end_at_date')) ? old('end_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('end_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('end_at_date') }}</div>
 									@endif
@@ -209,7 +254,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input @if($errors->has('end_at_time')) is-invalid state-invalid @endif" id="end_at_time" placeholder="Set time" type="text" autocomplete="off" name="end_at_time" value="{{ (old('end_at_time')) ? old('end_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('end_at_time')) ? 'is-invalid state-invalid' : '' }}" id="end_at_time" placeholder="Set time" type="text" autocomplete="off" name="end_at_time" value="{{ (old('end_at_time')) ? old('end_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
 									@if($errors->has('end_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('end_at_time') }}</div>
 									@endif
@@ -225,7 +270,7 @@
 					<div class="col-xl-12">
 						<div class="form-group">
 							<label class="form-label">Description:</label>
-							<textarea class="form-control input-lg {{ ($errors->has('description')) ? 'is-invalid' : '' }}" name="description" autocomplete="off" placeholder="Description">{{ (old('description')) ? old('description') : $compo->description }}</textarea>
+							<textarea class="form-control input-lg {{ ($errors->has('description')) ? 'is-invalid state-invalid' : '' }}" name="description" autocomplete="off" placeholder="Description">{{ (old('description')) ? old('description') : $compo->description }}</textarea>
 							@if($errors->has('description'))
 								<div class="invalid-feedback">{{ $errors->first('description') }}</div>
 							@endif
