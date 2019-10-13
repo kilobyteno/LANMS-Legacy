@@ -51,6 +51,8 @@ class Update extends Command
         Artisan::call('lanms:refreshinfo');
         $this->info('Checking license...');
         Artisan::call('lanms:checklicense');
+        $this->info('Creating the symbolic link...');
+        Artisan::call('storage:link');
         $this->info('Updating version...');
         if (Setting::has('APP_VERSION_TYPE')) {
             Setting::forget('APP_VERSION_TYPE');
