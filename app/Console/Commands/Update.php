@@ -49,17 +49,13 @@ class Update extends Command
         Artisan::call('lanms:refreshpermissions');
         $this->info('Refreshing info descriptions...');
         Artisan::call('lanms:refreshinfo');
+        $this->info('Refreshing setting descriptions...');
+        Artisan::call('lanms:refreshsettings');
         $this->info('Checking license...');
         Artisan::call('lanms:checklicense');
         $this->info('Creating the symbolic link...');
         Artisan::call('storage:link');
         $this->info('Updating version...');
-        if (Setting::has('APP_VERSION_TYPE')) {
-            Setting::forget('APP_VERSION_TYPE');
-        }
-        if (Setting::has('GOOGLE_MAPS_API_KEY')) {
-            Setting::forget('GOOGLE_MAPS_API_KEY');
-        }
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
             Setting::set('APP_VERSION', $ver);

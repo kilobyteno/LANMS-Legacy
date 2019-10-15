@@ -46,6 +46,16 @@
 
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.header, .collapse:not(.show), .card, .footer, .dropdown-menu {
+					background:#f5c6cb;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="">
 		<div id="global-loader"></div>
@@ -55,7 +65,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO_LIGHT') }}@else{{ Setting::get('WEB_LOGO_DARK') }}@endif @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
@@ -253,11 +263,23 @@
 								</ul>
 							</div>
 							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
-							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b><br>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b><br>@endif
+							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has expired for this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has been suspended for this software!</strong>
+								</div>
+							@endif
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 							@endif
-							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+							@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
 								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 							@endif 
 						</div>
@@ -352,11 +374,11 @@
 			</script>
 		@endif
 
-		@if(Setting::get('FACEBOOK_APP_ID') && Setting::get('FACEBOOK_PAGE_ID'))
+		@if(Setting::get('FACEBOOK_MESSENGER_APP_ID') && Setting::get('FACEBOOK_MESSENGER_PAGE_ID'))
 			<script>
 				window.fbAsyncInit = function() {
 					FB.init({
-						appId            : '{{ Setting::get('FACEBOOK_APP_ID') }}',
+						appId            : '{{ Setting::get('FACEBOOK_MESSENGER_APP_ID') }}',
 						autoLogAppEvents : true,
 						xfbml            : true,
 						version          : 'v2.12'
@@ -370,7 +392,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_MESSENGER_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
 		@endif
 
 	</body>

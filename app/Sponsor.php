@@ -58,4 +58,8 @@ class Sponsor extends Model
     {
         return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
     }
+    public function scopeTwoLastYears($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orWhere('year', '=', (\Setting::get('SEATING_YEAR')-1));
+    }
 }

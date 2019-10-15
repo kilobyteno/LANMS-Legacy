@@ -21,6 +21,8 @@
 						<tr>
 							<th>Sort Order</th>
 							<th>Name</th>
+							<th>Year</th>
+							<th>Status</th>
 							<th>Description</th>
 							<th>URL</th>
 							<th>Light Image</th>
@@ -33,14 +35,31 @@
 							<tr>
 								<td scope="row">{{ $sponsor->sort_order }}</td>
 								<td>{{ $sponsor->name }}</td>
+								<td>{!! ($sponsor->year == \Setting::get('SEATING_YEAR')) ? '<span class="badge badge-info">'.$sponsor->year.'</span>' : '<span class="badge badge-danger">'.$sponsor->year.'</span>' !!}</td>
+								<td>
+									@if($sponsor->year != \Setting::get('SEATING_YEAR'))
+										<span class="badge badge-dark">Invisible</span>
+									@elseif($sponsor->deleted_at)
+										<span class="badge badge-danger">Deleted</span>
+									@elseif(!$sponsor->deleted_at)
+										<span class="badge badge-info">Visible</span>
+									@endif</td>
 								<td>{{ $sponsor->description }}</td>
 								<td><a href="{{ $sponsor->url }}" target="_blank">{{ $sponsor->url }}</a></td>
 								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image_light }}" alt="{{ $sponsor->name }}" /></span></a></div></td>
 								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image_dark }}" alt="{{ $sponsor->name }}" /></span></a></div></td>
 								<td>
-									<a href="{{ route('admin-sponsor-edit', $sponsor->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-									@if(Sentinel::hasAccess('admin.sponsor.destroy'))
-										<a href="javascript:;" onclick="jQuery('#sponsor-destroy-{{ $sponsor->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@if($sponsor->year == \Setting::get('SEATING_YEAR'))
+										<a href="{{ route('admin-sponsor-edit', $sponsor->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
+										@if(Sentinel::hasAccess('admin.sponsor.destroy') && !$sponsor->deleted_at)
+											<a href="javascript:;" onclick="jQuery('#sponsor-destroy-{{ $sponsor->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+										@elseif(Sentinel::hasAccess('admin.sponsor.destroy') && $sponsor->deleted_at)
+											<a href="{{ route('admin-sponsor-restore', $sponsor->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
+										@endif
+									@else
+										@if(Sentinel::hasAccess('admin.sponsor.create'))
+											<a href="{{ route('admin-sponsor-duplicate', $sponsor->id) }}" class="btn btn-info btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
+										@endif
 									@endif
 								</td>
 							</tr>
