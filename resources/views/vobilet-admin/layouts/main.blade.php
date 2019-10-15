@@ -64,7 +64,7 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="{{ Setting::get('WEB_LOGO') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"><i class="fas fa-bars"></i></a>
 							<div class="d-flex order-lg-2 ml-auto">
@@ -232,7 +232,7 @@
 									@if(Config::get('app.debug'))
 										<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 									@endif
-									@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+									@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
 										<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 									@endif 
 								</div>

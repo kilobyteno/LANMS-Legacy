@@ -1,14 +1,13 @@
 <?php namespace LANMS\Http\Controllers\Admin;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use anlutro\LaravelSettings\Facade as Setting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use LANMS\AppSetting;
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests;
 use LANMS\Http\Requests\Admin\SettingEditRequest;
+use anlutro\LaravelSettings\Facade as Setting;
 
 class SettingsController extends Controller
 {
@@ -20,15 +19,13 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        if (Sentinel::getUser()->hasAccess(['admin.settings.*'])) {
-            $settings = Setting::all();
-            $settings = array_diff_key($settings, array_flip((array) array("APP_LICENSE_KEY", "APP_LICENSE_LOCAL_KEY", "APP_LICENSE_STATUS", "APP_LICENSE_STATUS_DESC", "APP_NAME", "APP_VERSION", "APP_VERSION_TYPE", "APP_URL")));
-            return view('settings.index')
-                        ->withSettings($settings);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.settings.*'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $ignored = array("APP_LICENSE_KEY", "APP_LICENSE_LOCAL_KEY", "APP_LICENSE_STATUS", "APP_LICENSE_STATUS_DESC", "APP_NAME", "APP_VERSION", "APP_VERSION_TYPE", "APP_URL", "APP_SHOW_RESETDB");
+        $settings = AppSetting::all()->except($ignored);
+        return view('settings.index')->withSettings($settings);
     }
 
     /**
@@ -39,14 +36,12 @@ class SettingsController extends Controller
      */
     public function edit($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.settings.update'])) {
-            $value = Setting::get($id);
-            return view('settings.edit')
-                        ->withKey($id)->withvalue($value);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.settings.update'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $value = Setting::get($id);
+        return view('settings.edit')->withKey($id)->withValue($value);
     }
 
     /**
@@ -57,15 +52,14 @@ class SettingsController extends Controller
      */
     public function update($id, SettingEditRequest $request)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.settings.update'])) {
-            Setting::set($id, $request->value);
-            Setting::save();
-            return Redirect::route('admin-settings')
-                    ->with('messagetype', 'success')
-                    ->with('message', 'The setting has now been saved!');
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.settings.update'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        Setting::set($id, $request->value);
+        Setting::save();
+        return Redirect::route('admin-settings')
+                ->with('messagetype', 'success')
+                ->with('message', 'The setting has now been saved!');
     }
 }

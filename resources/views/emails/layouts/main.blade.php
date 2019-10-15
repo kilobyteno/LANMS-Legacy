@@ -21,7 +21,7 @@
 				<table>
 					<tr>
 						<td>
-							<img src="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}{{ Setting::get('WEB_LOGO') }}" width="300"><br>
+							<img src="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}{{ Setting::get('WEB_LOGO_LIGHT') }}" width="300"><br>
 							<h2>@yield('subject')</h2>
 							<hr>
 										

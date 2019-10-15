@@ -55,7 +55,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO_LIGHT') }}@else{{ Setting::get('WEB_LOGO_DARK') }}@endif @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
@@ -257,7 +257,7 @@
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 							@endif
-							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+							@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
 								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 							@endif 
 						</div>
@@ -352,11 +352,11 @@
 			</script>
 		@endif
 
-		@if(Setting::get('FACEBOOK_APP_ID') && Setting::get('FACEBOOK_PAGE_ID'))
+		@if(Setting::get('FACEBOOK_MESSENGER_APP_ID') && Setting::get('FACEBOOK_MESSENGER_PAGE_ID'))
 			<script>
 				window.fbAsyncInit = function() {
 					FB.init({
-						appId            : '{{ Setting::get('FACEBOOK_APP_ID') }}',
+						appId            : '{{ Setting::get('FACEBOOK_MESSENGER_APP_ID') }}',
 						autoLogAppEvents : true,
 						xfbml            : true,
 						version          : 'v2.12'
@@ -370,7 +370,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_MESSENGER_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
 		@endif
 
 	</body>

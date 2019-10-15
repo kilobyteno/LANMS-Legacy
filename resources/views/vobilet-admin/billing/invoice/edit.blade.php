@@ -28,14 +28,14 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-lg-6">
-						<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img d-print-none" alt="{{ Setting::get('WEB_NAME') }}">
-						<img src="{{ Setting::get('WEB_LOGO_ALT') }}" class="d-none d-print-inline" style="width:auto;height:auto;max-width:700px;max-height:75px;">
+						<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO_LIGHT') }}@else{{ Setting::get('WEB_LOGO_DARK') }}@endif @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img d-print-none" alt="{{ Setting::get('WEB_NAME') }}">
+						<img src="{{ Setting::get('WEB_LOGO_DARK') }}" class="d-none d-print-inline" style="width:auto;height:auto;max-width:700px;max-height:75px;">
 						<address class="mt-2">
 							{{ \Setting::get('WEB_NAME') }}<br>
 							{{ LANMS\Info::getContent('address_street') }}<br>
 							{{ LANMS\Info::getContent('address_postal_code') }}, {{ LANMS\Info::getContent('address_city') }}<br>
 							{{ LANMS\Info::getContent('address_county') }}, {{ LANMS\Info::getContent('address_country') }}<br>
-							{{ \Setting::get('MAIL_MAIN_EMAIL') }}
+							{{ env('MAIL_FROM_ADDRESS') }}
 						</address>
 					</div>
 					<div class="col-lg-6 text-right">
