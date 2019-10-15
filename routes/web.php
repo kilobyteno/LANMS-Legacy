@@ -20,6 +20,7 @@ if (Config::get('app.debug')) {
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
         Artisan::call('db:seed');
+        Artisan::call('lanms:update');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test', function () {
@@ -163,6 +164,10 @@ Route::group([
         Route::post('/profile/{username}/edit', [
             'as' => 'user-profile-edit-post',
             'uses' => 'Member\AccountController@postEditProfile'
+        ]);
+        Route::get('/notification/{username}/dismiss', [
+            'as' => 'user-notification-dismiss',
+            'uses' => 'NotificationController@dismiss'
         ]);
         Route::get('/members', [
             'as' => 'members',
@@ -601,6 +606,10 @@ Route::group([
                             'as' => 'admin-seating-row-destroy',
                             'uses' => 'Admin\Seating\RowsController@destroy'
                         ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-row-restore',
+                            'uses' => 'Admin\Seating\RowsController@restore'
+                        ]);
                     });
                 Route::group([
                     'prefix' => 'seats'
@@ -628,6 +637,10 @@ Route::group([
                         Route::get('/{id}/destroy', [
                             'as' => 'admin-seating-seat-destroy',
                             'uses' => 'Admin\Seating\SeatsController@destroy'
+                        ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-seat-restore',
+                            'uses' => 'Admin\Seating\SeatsController@restore'
                         ]);
                     });
                 Route::group([

@@ -11,6 +11,7 @@ use Cartalyst\Sentinel\Users\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -20,7 +21,7 @@ use Dialect\Gdpr\Anonymizable;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
 {
-    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable;
+    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable;
 
     /**
      * The attributes that should be hidden for the downloadable data.

@@ -88,8 +88,8 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Adresse',
-        'address2' => 'Adresse 2',
+        'address1' => 'Gateadresse',
+        'address2' => 'Husnummer',
         'postalcode' => 'Postnummer',
         'city' => 'By',
         'county' => 'Fylke',
@@ -110,6 +110,12 @@ return [
         'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt. Accepterer du dette?',
         'dismiss' => 'JEG AKSEPTERER',
         'link' => 'Lær mer',
+    ),
+
+    'notification' => array(
+        'nothing' => 'No new notifications.',
+        'viewall' => 'View all notifications',
+        'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
     ),
     
 ];

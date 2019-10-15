@@ -88,8 +88,8 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Address',
-        'address2' => 'Address 2',
+        'address1' => 'Street',
+        'address2' => 'House Number',
         'postalcode' => 'Postal Code',
         'city' => 'City',
         'county' => 'County',
@@ -110,6 +110,12 @@ return [
         'message' => 'This website uses cookies to ensure you get the best experience on our website. Do you accept this?',
         'dismiss' => 'I ACCEPT',
         'link' => 'Learn more',
+    ),
+
+    'notification' => array(
+        'nothing' => 'No new notifications.',
+        'viewall' => 'View all notifications',
+        'invoiceunpaid' => 'You have an unpaid invoice for :amount that is due on :date!',
     ),
     
 ];

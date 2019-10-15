@@ -3,6 +3,7 @@
 namespace LANMS\Http\Controllers\Billing;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
 
 class InvoiceController extends Controller
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
     public function view($id)
     {
         if (\Sentinel::getUser()->addresses->count() == 0) {
-            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+            return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         $invoice = \Stripe::invoices()->find($id);
@@ -54,7 +55,7 @@ class InvoiceController extends Controller
     public function pay($id)
     {
         if (\Sentinel::getUser()->addresses->count() == 0) {
-            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+            return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         $invoice = \Stripe::invoices()->find($id);
@@ -74,7 +75,7 @@ class InvoiceController extends Controller
     public function charge($id)
     {
         if (\Sentinel::getUser()->addresses->count() == 0) {
-            return \Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
+            return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         $invoice = \Stripe::invoices()->find($id);
@@ -97,12 +98,12 @@ class InvoiceController extends Controller
         }
         $customer = \Stripe::customers()->find($stripecust->cus);
         if ($customer['sources']['total_count'] == 0) {
-            return \Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
+            return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
         }
 
         \Stripe::invoices()->pay($id);
-        return \Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
+        return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.invoice.alert.paid'));
     }
 
@@ -124,6 +125,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
+        }
         return view('billing.invoice.create');
     }
 
@@ -135,13 +140,17 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+                                ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
+        }
         $user = \LANMS\User::find($request->get('user_id'));
         if (is_null($user)) {
-            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+            return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
         if ($user->addresses->count() == 0) {
-            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+            return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
@@ -180,10 +189,10 @@ class InvoiceController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        return \Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
+        return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been created.');
     }
 
@@ -209,7 +218,7 @@ class InvoiceController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
         $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
@@ -231,7 +240,7 @@ class InvoiceController extends Controller
         $invoice = \Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['status'] != 'draft') {
-            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
         $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
@@ -253,11 +262,11 @@ class InvoiceController extends Controller
     {
         $user = \LANMS\User::find($request->get('user_id'));
         if (is_null($user)) {
-            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+            return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
         if ($user->addresses->count() == 0) {
-            return \Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
+            return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
@@ -274,7 +283,7 @@ class InvoiceController extends Controller
         try {
             $invoice = \Stripe::invoices()->find($id);
             if ($invoice['status'] != 'draft') {
-                return \Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
+                return Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
                                     ->with('message', 'You can\'t edit this invoice after it has been sent.');
             }
             $ii = array();
@@ -295,7 +304,7 @@ class InvoiceController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'I: '.$message);
         }
         try {
@@ -333,10 +342,10 @@ class InvoiceController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
+            return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'II: '.$message);
         }
-        return \Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'success')
+        return Redirect::route('admin-billing-invoice-edit', $invoice['id'])->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been updated.');
     }
 

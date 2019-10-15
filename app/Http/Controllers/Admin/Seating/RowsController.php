@@ -22,7 +22,7 @@ class RowsController extends Controller
     public function index()
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.row.*'])) {
-            $rows = SeatRows::all();
+            $rows = SeatRows::withTrashed()->get();
             return view('seating.rows.index')
                         ->with('allrows', $rows);
         } else {
@@ -87,7 +87,7 @@ class RowsController extends Controller
     public function edit($id)
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
-            $row = SeatRows::find($id);
+            $row = SeatRows::withTrashed()->find($id);
             return view('seating.rows.edit')->withRow($row);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -104,7 +104,7 @@ class RowsController extends Controller
     public function update($id, RowEditRequest $request)
     {
         if (Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
-            $row                = SeatRows::find($id);
+            $row                = SeatRows::withTrashed()->find($id);
             $row->name          = $request->name;
             $row->slug          = strtolower($request->name);
             $row->editor_id     = Sentinel::getUser()->id;
@@ -133,7 +133,7 @@ class RowsController extends Controller
             if ($row->delete()) {
                 return Redirect::route('admin-seating-rows')
                         ->with('messagetype', 'success')
-                        ->with('message', 'The row has now been deleted!');
+                        ->with('message', 'The row and seats has now been deleted!');
             } else {
                 return Redirect::route('admin-seating-rows')
                     ->with('messagetype', 'danger')
@@ -142,6 +142,25 @@ class RowsController extends Controller
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+    }
+
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $row = SeatRows::withTrashed()->find($id);
+        $row->seats()->restore();
+        if ($row->restore()) {
+            return Redirect::route('admin-seating-rows')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The row and seats has now been restored!');
+        } else {
+            return Redirect::route('admin-seating-rows')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while restoring the row.');
         }
     }
 }
