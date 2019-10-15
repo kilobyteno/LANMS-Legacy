@@ -51,6 +51,19 @@
 		<!---Custom-->
 		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.app-header, .card, .footer, .app-sidebar, .slide.is-expanded [data-toggle="slide"], .slide-menu, .slide.is-expanded .slide-menu li a:hover  {
+					background:#f5c6cb;
+				}
+				.side-menu__item, .slide.is-expanded a{
+					color:#6b1110;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="app sidebar-mini rtl">
 		<div id="global-loader"></div>
@@ -228,7 +241,19 @@
 										</ul>
 									</div>
 									<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
-									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
+									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
+										</div>
+									@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>License has expired for this software!</strong>
+										</div>
+									@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>License has been suspended for this software!</strong>
+										</div>
+									@endif
 									@if(Config::get('app.debug'))
 										<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 									@endif
