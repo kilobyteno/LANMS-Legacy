@@ -63,6 +63,29 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
 
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable|string',
+            'page_id' => 'nullable|integer',
+            'challonge_subdomain' => 'nullable|string',
+            'challonge_url' => 'nullable|string',
+            'type' => 'integer',
+            'signup_type' => 'integer',
+            'signup_size' => 'required|integer',
+            'prize_pool_total' => 'nullable|integer',
+            'prize_pool_first' => 'nullable|string',
+            'prize_pool_second' => 'nullable|string',
+            'prize_pool_third' => 'nullable|string',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+            'last_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'last_sign_up_at_time' => 'required|date_format:H:i',
+            'end_at_date' => 'required|date_format:Y-m-d',
+            'end_at_time' => 'required|date_format:H:i',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+        ]);
+
         $start_at_date = $request->get('start_at_date');
         $start_at_time = $request->get('start_at_time');
         $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
@@ -75,7 +98,7 @@ class CompoController extends Controller
         $end_at_time = $request->get('end_at_time');
         $end_at = date('Y-m-d H:i:s', strtotime("$end_at_date $end_at_time"));
 
-        \LANMS\Compo::create([
+        Compo::create([
             'name' => $request->get('name'),
             'slug' => str_slug($request->get('name'), '-'),
             'description' => $request->get('description'),
@@ -105,7 +128,7 @@ class CompoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \LANMS\Compo  $compo
+     * @param  Compo  $compo
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
@@ -117,7 +140,7 @@ class CompoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \LANMS\Compo  $compo
+     * @param  Compo  $compo
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -134,7 +157,7 @@ class CompoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \LANMS\Compo  $compo
+     * @param  Compo  $compo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -143,6 +166,30 @@ class CompoController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'nullable|string',
+            'page_id' => 'nullable|integer',
+            'challonge_subdomain' => 'nullable|string',
+            'challonge_url' => 'nullable|string',
+            'type' => 'integer',
+            'signup_type' => 'integer',
+            'signup_size' => 'required|integer',
+            'prize_pool_total' => 'nullable|integer',
+            'prize_pool_first' => 'nullable|string',
+            'prize_pool_second' => 'nullable|string',
+            'prize_pool_third' => 'nullable|string',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+            'last_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'last_sign_up_at_time' => 'required|date_format:H:i',
+            'end_at_date' => 'required|date_format:Y-m-d',
+            'end_at_time' => 'required|date_format:H:i',
+            'start_at_date' => 'required|date_format:Y-m-d',
+            'start_at_time' => 'required|date_format:H:i',
+        ]);
+        
         $compo = Compo::find($id);
 
         $start_at_date = $request->get('start_at_date');
@@ -186,7 +233,7 @@ class CompoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \LANMS\Compo  $compo
+     * @param  Compo  $compo
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -195,7 +242,7 @@ class CompoController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $compo = \LANMS\Compo::find($id);
+        $compo = Compo::find($id);
         $compo->delete();
         return Redirect::route('admin-compo')
                 ->with('messagetype', 'success')

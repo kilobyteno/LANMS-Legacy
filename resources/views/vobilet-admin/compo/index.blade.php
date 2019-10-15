@@ -12,35 +12,41 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Start at</th>
-					<th>Last sign up at</th>
-					<th>End at</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($compos as $compo)
-					<tr>
-						<td>{{ $compo->name }}</td>
-						<td>{{ \Carbon::parse($compo->start_at)->toDateTimeString() }}</td>
-						<td>{{ \Carbon::parse($compo->last_sign_up_at)->toDateTimeString() }}</td>
-						<td>{{ \Carbon::parse($compo->end_at)->toDateTimeString() }}</td>
-						<td>
-							<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.compo.destroy'))
-								<a href="javascript:;" onclick="jQuery('#compo-destroy-{{ $compo->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="card">
+			<div class="card-body">
+
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Start at</th>
+							<th>Last sign up at</th>
+							<th>End at</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($compos as $compo)
+							<tr>
+								<td>{{ $compo->name }}</td>
+								<td>{{ \Carbon::parse($compo->start_at)->toDateTimeString() }}</td>
+								<td>{{ \Carbon::parse($compo->last_sign_up_at)->toDateTimeString() }}</td>
+								<td>{{ \Carbon::parse($compo->end_at)->toDateTimeString() }}</td>
+								<td>
+									<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.compo.destroy'))
+										<a href="javascript:;" onclick="jQuery('#compo-destroy-{{ $compo->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@endif
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+
+			</div>
+		</div>
 
 	</div>
 </div>
@@ -75,7 +81,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
-		    	order: [0, "asc"],
+		    	order: [1, "asc"],
 		    });
 		} );
 	</script>
