@@ -16,7 +16,8 @@ class Sponsor extends Model
         'url',
         'description',
         'sort_order',
-        'image',
+        'image_light',
+        'image_dark',
         'author_id',
         'editor_id',
     ];
@@ -29,6 +30,8 @@ class Sponsor extends Model
         'url',
         'description',
         'sort_order',
+        'image_light',
+        'image_dark',
     ];
 
     public function scopeOrdered($query)

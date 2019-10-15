@@ -25,7 +25,8 @@
 							<th>Status</th>
 							<th>Description</th>
 							<th>URL</th>
-							<th>Image</th>
+							<th>Light Image</th>
+							<th>Dark Image</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -45,7 +46,8 @@
 									@endif</td>
 								<td>{{ $sponsor->description }}</td>
 								<td><a href="{{ $sponsor->url }}" target="_blank">{{ $sponsor->url }}</a></td>
-								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image }}" alt="{{ $sponsor->name }}" /></span></a></div></td>
+								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image_light }}" alt="{{ $sponsor->name }}" /></span></a></div></td>
+								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $sponsor->image_dark }}" alt="{{ $sponsor->name }}" /></span></a></div></td>
 								<td>
 									@if($sponsor->year == \Setting::get('SEATING_YEAR'))
 										<a href="{{ route('admin-sponsor-edit', $sponsor->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>

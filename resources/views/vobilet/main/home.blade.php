@@ -53,7 +53,7 @@
 							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
 							@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
 						</div>
-						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a> 
+						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }}" alt="{{ $sponsor->name }}"></a> 
 					</div>
 				@endforeach
 			@endif
