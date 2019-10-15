@@ -31,12 +31,13 @@ class HomeController extends Controller
     public function theme()
     {
         if (Sentinel::check()) {
-            if (Sentinel::getUser()->theme == 'default') {
+            $user = Sentinel::getUser();
+            if ($user->theme == 'default' || $user->theme == 'light' || is_null($user->theme)) {
                 $theme = 'dark';
             } else {
                 $theme = 'default';
             }
-            Sentinel::update(Sentinel::getUser(), ['theme' => $theme]);
+            Sentinel::update($user, ['theme' => $theme]);
         }
         return redirect()->back();
     }
