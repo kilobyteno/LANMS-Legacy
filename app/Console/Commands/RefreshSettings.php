@@ -39,6 +39,14 @@ class RefreshSettings extends Command
      */
     public function handle()
     {
+        
+        // Add new settings
+        // LANMS-377
+        if (!Setting::has('HEADER_INFO_CONSENT_FORM')) {
+            Setting::set('HEADER_INFO_CONSENT_FORM', '1');
+            $this->info('Added HEADER_INFO_CONSENT_FORM.');
+        }
+
         // Remove old settings
         if (Setting::has('MAIL_MAIN_EMAIL')) {
             Setting::forget('MAIL_MAIN_EMAIL');
@@ -84,6 +92,8 @@ class RefreshSettings extends Command
             $this->info('Renmamed FACEBOOK_PAGE_ID to FACEBOOK_MESSENGER_PAGE_ID');
         }
 
+        Setting::save();
+
         // Add description to settings
         $settings = AppSetting::all();
         $descriptions = array(
@@ -109,6 +119,7 @@ class RefreshSettings extends Command
             'WEB_NAME' => 'Name of your website. Example: InfihexLAN',
             'WEB_PORT' => 'Integer only. Do not edit this unless you run your server on a specific port.',
             'WEB_PROTOCOL' => 'String only. Only enter "http" (without quotes) or "https" (without quotes).',
+            'HEADER_INFO_CONSENT_FORM' => 'Set this to "0" (without quotes) to remove consent form from header. If it is set to "1" (without quotes) consent form will be visible.',
         );
         foreach ($settings as $setting) {
             if (array_key_exists($setting->key, $descriptions)) {
@@ -119,6 +130,5 @@ class RefreshSettings extends Command
                 }
             }
         }
-        Setting::save();
     }
 }
