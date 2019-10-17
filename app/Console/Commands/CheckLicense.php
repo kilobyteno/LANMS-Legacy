@@ -239,7 +239,6 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
-                    $this->info(var_dump($results));
                     break;
                 case "Expired":
                     Setting::set("APP_LICENSE_STATUS", $status);
