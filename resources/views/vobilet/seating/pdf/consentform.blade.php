@@ -71,9 +71,6 @@
 		<div class="row" style="margin-top:10px;padding-top:10px;border-top: 1px solid #eee">
 			<p>{!! trans('pdf.consentform.filledoutbyorganizers') !!}:</p>
 			<div class="col-md-6" style="float: left;">
-				<p>{{ trans('pdf.consentform.placeanddate') }}:<br><br>_________________________________________________</p>
-			</div>
-			<div class="col-md-6" style="float: right;">
 				<p>{{ trans('pdf.consentform.signature') }}:<br><br>_________________________________________________</p>
 			</div>
 		</div>
