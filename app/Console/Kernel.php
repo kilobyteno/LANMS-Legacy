@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('lanms:dnau')->daily();
         $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
         $schedule->command('lanms:cleanupactivity')->daily();
-        $schedule->command('lanms:invoiceunpaid')->hourly();
+        $schedule->command('lanms:updatenotifications')->hourly();
     }
 
     /**

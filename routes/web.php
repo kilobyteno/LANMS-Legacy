@@ -23,6 +23,28 @@ if (Config::get('app.debug')) {
         Artisan::call('lanms:update');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
+    Route::get('/test/notification', function () {
+        $user = Sentinel::getUser();
+        if ($user->stripecustomer) {
+            $stripe_customer_code = $user->stripecustomer->cus;
+            $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+            $invoices = $invoices['data'];
+            foreach ($invoices as $invoice) {
+                $data = [
+                    'amount_due' => $invoice['amount_due'],
+                    'due_date' => $invoice['due_date'],
+                    'currency' => $invoice['currency'],
+                    'url' => route('account-billing-invoice-view', $invoice['id']),
+                ];
+                $db_data = collect($data)->toJson();
+                // Check if there is a notification already
+                $notification = DB::table('notifications')->where('data', $db_data)->where('read_at', null)->first();
+                if (!$notification) {
+                    Notification::send($user, new LANMS\Notifications\InvoiceUnPaid($invoice));
+                }
+            }
+        }
+    });
     Route::get('/test', function () {
         App::abort(404);
         /*\Toolkito\Larasap\SendTo::Facebook(
@@ -166,7 +188,15 @@ Route::group([
             'as' => 'user-profile-edit-post',
             'uses' => 'Member\AccountController@postEditProfile'
         ]);
-        Route::get('/notification/{username}/dismiss', [
+        Route::get('/notifications', [
+            'as' => 'user-notifications',
+            'uses' => 'NotificationController@show'
+        ]);
+        Route::get('/notifications/dismissall', [
+            'as' => 'user-notifications-dismissall',
+            'uses' => 'NotificationController@dismissall'
+        ]);
+        Route::get('/notification/{id}/dismiss', [
             'as' => 'user-notification-dismiss',
             'uses' => 'NotificationController@dismiss'
         ]);

@@ -3,6 +3,8 @@
 namespace LANMS\Console\Commands;
 
 use Illuminate\Console\Command;
+use LANMS\Notifications\SeatReservationExpired;
+use LANMS\Notifications\SeatReservationExpires;
 
 class DeleteExpiredSeatReservation extends Command
 {
@@ -18,7 +20,7 @@ class DeleteExpiredSeatReservation extends Command
      *
      * @var string
      */
-    protected $description = 'This will delete expired seat reservation.';
+    protected $description = 'This will delete expired seat reservations and send notifications.';
 
     /**
      * Create a new command instance.
@@ -38,18 +40,15 @@ class DeleteExpiredSeatReservation extends Command
     public function handle()
     {
         $reservations = \SeatReservation::where('status_id', '=', 2)->get();
-        foreach($reservations as $reservation) {
-            if($reservation->expiretimeinhours() == 0) {
+        foreach ($reservations as $reservation) {
+            $this->info($reservation->expiretimeinhours());
+            if ($reservation->expiretimeinhours() == 0) {
                 \SeatReservation::find($reservation->id)->delete();
-                \Mail::send('emails.seat.removed', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-                    $message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Removed!');
-                });
+                $reservation->reservedby->notify(new SeatReservationExpired($reservation));
                 $this->info('"Reservation removal" email sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
             }
-            if($reservation->expiretimeinhours() == 24 && $reservation->reminder_email_sent == 0) {
-                \Mail::send('emails.seat.removedsoon', array('seatname' => $reservation->seat->name, 'firstname' => $reservation->reservedby->firstname), function($message) use ($reservation) {
-                    $message->to($reservation->reservedby->email, $reservation->reservedby->firstname)->subject('Reservation Soon Removed');
-                });
+            if ($reservation->expiretimeinhours() == 24 && $reservation->reminder_email_sent == 0) {
+                $reservation->reservedby->notify(new SeatReservationExpires($reservation));
                 $res = \SeatReservation::find($reservation->id);
                 $res->reminder_email_sent = 1;
                 $res->save();
@@ -58,5 +57,4 @@ class DeleteExpiredSeatReservation extends Command
         }
         $this->info('Done.');
     }
-
 }

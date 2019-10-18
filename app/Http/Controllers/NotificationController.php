@@ -14,12 +14,36 @@ class NotificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show()
+    {
+        $notifications = Sentinel::getUser()->notifications()->paginate(15);
+        return view('account.notifications')->withNotifications($notifications);
+    }
+    
+    /**
+     * Dismiss the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function dismiss($id)
     {
         $notification = Sentinel::getUser()->unreadNotifications->find($id);
         if ($notification) {
             $notification->markAsRead();
         }
+        return Redirect::back();
+    }
+
+    /**
+     * Dismiss all the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function dismissall()
+    {
+        $notification = Sentinel::getUser()->unreadNotifications->markAsRead();
         return Redirect::back();
     }
 }

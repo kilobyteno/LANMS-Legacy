@@ -2,27 +2,27 @@
 
 namespace LANMS\Console\Commands;
 
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Notification;
 use LANMS\Notifications\InvoiceUnPaid as InvUnpaid;
 use LANMS\User;
-use Illuminate\Support\Facades\DB;
 
-class InvoiceUnpaid extends Command
+class UpdateNotifications extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'lanms:invoiceunpaid';
+    protected $signature = 'lanms:updatenotifications';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Checks for unpaid invoices for a user and creates a notification.';
+    protected $description = 'Checks for things needing a notification for a user and creates a notification.';
 
     /**
      * Create a new command instance.
@@ -44,7 +44,7 @@ class InvoiceUnpaid extends Command
         foreach (User::active() as $user) {
             if ($user->stripecustomer) {
                 $stripe_customer_code = $user->stripecustomer->cus;
-                $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+                $invoices = Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
                 $invoices = $invoices['data'];
                 foreach ($invoices as $invoice) {
                     if ($invoice['paid'] == false && $invoice['status'] != 'draft') {

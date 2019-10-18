@@ -82,7 +82,11 @@
 											@endif
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
-											@foreach (Sentinel::getUser()->unreadNotifications as $notification)
+											@if(Sentinel::getUser()->unreadNotifications->count() > 1)
+												<p class="text-center m-3"><a href="{{ route('user-notifications-dismissall') }}" class="btn btn-info btn-sm">{{ trans('global.notification.dismissall') }}</a></p>
+												<div class="dropdown-divider"></div>
+											@endif
+											@foreach (Sentinel::getUser()->unreadNotifications->take(5) as $notification)
 											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
 											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
 														<div class="notifyimg bg-danger">
@@ -90,7 +94,31 @@
 														</div>
 														<div class="message">
 															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">Dismiss</button></div>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpires')
+														<div class="notifyimg bg-warning">
+															<i class="fas fa-chair"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpired')
+														<div class="notifyimg bg-danger">
+															<i class="fas fa-chair"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\CompoTeamAdded' || $notification->type === 'LANMS\Notifications\CompoTeamRemoved')
+														<div class="notifyimg bg-info">
+															<i class="fas fa-user-shield"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
 														</div>
 													@else
 														<div class="notifyimg bg-info">
@@ -106,6 +134,8 @@
 											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
 												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
 											@endif
+											<div class="dropdown-divider"></div>
+											<a href="{{ route('user-notifications') }}" class="dropdown-item text-center text-muted-dark">{{ trans('global.notification.viewall') }}</a>
 										</div>
 									</div>
 									<div class="dropdown">
