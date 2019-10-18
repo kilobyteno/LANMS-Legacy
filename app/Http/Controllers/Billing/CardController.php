@@ -2,9 +2,10 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Stripe\Exception\CardErrorException;
+use Cartalyst\Stripe\Exception\ServerErrorException;
 use Illuminate\Http\Request;
 use LANMS\Http\Controllers\Controller;
-
 use LANMS\Http\Requests\Seating\PaymentRequest;
 
 class CardController extends Controller
