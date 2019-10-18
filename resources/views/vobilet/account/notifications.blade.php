@@ -42,6 +42,9 @@
 										@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpired')
 											<i class="fas fa-chair mr-2 text-danger"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}
 											</div>
+										@elseif($notification->type === 'LANMS\Notifications\CompoTeamAdded' || $notification->type === 'LANMS\Notifications\CompoTeamRemoved')
+											<i class="fas fa-user-shield mr-2 text-info"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}
+											</div>
 										@else
 											<i class="fas fa-info mr-2"></i> {{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}
 										@endif

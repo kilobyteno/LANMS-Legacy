@@ -123,6 +123,8 @@ return [
         'invoiceunpaid' => 'You have an unpaid invoice for :amount that is due on :date!',
         'seatreservationexpires' => 'Your reservation for the :seatname seat will be removed in 24 hours, if you do not pay for the reservation.',
         'seatreservationexpired' => 'Your reservation for the :seatname seat has been removed, since you have not paid for it within the temporary reservation time.',
+        'compoteamremoved' => ':user removed you from the ":team" compo team.',
+        'compoteamadded' => ':user added you to the ":team" compo team.',
     ),
     
 ];

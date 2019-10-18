@@ -3,9 +3,12 @@
 namespace LANMS\Http\Controllers\Compo;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\CompoTeamCreateRequest;
 use LANMS\Http\Requests\CompoTeamUpdateRequest;
+use LANMS\Notifications\CompoTeamAdded;
+use LANMS\Notifications\CompoTeamRemoved;
 
 class CompoTeamController extends Controller
 {
@@ -51,12 +54,16 @@ class CompoTeamController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.moreplayers'));
         }
-        
+        $creator = \Sentinel::getUser();
         $team = \LANMS\CompoTeam::create([
             'name' => $request->get('name'),
-            'user_id' => \Sentinel::getUser()->id,
+            'user_id' => $creator->id,
         ]);
         $team->players()->attach($players);
+
+        foreach ($players as $user) {
+            Notification::send($user, new CompoTeamAdded($team));
+        }
 
         return \Redirect::route('compo-team')
                 ->with('messagetype', 'success')
@@ -116,6 +123,21 @@ class CompoTeamController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.team.alert.moreplayers'));
         }
+
+        $new = $players;
+        $old = $team->players->pluck('id')->toArray();
+
+        $added = array_diff_assoc($new, $old);
+        $removed = array_diff_assoc($old, $new);
+
+        foreach ($added as $user_id) {
+            Notification::send(\Sentinel::findById($user_id), new CompoTeamAdded($team));
+        }
+
+        foreach ($removed as $user_id) {
+            Notification::send(\Sentinel::findById($user_id), new CompoTeamRemoved($team));
+        }
+
         $team->players()->detach();
         $team->players()->attach($players);
 

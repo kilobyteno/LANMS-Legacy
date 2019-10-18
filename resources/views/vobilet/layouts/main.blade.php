@@ -102,6 +102,14 @@
 															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
 															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
 														</div>
+													@elseif($notification->type === 'LANMS\Notifications\CompoTeamAdded' || $notification->type === 'LANMS\Notifications\CompoTeamRemoved')
+														<div class="notifyimg bg-info">
+															<i class="fas fa-user-shield"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
 													@else
 														<div class="notifyimg bg-info">
 															<i class="fas fa-info"></i>

@@ -123,6 +123,8 @@ return [
         'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
         'seatreservationexpires' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for reservasjonen.',
         'seatreservationexpired' => 'Din reservasjon for :seatname setet er fjernet, siden du ikke har betalt for det innen den midlertidige reservasjonstiden.',
+        'compoteamremoved' => ':user fjernet deg fra ":team" laget.',
+        'compoteamadded' => ':user la deg til på ":team" laget.',
     ),
     
 ];
