@@ -7,13 +7,18 @@ class SettingsTableSeeder extends Seeder
 {
     public function run()
     {
+        if (env('APP_LICENSE_KEY') && env('APP_ENV') && env('APP_LOG_LEVEL') == 'debug') {
+            $license = env('APP_LICENSE_KEY');
+        } else {
+            $license = '';
+        }
         Setting::set('APP_NAME', 'LANMS');
         Setting::set('APP_VERSION', '');
         Setting::set('APP_URL', 'http://lanms.xyz/');
         Setting::set('APP_LICENSE_STATUS', '');
         Setting::set('APP_LICENSE_STATUS_DESC', '');
         Setting::set('APP_LICENSE_LOCAL_KEY', '');
-        Setting::set('APP_LICENSE_KEY', '');
+        Setting::set('APP_LICENSE_KEY', $license);
         Setting::set('APP_SHOW_RESETDB', true);
 
         Setting::set('WEB_PROTOCOL', 'http');
