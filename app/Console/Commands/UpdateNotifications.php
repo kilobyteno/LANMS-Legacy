@@ -4,6 +4,7 @@ namespace LANMS\Console\Commands;
 
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use LANMS\Notifications\InvoiceUnPaid as InvUnpaid;
 use LANMS\User;
