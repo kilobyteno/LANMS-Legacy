@@ -65,7 +65,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO_LIGHT') }}@else{{ Setting::get('WEB_LOGO_DARK') }}@endif @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="@if(Sentinel::check()){{ Sentinel::getUser()->theme=='dark' ? Setting::get('WEB_LOGO_LIGHT') : Setting::get('WEB_LOGO_DARK') }} @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
@@ -142,7 +142,7 @@
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
 											<span class="ml-2 d-none d-lg-block">
-												<span class="@if(Sentinel::getUser()->theme == 'dark'){{ 'text-light' }}@else{{ 'text-dark' }}@endif" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
+												<span class="@if(Sentinel::check()){{ Sentinel::getUser()->theme == 'dark' ? 'text-light' : 'text-dark' }}@endif" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -258,7 +258,7 @@
 							        <div class="carousel-inner row w-100 mx-auto" role="listbox">
 							        	@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 								            <div class="carousel-item col-md-4 @if($sponsor->sort_order == 0) active @endif">
-								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }}" alt="{{ $sponsor->name }}"></a>
+								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="@if(Sentinel::check()){{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }} @else {{ $sponsor->image_dark }}@endif" alt="{{ $sponsor->name }}"></a>
 								            </div>
 							            @endforeach
 							        </div>
