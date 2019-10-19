@@ -88,8 +88,8 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Adresse',
-        'address2' => 'Adresse 2',
+        'address1' => 'Gateadresse',
+        'address2' => 'Husnummer',
         'postalcode' => 'Postnummer',
         'city' => 'By',
         'county' => 'Fylke',
@@ -110,6 +110,21 @@ return [
         'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt. Accepterer du dette?',
         'dismiss' => 'JEG AKSEPTERER',
         'link' => 'Lær mer',
+    ),
+
+    'notification' => array(
+        'title' => 'Varsler',
+        'time' => 'Tidspunkt',
+        'message' => 'Melding',
+        'nothing' => 'Ingen nye varsler.',
+        'viewall' => 'Vis alle varsler',
+        'dismissall' => 'Avvis alle varslene',
+        'dismiss' => 'Avvis',
+        'invoiceunpaid' => 'Du har en ubetalt faktura på :amount som forfaller på :date!',
+        'seatreservationexpires' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for reservasjonen.',
+        'seatreservationexpired' => 'Din reservasjon for :seatname setet er fjernet, siden du ikke har betalt for det innen den midlertidige reservasjonstiden.',
+        'compoteamremoved' => ':user fjernet deg fra ":team" laget.',
+        'compoteamadded' => ':user la deg til på ":team" laget.',
     ),
     
 ];

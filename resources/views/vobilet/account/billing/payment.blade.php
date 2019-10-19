@@ -84,8 +84,10 @@
         </div>
         <div class="col-md-4">
             <?php $payment = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
-            <h3>{{ trans('user.account.reservations.reservation.title') }} <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ trans('global.view') }} {{ trans('user.account.reservations.reservation.title') }}</a></h3>
-            <hr style="margin-top: 0">
+            @if($payment->reservation)
+              <h3>{{ trans('user.account.reservations.reservation.title') }} <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ trans('global.view') }} {{ trans('user.account.reservations.reservation.title') }}</a></h3>
+              <hr style="margin-top: 0">
+            @endif
             @if($charge)
                 <p><strong>ID:</strong> {{ $payment->reservation->id }}</p>
                 <p><strong>{{ trans('global.year') }}:</strong> {{ $payment->reservation->year }}</p>

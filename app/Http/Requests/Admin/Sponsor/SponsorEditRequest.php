@@ -13,7 +13,8 @@ class SponsorEditRequest extends FormRequest
             'url'           => '',
             'description'   => '',
             'sort_order'    => 'required|integer',
-            'image'         => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'image_light'   => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'image_dark'    => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
     

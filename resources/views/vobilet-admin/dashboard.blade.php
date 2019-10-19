@@ -35,7 +35,7 @@
 		</div>
 	@endif
 
-
+	{{--
 	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
@@ -57,6 +57,7 @@
 			</div>
 		</div>
 	@endif
+	--}}
 
 	@if(env('APP_ENV') == 'development' || env('APP_ENV') == 'local')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -76,6 +77,17 @@
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
 				<p>There is no value for Sentry in the environment file. If this is not set, the developers will not get application error alerts.</p>
+			</div>
+		</div>
+	@endif
+
+	@if(!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-danger">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical info value</strong>
+				<hr class="message-inner-separator">
+				<p>One or more address fields in Info is missing. You need this to be able to send invoices! <a href="{{ route('admin-info') }}" class="alert-link">Click here to fix it!</a></p>
 			</div>
 		</div>
 	@endif

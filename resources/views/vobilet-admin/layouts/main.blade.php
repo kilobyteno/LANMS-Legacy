@@ -51,6 +51,19 @@
 		<!---Custom-->
 		@yield('css')
 		<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.app-header, .card, .footer, .app-sidebar, .slide.is-expanded [data-toggle="slide"], .slide-menu, .slide.is-expanded .slide-menu li a:hover  {
+					background:#f5c6cb;
+				}
+				.side-menu__item, .slide.is-expanded a{
+					color:#6b1110;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="app sidebar-mini rtl">
 		<div id="global-loader"></div>
@@ -64,7 +77,7 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="{{ Setting::get('WEB_LOGO') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"><i class="fas fa-bars"></i></a>
 							<div class="d-flex order-lg-2 ml-auto">
@@ -192,6 +205,7 @@
 				<div class="app-content my-3 my-md-5">
 					<div class="side-app">
 						<div style="min-height:80vh">
+							
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
 								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License page</a>.</div>
 							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
@@ -200,8 +214,16 @@
 
 							@component('layouts.alert-session') @endcomponent
 
-							
+							@if($errors->any())
+								@component('layouts.alert-form')
+								    @foreach ($errors->all() as $message)
+										<p>{{ $message }}</p>
+									@endforeach
+								@endcomponent
+							@endif
+
 							@yield('content')
+
 						</div>
 					</div>
 					<footer class="footer">
@@ -210,20 +232,37 @@
 								<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
 									&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 									<br>
-									<div class="dropup btn-group mt-2 mb-2">
-										<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
-										<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-											@foreach(array_flip(config('app.locales')) as $lang)
-												<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
-											@endforeach
-										</ul>
+									<div class="text-center mt-3 mb-3">
+										<div class="dropup btn-group">
+											<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
+											<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+												@foreach(array_flip(config('app.locales')) as $lang)
+													<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
+												@endforeach
+											</ul>
+										</div>
+										@if(Sentinel::check())
+											<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
+										@endif
 									</div>
 									<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
-									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
+									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
+										</div>
+									@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>License has expired for this software!</strong>
+										</div>
+									@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+										<div class="alert alert-danger text-uppercase" role="alert">
+											<strong><i class="far fa-frown mr-2"></i>License has been suspended for this software!</strong>
+										</div>
+									@endif
 									@if(Config::get('app.debug'))
 										<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 									@endif
-									@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+									@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
 										<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 									@endif 
 								</div>

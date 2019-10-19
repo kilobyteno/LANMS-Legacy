@@ -67,20 +67,40 @@
 						</div>
 
 						<div class="col-sm-6">
-							<div class="expanel expanel-default @if($errors->has('image')) expanel-danger @endif" data-collapsed="0">
+							<div class="expanel expanel-default @if($errors->has('image_light')) expanel-danger @endif" data-collapsed="0">
 								<div class="expanel-heading">
-									<div class="expanel-title">Logo (335x90)</div>
+									<div class="expanel-title">Light Logo (335x90)</div>
 								</div>
 								<div class="expanel-body">
+									<label class="text-muted">This logo should be of lighter colors and work on dark background.</label>
 									<div style="max-width: 335px; height: 90px;">
-										<img src="{{ $sponsor->image }}" alt="{{ $sponsor->name }}">
+										<img src="{{ $sponsor->image_light }}" alt="{{ $sponsor->name }}">
 									</div>
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="image" accept="image/*">
+										<input type="file" class="custom-file-input" name="image_light" accept="image/*">
 										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
 									</div>
-									@if($errors->has('image'))
-										<p class="text-danger">{{ $errors->first('image') }}</p>
+									@if($errors->has('image_light'))
+										<p class="text-danger">{{ $errors->first('image_light') }}</p>
+									@endif
+								</div>
+							</div>
+
+							<div class="expanel expanel-default @if($errors->has('image_dark')) expanel-danger @endif" data-collapsed="0">
+								<div class="expanel-heading">
+									<div class="expanel-title">Dark Logo (335x90)</div>
+								</div>
+								<div class="expanel-body">
+									<label class="text-muted">This logo should be of darker colors and work on light background.</label>
+									<div style="max-width: 335px; height: 90px;">
+										<img src="{{ $sponsor->image_dark }}" alt="{{ $sponsor->name }}">
+									</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="image_dark" accept="image/*">
+										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+									</div>
+									@if($errors->has('image_dark'))
+										<p class="text-danger">{{ $errors->first('image_dark') }}</p>
 									@endif
 								</div>
 							</div>

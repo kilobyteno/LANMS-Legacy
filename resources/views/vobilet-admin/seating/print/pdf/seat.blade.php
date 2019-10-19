@@ -20,7 +20,7 @@
 	</head>
 	<body>	
 		<div class="col-md-12 text-center">
-			<img src=".{{ Setting::get('WEB_LOGO') }}" style="width:700px;">
+			<img src=".{{ Setting::get('WEB_LOGO_DARK') }}" style="width:700px;">
 			<h1>{{ $seat->name }}</h1>
 			<hr>
 			<br>

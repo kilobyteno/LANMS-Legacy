@@ -60,3 +60,21 @@ a:hover, .btn-link:hover {
 .badge {
 	padding: 0.4em;
 }
+
+.dropdown-menu.notifications {
+	min-width: 25rem;
+}
+
+.notifications > .dropdown-item {
+	white-space:normal;
+}
+
+.notifications > .dropdown-item > .notifyimg {
+	min-height:40px;
+	min-width:40px;
+}
+
+.nav-unread.badge {
+    width: 1.4rem;
+    height: 1.4rem;
+}

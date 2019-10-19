@@ -26,8 +26,12 @@
 							@endforeach
 						</div>
 						<div class="card-footer">
-							<a href="{{ route('compo-team-edit', $team->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-1"></i>{{ trans('global.edit') }}</a>
-							@if($team->composignups()->count() == 0)<a href="javascript:;" onclick="jQuery('#team-destroy-{{ $team->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-1"></i>{{ trans('global.delete') }}</a>@else <br><br><span class="badge badge-danger">{{ trans('compo.team.alert.cantdelete') }}</span>@endif
+							@if($team->composignups()->count() == 0)
+								<a href="{{ route('compo-team-edit', $team->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-1"></i>{{ trans('global.edit') }}</a>
+								<a href="javascript:;" onclick="jQuery('#team-destroy-{{ $team->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-1"></i>{{ trans('global.delete') }}</a>
+							@else
+								<div class="alert alert-info"><i class="fas fa-info-circle mr-2"></i>{{ trans('compo.team.alert.cantdelete') }}</div>
+							@endif
 						</div>
 					</div>
 				</div>

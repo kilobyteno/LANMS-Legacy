@@ -16,6 +16,7 @@ return [
     'signup_type.1' => 'Team',
     'signup_type.2' => 'Individual',
     'signup_size' => 'Max Players',
+    'prize_pool' => 'Prize Pool',
     'players' => '{1} Player|[2,*] Players',
     'submit' => 'Submit',
     'teams' => 'Teams',
@@ -29,7 +30,7 @@ return [
             'deleted' => 'The team has now been deleted.',
             'notunique' => 'All players needs to be unique.',
             'moreplayers' => 'Please add more players.',
-            'cantdelete' => 'Can\'t delete, you are signed up.',
+            'cantdelete' => 'Cannot delete or change team after entering a compo.',
         ],
         'create' => [
             'name' => 'Team Name',

@@ -16,7 +16,8 @@ class Sponsor extends Model
         'url',
         'description',
         'sort_order',
-        'image',
+        'image_light',
+        'image_dark',
         'author_id',
         'editor_id',
     ];
@@ -29,6 +30,8 @@ class Sponsor extends Model
         'url',
         'description',
         'sort_order',
+        'image_light',
+        'image_dark',
     ];
 
     public function scopeOrdered($query)
@@ -54,5 +57,9 @@ class Sponsor extends Model
     public function scopeLastYear($query)
     {
         return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+    }
+    public function scopeTwoLastYears($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orWhere('year', '=', (\Setting::get('SEATING_YEAR')-1));
     }
 }

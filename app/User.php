@@ -11,6 +11,7 @@ use Cartalyst\Sentinel\Users\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -18,9 +19,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Dialect\Gdpr\Portable;
 use Dialect\Gdpr\Anonymizable;
 
-class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface
+use Illuminate\Contracts\Translation\HasLocalePreference;
+
+class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
-    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable;
+    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable;
 
     /**
      * The attributes that should be hidden for the downloadable data.
@@ -108,6 +111,16 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'accepted_gdpr',
         'isAnonymized'
     ];
+
+    /**
+     * Get the user's preferred locale.
+     *
+     * @return string
+     */
+    public function preferredLocale()
+    {
+        return $this->language;
+    }
 
     /**
      * {@inheritDoc}

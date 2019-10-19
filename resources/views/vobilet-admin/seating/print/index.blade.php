@@ -2,7 +2,7 @@
 @section('title', 'Print Seat - Admin')
 @section('css')
 	@foreach(Storage::files('/public/seating/') as $file)
-		<link rel="stylesheet" href="{{ asset($file) }}">
+		<link rel="stylesheet" href="{{ asset('storage/'.str_replace('public/', '', $file)) }}">
 	@endforeach
 @stop
 @section('content')
@@ -25,14 +25,14 @@
 				<div class="seatmap">
 					<ul>
 						<li class="scene">{{ trans('seating.map.scene') }}</li>
-						<li class="entrance" id="entrance"><a data-toggle="tooltip" title="{{ trans('seating.map.exit') }}"><i class="fas fa-door-open"></i></a></li>
+						<li class="seat entrance" id="entrance"><p><a data-toggle="tooltip" title="{{ trans('seating.map.exit') }}"><i class="fas fa-door-open"></i></a></p></li>
 
 						@foreach($rows as $row)
 
 							<li class="seat-row">
 								<ul class="seat-row-{{$row->slug}}">
 									@if($row->slug == 'a')
-										<li class="seat kiosk" id="kiosk"><a data-toggle="tooltip" title="{{ trans('seating.map.kiosk') }}"><i class="fa fa-coffee"></i></a></li>
+										<li class="seat kiosk" id="kiosk"><p><a data-toggle="tooltip" title="{{ trans('seating.map.kiosk') }}"><i class="fas fa-coffee"></i></a></p></li>
 									@endif
 									@foreach($row->seats as $seat)
 									
