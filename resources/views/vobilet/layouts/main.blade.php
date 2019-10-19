@@ -238,6 +238,9 @@
 							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
 							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+						@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
+							</div>
 						@endif
 
 						@component('layouts.alert-session') @endcomponent
