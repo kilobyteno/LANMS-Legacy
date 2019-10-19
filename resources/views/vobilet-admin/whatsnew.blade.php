@@ -21,6 +21,56 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#257" aria-expanded="true">Version 2.5.7</a>
+							</h4>
+						</div>
+						<div id="257" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-349'>LANMS-349</a>] - Mass emails does not render HTML</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-350'>LANMS-350</a>] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-351'>LANMS-351</a>] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-361'>LANMS-361</a>] - ErrorException: Notice: Trying to get property &#39;name&#39; of non-object</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-363'>LANMS-363</a>] - Cartalyst\Stripe\Exception\MissingParameterException</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-364'>LANMS-364</a>] - You cannot use the test ID &#39;pm_card_visa&#39; in livemode</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-367'>LANMS-367</a>] - Light logo is shown on ticket (white bg)</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-375'>LANMS-375</a>] - ErrorException: Trying to get property &#39;id&#39; of non-object</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-376'>LANMS-376</a>] - ErrorException: Notice: Trying to get property &#39;id&#39; of non-object</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-379'>LANMS-379</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card was declined.</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-380'>LANMS-380</a>] - ErrorException: Trying to get property &#39;theme&#39; of non-object</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-360'>LANMS-360</a>] - Notification system</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-369'>LANMS-369</a>] - Add support for dark and light images for sponsors</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-370'>LANMS-370</a>] - Add a easy way to toggle dark/light theme</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-371'>LANMS-371</a>] - Show sponsors from past year with dupe btn</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-344'>LANMS-344</a>] - Add prize pool to compo</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-346'>LANMS-346</a>] - Add automatic version update</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-347'>LANMS-347</a>] - Improvements on license checking</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-348'>LANMS-348</a>] - Refresh permissions should set permission to true for superadmin role</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-352'>LANMS-352</a>] - Add &quot;please wait&quot; on mass-email</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-355'>LANMS-355</a>] - Add validation for admin input to compo</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-357'>LANMS-357</a>] - User should not be able to delete or edit team if signed up to a compo</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-358'>LANMS-358</a>] - Unpaid invoices: Notification &amp; Reservations</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-362'>LANMS-362</a>] - Show deleted and add restore for rows and seats</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-365'>LANMS-365</a>] - Add description to settings</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-374'>LANMS-374</a>] - Improve address translation</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-377'>LANMS-377</a>] - Add setting for disabling consent form in header</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-378'>LANMS-378</a>] - Change the text on consent form about age restrictions</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#256" aria-expanded="true">Version 2.5.6</a>
 							</h4>
 						</div>
