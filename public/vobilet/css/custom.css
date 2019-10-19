@@ -78,3 +78,8 @@ a:hover, .btn-link:hover {
     width: 1.4rem;
     height: 1.4rem;
 }
+
+.card-body-article {
+	max-height: 600px;
+    overflow: auto;
+}
