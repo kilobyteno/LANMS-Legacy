@@ -70,6 +70,9 @@ class SponsorController extends Controller
         $image_dark = $request->file('image_dark');
         $name = $request->get('name');
         $cleanname = strtolower(str_replace(' ', '', $name));
+
+        $webpath_light = null;
+        $webpath_dark = null;
         
         if ($image_light) {
             $filename = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '_light.' . $image_light->getClientOriginalExtension();
@@ -141,6 +144,9 @@ class SponsorController extends Controller
         $image_dark = $request->file('image_dark');
         $name = $request->get('name');
         $cleanname = strtolower(str_replace(' ', '', $name));
+
+        $webpath_light = null;
+        $webpath_dark = null;
         
         if ($image_light) {
             $filename = $cleanname . '_' . \Setting::get('SEATING_YEAR') . '_light.' . $image_light->getClientOriginalExtension();

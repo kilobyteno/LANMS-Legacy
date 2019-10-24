@@ -4,8 +4,9 @@ namespace LANMS\Console\Commands;
 
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
-use LANMS\Notifications\InvoiceUnPaid as InvUnpaid;
+use LANMS\Notifications\InvoiceUnpaid;
 use LANMS\User;
 
 class UpdateNotifications extends Command
@@ -58,7 +59,7 @@ class UpdateNotifications extends Command
                         // Check if there is a notification already
                         $notification = DB::table('notifications')->where('data', $db_data)->where('read_at', null)->first();
                         if (!$notification) {
-                            Notification::send($user, new InvUnpaid($invoice));
+                            Notification::send($user, new InvoiceUnpaid($invoice));
                         }
                     }
                 }

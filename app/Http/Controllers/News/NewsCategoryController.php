@@ -105,6 +105,7 @@ class NewsCategoryController extends Controller
     public function show($slug)
     {
         $nc = NewsCategory::where('slug', $slug)->first();
+        abort_unless($nc, 404);
         $category = NewsCategory::find($nc->id);
         $articles = News::where('category_id', $nc->id)->paginate(5);
         abort_unless($category, 404);
