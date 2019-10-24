@@ -245,6 +245,14 @@
 
 						@component('layouts.alert-session') @endcomponent
 
+						@if($errors->any())
+							@component('layouts.alert-form')
+							    @foreach ($errors->all() as $message)
+									<p>{{ $message }}</p>
+								@endforeach
+							@endcomponent
+						@endif
+
 						@yield('content')
 
 					</div>
