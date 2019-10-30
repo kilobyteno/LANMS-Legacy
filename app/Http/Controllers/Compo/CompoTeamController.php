@@ -61,8 +61,8 @@ class CompoTeamController extends Controller
         ]);
         $team->players()->attach($players);
 
-        foreach ($players as $user) {
-            Notification::send($user, new CompoTeamAdded($team));
+        foreach ($players as $user_id) {
+            Notification::send(\Sentinel::findById($user_id), new CompoTeamAdded($team));
         }
 
         return \Redirect::route('compo-team')
