@@ -13,25 +13,39 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
+Route::group(['prefix' => 'v1', 'middleware' => 'api'], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('api');
+    Route::get('/stats', [
+        'as' => 'api-stats',
+        'uses' => 'API\APIController@stats'
+    ]);
 
-Route::get('/stats', [
-	'as' => 'api-stats',
-	'uses' => 'API\APIController@stats'
-])->middleware('api');
+    Route::get('/news/{amount}', [
+        'as' => 'api-news',
+        'uses' => 'API\APIController@news'
+    ]);
 
-Route::get('/news/{amount}', [
-	'as' => 'api-news',
-	'uses' => 'API\APIController@news'
-])->middleware('api');
+    Route::get('/news/{amount}/{skip}', [
+        'as' => 'api-news-skip',
+        'uses' => 'API\APIController@skipNews'
+    ]);
+});
 
-Route::get('/news/{amount}/{skip}', [
-	'as' => 'api-news-skip',
-	'uses' => 'API\APIController@skipNews'
-])->middleware('api');
+
+// Test Routes
+Route::group(['prefix' => 'v2', 'middleware' => 'auth:api'], function () {
+    Route::get('/cars', function (Request $request) {
+        return response()->json([
+            'cars' => [
+                'registration' => 'ABC001',
+                'dateRegistered' => '2019-01-01',
+                'color' => 'black',
+                'make' => 'tesla',
+                'model' => 's'
+            ]
+        ], 200);
+    });
+});
