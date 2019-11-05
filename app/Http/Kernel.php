@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
         'gdpr.terms' => \LANMS\Http\Middleware\RedirectIfUnansweredTerms::class,
         'ajax.check' => \LANMS\Http\Middleware\AjaxCheck::class,
+        'client' =>  \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
     ];
 }

@@ -36,7 +36,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'api'], function () {
 
 
 // Test Routes
-Route::group(['prefix' => 'v2', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => 'v2', 'middleware' => 'client'], function () {
     Route::get('/cars', function (Request $request) {
         return response()->json([
             'cars' => [
