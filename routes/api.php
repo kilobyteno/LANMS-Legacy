@@ -48,4 +48,15 @@ Route::group(['prefix' => 'v2', 'middleware' => 'client'], function () {
             ]
         ], 200);
     });
+
+    Route::get('/user/checkin', [
+        'as' => 'api-v2-user-checkin-all',
+        'uses' => 'API\v2Controller@userCheckinAll'
+    ]);
+
+    Route::get('/user/checkin/{id}', [
+        'as' => 'api-v2-user-checkin',
+        'uses' => 'API\v2Controller@userCheckin'
+    ]);
+
 });
