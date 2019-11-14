@@ -78,7 +78,7 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> {{ trans('seating.reservation.view') }}</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.pay') }}</a>
-															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> true and is_null($reservation->payment))
+															@elseif($reservation->status_id == 1 and is_string(SeatReservation::getRealExpireTime($reservation->id)) and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
@@ -87,7 +87,7 @@
 															@if($reservation->reservedfor->age() < 16)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
-															@if(SeatReservation::getRealExpireTime($reservation->id) <> true && $reservation->status_id != 1)
+															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
 																<div class="dropdown-divider"></div>
 																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> {{ trans('seating.reservation.remove') }}</a>
 															@endif
@@ -147,7 +147,7 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> {{ trans('seating.reservation.view') }}</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.pay') }}</a>
-															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> true and is_null($reservation->payment))
+															@elseif($reservation->status_id == 1 and is_string(SeatReservation::getRealExpireTime($reservation->id)) and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
@@ -156,7 +156,7 @@
 															@if($reservation->reservedfor->age() < 16)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
-															@if(SeatReservation::getRealExpireTime($reservation->id) <> true && $reservation->status_id != 1)
+															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
 																<div class="dropdown-divider"></div>
 																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> {{ trans('seating.reservation.remove') }}</a>
 															@endif
