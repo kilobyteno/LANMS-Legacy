@@ -21,9 +21,11 @@ use Dialect\Gdpr\Anonymizable;
 
 use Illuminate\Contracts\Translation\HasLocalePreference;
 
+use Laravel\Passport\HasApiTokens;
+
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
-    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable;
+    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasApiTokens;
 
     /**
      * The attributes that should be hidden for the downloadable data.
