@@ -3,7 +3,7 @@
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 		<style type="text/css">
-			body {font-family:'Open Sans',sans-serif;overflow:auto;margin:0;font-size:14px;line-height:1.25;color:#333}
+			body {font-family:'Open Sans',sans-serif;overflow:auto;margin:0;font-size:14px;line-height:1.25;color:#000}
 			.row {overflow:auto}
 			.col-md-6 {width:50%;float:left;display:inline-block}
 			.col-md-12 {width:100%;float:left;display:inline-block}
@@ -20,19 +20,19 @@
 	</head>
 	<body>	
 		<div class="col-md-12 text-center">
-			<img src=".{{ Setting::get('WEB_LOGO_DARK') }}" style="width:700px;">
+			<img src=".{{ Setting::get('WEB_LOGO_DARK') }}" style="max-width:600px;max-height: 200px">
 			<h1>{{ $seat->name }}</h1>
 			<hr>
 			<br>
 			<h2>@if($seat->reservationsThisYear()->first() <> null){{ $seat->reservationsThisYear()->first()->reservedfor->firstname.' '.$seat->reservationsThisYear()->first()->reservedfor->lastname }}<br><small>{{ $seat->reservationsThisYear()->first()->reservedfor->username }}</small>@endif</h2>
 			<br><br>
 			<p>
-				<strong>Politi:</strong> 610 53 000 (Nød: 112)<br>
+				<strong>Politi:</strong> 02800 (Nød: 112)<br>
 				<strong>Ambulanse:</strong> 06200 (Nød: 113)<br>
-				<strong>Brannvesenet:</strong> 611 48 000 (Nød: 110)
+				<strong>Brannvesenet:</strong> 610 50 500 (Nød: 110)
 			</p>
 			<br><br>
-			<p>For more information, see our website: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
+			<p>For mer informasjon sjekk vår nettside: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<br>
 		</div>
 	</body>
