@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \LANMS\Http\Middleware\Localization::class,
             \LANMS\Http\Middleware\HttpsProtocol::class,
+            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
 
         'api' => [
@@ -64,5 +65,6 @@ class Kernel extends HttpKernel
         'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
         'gdpr.terms' => \LANMS\Http\Middleware\RedirectIfUnansweredTerms::class,
         'ajax.check' => \LANMS\Http\Middleware\AjaxCheck::class,
+        'client' =>  \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
     ];
 }
