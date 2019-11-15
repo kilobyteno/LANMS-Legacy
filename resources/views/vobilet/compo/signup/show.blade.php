@@ -41,17 +41,10 @@
 					<h3 class="card-title">{{ trans('compo.signup.title') }}</h3>
 				</div>
 				<div class="card-body d-flex flex-column">
-					@if($errors->any())
-						@component('layouts.alert-form')
-						    @foreach ($errors->all() as $message)
-								<p>{{ $message }}</p>
-							@endforeach
-						@endcomponent
-					@endif
-					@if($compo->type == 1)
+					@if($compo->signup_type == 1)
 						<div class="form-group">
 							<label class="form-label">{{ trans('compo.signup.chooseteam') }}</label>
-							<select name="id" class="select2">
+							<select name="team" class="select2">
 								<option value="">-- {{ trans('global.pleaseselect') }} --</option>
 								@foreach(\LANMS\CompoTeam::where('user_id', \Sentinel::check()->id)->get() as $team)
 									<option value="{{ $team->id }}">{{ $team->name }}</option>

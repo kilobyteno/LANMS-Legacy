@@ -19,6 +19,9 @@
 							<h3 class="card-title">{{ $compo->name }}</h3>
 							<div class="card-options">
 								{!! $compo->prize_pool_total ? '<span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>'.$compo->prize_pool_total.'</span>' : '' !!}
+								@if(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+									<span class="badge badge-info text-right"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->signup_type) }}</span>
+								@endif
 							</div>
 						</div>
 						<div class="card-body d-flex flex-column">
@@ -41,7 +44,9 @@
 							<a class="btn btn-sm btn-info" href="{{ route('compo-show', $compo->slug) }}"><i class="far fa-eye"></i> {{ trans('global.view') }}</a>
 							@if($compo->rules)<a class="btn btn-sm btn-orange" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
 							@if(\Sentinel::check())
-								@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a> @elseif(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first()) <a class="btn btn-sm btn-success disabled"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->type) }}</a>@endif
+								@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+									<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
+								@endif
 							@endif
 						</div>
 					</div>
