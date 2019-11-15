@@ -48,7 +48,7 @@
 							@endforeach
 						@endcomponent
 					@endif
-					@if($compo->type == 1)
+					@if($compo->signup_type == 1)
 						<div class="form-group">
 							<label class="form-label">{{ trans('compo.signup.chooseteam') }}</label>
 							<select name="id" class="select2">

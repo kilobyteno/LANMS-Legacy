@@ -62,7 +62,7 @@ class CompoSignUpController extends Controller
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
         }
 
-        if ($compo->type == 1) {
+        if ($compo->signup_type == 1) {
             $team_id = $request->id;
             $team = \LANMS\CompoTeam::find($team_id);
             $players = $team->players->count();
@@ -84,7 +84,7 @@ class CompoSignUpController extends Controller
         ]);
         return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'success')
-                ->with('message', trans_choice('compo.signup.alert.signedup', $compo->type));
+                ->with('message', trans_choice('compo.signup.alert.signedup', $compo->signup_type));
     }
 
     /**
