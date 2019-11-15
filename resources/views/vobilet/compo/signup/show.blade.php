@@ -52,6 +52,13 @@
 					@if($compo->max_signups)<p>{{ trans('compo.max_signups') }}: <br>{{ $compo->max_signups }}</p>@endif
 					<p>{{ trans('compo.nuber_of_participants') }}: {{ $compo->signupsThisYear->count() }}</p>
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
+					@if($compo->prize_pool_first || $compo->prize_pool_second || $compo->prize_pool_third)
+						<p>{{ trans('compo.prize_pool') }}:<br>
+							{!! $compo->prize_pool_first ? '1. '.$compo->prize_pool_first.'<br>' : '' !!}
+							{!! $compo->prize_pool_second ? '2. '.$compo->prize_pool_second.'<br>' : '' !!}
+							{!! $compo->prize_pool_third ? '3. '.$compo->prize_pool_third.'<br>' : '' !!}
+						</p>
+					@endif
 				</div>
 				{{-- <div class="card-footer">
 					@if(\Carbon\Carbon::now() > $compo->start_at && \Carbon\Carbon::now() < $compo->end_at)<a class="btn btn-sm btn-lime" href=""><i class="fas fa-file-import"></i> {{ trans('compo.submit') }}</a>@endif 
