@@ -6,7 +6,6 @@ use LANMS\Compo;
 use LANMS\CompoSignUp;
 use Illuminate\Http\Request;
 use LANMS\Http\Controllers\Controller;
-use LANMS\Http\Requests\CompoSignUpRequest;
 
 class CompoSignUpController extends Controller
 {
@@ -47,7 +46,7 @@ class CompoSignUpController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompoSignUpRequest $request, $slug)
+    public function store(Request $request, $slug)
     {
         $compo = Compo::where('slug', '=', $slug)->first();
         if (\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
@@ -63,7 +62,11 @@ class CompoSignUpController extends Controller
         }
 
         if ($compo->signup_type == 1) {
-            $team_id = $request->id;
+            $request->validate([
+                'team' => 'required',
+                'read_rules' => 'accepted',
+            ]);
+            $team_id = $request->team;
             $team = \LANMS\CompoTeam::find($team_id);
             $players = $team->players->count();
             $players += 1;
@@ -73,6 +76,9 @@ class CompoSignUpController extends Controller
                     ->with('message', trans('compo.signup.alert.signupsize'));
             }
         } else {
+            $request->validate([
+                'read_rules' => 'accepted',
+            ]);
             $team_id = null;
         }
 
