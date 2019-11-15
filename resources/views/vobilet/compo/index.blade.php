@@ -19,6 +19,9 @@
 							<h3 class="card-title">{{ $compo->name }}</h3>
 							<div class="card-options">
 								{!! $compo->prize_pool_total ? '<span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>'.$compo->prize_pool_total.'</span>' : '' !!}
+								@if(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+									<span class="badge badge-info text-right"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->signup_type) }}</span>
+								@endif
 							</div>
 						</div>
 						<div class="card-body d-flex flex-column">
