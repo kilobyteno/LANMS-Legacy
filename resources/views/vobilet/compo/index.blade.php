@@ -18,8 +18,10 @@
 						<div class="card-header">
 							<h3 class="card-title">{{ $compo->name }}</h3>
 							<div class="card-options">
-								@if(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
-									<small><span class="badge badge-info text-right"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->signup_type) }}</span></small>
+								@if(\Sentinel::check())
+									@if(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+										<small><span class="badge badge-info text-right"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->signup_type) }}</span></small>
+									@endif
 								@endif
 							</div>
 						</div>
