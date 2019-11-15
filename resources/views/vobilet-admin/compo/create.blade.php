@@ -27,6 +27,9 @@
 					
 					<div class="col-xl-12">
 						<div class="input-group">
+							<span class="input-group-prepend">
+								<span class="input-group-text">Compo Name</span>
+							</span>
 							<input type="text" class="form-control input-lg {{ ($errors->has('name')) ? 'is-invalid state-invalid' : '' }}" name="name" autocomplete="off" placeholder="Name" value="{{ (old('name')) ? old('name') : '' }}" />
 							@if($errors->has('name'))
 								<div class="invalid-feedback">{{ $errors->first('name') }}</div>
