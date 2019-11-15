@@ -33,6 +33,7 @@
 							<p>{{ trans('compo.signup_size') }}: {{ $compo->signup_size }} {{ trans_choice('compo.players', $compo->signup_size) }}</p>
 							@if($compo->min_signups)<p>{{ trans('compo.min_signups') }}: {{ $compo->min_signups }}</p>@endif
 							@if($compo->max_signups)<p>{{ trans('compo.max_signups') }}: {{ $compo->max_signups }}</p>@endif
+							<p>{{ trans('compo.nuber_of_participants') }}: {{ $compo->signupsThisYear->count() }}</p>
 							@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
 							@if($compo->prize_pool_first || $compo->prize_pool_second || $compo->prize_pool_third)
 								<p>{{ trans('compo.prize_pool') }}:<br>

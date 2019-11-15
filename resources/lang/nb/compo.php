@@ -28,6 +28,7 @@ return [
     'notstarted' => 'Ikke begynt',
     'started' => 'I gang',
     'finished' => 'Ferdig',
+    'nuber_of_participants' => 'Antall deltakere',
     'team' => [
         'alert' => [
             'created' => 'Laget er nå opprettet.',

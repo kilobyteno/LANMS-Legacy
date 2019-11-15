@@ -28,6 +28,7 @@ return [
     'notstarted' => 'Not Started',
     'started' => 'Started',
     'finished' => 'Finished',
+    'nuber_of_participants' => 'Number of participants',
     'team' => [
         'alert' => [
             'created' => 'The team has now been created.',
