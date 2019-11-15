@@ -21,6 +21,17 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#259" aria-expanded="true">Version 2.5.9</a>
+							</h4>
+						</div>
+						<div id="259" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#258" aria-expanded="true">Version 2.5.8</a>
 							</h4>
 						</div>
