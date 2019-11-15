@@ -204,7 +204,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker {{ ($errors->has('start_at_date')) ? 'is-invalid state-invalid' : '' }}" name="start_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('start_at_date')) ? old('start_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('start_at_date')) ? 'is-invalid state-invalid' : '' }}" name="start_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('start_at_date')) ? old('start_at_date') : Carbon::parse($compo->start_at_date)->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('start_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
 									@endif
@@ -218,7 +218,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input {{ ($errors->has('start_at_time')) ? 'is-invalid state-invalid' : '' }}" id="start_at_time" placeholder="Set time" type="text" autocomplete="off" name="start_at_time" value="{{ (old('start_at_time')) ? old('start_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('start_at_time')) ? 'is-invalid state-invalid' : '' }}" id="start_at_time" placeholder="Set time" type="text" autocomplete="off" name="start_at_time" value="{{ (old('start_at_time')) ? old('start_at_time') : Carbon::parse($compo->start_at_time)->isoFormat('HH:mm') }}">
 									@if($errors->has('start_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('start_at_time') }}</div>
 									@endif
@@ -237,7 +237,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker {{ ($errors->has('last_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('last_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::parse($compo->last_sign_up_at_date)->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('last_sign_up_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_date') }}</div>
 									@endif
@@ -251,7 +251,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input {{ ($errors->has('last_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('last_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::parse($compo->last_sign_up_at_time)->isoFormat('HH:mm') }}">
 									@if($errors->has('last_sign_up_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_time') }}</div>
 									@endif
@@ -270,7 +270,7 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 									</div>
-									<input class="form-control datepicker {{ ($errors->has('end_at_date')) ? 'is-invalid state-invalid' : '' }}" name="end_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('end_at_date')) ? old('end_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									<input class="form-control datepicker {{ ($errors->has('end_at_date')) ? 'is-invalid state-invalid' : '' }}" name="end_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('end_at_date')) ? old('end_at_date') : Carbon::parse($compo->end_at_date)->isoFormat('YYYY-MM-DD') }}">
 									@if($errors->has('end_at_date'))
 										<div class="invalid-feedback">{{ $errors->first('end_at_date') }}</div>
 									@endif
@@ -284,7 +284,7 @@
 											<i class="fas fa-clock"></i>
 										</div>
 									</div>
-									<input class="form-control ui-timepicker-input {{ ($errors->has('end_at_time')) ? 'is-invalid state-invalid' : '' }}" id="end_at_time" placeholder="Set time" type="text" autocomplete="off" name="end_at_time" value="{{ (old('end_at_time')) ? old('end_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									<input class="form-control ui-timepicker-input {{ ($errors->has('end_at_time')) ? 'is-invalid state-invalid' : '' }}" id="end_at_time" placeholder="Set time" type="text" autocomplete="off" name="end_at_time" value="{{ (old('end_at_time')) ? old('end_at_time') : Carbon::parse($compo->end_at)->isoFormat('HH:mm') }}">
 									@if($errors->has('end_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('end_at_time') }}</div>
 									@endif
