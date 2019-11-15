@@ -72,6 +72,8 @@ class CompoController extends Controller
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
+            'min_signups' => 'nullable|integer',
+            'max_signups' => 'nullable|integer',
             'prize_pool_total' => 'nullable|integer',
             'prize_pool_first' => 'nullable|string',
             'prize_pool_second' => 'nullable|string',
@@ -85,6 +87,18 @@ class CompoController extends Controller
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
         ]);
+
+        if ($request->get('min_signups') == 0) {
+            $min_signups = null;
+        } else {
+            $min_signups = $request->get('min_signups');
+        }
+
+        if ($request->get('max_signups') == 0) {
+            $max_signups = null;
+        } else {
+            $max_signups = $request->get('max_signups');
+        }
 
         $start_at_date = $request->get('start_at_date');
         $start_at_time = $request->get('start_at_time');
@@ -109,6 +123,8 @@ class CompoController extends Controller
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
             'signup_size' => $request->get('signup_size'),
+            'min_signups' => $min_signups,
+            'max_signups' => $max_signups,
             'prize_pool_total' => $request->get('prize_pool_total'),
             'prize_pool_first' => $request->get('prize_pool_first'),
             'prize_pool_second' => $request->get('prize_pool_second'),
@@ -176,6 +192,8 @@ class CompoController extends Controller
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
+            'min_signups' => 'nullable|integer',
+            'max_signups' => 'nullable|integer',
             'prize_pool_total' => 'nullable|integer',
             'prize_pool_first' => 'nullable|string',
             'prize_pool_second' => 'nullable|string',
@@ -189,6 +207,18 @@ class CompoController extends Controller
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
         ]);
+
+        if ($request->get('min_signups') == 0) {
+            $min_signups = null;
+        } else {
+            $min_signups = $request->get('min_signups');
+        }
+
+        if ($request->get('max_signups') == 0) {
+            $max_signups = null;
+        } else {
+            $max_signups = $request->get('max_signups');
+        }
         
         $compo = Compo::find($id);
 
@@ -215,6 +245,8 @@ class CompoController extends Controller
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
             'signup_size' => $request->get('signup_size'),
+            'min_signups' => $min_signups,
+            'max_signups' => $max_signups,
             'prize_pool_total' => $request->get('prize_pool_total'),
             'prize_pool_first' => $request->get('prize_pool_first'),
             'prize_pool_second' => $request->get('prize_pool_second'),

@@ -9,6 +9,7 @@ use LANMS\Http\Requests\CompoTeamCreateRequest;
 use LANMS\Http\Requests\CompoTeamUpdateRequest;
 use LANMS\Notifications\CompoTeamAdded;
 use LANMS\Notifications\CompoTeamRemoved;
+use LANMS\User;
 
 class CompoTeamController extends Controller
 {
@@ -30,7 +31,8 @@ class CompoTeamController extends Controller
      */
     public function create()
     {
-        return view('compo.team.create');
+        $users = User::active()->except(\Sentinel::getUser()->id);
+        return view('compo.team.create')->with('users', $users);
     }
 
     /**
@@ -90,7 +92,8 @@ class CompoTeamController extends Controller
     public function edit($id)
     {
         $team = \LANMS\CompoTeam::find($id);
-        return view('compo.team.edit')->withTeam($team);
+        $users = User::active()->except(\Sentinel::getUser()->id);
+        return view('compo.team.edit')->with('team', $team)->with('users', $users);
     }
 
     /**

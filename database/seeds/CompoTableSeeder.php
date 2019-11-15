@@ -12,8 +12,8 @@ class CompoTableSeeder extends Seeder
     public function run()
     {
         \LANMS\Compo::create([
-            'name' => 'CS:GO',
-            'slug' => str_slug('CS:GO '.\Carbon\Carbon::now()->year, '-'),
+            'name' => 'CS:GO '.(\Carbon\Carbon::now()->year + 1),
+            'slug' => str_slug('CS:GO '.(\Carbon\Carbon::now()->year + 1), '-'),
             'description' => 'This is a test compo.',
             'page_id' => 1,
             'year' => \Carbon\Carbon::now()->year + 1,
@@ -27,8 +27,8 @@ class CompoTableSeeder extends Seeder
             'signup_size' => 5,
         ]);
         \LANMS\Compo::create([
-            'name' => 'Minecraft: Creative',
-            'slug' => str_slug('Minecraft: Creative '.\Carbon\Carbon::now()->year, '-'),
+            'name' => 'Minecraft: Creative '.(\Carbon\Carbon::now()->year + 1),
+            'slug' => str_slug('Minecraft: Creative '.(\Carbon\Carbon::now()->year + 1), '-'),
             'description' => 'Here you would describe some general info about the compo.',
             'page_id' => 1,
             'year' => \Carbon\Carbon::now()->year + 1,
@@ -42,8 +42,8 @@ class CompoTableSeeder extends Seeder
             'signup_size' => 1,
         ]);
         \LANMS\Compo::create([
-            'name' => 'Rocket League',
-            'slug' => str_slug('Rocket League '.\Carbon\Carbon::now()->year, '-'),
+            'name' => 'Rocket League ' .(\Carbon\Carbon::now()->year + 1),
+            'slug' => str_slug('Rocket League '.(\Carbon\Carbon::now()->year + 1), '-'),
             'description' => 'This is a test compo.',
             'page_id' => 1,
             'year' => \Carbon\Carbon::now()->year + 1,
