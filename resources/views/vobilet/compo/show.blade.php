@@ -62,8 +62,12 @@
 				<div class="card-footer">
 					@if(\Sentinel::check())
 						@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
-							@if($compo->max_signups && $compo->signupsThisYear->count() < $compo->max_signups)
-							<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
+							@if($compo->max_signups)
+								@if($compo->signupsThisYear->count() < $compo->max_signups)
+									<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
+								@endif
+							@else
+								<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
 							@endif
 						@elseif($compo->last_sign_up_at > \Carbon\Carbon::now() && \Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
 							<a class="btn btn-sm btn-danger" href="{{ route('compo-signup-destroy', $compo->slug) }}"><i class="fas fa-user-slash"></i> {{ trans('compo.signup.cancel') }}</a>
