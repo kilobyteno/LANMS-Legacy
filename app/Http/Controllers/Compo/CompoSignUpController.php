@@ -37,6 +37,11 @@ class CompoSignUpController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
         }
+        if ($compo->signupsThisYear->count() >= $compo->max_signups) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.maxsignups'));
+        }
         return view('compo.signup.show')->withCompo($compo);
     }
 
@@ -59,6 +64,12 @@ class CompoSignUpController extends Controller
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
+        }
+
+        if ($compo->signupsThisYear->count() >= $compo->max_signups) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.maxsignups'));
         }
 
         if ($compo->signup_type == 1) {
@@ -140,10 +151,10 @@ class CompoSignUpController extends Controller
             return \Redirect::back();
         }
 
-        if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
+        if (\Carbon\Carbon::now() > $compo->start_at) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.lastsignuppast'));
+                ->with('message', trans('compo.signup.alert.alreadystarted'));
         }
 
         $team_id = null;

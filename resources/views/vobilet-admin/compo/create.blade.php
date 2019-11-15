@@ -66,7 +66,7 @@
 
 				<div class="form-row mt-5">
 					
-					<div class="col-xl-3">
+					<div class="col-xl-4">
 						<div class="input-group">
 							<label class="form-label">Type:</label>
 							<select name="type" class="select2 {{ ($errors->has('type')) ? 'is-invalid state-invalid' : '' }}">
@@ -79,7 +79,7 @@
 						</div>
 					</div>
 
-					<div class="col-xl-3">
+					<div class="col-xl-4">
 						<div class="input-group">
 							<label class="form-label">Signup Type:</label>
 							<select name="signup_type" id="signup_type" class="select2 {{ ($errors->has('signup_type')) ? 'is-invalid state-invalid' : '' }}">
@@ -92,17 +92,7 @@
 						</div>
 					</div>
 
-					<div class="col-xl-3">
-						<div class="form-group">
-							<label class="form-label">Signup Size:</label>
-							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}" name="signup_size" id="signup_size" value="{{ (old('signup_size')) ? old('signup_size') : '' }}">
-							@if($errors->has('signup_size'))
-								<div class="invalid-feedback">{{ $errors->first('signup_size') }}</div>
-							@endif
-						</div>
-					</div>
-
-					<div class="col-xl-3">
+					<div class="col-xl-4">
 						<div class="form-group">
 							<label class="form-label">Rules Page:</label>
 							<select name="page_id" id="page_id" class="select2 {{ ($errors->has('page_id')) ? 'is-invalid state-invalid' : '' }}">
@@ -117,6 +107,40 @@
 						</div>
 					</div>
 					
+				</div>
+
+				<div class="form-row mt-5">
+
+					<div class="col-xl-4">
+						<div class="form-group">
+							<label class="form-label">Signup Size:</label>
+							<input type="number" class="form-control {{ ($errors->has('signup_size')) ? 'is-invalid state-invalid' : '' }}" name="signup_size" id="signup_size" value="{{ (old('signup_size')) ? old('signup_size') : '' }}">
+							@if($errors->has('signup_size'))
+								<div class="invalid-feedback">{{ $errors->first('signup_size') }}</div>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-xl-4">
+						<div class="form-group">
+							<label class="form-label">Min signups: <small>Minimum amount of teams/individuals for compo to start (0 = unlimited)</small></label>
+							<input type="number" class="form-control {{ ($errors->has('min_signups')) ? 'is-invalid state-invalid' : '' }}" name="min_signups" value="{{ (old('min_signups')) ? old('min_signups') : '0' }}">
+							@if($errors->has('min_signups'))
+								<div class="invalid-feedback">{{ $errors->first('min_signups') }}</div>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-xl-4">
+						<div class="form-group">
+							<label class="form-label">Max signups: <small>Maximum amount of teams/individuals allowed to sign up (0 = unlimited)</small></label>
+							<input type="number" class="form-control {{ ($errors->has('max_signups')) ? 'is-invalid state-invalid' : '' }}" name="max_signups" value="{{ (old('max_signups')) ? old('max_signups') : '0' }}">
+							@if($errors->has('max_signups'))
+								<div class="invalid-feedback">{{ $errors->first('max_signups') }}</div>
+							@endif
+						</div>
+					</div>
+
 				</div>
 
 				<div class="form-row mt-5">
@@ -277,7 +301,6 @@
 							@endif
 						</div>
 					</div>
-
 				</div>
 
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">

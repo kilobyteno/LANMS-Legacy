@@ -16,6 +16,8 @@ return [
     'signup_type.1' => 'Lag',
     'signup_type.2' => 'Individuell',
     'signup_size' => 'Maks spillere',
+    'min_signups' => 'Minste antall påmeldinger',
+    'max_signups' => 'Maks antall påmeldinger',
     'prize_pool' => 'Premiepott',
     'players' => '{1} spiller|[2,*] spillere',
     'submit' => 'Innsending',
@@ -23,6 +25,9 @@ return [
     'teamleader' => 'Lagleder',
     'player' => 'Spiller',
     'attendees' => 'Deltakere',
+    'notstarted' => 'Ikke begynt',
+    'started' => 'I gang',
+    'finished' => 'Ferdig',
     'team' => [
         'alert' => [
             'created' => 'Laget er nå opprettet.',
@@ -50,6 +55,8 @@ return [
             'lastsignuppast' => 'Siste påmeldingstid er forbi, det er ikke mulig å registrere seg.',
             'signupsize' => 'Laget ditt har ikke riktig antall medlemmer.',
             'cancelled' => '{1} Ditt lag har nå trukket tilbake påmeldingen!|{2} Du har nå trukket tilbake din påmelding!',
+            'alreadystarted' => 'Konkurransen har allerede startet, du kan ikke avlyse oppmøtet ditt nå.',
+            'maxsignups' => 'Konkurransen er full, du kan ikke registrere deg for denne konkurransen.',
         ],
         'title' => 'Bli med',
         'chooseteam' => 'Velg lag',
@@ -57,6 +64,8 @@ return [
         'cancel' => 'Avbryt Oppmøte',
         'invidual' => 'Du vil nå melde deg selv på.',
         'agreement' => '{1} Vi har lest og akseptert <strong>reglene</strong> for denne konkurransen.|{2} Jeg har lest og akseptert <strong>reglene</strong> for denne konkurransen.',
+        'missingattendance' => 'Trenger flere deltakere',
+        'full' => 'Fullt',
     ],
     
 ];

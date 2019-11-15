@@ -16,6 +16,8 @@ return [
     'signup_type.1' => 'Team',
     'signup_type.2' => 'Individual',
     'signup_size' => 'Max Players',
+    'min_signups' => 'Min Amount of Sign Ups',
+    'max_signups' => 'Max Amount of Sign Ups',
     'prize_pool' => 'Prize Pool',
     'players' => '{1} Player|[2,*] Players',
     'submit' => 'Submit',
@@ -23,6 +25,9 @@ return [
     'teamleader' => 'Teamleader',
     'player' => 'Player',
     'attendees' => 'Attendees',
+    'notstarted' => 'Not Started',
+    'started' => 'Started',
+    'finished' => 'Finished',
     'team' => [
         'alert' => [
             'created' => 'The team has now been created.',
@@ -50,6 +55,8 @@ return [
             'lastsignuppast' => 'Last sign up time has past, no sign up is possible.',
             'signupsize' => 'Your team is not the correct size.',
             'cancelled' => '{1} Your team has now withdrawn the attendance!|{2} You have now withdrawn your attendance!',
+            'alreadystarted' => 'The compo has already started, you cannot cancel your attendance now.',
+            'maxsignups' => 'The compo is full, you cannot sign up for this compo.',
         ],
         'title' => 'Sign Up',
         'chooseteam' => 'Choose Team',
@@ -57,6 +64,8 @@ return [
         'cancel' => 'Cancel Attendance',
         'invidual' => 'You will now sign up yourself.',
         'agreement' => '{1} We have read and accepted the <strong>rules</strong> for this compo.|{2} I have read and accepted the <strong>rules</strong> for this compo.',
+        'missingattendance' => 'Needs More Attendees',
+        'full' => 'Full',
     ],
     
 ];

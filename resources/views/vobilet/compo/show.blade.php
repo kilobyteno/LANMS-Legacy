@@ -28,6 +28,8 @@
 					<p>{{ trans('compo.type') }}: <br>{{ trans('compo.type.'.$compo->type) }}</p>
 					<p>{{ trans('compo.signup_type') }}: <br>{{ trans('compo.signup_type.'.$compo->signup_type) }}</p>
 					<p>{{ trans('compo.signup_size') }}: <br>{{ $compo->signup_size }} {{ trans_choice('compo.players', $compo->signup_size) }}</p>
+					@if($compo->min_signups)<p>{{ trans('compo.min_signups') }}: <br>{{ $compo->min_signups }}</p>@endif
+					@if($compo->max_signups)<p>{{ trans('compo.max_signups') }}: <br>{{ $compo->max_signups }}</p>@endif
 					@if($compo->description)<div class="text-muted">{{ $compo->description }}</div>@endif
 					@if($compo->prize_pool_first || $compo->prize_pool_second || $compo->prize_pool_third)
 						<p>{{ trans('compo.prize_pool') }}:<br>
@@ -40,7 +42,9 @@
 				<div class="card-footer">
 					@if(\Sentinel::check())
 						@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+							@if($compo->max_signups && $compo->signupsThisYear->count() < $compo->max_signups)
 							<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
+							@endif
 						@elseif($compo->last_sign_up_at > \Carbon\Carbon::now() && \Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
 							<a class="btn btn-sm btn-danger" href="{{ route('compo-signup-destroy', $compo->slug) }}"><i class="fas fa-user-slash"></i> {{ trans('compo.signup.cancel') }}</a>
 						@endif
