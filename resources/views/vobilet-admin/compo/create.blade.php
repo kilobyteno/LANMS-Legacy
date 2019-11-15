@@ -152,8 +152,8 @@
 						<div class="form-group">
 							<label class="form-label">Prize Pool Total: <small>Example: 10000</small></label>
 							<input type="number" class="form-control {{ ($errors->has('prize_pool_total')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_total" value="{{ (old('prize_pool_total')) ? old('prize_pool_total') : '' }}">
-							@if($errors->has('start_at_date'))
-								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@if($errors->has('prize_pool_total'))
+								<div class="invalid-feedback">{{ $errors->first('prize_pool_total') }}</div>
 							@endif
 						</div>
 					</div>
@@ -162,8 +162,8 @@
 						<div class="form-group">
 							<label class="form-label">Prize Pool First:</label>
 							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_first')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_first" autocomplete="off" placeholder="5000kr + 2 tickets" value="{{ (old('prize_pool_first')) ? old('prize_pool_first') : '' }}" />
-							@if($errors->has('start_at_date'))
-								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@if($errors->has('prize_pool_first'))
+								<div class="invalid-feedback">{{ $errors->first('prize_pool_first') }}</div>
 							@endif
 						</div>
 					</div>
@@ -172,8 +172,8 @@
 						<div class="form-group">
 							<label class="form-label">Prize Pool Second:</label>
 							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_second')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_second" autocomplete="off" placeholder="3000kr + 2 sodas" value="{{ (old('prize_pool_second')) ? old('prize_pool_second') : '' }}" />
-							@if($errors->has('start_at_date'))
-								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@if($errors->has('prize_pool_second'))
+								<div class="invalid-feedback">{{ $errors->first('prize_pool_second') }}</div>
 							@endif
 						</div>
 					</div>
@@ -182,8 +182,8 @@
 						<div class="form-group">
 							<label class="form-label">Prize Pool Third:</label>
 							<input type="text" class="form-control input-lg {{ ($errors->has('prize_pool_third')) ? 'is-invalid state-invalid' : '' }}" name="prize_pool_third" autocomplete="off" placeholder="2000kr" value="{{ (old('prize_pool_third')) ? old('prize_pool_third') : '' }}" />
-							@if($errors->has('start_at_date'))
-								<div class="invalid-feedback">{{ $errors->first('start_at_date') }}</div>
+							@if($errors->has('prize_pool_third'))
+								<div class="invalid-feedback">{{ $errors->first('prize_pool_third') }}</div>
 							@endif
 						</div>
 					</div>
