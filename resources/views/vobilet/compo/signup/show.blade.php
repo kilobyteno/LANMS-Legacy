@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $compo->name.' '.trans('header.compo'))
+@section('title', trans('compo.signup.title').' - '.$compo->name.' - '.trans('header.compo'))
 @section('content')
 
 <div class="container">
