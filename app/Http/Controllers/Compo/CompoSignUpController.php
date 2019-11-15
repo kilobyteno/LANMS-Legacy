@@ -37,7 +37,7 @@ class CompoSignUpController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
         }
-        if ($compo->signupsThisYear->count() >= $compo->max_signups) {
+        if ($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.maxsignups'));
@@ -66,7 +66,7 @@ class CompoSignUpController extends Controller
                 ->with('message', trans('compo.signup.alert.lastsignuppast'));
         }
 
-        if ($compo->signupsThisYear->count() >= $compo->max_signups) {
+        if ($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
                 ->with('message', trans('compo.signup.alert.maxsignups'));
