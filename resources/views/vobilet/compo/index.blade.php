@@ -18,13 +18,32 @@
 						<div class="card-header">
 							<h3 class="card-title">{{ $compo->name }}</h3>
 							<div class="card-options">
-								{!! $compo->prize_pool_total ? '<span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>'.$compo->prize_pool_total.'</span>' : '' !!}
 								@if(\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
 									<span class="badge badge-info text-right"><i class="fas fa-user-check"></i> {{ trans_choice('compo.signup.signedup', $compo->signup_type) }}</span>
 								@endif
 							</div>
 						</div>
 						<div class="card-body d-flex flex-column">
+							<p class="mb-5 pb-5 border-bottom">
+								<small>
+									@if(\Carbon\Carbon::now() < $compo->start_at)
+										<span class="badge badge-default"><i class="fas fa-hourglass-start"></i> {{ trans('compo.notstarted') }}</span>
+									@elseif(\Carbon\Carbon::now() > $compo->start_at && \Carbon\Carbon::now() < $compo->end_at)
+										<span class="badge badge-info"><i class="fas fa-hourglass-half"></i> {{ trans('compo.started') }}</span>
+									@elseif($compo->end_at < \Carbon\Carbon::now())
+										<span class="badge badge-success"><i class="fas fa-hourglass-end"></i> {{ trans('compo.finished') }}</span>
+									@endif
+									@if($compo->min_signups && $compo->signupsThisYear->count() < $compo->min_signups)
+										<span class="tag tag-yellow"><i class="fas fa-thermometer-quarter"></i> {{ trans('compo.signup.missingattendance') }}</span>
+									@endif
+									@if($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups)
+										<span class="badge badge-danger"><i class="fas fa-thermometer-full"></i> {{ trans('compo.signup.full') }}</span>
+									@endif
+									@if($compo->prize_pool_total)
+										<span class="tag tag-lime"><i class="fas fa-money-bill-alt mr-2"></i>{{ $compo->prize_pool_total }}</span>
+									@endif
+								</small>
+							</p>
 							@if($compo->start_at)<p>{{ trans('compo.starts') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}">{{ $compo->start_at->diffForHumans() }}</span></p>@endif
 							@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}">{{ $compo->last_sign_up_at->diffForHumans() }}</span></p>@endif
 							@if($compo->end_at)<p>{{ trans('compo.ends') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}">{{ $compo->end_at->diffForHumans() }}</span></p>@endif
