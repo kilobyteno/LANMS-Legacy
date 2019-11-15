@@ -26,6 +26,15 @@
 						</div>
 						<div id="259" class="panel-collapse collapse" aria-expanded="true">
 							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-308'>LANMS-308</a>] - Compo: Cancel Signup</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-281'>LANMS-281</a>] - Add max/min signups for compo</li>
+								</ul>
 							</div>
 						</div>
 					</div>
