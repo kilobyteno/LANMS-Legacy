@@ -251,6 +251,10 @@ Route::group([
                     'as' => 'compo-signup-store',
                     'uses' => 'Compo\CompoSignUpController@store'
                 ]);
+                Route::get('/{slug}/signup/destroy', [
+                    'as' => 'compo-signup-destroy',
+                    'uses' => 'Compo\CompoSignUpController@destroy'
+                ]);
             });
         Route::group([
             'prefix' => 'seating'

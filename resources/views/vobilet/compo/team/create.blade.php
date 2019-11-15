@@ -44,7 +44,7 @@
 						<label class="form-label">{{ trans('compo.player') }} 2</label>
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
-							@foreach(\User::active() as $user)
+							@foreach($users as $user)
 								<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
@@ -53,7 +53,7 @@
 						<label class="form-label">{{ trans('compo.player') }} 3</label>
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
-							@foreach(\User::active() as $user)
+							@foreach($users as $user)
 								<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
@@ -62,7 +62,7 @@
 						<label class="form-label">{{ trans('compo.player') }} 4</label>
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
-							@foreach(\User::active() as $user)
+							@foreach($users as $user)
 								<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
@@ -71,7 +71,7 @@
 						<label class="form-label">{{ trans('compo.player') }} 5</label>
 						<select name="players[]" class="select2">
 							<option value="">-- {{ trans('global.pleaseselect') }} --</option>
-							@foreach(\User::active() as $user)
+							@foreach($users as $user)
 								<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>
