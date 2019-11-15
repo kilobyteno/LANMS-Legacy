@@ -21,6 +21,40 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#258" aria-expanded="true">Version 2.5.8</a>
+							</h4>
+						</div>
+						<div id="258" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-383'>LANMS-383</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Console\Commands\DB&#39; not found</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-384'>LANMS-384</a>] - ErrorException: Undefined variable: webpath_light</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-385'>LANMS-385</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Notifications\InvoiceUnPaid&#39; not found</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-386'>LANMS-386</a>] - Cannot reserve seat in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-387'>LANMS-387</a>] - Cannot reserve seat from frontend</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-391'>LANMS-391</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function routeNotificationFor() on string</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-394'>LANMS-394</a>] - Change payment button is not showing</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-390'>LANMS-390</a>] - User API-endpoint with tickets, and more</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-381'>LANMS-381</a>] - Improve card design for articles</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-382'>LANMS-382</a>] - Improve design on all admin pages</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-388'>LANMS-388</a>] - Add logging to seat ticket and reservation</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-392'>LANMS-392</a>] - Update print seat pdf</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#257" aria-expanded="true">Version 2.5.7</a>
 							</h4>
 						</div>
