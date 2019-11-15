@@ -3,11 +3,12 @@
 namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class CompoSignUp extends Model
 {
-    use LogsActivity;
+    use SoftDeletes, LogsActivity;
 
     protected $table = 'compo_sign_ups';
 
