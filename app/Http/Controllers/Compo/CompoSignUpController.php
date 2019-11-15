@@ -133,8 +133,36 @@ class CompoSignUpController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $compo = Compo::where('slug', $slug)->first();
+        if (!\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
+            return \Redirect::back();
+        }
+
+        if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
+            return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'warning')
+                ->with('message', trans('compo.signup.alert.lastsignuppast'));
+        }
+
+        $team_id = null;
+        if ($compo->signup_type == 1) { // IS TEAM
+            $signup = \LANMS\CompoSignUp::where('compo_id', $compo->id)->where('user_id', \Sentinel::getUser()->id)->where('team_id', "!=", $team_id)->first();
+        } else {
+            $signup = \LANMS\CompoSignUp::where('compo_id', $compo->id)->where('user_id', \Sentinel::getUser()->id)->where('team_id', $team_id)->first();
+        }
+
+        
+
+        if (!$signup) {
+            return \Redirect::back();
+        }
+
+        $signup->delete();
+
+        return \Redirect::route('compo-show', $compo->slug)
+                ->with('messagetype', 'success')
+                ->with('message', trans_choice('compo.signup.alert.cancelled', $compo->signup_type));
     }
 }
