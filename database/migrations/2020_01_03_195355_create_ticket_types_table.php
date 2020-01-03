@@ -16,12 +16,13 @@ class CreateTicketTypesTable extends Migration
         Schema::create('ticket_types', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('name');
+            $table->string('title');
             $table->string('slug');
             $table->longText('description')->nullable();
             $table->integer('price');
             $table->string('color')->nullable();
             $table->boolean('default')->default(false);
+            $table->boolean('active')->default(true);
 
             $table->integer('editor_id')->default(0); //who created it?
             $table->integer('author_id')->default(0); //who updated it?
