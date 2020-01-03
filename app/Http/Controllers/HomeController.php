@@ -50,7 +50,7 @@ class HomeController extends Controller
 
     public function tickets()
     {
-        $ticket_types = TicketType::orderBy('price', 'asc')->get();
+        $ticket_types = TicketType::where('active', true)->orderBy('price', 'asc')->get();
         return view('main.tickets', ['ticket_types' => $ticket_types]);
     }
 }
