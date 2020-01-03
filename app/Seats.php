@@ -4,6 +4,7 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use LANMS\TicketType;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Seats extends Model
@@ -17,6 +18,7 @@ class Seats extends Model
         'name',
         'slug',
         'row_id',
+        'tickettype_id',
         'author_id',
         'editor_id',
     ];
@@ -27,7 +29,13 @@ class Seats extends Model
         'name',
         'slug',
         'row_id',
+        'tickettype_id',
     ];
+
+    public function tickettype()
+    {
+        return $this->hasOne(TicketType::class, 'id', 'tickettype_id');
+    }
 
     public function row()
     {
