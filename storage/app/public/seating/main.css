@@ -35,6 +35,10 @@ SEATMAP by Infihex
 	background-color: #ecf0f1 !important;
 }
 
+.seatmap ul > .seat-row li.seat.checkedin {
+	background-color: #e056fd !important;
+}
+
 .seatmap ul > .seat-row li.seat.active > p > a {
 	color: #333;
 	border-bottom: 1px dotted #333;
