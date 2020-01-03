@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-12 col-md-12 col-lg-8">
+	<div class="col-12 col-xl-8">
 
 		<form class="card" action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
 			<div class="card-body">
