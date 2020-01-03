@@ -33,10 +33,10 @@
 
 				</div>
 				<div class="col-md-4">
-					<h1 class="text-center"><small>{{ trans('seating.pay.price') }}:</small><br>{{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</h1>
+					<h1 class="text-center"><small>{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }}</h1>
 					<hr>
 					<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ trans('seating.pay.entrancebutton') }}</a>
-					<p class="text-center text-muted"><small><em>{!! trans('seating.pay.entrancedesc', ['url' => '/tos', 'price' => Setting::get('SEATING_SEAT_PRICE_ALT') - Setting::get('SEATING_SEAT_PRICE').' '.Setting::get('SEATING_SEAT_PRICE_CURRENCY')]) !!}</em></small></p>
+					<p class="text-center text-muted"><small><em>{!! trans('seating.pay.entrancedesc') !!}</em></small></p>
 
 					<br>
 					<h4 class="text-center text-muted"><em>~ {{ trans('seating.pay.or') }} ~</em></h4>
