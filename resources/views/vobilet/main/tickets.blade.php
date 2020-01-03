@@ -30,7 +30,7 @@
 													<a class="card-title">{{ $type->name }}</a>
 												</div>
 												<div class="cardprice">
-													<span>{{ $type->price == 0 ? trans('pages.tickets.free') : $type->price }}</span>
+													<span>{{ $type->price == 0 ? trans('pages.tickets.free') : moneyFormat($type->price, 'NOK') }}</span>
 												</div>
 											</div>
 											<div class="card-body p-4">{!! $type->description !!}</div>
