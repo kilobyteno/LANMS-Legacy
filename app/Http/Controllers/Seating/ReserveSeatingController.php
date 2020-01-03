@@ -69,7 +69,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatnotfound'));
         }
-        if (substr($slug, 0, 1) == 'a') {
+        if (is_null($currentseat->tickettype) || !$currentseat->tickettype->active) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.notpossibleonthisrow'));
         }
