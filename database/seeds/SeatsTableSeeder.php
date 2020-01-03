@@ -12,6 +12,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a1',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -19,6 +20,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a2',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -26,6 +28,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a3',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -33,6 +36,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a4',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -40,6 +44,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a5',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -47,6 +52,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a6',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -54,6 +60,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a7',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -61,6 +68,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a8',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -68,6 +76,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a9',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -75,6 +84,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a10',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -82,6 +92,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a11',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
         Seats::create([
@@ -89,6 +100,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'a12',
             'row_id'    => '1',
             'reservation_id' => 0,
+            'tickettype_id' => 6,
         ]);
 
 
@@ -97,6 +109,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b1',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -104,6 +117,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b2',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -111,6 +125,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b3',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -118,6 +133,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b4',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -125,6 +141,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b5',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -132,6 +149,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b6',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -139,6 +157,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b7',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -146,6 +165,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'b8',
             'row_id'    => '2',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -153,6 +173,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c1',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -160,6 +181,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c2',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -167,6 +189,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c3',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -174,6 +197,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c4',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -181,6 +205,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c5',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -188,6 +213,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c6',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -195,6 +221,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c7',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -202,6 +229,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'c8',
             'row_id'    => '3',
             'reservation_id' => 0,
+            'tickettype_id' => 4,
         ]);
 
         Seats::create([
@@ -209,6 +237,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd1',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -216,6 +245,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd2',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -223,6 +253,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd3',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -230,6 +261,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd4',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -237,6 +269,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd5',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -244,6 +277,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd6',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -251,6 +285,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd7',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -258,6 +293,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'd8',
             'row_id'    => '4',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -265,6 +301,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e1',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -272,6 +309,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e2',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -279,6 +317,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e3',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -286,6 +325,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e4',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -293,6 +333,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e5',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -300,6 +341,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e6',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -307,6 +349,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e7',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -314,6 +357,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'e8',
             'row_id'    => '5',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -321,6 +365,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f1',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -328,6 +373,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f2',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -335,6 +381,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f3',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -342,6 +389,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f4',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -349,6 +397,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f5',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -356,6 +405,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f6',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -363,6 +413,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f7',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -370,6 +421,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'f8',
             'row_id'    => '6',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -377,6 +429,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g1',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -384,6 +437,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g2',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -391,6 +445,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g3',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -398,6 +453,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g4',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -405,6 +461,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g5',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -412,6 +469,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g6',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -419,6 +477,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g7',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -426,6 +485,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'g8',
             'row_id'    => '7',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -433,6 +493,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h1',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -440,6 +501,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h2',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -447,6 +509,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h3',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -454,6 +517,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h4',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -461,6 +525,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h5',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -468,6 +533,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h6',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -475,6 +541,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h7',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -482,6 +549,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'h8',
             'row_id'    => '8',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -489,6 +557,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i1',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -496,6 +565,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i2',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -503,6 +573,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i3',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -510,6 +581,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i4',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -517,6 +589,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i5',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -524,6 +597,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i6',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -531,6 +605,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i7',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -538,6 +613,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'i8',
             'row_id'    => '9',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -545,6 +621,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j1',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -552,6 +629,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j2',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -559,6 +637,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j3',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -566,6 +645,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j4',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -573,6 +653,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j5',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -580,6 +661,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j6',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -587,6 +669,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j7',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -594,6 +677,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'j8',
             'row_id'    => '10',
             'reservation_id' => 0,
+            'tickettype_id' => 1,
         ]);
 
         Seats::create([
@@ -601,6 +685,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k1',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -608,6 +693,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k2',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -615,6 +701,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k3',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -622,6 +709,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k4',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -629,6 +717,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k5',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -636,6 +725,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k6',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -643,6 +733,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k7',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
@@ -650,6 +741,7 @@ class SeatsTableSeeder extends Seeder
             'slug'      => 'k8',
             'row_id'    => '11',
             'reservation_id' => 0,
+            'tickettype_id' => 2,
         ]);
 
         Seats::create([
