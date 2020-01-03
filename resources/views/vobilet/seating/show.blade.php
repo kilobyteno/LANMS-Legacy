@@ -72,7 +72,7 @@
 								</div>
 							</div>
 						</div>
-					@elseif($currentseat->row_id == 1)
+					@elseif(is_null($currentseat->tickettype) || !$currentseat->tickettype->active)
 						<div class="alert alert-info" role="alert">
 							<i class="fas fa-info mr-2" aria-hidden="true"></i>{{ trans('seating.show.alert.cannotbereserved') }}
 						</div>
