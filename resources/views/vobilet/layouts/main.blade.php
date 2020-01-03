@@ -202,6 +202,7 @@
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
 												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
+												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('header.tickets') }}</a>
 												@if(Setting::get('HEADER_INFO_CONSENT_FORM'))
 													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 												@endif

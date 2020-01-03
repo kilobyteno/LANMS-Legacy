@@ -55,4 +55,8 @@ return [
         ),
     ),
 
+    'tickets' => array(
+        'free' => 'Gratis',
+    ),
+
 ];
