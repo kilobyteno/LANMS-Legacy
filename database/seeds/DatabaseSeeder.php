@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call('InfoTableSeeder');
         $this->call('CompoTableSeeder');
         $this->call('EmailTableSeeder');
+        $this->call('TicketTypeTableSeeder');
     }
 }
