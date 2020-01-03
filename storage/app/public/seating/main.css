@@ -167,7 +167,7 @@ li.kiosk > a {
 }
 
 .seatmap ul > .seat-row li.seat-yours {
-	background-color: #ffa801;
+	background-color: #badc58 !important;
 }
 
 .seatmap ul > .seat-row li.seat.seat-yours > p > a {
