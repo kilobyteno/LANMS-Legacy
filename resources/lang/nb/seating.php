@@ -49,7 +49,7 @@ return [
         'remove' => 'Fjern reservasjonen',
         'consentform' => array(
             'title' => 'Samtykkeskjema',
-            'desc' => 'Personen som denne reservasjonen er reservert for er under 16 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet.',
+            'desc' => 'Personen som denne reservasjonen er reservert for er under 15 år og må ha med samtykkeskjema, ferdig utfyllt ved innskjekking på arrangementet.',
             'why' => 'Hvorfor ser jeg denne?',
         ),
         'pizza' => array(

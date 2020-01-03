@@ -49,7 +49,7 @@ return [
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
-            'desc' => 'The person who has this reservation is reserved for under 16 years and must have a consent form, completed upon check-in at the event.',
+            'desc' => 'The person who has this reservation is reserved for under 15 years and must have a consent form, completed upon check-in at the event.',
             'why' => 'Why do I see this?',
         ),
         'pizza' => array(

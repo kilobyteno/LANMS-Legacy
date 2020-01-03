@@ -23,7 +23,7 @@ return [
 
     'consentform' => array(
         'title' => 'Consent Form',
-        'desc' => 'All participants under the age of 16 must bring a written permission from the caregiver to attend the event. Underage participants who do not have permission, we are unfortunately forced to decline entrance. The age limit for attending the event is there to be respected and followed. For more information about the age limit see our website.',
+        'desc' => 'All participants under the age of 15 must bring a written permission from the caregiver to attend the event. Underage participants who do not have permission, we are unfortunately forced to decline entrance. The age limit for attending the event is there to be respected and followed. For more information about the age limit see our website.',
         'organizerswantright' => 'The organizers want the right to',
         'organizerswantrightpoints' => '<li>To publish photo/video of participant at the event\'s website/social media. Open Facebook page and open website. Once the participant has entered the pallet placement in competitions and/or seen in overview pictures of the event.</li>
                     <li>To only have validity on this consent form for the week the event takes place</li>',
