@@ -27,7 +27,7 @@
 										<div class="col-md-8 pl-0">
 											<div class="card-body cardbody">
 												<div class="cardtitle">
-													<a class="card-title">{{ $type->title }}</a>
+													<a class="card-title">{{ $type->name }}</a>
 												</div>
 												<div class="cardprice">
 													<span>{{ $type->price == 0 ? trans('pages.tickets.free') : moneyFormat($type->price, 'NOK') }}</span>

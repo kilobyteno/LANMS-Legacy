@@ -38,7 +38,7 @@
 			<p>{{ trans('pdf.ticket.moreinfo') }}: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<div class="text-center clms">
 				<div class="aclm">
-					<h2><strong><small>{{ trans('global.type') }}:</small><br>{{ $seat->tickettype->title }}</strong></h2>
+					<h2><strong><small>{{ trans('global.type') }}:</small><br>{{ $seat->tickettype->name }}</strong></h2>
 				</div>
 				<div class="aclm">
 					@if(is_null($payment))
