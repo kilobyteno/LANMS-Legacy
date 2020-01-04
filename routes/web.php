@@ -648,6 +648,38 @@ Route::group([
                         ]);
                     });
                 Route::group([
+                    'prefix' => 'tickettype'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-tickettypes',
+                            'uses' => 'Admin\Seating\TicketTypeController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-tickettype-create',
+                            'uses' => 'Admin\Seating\TicketTypeController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-tickettype-store',
+                            'uses' => 'Admin\Seating\TicketTypeController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-tickettype-edit',
+                            'uses' => 'Admin\Seating\TicketTypeController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-tickettype-update',
+                            'uses' => 'Admin\Seating\TicketTypeController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-tickettype-destroy',
+                            'uses' => 'Admin\Seating\TicketTypeController@destroy'
+                        ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-tickettype-restore',
+                            'uses' => 'Admin\Seating\TicketTypeController@restore'
+                        ]);
+                    });
+                Route::group([
                     'prefix' => 'seats'
                     ], function () {
                         Route::get('/', [
