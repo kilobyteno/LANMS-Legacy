@@ -39,7 +39,8 @@ class SeatsController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return view('seating.seats.create');
+        $ticket_types = TicketType::all();
+        return view('seating.seats.create', ['ticket_types' => $ticket_types]);
     }
 
     /**
@@ -54,11 +55,12 @@ class SeatsController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
 
-        $seat                   = new Seats;
-        $seat->name             = $request->name;
-        $seat->slug             = strtolower($request->name);
-        $seat->editor_id        = Sentinel::getUser()->id;
-        $seat->author_id        = Sentinel::getUser()->id;
+        $seat = new Seats;
+        $seat->name = $request->name;
+        $seat->slug = str_slug($request->name);
+        $seat->tickettype_id = $request->tickettype;
+        $seat->editor_id = Sentinel::getUser()->id;
+        $seat->author_id = Sentinel::getUser()->id;
 
         if ($seat->save()) {
             return Redirect::route('admin-seating-seats')
@@ -102,7 +104,7 @@ class SeatsController extends Controller
         }
         $seat = Seats::withTrashed()->find($id);
         $seat->name = $request->name;
-        $seat->slug = strtolower($request->name);
+        $seat->slug = str_slug($request->name);
         $seat->row_id = $request->row_id;
         $seat->tickettype_id = $request->tickettype;
         $seat->editor_id = Sentinel::getUser()->id;
