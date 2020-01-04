@@ -14,34 +14,54 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 
-		<form action="{{ route('admin-seating-row-update', $row->id) }}" method="post">
-
-			<div class="row">
-				<div class="col-sm-10">
-					<div class="expanel expanel-default @if($errors->has('name')) panel-danger @endif" data-collapsed="0">
-						<div class="expanel-heading">
-							<div class="expanel-title">Name</div>
-						</div>
-						<div class="expanel-body">
+		<form action="{{ route('admin-seating-row-update', $row->id) }}" method="post" class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-4">
+						<div class="form-group">
+							<label class="form-control-label">Name</label>
 							<input type="text" class="form-control input-lg" name="name" placeholder="A" value="{{ (old('name')) ? old('name') : $row->name }}" />
 							@if($errors->has('name'))
 								<p class="text-danger">{{ $errors->first('name') }}</p>
 							@endif
 						</div>
 					</div>
+					<div class="col-4">
+						<div class="form-group">
+							<label class="form-control-label">Set ticket type to all seats</label>
+							
+							<select name="tickettype" class="select2">
+								<option value="nothing">-- Nothing --</option>
+								<option value="">-- No ticket --</option>
+								@foreach($ticket_types as $tickettype)
+									<option value="{{ $tickettype->id }}">{{ $tickettype->name }}</option>
+								@endforeach
+							</select>
+							<p class="text-muted"><em><small>This will reset whatever the seat had before. If "Nothing" is selected, nothing will happen.</small></em></p>
+							@if($errors->has('tickettype'))
+								<p class="text-danger">{{ $errors->first('tickettype') }}</p>
+							@endif
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-2 post-save-changes">
-					<button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-save mr-2"></i>Save</button>
-				</div>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</div>
-
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+			<div class="card-footer text-right">
+				<button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save</button>
+			</div>
 		</form>
 
 	</div>
 </div>
 
+@stop
+
+@section('javascript')
+	<script type="text/javascript">
+		(function($) {
+			$('.select2').select2();
+		})(jQuery);
+	</script>
 @stop

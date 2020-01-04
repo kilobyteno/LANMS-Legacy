@@ -19,7 +19,7 @@
 		<form action="{{ route('admin-seating-row-store') }}" method="post">
 
 			<div class="row">
-				<div class="col-sm-5">
+				<div class="col-4">
 					<div class="expanel expanel-default @if($errors->has('name')) panel-danger @endif" data-collapsed="0">
 						<div class="expanel-heading">
 							<div class="expanel-title">Name</div>
@@ -32,7 +32,25 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
+				<div class="col-4">
+					<div class="expanel expanel-default @if($errors->has('tickettype')) panel-danger @endif" data-collapsed="0">
+						<div class="expanel-heading">
+							<div class="expanel-title">Ticket Type to add to seats</div>
+						</div>
+						<div class="expanel-body">
+							<select name="tickettype" class="form-control">
+								<option value="">-- No ticket --</option>
+								@foreach($ticket_types as $tickettype)
+									<option value="{{ $tickettype->id }}">{{ $tickettype->title }}</option>
+								@endforeach
+							</select>
+							@if($errors->has('tickettype'))
+								<p class="text-danger">{{ $errors->first('tickettype') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
 					<div class="expanel expanel-default @if($errors->has('seat_count')) panel-danger @endif" data-collapsed="0">
 						<div class="expanel-heading">
 							<div class="expanel-title">Seats to add</div>
