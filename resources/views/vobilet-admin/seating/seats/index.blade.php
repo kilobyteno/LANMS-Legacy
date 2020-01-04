@@ -22,7 +22,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
-							<th>Slug</th>
+							<th>Ticket Type</th>
 							<th>Row</th>
 							<th>Status</th>
 							<th>Updated at</th>
@@ -35,7 +35,7 @@
 							<tr>
 								<th scope="row">{{ $seat->id }}</th>
 								<td>{{ $seat->name }}</td>
-								<td>{{ $seat->slug }}</td>
+								<td>{{ $seat->tickettype ? $seat->tickettype->name : 'N/A' }}</td>
 								<td>{{ $seat->row->name ?? 'N/A' }}</td>
 								<td>{!! ($seat->deleted_at) ? '<span class="badge badge-danger">Deleted</span>' : '<span class="badge badge-info">Active</span>' !!}</td>
 								<td>{{ \Carbon::parse($seat->updated_at)->toDateTimeString() }}</td>
