@@ -160,7 +160,7 @@
 @stop
 @section('css')
 	<link href="{{ Theme::url('plugins/time-picker/jquery.timepicker.css') }}" rel="stylesheet">
-	<link href="{{ Theme::url('js/vendors/bootstrap-datepicker3.standalone.css') }} rel="stylesheet">
+	<link href="{{ Theme::url('js/vendors/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet">
 @stop
 @section('javascript')
 
