@@ -13,10 +13,9 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-
-		<div class="row">
-			<div class="col-md-12">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
 				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 					<thead>
 						<tr>
@@ -53,12 +52,11 @@
 						@endforeach
 					</tbody>
 				</table>
-			</div>
+			</div>			
 		</div>
-		
-
 	</div>
 </div>
+
 
 @foreach($allseats as $seat)
 	<div class="modal fade" id="seat-destroy-{{ $seat->id }}" data-backdrop="static">
