@@ -130,7 +130,7 @@ class RowsController extends Controller
      */
     public function destroy($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
