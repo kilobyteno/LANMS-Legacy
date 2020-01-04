@@ -41,7 +41,7 @@
 							<select name="tickettype" class="form-control">
 								<option value="">-- No ticket --</option>
 								@foreach($ticket_types as $tickettype)
-									<option value="{{ $tickettype->id }}">{{ $tickettype->title }}</option>
+									<option value="{{ $tickettype->id }}">{{ $tickettype->name }}</option>
 								@endforeach
 							</select>
 							@if($errors->has('tickettype'))
