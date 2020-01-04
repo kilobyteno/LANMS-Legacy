@@ -26,6 +26,10 @@
 						</div>
 						<div id="259" class="panel-collapse collapse" aria-expanded="true">
 							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-396'>LANMS-396</a>] - ErrorException: Call to a member function composignups() on null</li>
+								</ul>
 								<h4>New Feature</h4>
 								<ul>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-308'>LANMS-308</a>] - Compo: Cancel Signup</li>
