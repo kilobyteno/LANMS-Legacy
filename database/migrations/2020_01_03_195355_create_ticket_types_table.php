@@ -21,7 +21,6 @@ class CreateTicketTypesTable extends Migration
             $table->longText('description')->nullable();
             $table->integer('price');
             $table->string('color')->nullable();
-            $table->boolean('default')->default(false);
             $table->boolean('active')->default(true);
 
             $table->integer('editor_id')->default(0); //who created it?
