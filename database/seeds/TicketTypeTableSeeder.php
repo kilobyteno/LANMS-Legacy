@@ -14,7 +14,6 @@ class TicketTypeTableSeeder extends Seeder
             'description' => 'Torsdag kl16 til søndag kl12, Selvvalgt plass, 56stk plasser',
             'price' => 300,
             'color' => '10ac84',
-            'default' => true,
             'editor_id' => 1,
             'author_id' => 1,
         ]);
