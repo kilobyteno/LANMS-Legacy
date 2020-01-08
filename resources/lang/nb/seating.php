@@ -99,6 +99,7 @@ return [
     'pay' => array(
         'title' => 'Betal for reservasjon',
         'price' => 'Pris',
+        'tickettype' => 'Billettype',
         'entrancebutton' => 'Betal ved inngangen*',
         'entrancedesc' => '* <strong>kjøpsbetingelser</strong> gjelder her også',
         'or' => 'eller',

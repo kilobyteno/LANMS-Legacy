@@ -99,6 +99,7 @@ return [
     'pay' => array(
         'title' => 'Pay for Reservation',
         'price' => 'Price',
+        'tickettype' => 'Ticket Type',
         'entrancebutton' => 'Pay at the entrance*',
         'entrancedesc' => '* <strong>Purchase Conditions</strong> apply',
         'or' => 'or',
