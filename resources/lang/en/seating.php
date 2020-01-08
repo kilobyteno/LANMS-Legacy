@@ -18,6 +18,7 @@ return [
         'youcanchangepayment' => 'You can now change your payment of your reservation.',
         'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
         'unpaidinvoice' => 'You have one or more unpaid invoices, please pay these first. You will be able to reserve a seat once this has been taken care of.',
+        'tickets' => 'For more information about the different ticket types, visit <a href=":url">this page</a>.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',
