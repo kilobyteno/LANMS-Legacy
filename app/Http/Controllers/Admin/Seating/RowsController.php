@@ -24,7 +24,7 @@ class RowsController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $rows = SeatRows::withTrashed()->get();
+        $rows = SeatRows::withTrashed()->orderBy('sort_order', 'asc')->get();
         return view('seating.rows.index')->with('allrows', $rows);
     }
 

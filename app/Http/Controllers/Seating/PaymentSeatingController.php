@@ -56,7 +56,7 @@ class PaymentSeatingController extends Controller
                                 ->with('message', trans('seating.alert.noreservation'));
         }
         
-        $rows = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         return view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
     }
 

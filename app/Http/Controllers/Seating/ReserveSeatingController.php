@@ -27,7 +27,7 @@ class ReserveSeatingController extends Controller
      */
     public function index()
     {
-        $rows               = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         $reservations       = Sentinel::getUser()->reservationsThisYear;
         $ownreservations    = Sentinel::getUser()->ownReservationsThisYear;
         return view('seating.index')
@@ -49,7 +49,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatnotfound'));
         }
-        $rows = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         return view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
     }
 
