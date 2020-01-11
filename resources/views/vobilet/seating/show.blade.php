@@ -72,6 +72,30 @@
 								</div>
 							</div>
 						</div>
+						<div class="card card-item">
+							<div class="card-body">
+								<div class="border p-0">
+									<div class="row">
+										<div class="col-md-4 pr-0">
+											<div class="text-center p-5" style="background-color: #{{ $currentseat->tickettype->color }}">
+												<img src="/images/profilepicture/0.png" class="img-fluid">
+											</div>
+										</div>
+										<div class="col-md-8 pl-0">
+											<div class="card-body cardbody">
+												<div class="cardtitle">
+													<a class="card-title">{{ $currentseat->tickettype->name }}</a>
+												</div>
+												<div class="cardprice">
+													<span>{{ $currentseat->tickettype->price == 0 ? trans('pages.tickets.free') : moneyFormat($currentseat->tickettype->price, 'NOK') }}</span>
+												</div>
+											</div>
+											<div class="card-body p-4">{!! $currentseat->tickettype->description !!}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					@elseif(is_null($currentseat->tickettype) || !$currentseat->tickettype->active)
 						<div class="alert alert-info" role="alert">
 							<i class="fas fa-info mr-2" aria-hidden="true"></i>{{ trans('seating.show.alert.cannotbereserved') }}
@@ -83,6 +107,30 @@
 					@elseif(!Setting::get('SEATING_OPEN'))
 						<div class="alert alert-info" role="alert"> <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.show.alert.closed') }}</div>
 					@else
+						<div class="card card-item">
+							<div class="card-body">
+								<div class="border p-0">
+									<div class="row">
+										<div class="col-md-4 pr-0">
+											<div class="text-center p-5" style="background-color: #{{ $currentseat->tickettype->color }}">
+												<img src="/images/profilepicture/0.png" class="img-fluid">
+											</div>
+										</div>
+										<div class="col-md-8 pl-0">
+											<div class="card-body cardbody">
+												<div class="cardtitle">
+													<a class="card-title">{{ $currentseat->tickettype->name }}</a>
+												</div>
+												<div class="cardprice">
+													<span>{{ $currentseat->tickettype->price == 0 ? trans('pages.tickets.free') : moneyFormat($currentseat->tickettype->price, 'NOK') }}</span>
+												</div>
+											</div>
+											<div class="card-body p-4">{!! $currentseat->tickettype->description !!}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<form method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group @if($errors->has('reservedfor')) has-error @endif">
 								<label class="form-label">{{ trans('seating.show.reservedfor') }}</label>
