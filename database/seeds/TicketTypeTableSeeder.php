@@ -9,21 +9,11 @@ class TicketTypeTableSeeder extends Seeder
     public function run()
     {
         TicketType::create([
-            'name' => 'Deltaker',
-            'slug' => Str::slug('Deltaker'),
-            'description' => 'Torsdag kl16 til søndag kl12, Selvvalgt plass, 56stk plasser',
-            'price' => 300,
-            'color' => '10ac84',
-            'editor_id' => 1,
-            'author_id' => 1,
-        ]);
-
-        TicketType::create([
-            'name' => '2-dagers',
-            'slug' => Str::slug('2-dagers'),
-            'description' => 'Tors-fre (16-20) eller lør-søn (08-12), Egen plass på rad K, Kun 8stk',
-            'price' => 200,
-            'color' => '0abde3',
+            'name' => 'Besøk',
+            'slug' => Str::slug('Besøk'),
+            'description' => '<ul><li>Kun mellom 07 og 23</li><li>Besøk utenfor dette tidsrommet koster 50kr</li></ul>',
+            'price' => 0,
+            'color' => '535c68',
             'editor_id' => 1,
             'author_id' => 1,
         ]);
@@ -31,9 +21,39 @@ class TicketTypeTableSeeder extends Seeder
         TicketType::create([
             'name' => 'Dagsbillett',
             'slug' => Str::slug('Dagsbillett'),
-            'description' => '10-22 (12 timer), Tilfeldig ledig plass, Veldig begrenset',
+            'description' => '<ul><li>10-22 (12 timer)</li><li>Tilfeldig ledig plass</li><li>Veldig begrenset</li><li>Gjelder kun fredag og lørdag</li></ul>',
             'price' => 100,
-            'color' => '48dbfb',
+            'color' => 'badc58',
+            'editor_id' => 1,
+            'author_id' => 1,
+        ]);
+
+        TicketType::create([
+            'name' => '2-dagers (tors-fre)',
+            'slug' => Str::slug('2-dagers'),
+            'description' => '<ul><li>Torsdag kl.17 til Fredag kl.21</li><li>Egen plass</li><li>Kun 8 plasser</li></ul>',
+            'price' => 200,
+            'color' => '0abde3',
+            'editor_id' => 1,
+            'author_id' => 1,
+        ]);
+
+        TicketType::create([
+            'name' => '2-dagers (lør-søn)',
+            'slug' => Str::slug('2-dagers (lør-søn)'),
+            'description' => '<ul><li>Lørdag kl.08 til Søndag kl.12</li><li>Egen plass</li><li>Kun 8 plasser</li></ul>',
+            'price' => 200,
+            'color' => '0abde3',
+            'editor_id' => 1,
+            'author_id' => 1,
+        ]);
+
+        TicketType::create([
+            'name' => 'Deltaker',
+            'slug' => Str::slug('Deltaker'),
+            'description' => '<ul><li>Torsdag kl.16 til Søndag kl.12</li><li>Egen plass</li><li>56 plasser</li></ul>',
+            'price' => 300,
+            'color' => '10ac84',
             'editor_id' => 1,
             'author_id' => 1,
         ]);
@@ -41,19 +61,9 @@ class TicketTypeTableSeeder extends Seeder
         TicketType::create([
             'name' => 'Premium',
             'slug' => Str::slug('Premium'),
-            'description' => 'Torsdag kl.12 til søndag kl.12, Selvalgt plass på premium radene B og C, Kun 10stk, Premium goder: Tidligere innslipp (4 timer), større plasser (ca 120cm), 1stk frokost, 1stk Baguett, 1stk brus, 1stk pizza, medlemskap i Downlink DG som gir deg rabatt på t-skjorte og hettegenser*, og mulig flere goder.',
+            'description' => '<ul><li>Torsdag kl.12 til Søndag kl.12</li><li>Egen plass</li><li>Kun 10 plasser</li><li>Premium goder:</li><ul><li>Tidligere innslipp (4 timer)</li><li>Større plass (ca 120cm bredde)</li><li>1stk Baguett</li><li>1stk Brus</li><li>1stk Pizza</li><li>Medlemskap i Downlink DG som gir deg bladt annet rabatt på t-skjorte og hettegenser (kun 1stk av hver under arrangementet)</li><li>1stk super myk Downlink t-skjorte</li></ul></li></ul>.',
             'price' => 500,
             'color' => '341f97',
-            'editor_id' => 1,
-            'author_id' => 1,
-        ]);
-
-        TicketType::create([
-            'name' => 'Besøk',
-            'slug' => Str::slug('Besøk'),
-            'description' => 'Kun mellom 07 og 23, besøk utenfor dette tidsrommet koster 50kr',
-            'price' => 0,
-            'color' => '4bcffa',
             'editor_id' => 1,
             'author_id' => 1,
         ]);
