@@ -3,69 +3,62 @@
 use Illuminate\Database\Seeder;
 use LANMS\SeatRows;
 
-class SeatRowsTableSeeder extends Seeder  {
+class SeatRowsTableSeeder extends Seeder
+{
+    public function run()
+    {
+        SeatRows::create([
+            'name' => 'A',
+        ]);
 
-	public function run() {
+        SeatRows::create([
+            'name' => 'B',
+        ]);
+        
+        SeatRows::create([
+            'name' => 'C',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'A',
-			'slug' 		=> 'a',
-		]);
+        SeatRows::create([
+            'name' => 'D',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'B',
-			'slug' 		=> 'b',
-		]);
+        SeatRows::create([
+            'name' => 'E',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'C',
-			'slug' 		=> 'c',
-		]);
+        SeatRows::create([
+            'name' => 'F',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'D',
-			'slug' 		=> 'd',
-		]);
+        SeatRows::create([
+            'name' => 'G',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'E',
-			'slug' 		=> 'e',
-		]);
+        SeatRows::create([
+            'name' => 'H',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'F',
-			'slug' 		=> 'f',
-		]);
+        SeatRows::create([
+            'name' => 'I',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'G',
-			'slug' 		=> 'g',
-		]);
+        SeatRows::create([
+            'name' => 'J',
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'H',
-			'slug' 		=> 'h',
-		]);
+        SeatRows::create([
+            'name' => 'TF',
+            'sort_order' => 98,
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'I',
-			'slug' 		=> 'i',
-		]);
+        SeatRows::create([
+            'name' => 'LS',
+            'sort_order' => 99,
+        ]);
 
-		SeatRows::create([
-			'name' 		=> 'J',
-			'slug' 		=> 'j',
-		]);
-
-		SeatRows::create([
-			'name' 		=> 'K',
-			'slug' 		=> 'k',
-		]);
-
-		SeatRows::create([
-			'name' 		=> 'L',
-			'slug' 		=> 'l',
-		]);
-
-	}
+        SeatRows::create([
+            'name' => 'L',
+        ]);
+    }
 }
