@@ -19,6 +19,7 @@ class SeatRows extends Model
     protected $fillable = [
         'name',
         'slug',
+        'sort_order',
         'author_id',
         'editor_id',
     ];
@@ -28,6 +29,7 @@ class SeatRows extends Model
     protected static $logAttributes = [
         'name',
         'slug',
+        'sort_order',
     ];
 
     /**
