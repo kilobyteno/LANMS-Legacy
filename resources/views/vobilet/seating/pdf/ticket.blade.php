@@ -13,6 +13,7 @@
 			.text-success {color: #045702}
 			.clms {margin-top: 17px;margin-bottom: 17px;border-top: 1px solid #eee;border-bottom: 1px solid #eee; display: block; height: 80px;}
 			.clms:after {content:".";display:block;height:0;visibility:hidden;clear: both;}
+			.aclm {width:33%;display: inline-block; padding-top: 15px}
 			small {font-size:95%;color:#999}
 			h1 {font-size:3em;margin:0;padding:0}
 			h2 {font-size:2em;margin:0;padding:0}
@@ -36,14 +37,17 @@
 			<br>
 			<p>{{ trans('pdf.ticket.moreinfo') }}: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<div class="text-center clms">
-				<div style="width:50%;float:left;">
+				<div class="aclm">
+					<h2><strong><small>{{ trans('global.type') }}:</small><br>{{ $seat->tickettype->name }}</strong></h2>
+				</div>
+				<div class="aclm">
 					@if(is_null($payment))
-						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }}</span></strong></h2>
+						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($seat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }})</span></strong></h2>
 					@else
 						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 					@endif
 				</div>
-				<div style="width:50%;float:right;">
+				<div class="aclm">
 					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $seat->name }}</strong></h2>
 				</div>
 			</div>

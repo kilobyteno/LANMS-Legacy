@@ -5,6 +5,7 @@ namespace LANMS\Http\Controllers;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use LANMS\News;
 use LANMS\Page;
+use LANMS\TicketType;
 
 class HomeController extends Controller
 {
@@ -45,5 +46,11 @@ class HomeController extends Controller
     public function schedule()
     {
         return view('main.schedule');
+    }
+
+    public function tickets()
+    {
+        $ticket_types = TicketType::where('active', true)->orderBy('price', 'asc')->get();
+        return view('main.tickets', ['ticket_types' => $ticket_types]);
     }
 }

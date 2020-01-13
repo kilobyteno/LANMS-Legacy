@@ -23,7 +23,7 @@ return [
 
     'consentform' => array(
         'title' => 'Samtykkeskjema',
-        'desc' => 'Alle deltakere under 16 år må ha med seg skriftlig tillatelse fra omsorgsperson for å være med på arrangementet. Mindreårige deltakere som ikke har tillatelse er vi dessverre nødt til å avvise. Aldersgrensen for å delta på arrangementet er viktig at respekteres og følges. For mer informasjon angående aldersgrensen se våre nettsider.',
+        'desc' => 'Alle deltakere under 15 år må ha med seg skriftlig tillatelse fra omsorgsperson for å være med på arrangementet. Mindreårige deltakere som ikke har tillatelse er vi dessverre nødt til å avvise. Aldersgrensen for å delta på arrangementet er viktig at respekteres og følges. For mer informasjon angående aldersgrensen se våre nettsider.',
         'organizerswantright' => 'Arrangørene ønsker retten til',
         'organizerswantrightpoints' => '<li>Å publisere bilde/video av deltaker på arrangementet sin nettside/sosialemedier. Åpen Facebook-side og åpen nettside. Når deltaker har kommet på pallplassering i konkurranser og/eller er med på oversiktlige bilder av arrangementet.</li>
                     <li>Å kun ha gyldighet på dette samtykkeskjemaet i uken arrangementet skjer.</li>',

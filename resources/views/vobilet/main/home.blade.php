@@ -39,7 +39,7 @@
 				<div class="card-body">
 					<p><b>{{ trans('pages.home.where') }}: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
 					<p><b>{{ trans('pages.home.when') }}: </b> {{ LANMS\Info::getContent('when') }}</p>
-					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
+					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }} <small><a class="float-right" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('pages.home.moreinfo') }}</a></small></p>
 				</div>
 			</div>
 			@if(\LANMS\Info::where('name', 'social_discord_server_id')->where('content', '<>', '')->first())

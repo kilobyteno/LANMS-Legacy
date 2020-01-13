@@ -7,6 +7,7 @@ return [
         'where' => 'Hvor',
         'when' => 'Når',
         'price' => 'Pris',
+        'moreinfo' => 'Mer info',
     ),
 
     'members' => array(
@@ -53,6 +54,10 @@ return [
             'title' => 'Server Feil',
             'desc' => 'Ser ut som om vi har noen serverproblemer.',
         ),
+    ),
+
+    'tickets' => array(
+        'free' => 'Gratis',
     ),
 
 ];

@@ -29,7 +29,7 @@
 									</label>
 								</div>
 								<div class="col-sm-3">
-									@if($ticket->user->age() < 16)
+									@if($ticket->user->age() < 15)
 										<div class="form-label text-danger">Antendee needs to have a consent form in paper form:</div>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="consentform">

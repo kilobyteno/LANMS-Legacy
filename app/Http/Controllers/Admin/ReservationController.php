@@ -31,7 +31,7 @@ class ReservationController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.reservation.*'])) {
             $reservations   = SeatReservation::thisYear()->get();
-            $rows           = SeatRows::all();
+            $rows           = SeatRows::orderBy('sort_order', 'asc')->get();
             return view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -103,7 +103,7 @@ class ReservationController extends Controller
                 return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
                                     ->with('message', 'Could not find seat.');
             }
-            $rows = SeatRows::all();
+            $rows = SeatRows::orderBy('sort_order', 'asc')->get();
             return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')

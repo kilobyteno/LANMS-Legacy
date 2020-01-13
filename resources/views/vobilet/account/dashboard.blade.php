@@ -17,7 +17,7 @@
 					<i class="fa fa-info-circle"></i> {!! trans('user.alert.attendancelastyear', ['url' => route('seating')]) !!}
 				</div>
 			@endif
-			@if(Sentinel::getUser()->age() < 16 && Sentinel::getUser()->ownReservationsThisYear->count() > 0)
+			@if(Sentinel::getUser()->age() < 15 && Sentinel::getUser()->ownReservationsThisYear->count() > 0)
 				<div class="alert alert-info" role="alert">
 					<i class="fa fa-info-circle"></i> {!! trans('user.alert.consentform', ['url' => route('seating-consentform')]) !!}
 				</div>

@@ -11,6 +11,7 @@ return [
     'new' => 'Nytt',
     'default' => 'Standard',
     'current' => 'Nåværende',
+    'type' => 'Type',
     'nodata' => 'Vi kan ikke finne noen data til deg...',
     'noaccess' => 'Du har ikke tilgang til denne siden!',
 

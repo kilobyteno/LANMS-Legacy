@@ -29,6 +29,8 @@
 						<p>{{ trans('seating.checklater') }}</p>
 					@endif
 
+					<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {!! trans('seating.alert.tickets', ['url' => route('tickets')]) !!}</div>
+
 				</div>
 
 				<div class="col-lg-6">
@@ -66,7 +68,7 @@
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
 														
-														@if($reservation->reservedfor->age() < 16)
+														@if($reservation->reservedfor->age() < 15)
 															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
@@ -84,7 +86,7 @@
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
 															@endif
-															@if($reservation->reservedfor->age() < 16)
+															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
 															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
@@ -135,7 +137,7 @@
 														@else
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
-														@if($reservation->reservedfor->age() < 16)
+														@if($reservation->reservedfor->age() < 15)
 															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
@@ -153,7 +155,7 @@
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
 															@endif
-															@if($reservation->reservedfor->age() < 16)
+															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
 															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)

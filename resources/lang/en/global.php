@@ -11,6 +11,7 @@ return [
     'new' => 'New',
     'default' => 'Default',
     'current' => 'Current',
+    'type' => 'Type',
     'nodata' => 'We can\'t find any data for you...',
     'noaccess' => 'You do not have access to this page!',
 

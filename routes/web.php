@@ -67,6 +67,7 @@ Route::group([
     ], function () {
         Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
         Route::get('/schedule', ['as' => 'schedule', 'uses' => 'HomeController@schedule']);
+        Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
         Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
         Route::get('theme', ['as' => 'theme', 'uses' => 'HomeController@theme']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
@@ -644,6 +645,38 @@ Route::group([
                         Route::get('/{id}/restore', [
                             'as' => 'admin-seating-row-restore',
                             'uses' => 'Admin\Seating\RowsController@restore'
+                        ]);
+                    });
+                Route::group([
+                    'prefix' => 'tickettype'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-tickettypes',
+                            'uses' => 'Admin\Seating\TicketTypeController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-tickettype-create',
+                            'uses' => 'Admin\Seating\TicketTypeController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-tickettype-store',
+                            'uses' => 'Admin\Seating\TicketTypeController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-tickettype-edit',
+                            'uses' => 'Admin\Seating\TicketTypeController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-tickettype-update',
+                            'uses' => 'Admin\Seating\TicketTypeController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-tickettype-destroy',
+                            'uses' => 'Admin\Seating\TicketTypeController@destroy'
+                        ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-tickettype-restore',
+                            'uses' => 'Admin\Seating\TicketTypeController@restore'
                         ]);
                     });
                 Route::group([
