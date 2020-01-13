@@ -56,7 +56,7 @@ class PaymentSeatingController extends Controller
                                 ->with('message', trans('seating.alert.noreservation'));
         }
         
-        $rows = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         return view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
     }
 
@@ -233,7 +233,7 @@ class PaymentSeatingController extends Controller
             $pi = Stripe::PaymentIntents()->create([
                 'customer'  => $stripecust->cus,
                 'currency'  => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
-                'amount'    => Setting::get('SEATING_SEAT_PRICE'),
+                'amount'    => $seat->tickettype->price,
                 'payment_method_types' => ['card'],
             ]);
             $pic = Stripe::PaymentIntents()->confirm($pi['id'], [
@@ -306,7 +306,7 @@ class PaymentSeatingController extends Controller
      */
     public function paylater($slug)
     {
-        $seat                           = Seats::where('slug', $slug)->first();
+        $seat = Seats::where('slug', $slug)->first();
 
         if ($seat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')

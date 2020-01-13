@@ -90,6 +90,11 @@ class RefreshPermissions extends Command
         $default_role->addPermission('admin.seating.row.destroy', false);
         $default_role->addPermission('admin.seating.row.restore', false);
 
+        $default_role->addPermission('admin.seating.tickettype.create', false);
+        $default_role->addPermission('admin.seating.tickettype.update', false);
+        $default_role->addPermission('admin.seating.tickettype.destroy', false);
+        $default_role->addPermission('admin.seating.tickettype.restore', false);
+
         $default_role->addPermission('admin.reservation.create', false);
         $default_role->addPermission('admin.reservation.update', false);
         $default_role->addPermission('admin.reservation.destroy', false);

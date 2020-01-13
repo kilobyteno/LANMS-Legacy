@@ -162,9 +162,10 @@
 							<ul class="slide-menu">
 								<li><a class="slide-item @if(Request::is('admin/seating/row*')){{'active'}} @endif" href="{{ route('admin-seating-rows') }}"><i class="fas fa-align-justify mr-1"></i> Rows</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/seat*')){{'active'}} @endif" href="{{ route('admin-seating-seats') }}"><i class="fas fa-chair mr-1"></i> Seats</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/tickettype*')){{'active'}} @endif" href="{{ route('admin-seating-tickettypes') }}"><i class="fas fa-ticket-alt mr-1"></i> Ticket Type</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif" href="{{ route('admin-seating-reservations') }}"><i class="fas fa-hand-paper mr-1"></i> Reservations</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif" href="{{ route('admin-seating-brokenband') }}"><i class="fas fa-unlink mr-1"></i> Broken Band</a></li>
-								<li><a class="slide-item @if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin') }}"><i class="fas fa-ticket-alt mr-1"></i> Atendee Check-in</a></li>
+								<li><a class="slide-item @if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin') }}"><i class="fas fa-user-check mr-1"></i> Atendee Check-in</a></li>
 								<li><a class="slide-item @if(!Request::is('admin/seating/checkin*') && Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif" href="{{ route('admin-seating-checkin-visitor') }}"><i class="fas fa-user-astronaut mr-1"></i> Visitor Check-in</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/print*')){{'active'}} @endif" href="{{ route('admin-seating-print') }}"><i class="fas fa-print mr-1"></i> Print Seat</a></li>
 								<li><a class="slide-item @if(Request::is('admin/seating/styling*')){{'active'}} @endif" href="{{ route('admin-seating-styling') }}"><i class="far fa-file-code mr-1"></i> Styling</a></li>

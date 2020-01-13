@@ -18,6 +18,7 @@ return [
         'youcanchangepayment' => 'Du kan nå endre betalingen av din reservasjon.',
         'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
         'unpaidinvoice' => 'Du har en eller flere ubetalte fakturaer, betal disse først. Du vil kunne reservere plass når dette er tatt hånd om.',
+        'tickets' => 'For mer informasjon om de forskjellige billetttypene, besøk <a href=":url">denne siden</a>.',
     ),
 
     'closed' => 'Sitteområdet er ikke tilgjengelig for øyeblikket!',
@@ -28,6 +29,7 @@ return [
         'exit' => 'Utgang',
         'kiosk' => 'Kiosk',
         'available' => 'Tilgjengelig',
+        'unavailable' => 'Utilgjengelig',
         'you' => 'Dette setet er reservert til deg!',
         'reservedfor' => 'Reservert for',
         'tempreserved' => 'Midlertidig reservert av',
@@ -97,8 +99,9 @@ return [
     'pay' => array(
         'title' => 'Betal for reservasjon',
         'price' => 'Pris',
+        'tickettype' => 'Billettype',
         'entrancebutton' => 'Betal ved inngangen*',
-        'entrancedesc' => '* Tilleggsavgift (:price) og <a href=":url">Vilkår</a> gjelder',
+        'entrancedesc' => '* <strong>kjøpsbetingelser</strong> gjelder her også',
         'or' => 'eller',
         'button' => 'Betal nå',
         'processing' => 'Behandler betalingen',

@@ -29,6 +29,8 @@
 						<p>{{ trans('seating.checklater') }}</p>
 					@endif
 
+					<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {!! trans('seating.alert.tickets', ['url' => route('tickets')]) !!}</div>
+
 				</div>
 
 				<div class="col-lg-6">

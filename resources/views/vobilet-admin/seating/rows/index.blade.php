@@ -13,10 +13,9 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-
-		<div class="row">
-			<div class="col-md-12">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
 				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 					<thead>
 						<tr>
@@ -55,8 +54,6 @@
 				</table>
 			</div>
 		</div>
-		
-
 	</div>
 </div>
 

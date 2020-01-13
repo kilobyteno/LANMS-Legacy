@@ -35,13 +35,10 @@
 		<br><hr><br>
 
 		<div class="row">
-			<div class="col-lg-4">
-				@section('css')
-					<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-				@stop
+			<div class="col-12 col-xl-4">
 				@include('seating.seatmap')
 			</div>
-			<div class="col-lg-4">
+			<div class="col-12 col-xl-4">
 				<h1 class="text-center">{{ $noncheckedin->count() }}<br><small>Has not checked in yet</small></h1>
 				<hr>
 				<div class="row">
@@ -52,7 +49,7 @@
 					@endforeach
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-12 col-xl-4">
 				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
 				<hr>
 				<div class="row">
