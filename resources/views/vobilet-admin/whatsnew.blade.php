@@ -21,6 +21,32 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2510" aria-expanded="true">Version 2.5.10</a>
+							</h4>
+						</div>
+						<div id="2510" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-397'>LANMS-397</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught InvalidArgumentException: Route [home] not defined.</li>
+								</ul>
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-398'>LANMS-398</a>] - Add types of tickets
+</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-400'>LANMS-400</a>] - Change consent form age
+</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#259" aria-expanded="true">Version 2.5.9</a>
 							</h4>
 						</div>
