@@ -7,6 +7,7 @@ return [
         'where' => 'Where',
         'when' => 'When',
         'price' => 'Price',
+        'moreinfo' => 'More info',
     ),
 
     'members' => array(
