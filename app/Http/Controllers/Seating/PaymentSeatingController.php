@@ -316,6 +316,12 @@ class PaymentSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatingclosed'));
         }
+
+        if (!$seat->tickettype->allow_entrance_payment) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.entrancepaymentnotallowed'));
+        }
+
         if ($seat->reservationsThisYear->first()) {
             if ($seat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')

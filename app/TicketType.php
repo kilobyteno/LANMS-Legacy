@@ -18,7 +18,8 @@ class TicketType extends Model
         'slug',
         'description',
         'price',
-        'default',
+        'color',
+        'allow_entrance_payment',
         'active',
         'editor_id',
         'author_id',
@@ -31,7 +32,8 @@ class TicketType extends Model
         'slug',
         'description',
         'price',
-        'default',
+        'color',
+        'allow_entrance_payment',
         'active',
     ];
 
