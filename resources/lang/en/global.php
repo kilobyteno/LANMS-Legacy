@@ -14,6 +14,7 @@ return [
     'type' => 'Type',
     'nodata' => 'We can\'t find any data for you...',
     'noaccess' => 'You do not have access to this page!',
+    'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.

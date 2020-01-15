@@ -14,6 +14,7 @@ return [
     'type' => 'Type',
     'nodata' => 'Vi kan ikke finne noen data til deg...',
     'noaccess' => 'Du har ikke tilgang til denne siden!',
+    'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
