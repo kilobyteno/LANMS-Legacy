@@ -193,7 +193,7 @@
 
 				<div class="form-row mt-5">
 						
-					<div class="col-xl-4">
+					<div class="col-6">
 						<div class="form-row">
 							<div class="col-xl-6">
 								<p>Start Date</p>
@@ -226,40 +226,7 @@
 						</div>
 					</div>
 
-					<div class="col-xl-4">
-						<div class="form-row">
-							<div class="col-xl-6">
-								<p>Last Sign Up Date</p>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fa fa-calendar"></i>
-										</div>
-									</div>
-									<input class="form-control datepicker {{ ($errors->has('last_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
-									@if($errors->has('last_sign_up_at_date'))
-										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_date') }}</div>
-									@endif
-								</div>
-							</div>
-							<div class="col-xl-6">
-								<p>Last Sign Up Time</p>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fas fa-clock"></i>
-										</div>
-									</div>
-									<input class="form-control ui-timepicker-input {{ ($errors->has('last_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
-									@if($errors->has('last_sign_up_at_time'))
-										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_time') }}</div>
-									@endif
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-xl-4">
+					<div class="col-6">
 						<div class="form-row">
 							<div class="col-xl-6">
 								<p>End Date</p>
@@ -286,6 +253,76 @@
 									<input class="form-control ui-timepicker-input {{ ($errors->has('end_at_time')) ? 'is-invalid state-invalid' : '' }}" id="end_at_time" placeholder="Set time" type="text" autocomplete="off" name="end_at_time" value="{{ (old('end_at_time')) ? old('end_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
 									@if($errors->has('end_at_time'))
 										<div class="invalid-feedback">{{ $errors->first('end_at_time') }}</div>
+									@endif
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="form-row mt-5">
+
+					<div class="col-6">
+						<div class="form-row">
+							<div class="col-xl-6">
+								<p>First Sign Up Date</p>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+									<input class="form-control datepicker {{ ($errors->has('first_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="first_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('first_sign_up_at_date')) ? old('first_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									@if($errors->has('first_sign_up_at_date'))
+										<div class="invalid-feedback">{{ $errors->first('first_sign_up_at_date') }}</div>
+									@endif
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<p>First Sign Up Time</p>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-clock"></i>
+										</div>
+									</div>
+									<input class="form-control ui-timepicker-input {{ ($errors->has('first_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="first_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="first_sign_up_at_time" value="{{ (old('first_sign_up_at_time')) ? old('first_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									@if($errors->has('first_sign_up_at_time'))
+										<div class="invalid-feedback">{{ $errors->first('first_sign_up_at_time') }}</div>
+									@endif
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-6">
+						<div class="form-row">
+							<div class="col-xl-6">
+								<p>Last Sign Up Date</p>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+									<input class="form-control datepicker {{ ($errors->has('last_sign_up_at_date')) ? 'is-invalid state-invalid' : '' }}" name="last_sign_up_at_date" type="text" data-date-format="yyyy-mm-dd" value="{{ (old('last_sign_up_at_date')) ? old('last_sign_up_at_date') : Carbon::now()->isoFormat('YYYY-MM-DD') }}">
+									@if($errors->has('last_sign_up_at_date'))
+										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_date') }}</div>
+									@endif
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<p>Last Sign Up Time</p>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-clock"></i>
+										</div>
+									</div>
+									<input class="form-control ui-timepicker-input {{ ($errors->has('last_sign_up_at_time')) ? 'is-invalid state-invalid' : '' }}" id="last_sign_up_at_time" placeholder="Set time" type="text" autocomplete="off" name="last_sign_up_at_time" value="{{ (old('last_sign_up_at_time')) ? old('last_sign_up_at_time') : Carbon::now()->isoFormat('HH:mm') }}">
+									@if($errors->has('last_sign_up_at_time'))
+										<div class="invalid-feedback">{{ $errors->first('last_sign_up_at_time') }}</div>
 									@endif
 								</div>
 							</div>
@@ -358,6 +395,11 @@
 	<script type="text/javascript">
 		$(function(){
 		    $('#start_at_time').timepicker({
+		    	'scrollDefault': 'now',
+		    	'timeFormat': 'H:i',
+		    	'step': 15
+		    });
+		    $('#first_sign_up_at_time').timepicker({
 		    	'scrollDefault': 'now',
 		    	'timeFormat': 'H:i',
 		    	'step': 15
