@@ -14,6 +14,7 @@ return [
     'type' => 'Type',
     'nodata' => 'Vi kan ikke finne noen data til deg...',
     'noaccess' => 'Du har ikke tilgang til denne siden!',
+    'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
@@ -33,6 +34,18 @@ return [
         'female' => 'Kvinne',
         'transgender' => 'Transseksuell',
         'genderless' => 'Kjønnsløs',
+    ),
+
+    'clothingsize' => array(
+        'title' => 'Foretrukket klesstørrelse',
+        'nochoice' => 'Ikke noe valg',
+        'xs' => 'XS',
+        's' => 'S',
+        'm' => 'M',
+        'l' => 'L',
+        'xl' => 'XL',
+        'xxl' => 'XXL',
+        '3xl' => '3XL',
     ),
 
     'staff' => 'Staff',
