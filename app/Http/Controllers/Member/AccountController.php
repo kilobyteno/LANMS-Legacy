@@ -53,10 +53,17 @@ class AccountController extends Controller
         ];
 
         if (Sentinel::authenticate($credentials)) {
-            if ($request->get('phone') != Sentinel::getUser()->phone) {
+
+            $phone = $request->get('phone');
+
+            if ($phone != Sentinel::getUser()->phone) {
                 $phone_verified_at = null;
+            }
+
+            if (is_null($phone)) {
+                $phone_country = null;
             } else {
-                $phone_verified_at = Sentinel::getUser()->phone_verified_at;
+                $phone_country = $request->get('phone_country');
             }
 
             $info = [
@@ -66,8 +73,8 @@ class AccountController extends Controller
                 'location'          => $request->get('location'),
                 'occupation'        => $request->get('occupation'),
                 'birthdate'         => $request->get('birthdate'),
-                'phone'             => $request->get('phone'),
-                'phone_country'     => $request->get('phone_country'),
+                'phone'             => $phone,
+                'phone_country'     => $phone_country,
                 'phone_verified_at' => $phone_verified_at,
                 'about'             => $request->get('about'),
                 'showemail'         => $request->get('showemail'),
