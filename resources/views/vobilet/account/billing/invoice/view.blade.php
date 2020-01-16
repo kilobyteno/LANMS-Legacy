@@ -38,8 +38,8 @@
 							<address>
 								{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}<br>
 								{{ \Sentinel::getUser()->address->address1 ?? '' }} {{ \Sentinel::getUser()->address->address2 ?? '' }}<br>
-								{{ \Sentinel::getUser()->address->postalcode.', '.\Sentinel::getUser()->address->city ?? '' }}<br>
-								{{ \Sentinel::getUser()->address->county.', '.\Sentinel::getUser()->address->country ?? '' }}<br>
+								{{ \Sentinel::getUser()->address->postalcode ?? '' }} {{ \Sentinel::getUser()->address->city ?? '' }}<br>
+								{{ \Sentinel::getUser()->address->county ?? '' }} {{ \Sentinel::getUser()->address->country ?? '' }}<br>
 								{{ \Sentinel::getUser()->email }}
 							</address>
 						</div>
