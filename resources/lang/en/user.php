@@ -133,6 +133,18 @@ return [
             'editpassword' => 'Edit your password',
             'button' => 'Update Password',
         ),
+        'verifyphone' => array(
+            'title' => 'Verify Phone',
+            'alert' => array(
+                'saved' => 'Phonenumber was successfully verified.',
+                'failed' => 'Verification failed!',
+                'nophone' => 'No phonenumber saved.',
+                'alreadyverified' => 'Phone has already been verified.',
+                'info' => 'Verification token has been sent! Please wait up to one minute. ',
+            ),
+            'typecode' => 'Type in the code you received on a SMS',
+            'button' => 'Verify',
+        ),
     ),
 
     'profile' => array(
