@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-12 col-md-12 col-lg-8">
+	<div class="col-12 col-xl-8">
 
 		<form class="card" action="{{ route('admin-seating-reservation-update', $reservation->id) }}" method="post">
 			<div class="card-body">
@@ -44,14 +44,14 @@
 					<div class="col-sm-5">
 						<div class="form-group">
 							<label class="form-label">Reserved for:</label>
-							<select name="reservedfor_id" class="select2">
+							<select name="reservedfor" class="select2">
 								@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
 									<option value="{{ $user->id }}" @if($reservation->reservedfor->id == $user->id) selected="" @endif>{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 								@endforeach
 							</select>
 						</div>
-						@if($errors->has('reservedfor_id'))
-							<p class="text-danger">{{ $errors->first('reservedfor_id') }}</p>
+						@if($errors->has('reservedfor'))
+							<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
 						@endif
 					</div>
 					

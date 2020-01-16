@@ -2,25 +2,23 @@
 
 namespace LANMS\Http\Controllers\Seating;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Exception\CardErrorException;
+use Cartalyst\Stripe\Exception\MissingParameterException;
+use Cartalyst\Stripe\Exception\ServerErrorException;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
-use LANMS\SeatRows;
-use LANMS\Seats;
-use LANMS\SeatReservation;
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Requests\Seating\PaymentRequest;
 use LANMS\SeatPayment;
+use LANMS\SeatReservation;
+use LANMS\SeatRows;
 use LANMS\SeatTicket;
+use LANMS\Seats;
 use LANMS\StripeCustomer;
 use anlutro\LaravelSettings\Facade as Setting;
-
-use LANMS\Http\Requests\Seating\PaymentRequest;
-
-use Cartalyst\Stripe\Exception\CardErrorException;
-use Cartalyst\Stripe\Exception\ServerErrorException;
 
 class PaymentSeatingController extends Controller
 {
@@ -58,7 +56,7 @@ class PaymentSeatingController extends Controller
                                 ->with('message', trans('seating.alert.noreservation'));
         }
         
-        $rows = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         return view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
     }
 
@@ -96,7 +94,7 @@ class PaymentSeatingController extends Controller
         $stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
         
         if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
+            $customer = Stripe::customers()->create([
                 'email' => Sentinel::getUser()->email,
             ]);
             $stripecustomer             = new StripeCustomer;
@@ -118,13 +116,13 @@ class PaymentSeatingController extends Controller
         $nameOnCard         = $request->get('name');
 
         try {
-            $token = \Stripe::tokens()->create([
+            $paymentmethod = Stripe::PaymentMethods()->create([
+                'type' => 'card',
                 'card' => [
                     'number'    => $cardNumber,
                     'exp_month' => $cardMonthExpiry,
                     'cvc'       => $cardCVC,
                     'exp_year'  => $cardYearExpiry,
-                    'name'      => $nameOnCard,
                 ],
             ]);
         } catch (CardErrorException $e) {
@@ -139,12 +137,30 @@ class PaymentSeatingController extends Controller
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
                                 ->with('message', trans('seating.alert.carderror').': '.$message);
+        } catch (MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'PM: '.$message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
         try {
-            $customer = \Stripe::customers()->update($stripecust->cus, [
-                'source' => $token['id'],
+            $token  = Stripe::tokens()->create([
+                'card' => [
+                    'number'    => $cardNumber,
+                    'exp_month' => $cardMonthExpiry,
+                    'cvc'       => $cardCVC,
+                    'exp_year'  => $cardYearExpiry,
+                ],
             ]);
+            $card = Stripe::cards()->create($stripecust->cus, $token['id']);
         } catch (CardErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -156,7 +172,37 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+                                ->with('message', trans('seating.alert.carderror').': '.$message);
+        } catch (MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'C: '.$message.'. '.trans('seating.alert.pleasetryagain'));
+        }
+
+        try {
+            $customer = Stripe::customers()->update($stripecust->cus, [
+                'default_source' => $card['id'],
+            ]); // Set the card as default
+        } catch (CardErrorException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'SCD: '.$message.'. '.trans('seating.alert.pleasetryagain'));
         } catch (ServerErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -168,14 +214,30 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+                                ->with('message', 'SCD: '.$message.'. '.trans('seating.alert.pleasetryagain'));
+        } catch (MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'SCD: '.$message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
         try {
-            $charge = \Stripe::charges()->create([
+            $pi = Stripe::PaymentIntents()->create([
                 'customer'  => $stripecust->cus,
                 'currency'  => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
-                'amount'    => Setting::get('SEATING_SEAT_PRICE'),
+                'amount'    => $seat->tickettype->price,
+                'payment_method_types' => ['card'],
+            ]);
+            $pic = Stripe::PaymentIntents()->confirm($pi['id'], [
+              'payment_method' => $paymentmethod['id'],
             ]);
         } catch (CardErrorException $e) {
             // Get the status code
@@ -188,8 +250,27 @@ class PaymentSeatingController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
-                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+                                ->with('message', 'PI: '.$message.'. '.trans('seating.alert.pleasetryagain'));
+        } catch (MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'PI: '.$message.'. '.trans('seating.alert.pleasetryagain'));
         }
+
+        if ($pic['status'] != 'succeeded') {
+            return Redirect::route('seating-pay', $slug)->with('messagetype', 'danger')
+                                ->with('message', 'Failed to confirm payment. '.trans('seating.alert.pleasetryagain'));
+        }
+
+        $charge = $pic['charges']['data'][0];
 
         $reservation                    = $seat->reservationsThisYear->first();
         $reservationid                  = $reservation->id;
@@ -225,7 +306,7 @@ class PaymentSeatingController extends Controller
      */
     public function paylater($slug)
     {
-        $seat                           = Seats::where('slug', $slug)->first();
+        $seat = Seats::where('slug', $slug)->first();
 
         if ($seat == null) {
             return Redirect::route('seating')->with('messagetype', 'warning')
@@ -235,6 +316,12 @@ class PaymentSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatingclosed'));
         }
+
+        if (!$seat->tickettype->allow_entrance_payment) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.entrancepaymentnotallowed'));
+        }
+
         if ($seat->reservationsThisYear->first()) {
             if ($seat->reservationsThisYear->first()->payment_id != 0) {
                 return Redirect::route('seating')->with('messagetype', 'warning')

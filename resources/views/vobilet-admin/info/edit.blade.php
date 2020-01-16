@@ -17,6 +17,7 @@
 
 		<div class="card">
 			<div class="card-body">
+				<p class="text-muted">{{ $info->description ?? '' }}</p>
 				<form action="{{ route('admin-info-update', $info->id) }}" method="post">
 					<div class="input-group">
 						<input type="text" class="form-control input-lg" name="content" placeholder="Info Value" value="{{ (old('content')) ? old('content') : $info->content }}" />

@@ -27,9 +27,9 @@ class ReserveSeatingController extends Controller
      */
     public function index()
     {
-        $rows               = SeatRows::all();
-        $reservations       = Sentinel::getUser()->reservationsThisYear;
-        $ownreservations    = Sentinel::getUser()->ownReservationsThisYear;
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
+        $reservations = Sentinel::getUser()->reservationsThisYear;
+        $ownreservations = Sentinel::getUser()->ownReservationsThisYear;
         return view('seating.index')
                 ->withRows($rows)
                 ->with('reservations', $reservations)
@@ -49,7 +49,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatnotfound'));
         }
-        $rows = SeatRows::all();
+        $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         return view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
     }
 
@@ -60,16 +60,16 @@ class ReserveSeatingController extends Controller
      */
     public function reserve($slug, SeatReserveRequest $request)
     {
-        $slug           = strtolower($slug); // Just to be sure it is correct
-        $seat           = Seats::where('slug', $slug)->first();
-        $reservedforid  = $request->get('reservedfor');
-        $reservedfor    = Sentinel::findById($reservedforid);
+        $slug = strtolower($slug); // Just to be sure it is correct
+        $seat = Seats::where('slug', $slug)->first();
+        $reservedforid = $request->get('reservedfor');
+        $reservedfor = Sentinel::findById($reservedforid);
 
         if (is_null($seat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatnotfound'));
         }
-        if (substr($slug, 0, 1) == 'a') {
+        if (is_null($seat->tickettype) || !$seat->tickettype->active) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.notpossibleonthisrow'));
         }
@@ -83,6 +83,16 @@ class ReserveSeatingController extends Controller
         }
 
         /* LOGGED IN USER */
+        if (Sentinel::getUser()->stripecustomer) {
+            $stripe_customer_code = Sentinel::getUser()->stripecustomer->cus;
+            $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+            foreach ($invoices['data'] as $invoice) {
+                if ($invoice['paid'] == false && $invoice['status'] != 'draft') {
+                    return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.unpaidinvoice'));
+                }
+            }
+        }
         if (!Sentinel::getUser()->birthdate) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthday'));
@@ -170,7 +180,12 @@ class ReserveSeatingController extends Controller
 
     public function consentform()
     {
-        $html = view('seating.pdf.consentform')->render();
+        if (Sentinel::check()) {
+            $user = Sentinel::getUser();
+        } else {
+            $user = null;
+        }
+        $html = view('seating.pdf.consentform')->withUser($user)->render();
         return PDF::loadHTML($html)->stream();
     }
 
@@ -198,10 +213,6 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.destroy.cantberemoved'));
         }
-
-        $seat = $reservation->seat;
-        $seat->reservation_id = 0;
-        $seat->save();
 
         if ($reservation->ticket) {
             $reservation->ticket->delete();

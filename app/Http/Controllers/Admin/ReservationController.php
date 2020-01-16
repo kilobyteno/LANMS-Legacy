@@ -31,7 +31,7 @@ class ReservationController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.reservation.*'])) {
             $reservations   = SeatReservation::thisYear()->get();
-            $rows           = SeatRows::all();
+            $rows           = SeatRows::orderBy('sort_order', 'asc')->get();
             return view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -103,7 +103,7 @@ class ReservationController extends Controller
                 return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
                                     ->with('message', 'Could not find seat.');
             }
-            $rows = SeatRows::all();
+            $rows = SeatRows::orderBy('sort_order', 'asc')->get();
             return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')
@@ -145,7 +145,7 @@ class ReservationController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
             $slug           = strtolower($slug); // Just to be sure it is correct
             $seat           = Seats::where('slug', $slug)->first();
-            $reservedforid  = $request->get('reservedfor_id');
+            $reservedforid  = $request->get('reservedfor');
             $reservedfor    = Sentinel::findById($reservedforid);
 
             if ($seat == null) {
@@ -241,13 +241,13 @@ class ReservationController extends Controller
                 $seatticket                     = new SeatTicket;
                 $seatticket->barcode            = mt_rand(1000000000, 2147483647);
                 $seatticket->reservation_id     = $reservation->id;
-                $seatticket->user_id            = $request->get('reservedfor_id');
+                $seatticket->user_id            = $request->get('reservedfor');
                 $seatticket->save();
 
                 $reservation->ticket_id         = $seatticket->id;
             }
 
-            $reservation->reservedfor_id    = $request->get('reservedfor_id');
+            $reservation->reservedfor_id    = $request->get('reservedfor');
             $reservation->seat_id           = $request->get('seat_id');
 
             if ($reservation->save()) {

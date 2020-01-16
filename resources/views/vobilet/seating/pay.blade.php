@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('title', trans('seating.pay.title').' - '.$currentseat->name)
-@section('css')
-	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-@stop
 @section('content')
 
 <div class="container">
@@ -36,14 +33,25 @@
 
 				</div>
 				<div class="col-md-4">
-					<h1 class="text-center"><small>{{ trans('seating.pay.price') }}:</small><br>{{ Setting::get('SEATING_SEAT_PRICE') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</h1>
+					<div class="row">
+						<div class="col-6">
+							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.tickettype') }}:</small><br>{{ $currentseat->tickettype->name }}</h1>
+						</div>
+						<div class="col-6">
+							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }}</h1>
+						</div>						
+					</div>
 					<hr>
-					<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ trans('seating.pay.entrancebutton') }}</a>
-					<p class="text-center text-muted"><small><em>{!! trans('seating.pay.entrancedesc', ['url' => '/tos', 'price' => Setting::get('SEATING_SEAT_PRICE_ALT') - Setting::get('SEATING_SEAT_PRICE').' '.Setting::get('SEATING_SEAT_PRICE_CURRENCY')]) !!}</em></small></p>
+					@if($currentseat->tickettype->allow_entrance_payment)
+						<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ trans('seating.pay.entrancebutton') }}</a>
+						<p class="text-center text-muted"><small><em>{!! trans('seating.pay.entrancedesc') !!}</em></small></p>
 
-					<br>
-					<h4 class="text-center text-muted"><em>~ {{ trans('seating.pay.or') }} ~</em></h4>
-					<br>
+						<br>
+						<h4 class="text-center text-muted"><em>~ {{ trans('seating.pay.or') }} ~</em></h4>
+						<br>
+					@else
+						<div class="alert alert-warning mb-5" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.entrancepaymentnotallowed') }}</div>
+					@endif
 
 					<div class="card-wrapper" style="margin-bottom: 10px"></div>
 					<div class="card mt-5">

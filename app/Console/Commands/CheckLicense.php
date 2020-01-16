@@ -233,14 +233,12 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->info('Status: '.$status);
-                    #\Artisan::call('up');
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
-                    $this->info(var_dump($results));
                     break;
                 case "Expired":
                     Setting::set("APP_LICENSE_STATUS", $status);
@@ -253,7 +251,6 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
                     $this->error('Status: '.$status);
-                    #\Artisan::call('down');
                     break;
                 default:
                     Setting::set("APP_LICENSE_STATUS", "Invalid");

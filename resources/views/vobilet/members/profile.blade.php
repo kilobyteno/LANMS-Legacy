@@ -20,7 +20,7 @@
 					@if(Sentinel::findById($id)->inRole('admin') || Sentinel::findById($id)->inRole('superadmin') || Sentinel::findById($id)->inRole('moderator'))
 						<p class="mb-4 text-white">{{ trans('global.staff') }}</p>
 					@else
-						<p class="mb-4 text-white">{{ trans('global.members') }}</p>
+						<p class="mb-4 text-white">{{ trans('global.member') }}</p>
 					@endif
 					@if(\Sentinel::getUser()->id == $id)
 						<a href="{{ route('user-profile-edit', $username) }}" class="btn btn-secondary btn-sm"><i class="fa fa-pencil-alt"></i> {{ trans('user.profile.editprofile') }}</a>

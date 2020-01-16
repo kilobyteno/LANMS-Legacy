@@ -9,6 +9,7 @@ return [
     'members' => 'Medlemmer',
     'seating' => 'Sitteområde',
     'information' => 'Informasjon',
+    'tickets' => 'Billetter',
     'sponsor' => 'Sponsorer',
     'compo' => 'Konkurranser',
 

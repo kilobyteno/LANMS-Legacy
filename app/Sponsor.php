@@ -4,10 +4,11 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Sponsor extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
@@ -15,11 +16,23 @@ class Sponsor extends Model
         'url',
         'description',
         'sort_order',
-        'image',
+        'image_light',
+        'image_dark',
         'author_id',
         'editor_id',
     ];
     protected $table = 'sponsors';
+
+    protected static $logName = 'sponsor';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'name',
+        'url',
+        'description',
+        'sort_order',
+        'image_light',
+        'image_dark',
+    ];
 
     public function scopeOrdered($query)
     {
@@ -44,5 +57,9 @@ class Sponsor extends Model
     public function scopeLastYear($query)
     {
         return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+    }
+    public function scopeTwoLastYears($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'))->orWhere('year', '=', (\Setting::get('SEATING_YEAR')-1));
     }
 }

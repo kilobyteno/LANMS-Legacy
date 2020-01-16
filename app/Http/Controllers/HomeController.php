@@ -2,8 +2,10 @@
 
 namespace LANMS\Http\Controllers;
 
-use LANMS\Page;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use LANMS\News;
+use LANMS\Page;
+use LANMS\TicketType;
 
 class HomeController extends Controller
 {
@@ -27,8 +29,28 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function theme()
+    {
+        if (Sentinel::check()) {
+            $user = Sentinel::getUser();
+            if ($user->theme == 'default' || $user->theme == 'light' || is_null($user->theme)) {
+                $theme = 'dark';
+            } else {
+                $theme = 'default';
+            }
+            Sentinel::update($user, ['theme' => $theme]);
+        }
+        return redirect()->back();
+    }
+
     public function schedule()
     {
         return view('main.schedule');
+    }
+
+    public function tickets()
+    {
+        $ticket_types = TicketType::where('active', true)->orderBy('price', 'asc')->get();
+        return view('main.tickets', ['ticket_types' => $ticket_types]);
     }
 }

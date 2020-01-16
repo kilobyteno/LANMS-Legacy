@@ -7,26 +7,26 @@ class SettingsTableSeeder extends Seeder
 {
     public function run()
     {
+        if (env('APP_LICENSE_KEY') && env('APP_ENV') && env('APP_LOG_LEVEL') == 'debug') {
+            $license = env('APP_LICENSE_KEY');
+        } else {
+            $license = '';
+        }
         Setting::set('APP_NAME', 'LANMS');
-        Setting::set('APP_VERSION', '2.5.3');
-        Setting::set('APP_VERSION_TYPE', 'Dev');
+        Setting::set('APP_VERSION', '');
         Setting::set('APP_URL', 'http://lanms.xyz/');
         Setting::set('APP_LICENSE_STATUS', '');
         Setting::set('APP_LICENSE_STATUS_DESC', '');
         Setting::set('APP_LICENSE_LOCAL_KEY', '');
-        Setting::set('APP_LICENSE_KEY', '');
-
-        Setting::set('SHOW_RESETDB', true);
-
-        Setting::set('MAIL_MAIN_EMAIL', 'hello@lanms.io');
-        Setting::set('MAIL_NOREPLY_EMAIL', 'noreply@lanms.io');
+        Setting::set('APP_LICENSE_KEY', $license);
+        Setting::set('APP_SHOW_RESETDB', true);
 
         Setting::set('WEB_PROTOCOL', 'http');
         Setting::set('WEB_DOMAIN', 'lanms.io');
         Setting::set('WEB_PORT', 80);
         Setting::set('WEB_NAME', 'LANMS');
-        Setting::set('WEB_LOGO', '/images/lanms_light.png');
-        Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
+        Setting::set('WEB_LOGO_LIGHT', '/images/lanms_light.png');
+        Setting::set('WEB_LOGO_DARK', '/images/lanms_dark.png');
         Setting::set('WEB_COPYRIGHT', '2015-2019, Infihex');
 
         Setting::set('SEATING_OPEN', true);
@@ -46,8 +46,8 @@ class SettingsTableSeeder extends Seeder
         Setting::set('GOOGLE_CALENDAR_ID', '');
         Setting::set('GOOGLE_CALENDAR_START_DATE', '1970-01-30');
 
-        Setting::set('FACEBOOK_APP_ID', '');
-        Setting::set('FACEBOOK_PAGE_ID', '');
+        Setting::set('FACEBOOK_MESSENGER_APP_ID', '');
+        Setting::set('FACEBOOK_MESSENGER_PAGE_ID', '');
 
         Setting::save();
     }

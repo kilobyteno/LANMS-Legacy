@@ -7,7 +7,7 @@ return [
 
     'alert' => array(
         'attendancelastyear' => 'Vi kan se at du deltok i fjor. Vil du bli med oss i år også? <a href=":url">Sjekk ut sitteområdet nå</a>.',
-        'consentform' => 'Vi kan se at du er under 16 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href=":url"><i class="fas fa-user-circle"></i> Samtykkeskjema</a>',
+        'consentform' => 'Vi kan se at du er under 15 år og på arrangementet må ha med samtykkeskjema ferdig utfyllt ved innskjekking. Ferdig generert skjema finner du her: <a href=":url"><i class="fas fa-user-circle"></i> Samtykkeskjema</a>',
         'nobirthdate' => 'Det er ingen fødselsdato lagret på kontoen din. Vi trenger dette for å bekrefte din identitet. <a href=":url">Rediger profilen din</a>',
         'nophone' => 'Det er ikke noe telefonnummer lagret på kontoen din. Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet. <a href=":url">Rediger profilen din</a>',
     ),
@@ -79,12 +79,12 @@ return [
                 ),
                 'event' => array(
                     'invoice' => array(
-                        'created' => 'Utkastet fakturaen ble opprettet.',
+                        'created' => 'Utkast faktura ble opprettet.',
                         'updated' => 'Fakturaen ble oppdatert.',
-                        'finalized' => 'Utkastet fakturaen ble avsluttet.',
+                        'finalized' => 'Utkast faktura ble avsluttet.',
                         'sent' => 'Faktura ble sendt.',
-                        'marked_uncollectible' => 'Fakturaen ble merket for tap.',
-                        'voided' => 'Fakturaen ble ugyldig.',
+                        'marked_uncollectible' => 'Fakturaen ble merket som tap.',
+                        'voided' => 'Fakturaen ble merket som ugyldig.',
                     ),
                 ),
                 'product' => 'Produkt',

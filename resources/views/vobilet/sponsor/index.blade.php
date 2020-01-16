@@ -12,14 +12,14 @@
 	</div>
 	<div class="row">
 		@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
-				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
+			@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 				<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 					<div class="card">
 						<div class="card-body d-flex flex-column">
 							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
 							@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
 						</div>
-						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a> 
+						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="@if(Sentinel::check()){{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }} @else {{ $sponsor->image_dark }}@endif" alt="{{ $sponsor->name }}"></a> 
 					</div>
 				</div>
 			@endforeach

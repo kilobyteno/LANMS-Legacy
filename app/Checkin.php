@@ -1,30 +1,43 @@
 <?php namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
-class Checkin extends Model {
+class Checkin extends Model
+{
+    use LogsActivity;
 
-	protected $fillable = [
-		'ticket_id',
-		'bandnumber',
-		'year',
-	];
-	protected $table = 'checkins';
+    protected $fillable = [
+        'ticket_id',
+        'bandnumber',
+        'year',
+    ];
+    protected $table = 'checkins';
 
-	function ticket() {
-		return $this->hasOne('SeatTicket', 'id', 'ticket_id');
-	}
+    protected static $logName = 'checkin';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'ticket_id',
+        'bandnumber',
+    ];
 
-	function ticketThisYear() {
-		return $this->hasOne('SeatTicket', 'id', 'ticket_id')->thisYear()->first();
-	}
+    public function ticket()
+    {
+        return $this->hasOne('SeatTicket', 'id', 'ticket_id');
+    }
 
-	public function scopeThisYear($query) {
-		return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
-	}
+    public function ticketThisYear()
+    {
+        return $this->hasOne('SeatTicket', 'id', 'ticket_id')->thisYear()->first();
+    }
 
-	public function scopeLastYear($query) {
-		return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
-	}
+    public function scopeThisYear($query)
+    {
+        return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
+    }
 
+    public function scopeLastYear($query)
+    {
+        return $query->where('year', '<', \Setting::get('SEATING_YEAR'));
+    }
 }

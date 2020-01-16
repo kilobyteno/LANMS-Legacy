@@ -19,18 +19,4 @@ return [
 
     ),
 
-    'seat' => array(
-
-        'removed' => array(
-            'title' => 'Reservasjonen er fjernet!',
-            'desc' => 'Din reservasjon for :seatname setet er fjernet, siden du ikke har betalt for det innen 48 timer fra reservasjonstiden.'
-        ),
-        'removedsoon' => array(
-            'title' => 'Din reservasjon vil bli fjernet snart!',
-            'desc' => 'Din reservasjon for :seatname setet vil bli fjernet om 24 timer, hvis du ikke betaler for setet.',
-        ),
-
-
-    ),
-
 ];

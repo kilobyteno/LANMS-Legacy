@@ -46,6 +46,16 @@
 
 		<!---Font icons-->
 		<link href="{{ Theme::url('plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid" || Setting::get('APP_LICENSE_STATUS') == "Expired" || Setting::get('APP_LICENSE_STATUS') == "Suspended")
+			<style type="text/css">
+				.header, .collapse:not(.show), .card, .footer, .dropdown-menu {
+					background:#f5c6cb;
+				}
+				body {
+					background:#f5d2d2;
+				}
+			</style>
+		@endif
 	</head>
 	<body class="">
 		<div id="global-loader"></div>
@@ -55,7 +65,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="@if(Sentinel::check())@if(Sentinel::getUser()->theme=='dark'){{ Setting::get('WEB_LOGO') }}@else{{ Setting::get('WEB_LOGO_ALT') }}@endif @else {{ Setting::get('WEB_LOGO_ALT') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								<img src="@if(Sentinel::check()){{ Sentinel::getUser()->theme=='dark' ? Setting::get('WEB_LOGO_LIGHT') : Setting::get('WEB_LOGO_DARK') }} @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
@@ -64,11 +74,75 @@
 										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
 									</div>
 								@else
+									<div class="dropdown d-none d-md-flex">
+										<a class="nav-link icon" data-toggle="dropdown">
+											<i class="far fa-bell"></i>
+											@if(Sentinel::getUser()->unreadNotifications->count() > 0)
+												<span class="nav-unread badge badge-danger badge-pill">{{ Sentinel::getUser()->unreadNotifications->count() }}</span>
+											@endif
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
+											@if(Sentinel::getUser()->unreadNotifications->count() > 1)
+												<p class="text-center m-3"><a href="{{ route('user-notifications-dismissall') }}" class="btn btn-info btn-sm">{{ trans('global.notification.dismissall') }}</a></p>
+												<div class="dropdown-divider"></div>
+											@endif
+											@foreach (Sentinel::getUser()->unreadNotifications->take(5) as $notification)
+											    <a href="{{ route($notification->data['route'], $notification->data['id']) }}" class="dropdown-item d-flex pb-3">
+											    	@if($notification->type === 'LANMS\Notifications\InvoiceUnpaid')
+														<div class="notifyimg bg-danger">
+															<i class="fas fa-exclamation"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpires')
+														<div class="notifyimg bg-warning">
+															<i class="fas fa-chair"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpired')
+														<div class="notifyimg bg-danger">
+															<i class="fas fa-chair"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@elseif($notification->type === 'LANMS\Notifications\CompoTeamAdded' || $notification->type === 'LANMS\Notifications\CompoTeamRemoved')
+														<div class="notifyimg bg-info">
+															<i class="fas fa-user-shield"></i>
+														</div>
+														<div class="message">
+															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+														</div>
+													@else
+														<div class="notifyimg bg-info">
+															<i class="fas fa-info"></i>
+														</div>
+														<div>
+														<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
+														</div>
+													@endif
+												</a>
+											@endforeach
+											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
+												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
+											@endif
+											<div class="dropdown-divider"></div>
+											<a href="{{ route('user-notifications') }}" class="dropdown-item text-center text-muted-dark">{{ trans('global.notification.viewall') }}</a>
+										</div>
+									</div>
 									<div class="dropdown">
 										<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
 											<span class="avatar avatar-md brround" style="background-image: url({{ Sentinel::getUser()->profilepicturesmall ?? '/images/profilepicture/0_small.png' }})"></span>
 											<span class="ml-2 d-none d-lg-block">
-												<span class="@if(Sentinel::getUser()->theme == 'dark'){{ 'text-light' }}@else{{ 'text-dark' }}@endif" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
+												<span class="@if(Sentinel::check()){{ Sentinel::getUser()->theme == 'dark' ? 'text-light' : 'text-dark' }}@endif" id="usermenu">{{ Sentinel::getUser()->firstname }}@if(Sentinel::getUser()->showname && Sentinel::getUser()->lastname) {{ Sentinel::getUser()->lastname }}@endif <i class="fas fa-caret-down"></i></span>
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -128,6 +202,10 @@
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
 												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
+												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('header.tickets') }}</a>
+												@if(Setting::get('HEADER_INFO_CONSENT_FORM'))
+													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
+												@endif
 												<div class="dropdown-divider"></div>
 												@foreach(\LANMS\Page::forMenu() as $page)
 													<a class="dropdown-item @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
@@ -139,7 +217,7 @@
 										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ trans('header.compo') }}</a>
+										<a class="nav-link @if(Request::is('compo*') || Request::is('user/compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ trans('header.compo') }}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
@@ -161,9 +239,20 @@
 							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
 							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+						@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
+							</div>
 						@endif
 
 						@component('layouts.alert-session') @endcomponent
+
+						@if($errors->any())
+							@component('layouts.alert-form')
+							    @foreach ($errors->all() as $message)
+									<p>{{ $message }}</p>
+								@endforeach
+							@endcomponent
+						@endif
 
 						@yield('content')
 
@@ -181,7 +270,7 @@
 							        <div class="carousel-inner row w-100 mx-auto" role="listbox">
 							        	@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 								            <div class="carousel-item col-md-4 @if($sponsor->sort_order == 0) active @endif">
-								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a>
+								                <a href="{{ $sponsor->url }}"><img class="img-fluid mx-auto d-block" src="@if(Sentinel::check()){{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }} @else {{ $sponsor->image_dark }}@endif" alt="{{ $sponsor->name }}"></a>
 								            </div>
 							            @endforeach
 							        </div>
@@ -209,20 +298,37 @@
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
 							&copy; {{ Setting::get('WEB_COPYRIGHT') }} &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 							<br>
-							<div class="dropup btn-group mt-2 mb-2">
-								<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
-								<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-									@foreach(array_flip(config('app.locales')) as $lang)
-										<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
-									@endforeach
-								</ul>
+							<div class="text-center mt-3 mb-3">
+								<div class="dropup btn-group">
+									<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
+									<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+										@foreach(array_flip(config('app.locales')) as $lang)
+											<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
+										@endforeach
+									</ul>
+								</div>
+								@if(Sentinel::check())
+									<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
+								@endif
 							</div>
 							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
-							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b><br>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b><br>@endif
+							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has expired for this software!</strong>
+								</div>
+							@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
+								<div class="alert alert-danger text-uppercase" role="alert">
+									<strong><i class="far fa-frown mr-2"></i>License has been suspended for this software!</strong>
+								</div>
+							@endif
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
 							@endif
-							@if(Config::get('app.debug') && Setting::get('SHOW_RESETDB'))
+							@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
 								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
 							@endif 
 						</div>
@@ -300,6 +406,10 @@
 			$('#usermenu').click(function() {
 				$("i", this).toggleClass("fa-caret-up fa-caret-down");
 			});
+			function notificationDismiss (url) {
+				event.preventDefault();
+				window.location.href = url;
+			}
 		</script>
 
 		@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
@@ -313,11 +423,11 @@
 			</script>
 		@endif
 
-		@if(Setting::get('FACEBOOK_APP_ID') && Setting::get('FACEBOOK_PAGE_ID'))
+		@if(Setting::get('FACEBOOK_MESSENGER_APP_ID') && Setting::get('FACEBOOK_MESSENGER_PAGE_ID'))
 			<script>
 				window.fbAsyncInit = function() {
 					FB.init({
-						appId            : '{{ Setting::get('FACEBOOK_APP_ID') }}',
+						appId            : '{{ Setting::get('FACEBOOK_MESSENGER_APP_ID') }}',
 						autoLogAppEvents : true,
 						xfbml            : true,
 						version          : 'v2.12'
@@ -331,7 +441,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_MESSENGER_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
 		@endif
 
 	</body>

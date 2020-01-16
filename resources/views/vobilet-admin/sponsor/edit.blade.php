@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', 'Create Sponsor - Admin')
+@section('title', 'Edit Sponsor - Admin')
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Create Sponsor</h4>
+	<h4 class="page-title">Edit Sponsor</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin-sponsor') }}">Sponsor</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Create Sponsor</li>
+		<li class="breadcrumb-item active" aria-current="page">Edit Sponsor</li>
 	</ol>
 </div>
 
@@ -17,7 +17,7 @@
 
 		<div class="card">
 			<div class="card-body">
-				<form action="{{ route('admin-sponsor-update') }}" method="post" enctype="multipart/form-data">
+				<form action="{{ route('admin-sponsor-update', $sponsor->id) }}" method="post" enctype="multipart/form-data">
 
 					<div class="input-group mb-5">
 						<div class="input-group-prepend">
@@ -67,20 +67,40 @@
 						</div>
 
 						<div class="col-sm-6">
-							<div class="expanel expanel-default @if($errors->has('image')) expanel-danger @endif" data-collapsed="0">
+							<div class="expanel expanel-default @if($errors->has('image_light')) expanel-danger @endif" data-collapsed="0">
 								<div class="expanel-heading">
-									<div class="expanel-title">Logo (335x90)</div>
+									<div class="expanel-title">Light Logo (335x90)</div>
 								</div>
 								<div class="expanel-body">
+									<label class="text-muted">This logo should be of lighter colors and work on dark background.</label>
 									<div style="max-width: 335px; height: 90px;">
-										<img src="{{ $sponsor->image }}" alt="{{ $sponsor->name }}">
+										<img src="{{ $sponsor->image_light }}" alt="{{ $sponsor->name }}">
 									</div>
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" name="image" accept="image/*">
+										<input type="file" class="custom-file-input" name="image_light" accept="image/*">
 										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
 									</div>
-									@if($errors->has('image'))
-										<p class="text-danger">{{ $errors->first('image') }}</p>
+									@if($errors->has('image_light'))
+										<p class="text-danger">{{ $errors->first('image_light') }}</p>
+									@endif
+								</div>
+							</div>
+
+							<div class="expanel expanel-default @if($errors->has('image_dark')) expanel-danger @endif" data-collapsed="0">
+								<div class="expanel-heading">
+									<div class="expanel-title">Dark Logo (335x90)</div>
+								</div>
+								<div class="expanel-body">
+									<label class="text-muted">This logo should be of darker colors and work on light background.</label>
+									<div style="max-width: 335px; height: 90px;">
+										<img src="{{ $sponsor->image_dark }}" alt="{{ $sponsor->name }}">
+									</div>
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" name="image_dark" accept="image/*">
+										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+									</div>
+									@if($errors->has('image_dark'))
+										<p class="text-danger">{{ $errors->first('image_dark') }}</p>
 									@endif
 								</div>
 							</div>

@@ -20,7 +20,30 @@ if (Config::get('app.debug')) {
         Artisan::call('migrate:reset');
         Artisan::call('migrate');
         Artisan::call('db:seed');
+        Artisan::call('lanms:update');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
+    });
+    Route::get('/test/notification', function () {
+        $user = Sentinel::getUser();
+        if ($user->stripecustomer) {
+            $stripe_customer_code = $user->stripecustomer->cus;
+            $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+            $invoices = $invoices['data'];
+            foreach ($invoices as $invoice) {
+                $data = [
+                    'amount_due' => $invoice['amount_due'],
+                    'due_date' => $invoice['due_date'],
+                    'currency' => $invoice['currency'],
+                    'url' => route('account-billing-invoice-view', $invoice['id']),
+                ];
+                $db_data = collect($data)->toJson();
+                // Check if there is a notification already
+                $notification = DB::table('notifications')->where('data', $db_data)->where('read_at', null)->first();
+                if (!$notification) {
+                    Notification::send($user, new LANMS\Notifications\InvoiceUnPaid($invoice));
+                }
+            }
+        }
     });
     Route::get('/test', function () {
         App::abort(404);
@@ -36,8 +59,11 @@ Route::group([
     ], function () {
         Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
         Route::get('/schedule', ['as' => 'schedule', 'uses' => 'HomeController@schedule']);
+        Route::get('/tickets', ['as' => 'tickets', 'uses' => 'HomeController@tickets']);
         Route::get('locale/{locale}', ['as' => 'locale', 'uses' => 'HomeController@locale']);
+        Route::get('theme', ['as' => 'theme', 'uses' => 'HomeController@theme']);
         Route::get('/r/{code}', ['middleware' => 'sentinel.guest', 'as' => 'account-referral', 'uses' => 'Member\ReferralController@store']);
+        Route::get('/consentform', ['as' => 'consentform', 'uses' => 'Seating\ReserveSeatingController@consentform']);
         Route::group([
             'prefix' => 'news'
             ], function () {
@@ -63,6 +89,18 @@ Route::group([
                 ]);
             });
         Route::get('/sponsor', ['as' => 'sponsor', 'uses' => 'Admin\SponsorController@index']);
+        Route::group([
+            'prefix' => 'compo'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'compo',
+                    'uses' => 'Compo\CompoController@index'
+                ]);
+                Route::get('/{slug}', [
+                    'as' => 'compo-show',
+                    'uses' => 'Compo\CompoController@show'
+                ]);
+            });
     });
 
 Route::group([
@@ -143,6 +181,18 @@ Route::group([
             'as' => 'user-profile-edit-post',
             'uses' => 'Member\AccountController@postEditProfile'
         ]);
+        Route::get('/notifications', [
+            'as' => 'user-notifications',
+            'uses' => 'NotificationController@show'
+        ]);
+        Route::get('/notifications/dismissall', [
+            'as' => 'user-notifications-dismissall',
+            'uses' => 'NotificationController@dismissall'
+        ]);
+        Route::get('/notification/{id}/dismiss', [
+            'as' => 'user-notification-dismiss',
+            'uses' => 'NotificationController@dismiss'
+        ]);
         Route::get('/members', [
             'as' => 'members',
             'uses' => 'Member\MemberController@index'
@@ -186,15 +236,6 @@ Route::group([
                             'uses' => 'Compo\CompoTeamController@destroy'
                         ]);
                     });
-                
-                Route::get('/', [
-                    'as' => 'compo',
-                    'uses' => 'Compo\CompoController@index'
-                ]);
-                Route::get('/{slug}', [
-                    'as' => 'compo-show',
-                    'uses' => 'Compo\CompoController@show'
-                ]);
                 Route::get('/{slug}/signup', [
                     'as' => 'compo-signup',
                     'uses' => 'Compo\CompoSignUpController@create'
@@ -202,6 +243,10 @@ Route::group([
                 Route::post('/{slug}/signup/store', [
                     'as' => 'compo-signup-store',
                     'uses' => 'Compo\CompoSignUpController@store'
+                ]);
+                Route::get('/{slug}/signup/destroy', [
+                    'as' => 'compo-signup-destroy',
+                    'uses' => 'Compo\CompoSignUpController@destroy'
                 ]);
             });
         Route::group([
@@ -589,6 +634,42 @@ Route::group([
                             'as' => 'admin-seating-row-destroy',
                             'uses' => 'Admin\Seating\RowsController@destroy'
                         ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-row-restore',
+                            'uses' => 'Admin\Seating\RowsController@restore'
+                        ]);
+                    });
+                Route::group([
+                    'prefix' => 'tickettype'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-tickettypes',
+                            'uses' => 'Admin\Seating\TicketTypeController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-tickettype-create',
+                            'uses' => 'Admin\Seating\TicketTypeController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-tickettype-store',
+                            'uses' => 'Admin\Seating\TicketTypeController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-tickettype-edit',
+                            'uses' => 'Admin\Seating\TicketTypeController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-tickettype-update',
+                            'uses' => 'Admin\Seating\TicketTypeController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-tickettype-destroy',
+                            'uses' => 'Admin\Seating\TicketTypeController@destroy'
+                        ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-tickettype-restore',
+                            'uses' => 'Admin\Seating\TicketTypeController@restore'
+                        ]);
                     });
                 Route::group([
                     'prefix' => 'seats'
@@ -616,6 +697,10 @@ Route::group([
                         Route::get('/{id}/destroy', [
                             'as' => 'admin-seating-seat-destroy',
                             'uses' => 'Admin\Seating\SeatsController@destroy'
+                        ]);
+                        Route::get('/{id}/restore', [
+                            'as' => 'admin-seating-seat-restore',
+                            'uses' => 'Admin\Seating\SeatsController@restore'
                         ]);
                     });
                 Route::group([
@@ -718,6 +803,34 @@ Route::group([
                             'uses' => 'Admin\PrintSeatController@printSeat'
                         ]);
                     });
+                Route::group([
+                    'prefix' => 'styling'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-seating-styling',
+                            'uses' => 'Admin\Seating\StylingController@index'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-seating-styling-create',
+                            'uses' => 'Admin\Seating\StylingController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-seating-styling-store',
+                            'uses' => 'Admin\Seating\StylingController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-seating-styling-edit',
+                            'uses' => 'Admin\Seating\StylingController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-seating-styling-update',
+                            'uses' => 'Admin\Seating\StylingController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-seating-styling-destroy',
+                            'uses' => 'Admin\Seating\StylingController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'compo'
@@ -790,6 +903,18 @@ Route::group([
                     'as' => 'admin-user-update',
                     'uses' => 'Admin\UserController@update'
                 ]);
+                Route::post('/{id}/update/permission', [
+                    'as' => 'admin-user-update-permission',
+                    'uses' => 'Admin\UserController@updatePermission'
+                ]);
+                Route::get('/{id}/resendverification', [
+                    'as' => 'admin-user-resendverification',
+                    'uses' => 'Admin\UserController@getResendVerification'
+                ]);
+                Route::get('/{id}/forgotpassword', [
+                    'as' => 'admin-user-forgotpassword',
+                    'uses' => 'Admin\UserController@getForgotPassword'
+                ]);
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-user-destroy',
                     'uses' => 'Admin\UserController@destroy'
@@ -798,6 +923,38 @@ Route::group([
                     'as' => 'admin-user-restore',
                     'uses' => 'Admin\UserController@restore'
                 ]);
+                Route::group([
+                    'prefix' => 'roles'
+                    ], function () {
+                        Route::get('/', [
+                            'as' => 'admin-roles',
+                            'uses' => 'Admin\RoleController@index'
+                        ]);
+                        Route::get('/refreshpermissions', [
+                            'as' => 'admin-roles-refreshpermissions',
+                            'uses' => 'Admin\RoleController@refreshpermissions'
+                        ]);
+                        Route::get('/create', [
+                            'as' => 'admin-role-create',
+                            'uses' => 'Admin\RoleController@create'
+                        ]);
+                        Route::post('/store', [
+                            'as' => 'admin-role-store',
+                            'uses' => 'Admin\RoleController@store'
+                        ]);
+                        Route::get('/{id}/edit', [
+                            'as' => 'admin-role-edit',
+                            'uses' => 'Admin\RoleController@edit'
+                        ]);
+                        Route::post('/{id}/update', [
+                            'as' => 'admin-role-update',
+                            'uses' => 'Admin\RoleController@update'
+                        ]);
+                        Route::get('/{id}/destroy', [
+                            'as' => 'admin-role-destroy',
+                            'uses' => 'Admin\RoleController@destroy'
+                        ]);
+                    });
             });
         Route::group([
             'prefix' => 'billing'
@@ -878,6 +1035,34 @@ Route::group([
                     'as' => 'admin-sponsor-destroy',
                     'uses' => 'Admin\SponsorController@destroy'
                 ]);
+                Route::get('/{id}/restore', [
+                    'as' => 'admin-sponsor-restore',
+                    'uses' => 'Admin\SponsorController@restore'
+                ]);
+                Route::get('/{id}/duplicate', [
+                    'as' => 'admin-sponsor-duplicate',
+                    'uses' => 'Admin\SponsorController@duplicate'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'email'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-emails',
+                    'uses' => 'Admin\EmailController@index'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-emails-create',
+                    'uses' => 'Admin\EmailController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-emails-store',
+                    'uses' => 'Admin\EmailController@store'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'admin-emails-show',
+                    'uses' => 'Admin\EmailController@show'
+                ]);
             });
         Route::group([
             'prefix' => 'sms'
@@ -909,6 +1094,10 @@ Route::group([
                 Route::get('/whatsnew', [
                     'as' => 'admin-whatsnew' ,
                     'uses' => 'Admin\AdminController@whatsnew'
+                ]);
+                Route::get('/info', [
+                    'as' => 'admin-systeminfo' ,
+                    'uses' => 'Admin\AdminController@systeminfo'
                 ]);
                 Route::group([
                     'prefix' => 'license'

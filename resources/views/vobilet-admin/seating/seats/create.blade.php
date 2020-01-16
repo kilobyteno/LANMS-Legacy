@@ -17,47 +17,57 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<div class="card">
+		<form class="card" action="{{ route('admin-seating-seat-store') }}" method="post">
 			<div class="card-body">
-				<form action="{{ route('admin-seating-seat-store') }}" method="post">
 
-					<div class="row">
+				<div class="row">
 
-						<div class="col-sm-5">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">Name</div>
-								</div>
-								<input type="text" class="form-control input-lg" name="name" placeholder="A1" value="{{ (old('name')) ? old('name') : '' }}" />
-								@if($errors->has('name'))
-									<p class="text-danger">{{ $errors->first('name') }}</p>
-								@endif
-							</div>
-						</div>
-
-						<div class="col-sm-5">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text">Row</div>
-								</div>
-								<input type="text" class="form-control input-lg" id="row" placeholder="A" value="" autocomplete="off" />
-								<input type="hidden" class="hidden" id="row_id" name="row_id" value="0">
-								@if($errors->has('row_id'))
-									<p class="text-danger">{{ $errors->first('row_id') }}</p>
-								@endif
-							</div>
-						</div>
-
-						<div class="col-sm-2">
-							<button type="submit" class="btn btn-success btn-block"><i class="fas fa-save mr-2"></i>Create</button>
+					<div class="col-4">
+						<div class="form-group">
+							<label class="form-control-label">Name</label>
+							<input type="text" class="form-control input-lg" name="name" placeholder="A1" value="{{ (old('name')) ? old('name') : '' }}" />
+							@if($errors->has('name'))
+								<p class="text-danger">{{ $errors->first('name') }}</p>
+							@endif
 						</div>
 					</div>
 
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<div class="col-4">
+						<div class="form-group">
+							<label class="form-control-label">Ticket Type</label>
+							<select name="tickettype" class="select2">
+								<option value="">-- No ticket --</option>
+								@foreach($ticket_types as $tickettype)
+									<option value="{{ $tickettype->id }}">{{ $tickettype->name }}</option>
+								@endforeach
+							</select>
+							@if($errors->has('tickettype'))
+								<p class="text-danger">{{ $errors->first('tickettype') }}</p>
+							@endif
+						</div>
+					</div>
 
-				</form>
+					<div class="col-4">
+						<div class="form-group">
+							<label class="form-control-label">Row</label>
+							<select name="row_id" class="select2">
+								@foreach(\LANMS\SeatRows::withTrashed()->get() as $row)
+									<option value="{{ $row->id }}">{{ $row->name }}</option>
+								@endforeach
+							</select>
+							@if($errors->has('row_id'))
+								<p class="text-danger">{{ $errors->first('row_id') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 			</div>
-		</div>
+			<div class="card-footer text-right">
+				<button type="submit" class="btn btn-success"><i class="fas fa-save mr-2"></i>Save</button>
+			</div>
+		</form>
 	</div>
 </div>
 
@@ -82,6 +92,7 @@
 					}
 				});
 			 });
+			$('.select2').select2();
 		})(jQuery);
 	</script>
 @stop

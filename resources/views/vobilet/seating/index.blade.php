@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('title', trans('header.seating'))
-@section('css')
-	<link rel="stylesheet" href="{{ Theme::url('css/seating.css') }}">
-@stop
 @section('content')
 
 <div class="container">
@@ -31,6 +28,8 @@
 						<h2>{{ trans('seating.closed') }}</h2>
 						<p>{{ trans('seating.checklater') }}</p>
 					@endif
+
+					<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {!! trans('seating.alert.tickets', ['url' => route('tickets')]) !!}</div>
 
 				</div>
 
@@ -69,7 +68,7 @@
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
 														
-														@if($reservation->reservedfor->age() < 16)
+														@if($reservation->reservedfor->age() < 15)
 															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
@@ -81,16 +80,16 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> {{ trans('seating.reservation.view') }}</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.pay') }}</a>
-															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> true and is_null($reservation->payment))
+															@elseif($reservation->status_id == 1 and is_string(SeatReservation::getRealExpireTime($reservation->id)) and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
 															@endif
-															@if($reservation->reservedfor->age() < 16)
+															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
-															@if(SeatReservation::getRealExpireTime($reservation->id) <> true && $reservation->status_id != 1)
+															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
 																<div class="dropdown-divider"></div>
 																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> {{ trans('seating.reservation.remove') }}</a>
 															@endif
@@ -138,7 +137,7 @@
 														@else
 															<span class="badge badge-danger"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaid') }}</span>
 														@endif
-														@if($reservation->reservedfor->age() < 16)
+														@if($reservation->reservedfor->age() < 15)
 															<a href="{{ route('seating-consentform') }}" class="badge badge-dark popover-primary" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ trans('seating.reservation.consentform.desc') }}" data-original-title="{{ trans('seating.reservation.consentform.why') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 														@endif
 													</small>
@@ -150,16 +149,16 @@
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> {{ trans('seating.reservation.view') }}</a>
 															@if($reservation->status_id != 1 and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.pay') }}</a>
-															@elseif($reservation->status_id == 1 and SeatReservation::getRealExpireTime($reservation->id) <> true and is_null($reservation->payment))
+															@elseif($reservation->status_id == 1 and is_string(SeatReservation::getRealExpireTime($reservation->id)) and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
 																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
 															@endif
-															@if($reservation->reservedfor->age() < 16)
+															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
-															@if(SeatReservation::getRealExpireTime($reservation->id) <> true && $reservation->status_id != 1)
+															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
 																<div class="dropdown-divider"></div>
 																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> {{ trans('seating.reservation.remove') }}</a>
 															@endif

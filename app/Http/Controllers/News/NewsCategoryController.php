@@ -2,17 +2,15 @@
 
 namespace LANMS\Http\Controllers\News;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
-use LANMS\NewsCategory;
-
+use LANMS\Http\Controllers\Controller;
+use LANMS\Http\Requests;
 use LANMS\Http\Requests\Admin\News\NewsCategoryCreateRequest;
 use LANMS\Http\Requests\Admin\News\NewsCategoryEditRequest;
+use LANMS\News;
+use LANMS\NewsCategory;
 
 class NewsCategoryController extends Controller
 {
@@ -104,9 +102,14 @@ class NewsCategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return Redirect::back();
+        $nc = NewsCategory::where('slug', $slug)->first();
+        abort_unless($nc, 404);
+        $category = NewsCategory::find($nc->id);
+        $articles = News::where('category_id', $nc->id)->paginate(5);
+        abort_unless($category, 404);
+        return view('news.category.show')->withCategory($category)->withArticles($articles);
     }
 
     /**
@@ -172,7 +175,11 @@ class NewsCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.destroy'])) {
             $newscategory = NewsCategory::find($id);
-            if ($newscategory->delete()) {
+            if ($newscategory->articles->count() > 0) {
+                return Redirect::route('admin-news-category')
+                        ->with('messagetype', 'warning')
+                        ->with('message', 'Cannot delete category, there are '.$newscategory->articles->count().' articles attached to this category!');
+            } elseif ($newscategory->delete()) {
                 return Redirect::route('admin-news-category')
                         ->with('messagetype', 'success')
                         ->with('message', 'The category has now been deleted!');

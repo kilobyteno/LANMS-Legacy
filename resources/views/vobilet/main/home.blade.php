@@ -10,16 +10,19 @@
 					<div class="card-header">
 						<h3 class="card-title"><a href="{{ route('news-show', $article->slug) }}">{{ $article->title }}</a></h3>
 						<div class="card-options">
+							<a href="{{ route('news-category-show', $article->category->slug) }}" class="badge badge-light"><i class="fas fa-tag mr-2"></i>{{ $article->category->name }}</a>
 							@if(Sentinel::check())
 								@if(Sentinel::hasAccess('admin.news.update'))
-									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
+									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
 								@endif
 							@endif
 						</div>
 					</div>
-					<div class="card-body d-flex flex-column">
+					<div class="card-body d-flex flex-column card-body-article">
 						<div class="text-muted">{!! $article->content !!}</div>
-						<div class="d-flex align-items-center pt-5 mt-auto">
+					</div>
+					<div class="card-footer">
+						<div class="d-flex align-items-center">
 							<div class="avatar brround avatar-md mr-3" style="background-image: url(@if($article->author->profilepicturesmall){{ $article->author->profilepicturesmall }} @else {{ '/images/profilepicture/0_small.png' }}@endif)"></div>
 							<div> <a href="{{ URL::route('user-profile', $article->author->username) }}" class="text-default">{{ User::getFullnameByID($article->author->id) }}</a> <small class="d-block text-muted">{{ $article->published_at->diffForHumans() }}</small> </div>
 							{{-- <div class="ml-auto text-muted"> <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a> <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a> </div> --}}
@@ -36,7 +39,7 @@
 				<div class="card-body">
 					<p><b>{{ trans('pages.home.where') }}: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
 					<p><b>{{ trans('pages.home.when') }}: </b> {{ LANMS\Info::getContent('when') }}</p>
-					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')&&LANMS\Info::getContent('price_alt')!=LANMS\Info::getContent('price')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
+					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }} <small><a class="float-right" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('pages.home.moreinfo') }}</a></small></p>
 				</div>
 			</div>
 			@if(\LANMS\Info::where('name', 'social_discord_server_id')->where('content', '<>', '')->first())
@@ -52,7 +55,7 @@
 							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
 							@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
 						</div>
-						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}"></a> 
+						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="@if(Sentinel::check()){{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }} @else {{ $sponsor->image_dark }}@endif" alt="{{ $sponsor->name }}"></a> 
 					</div>
 				@endforeach
 			@endif

@@ -17,6 +17,9 @@ return [
         'paymentcantchange' => 'You can\'t change your payment of your reservation after the first 48 hours.',
         'youcanchangepayment' => 'You can now change your payment of your reservation.',
         'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
+        'unpaidinvoice' => 'You have one or more unpaid invoices, please pay these first. You will be able to reserve a seat once this has been taken care of.',
+        'tickets' => 'For more information about the different ticket types, visit <a href=":url">this page</a>.',
+        'entrancepaymentnotallowed' => 'This ticket cannot be paid at the entrance right now. Pay by card instead.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',
@@ -27,6 +30,7 @@ return [
         'exit' => 'Exit',
         'kiosk' => 'Kiosk',
         'available' => 'Available',
+        'unavailable' => 'Unavailable',
         'you' => 'This seat is reserved for you!',
         'reservedfor' => 'Reserved for',
         'tempreserved' => 'Temporary Reserved By',
@@ -48,7 +52,7 @@ return [
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
-            'desc' => 'The person who has this reservation is reserved for under 16 years and must have a consent form, completed upon check-in at the event.',
+            'desc' => 'The person who has this reservation is reserved for under 15 years and must have a consent form, completed upon check-in at the event.',
             'why' => 'Why do I see this?',
         ),
         'pizza' => array(
@@ -96,8 +100,9 @@ return [
     'pay' => array(
         'title' => 'Pay for Reservation',
         'price' => 'Price',
+        'tickettype' => 'Ticket Type',
         'entrancebutton' => 'Pay at the entrance*',
-        'entrancedesc' => '* Additional fee (:price) and <a href=":url">Terms</a> apply',
+        'entrancedesc' => '* <strong>Purchase Conditions</strong> apply',
         'or' => 'or',
         'button' => 'Pay Now',
         'processing' => 'Processing Payment',

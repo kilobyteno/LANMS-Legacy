@@ -2,15 +2,14 @@
 
 namespace LANMS\Http\Controllers\Admin\Seating;
 
-use LANMS\Http\Controllers\Controller;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-
-use LANMS\SeatRows;
-
+use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Admin\Seating\RowCreateRequest;
 use LANMS\Http\Requests\Admin\Seating\RowEditRequest;
+use LANMS\SeatRows;
+use LANMS\TicketType;
 
 class RowsController extends Controller
 {
@@ -21,14 +20,12 @@ class RowsController extends Controller
      */
     public function index()
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.*'])) {
-            $rows = SeatRows::all();
-            return view('seating.rows.index')
-                        ->with('allrows', $rows);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.*'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $rows = SeatRows::withTrashed()->orderBy('sort_order', 'asc')->get();
+        return view('seating.rows.index')->with('allrows', $rows);
     }
 
     /**
@@ -38,12 +35,12 @@ class RowsController extends Controller
      */
     public function create()
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.create'])) {
-            return view('seating.rows.create');
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $ticket_types = TicketType::all();
+        return view('seating.rows.create', ['ticket_types' => $ticket_types]);
     }
 
     /**
@@ -53,26 +50,29 @@ class RowsController extends Controller
      */
     public function store(RowCreateRequest $request)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.create'])) {
-            $row                = new SeatRows;
-            $row->name          = $request->name;
-            $row->slug          = strtolower($request->name);
-            $row->editor_id     = Sentinel::getUser()->id;
-            $row->author_id     = Sentinel::getUser()->id;
-
-            if ($row->save()) {
-                return Redirect::route('admin-seating-rows')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The row has now been created!');
-            } else {
-                return Redirect::route('admin-seating-row-create')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while saving the row.');
-            }
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.create'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $row = new SeatRows;
+        $row->name = $request->name;
+        $row->slug = strtolower($request->name);
+        $row->editor_id = Sentinel::getUser()->id;
+        $row->author_id = Sentinel::getUser()->id;
+        $row->save();
+
+        for ($i=0; $i < $request->seat_count; $i++) {
+            $seat = new \LANMS\Seats;
+            $seat->name = string($request->name.($i+1));
+            $seat->slug = strtolower(string($request->name.($i+1)));
+            $seat->row_id = $row->id;
+            $seat->tickettype_id = $request->tickettype;
+            $seat->save();
+        }
+
+        return Redirect::route('admin-seating-rows')
+                ->with('messagetype', 'success')
+                ->with('message', 'The row has now been created!');
     }
 
     /**
@@ -83,13 +83,13 @@ class RowsController extends Controller
      */
     public function edit($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
-            $row = SeatRows::find($id);
-            return view('seating.rows.edit')->withRow($row);
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $row = SeatRows::withTrashed()->find($id);
+        $ticket_types = TicketType::all();
+        return view('seating.rows.edit', ['row' => $row, 'ticket_types' => $ticket_types]);
     }
 
     /**
@@ -100,20 +100,26 @@ class RowsController extends Controller
      */
     public function update($id, RowEditRequest $request)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
-            $row                = SeatRows::find($id);
-            $row->name          = $request->name;
-            $row->slug          = strtolower($request->name);
-            $row->editor_id     = Sentinel::getUser()->id;
-            $row->save();
-
-            return Redirect::route('admin-seating-rows')
-                    ->with('messagetype', 'success')
-                    ->with('message', 'The row has now been saved!');
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.update'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
+        $row                = SeatRows::withTrashed()->find($id);
+        $row->name          = $request->name;
+        $row->slug          = strtolower($request->name);
+        $row->editor_id     = Sentinel::getUser()->id;
+        $row->save();
+
+        if ($request->tickettype !== "nothing") {
+            foreach ($row->seats as $seat) {
+                $seat->tickettype_id = $request->tickettype;
+                $seat->save();
+            }
+        }
+
+        return Redirect::route('admin-seating-rows')
+                ->with('messagetype', 'success')
+                ->with('message', 'The row has now been saved!');
     }
 
     /**
@@ -124,21 +130,39 @@ class RowsController extends Controller
      */
     public function destroy($id)
     {
-        if (Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
-            $row = SeatRows::find($id);
-            $row->seats()->delete();
-            if ($row->delete()) {
-                return Redirect::route('admin-seating-rows')
-                        ->with('messagetype', 'success')
-                        ->with('message', 'The row has now been deleted!');
-            } else {
-                return Redirect::route('admin-seating-rows')
-                    ->with('messagetype', 'danger')
-                    ->with('message', 'Something went wrong while deleting the row.');
-            }
-        } else {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+        $row = SeatRows::find($id);
+        $row->seats()->delete();
+        if ($row->delete()) {
+            return Redirect::route('admin-seating-rows')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The row and seats has now been deleted!');
+        } else {
+            return Redirect::route('admin-seating-rows')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while deleting the row.');
+        }
+    }
+
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.seating.row.destroy'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $row = SeatRows::withTrashed()->find($id);
+        $row->seats()->restore();
+        if ($row->restore()) {
+            return Redirect::route('admin-seating-rows')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The row and seats has now been restored!');
+        } else {
+            return Redirect::route('admin-seating-rows')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while restoring the row.');
         }
     }
 }

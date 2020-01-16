@@ -4,10 +4,11 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Compo extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at', 'start_at', 'last_sign_up_at', 'end_at'];
     protected $table = 'compo';
@@ -28,6 +29,35 @@ class Compo extends Model
         'type',
         'signup_type',
         'signup_size',
+        'min_signups',
+        'max_signups',
+        'prize_pool_total',
+        'prize_pool_first',
+        'prize_pool_second',
+        'prize_pool_third',
+    ];
+
+    protected static $logName = 'compo';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
+        'name',
+        'slug',
+        'description',
+        'page_id',
+        'challonge_subdomain',
+        'challonge_url',
+        'start_at',
+        'last_sign_up_at',
+        'end_at',
+        'type',
+        'signup_type',
+        'signup_size',
+        'min_signups',
+        'max_signups',
+        'prize_pool_total',
+        'prize_pool_first',
+        'prize_pool_second',
+        'prize_pool_third',
     ];
 
     public function scopeThisYear($query)

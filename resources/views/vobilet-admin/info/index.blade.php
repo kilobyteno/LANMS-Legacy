@@ -12,13 +12,14 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-12">
 
 		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
 			<thead>
 				<tr>
 					<th>Name</th>
 					<th>Content</th>
+					<th>Description</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -27,6 +28,7 @@
 					<tr>
 						<td scope="row">{{ $info->name }}</td>
 						<td>{{ $info->content }}</td>
+						<td>{{ $info->description ?? '' }}</td>
 						<td>
 							<a href="{{ route('admin-info-edit', $info->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
 						</td>
@@ -50,7 +52,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
-		    	responsive: true
+		    	responsive: true,
+		    	"iDisplayLength": 25
 		    });
 		} );
 	</script>

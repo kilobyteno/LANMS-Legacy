@@ -4,16 +4,30 @@ namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class SeatReservation extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     protected $dates = ['deleted_at'];
 
     protected $table = 'seat_reservations';
 
     protected $fillable = [
+        'seat_id',
+        'reservedby_id',
+        'reservedfor_id',
+        'payment_id',
+        'ticket_id',
+        'status_id',
+        'year',
+        'reminder_email_sent',
+    ];
+
+    protected static $logName = 'seat_reservations';
+    protected static $logOnlyDirty = true;
+    protected static $logAttributes = [
         'seat_id',
         'reservedby_id',
         'reservedfor_id',
