@@ -14,6 +14,9 @@ return [
     'type' => 'Type',
     'nodata' => 'Vi kan ikke finne noen data til deg...',
     'noaccess' => 'Du har ikke tilgang til denne siden!',
+    'verification' => 'Verifisering',
+    'verified' => 'verifisert',
+    'notverified' => 'ikke verifisert',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.

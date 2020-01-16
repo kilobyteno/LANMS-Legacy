@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ae29716664f99d1cd0648f71c5ed4c2",
+    "content-hash": "c756001fb0eb811f82f7b2df32d5f50d",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -101,6 +101,52 @@
             ],
             "description": "Persistent settings in Laravel.",
             "time": "2016-08-24T14:06:54+00:00"
+        },
+        {
+            "name": "authy/php",
+            "version": "3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/authy-php.git",
+                "reference": "7bb63790e2cc32a9113bdef236017f8284e0381e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/authy-php/zipball/7bb63790e2cc32a9113bdef236017f8284e0381e",
+                "reference": "7bb63790e2cc32a9113bdef236017f8284e0381e",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "eher/phpunit": ">= 1.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Authy": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Cuadrado",
+                    "email": "david@authy.com"
+                }
+            ],
+            "description": "PHP client for Authy",
+            "homepage": "https://github.com/authy/authy-php",
+            "keywords": [
+                "Authentication",
+                "api",
+                "two-factor"
+            ],
+            "time": "2019-04-09T01:57:04+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",

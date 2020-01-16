@@ -131,9 +131,10 @@
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
-								<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+								<label class="form-label">{{ trans('global.phone') }} @if(!$phone_verified_at) <a class="badge badge-danger" href="{{ route('account-verifyphone') }}">{{ ucfirst(trans('global.notverified')) }}</a> @else &middot; <span class="text-success">{{ ucfirst(trans('global.verified')) }}</span> @endif <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 								<div class="input-group">
-									<input class="form-control" type="tel" id="phone" name="phone" placeholder="+4722225555" value="{{ $phone ?? old('phone') }}">
+									<input class="form-control" type="tel" id="phone" name="phone" placeholder="22225555" value="{{ $phone ?? old('phone') }}">
+									<input type="hidden" name="phone_country" id="phone_country" value="{{ $phone_country ?? old('phone_country') }}">
 								</div>
 								@if($errors->has('phone'))
 									<p class="text-danger">{{ $errors->first('phone') }}</p>
@@ -214,15 +215,22 @@
 	<script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
 	<script>
 		var input = document.querySelector("#phone");
-		window.intlTelInput(input, {
+		var countryinput = document.querySelector("#phone_country");
+		var iti = window.intlTelInput(input, {
 			preferredCountries: ["no"],
-			initialCountry: "auto",
+			initialCountry: "{{ $phone_country ?? 'auto' }}",
 			geoIpLookup: function(success, failure) {
 				$.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
 					var countryCode = (resp && resp.country) ? resp.country : "";
 					success(countryCode);
 				});
 			},
+		});
+		countryinput.value = iti.getSelectedCountryData().iso2;
+		// listen to the telephone input for changes
+		input.addEventListener('countrychange', function(e) {
+			countryinput.value = iti.getSelectedCountryData().iso2;
+			console.log('countrychange: '+iti.getSelectedCountryData().iso2);
 		});
 	</script>
 	<script src="{{ Theme::url('js/cleave.js') }}"></script>

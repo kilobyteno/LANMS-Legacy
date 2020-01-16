@@ -47,14 +47,25 @@ class AccountController extends Controller
 
     public function postEditProfile(ProfileRequest $request)
     {
-        $finduser = Sentinel::findById(Sentinel::getUser()->id);
-
         $credentials = [
             'login'         => Sentinel::getUser()->username,
             'password'      => $request->get('password'),
         ];
 
         if (Sentinel::authenticate($credentials)) {
+
+            $phone = $request->get('phone');
+
+            if ($phone != Sentinel::getUser()->phone) {
+                $phone_verified_at = null;
+            }
+
+            if (is_null($phone)) {
+                $phone_country = null;
+            } else {
+                $phone_country = $request->get('phone_country');
+            }
+
             $info = [
                 'firstname'         => $request->get('firstname'),
                 'lastname'          => $request->get('lastname'),
@@ -62,7 +73,9 @@ class AccountController extends Controller
                 'location'          => $request->get('location'),
                 'occupation'        => $request->get('occupation'),
                 'birthdate'         => $request->get('birthdate'),
-                'phone'             => $request->get('phone'),
+                'phone'             => $phone,
+                'phone_country'     => $phone_country,
+                'phone_verified_at' => $phone_verified_at,
                 'about'             => $request->get('about'),
                 'showemail'         => $request->get('showemail'),
                 'showname'          => $request->get('showname'),
@@ -71,7 +84,7 @@ class AccountController extends Controller
                 'theme'             => $request->get('theme'),
             ];
 
-            $updateuser = Sentinel::update($finduser, $info);
+            $updateuser = Sentinel::update(Sentinel::getUser(), $info);
 
             if ($updateuser) {
                 return Redirect::route('user-profile', Sentinel::getUser()->username)

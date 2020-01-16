@@ -39,6 +39,15 @@
 			<div class="col-lg-5">
 				<div class="card">
 					<div class="card-header">
+						<h3 class="card-title">{{ trans('global.verification') }}</h3>
+					</div>
+					<div class="card-body">
+						<p class="@if(Activation::completed(Sentinel::findById($id))){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ trans('global.email') }} @if(Activation::completed(Sentinel::findById($id))){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
+						<p class="@if($phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header">
 						<h3 class="card-title">{{ trans('user.profile.attendance') }}</h3>
 					</div>
 					@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0 || Sentinel::findById($id)->ownReservationsLastYear->count()>0)
