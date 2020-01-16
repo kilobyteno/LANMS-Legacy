@@ -230,6 +230,7 @@
 		// listen to the telephone input for changes
 		input.addEventListener('countrychange', function(e) {
 			countryinput.value = iti.getSelectedCountryData().iso2;
+			console.log('countrychange: '+iti.getSelectedCountryData().iso2);
 		});
 	</script>
 	<script src="{{ Theme::url('js/cleave.js') }}"></script>
