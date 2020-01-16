@@ -64,6 +64,14 @@ class RefreshSettings extends Command
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
         }
+        if (Setting::has('SEATING_SEAT_PRICE')) {
+            Setting::forget('SEATING_SEAT_PRICE');
+            $this->info('Removed SEATING_SEAT_PRICE.');
+        }
+        if (Setting::has('SEATING_SEAT_PRICE_ALT')) {
+            Setting::forget('SEATING_SEAT_PRICE_ALT');
+            $this->info('Removed SEATING_SEAT_PRICE_ALT.');
+        }
 
         // Rename old styled settings
         if (Setting::has('SHOW_RESETDB')) {
@@ -113,9 +121,6 @@ class RefreshSettings extends Command
             'REFERRAL_ACTIVE' => 'You can enable or disable the view of referral on the users dashboard.',
             'SEATING_OPEN' => 'Set this to "0" (without quotes) to disable users from making changes to reservations. If it is set to "1" (without quotes) users will be able to make changes to their reservations.',
             'SEATING_SEAT_EXPIRE_HOURS' => 'Integer only. Set this to the amount of hours you want temporary reserved seats to last.',
-            'SEATING_SEAT_PRICE' => 'Integer only. Set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_ALT' => 'Integer only. if you have a alternate price at the entrance set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'MAIN_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
