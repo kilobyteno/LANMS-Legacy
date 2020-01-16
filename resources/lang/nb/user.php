@@ -140,7 +140,7 @@ return [
                 'failed' => 'Bekreftelsen mislyktes!',
                 'nophone' => 'Ingen telefonnummer lagret.',
                 'alreadyverified' => 'Telefonen er allerede bekreftet.',
-                'info' => 'Verifikasjonstoken er sendt! Vennligst vent opptil ett minutt.',
+                'info' => 'Verifikasjonskode er sendt! Vennligst vent opptil ett minutt.',
             ),
             'typecode' => 'Skriv inn koden du mottok på en SMS',
             'button' => 'Bekreft',
