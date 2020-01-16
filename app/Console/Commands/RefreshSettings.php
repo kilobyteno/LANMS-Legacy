@@ -92,6 +92,12 @@ class RefreshSettings extends Command
             $this->info('Renmamed FACEBOOK_PAGE_ID to FACEBOOK_MESSENGER_PAGE_ID');
         }
 
+        if (Setting::has('SEATING_SEAT_PRICE_CURRENCY')) {
+            Setting::set('MAIN_CURRENCY', Setting::get('SEATING_SEAT_PRICE_CURRENCY'));
+            Setting::forget('SEATING_SEAT_PRICE_CURRENCY');
+            $this->info('Renmamed SEATING_SEAT_PRICE_CURRENCY to MAIN_CURRENCY');
+        }
+
         Setting::save();
 
         // Add description to settings
@@ -110,6 +116,7 @@ class RefreshSettings extends Command
             'SEATING_SEAT_PRICE' => 'Integer only. Set this to the amount you want the seat to cost. Decimal is not supported at this time.',
             'SEATING_SEAT_PRICE_ALT' => 'Integer only. if you have a alternate price at the entrance set this to the amount you want the seat to cost. Decimal is not supported at this time.',
             'SEATING_SEAT_PRICE_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
+            'MAIN_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
             'WEB_COPYRIGHT' => 'String only. Example: 2015-2019 Infihex',

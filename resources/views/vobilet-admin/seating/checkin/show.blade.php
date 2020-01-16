@@ -78,7 +78,7 @@
 					<div class="col-md-6">
 						@if(is_null($ticket->reservation->payment))
 							<h2><strong><small>Paid:</small><br><span class="text-danger">No</span></strong></h2>
-							<h3><small>To pay:</small><br>{{ Setting::get('SEATING_SEAT_PRICE_ALT') }} {{ Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</h3>
+							<h3><small>To pay:</small><br>{{ Setting::get('SEATING_SEAT_PRICE_ALT') }} {{ Setting::get('MAIN_CURRENCY') }}</h3>
 						@else
 							<h2><strong><small>Paid:</small><br><span class="text-success">Yes</span></strong></h2>
 						@endif

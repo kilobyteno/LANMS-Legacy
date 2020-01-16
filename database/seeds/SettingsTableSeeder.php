@@ -34,7 +34,7 @@ class SettingsTableSeeder extends Seeder
         Setting::set('SEATING_SEAT_EXPIRE_HOURS', 48);
         Setting::set('SEATING_SEAT_PRICE', 250);
         Setting::set('SEATING_SEAT_PRICE_ALT', 300);
-        Setting::set('SEATING_SEAT_PRICE_CURRENCY', 'NOK');
+        Setting::set('MAIN_CURRENCY', 'NOK');
         Setting::set('SEATING_YEAR', 2020);
         
         Setting::set('REFERRAL_ACTIVE', true);
