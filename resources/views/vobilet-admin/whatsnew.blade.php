@@ -21,6 +21,32 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2511" aria-expanded="true">Version 2.5.11</a>
+							</h4>
+						</div>
+						<div id="2511" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-403'>LANMS-403</a>] - Missing translation for invoice</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+									<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-399'>LANMS-399</a>] - Add first signup time to compo</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-401'>LANMS-401</a>] - Add preferred clothing size to users</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-402'>LANMS-402</a>] - Add allow entrance payment to ticket types</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2510" aria-expanded="true">Version 2.5.10</a>
 							</h4>
 						</div>

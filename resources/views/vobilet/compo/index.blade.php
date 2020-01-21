@@ -47,6 +47,7 @@
 								</small>
 							</p>
 							@if($compo->start_at)<p>{{ trans('compo.starts') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}">{{ $compo->start_at->diffForHumans() }}</span></p>@endif
+							@if($compo->first_sign_up_at)<p>{{ trans('compo.firstsignup') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->first_sign_up_at)->isoFormat('LLL') }}">{{ $compo->first_sign_up_at->diffForHumans() }}</span></p>@endif
 							@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}">{{ $compo->last_sign_up_at->diffForHumans() }}</span></p>@endif
 							@if($compo->end_at)<p>{{ trans('compo.ends') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}">{{ $compo->end_at->diffForHumans() }}</span></p>@endif
 							<p>{{ trans('compo.type') }}: {{ trans('compo.type.'.$compo->type) }}</p>
@@ -68,7 +69,7 @@
 							<a class="btn btn-sm btn-info" href="{{ route('compo-show', $compo->slug) }}"><i class="far fa-eye"></i> {{ trans('global.view') }}</a>
 							@if($compo->rules)<a class="btn btn-sm btn-orange" href="{{ route('page', $compo->rules->slug) }}"><i class="fas fa-book"></i> {{ trans('compo.rules') }}</a>@endif
 							@if(\Sentinel::check())
-								@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+								@if(\Carbon\Carbon::now() > $compo->first_sign_up_at && \Carbon\Carbon::now() < $compo->last_sign_up_at && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
 									@if($compo->max_signups)
 										@if($compo->signupsThisYear->count() < $compo->max_signups)
 											<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>

@@ -85,6 +85,7 @@ return [
                         'sent' => 'Invoice was sent.',
                         'marked_uncollectible' => 'Invoice was marked uncollectible.',
                         'voided' => 'Invoice was voided.',
+                        'payment_failed' => 'Payment failed.',
                     ),
                 ),
                 'product' => 'Product',
