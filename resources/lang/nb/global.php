@@ -36,6 +36,18 @@ return [
         'genderless' => 'Kjønnsløs',
     ),
 
+    'clothingsize' => array(
+        'title' => 'Foretrukket klesstørrelse',
+        'nochoice' => 'Ikke noe valg',
+        'xs' => 'XS',
+        's' => 'S',
+        'm' => 'M',
+        'l' => 'L',
+        'xl' => 'XL',
+        'xxl' => 'XXL',
+        '3xl' => '3XL',
+    ),
+
     'staff' => 'Staff',
     'members' => 'Medlem',
 
