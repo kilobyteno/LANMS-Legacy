@@ -4,6 +4,7 @@ return [
 
     'title' => 'Konkuranse',
     'starts' => 'Starter',
+    'firstsignup' => 'Påmeldingsstart',
     'lastsignup' => 'Siste påmelding',
     'ends' => 'Slutter',
     'rules' => 'Regler',
@@ -53,6 +54,7 @@ return [
         'alert' => [
             'signedup' => '{1} Ditt lag er nå meldt på!|{2} Du er nå meldt på!',
             'alreadysignedup' => 'Du har allerede registrert deg for denne konkurransen.',
+            'firstsignupbefore' => 'Du må vente til første påmeldingstid har passert.',
             'lastsignuppast' => 'Siste påmeldingstid er forbi, det er ikke mulig å registrere seg.',
             'signupsize' => 'Laget ditt har ikke riktig antall medlemmer.',
             'cancelled' => '{1} Ditt lag har nå trukket tilbake påmeldingen!|{2} Du har nå trukket tilbake din påmelding!',
