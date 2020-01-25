@@ -106,6 +106,8 @@
         $(document).ready(function() {
             $('#table-1').DataTable({
                 order: [2, "desc"],
+                responsive: true,
+                "iDisplayLength": 25
             });
         } );
     </script>

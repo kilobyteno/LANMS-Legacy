@@ -79,6 +79,8 @@
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
 		    	order: [0, "asc"],
+		    	responsive: true,
+		    	"iDisplayLength": 25
 		    });
 		} );
 	</script>

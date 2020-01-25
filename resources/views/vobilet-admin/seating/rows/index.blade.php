@@ -85,7 +85,10 @@
 	<script src="{{ Theme::url('plugins/datatable/dataTables.bootstrap4.min.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    $('#table-1').DataTable();
+		    $('#table-1').DataTable({
+		    	responsive: true,
+		    	"iDisplayLength": 25
+		    });
 		} );
 	</script>
 @stop
