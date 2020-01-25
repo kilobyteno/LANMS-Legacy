@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-	<div class="col-12 col-lg-4 col-xl-3">
+	<div class="col-12 col-lg-4 col-xl-4">
 		<div class="seatmap">
 			<ul>
 				<li class="scene">{{ trans('seating.map.scene') }}</li>
