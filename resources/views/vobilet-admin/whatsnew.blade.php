@@ -21,6 +21,21 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2513" aria-expanded="true">Version 2.5.13</a>
+							</h4>
+						</div>
+						<div id="2513" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-417'>LANMS-417</a>] - Seatmap in admin panel does not have sort order for rows</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-419'>LANMS-419</a>] - User gets notifications on voided invoices
+								</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2512" aria-expanded="true">Version 2.5.12</a>
 							</h4>
 						</div>
