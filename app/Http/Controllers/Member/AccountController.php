@@ -74,6 +74,18 @@ class AccountController extends Controller
 
             $updateuser = Sentinel::update($finduser, $info);
 
+            if ($finduser->stripecustomer) {
+                \Stripe::customers()->update($finduser->stripecustomer->cus, [
+                    'email' => $finduser->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            } else {
+                \Stripe::customers()->create([
+                    'email' => $finduser->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            }
+
             if ($updateuser) {
                 return Redirect::route('user-profile', Sentinel::getUser()->username)
                         ->with('messagetype', 'success')
