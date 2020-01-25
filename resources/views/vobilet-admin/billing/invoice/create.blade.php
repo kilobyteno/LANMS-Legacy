@@ -7,7 +7,8 @@
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-        <li class="breadcrumb-item">{{ trans('user.account.billing.invoice.title') }}</li>
+        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Create Invoice</li>
 	</ol>
 </div>
