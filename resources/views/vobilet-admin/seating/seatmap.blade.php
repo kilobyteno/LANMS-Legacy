@@ -8,7 +8,7 @@
 		<li class="scene">{{ trans('seating.map.scene') }}</li>
 		<li class="seat entrance" id="entrance"><p><a data-toggle="tooltip" title="{{ trans('seating.map.exit') }}"><i class="fas fa-door-open"></i></a></p></li>
 
-		@foreach(\LANMS\SeatRows::all() as $row)
+		@foreach(\LANMS\SeatRows::orderBy('sort_order', 'asc')->get() as $row)
 
 			<li class="seat-row">
 				<ul class="seat-row-{{$row->slug}}">
