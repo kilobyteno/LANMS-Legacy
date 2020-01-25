@@ -19,7 +19,7 @@
 						<li class="seat @if($seat->reservationThisYear) @if($seat->reservationThisYear->status->id == 1) seat-reserved @elseif($seat->reservationThisYear->status->id == 2) seat-tempreserved @endif @if(Sentinel::getUser()->id == $seat->reservationThisYear->reservedfor->id && $seat->reservationThisYear->status->id == 1) seat-yours @endif @if(!is_null($seat->reservationThisYear->ticket)) @if(!is_null($seat->reservationThisYear->ticket->checkin)) checkedin @endif @endif @endif @if(Request::segment(4) == $seat->slug) active @endif" @if($seat->tickettype) style="background-color: #{{ $seat->tickettype->color }}" @endif>
 							<p>
 								@if(is_null($seat->reservationThisYear))
-									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="{{ $seat->tickettype ? $seat->tickettype->title .': '. trans('seating.map.available') : trans('seating.map.unavailable') }}">{{ $seat->name }}</a>
+									<a href="{{ route('admin-seating-reservation-show', $seat->slug) }}" data-toggle="tooltip" title="{{ $seat->tickettype ? $seat->tickettype->name .': '. trans('seating.map.available') : trans('seating.map.unavailable') }}">{{ $seat->name }}</a>
 								@elseif(Sentinel::getUser()->id == $seat->reservationThisYear->reservedfor->id && $seat->reservationThisYear->status->id == 1)
 									<a href="{{ route('admin-seating-reservation-edit', $seat->reservationThisYear->id) }}" data-toggle="tooltip" title="{{ trans('seating.map.you') }}">{{ $seat->name }}</a>
 								@elseif($seat->reservationThisYear->status->id == 1)
