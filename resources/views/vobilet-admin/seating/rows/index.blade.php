@@ -21,7 +21,7 @@
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
-							<th>Slug</th>
+							<th>Sort Order</th>
 							<th>Status</th>
 							<th>Seats</th>
 							<th>Updated at</th>
@@ -34,7 +34,7 @@
 							<tr>
 								<th scope="row">{{ $row->id }}</th>
 								<td>{{ $row->name }}</td>
-								<td>{{ $row->slug }}</td>
+								<td>{{ $row->sort_order }}</td>
 								<td>{!! ($row->deleted_at) ? '<span class="badge badge-danger">Deleted</span>' : '<span class="badge badge-info">Active</span>' !!}</td>
 								<td>{{ $row->seats->count() }}</td>
 								<td>{{ \Carbon::parse($row->updated_at)->toDateTimeString() }}</td>
