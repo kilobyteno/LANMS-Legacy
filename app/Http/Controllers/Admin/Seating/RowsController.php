@@ -5,6 +5,7 @@ namespace LANMS\Http\Controllers\Admin\Seating;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Admin\Seating\RowCreateRequest;
 use LANMS\Http\Requests\Admin\Seating\RowEditRequest;
@@ -56,7 +57,8 @@ class RowsController extends Controller
         }
         $row = new SeatRows;
         $row->name = $request->name;
-        $row->slug = strtolower($request->name);
+        $row->slug = Str::slug($request->name);
+        $row->sort_order = $request->sort_order;
         $row->editor_id = Sentinel::getUser()->id;
         $row->author_id = Sentinel::getUser()->id;
         $row->save();
@@ -104,10 +106,11 @@ class RowsController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $row                = SeatRows::withTrashed()->find($id);
-        $row->name          = $request->name;
-        $row->slug          = strtolower($request->name);
-        $row->editor_id     = Sentinel::getUser()->id;
+        $row = SeatRows::withTrashed()->find($id);
+        $row->name = $request->name;
+        $row->slug = Str::slug($request->name);
+        $row->sort_order = $request->sort_order;
+        $row->editor_id = Sentinel::getUser()->id;
         $row->save();
 
         if ($request->tickettype !== "nothing") {
