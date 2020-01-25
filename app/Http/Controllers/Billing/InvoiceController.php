@@ -16,8 +16,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $user = \Sentinel::getUser();
+        $scus = $user->stripecustomer;
 
         if ($scus) {
             $sccus = $scus->cus;
@@ -182,6 +182,7 @@ class InvoiceController extends Controller
         if ($stripecust == null) {
             $customer = \Stripe::customers()->create([
                 'email' => $user->email,
+                'name' => $user->firstname.' '.$user->lastname,
             ]);
             $stripecustomer             = new \LANMS\StripeCustomer;
             $stripecustomer->cus        = $customer['id'];
