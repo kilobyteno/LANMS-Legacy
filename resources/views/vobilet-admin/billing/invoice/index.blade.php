@@ -49,9 +49,15 @@
                                     <td>@if($user)<a href="{{ route('admin-user-edit', $user->user->id) }}">{{ $user->user->firstname . ' "' . $user->user->username . '" ' . $user->user->lastname }}</a>@endif</td>
                                     <td>{{ \Carbon::parse($invoice['date'])->toDateTimeString() }}</td>
                                     <td>{{ floatval($invoice['total']/100).' '.strtoupper($invoice['currency']) }}</td>
-                                    <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</span> @else {{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}@endif</td>
+                                    <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && $invoice['status'] != 'void' && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</span> @else {{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}@endif</td>
                                     <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
-                                    <td>@if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</td>
+                                    <td>
+                                        @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
+                                            {{ trans('user.account.billing.invoice.status.scheduled') }}
+                                        @else
+                                            {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin-billing-invoice-show', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>{{ trans('global.view') }}</a>
                                         @if($invoice['status'] == 'draft')<a href="{{ route('admin-billing-invoice-edit', $invoice['id']) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>@endif
