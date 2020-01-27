@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 col-lg-9 col-sm-12">
+		<div class="col-md-12 col-lg-8 col-sm-12">
 			@foreach($news as $article)
 				<div class="card">
 					<div class="card-header">
@@ -31,7 +31,7 @@
 				</div>
 			@endforeach
 		</div>
-		<div class="col-md-12 col-lg-3  col-sm-12">
+		<div class="col-md-12 col-lg-4 col-sm-12">
 			<div class="card">
 				<div class="card-header">
 					<h2 class="card-title">{{ trans('pages.home.info') }}</h2>
