@@ -84,7 +84,7 @@ class PaymentSeatingController extends Controller
             }
             if (Sentinel::getUser()->id <> $seat->reservationsThisYear->first()->reservedby->id) {
                 return Redirect::route('seating')->with('messagetype', 'warning')
-                                    ->with('message', trans('seating.alert.noreservation'));
+                                    ->with('message', trans('seating.alert.youcannotpay'));
             }
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
