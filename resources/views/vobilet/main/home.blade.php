@@ -47,6 +47,11 @@
 					<iframe src="https://discordapp.com/widget?id={{ \LANMS\Info::where('name', 'social_discord_server_id')->first()->content }}&theme=@if(Sentinel::check())@if(Sentinel::getUser()->theme == 'default'){{ 'light' }}@else{{ Sentinel::getUser()->theme }}@endif @else{{ 'light' }}@endif" height="300" allowtransparency="true" frameborder="0" style="width: 100%"></iframe>
 				</div>
 			@endif
+			@if(Setting::get('MAIN_ENABLE_GRASROTANDELEN_WIDGET') && Setting::get('MAIN_ORGNR'))
+				<div class="justify-content-center text-center mb-4">
+					<iframe frameborder="0" scrolling="no" src="https://www.norsk-tipping.no/grasrotandelen/stats-iframe?title=lowercase#receiver={{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 500px; height: auto;" class="rounded"></iframe>
+				</div>
+			@endif
 			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
 				<h4>{{ trans('header.sponsor') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)

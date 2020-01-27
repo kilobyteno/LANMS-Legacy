@@ -46,6 +46,15 @@ class RefreshSettings extends Command
             Setting::set('HEADER_INFO_CONSENT_FORM', '1');
             $this->info('Added HEADER_INFO_CONSENT_FORM.');
         }
+        // LANMS-421
+        if (!Setting::has('MAIN_ENABLE_GRASROTANDELEN_WIDGET')) {
+            Setting::set('MAIN_ENABLE_GRASROTANDELEN_WIDGET', '0');
+            $this->info('Added MAIN_ENABLE_GRASROTANDELEN_WIDGET.');
+        }
+        if (!Setting::has('MAIN_ORGNR')) {
+            Setting::set('MAIN_ORGNR', '');
+            $this->info('Added MAIN_ORGNR.');
+        }
 
         // Remove old settings
         if (Setting::has('MAIL_MAIN_EMAIL')) {
@@ -97,6 +106,8 @@ class RefreshSettings extends Command
         // Add description to settings
         $settings = AppSetting::all();
         $descriptions = array(
+            'MAIN_ORGNR' => 'Add your orgnr from BRREG here. Used for footer and Grasrotandelen.',
+            'MAIN_ENABLE_GRASROTANDELEN_WIDGET' => 'Set this to "0" (without quotes) to disable Grasrotandelen on the homepage. If it is set to "1" (without quotes) Grasrotandelen will be visible on the homepage.',
             'FACEBOOK_MESSENGER_APP_ID' => 'This is used for the messenger integration for users. Create an app on <a target="_blank" href="https://developers.facebook.com/">https://developers.facebook.com/</a> and paste its ID here. Example: 1234567890123456',
             'FACEBOOK_MESSENGER_PAGE_ID' => 'This is used for the messenger integration for users. This is the ID not the URL of the page. You will find it under "about" on the bottom on your page. Example: 1234567890123456',
             'GOOGLE_ANALYTICS_TRACKING_ID' => 'This is used for tracking traffic on your website. Example: UA-12345678-0',
