@@ -383,6 +383,8 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Stripe::invoices()->delete($id);
+        return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been voided.');
     }
 }
