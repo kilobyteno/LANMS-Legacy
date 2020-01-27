@@ -201,7 +201,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatingclosed'));
         }
-        if (Sentinel::getUser()->id <> $reservation->reservedby->id) {
+        if (Sentinel::getUser()->id !== $reservation->reservedby->id) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.destroy.noaccess'));
         }
