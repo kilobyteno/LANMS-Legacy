@@ -150,7 +150,7 @@
 														<a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="{{ route('seating-show', $reservation->seat->slug) }}"><i class="far fa-eye"></i> {{ trans('seating.reservation.view') }}</a>
-															@if($reservation->status_id != 1 and is_null($reservation->payment))
+															@if($reservation->status_id != 1 and is_null($reservation->payment) && Sentinel::getUser()->id == $reservation->reservedby->id)
 																<a class="dropdown-item" href="{{ route('seating-pay', $reservation->seat->slug) }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.pay') }}</a>
 															@elseif($reservation->status_id == 1 and is_string(SeatReservation::getRealExpireTime($reservation->id)) and is_null($reservation->payment))
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
@@ -161,7 +161,7 @@
 															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
 															@endif
-															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1)
+															@if(is_string(SeatReservation::getRealExpireTime($reservation->id)) && $reservation->status_id != 1 && Sentinel::getUser()->id == $reservation->reservedby->id)
 																<div class="dropdown-divider"></div>
 																<a class="dropdown-item" href="{{ route('seating-removereservation', $reservation->id) }}"><i class="fas fa-trash-alt"></i> {{ trans('seating.reservation.remove') }}</a>
 															@endif
