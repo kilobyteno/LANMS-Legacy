@@ -61,9 +61,9 @@
                                     <td>
                                         <a href="{{ route('admin-billing-invoice-show', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>{{ trans('global.view') }}</a>
                                         @if($invoice['status'] == 'draft')<a href="{{ route('admin-billing-invoice-edit', $invoice['id']) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>@endif
-                                        @if(Sentinel::hasAccess('admin.billing.destroy') && $invoice['status'] == 'draft')
+                                        {{-- @if(Sentinel::hasAccess('admin.billing.destroy') && $invoice['status'] == 'draft')
                                             <a href="javascript:;" onclick="jQuery('#invoice-destroy-{{ $invoice['id'] }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>{{ trans('global.delete') }}</a>
-                                        @endif
+                                        @endif --}}
                                     </td>
                                 </tr>
                             @endforeach
