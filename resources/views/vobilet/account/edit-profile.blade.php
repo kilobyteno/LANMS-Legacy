@@ -140,6 +140,22 @@
 									<p class="text-danger">{{ $errors->first('phone') }}</p>
 								@endif
 							</div>
+							<div class="form-group @if ($errors->has('clothing_size')) has-error @endif">
+								<label class="form-label">{{ trans('global.clothingsize.title') }}</label>
+								<select class="form-control" name="clothing_size">
+									<option value="0">{{ trans('global.clothingsize.nochoice') }}</option>
+									<option value="1" {{ ($clothing_size === 1) ? 'selected' : '' }}>{{ trans('global.clothingsize.xs') }}</option>
+									<option value="2" {{ ($clothing_size === 2) ? 'selected' : '' }}>{{ trans('global.clothingsize.s') }}</option>
+									<option value="3" {{ ($clothing_size === 3) ? 'selected' : '' }}>{{ trans('global.clothingsize.m') }}</option>
+									<option value="4" {{ ($clothing_size === 4) ? 'selected' : '' }}>{{ trans('global.clothingsize.l') }}</option>
+									<option value="5" {{ ($clothing_size === 5) ? 'selected' : '' }}>{{ trans('global.clothingsize.xl') }}</option>
+									<option value="6" {{ ($clothing_size === 6) ? 'selected' : '' }}>{{ trans('global.clothingsize.xxl') }}</option>
+									<option value="7" {{ ($clothing_size === 7) ? 'selected' : '' }}>{{ trans('global.clothingsize.3xl') }}</option>
+								</select>
+								@if($errors->has('clothing_size'))
+									<p class="text-danger">{{ $errors->first('clothing_size') }}</p>
+								@endif
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group @if ($errors->has('location')) has-error @endif">
@@ -171,7 +187,7 @@
 							</div>
 							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">{{ trans('global.about') }}</label>
-								<textarea class="form-control" rows="2" name="about">{{ $about ?? old('about') }}</textarea>
+								<textarea class="form-control" rows="3" name="about">{{ $about ?? old('about') }}</textarea>
 								@if($errors->has('about'))
 									<p class="text-danger">{{ $errors->first('about') }}</p>
 								@endif

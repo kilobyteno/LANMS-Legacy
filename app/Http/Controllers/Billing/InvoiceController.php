@@ -16,8 +16,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $user = \Sentinel::getUser();
+        $scus = $user->stripecustomer;
 
         if ($scus) {
             $sccus = $scus->cus;
@@ -101,8 +101,33 @@ class InvoiceController extends Controller
             return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
         }
+        try {
+            \Stripe::invoices()->pay($id);
+        } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
 
-        \Stripe::invoices()->pay($id);
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'danger')
+                                ->with('message', $message);
+        } catch (\Cartalyst\Stripe\Exception\InvalidRequestException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'danger')
+                                ->with('message', $message);
+        }
         return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.invoice.alert.paid'));
     }
@@ -157,6 +182,7 @@ class InvoiceController extends Controller
         if ($stripecust == null) {
             $customer = \Stripe::customers()->create([
                 'email' => $user->email,
+                'name' => $user->firstname.' '.$user->lastname,
             ]);
             $stripecustomer             = new \LANMS\StripeCustomer;
             $stripecustomer->cus        = $customer['id'];

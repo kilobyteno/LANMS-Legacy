@@ -85,6 +85,7 @@ return [
                         'sent' => 'Faktura ble sendt.',
                         'marked_uncollectible' => 'Fakturaen ble merket som tap.',
                         'voided' => 'Fakturaen ble merket som ugyldig.',
+                        'payment_failed' => 'Betalingen feilet.',
                     ),
                 ),
                 'product' => 'Produkt',

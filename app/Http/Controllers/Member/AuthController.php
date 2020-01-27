@@ -142,6 +142,15 @@ class AuthController extends Controller
             ));
 
             if ($user) {
+                $customer = \Stripe::customers()->create([
+                    'email' => $user->email,
+                    'name' => $user->firstname.' '.$user->lastname,
+                ]);
+                $stripecustomer             = new \LANMS\StripeCustomer;
+                $stripecustomer->cus        = $customer['id'];
+                $stripecustomer->user_id    = $user->id;
+                $stripecustomer->save();
+
                 $activation = \Activation::create($user);
                 $activation_code = $activation->code;
 

@@ -37,6 +37,9 @@
 					<div class="card">
 						<div class="card-header">
 							<h3 class="card-title">{{ trans('seating.reservation.your') }}</h3>
+							<div class="card-options">
+								<span class="badge badge-default">{{Sentinel::getUser()->ownReservationsThisYear()->count().'/5'}}</span>
+							</div>
 						</div>
 						<div class="card-body o-auto" style="height: 20rem">
 							@if($reservations->count() == 0)

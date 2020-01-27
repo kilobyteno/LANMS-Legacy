@@ -17,6 +17,7 @@ return [
     'verification' => 'Verification',
     'verified' => 'verified',
     'notverified' => 'not verified',
+    'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
@@ -36,6 +37,18 @@ return [
         'female' => 'Female',
         'transgender' => 'Transgender',
         'genderless' => 'Genderless',
+    ),
+
+    'clothingsize' => array(
+        'title' => 'Preferred clothing size',
+        'nochoice' => 'Rather not say',
+        'xs' => 'XS',
+        's' => 'S',
+        'm' => 'M',
+        'l' => 'L',
+        'xl' => 'XL',
+        'xxl' => 'XXL',
+        '3xl' => '3XL',
     ),
 
     'staff' => 'Staff',

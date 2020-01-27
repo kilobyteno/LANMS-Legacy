@@ -43,6 +43,7 @@
 						</small>
 					</p>
 					@if($compo->start_at)<p>{{ trans('compo.starts') }}: <br>{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}</p>@endif
+					@if($compo->first_sign_up_at)<p>{{ trans('compo.firstsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->first_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->end_at)<p>{{ trans('compo.ends') }}: <br>{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}</p>@endif
 					<p>{{ trans('compo.type') }}: <br>{{ trans('compo.type.'.$compo->type) }}</p>

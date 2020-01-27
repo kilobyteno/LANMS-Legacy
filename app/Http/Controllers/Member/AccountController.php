@@ -82,9 +82,22 @@ class AccountController extends Controller
                 'showonline'        => $request->get('showonline'),
                 'language'          => $request->get('language'),
                 'theme'             => $request->get('theme'),
+                'clothing_size'     => $request->get('clothing_size'),
             ];
 
             $updateuser = Sentinel::update(Sentinel::getUser(), $info);
+
+            if ($finduser->stripecustomer) {
+                \Stripe::customers()->update($finduser->stripecustomer->cus, [
+                    'email' => $finduser->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            } else {
+                \Stripe::customers()->create([
+                    'email' => $finduser->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            }
 
             if ($updateuser) {
                 return Redirect::route('user-profile', Sentinel::getUser()->username)

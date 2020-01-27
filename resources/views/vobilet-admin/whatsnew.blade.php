@@ -21,6 +21,71 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2513" aria-expanded="true">Version 2.5.13</a>
+							</h4>
+						</div>
+						<div id="2513" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-417'>LANMS-417</a>] - Seatmap in admin panel does not have sort order for rows</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-419'>LANMS-419</a>] - User gets notifications on voided invoices
+								</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2512" aria-expanded="true">Version 2.5.12</a>
+							</h4>
+						</div>
+						<div id="2512" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-406'>LANMS-406</a>] - Cartalyst\Stripe\Exception\InvalidRequestException: Your card does not support this type of purchase.</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-407'>LANMS-407</a>] - User cannot reserve seat when a invoice is voided</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-408'>LANMS-408</a>] - Add sort order to rows in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-410'>LANMS-410</a>] - No red unpaid text on voided invoices</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-411'>LANMS-411</a>] - Allow signed integers for invoices</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-412'>LANMS-412</a>] - Send names to stripe</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-414'>LANMS-414</a>] - Add &quot;Reservations left&quot; in seating</li>
+								</ul>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2511" aria-expanded="true">Version 2.5.11</a>
+							</h4>
+						</div>
+						<div id="2511" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-403'>LANMS-403</a>] - Missing translation for invoice</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+									<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-399'>LANMS-399</a>] - Add first signup time to compo</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-401'>LANMS-401</a>] - Add preferred clothing size to users</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-402'>LANMS-402</a>] - Add allow entrance payment to ticket types</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2510" aria-expanded="true">Version 2.5.10</a>
 							</h4>
 						</div>
