@@ -52,7 +52,7 @@
 					<iframe frameborder="0" scrolling="no" src="https://www.norsk-tipping.no/grasrotandelen/stats-iframe?title=lowercase#receiver={{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 500px; height: auto;" class="rounded"></iframe>
 				</div>
 			@endif
-			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
+			@if(LANMS\Sponsor::thisYear()->count() > 0)
 				<h4>{{ trans('header.sponsor') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 					<div class="card">
