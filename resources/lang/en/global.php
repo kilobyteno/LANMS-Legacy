@@ -24,6 +24,7 @@ return [
     'delete' => 'Delete', // As in 'Delete Address' etc.
     'savechanges' => 'Save Changes',
     'download' => 'Download',
+    'send' => 'Send',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',

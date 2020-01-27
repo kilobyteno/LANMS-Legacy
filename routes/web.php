@@ -998,6 +998,10 @@ Route::group([
                             'as' => 'admin-billing-invoice-destroy',
                             'uses' => 'Billing\InvoiceController@destroy'
                         ]);
+                        Route::get('/{id}/finalize', [
+                            'as' => 'admin-billing-invoice-finalize',
+                            'uses' => 'Billing\InvoiceController@finalize'
+                        ]);
                     });
             });
         Route::group([

@@ -387,4 +387,11 @@ class InvoiceController extends Controller
         return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been voided.');
     }
+
+    public function finalize($id)
+    {
+        \Stripe::invoices()->finalize($id);
+        return Redirect::route('admin-billing-invoice-show', $id)->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been finalized and sent.');
+    }
 }

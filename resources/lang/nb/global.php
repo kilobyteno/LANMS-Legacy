@@ -24,6 +24,7 @@ return [
     'delete' => 'Slett', // As in 'Delete Address' etc.
     'savechanges' => 'Lagre endringer',
     'download' => 'Last ned',
+    'send' => 'Send',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',
