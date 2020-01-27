@@ -62,6 +62,7 @@ return [
         'alert' => array(
             'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
             'alreadyreserved' => 'Stolen er allerede reservert.',
+            'youcannotpay' => 'Du kan ikke betale for denne reservasjonen, personen som har reservert det må gjøre det.',
             'nobirthday' => 'Du må ha en fødselsdato tildelt kontoen din for å kunne reservere et sete.',
             'noaddresses' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse.',
             'limit' => 'Du har nådd reservasjonsgrensen. Så du har ikke lov til å reservere flere seter.',
