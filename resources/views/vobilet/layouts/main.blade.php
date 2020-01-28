@@ -197,7 +197,7 @@
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ trans('header.home') }}</a>
 									</li>
-									@if(count(\LANMS\Page::orderBy('name', 'desc')->forMenu()) > 0)
+									@if(\LANMS\Page::forMenu()->count() > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
