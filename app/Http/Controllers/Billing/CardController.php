@@ -2,8 +2,10 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Exception\ServerErrorException;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
@@ -18,12 +20,10 @@ class CardController extends Controller
      */
     public function index()
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
-        if ($scus) {
-            $sccus = $scus->cus;
-            $cards = \Stripe::cards()->all($sccus);
+        if ($stripe_customer) {
+            $cards = Stripe::cards()->all($stripe_customer);
             $cards = $cards['data'];
         } else {
             $cards = [];
@@ -38,7 +38,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (Sentinel::getUser()->addresses->count() == 0) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -53,24 +53,13 @@ class CardController extends Controller
      */
     public function store(PaymentRequest $request)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        $user = Sentinel::getUser();
+        if ($user->addresses->count() == 0) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
 
-        $stripecust = \LANMS\StripeCustomer::where('user_id', \Sentinel::getUser()->id)->first();
-        
-        if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
-                'email' => \Sentinel::getUser()->email,
-            ]);
-            $stripecustomer             = new \LANMS\StripeCustomer;
-            $stripecustomer->cus        = $customer['id'];
-            $stripecustomer->user_id    = \Sentinel::getUser()->id;
-            $stripecustomer->save();
-
-            $stripecust = $stripecustomer;
-        }
+        $stripe_customer = $user->stripe_customer;
 
         $cardNumber         = str_replace(' ', '', $request->get('number'));
         $cardMonthExpiry    = $request->get('expiryMonth');
@@ -79,7 +68,7 @@ class CardController extends Controller
         $nameOnCard         = $request->get('name');
 
         try {
-            $token = \Stripe::tokens()->create([
+            $token = Stripe::tokens()->create([
                 'card' => [
                     'number'    => $cardNumber,
                     'exp_month' => $cardMonthExpiry,
@@ -103,7 +92,7 @@ class CardController extends Controller
         }
 
         try {
-            \Stripe::cards()->create($stripecust->cus, $token['id']);
+            Stripe::cards()->create($stripe_customer, $token['id']);
         } catch (CardErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -176,15 +165,11 @@ class CardController extends Controller
      */
     public function destroy($id)
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
-        if ($scus) {
-            $sccus = $scus->cus;
-            $cards = \Stripe::cards()->delete($scus->cus, $id);
-            return Redirect::route('account-billing-card')->with('messagetype', 'success')
-                                ->with('message', trans('user.account.billing.card.alert.deleted'));
-        } else {
-            abort(403);
-        }
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
+        abort_unless($stripe_customer, 403);
+
+        $cards = Stripe::cards()->delete($stripe_customer, $id);
+        return Redirect::route('account-billing-card')->with('messagetype', 'success')
+                            ->with('message', trans('user.account.billing.card.alert.deleted'));
     }
 }

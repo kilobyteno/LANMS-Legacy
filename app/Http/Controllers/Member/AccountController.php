@@ -2,21 +2,19 @@
 
 namespace LANMS\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Support\Facades\Redirect;
-
 use Intervention\Image\Facades\Image;
-use Regulus\ActivityLog\Models\Activity;
-
-use LANMS\Http\Requests\Member\ProfileRequest;
-use LANMS\Http\Requests\Member\PasswordRequest;
-use LANMS\Http\Requests\Member\ProfileImageRequest;
-use LANMS\Http\Requests\Member\ProfileCoverRequest;
+use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Member\DeleteAccountRequest;
-
-use LANMS\User;
+use LANMS\Http\Requests\Member\PasswordRequest;
+use LANMS\Http\Requests\Member\ProfileCoverRequest;
+use LANMS\Http\Requests\Member\ProfileImageRequest;
+use LANMS\Http\Requests\Member\ProfileRequest;
 use LANMS\News;
+use LANMS\User;
+use Regulus\ActivityLog\Models\Activity;
 
 class AccountController extends Controller
 {
@@ -48,16 +46,17 @@ class AccountController extends Controller
     public function postEditProfile(ProfileRequest $request)
     {
         $credentials = [
-            'login'         => Sentinel::getUser()->username,
-            'password'      => $request->get('password'),
+            'login' => Sentinel::getUser()->username,
+            'password' => $request->get('password'),
         ];
 
         if (Sentinel::authenticate($credentials)) {
-
             $phone = $request->get('phone');
 
             if ($phone != Sentinel::getUser()->phone) {
                 $phone_verified_at = null;
+            } else {
+                $phone_verified_at = Sentinel::getUser()->phone_verified_at;
             }
 
             if (is_null($phone)) {
@@ -86,18 +85,6 @@ class AccountController extends Controller
             ];
 
             $updateuser = Sentinel::update(Sentinel::getUser(), $info);
-
-            if ($finduser->stripecustomer) {
-                \Stripe::customers()->update($finduser->stripecustomer->cus, [
-                    'email' => $finduser->email,
-                    'name' => $info['firstname'].' '.$info['lastname'],
-                ]);
-            } else {
-                \Stripe::customers()->create([
-                    'email' => $finduser->email,
-                    'name' => $info['firstname'].' '.$info['lastname'],
-                ]);
-            }
 
             if ($updateuser) {
                 return Redirect::route('user-profile', Sentinel::getUser()->username)
