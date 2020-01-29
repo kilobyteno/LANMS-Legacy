@@ -20,7 +20,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $stripe_customer = \Sentinel::getUser()->stripe_customer;
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
         if ($stripe_customer) {
             $invoices = Stripe::invoices()->all(array('customer' => $stripe_customer, 'limit' => 100));
@@ -86,7 +86,7 @@ class InvoiceController extends Controller
 
         $stripe_customer = Sentinel::getUser()->stripe_customer;
         $customer = Stripe::customers()->find($stripe_customer);
-        
+
         if ($customer['sources']['total_count'] == 0) {
             return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
