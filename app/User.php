@@ -16,6 +16,7 @@ use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use LANMS\StripeCustomer;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -134,7 +135,12 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         });
 
         self::updating(function ($model) {
-            if (!$model->stripe_customer) {
+            $sc = StripeCustomer::where('user_id', $model->id)->first();
+            if ($sc && !$model->stripe_customer) {
+                $stripe_customer = $sc->cus;
+                $model->stripe_customer = $stripe_customer;
+                $sc->delete();
+            } elseif (!$sc && !$model->stripe_customer) {
                 $customer = Stripe::customers()->create([
                     'email' => $model->email,
                     'name' => $model->firstname.' '.$model->lastname,
