@@ -7,7 +7,7 @@
         <h4 class="page-title">{{ trans('user.addressbook.title') }} <a class="btn btn-sm btn-success pull-right" href="{{ route('account-addressbook-create') }}"><i class="fa fa-plus"></i> {{ trans('global.add') }}</a></h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.addressbook.title') }}</li>
         </ol>
     </div>

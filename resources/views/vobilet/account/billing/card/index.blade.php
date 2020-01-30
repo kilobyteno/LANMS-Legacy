@@ -7,7 +7,6 @@
         <h4 class="page-title">{{ trans('user.account.billing.card.title') }} <a class="btn btn-sm btn-success ml-2" href="{{ route('account-billing-card-create') }}"><i class="fa fa-plus"></i> {{ trans('global.add') }}</a></h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.card.title') }}</li>
