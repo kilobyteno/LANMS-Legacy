@@ -95,10 +95,6 @@
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
-											</a>
-											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
 												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
