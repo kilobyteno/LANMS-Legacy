@@ -162,10 +162,6 @@ class ReservationController extends Controller
                 return Redirect::route('admin-seating-reservation-show', $slug)->with('messagetype', 'warning')
                                     ->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
             }
-            if ($reservedfor->ownReservationsThisYear()->count() >= 1) {
-                return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-                                    ->with('message', $reservedfor->username.' already has reserved a seat.');
-            }
 
             if (\Setting::get('SEATING_YEAR')) {
                 $year = \Setting::get('SEATING_YEAR');
