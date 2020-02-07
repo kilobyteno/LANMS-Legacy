@@ -48,7 +48,7 @@
 					views: {
 						agendaFourDay: {
 							type: 'agenda',
-							duration: { days: 3 }
+							duration: { days: '{{ Setting::get('GOOGLE_CALENDAR_DAYS_TO_SHOW') ?? '3' }}' }
 						}
 					},
 					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
