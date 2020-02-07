@@ -54,7 +54,7 @@
 					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
 					nowIndicator: true,
 					allDaySlot: false,
-					minTime: '07:00:00',
+					minTime: '00:00:00',
 					slotDuration: '00:15:00',
 					firstDay: 1,
 					locale: '{{ \Session::get('locale') ?? 'en' }}',
