@@ -87,6 +87,8 @@
 					@if($compo->type == 1)
 						@if($compo->challonge_url)
 							<iframe src="https://{{ $compo->challonge_subdomain.'.' ?? ''}}challonge.com/{{ $compo->challonge_url }}/module?theme=6844&multiplier=0.9&match_width_multiplier=1.2&show_final_results=1" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+						@elseif($compo->toornament_id && $compo->toornament_stage_id)
+							<iframe width="100%" height="500" src="https://widget.toornament.com/tournaments/{{ $compo->toornament_id }}/stages/{{ $compo->toornament_stage_id }}?_locale=en_GB{{ Sentinel::check() ? '&theme='.Sentinel::getUser()->theme == 'dark' ? 'discipline' : 'light' : '' }}" frameborder="0" allowfullscreen="true"></iframe>
 						@else
 							<p>{{ trans('compo.nobracketsyet') }}</p>
 						@endif
