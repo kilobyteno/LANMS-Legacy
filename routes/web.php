@@ -1,5 +1,8 @@
 <?php
 
+use LANMS\Notifications\SeatReservationExpires;
+use LANMS\SeatReservation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +27,7 @@ if (Config::get('app.debug')) {
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test/notification', function () {
-        $user = Sentinel::getUser();
+        /*$user = Sentinel::getUser();
         if ($user->stripecustomer) {
             $stripe_customer_code = $user->stripecustomer->cus;
             $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
@@ -43,6 +46,11 @@ if (Config::get('app.debug')) {
                     Notification::send($user, new LANMS\Notifications\InvoiceUnPaid($invoice));
                 }
             }
+        }*/
+        $reservation = SeatReservation::all()->first();
+        if ($reservation) {
+            $reservation->reservedby->notify(new SeatReservationExpires($reservation));
+            dd('Reminder sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
         }
     });
     Route::get('/test', function () {
