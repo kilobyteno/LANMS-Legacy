@@ -79,6 +79,23 @@ class RefreshSettings extends Command
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
         }
+        // LANMS-434
+        if (Setting::has('MAIL_SUPPORT_EMAIL')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL');
+            $this->info('Removed MAIL_SUPPORT_EMAIL.');
+        }
+        if (Setting::has('MAIL_SUPPORT_EMAIL_NAME')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL_NAME');
+            $this->info('Removed MAIL_SUPPORT_EMAIL_NAME.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL')) {
+            Setting::forget('MAIL_DEBUG_EMAIL');
+            $this->info('Removed MAIL_DEBUG_EMAIL.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL_NAME')) {
+            Setting::forget('MAIL_DEBUG_EMAIL_NAME');
+            $this->info('Removed MAIL_DEBUG_EMAIL_NAME.');
+        }
 
         // Rename old styled settings
         if (Setting::has('SHOW_RESETDB')) {
