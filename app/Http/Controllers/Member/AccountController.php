@@ -47,16 +47,17 @@ class AccountController extends Controller
 
     public function postEditProfile(ProfileRequest $request)
     {
+        $user = Sentinel::getUser();
+
         $credentials = [
-            'login'         => Sentinel::getUser()->username,
+            'login'         => $user->username,
             'password'      => $request->get('password'),
         ];
 
         if (Sentinel::authenticate($credentials)) {
-
             $phone = $request->get('phone');
 
-            if ($phone != Sentinel::getUser()->phone) {
+            if ($phone != $user->phone) {
                 $phone_verified_at = null;
             }
 
@@ -85,31 +86,31 @@ class AccountController extends Controller
                 'clothing_size'     => $request->get('clothing_size'),
             ];
 
-            $updateuser = Sentinel::update(Sentinel::getUser(), $info);
+            $updateuser = Sentinel::update($user, $info);
 
-            if ($finduser->stripecustomer) {
-                \Stripe::customers()->update($finduser->stripecustomer->cus, [
-                    'email' => $finduser->email,
+            if ($user->stripecustomer) {
+                \Stripe::customers()->update($user->stripecustomer->cus, [
+                    'email' => $user->email,
                     'name' => $info['firstname'].' '.$info['lastname'],
                 ]);
             } else {
                 \Stripe::customers()->create([
-                    'email' => $finduser->email,
+                    'email' => $user->email,
                     'name' => $info['firstname'].' '.$info['lastname'],
                 ]);
             }
 
             if ($updateuser) {
-                return Redirect::route('user-profile', Sentinel::getUser()->username)
+                return Redirect::route('user-profile', $user->username)
                         ->with('messagetype', 'success')
                         ->with('message', trans('user.account.details.alert.saved'));
             } else {
-                return Redirect::route('user-profile', Sentinel::getUser()->username)
+                return Redirect::route('user-profile', $user->username)
                     ->with('messagetype', 'danger')
                     ->with('message', trans('user.account.details.alert.failed'));
             }
         } else {
-            return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
+            return Redirect::route('user-profile-edit', $user->username)
                     ->with('messagetype', 'warning')
                     ->with('message', trans('user.account.details.alert.wrongpassword'));
         }
