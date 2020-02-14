@@ -57,6 +57,7 @@ class AccountController extends Controller
         if (Sentinel::authenticate($credentials)) {
             $phone = $request->get('phone');
 
+            $phone_verified_at = $user->phone_verified_at;
             if ($phone != $user->phone) {
                 $phone_verified_at = null;
             }
