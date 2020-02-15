@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Ikke betalt ennå',
         'notpaidyetdesc' => 'Betal ved inngangen',
         'notpaid' => 'Ubetalt',
-        'view' => 'Vis',
+        'view' => 'Vis sete',
         'pay' => 'Betal nå',
         'changepayment' => 'Endre betaling',
-        'ticket' => 'Last ned billett',
+        'download' => 'Last ned PDF',
+        'ticket' => 'Vis billett',
         'remove' => 'Fjern reservasjonen',
         'consentform' => array(
             'title' => 'Samtykkeskjema',

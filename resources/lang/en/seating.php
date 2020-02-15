@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Not paid yet',
         'notpaidyetdesc' => 'Pay at the entrance',
         'notpaid' => 'Unpaid',
-        'view' => 'View',
+        'view' => 'View seat',
         'pay' => 'Pay now',
         'changepayment' => 'Change payment',
-        'ticket' => 'Download Ticket',
+        'download' => 'Download PDF',
+        'ticket' => 'Show ticket',
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
