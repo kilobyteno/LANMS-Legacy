@@ -3,8 +3,10 @@
 namespace LANMS\Http\Controllers\Member;
 
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Act;
+use LANMS\Address;
 use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Auth\ActivateRequest;
 use LANMS\Http\Requests\Auth\SignInRequest;
@@ -24,9 +26,9 @@ class AuthController extends Controller
                                 ->with('message', trans('auth.alert.logindisabled'));
         }
 
-        $username       = $request->input('username');
-        $password       = $request->input('password');
-        $remember       = $request->input('remember');
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $remember = $request->input('remember');
 
         $validated = $request->validated();
 
@@ -41,53 +43,74 @@ class AuthController extends Controller
         if ($user == null) {
             return Redirect::route('account-signin')->with('messagetype', 'danger')
                                 ->with('message', trans('auth.alert.usernotfound'))->withInput();
-        } else {
-            if ($user->isAnonymized) {
-                return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                    ->with('message', trans('auth.alert.isanonymized'))->withInput();
-            }
+        }
 
-            $actex = \Activation::exists($user);
-            $actco = \Activation::completed($user);
+        if ($user->isAnonymized) {
+            return Redirect::route('account-signin')->with('messagetype', 'danger')
+                  
+                                ->with('message', trans('auth.alert.isanonymized'))->withInput();
+        }
+
+        $actex = \Activation::exists($user);
+        $actco = \Activation::completed($user);
+        $active = false;
+        if ($actex) {
             $active = false;
-            if ($actex) {
-                $active = false;
-            } elseif ($actco) {
-                $active = true;
-            }
+        } elseif ($actco) {
+            $active = true;
+        }
 
-            if ($active === false) {
-                return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.alert.usernotactive'));
-            } elseif (\Reminder::exists($user)) {
-                return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.alert.resetpassword'));
-            } elseif ($active === true) {
-                try {
-                    if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
-                        return Redirect::route('account-signin')->with('messagetype', 'info')
-                                            ->with('message', trans('auth.alert.logindisabled'));
-                    } elseif (\Sentinel::authenticate($credentials)) {
-                        $login = \Sentinel::login($user, $remember);
-                        if (!$login) {
-                            return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                                ->with('message', trans('auth.alert.loginfailed'))->withInput();
-                        } else {
-                            return Redirect::route('account')->with('messagetype', 'success')
-                                                ->with('message', trans('auth.alert.loggedin'));
-                        }
-                    } else {
-                        return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                                ->with('message', trans('auth.alert.usernamepasswordwrong'))->withInput();
+        if ($active === false) {
+            return Redirect::route('account-signin')->with('messagetype', 'warning')
+                                ->with('message', trans('auth.alert.usernotactive'));
+        } elseif (\Reminder::exists($user)) {
+            return Redirect::route('account-signin')->with('messagetype', 'warning')
+                                ->with('message', trans('auth.alert.resetpassword'));
+        } elseif ($active === true) {
+            try {
+                if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
+                    return Redirect::route('account-signin')->with('messagetype', 'info')
+                                        ->with('message', trans('auth.alert.logindisabled'));
+                } elseif (\Sentinel::authenticate($credentials)) {
+                    // LANMS-415 -- START
+                    $addresses = $user->addresses;
+                    $main_address = Address::where('user_id', $user->id)->where('main_address', 1)->first();
+                    if ($main_address) {
+                        $info = [
+                            'address_street' => $main_address->address1.' '.$main_address->address2,
+                            'address_postalcode' => $main_address->postalcode,
+                            'address_city' => $main_address->city,
+                            'address_county' => $main_address->county,
+                            'address_country' => $main_address->country,
+                        ];
+                        Sentinel::update($user, $info);
                     }
-                } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
+                    if ($addresses) {
+                        foreach ($addresses as $address) {
+                            $address->delete();
+                        }
+                    }
+                    // LANMS-415 -- END
+
+                    $login = \Sentinel::login($user, $remember);
+                    if (!$login) {
+                        return Redirect::route('account-signin')->with('messagetype', 'warning')
+                                            ->with('message', trans('auth.alert.loginfailed'))->withInput();
+                    } else {
+                        return Redirect::route('account')->with('messagetype', 'success')
+                                            ->with('message', trans('auth.alert.loggedin'));
+                    }
+                } else {
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                        ->with('message', trans('auth.alert.accountnotactive'));
-                } catch (\Cartalyst\Sentinel\Checkpoints\ThrottlingException $e) {
-                    $delay = $e->getDelay();
-                    return Redirect::route('account-signin')->with('messagetype', 'danger')
-                                        ->with('message', trans('auth.alert.throttle', ['delay' => $delay]));
+                                            ->with('message', trans('auth.alert.usernamepasswordwrong'))->withInput();
                 }
+            } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
+                return Redirect::route('account-signin')->with('messagetype', 'danger')
+                                    ->with('message', trans('auth.alert.accountnotactive'));
+            } catch (\Cartalyst\Sentinel\Checkpoints\ThrottlingException $e) {
+                $delay = $e->getDelay();
+                return Redirect::route('account-signin')->with('messagetype', 'danger')
+                                    ->with('message', trans('auth.alert.throttle', ['delay' => $delay]));
             }
         }
     }
