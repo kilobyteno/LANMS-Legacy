@@ -187,7 +187,7 @@
 							</div>
 							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">{{ trans('global.about') }}</label>
-								<textarea class="form-control" rows="3" name="about">{{ $about ?? old('about') }}</textarea>
+								<textarea class="form-control" rows="4" name="about">{{ $about ?? old('about') }}</textarea>
 								@if($errors->has('about'))
 									<p class="text-danger">{{ $errors->first('about') }}</p>
 								@endif
