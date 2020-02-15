@@ -79,6 +79,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'theme',
         'clothing_size',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
     ];
 
     /**
@@ -116,6 +121,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'theme',
         'clothing_size',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
         'accepted_gdpr',
         'isAnonymized'
     ];
@@ -745,8 +755,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function scopeGetUserTimeFormat($query)
     {
         if (Sentinel::check()) {
-            $user       = $query->where('id', '=', Sentinel::getUser()->id)->first();
-            $format     = $user->usertimeformat;
+            $user = $query->where('id', '=', Sentinel::getUser()->id)->first();
+            $format = $user->usertimeformat;
 
             if ($format == null) {
                 $format = 'H:i';
@@ -796,6 +806,15 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function scopeActive()
     {
         return $this->orderBy('firstname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+    }
+
+    public function scopeHasAddress()
+    {
+        if ($this->address_street && $this->address_postalcode && $this->address_city && $this->address_county && $this->address_county) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function scopeGetGenderIcon($query, $gender)

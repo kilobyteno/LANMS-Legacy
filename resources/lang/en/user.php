@@ -169,6 +169,10 @@ return [
                 'phonewhydesc' => 'We need your phone number in case of an emergency during the event.',
             ),
 
+            'address' => array(
+                'title' => 'Edit your address',
+            ),
+
             'settings' => array(
                 'title' => 'Edit your settings',
                 'show' => 'Show',

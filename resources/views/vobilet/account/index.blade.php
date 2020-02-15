@@ -48,9 +48,6 @@
 										<td><a href="{{ route('account-change-images') }}" class="text-inherit"><i class="fas fa-images"></i> {{ trans('user.account.details.images') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
-										<td><a href="{{ route('account-addressbook') }}" class="text-inherit"><i class="fa fa-book"></i> {{ trans('user.account.details.addressbook') }}</a></td>
-									</tr>
-									<tr class="border-bottom">
 										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fas fa-key"></i> {{ trans('user.account.details.password') }}</a></td>
 									</tr>
 								</tbody>

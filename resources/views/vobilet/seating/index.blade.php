@@ -12,8 +12,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			@if(Sentinel::getUser()->addresses->count() == 0)
-				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('account-addressbook-create')]) !!}</div>
+			@if(!Sentinel::getUser()->hasAddress())
+				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
 				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.closed') }}</div>

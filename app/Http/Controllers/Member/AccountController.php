@@ -54,66 +54,70 @@ class AccountController extends Controller
             'password'      => $request->get('password'),
         ];
 
-        if (Sentinel::authenticate($credentials)) {
-            $phone = $request->get('phone');
-
-            $phone_verified_at = $user->phone_verified_at;
-            if ($phone != $user->phone) {
-                $phone_verified_at = null;
-            }
-
-            if (is_null($phone)) {
-                $phone_country = null;
-            } else {
-                $phone_country = $request->get('phone_country');
-            }
-
-            $info = [
-                'firstname'         => $request->get('firstname'),
-                'lastname'          => $request->get('lastname'),
-                'gender'            => $request->get('gender'),
-                'location'          => $request->get('location'),
-                'occupation'        => $request->get('occupation'),
-                'birthdate'         => $request->get('birthdate'),
-                'phone'             => $phone,
-                'phone_country'     => $phone_country,
-                'phone_verified_at' => $phone_verified_at,
-                'about'             => $request->get('about'),
-                'showemail'         => $request->get('showemail'),
-                'showname'          => $request->get('showname'),
-                'showonline'        => $request->get('showonline'),
-                'language'          => $request->get('language'),
-                'theme'             => $request->get('theme'),
-                'clothing_size'     => $request->get('clothing_size'),
-            ];
-
-            $updateuser = Sentinel::update($user, $info);
-
-            if ($user->stripecustomer) {
-                \Stripe::customers()->update($user->stripecustomer->cus, [
-                    'email' => $user->email,
-                    'name' => $info['firstname'].' '.$info['lastname'],
-                ]);
-            } else {
-                \Stripe::customers()->create([
-                    'email' => $user->email,
-                    'name' => $info['firstname'].' '.$info['lastname'],
-                ]);
-            }
-
-            if ($updateuser) {
-                return Redirect::route('user-profile', $user->username)
-                        ->with('messagetype', 'success')
-                        ->with('message', trans('user.account.details.alert.saved'));
-            } else {
-                return Redirect::route('user-profile', $user->username)
-                    ->with('messagetype', 'danger')
-                    ->with('message', trans('user.account.details.alert.failed'));
-            }
-        } else {
+        if (!Sentinel::authenticate($credentials)) {
             return Redirect::route('user-profile-edit', $user->username)
                     ->with('messagetype', 'warning')
                     ->with('message', trans('user.account.details.alert.wrongpassword'));
+        }
+
+        $phone = $request->get('phone');
+        $phone_verified_at = $user->phone_verified_at;
+        if ($phone != $user->phone) {
+            $phone_verified_at = null;
+        }
+
+        if (is_null($phone)) {
+            $phone_country = null;
+        } else {
+            $phone_country = $request->get('phone_country');
+        }
+
+        $info = [
+            'firstname'         => $request->get('firstname'),
+            'lastname'          => $request->get('lastname'),
+            'gender'            => $request->get('gender'),
+            'location'          => $request->get('location'),
+            'occupation'        => $request->get('occupation'),
+            'birthdate'         => $request->get('birthdate'),
+            'phone'             => $phone,
+            'phone_country'     => $phone_country,
+            'phone_verified_at' => $phone_verified_at,
+            'about'             => $request->get('about'),
+            'showemail'         => $request->get('showemail'),
+            'showname'          => $request->get('showname'),
+            'showonline'        => $request->get('showonline'),
+            'language'          => $request->get('language'),
+            'theme'             => $request->get('theme'),
+            'clothing_size'     => $request->get('clothing_size'),
+            'address_street' => $request->get('address_street'),
+            'address_postalcode' => $request->get('address_postalcode'),
+            'address_city' => $request->get('address_city'),
+            'address_county' => $request->get('address_county'),
+            'address_country' => $request->get('address_country'),
+        ];
+
+        $updateuser = Sentinel::update($user, $info);
+
+        if ($user->stripecustomer) {
+            \Stripe::customers()->update($user->stripecustomer->cus, [
+                'email' => $user->email,
+                'name' => $info['firstname'].' '.$info['lastname'],
+            ]);
+        } else {
+            \Stripe::customers()->create([
+                'email' => $user->email,
+                'name' => $info['firstname'].' '.$info['lastname'],
+            ]);
+        }
+
+        if ($updateuser) {
+            return Redirect::route('user-profile', $user->username)
+                    ->with('messagetype', 'success')
+                    ->with('message', trans('user.account.details.alert.saved'));
+        } else {
+            return Redirect::route('user-profile', $user->username)
+                ->with('messagetype', 'danger')
+                ->with('message', trans('user.account.details.alert.failed'));
         }
     }
 

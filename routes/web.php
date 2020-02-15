@@ -276,34 +276,6 @@ Route::group([
                     'uses' => 'Member\ReservationController@view'
                 ]);
             });
-        Route::group([
-            'prefix' => 'addressbook'
-            ], function () {
-                Route::get('/', [
-                    'as' => 'account-addressbook',
-                    'uses' => 'Member\AddressBookController@index'
-                ]);
-                Route::get('/create', [
-                    'as' => 'account-addressbook-create',
-                    'uses' => 'Member\AddressBookController@create'
-                ]);
-                Route::post('/store', [
-                    'as' => 'account-addressbook-store',
-                    'uses' => 'Member\AddressBookController@store'
-                ]);
-                Route::get('/{id}/edit', [
-                    'as' => 'account-addressbook-edit',
-                    'uses' => 'Member\AddressBookController@edit'
-                ]);
-                Route::post('/{id}/update', [
-                    'as' => 'account-addressbook-update',
-                    'uses' => 'Member\AddressBookController@update'
-                ]);
-                Route::get('/{id}/destroy', [
-                    'as' => 'account-addressbook-destroy',
-                    'uses' => 'Member\AddressBookController@destroy'
-                ]);
-            });
     });
 Route::group([
     'middleware' => ['sentinel.auth', 'setTheme:vobilet', 'gdpr.terms'],
