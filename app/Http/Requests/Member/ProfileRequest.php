@@ -41,11 +41,11 @@ class ProfileRequest extends Request
             'theme'             => '',
             'about'             => 'nullable',
             'clothing_size' => 'nullable',
-            'address_street' => 'required|regex:/^((.){1,}(\d){1,}(.){0,})$/|max:150',
-            'address_postalcode' => 'required|alpha_dash|min:4',
-            'address_city' => 'required|regex:/^[A-Za-z \Wæøå]+$/',
-            'address_county' => 'required|regex:/^[A-Za-z \Wæøå]+$/',
-            'address_country' => 'required|alpha',
+            'address_street' => 'nullable|regex:/^((.){1,}(\d){1,}(.){0,})$/|max:150',
+            'address_postalcode' => 'nullable|alpha_dash|min:4',
+            'address_city' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
+            'address_county' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
+            'address_country' => 'nullable|alpha',
         ];
     }
 }
