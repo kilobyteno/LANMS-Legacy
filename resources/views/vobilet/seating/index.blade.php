@@ -62,9 +62,6 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.paid') }}</span>
-															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
-																<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.pizza.desc') }}"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span>
-															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.notpaidyetdesc') }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
 														@else
@@ -133,9 +130,6 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.paid') }}</span>
-															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
-																<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.pizza.desc') }}"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span>
-															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.notpaidyetdesc') }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
 														@else
