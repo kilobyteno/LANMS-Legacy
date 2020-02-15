@@ -17,12 +17,14 @@ return [
     'verification' => 'Verification',
     'verified' => 'verified',
     'notverified' => 'not verified',
+    'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
     'delete' => 'Delete', // As in 'Delete Address' etc.
     'savechanges' => 'Save Changes',
     'download' => 'Download',
+    'send' => 'Send',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',
@@ -36,6 +38,18 @@ return [
         'female' => 'Female',
         'transgender' => 'Transgender',
         'genderless' => 'Genderless',
+    ),
+
+    'clothingsize' => array(
+        'title' => 'Preferred clothing size',
+        'nochoice' => 'Rather not say',
+        'xs' => 'XS',
+        's' => 'S',
+        'm' => 'M',
+        'l' => 'L',
+        'xl' => 'XL',
+        'xxl' => 'XXL',
+        '3xl' => '3XL',
     ),
 
     'staff' => 'Staff',
@@ -92,8 +106,7 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Street',
-        'address2' => 'House Number',
+        'street' => 'Street',
         'postalcode' => 'Postal Code',
         'city' => 'City',
         'county' => 'County',

@@ -51,6 +51,20 @@ class RefreshSettings extends Command
             Setting::set('SEATING_SELF_CHECKIN_OPEN', '0');
             $this->info('Added SEATING_SELF_CHECKIN_OPEN.');
         }
+        // LANMS-421
+        if (!Setting::has('MAIN_ENABLE_GRASROTANDELEN_WIDGET')) {
+            Setting::set('MAIN_ENABLE_GRASROTANDELEN_WIDGET', '0');
+            $this->info('Added MAIN_ENABLE_GRASROTANDELEN_WIDGET.');
+        }
+        if (!Setting::has('MAIN_ORGNR')) {
+            Setting::set('MAIN_ORGNR', '');
+            $this->info('Added MAIN_ORGNR.');
+        }
+        // LANMS-428
+        if (!Setting::has('GOOGLE_CALENDAR_DAYS_TO_SHOW')) {
+            Setting::set('GOOGLE_CALENDAR_DAYS_TO_SHOW', '3');
+            $this->info('Added GOOGLE_CALENDAR_DAYS_TO_SHOW.');
+        }
 
         // Remove old settings
         if (Setting::has('MAIL_MAIN_EMAIL')) {
@@ -68,6 +82,23 @@ class RefreshSettings extends Command
         if (Setting::has('GOOGLE_MAPS_API_KEY')) {
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
+        }
+        // LANMS-434
+        if (Setting::has('MAIL_SUPPORT_EMAIL')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL');
+            $this->info('Removed MAIL_SUPPORT_EMAIL.');
+        }
+        if (Setting::has('MAIL_SUPPORT_EMAIL_NAME')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL_NAME');
+            $this->info('Removed MAIL_SUPPORT_EMAIL_NAME.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL')) {
+            Setting::forget('MAIL_DEBUG_EMAIL');
+            $this->info('Removed MAIL_DEBUG_EMAIL.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL_NAME')) {
+            Setting::forget('MAIL_DEBUG_EMAIL_NAME');
+            $this->info('Removed MAIL_DEBUG_EMAIL_NAME.');
         }
 
         // Rename old styled settings
@@ -102,12 +133,15 @@ class RefreshSettings extends Command
         // Add description to settings
         $settings = AppSetting::all();
         $descriptions = array(
+            'MAIN_ORGNR' => 'Add your orgnr from BRREG here. Used for footer and Grasrotandelen.',
+            'MAIN_ENABLE_GRASROTANDELEN_WIDGET' => 'Set this to "0" (without quotes) to disable Grasrotandelen on the homepage. If it is set to "1" (without quotes) Grasrotandelen will be visible on the homepage.',
             'FACEBOOK_MESSENGER_APP_ID' => 'This is used for the messenger integration for users. Create an app on <a target="_blank" href="https://developers.facebook.com/">https://developers.facebook.com/</a> and paste its ID here. Example: 1234567890123456',
             'FACEBOOK_MESSENGER_PAGE_ID' => 'This is used for the messenger integration for users. This is the ID not the URL of the page. You will find it under "about" on the bottom on your page. Example: 1234567890123456',
             'GOOGLE_ANALYTICS_TRACKING_ID' => 'This is used for tracking traffic on your website. Example: UA-12345678-0',
             'GOOGLE_CALENDAR_API_KEY' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_ID' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_START_DATE' => 'This will be the date you want the calendar to start. Example: 1970-01-30',
+            'GOOGLE_CALENDAR_DAYS_TO_SHOW' => 'Days to show in the calendar. Example: 3',
             'LOGIN_ENABLED' => 'If you only want users with the "admin"-permission to login set this to "0" (without quotes). If it is set to "1" (without quotes) all users will be able to login.',
             'REFERRAL_ACTIVE' => 'You can enable or disable the view of referral on the users dashboard.',
             'SEATING_OPEN' => 'Set this to "0" (without quotes) to disable users from making changes to reservations. If it is set to "1" (without quotes) users will be able to make changes to their reservations.',

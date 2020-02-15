@@ -19,7 +19,7 @@
 		<form action="{{ route('admin-seating-row-store') }}" method="post">
 
 			<div class="row">
-				<div class="col-4">
+				<div class="col-2">
 					<div class="expanel expanel-default @if($errors->has('name')) panel-danger @endif" data-collapsed="0">
 						<div class="expanel-heading">
 							<div class="expanel-title">Name</div>
@@ -46,6 +46,19 @@
 							</select>
 							@if($errors->has('tickettype'))
 								<p class="text-danger">{{ $errors->first('tickettype') }}</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="expanel expanel-default @if($errors->has('sort_order')) panel-danger @endif" data-collapsed="0">
+						<div class="expanel-heading">
+							<div class="expanel-title">Sort Order</div>
+						</div>
+						<div class="expanel-body">
+							<input type="number" class="form-control input-lg" name="sort_order" placeholder="0" min="0" max="100" value="{{ (old('sort_order')) ? old('sort_order') : '' }}" />
+							@if($errors->has('sort_order'))
+								<p class="text-danger">{{ $errors->first('sort_order') }}</p>
 							@endif
 						</div>
 					</div>

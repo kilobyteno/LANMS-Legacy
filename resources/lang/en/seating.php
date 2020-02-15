@@ -62,6 +62,7 @@ return [
         'alert' => array(
             'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
             'alreadyreserved' => 'Seat has already been reserved.',
+            'youcannotpay' => 'You cannot pay for this reservation, the person who reserved it has to do it.',
             'nobirthday' => 'You need to have an birthdate assigned to your account to be able to reserve a seat.',
             'noaddresses' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.',
             'limit' => 'You have reached the reservation limit. So you are not allowed to reserve more seats.',

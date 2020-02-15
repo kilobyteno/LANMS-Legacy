@@ -69,6 +69,8 @@ class CompoController extends Controller
             'page_id' => 'nullable|integer',
             'challonge_subdomain' => 'nullable|string',
             'challonge_url' => 'nullable|string',
+            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id',
+            'toornament_stage_id' => 'nullable|numeric|required_with:toornament_id',
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
@@ -80,6 +82,8 @@ class CompoController extends Controller
             'prize_pool_third' => 'nullable|string',
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
+            'first_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'first_sign_up_at_time' => 'required|date_format:H:i',
             'last_sign_up_at_date' => 'required|date_format:Y-m-d',
             'last_sign_up_at_time' => 'required|date_format:H:i',
             'end_at_date' => 'required|date_format:Y-m-d',
@@ -87,6 +91,11 @@ class CompoController extends Controller
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
         ]);
+
+        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id'))) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You cannot save Challonge and Toornament with eachother, pick one of them!')->withInput();
+        }
 
         if ($request->get('min_signups') == 0) {
             $min_signups = null;
@@ -104,6 +113,10 @@ class CompoController extends Controller
         $start_at_time = $request->get('start_at_time');
         $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
 
+        $first_sign_up_at_date = $request->get('first_sign_up_at_date');
+        $first_sign_up_at_time = $request->get('first_sign_up_at_time');
+        $first_sign_up_at = date('Y-m-d H:i:s', strtotime("$first_sign_up_at_date $first_sign_up_at_time"));
+
         $last_sign_up_at_date = $request->get('last_sign_up_at_date');
         $last_sign_up_at_time = $request->get('last_sign_up_at_time');
         $last_sign_up_at = date('Y-m-d H:i:s', strtotime("$last_sign_up_at_date $last_sign_up_at_time"));
@@ -119,6 +132,8 @@ class CompoController extends Controller
             'page_id' => $request->get('page_id'),
             'challonge_subdomain' => $request->get('challonge_subdomain'),
             'challonge_url' => $request->get('challonge_url'),
+            'toornament_id' => $request->get('toornament_id'),
+            'toornament_stage_id' => $request->get('toornament_stage_id'),
             'year' => \Setting::get('SEATING_YEAR'),
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
@@ -130,6 +145,7 @@ class CompoController extends Controller
             'prize_pool_second' => $request->get('prize_pool_second'),
             'prize_pool_third' => $request->get('prize_pool_third'),
             'start_at' => $start_at ,
+            'first_sign_up_at' => $first_sign_up_at,
             'last_sign_up_at' => $last_sign_up_at,
             'end_at' => $end_at,
             'author_id' => Sentinel::getUser()->id,
@@ -189,6 +205,8 @@ class CompoController extends Controller
             'page_id' => 'nullable|integer',
             'challonge_subdomain' => 'nullable|string',
             'challonge_url' => 'nullable|string',
+            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id',
+            'toornament_stage_id' => 'nullable|numeric|required_with:toornament_id',
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
@@ -200,6 +218,8 @@ class CompoController extends Controller
             'prize_pool_third' => 'nullable|string',
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
+            'first_sign_up_at_date' => 'required|date_format:Y-m-d',
+            'first_sign_up_at_time' => 'required|date_format:H:i',
             'last_sign_up_at_date' => 'required|date_format:Y-m-d',
             'last_sign_up_at_time' => 'required|date_format:H:i',
             'end_at_date' => 'required|date_format:Y-m-d',
@@ -207,6 +227,11 @@ class CompoController extends Controller
             'start_at_date' => 'required|date_format:Y-m-d',
             'start_at_time' => 'required|date_format:H:i',
         ]);
+
+        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id'))) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You cannot save Challonge and Toornament with eachother, pick one of them!')->withInput();
+        }
 
         if ($request->get('min_signups') == 0) {
             $min_signups = null;
@@ -226,6 +251,10 @@ class CompoController extends Controller
         $start_at_time = $request->get('start_at_time');
         $start_at = date('Y-m-d H:i:s', strtotime("$start_at_date $start_at_time"));
 
+        $first_sign_up_at_date = $request->get('first_sign_up_at_date');
+        $first_sign_up_at_time = $request->get('first_sign_up_at_time');
+        $first_sign_up_at = date('Y-m-d H:i:s', strtotime("$first_sign_up_at_date $first_sign_up_at_time"));
+
         $last_sign_up_at_date = $request->get('last_sign_up_at_date');
         $last_sign_up_at_time = $request->get('last_sign_up_at_time');
         $last_sign_up_at = date('Y-m-d H:i:s', strtotime("$last_sign_up_at_date $last_sign_up_at_time"));
@@ -241,6 +270,8 @@ class CompoController extends Controller
             'page_id' => $request->get('page_id'),
             'challonge_subdomain' => $request->get('challonge_subdomain'),
             'challonge_url' => $request->get('challonge_url'),
+            'toornament_id' => $request->get('toornament_id'),
+            'toornament_stage_id' => $request->get('toornament_stage_id'),
             'year' => \Setting::get('SEATING_YEAR'),
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
@@ -251,7 +282,8 @@ class CompoController extends Controller
             'prize_pool_first' => $request->get('prize_pool_first'),
             'prize_pool_second' => $request->get('prize_pool_second'),
             'prize_pool_third' => $request->get('prize_pool_third'),
-            'start_at' => $start_at ,
+            'start_at' => $start_at,
+            'first_sign_up_at' => $first_sign_up_at,
             'last_sign_up_at' => $last_sign_up_at,
             'end_at' => $end_at,
             'editor_id' => Sentinel::getUser()->id,

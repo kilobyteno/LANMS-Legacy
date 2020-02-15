@@ -10,7 +10,7 @@ class Compo extends Model
 {
     use SoftDeletes, LogsActivity;
 
-    protected $dates = ['deleted_at', 'start_at', 'last_sign_up_at', 'end_at'];
+    protected $dates = ['deleted_at', 'start_at', 'first_sign_up_at', 'last_sign_up_at', 'end_at'];
     protected $table = 'compo';
 
     protected $fillable = [
@@ -20,10 +20,13 @@ class Compo extends Model
         'page_id',
         'challonge_subdomain',
         'challonge_url',
+        'toornament_id',
+        'toornament_stage_id',
         'year',
         'author_id',
         'editor_id',
         'start_at',
+        'first_sign_up_at',
         'last_sign_up_at',
         'end_at',
         'type',
@@ -46,7 +49,10 @@ class Compo extends Model
         'page_id',
         'challonge_subdomain',
         'challonge_url',
+        'toornament_id',
+        'toornament_stage_id',
         'start_at',
+        'first_sign_up_at',
         'last_sign_up_at',
         'end_at',
         'type',
@@ -94,5 +100,4 @@ class Compo extends Model
     {
         return $this->hasMany('LANMS\CompoSignUp', 'compo_id', 'id')->thisYear();
     }
-
 }

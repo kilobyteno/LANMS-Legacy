@@ -19,12 +19,21 @@
 		<form action="{{ route('admin-seating-row-update', $row->id) }}" method="post" class="card">
 			<div class="card-body">
 				<div class="row">
-					<div class="col-4">
+					<div class="col-2">
 						<div class="form-group">
 							<label class="form-control-label">Name</label>
 							<input type="text" class="form-control input-lg" name="name" placeholder="A" value="{{ (old('name')) ? old('name') : $row->name }}" />
 							@if($errors->has('name'))
 								<p class="text-danger">{{ $errors->first('name') }}</p>
+							@endif
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="form-group">
+							<label class="form-control-label">Sort Order</label>
+							<input type="number" class="form-control input-lg" name="sort_order" placeholder="0" min="0" max="100" value="{{ (old('sort_order')) ? old('sort_order') : $row->sort_order }}" />
+							@if($errors->has('sort_order'))
+								<p class="text-danger">{{ $errors->first('sort_order') }}</p>
 							@endif
 						</div>
 					</div>

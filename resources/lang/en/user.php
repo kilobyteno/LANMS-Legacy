@@ -85,6 +85,7 @@ return [
                         'sent' => 'Invoice was sent.',
                         'marked_uncollectible' => 'Invoice was marked uncollectible.',
                         'voided' => 'Invoice was voided.',
+                        'payment_failed' => 'Payment failed.',
                     ),
                 ),
                 'product' => 'Product',
@@ -166,6 +167,10 @@ return [
                 'title' => 'Edit your profile details',
                 'phonewhy' => 'Why?',
                 'phonewhydesc' => 'We need your phone number in case of an emergency during the event.',
+            ),
+
+            'address' => array(
+                'title' => 'Edit your address',
             ),
 
             'settings' => array(

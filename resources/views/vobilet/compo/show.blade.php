@@ -42,6 +42,7 @@
 						</small>
 					</p>
 					@if($compo->start_at)<p>{{ trans('compo.starts') }}: <br>{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}</p>@endif
+					@if($compo->first_sign_up_at)<p>{{ trans('compo.firstsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->first_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <br>{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}</p>@endif
 					@if($compo->end_at)<p>{{ trans('compo.ends') }}: <br>{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}</p>@endif
 					<p>{{ trans('compo.type') }}: <br>{{ trans('compo.type.'.$compo->type) }}</p>
@@ -61,7 +62,7 @@
 				</div>
 				<div class="card-footer">
 					@if(\Sentinel::check())
-						@if($compo->last_sign_up_at > \Carbon\Carbon::now() && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
+						@if(\Carbon\Carbon::now() > $compo->first_sign_up_at && \Carbon\Carbon::now() < $compo->last_sign_up_at && !\Sentinel::getUser()->composignups()->where('compo_id', $compo->id)->first())
 							@if($compo->max_signups)
 								@if($compo->signupsThisYear->count() < $compo->max_signups)
 									<a class="btn btn-sm btn-success" href="{{ route('compo-signup', $compo->slug) }}"><i class="fas fa-user-plus"></i> {{ trans('compo.signup.title') }}</a>
@@ -86,6 +87,8 @@
 					@if($compo->type == 1)
 						@if($compo->challonge_url)
 							<iframe src="https://{{ $compo->challonge_subdomain.'.' ?? ''}}challonge.com/{{ $compo->challonge_url }}/module?theme=6844&multiplier=0.9&match_width_multiplier=1.2&show_final_results=1" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+						@elseif($compo->toornament_id && $compo->toornament_stage_id)
+							<iframe width="100%" height="500" src="https://widget.toornament.com/tournaments/{{ $compo->toornament_id }}/stages/{{ $compo->toornament_stage_id }}?_locale=en_GB{{ Sentinel::check() ? '&theme='.Sentinel::getUser()->theme == 'dark' ? 'discipline' : 'light' : '' }}" frameborder="0" allowfullscreen="true"></iframe>
 						@else
 							<p>{{ trans('compo.nobracketsyet') }}</p>
 						@endif

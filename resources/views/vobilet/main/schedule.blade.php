@@ -48,13 +48,13 @@
 					views: {
 						agendaFourDay: {
 							type: 'agenda',
-							duration: { days: 3 }
+							duration: { days: '{{ Setting::get('GOOGLE_CALENDAR_DAYS_TO_SHOW') ?? '3' }}' }
 						}
 					},
 					defaultDate: '{{ Setting::get('GOOGLE_CALENDAR_START_DATE') }}',
 					nowIndicator: true,
 					allDaySlot: false,
-					minTime: '07:00:00',
+					minTime: '00:00:00',
 					slotDuration: '00:15:00',
 					firstDay: 1,
 					locale: '{{ \Session::get('locale') ?? 'en' }}',

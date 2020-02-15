@@ -162,14 +162,14 @@ class SponsorController extends Controller
             Image::make($image_dark->getRealPath())->fit(335, 90)->save($path);
         }
 
-        $sponsor                = Sponsor::find($id);
-        $sponsor->name          = $name;
-        $sponsor->url           = $request->get('url');
-        $sponsor->description   = $request->get('description');
-        $sponsor->sort_order    = $request->get('sort_order');
-        $sponsor->image_light = ($webpath_light) ? $webpath_light : '';
-        $sponsor->image_dark = ($webpath_dark) ? $webpath_dark : '';
-        $sponsor->editor_id     = Sentinel::getUser()->id;
+        $sponsor = Sponsor::find($id);
+        $sponsor->name = $name;
+        $sponsor->url = $request->get('url');
+        $sponsor->description = $request->get('description');
+        $sponsor->sort_order = $request->get('sort_order');
+        $sponsor->image_light = ($webpath_light ? $webpath_light : $sponsor->image_light);
+        $sponsor->image_dark = ($webpath_dark ? $webpath_dark : $sponsor->image_dark);
+        $sponsor->editor_id = Sentinel::getUser()->id;
 
         if ($sponsor->save()) {
             return Redirect::route('admin-sponsor')

@@ -85,6 +85,7 @@ return [
                         'sent' => 'Faktura ble sendt.',
                         'marked_uncollectible' => 'Fakturaen ble merket som tap.',
                         'voided' => 'Fakturaen ble merket som ugyldig.',
+                        'payment_failed' => 'Betalingen feilet.',
                     ),
                 ),
                 'product' => 'Produkt',
@@ -166,6 +167,10 @@ return [
                 'title' => 'Rediger profilinformasjonen din',
                 'phonewhy' => 'Hvorfor?',
                 'phonewhydesc' => 'Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet.',
+            ),
+
+            'address' => array(
+                'title' => 'Rediger adressen din',
             ),
 
             'settings' => array(

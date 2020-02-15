@@ -15,7 +15,7 @@
 <div class="row">
 	<div class="col-6">
 
-		<form class="card" action="{{ route('admin-emails-store') }}" method="post">
+		<form class="card" action="{{ route('admin-emails-store') }}" method="post" id="email-form">
 			<div class="card-header">
 				<div class="card-title">
 					Details
@@ -195,6 +195,7 @@
 			$('#send').on('click', function() {
 				$("#send").prop("disabled", true);
 				$("#processing").removeClass("d-none");
+				$("#email-form").submit();
 			});
 		});
 	</script>

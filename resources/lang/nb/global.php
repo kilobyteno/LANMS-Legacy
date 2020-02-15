@@ -17,12 +17,14 @@ return [
     'verification' => 'Verifisering',
     'verified' => 'verifisert',
     'notverified' => 'ikke verifisert',
+    'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
     'delete' => 'Slett', // As in 'Delete Address' etc.
     'savechanges' => 'Lagre endringer',
     'download' => 'Last ned',
+    'send' => 'Send',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',
@@ -36,6 +38,18 @@ return [
         'female' => 'Kvinne',
         'transgender' => 'Transseksuell',
         'genderless' => 'Kjønnsløs',
+    ),
+
+    'clothingsize' => array(
+        'title' => 'Foretrukket klesstørrelse',
+        'nochoice' => 'Ikke noe valg',
+        'xs' => 'XS',
+        's' => 'S',
+        'm' => 'M',
+        'l' => 'L',
+        'xl' => 'XL',
+        'xxl' => 'XXL',
+        '3xl' => '3XL',
     ),
 
     'staff' => 'Staff',
@@ -92,8 +106,7 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Gateadresse',
-        'address2' => 'Husnummer',
+        'street' => 'Gate',
         'postalcode' => 'Postnummer',
         'city' => 'By',
         'county' => 'Fylke',
