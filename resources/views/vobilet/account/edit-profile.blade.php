@@ -205,7 +205,7 @@
 					
 					<div class="form-group @if($errors->has('address_street')) has-error @endif">
 						<label class="form-label">{{ trans('global.address.street') }}</label>
-						<input class="form-control" type="text" name="address_street" placeholder="Jernbanegata 15" value="{{ $address_street }}">
+						<input class="form-control" type="text" name="address_street" placeholder="Jernbanegata 15" value="{{ $address_street ?? old('address_street') }}">
 						@if($errors->has('address_street'))
 							<p class="text-danger">{{ $errors->first('address_street') }}</p>
 						@endif
@@ -214,7 +214,7 @@
 					<div class="row">
 						<div class="col-md-6 form-group @if($errors->has('address_postalcode')) has-error @endif">
 							<label class="form-label">{{ trans('global.address.postalcode') }}</label>
-							<input class="form-control" type="text" name="address_postalcode" placeholder="2609" value="{{ $address_postalcode }}">
+							<input class="form-control" type="text" name="address_postalcode" placeholder="2609" value="{{ $address_postalcode ?? old('address_postalcode') }}">
 							@if($errors->has('address_postalcode'))
 								<p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
 							@endif
@@ -222,7 +222,7 @@
 
 						<div class="col-md-6 form-group @if($errors->has('address_city')) has-error @endif">
 							<label class="form-label">{{ trans('global.address.city') }}</label>
-							<input class="form-control" type="text" name="address_city" placeholder="Lillehammer" value="{{ $address_city }}">
+							<input class="form-control" type="text" name="address_city" placeholder="Lillehammer" value="{{ $address_city ?? old('address_city') }}">
 							@if($errors->has('address_city'))
 								<p class="text-danger">{{ $errors->first('address_city') }}</p>
 							@endif
@@ -231,7 +231,7 @@
 					<div class="row">
 						<div class="col-md-6 form-group @if($errors->has('address_county')) has-error @endif">
 							<label class="form-label">{{ trans('global.address.county') }}</label>
-							<input class="form-control" type="text" name="address_county" placeholder="Oppland" value="{{ $address_county }}">
+							<input class="form-control" type="text" name="address_county" placeholder="Oppland" value="{{ $address_county ?? old('address_county') }}">
 							@if($errors->has('address_county'))
 								<p class="text-danger">{{ $errors->first('address_county') }}</p>
 							@endif
@@ -239,7 +239,7 @@
 
 						<div class="col-md-6 form-group @if($errors->has('address_country')) has-error @endif">
 							<label class="form-label">{{ trans('global.address.country') }}</label>
-							<input class="form-control" type="text" name="address_country" placeholder="Norway" value="{{ $address_country }}">
+							<input class="form-control" type="text" name="address_country" placeholder="Norway" value="{{ $address_country ?? old('address_country') }}">
 							@if($errors->has('address_country'))
 								<p class="text-danger">{{ $errors->first('address_country') }}</p>
 							@endif
@@ -254,7 +254,6 @@
 					<h3 class="card-title">{{ trans('user.profile.edit.confirmpassword.title') }}</h3>
 				</div>
 				<div class="card-body">
-					<input class="form-control" type="hidden" name="username" class="d-none">
 					<div class="form-group @if ($errors->has('password')) has-error @endif">
 						<label class="form-label">{{ trans('global.password') }}</label>
 						<div class="input-group">
