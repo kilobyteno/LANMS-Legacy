@@ -97,7 +97,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthday'));
         }
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.noaddresses'));
         }
@@ -115,7 +115,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthdayfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
-        if ($reservedfor->addresses->count() == 0) {
+        if (!$reservedfor->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.noaddressesfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
