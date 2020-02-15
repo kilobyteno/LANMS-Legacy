@@ -79,6 +79,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'theme',
         'clothing_size',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
     ];
 
     /**
@@ -116,6 +121,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'theme',
         'clothing_size',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
         'accepted_gdpr',
         'isAnonymized'
     ];
