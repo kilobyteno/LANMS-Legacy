@@ -169,6 +169,10 @@ return [
                 'phonewhydesc' => 'Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet.',
             ),
 
+            'address' => array(
+                'title' => 'Rediger adressen din',
+            ),
+
             'settings' => array(
                 'title' => 'Rediger innstillingene dine',
                 'show' => 'Vis',
