@@ -178,6 +178,26 @@ class ReserveSeatingController extends Controller
         }
     }
 
+    public function ticketshow($slug)
+    {
+        $slug = strtolower($slug); // Just to be sure it is correct
+        $seat = Seats::where('slug', $slug)->first();
+        if (is_null($seat)) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.seatnotfound'));
+        }
+
+        $ticket = $seat->reservationsThisYear()->first()->ticket;
+        $reservedfor = $seat->reservationsThisYear()->first()->reservedfor;
+        $payment = $seat->reservationsThisYear()->first()->payment;
+        if (Sentinel::getUser()->id == $reservedfor->id && !is_null($ticket)) {
+            return view('seating.pdf.ticket')->with('seat', $seat)->with('payment', $payment)->with('reservedfor', $reservedfor)->with('ticket', $ticket);
+        } else {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.reservation.alert.ticketnoaccess'));
+        }
+    }
+
     public function consentform()
     {
         if (Sentinel::check()) {
