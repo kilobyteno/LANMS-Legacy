@@ -134,8 +134,12 @@
 						<form method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group @if($errors->has('reservedfor')) has-error @endif">
 								<label class="form-label">{{ trans('seating.show.reservedfor') }}</label>
-								<input type="text" class="form-control" id="username" value="{{ User::getFullnameAndNicknameByID(Sentinel::getUser()->id) }}" autocomplete="off">
-								<input type="text" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}" hidden="">
+								<select name="reservedfor" class="select2">
+									<option value="0">-- {{ trans('global.pleaseselect') }} --</option>
+									@foreach(User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+										<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+									@endforeach
+								</select>
 								@if($errors->has('reservedfor'))
 									<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
 								@endif
@@ -185,5 +189,10 @@
 		checker.onchange = function() {
 			btn.disabled = !this.checked;
 		};
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('.select2').select2();
+		});
 	</script>
 @stop
