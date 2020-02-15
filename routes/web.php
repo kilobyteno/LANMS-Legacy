@@ -404,6 +404,10 @@ Route::group([
                     'as' => 'seating-reserve',
                     'uses' => 'Seating\ReserveSeatingController@reserve'
                 ]);
+                Route::get('/{slug}/ticket/show', [
+                    'as' => 'seating-ticket-show',
+                    'uses' => 'Seating\ReserveSeatingController@ticketshow'
+                ]);
                 Route::get('/{slug}/ticket/download', [
                     'as' => 'seating-ticket-download',
                     'uses' => 'Seating\ReserveSeatingController@ticketdownload'
