@@ -117,4 +117,11 @@ return [
         ),
     ),
 
+    'ticket' => array(
+        'title' => 'Digital billett',
+        'checkin' => array(
+            'title' => 'Innsjekkingskoden din',
+        ),
+    ),
+
 ];

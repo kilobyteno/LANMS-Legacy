@@ -117,4 +117,11 @@ return [
         ),
     ),
 
+    'ticket' => array(
+        'title' => 'Digital Ticket',
+        'checkin' => array(
+            'title' => 'Your checkin code',
+        ),
+    ),
+
 ];

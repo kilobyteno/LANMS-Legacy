@@ -18,6 +18,7 @@ return [
     'verified' => 'verified',
     'notverified' => 'not verified',
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
+    'unknown' => 'Unknown',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
@@ -25,6 +26,7 @@ return [
     'savechanges' => 'Save Changes',
     'download' => 'Download',
     'send' => 'Send',
+    'print' => 'Print',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',
