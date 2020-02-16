@@ -2,18 +2,19 @@
 
 namespace LANMS\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use LANMS\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Validator;
-
+use LANMS\Http\Controllers\Controller;
+use Twilio\Exceptions\RestException;
 use Twilio\Rest\Client as TwilioClient;
+use Validator;
 
 class SMSController extends Controller
 {
     public function __construct()
     {
+        abort_unless((env('TWILIO_SID') || env('TWILIO_TOKEN')), 403);
         $this->twilio = new TwilioClient(env('TWILIO_SID'), env('TWILIO_TOKEN'));
     }
 
@@ -25,8 +26,11 @@ class SMSController extends Controller
     public function index()
     {
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.*']), 403);
-
-        $messages = $this->twilio->messages->read();
+        try {
+            $messages = $this->twilio->messages->read();
+        } catch (RestException $e) {
+            return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
+        }
         return view('sms.index')->withMessages($messages);
     }
 
@@ -38,7 +42,6 @@ class SMSController extends Controller
     public function create()
     {
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.create']), 403);
-
         return view('sms.create');
     }
 
@@ -50,28 +53,26 @@ class SMSController extends Controller
     public function store(Request $request)
     {
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.create']), 403);
-
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'message' => 'required'
         ]);
-        if ($validator->passes()) {
-            $user = \LANMS\User::find($request->input('user_id'));
-            $number = $user->phone;
-            $message = $request->input('message');
-            $this->twilio->messages->create(
-                $number,
-                [
-                    'from' => env('TWILIO_FROM'),
-                    'body' => $message,
-                ]
-            );
-            return Redirect::route('admin-sms-create')
-                            ->with('messagetype', 'success')
-                            ->with('message', "SMS sent!");
-        } else {
+        if (!$validator->passes()) {
             return Redirect::back()->withErrors($validator);
         }
+        $user = \LANMS\User::find($request->input('user_id'));
+        $number = $user->phone;
+        $message = $request->input('message');
+        $this->twilio->messages->create(
+            $number,
+            [
+                'from' => env('TWILIO_FROM'),
+                'body' => $message,
+            ]
+        );
+        return Redirect::route('admin-sms-create')
+                        ->with('messagetype', 'success')
+                        ->with('message', "SMS sent!");
     }
 
     /**
