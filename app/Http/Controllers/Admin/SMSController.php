@@ -6,6 +6,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
+use LANMS\User;
 use Twilio\Exceptions\RestException;
 use Twilio\Rest\Client as TwilioClient;
 use Validator;
@@ -60,19 +61,24 @@ class SMSController extends Controller
         if (!$validator->passes()) {
             return Redirect::back()->withErrors($validator);
         }
-        $user = \LANMS\User::find($request->input('user_id'));
-        $number = $user->phone;
-        $message = $request->input('message');
-        $this->twilio->messages->create(
-            $number,
-            [
-                'from' => env('TWILIO_FROM'),
-                'body' => $message,
-            ]
-        );
-        return Redirect::route('admin-sms-create')
-                        ->with('messagetype', 'success')
-                        ->with('message', "SMS sent!");
+        try {
+            $user = User::find($request->input('user_id'));
+            $lookup = $this->twilio->lookups->v1->phoneNumbers($user->phone)->fetch(array("countryCode" => $user->phone_country));
+            $number = $lookup->phoneNumber;
+            $message = $request->input('message');
+            $this->twilio->messages->create(
+                $number,
+                [
+                    'from' => env('TWILIO_FROM'),
+                    'body' => $message,
+                ]
+            );
+            return Redirect::route('admin-sms')
+                            ->with('messagetype', 'success')
+                            ->with('message', "SMS sent!");
+        } catch (Exception $e) {
+            return Redirect::route('admin-sms')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
+        }
     }
 
     /**
