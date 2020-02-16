@@ -48,8 +48,8 @@ return [
         'view' => 'View seat',
         'pay' => 'Pay now',
         'changepayment' => 'Change payment',
-        'download' => 'Download PDF',
-        'ticket' => 'Show ticket',
+        'download' => 'Download PDF ticket',
+        'ticket' => 'Show digital ticket',
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',

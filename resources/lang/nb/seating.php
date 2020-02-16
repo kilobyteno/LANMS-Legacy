@@ -48,8 +48,8 @@ return [
         'view' => 'Vis sete',
         'pay' => 'Betal nå',
         'changepayment' => 'Endre betaling',
-        'download' => 'Last ned PDF',
-        'ticket' => 'Vis billett',
+        'download' => 'Last ned PDF billett',
+        'ticket' => 'Vis digital billett',
         'remove' => 'Fjern reservasjonen',
         'consentform' => array(
             'title' => 'Samtykkeskjema',
