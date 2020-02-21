@@ -871,6 +871,10 @@ Route::group([
                     'as' => 'admin-pages-destroy',
                     'uses' => 'Page\PagesController@destroy'
                 ]);
+                Route::get('/{id}/restore', [
+                    'as' => 'admin-pages-restore',
+                    'uses' => 'Page\PagesController@restore'
+                ]);
             });
         Route::group([
             'prefix' => 'users'

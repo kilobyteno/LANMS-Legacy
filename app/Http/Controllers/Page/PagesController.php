@@ -35,7 +35,7 @@ class PagesController extends Controller
     public function admin()
     {
         if (Sentinel::getUser()->hasAccess(['admin.pages.*'])) {
-            $pages = Page::all();
+            $pages = Page::withTrashed()->get();
             return view('pages.index')
                         ->withPages($pages);
         } else {
