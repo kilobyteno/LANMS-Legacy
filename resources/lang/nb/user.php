@@ -86,6 +86,7 @@ return [
                         'marked_uncollectible' => 'Fakturaen ble merket som tap.',
                         'voided' => 'Fakturaen ble merket som ugyldig.',
                         'payment_failed' => 'Betalingen feilet.',
+                        'payment_succeeded' => 'Betalingen lyktes.',
                     ),
                 ),
                 'product' => 'Produkt',
