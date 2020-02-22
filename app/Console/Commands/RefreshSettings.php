@@ -9,37 +9,36 @@ use anlutro\LaravelSettings\Facade as Setting;
 class RefreshSettings extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    * The name and signature of the console command.
+    *
+    * @var string
+    */
     protected $signature = 'lanms:refreshsettings';
 
     /**
-     * The console command description.
-     *
-     * @var string
-     */
+    * The console command description.
+    *
+    * @var string
+    */
     protected $description = 'This will update all settings with proper description fields.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    * Create a new command instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    * Execute the console command.
+    *
+    * @return mixed
+    */
     public function handle()
     {
-        
         // Add new settings
         // LANMS-377
         if (!Setting::has('HEADER_INFO_CONSENT_FORM')) {
@@ -86,6 +85,7 @@ class RefreshSettings extends Command
         if (Setting::has('SEATING_SEAT_PRICE_ALT')) {
             Setting::forget('SEATING_SEAT_PRICE_ALT');
             $this->info('Removed SEATING_SEAT_PRICE_ALT.');
+        }
         // LANMS-434
         if (Setting::has('MAIL_SUPPORT_EMAIL')) {
             Setting::forget('MAIL_SUPPORT_EMAIL');
