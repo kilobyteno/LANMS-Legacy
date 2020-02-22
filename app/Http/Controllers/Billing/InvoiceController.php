@@ -2,6 +2,7 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -54,7 +55,7 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -74,7 +75,7 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
