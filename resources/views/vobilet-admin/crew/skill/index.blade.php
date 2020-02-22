@@ -15,32 +15,36 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Icon</th>
-					<th>Class</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($skills as $skill)
-					<tr>
-						<td>{{ $skill->title }}</td>
-						<td><i class="{{ $skill->icon }}"></i> {{ $skill->icon }}</td>
-						<td><span class="{{ $skill->class }}">{{ $skill->class }}</span></td>
-						<td>
-							<a href="{{ route('admin-crew-skill-edit', $skill->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Icon</th>
+							<th>Class</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($skills as $skill)
+							<tr>
+								<td>{{ $skill->title }}</td>
+								<td><i class="{{ $skill->icon }}"></i> {{ $skill->icon }}</td>
+								<td><span class="{{ $skill->class }}">{{ $skill->class }}</span></td>
+								<td>
+									<a href="{{ route('admin-crew-skill-edit', $skill->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.crew.destroy'))
+										<a href="javascript:;" onclick="jQuery('#skill-destroy-{{ $skill->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
+									@endif
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 	</div>
 </div>
 
