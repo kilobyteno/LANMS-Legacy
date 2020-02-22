@@ -32,7 +32,7 @@
 						</div>
 						<div class="col-12 col-lg-4">
 							@if(!$reservation->payment)
-								<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($reservation->seat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }})</span></strong></h2>
+								<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }}<br>{{ moneyFormat($reservation->seat->tickettype->price, Setting::get('MAIN_CURRENCY')) }}</span></strong></h2>
 							@else
 								<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 							@endif
