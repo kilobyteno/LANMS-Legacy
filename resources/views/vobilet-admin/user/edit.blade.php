@@ -37,6 +37,8 @@
                                 <div class="expanel-title">User Information</div>
                             </div>
                             <div class="expanel-body">
+                                <label class="form-label">User ID:</label>
+                                <p>{{ $user->id }}</p>
                                 <label class="form-label">Last Login:</label>
                                 <p>{{ ucfirst(\Carbon::parse($user->last_login)->isoFormat('LLLL')) }}</p>
                                 <label class="form-label">Last Activity:</label>
