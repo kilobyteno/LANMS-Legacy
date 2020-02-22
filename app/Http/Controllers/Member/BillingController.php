@@ -41,12 +41,10 @@ class BillingController extends Controller
 
     public function getCharges()
     {
-        $user       = Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
-        if ($scus) {
-            $sccus      = $scus->cus;
-            $charges    = \Stripe::charges()->all(array('customer' => $sccus, 'limit' => 100));
+        if ($stripe_customer) {
+            $charges    = \Stripe::charges()->all(array('customer' => $stripe_customer, 'limit' => 100));
             $charges    = $charges['data'];
         } else {
             $charges    = [];
