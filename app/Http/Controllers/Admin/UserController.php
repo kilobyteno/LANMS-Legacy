@@ -94,6 +94,7 @@ class UserController extends Controller
             'location'          => $request->get('location'),
             'occupation'        => $request->get('occupation'),
             'birthdate'         => $request->get('birthdate'),
+            'phone_country'     => $request->get('phone_country'),
             'phone'             => $request->get('phone'),
             'about'             => $request->get('about'),
             'showemail'         => $request->get('showemail'),

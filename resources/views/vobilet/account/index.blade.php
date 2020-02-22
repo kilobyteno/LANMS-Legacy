@@ -7,7 +7,6 @@
 		<h4 class="page-title">{{ trans('user.account.title') }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.title') }}</li>
 		</ol>
 	</div>
@@ -47,9 +46,6 @@
 									</tr>
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-change-images') }}" class="text-inherit"><i class="fas fa-images"></i> {{ trans('user.account.details.images') }}</a></td>
-									</tr>
-									<tr class="border-bottom">
-										<td><a href="{{ route('account-addressbook') }}" class="text-inherit"><i class="fa fa-book"></i> {{ trans('user.account.details.addressbook') }}</a></td>
 									</tr>
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fas fa-key"></i> {{ trans('user.account.details.password') }}</a></td>

@@ -106,8 +106,7 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Gateadresse',
-        'address2' => 'Husnummer',
+        'street' => 'Gate',
         'postalcode' => 'Postnummer',
         'city' => 'By',
         'county' => 'Fylke',

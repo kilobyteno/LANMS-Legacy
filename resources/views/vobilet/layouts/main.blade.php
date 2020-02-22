@@ -152,9 +152,6 @@
 												</a>
 												<div class="dropdown-divider"></div>
 											@endif
-											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
-											</a>
 											<a class="dropdown-item" href="{{ route('members') }}">
 												<i class="fas fa-users"></i> {{ trans('header.members') }}
 											</a>

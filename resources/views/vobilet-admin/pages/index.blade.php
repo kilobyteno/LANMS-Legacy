@@ -14,40 +14,48 @@
 <div class="row">
 	<div class="col-md-12">
 		
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Slug</th>
-					<th>Title</th>
-					<th>Created at</th>
-					<th>Created by</th>
-					<th>Updated at</th>
-					<th>Updated by</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($pages as $page)
-					<tr>
-						<th scope="row">{{ $page->id }}</th>
-						<td>{{ $page->slug }}</td>
-						<td>{{ $page->title }}</td>
-						<td>{{ \Carbon::parse($page->created_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
-						<td>@if($page->updated_at){{ \Carbon::parse($page->updated_at)->toDateTimeString() }}@endif</td>
-						<td>@if($page->editor->username)<a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a>@endif</td>
-						<td>
-							<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm"><i class="fa fa-eye mr-2"></i>View</a>
-							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.pages.destroy'))
-								<a href="javascript:;" onclick="jQuery('#page-destroy-{{ $page->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Slug</th>
+							<th>Title</th>
+							<th>Created at</th>
+							<th>Created by</th>
+							<th>Updated at</th>
+							<th>Updated by</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($pages as $page)
+							<tr>
+								<th scope="row">{{ $page->id }}</th>
+								<td>{{ $page->slug }}</td>
+								<td>{{ $page->title }}</td>
+								<td>{{ \Carbon::parse($page->created_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
+								<td>@if($page->updated_at){{ \Carbon::parse($page->updated_at)->toDateTimeString() }}@endif</td>
+								<td>@if($page->editor->username)<a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a>@endif</td>
+								<td>
+									<a href="{{ route('page', $page->slug) }}" class="btn btn-info btn-sm"><i class="fa fa-eye mr-2"></i>View</a>
+									<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.pages.destroy') && !$page->deleted_at)
+										<a href="javascript:;" onclick="jQuery('#page-destroy-{{ $page->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@endif
+									@if(Sentinel::hasAccess('admin.pages.restore') && $page->deleted_at)
+										<a href="{{ route('admin-pages-restore', $page->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
+									@endif
+								</td>
+
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	</div>
 </div>

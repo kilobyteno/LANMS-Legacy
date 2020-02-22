@@ -46,9 +46,9 @@
 									@endif
 								</small>
 							</p>
-							@if($compo->start_at)<p>{{ trans('compo.starts') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}">{{ $compo->start_at->diffForHumans() }}</span></p>@endif
 							@if($compo->first_sign_up_at)<p>{{ trans('compo.firstsignup') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->first_sign_up_at)->isoFormat('LLL') }}">{{ $compo->first_sign_up_at->diffForHumans() }}</span></p>@endif
 							@if($compo->last_sign_up_at)<p>{{ trans('compo.lastsignup') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->last_sign_up_at)->isoFormat('LLL') }}">{{ $compo->last_sign_up_at->diffForHumans() }}</span></p>@endif
+							@if($compo->start_at)<p>{{ trans('compo.starts') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->start_at)->isoFormat('LLL') }}">{{ $compo->start_at->diffForHumans() }}</span></p>@endif
 							@if($compo->end_at)<p>{{ trans('compo.ends') }}: <span data-toggle="tooltip" title="{{ \Carbon\Carbon::parse($compo->end_at)->isoFormat('LLL') }}">{{ $compo->end_at->diffForHumans() }}</span></p>@endif
 							<p>{{ trans('compo.type') }}: {{ trans('compo.type.'.$compo->type) }}</p>
 							<p>{{ trans('compo.signup_type') }}: {{ trans('compo.signup_type.'.$compo->signup_type) }}</p>

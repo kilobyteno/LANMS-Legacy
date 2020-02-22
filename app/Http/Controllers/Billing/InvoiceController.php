@@ -39,7 +39,7 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -56,7 +56,7 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -76,7 +76,7 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -164,7 +164,7 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
-        if ($user->addresses->count() == 0) {
+        if (!$user->hasAddress()) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }

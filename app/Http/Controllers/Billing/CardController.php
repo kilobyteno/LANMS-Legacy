@@ -38,7 +38,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -53,8 +53,7 @@ class CardController extends Controller
      */
     public function store(PaymentRequest $request)
     {
-        $user = Sentinel::getUser();
-        if ($user->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }

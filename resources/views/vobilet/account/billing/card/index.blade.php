@@ -7,7 +7,6 @@
         <h4 class="page-title">{{ trans('user.account.billing.card.title') }} <a class="btn btn-sm btn-success ml-2" href="{{ route('account-billing-card-create') }}"><i class="fa fa-plus"></i> {{ trans('global.add') }}</a></h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.card.title') }}</li>
@@ -15,8 +14,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            @if(Sentinel::getUser()->addresses->count() == 0)
-                <div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('user.account.billing.alert.noaddress', ['url' => route('account-addressbook-create')]) !!}</div>
+            @if(!Sentinel::getUser()->hasAddress())
+                <div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('user.account.billing.alert.noaddress', ['url' => route('account-profile-edit')]) !!}</div>
             @endif
             <div class="card">
                 @if(count($cards) == 0)

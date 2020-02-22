@@ -95,10 +95,6 @@
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
-											</a>
-											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
 												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
@@ -185,9 +181,6 @@
 						
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
-						</li>
-						<li>
-							<a class="side-menu__item @if(Request::is('admin/users')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
 						</li>
 						@if(Sentinel::getUser()->hasAccess(['admin.emails.*']))
 							<li>

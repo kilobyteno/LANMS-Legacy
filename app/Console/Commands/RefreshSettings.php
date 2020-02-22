@@ -56,6 +56,12 @@ class RefreshSettings extends Command
             $this->info('Added MAIN_ORGNR.');
         }
 
+        // LANMS-428
+        if (!Setting::has('GOOGLE_CALENDAR_DAYS_TO_SHOW')) {
+            Setting::set('GOOGLE_CALENDAR_DAYS_TO_SHOW', '3');
+            $this->info('Added GOOGLE_CALENDAR_DAYS_TO_SHOW.');
+        }
+
         // Remove old settings
         if (Setting::has('MAIL_MAIN_EMAIL')) {
             Setting::forget('MAIL_MAIN_EMAIL');
@@ -72,6 +78,23 @@ class RefreshSettings extends Command
         if (Setting::has('GOOGLE_MAPS_API_KEY')) {
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
+        }
+        // LANMS-434
+        if (Setting::has('MAIL_SUPPORT_EMAIL')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL');
+            $this->info('Removed MAIL_SUPPORT_EMAIL.');
+        }
+        if (Setting::has('MAIL_SUPPORT_EMAIL_NAME')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL_NAME');
+            $this->info('Removed MAIL_SUPPORT_EMAIL_NAME.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL')) {
+            Setting::forget('MAIL_DEBUG_EMAIL');
+            $this->info('Removed MAIL_DEBUG_EMAIL.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL_NAME')) {
+            Setting::forget('MAIL_DEBUG_EMAIL_NAME');
+            $this->info('Removed MAIL_DEBUG_EMAIL_NAME.');
         }
 
         // Rename old styled settings
@@ -114,6 +137,7 @@ class RefreshSettings extends Command
             'GOOGLE_CALENDAR_API_KEY' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_ID' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_START_DATE' => 'This will be the date you want the calendar to start. Example: 1970-01-30',
+            'GOOGLE_CALENDAR_DAYS_TO_SHOW' => 'Days to show in the calendar. Example: 3',
             'LOGIN_ENABLED' => 'If you only want users with the "admin"-permission to login set this to "0" (without quotes). If it is set to "1" (without quotes) all users will be able to login.',
             'REFERRAL_ACTIVE' => 'You can enable or disable the view of referral on the users dashboard.',
             'SEATING_OPEN' => 'Set this to "0" (without quotes) to disable users from making changes to reservations. If it is set to "1" (without quotes) users will be able to make changes to their reservations.',

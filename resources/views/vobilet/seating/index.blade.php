@@ -12,8 +12,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			@if(Sentinel::getUser()->addresses->count() == 0)
-				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('account-addressbook-create')]) !!}</div>
+			@if(!Sentinel::getUser()->hasAddress())
+				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
 				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.closed') }}</div>
@@ -62,9 +62,6 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.paid') }}</span>
-															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
-																<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.pizza.desc') }}"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span>
-															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.notpaidyetdesc') }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
 														@else
@@ -132,9 +129,6 @@
 														@endif
 														@if(!is_null($reservation->payment))
 															<span class="badge badge-success"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.paid') }}</span>
-															@if($reservation->payment->created_at < '2019-01-01 00:00:00')
-																<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.pizza.desc') }}"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span>
-															@endif
 														@elseif($reservation->status_id == 1)
 															<span class="badge badge-warning" data-toggle="tooltip" title="{{ trans('seating.reservation.notpaidyetdesc') }}"><i class="fas fa-money-bill-alt"></i> {{ trans('seating.reservation.notpaidyet') }}</span>
 														@else

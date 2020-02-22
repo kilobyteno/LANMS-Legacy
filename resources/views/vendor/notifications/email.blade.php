@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 @lang('mail.global.regards'),<br>
-{{ config('app.name') }}
+{{ Setting::get('WEB_NAME') }}
 @endif
 
 {{-- Subcopy --}}

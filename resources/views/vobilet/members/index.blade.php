@@ -7,7 +7,7 @@
 		<h1 class="page-title">{{ trans('header.members') }}</h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.members') }}</li>
 		</ol>
 	</div>

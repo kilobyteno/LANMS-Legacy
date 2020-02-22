@@ -7,7 +7,6 @@
         <h4 class="page-title">{{ trans('user.gdpr.message.title') }}</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.gdpr.message.title') }}</li>
         </ol>
