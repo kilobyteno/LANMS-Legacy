@@ -21,9 +21,8 @@ if (Config::get('app.debug')) {
     Route::get('/resetdb', function () {
         \Session::forget('laravel_session');
         Artisan::call('migrate:reset');
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
         Artisan::call('lanms:update');
+        Artisan::call('db:seed');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test/notification', function () {
