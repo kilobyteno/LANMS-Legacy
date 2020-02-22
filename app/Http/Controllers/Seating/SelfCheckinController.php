@@ -5,6 +5,7 @@ namespace LANMS\Http\Controllers\Seating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
+use LANMS\SeatTicket;
 
 class SelfCheckinController extends Controller
 {
@@ -49,7 +50,7 @@ class SelfCheckinController extends Controller
     {
         $seatticket = SeatTicket::where('code', $id)->first();
         if (!$seatticket) {
-            return Redirect::route('seating')->with('messagetype', 'warning')
+            return Redirect::route('seating-checkin')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.checkin.alert.notfound'));
         }
         dd($seatticket);

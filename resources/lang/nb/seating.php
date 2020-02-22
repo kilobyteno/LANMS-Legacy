@@ -124,4 +124,9 @@ return [
         ),
     ),
 
+    'checkin' => array(
+        'title' => 'Innskjekking',
+        'subtitle' => 'Skriv inn innsjekkskoden her',
+    ),
+
 ];

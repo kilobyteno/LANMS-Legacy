@@ -124,4 +124,9 @@ return [
         ),
     ),
 
+    'checkin' => array(
+        'title' => 'Self check-in',
+        'subtitle' => 'Enter your check-in code here',
+    ),
+
 ];

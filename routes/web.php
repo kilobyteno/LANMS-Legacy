@@ -411,6 +411,18 @@ Route::group([
                     'as' => 'seating-ticket-download',
                     'uses' => 'Seating\ReserveSeatingController@ticketdownload'
                 ]);
+            Route::group([
+            'prefix' => 'checkin'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'seating-checkin',
+                    'uses' => 'Seating\SelfCheckinController@index'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'seating-checkin-show',
+                    'uses' => 'Seating\SelfCheckinController@show'
+                ]);
+            });
             });
     });
 
