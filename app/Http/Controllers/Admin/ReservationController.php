@@ -98,13 +98,13 @@ class ReservationController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
             $slug = strtolower($slug); // Just to be sure it is correct
-            $currentseat = Seats::where('slug', $slug)->first();
-            if ($currentseat == null) {
+            $seat = Seats::where('slug', $slug)->first();
+            if ($seat == null) {
                 return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
                                     ->with('message', 'Could not find seat.');
             }
             $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-            return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
+            return view('seating.reservation.show')->with('seat', $seat);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
