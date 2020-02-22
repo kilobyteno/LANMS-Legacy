@@ -182,6 +182,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="expanel expanel-default" data-collapsed="0">
+                            <div class="expanel-heading">
+                                <div class="expanel-title">Address</div>
+                            </div>
+                            <div class="expanel-body">
+                                @if($user->hasAddress())
+                                    <address>
+                                        <strong>{{ $user->address_street }}</strong><br>
+                                        {{ $user->address_postalcode }}, {{ $user->address_city }}<br>
+                                        {{ $user->address_county }}<br>
+                                        {{ $user->address_country }}
+                                    </address>
+                                @else
+                                    <p><em>User has no address.</em></p>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="expanel expanel-default" data-collapsed="0">
@@ -243,21 +260,6 @@
                                         <p class="text-danger">{{ $errors->first('theme') }}</p>
                                     @endif
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="expanel expanel-default" data-collapsed="0">
-                            <div class="expanel-heading">
-                                <div class="expanel-title">Address</div>
-                            </div>
-                            <div class="expanel-body">
-                                <address>
-                                    <strong>{{ $user->address_street }}</strong><br>
-                                    {{ $user->address_postalcode }}, {{ $user->address_city }}<br>
-                                    {{ $user->address_county }}<br>
-                                    {{ $user->address_country }}
-                                </address>
                             </div>
                         </div>
                     </div>

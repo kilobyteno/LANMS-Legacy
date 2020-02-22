@@ -121,7 +121,7 @@
 							<a class="side-menu__item @if(Request::is('admin')){{'active'}} @endif" href="{{ route('admin') }}"><i class="side-menu__icon fa fa-tachometer-alt"></i><span class="side-menu__label">Dashboard</span></a>
 						</li>
 						<li class="slide @if(Request::is('admin/users*')){{'is-expanded'}} @endif">
-							<a class="side-menu__item @if(Request::is('admin/billing*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users-cog"></i><span class="side-menu__label">Members</span><i class="angle fa fa-angle-right"></i></a>
+							<a class="side-menu__item @if(Request::is('admin/users*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users-cog"></i><span class="side-menu__label">Members</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li>
 									<a class="side-menu__item @if(Request::is('admin/users*') && !Request::is('admin/users/roles*')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
