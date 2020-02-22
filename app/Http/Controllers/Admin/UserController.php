@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.users.update'])) {
             $user = User::withTrashed()->find($id);
-            $roles = EloquentRole::all();
+            $roles = EloquentRole::where('name', '<>', 'Default')->get();
             return view('user.edit')->withUser($user)->withRoles($roles);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
