@@ -174,7 +174,7 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
-        if ($user->addresses->count() == 0) {
+        if (!$user->hasAddress()) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
