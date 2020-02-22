@@ -423,7 +423,7 @@ Route::group([
                     'uses' => 'Seating\SelfCheckinController@show'
                 ]);
             });
-            });
+        });
     });
 
 // ADMIN PANEL
