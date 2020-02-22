@@ -68,7 +68,7 @@
             <h3>{{ trans('user.account.billing.payments.payment.title') }} <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> {{ trans('user.account.billing.payments.payment.downloadreceipt') }}</a></h3>
             <hr style="margin-top: 0">
             <p><strong>{{ trans('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
-            <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ moneyFormat(substr($charge['amount'], 0, -2), strtoupper($charge['currency'])) }}</p>
+            <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</p>
             <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</p>
             <p><strong>{{ trans('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? trans('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : trans('global.no')) }}</p>
             <p>
