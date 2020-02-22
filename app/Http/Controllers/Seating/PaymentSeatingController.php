@@ -216,7 +216,7 @@ class PaymentSeatingController extends Controller
         try {
             $pi = Stripe::PaymentIntents()->create([
                 'customer'  => $stripe_customer,
-                'currency'  => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
+                'currency'  => Setting::get('MAIN_CURRENCY'),
                 'amount'    => $seat->tickettype->price,
                 'payment_method_types' => ['card'],
             ]);

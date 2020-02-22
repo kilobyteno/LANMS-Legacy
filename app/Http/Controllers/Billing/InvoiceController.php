@@ -177,7 +177,7 @@ class InvoiceController extends Controller
                     'description' => $request->get('description')[$i],
                     'unit_amount' => ($request->get('price')[$i]*100),
                     'quantity' => $request->get('qty')[$i],
-                    'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                    'currency' => strtolower(\Setting::get('MAIN_CURRENCY')),
                 ]);
             }
             $invoice = Stripe::invoices()->create($stripe_customer, [
@@ -314,7 +314,7 @@ class InvoiceController extends Controller
                         'description' => $request->get('description')[$i],
                         'unit_amount' => ($request->get('price')[$i]*100),
                         'quantity' => $request->get('qty')[$i],
-                        'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                        'currency' => strtolower(\Setting::get('MAIN_CURRENCY')),
                     ]);
                 }
             }

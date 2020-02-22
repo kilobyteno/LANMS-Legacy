@@ -38,7 +38,7 @@
 							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.tickettype') }}:</small><br>{{ $currentseat->tickettype->name }}</h1>
 						</div>
 						<div class="col-6">
-							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }}</h1>
+							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('MAIN_CURRENCY')) }}</h1>
 						</div>						
 					</div>
 					<hr>
