@@ -201,7 +201,7 @@
 												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('header.tickets') }}</a>
 												@if(Setting::get('HEADER_INFO_CONSENT_FORM'))
-													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
+													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('global.download') .' '. trans('seating.reservation.consentform.title') }}</a>
 												@endif
 												<div class="dropdown-divider"></div>
 												@foreach(\LANMS\Page::forMenu() as $page)
