@@ -165,11 +165,12 @@
                                         <p class="text-danger">{{ $errors->first('birthdate') }}</p>
                                     @endif
                                 </div>
-                                <div class="form-group @if($errors->has('phone')) has-error @endif">
+                                <div class="form-group @if($errors->has('phone') || $errors->has('phone_country')) has-error @endif">
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off" value="{{ (old('phone')) ? old('phone') : $user->phone }}" />
-                                    @if($errors->has('phone'))
-                                        <p class="text-danger">{{ $errors->first('phone') }}</p>
+                                    <input type="hidden" name="phone_country" id="phone_country" value="{{ $user->phone_country }}">
+                                    @if($errors->has('phone') || $errors->has('phone_country'))
+                                        <p class="text-danger">{{ $errors->first('phone') }}{{ $errors->first('phone_country') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('about')) has-error @endif">
@@ -304,15 +305,22 @@
     <script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
     <script>
         var input = document.querySelector("#phone");
-        window.intlTelInput(input, {
+        var countryinput = document.querySelector("#phone_country");
+        var iti = window.intlTelInput(input, {
             preferredCountries: ["no"],
-            initialCountry: "auto",
+            initialCountry: "{{ $user->phone_country ?? 'auto' }}",
             geoIpLookup: function(success, failure) {
                 $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
                     var countryCode = (resp && resp.country) ? resp.country : "";
                     success(countryCode);
                 });
             },
+        });
+        countryinput.value = iti.getSelectedCountryData().iso2;
+        // listen to the telephone input for changes
+        input.addEventListener('countrychange', function(e) {
+            countryinput.value = iti.getSelectedCountryData().iso2;
+            console.log('countrychange: '+iti.getSelectedCountryData().iso2);
         });
     </script>
     <script src="{{ Theme::url('js/cleave.js') }}"></script>
