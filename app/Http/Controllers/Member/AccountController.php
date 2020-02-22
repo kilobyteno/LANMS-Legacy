@@ -3,6 +3,7 @@
 namespace LANMS\Http\Controllers\Member;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;

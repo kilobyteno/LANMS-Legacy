@@ -45,8 +45,8 @@
                             @foreach($invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice['number'] }}</td>
-                                    <?php $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first() or null; ?>
-                                    <td>@if($user)<a href="{{ route('admin-user-edit', $user->user->id) }}">{{ $user->user->firstname . ' "' . $user->user->username . '" ' . $user->user->lastname }}</a>@endif</td>
+                                    <?php $user = \LANMS\User::where('stripe_customer', $invoice['customer'])->first() or null; ?>
+                                    <td>@if($user)<a href="{{ route('admin-user-edit', $user->id) }}">{{ $user->firstname . ' "' . $user->username . '" ' . $user->lastname }}</a>@endif</td>
                                     <td>{{ \Carbon::parse($invoice['date'])->toDateTimeString() }}</td>
                                     <td>{{ floatval($invoice['total']/100).' '.strtoupper($invoice['currency']) }}</td>
                                     <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && $invoice['status'] != 'void' && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</span> @else {{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}@endif</td>
