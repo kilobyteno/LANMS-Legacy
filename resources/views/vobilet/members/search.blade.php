@@ -7,7 +7,7 @@
 		<h1 class="page-title">{{ trans('pages.members.search.title') }}: <em>{{ $query }}</em></h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
 			<li class="breadcrumb-item">{{ trans('header.members') }}</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('pages.members.search.title') }}</li>
 		</ol>

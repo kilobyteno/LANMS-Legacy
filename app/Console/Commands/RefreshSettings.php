@@ -9,37 +9,36 @@ use anlutro\LaravelSettings\Facade as Setting;
 class RefreshSettings extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    * The name and signature of the console command.
+    *
+    * @var string
+    */
     protected $signature = 'lanms:refreshsettings';
 
     /**
-     * The console command description.
-     *
-     * @var string
-     */
+    * The console command description.
+    *
+    * @var string
+    */
     protected $description = 'This will update all settings with proper description fields.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    * Create a new command instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    * Execute the console command.
+    *
+    * @return mixed
+    */
     public function handle()
     {
-        
         // Add new settings
         // LANMS-377
         if (!Setting::has('HEADER_INFO_CONSENT_FORM')) {
@@ -82,6 +81,14 @@ class RefreshSettings extends Command
         if (Setting::has('GOOGLE_MAPS_API_KEY')) {
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
+        }
+        if (Setting::has('SEATING_SEAT_PRICE')) {
+            Setting::forget('SEATING_SEAT_PRICE');
+            $this->info('Removed SEATING_SEAT_PRICE.');
+        }
+        if (Setting::has('SEATING_SEAT_PRICE_ALT')) {
+            Setting::forget('SEATING_SEAT_PRICE_ALT');
+            $this->info('Removed SEATING_SEAT_PRICE_ALT.');
         }
         // LANMS-434
         if (Setting::has('MAIL_SUPPORT_EMAIL')) {
@@ -128,6 +135,12 @@ class RefreshSettings extends Command
             $this->info('Renmamed FACEBOOK_PAGE_ID to FACEBOOK_MESSENGER_PAGE_ID');
         }
 
+        if (Setting::has('SEATING_SEAT_PRICE_CURRENCY')) {
+            Setting::set('MAIN_CURRENCY', Setting::get('SEATING_SEAT_PRICE_CURRENCY'));
+            Setting::forget('SEATING_SEAT_PRICE_CURRENCY');
+            $this->info('Renmamed SEATING_SEAT_PRICE_CURRENCY to MAIN_CURRENCY');
+        }
+
         Setting::save();
 
         // Add description to settings
@@ -146,9 +159,7 @@ class RefreshSettings extends Command
             'REFERRAL_ACTIVE' => 'You can enable or disable the view of referral on the users dashboard.',
             'SEATING_OPEN' => 'Set this to "0" (without quotes) to disable users from making changes to reservations. If it is set to "1" (without quotes) users will be able to make changes to their reservations.',
             'SEATING_SEAT_EXPIRE_HOURS' => 'Integer only. Set this to the amount of hours you want temporary reserved seats to last.',
-            'SEATING_SEAT_PRICE' => 'Integer only. Set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_ALT' => 'Integer only. if you have a alternate price at the entrance set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
+            'MAIN_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
             'SEATING_SELF_CHECKIN_OPEN' => 'Set this to "0" (without quotes) to disable users from seeing and using the self-checkin. If it is set to "1" (without quotes) it will be enabled.',

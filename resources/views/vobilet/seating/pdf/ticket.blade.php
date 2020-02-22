@@ -42,7 +42,7 @@
 				</div>
 				<div class="aclm">
 					@if(is_null($payment))
-						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($seat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }})</span></strong></h2>
+						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($seat->tickettype->price, Setting::get('MAIN_CURRENCY')) }})</span></strong></h2>
 					@else
 						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 					@endif

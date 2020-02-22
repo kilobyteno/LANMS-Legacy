@@ -170,8 +170,7 @@ class ReserveSeatingController extends Controller
         $payment = $seat->reservationsThisYear()->first()->payment;
         if (Sentinel::getUser()->id == $reservedfor->id && !is_null($ticket)) {
             $html = view('seating.pdf.ticket')->with('seat', $seat)->with('payment', $payment)->with('reservedfor', $reservedfor)->with('ticket', $ticket)->render();
-            $pdf = PDF::loadHTML($html);
-            return $pdf->stream();
+            return PDF::loadHTML($html)->download();
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.ticketnoaccess'));
@@ -202,7 +201,7 @@ class ReserveSeatingController extends Controller
             $user = null;
         }
         $html = view('seating.pdf.consentform')->withUser($user)->render();
-        return PDF::loadHTML($html)->stream();
+        return PDF::loadHTML($html)->download();
     }
 
     public function destroy($id)

@@ -43,9 +43,8 @@ class UpdateNotifications extends Command
     public function handle()
     {
         foreach (User::active() as $user) {
-            if ($user->stripecustomer) {
-                $stripe_customer_code = $user->stripecustomer->cus;
-                $invoices = Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
+            if ($user->stripe_customer) {
+                $invoices = Stripe::invoices()->all(array('customer' => $user->stripe_customer, 'limit' => 100));
                 $invoices = $invoices['data'];
                 foreach ($invoices as $invoice) {
                     if ($invoice['paid'] == false && $invoice['status'] != 'draft' && $invoice['status'] != 'void') {
@@ -53,13 +52,18 @@ class UpdateNotifications extends Command
                             'amount_due' => $invoice['amount_due'],
                             'due_date' => $invoice['due_date'],
                             'currency' => $invoice['currency'],
-                            'url' => route('account-billing-invoice-view', $invoice['id']),
+                            'id' => $invoice['id'],
+                            'route' => 'account-billing-invoice-view',
                         ];
                         $db_data = collect($data)->toJson();
                         // Check if there is a notification already
-                        $notification = DB::table('notifications')->where('data', $db_data)->where('read_at', null)->first();
-                        if (!$notification) {
+                        $notifications = DB::table('notifications')->where('notifiable_type', 'LANMS\User')->where('notifiable_id', $user->id)->where('read_at', null)->where('data', string($db_data))->count();
+                        $this->info('Notification count for '.$user->username.': '.$notifications);
+                        if ($notifications === 0) {
+                            $this->info('Sending notification to '.$user->username.' for invoice '.$invoice['id']);
                             Notification::send($user, new InvoiceUnpaid($invoice));
+                        } else {
+                            $this->info('No notification was sent for invoice '.$invoice['id']);
                         }
                     }
                 }

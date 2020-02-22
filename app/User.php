@@ -2,26 +2,23 @@
 
 namespace LANMS;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;
 use Cartalyst\Sentinel\Persistences\PersistableInterface;
-use Cartalyst\Sentinel\Roles\RoleableInterface;
 use Cartalyst\Sentinel\Roles\RoleInterface;
+use Cartalyst\Sentinel\Roles\RoleableInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Dialect\Gdpr\Anonymizable;
+use Dialect\Gdpr\Portable;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Spatie\Activitylog\Traits\LogsActivity;
-
-use Dialect\Gdpr\Portable;
-use Dialect\Gdpr\Anonymizable;
-
-use Illuminate\Contracts\Translation\HasLocalePreference;
-
+use LANMS\StripeCustomer;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
@@ -78,6 +75,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'language',
         'theme',
         'clothing_size',
+        'stripe_customer',
         'about',
         'address_street',
         'address_postalcode',
@@ -120,6 +118,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'language',
         'theme',
         'clothing_size',
+        'stripe_customer',
         'about',
         'address_street',
         'address_postalcode',
@@ -129,6 +128,43 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'accepted_gdpr',
         'isAnonymized'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            if (!$model->stripe_customer) {
+                $customer = Stripe::customers()->create([
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+                $stripe_customer = $customer['id'];
+                $model->stripe_customer = $stripe_customer;
+            }
+        });
+
+        self::updating(function ($model) {
+            $sc = StripeCustomer::where('user_id', $model->id)->first();
+            if ($sc && !$model->stripe_customer) {
+                $stripe_customer = $sc->cus;
+                $model->stripe_customer = $stripe_customer;
+                $sc->delete();
+            } elseif (!$sc && !$model->stripe_customer) {
+                $customer = Stripe::customers()->create([
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+                $stripe_customer = $customer['id'];
+                $model->stripe_customer = $stripe_customer;
+            } else {
+                Stripe::customers()->update($model->stripe_customer, [
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+            }
+        });
+    }
 
     /**
      * Get the user's preferred locale.

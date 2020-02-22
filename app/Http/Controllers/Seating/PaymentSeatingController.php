@@ -91,23 +91,7 @@ class PaymentSeatingController extends Controller
                                 ->with('message', trans('seating.alert.noreservation'));
         }
 
-        $stripecust = StripeCustomer::where('user_id', Sentinel::getUser()->id)->first();
-        
-        if ($stripecust == null) {
-            $customer = Stripe::customers()->create([
-                'email' => Sentinel::getUser()->email,
-            ]);
-            $stripecustomer             = new StripeCustomer;
-            $stripecustomer->cus        = $customer['id'];
-            $stripecustomer->user_id    = Sentinel::getUser()->id;
-            $stripecustomer->save();
-
-            $stripecust = $stripecustomer;
-        }
-
-        /*$getcards = \Stripe::cards()->all($stripecust->cus);
-        $carddata = $getcards['data'];
-        dd($carddata);*/
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
         $cardNumber         = str_replace(' ', '', $request->get('number'));
         $cardMonthExpiry    = $request->get('expiryMonth');
@@ -160,7 +144,7 @@ class PaymentSeatingController extends Controller
                     'exp_year'  => $cardYearExpiry,
                 ],
             ]);
-            $card = Stripe::cards()->create($stripecust->cus, $token['id']);
+            $card = Stripe::cards()->create($stripe_customer, $token['id']);
         } catch (CardErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -188,7 +172,7 @@ class PaymentSeatingController extends Controller
         }
 
         try {
-            $customer = Stripe::customers()->update($stripecust->cus, [
+            $customer = Stripe::customers()->update($stripe_customer, [
                 'default_source' => $card['id'],
             ]); // Set the card as default
         } catch (CardErrorException $e) {
@@ -231,8 +215,8 @@ class PaymentSeatingController extends Controller
 
         try {
             $pi = Stripe::PaymentIntents()->create([
-                'customer'  => $stripecust->cus,
-                'currency'  => Setting::get('SEATING_SEAT_PRICE_CURRENCY'),
+                'customer'  => $stripe_customer,
+                'currency'  => Setting::get('MAIN_CURRENCY'),
                 'amount'    => $seat->tickettype->price,
                 'payment_method_types' => ['card'],
             ]);
@@ -388,8 +372,8 @@ class PaymentSeatingController extends Controller
                                 ->with('message', trans('seating.alert.noreservation'));
         }
 
-        $reservation                    = $seat->reservationsThisYear->first();
-        $reservationid                  = $reservation->id;
+        $reservation = $seat->reservationsThisYear->first();
+        $reservationid = $reservation->id;
 
         if (SeatReservation::getRealExpireTime($reservationid) == "expired") {
             return Redirect::route('seating')->with('messagetype', 'warning')

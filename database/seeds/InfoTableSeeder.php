@@ -50,35 +50,35 @@ class InfoTableSeeder extends Seeder
 
         Info::create([
             'name'      => 'address_street',
-            'content'   => '',
+            'content'   => 'Jernbanegata 15D',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
 
         Info::create([
             'name'      => 'address_postal_code',
-            'content'   => '',
+            'content'   => '3060',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
         
         Info::create([
             'name'      => 'address_city',
-            'content'   => '',
+            'content'   => 'Svelvik',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
 
         Info::create([
             'name'      => 'address_county',
-            'content'   => '',
+            'content'   => 'Viken',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
 
         Info::create([
             'name'      => 'address_country',
-            'content'   => '',
+            'content'   => 'Norway',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
