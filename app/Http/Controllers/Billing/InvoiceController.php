@@ -2,6 +2,7 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
@@ -16,8 +17,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $user = \Sentinel::getUser();
+        $scus = $user->stripecustomer;
 
         if ($scus) {
             $sccus = $scus->cus;
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -54,7 +55,7 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -74,7 +75,7 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -101,8 +102,33 @@ class InvoiceController extends Controller
             return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
         }
+        try {
+            \Stripe::invoices()->pay($id);
+        } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
+            // Get the status code
+            $code = $e->getCode();
 
-        \Stripe::invoices()->pay($id);
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'danger')
+                                ->with('message', $message);
+        } catch (\Cartalyst\Stripe\Exception\InvalidRequestException $e) {
+            // Get the status code
+            $code = $e->getCode();
+
+            // Get the error message returned by Stripe
+            $message = $e->getMessage();
+
+            // Get the error type returned by Stripe
+            $type = $e->getErrorType();
+
+            return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'danger')
+                                ->with('message', $message);
+        }
         return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.invoice.alert.paid'));
     }
@@ -149,7 +175,7 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
-        if ($user->addresses->count() == 0) {
+        if (!$user->hasAddress()) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
@@ -157,6 +183,7 @@ class InvoiceController extends Controller
         if ($stripecust == null) {
             $customer = \Stripe::customers()->create([
                 'email' => $user->email,
+                'name' => $user->firstname.' '.$user->lastname,
             ]);
             $stripecustomer             = new \LANMS\StripeCustomer;
             $stripecustomer->cus        = $customer['id'];
@@ -357,6 +384,15 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Stripe::invoices()->delete($id);
+        return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been voided.');
+    }
+
+    public function finalize($id)
+    {
+        \Stripe::invoices()->finalize($id);
+        return Redirect::route('admin-billing-invoice-show', $id)->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been finalized and sent.');
     }
 }

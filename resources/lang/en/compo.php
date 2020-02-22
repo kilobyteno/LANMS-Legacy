@@ -4,6 +4,7 @@ return [
 
     'title' => 'Compo',
     'starts' => 'Starts',
+    'firstsignup' => 'Registration start',
     'lastsignup' => 'Last registration',
     'ends' => 'Ends',
     'rules' => 'Rules',
@@ -53,6 +54,7 @@ return [
         'alert' => [
             'signedup' => '{1} Your team is now signed up!|{2} You are now signed up!',
             'alreadysignedup' => 'You have already signed up for this compo.',
+            'firstsignupbefore' => 'You must wait until the first registration time has passed.',
             'lastsignuppast' => 'Last sign up time has past, no sign up is possible.',
             'signupsize' => 'Your team is not the correct size.',
             'cancelled' => '{1} Your team has now withdrawn the attendance!|{2} You have now withdrawn your attendance!',

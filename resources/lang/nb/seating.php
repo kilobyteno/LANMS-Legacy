@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse. Du burde <a href=":url" class="alert-link">legge til</a> en.',
+        'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse. Du må <a href=":url" class="alert-link">legge til</a> en.',
         'closed' => 'Sitteområdet er stengt for øyeblikket, du kan ikke reservere plasser eller endre reservasjoner.',
         'seatnotfound' => 'Fant ikke setet.',
         'seatingclosed' => 'Det er ikke mulig å reservere plasser på dette tidspunktet.',
@@ -62,12 +62,13 @@ return [
         'alert' => array(
             'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
             'alreadyreserved' => 'Stolen er allerede reservert.',
+            'youcannotpay' => 'Du kan ikke betale for denne reservasjonen, personen som har reservert det må gjøre det.',
             'nobirthday' => 'Du må ha en fødselsdato tildelt kontoen din for å kunne reservere et sete.',
             'noaddresses' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse.',
             'limit' => 'Du har nådd reservasjonsgrensen. Så du har ikke lov til å reservere flere seter.',
             'limitself' => 'Du kan ikke reservere mer enn ett sete til deg selv. Vennligst velg et annet medlem du vil reservere dette setet for.',
-            'nobirthdayfor' => 'Det ser ut som :name har ikke fødselsdato tildelt sin konto, de trenger det for å kunne reservere et sete.',
-            'noaddressesfor' => 'Det ser ut som :name har ingen adresser knyttet til kontoen sin. De kan ikke reservere noe sete før de har lagt til en primæradresse.',
+            'nobirthdayfor' => 'Det ser ut som :name har ikke fødselsdato lagret på sin konto, de trenger det for å kunne reservere et sete.',
+            'noaddressesfor' => 'Det ser ut som :name har ingen adresser lagret på til kontoen sin. De kan ikke reservere noe sete før de har lagt til en primæradresse.',
             'limitreservedfor' => ':name har ikke lov til å reservere flere seter.',
             'alreadyreservedfor' => ':name har allerede reservert plass.',
             'success' => 'Du har reservert dette setet!',
@@ -88,7 +89,7 @@ return [
         'seat' => 'Sete',
         'reserved' => 'Dette setet er :type for dette medlemmet.',
         'reservedfor' => 'Reservert for',
-        'agreement' => 'Jeg har lest og godkjent <strong>kjøpsbetingelser</strong> og <strong>regler</strong> for dette arrangementet.',
+        'agreement' => 'Jeg har lest og akseptert <strong>kjøpsbetingelser</strong> og <strong>regler</strong> for dette arrangementet.',
         'button' => 'Reserver sete',
         'alert' => array(
             'cannotbereserved' => 'Dette setet kan ikke reserveres!',

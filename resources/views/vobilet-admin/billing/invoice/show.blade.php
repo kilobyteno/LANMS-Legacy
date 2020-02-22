@@ -8,7 +8,8 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 	        <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-	        <li class="breadcrumb-item">{{ trans('user.account.billing.invoice.title') }}</li>
+	        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
+        	<li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">#{{ $invoice['number'] }}</li>
         </ol>
     </div>
@@ -25,6 +26,11 @@
         	<div class="card">
         		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
 					<h3 class="card-title">{{ trans('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
+					<div class="card-options">
+						@if(Sentinel::hasAccess('admin.billing.create') && $invoice['status'] == 'draft')
+                            <a href="{{ route('admin-billing-invoice-finalize', $invoice['id']) }}" class="btn btn-light btn-sm"><i class="fas fa-paper-plane mr-2"></i>{{ trans('global.send') }}</a>
+                        @endif
+					</div>
 				</div>
 				<div class="card-body">
 					<div class="row ">

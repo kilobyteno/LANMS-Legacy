@@ -160,6 +160,8 @@ class UserTableSeeder extends Seeder
         $role->addPermission('admin.sponsor.destroy');
         $role->addPermission('admin.sponsor.restore');
 
+        $role->addPermission('admin.sms.create');
+
         $role->addPermission('admin.users.update');
         $role->addPermission('admin.users.destroy');
         $role->addPermission('admin.users.restore');
@@ -220,6 +222,9 @@ class UserTableSeeder extends Seeder
             $role->addPermission('admin.seating.seat.create');
             $role->addPermission('admin.seating.seat.update');
             $role->addPermission('admin.seating.seat.destroy');
+
+            $role->addPermission('admin.users.update');
+            $role->addPermission('admin.users.destroy');
 
             $role->addPermission('admin.seating.styling');
 

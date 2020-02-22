@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 col-lg-9 col-sm-12">
+		<div class="col-md-12 col-lg-8 col-sm-12">
 			@foreach($news as $article)
 				<div class="card">
 					<div class="card-header">
@@ -31,7 +31,7 @@
 				</div>
 			@endforeach
 		</div>
-		<div class="col-md-12 col-lg-3  col-sm-12">
+		<div class="col-md-12 col-lg-4 col-sm-12">
 			<div class="card">
 				<div class="card-header">
 					<h2 class="card-title">{{ trans('pages.home.info') }}</h2>
@@ -47,7 +47,12 @@
 					<iframe src="https://discordapp.com/widget?id={{ \LANMS\Info::where('name', 'social_discord_server_id')->first()->content }}&theme=@if(Sentinel::check())@if(Sentinel::getUser()->theme == 'default'){{ 'light' }}@else{{ Sentinel::getUser()->theme }}@endif @else{{ 'light' }}@endif" height="300" allowtransparency="true" frameborder="0" style="width: 100%"></iframe>
 				</div>
 			@endif
-			@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
+			@if(Setting::get('MAIN_ENABLE_GRASROTANDELEN_WIDGET') && Setting::get('MAIN_ORGNR'))
+				<div class="justify-content-center text-center mb-4">
+					<iframe frameborder="0" scrolling="no" src="https://www.norsk-tipping.no/grasrotandelen/stats-iframe?title=lowercase#receiver={{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 500px; height: auto;" class="rounded"></iframe>
+				</div>
+			@endif
+			@if(LANMS\Sponsor::thisYear()->count() > 0)
 				<h4>{{ trans('header.sponsor') }}</h4>
 				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
 					<div class="card">

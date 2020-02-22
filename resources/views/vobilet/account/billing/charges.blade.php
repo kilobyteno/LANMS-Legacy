@@ -7,7 +7,6 @@
         <h4 class="page-title">{{ trans('user.account.billing.charges.title') }}</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
             <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.charges.title') }}</li>
@@ -38,8 +37,8 @@
                                     <tr>
                                         <td>{{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</td>
                                         <td>{{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</td>
-                                        <td>&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $charge['source']['last4'] }}</td>
-                                        <td>{{ $charge['source']['exp_month'] }} / {{ $charge['source']['exp_year'] }}</td>
+                                        <td>&#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; &#8226;&#8226;&#8226;&#8226; {{ $charge['payment_method_details']['card']['last4'] }}</td>
+                                        <td>{{ $charge['payment_method_details']['card']['exp_month'] }} / {{ $charge['payment_method_details']['card']['exp_year'] }}</td>
                                         <td>{{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</td>
                                         <td>{{ ($charge['refunded'] ? trans('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : trans('global.no')) }}</td>
                                         <td>

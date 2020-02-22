@@ -7,7 +7,7 @@
 		<h4 class="page-title">{{ trans('user.profile.edit.title') }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
 			<li class="breadcrumb-item"><a href="{{ route('user-profile', Sentinel::getUser()->username) }}">{{ trans('user.profile.title') }}</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ trans('user.profile.edit.title') }}</li>
 		</ol>
@@ -131,12 +131,29 @@
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
-								<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+								<label class="form-label">{{ trans('global.phone') }} @if(!$phone_verified_at) <a class="badge badge-danger" href="{{ route('account-verifyphone') }}">{{ ucfirst(trans('global.notverified')) }}</a> @else &middot; <span class="text-success">{{ ucfirst(trans('global.verified')) }}</span> @endif <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 								<div class="input-group">
-									<input class="form-control" type="tel" id="phone" name="phone" placeholder="+4722225555" value="{{ $phone ?? old('phone') }}">
+									<input class="form-control" type="tel" id="phone" name="phone" placeholder="22225555" value="{{ $phone ?? old('phone') }}">
+									<input type="hidden" name="phone_country" id="phone_country" value="{{ $phone_country ?? old('phone_country') }}">
 								</div>
 								@if($errors->has('phone'))
 									<p class="text-danger">{{ $errors->first('phone') }}</p>
+								@endif
+							</div>
+							<div class="form-group @if ($errors->has('clothing_size')) has-error @endif">
+								<label class="form-label">{{ trans('global.clothingsize.title') }}</label>
+								<select class="form-control" name="clothing_size">
+									<option value="0">{{ trans('global.clothingsize.nochoice') }}</option>
+									<option value="1" {{ ($clothing_size === 1) ? 'selected' : '' }}>{{ trans('global.clothingsize.xs') }}</option>
+									<option value="2" {{ ($clothing_size === 2) ? 'selected' : '' }}>{{ trans('global.clothingsize.s') }}</option>
+									<option value="3" {{ ($clothing_size === 3) ? 'selected' : '' }}>{{ trans('global.clothingsize.m') }}</option>
+									<option value="4" {{ ($clothing_size === 4) ? 'selected' : '' }}>{{ trans('global.clothingsize.l') }}</option>
+									<option value="5" {{ ($clothing_size === 5) ? 'selected' : '' }}>{{ trans('global.clothingsize.xl') }}</option>
+									<option value="6" {{ ($clothing_size === 6) ? 'selected' : '' }}>{{ trans('global.clothingsize.xxl') }}</option>
+									<option value="7" {{ ($clothing_size === 7) ? 'selected' : '' }}>{{ trans('global.clothingsize.3xl') }}</option>
+								</select>
+								@if($errors->has('clothing_size'))
+									<p class="text-danger">{{ $errors->first('clothing_size') }}</p>
 								@endif
 							</div>
 						</div>
@@ -170,13 +187,65 @@
 							</div>
 							<div class="form-group @if($errors->has('about')) has-error @endif">
 								<label class="form-label">{{ trans('global.about') }}</label>
-								<textarea class="form-control" rows="2" name="about">{{ $about ?? old('about') }}</textarea>
+								<textarea class="form-control" rows="4" name="about">{{ $about ?? old('about') }}</textarea>
 								@if($errors->has('about'))
 									<p class="text-danger">{{ $errors->first('about') }}</p>
 								@endif
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">{{ trans('user.profile.edit.address.title') }}</h3>
+				</div>
+				<div class="card-body">
+					
+					<div class="form-group @if($errors->has('address_street')) has-error @endif">
+						<label class="form-label">{{ trans('global.address.street') }}</label>
+						<input class="form-control" type="text" name="address_street" placeholder="Jernbanegata 15" value="{{ $address_street ?? old('address_street') }}">
+						@if($errors->has('address_street'))
+							<p class="text-danger">{{ $errors->first('address_street') }}</p>
+						@endif
+					</div>
+
+					<div class="row">
+						<div class="col-md-6 form-group @if($errors->has('address_postalcode')) has-error @endif">
+							<label class="form-label">{{ trans('global.address.postalcode') }}</label>
+							<input class="form-control" type="text" name="address_postalcode" placeholder="2609" value="{{ $address_postalcode ?? old('address_postalcode') }}">
+							@if($errors->has('address_postalcode'))
+								<p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
+							@endif
+						</div>
+
+						<div class="col-md-6 form-group @if($errors->has('address_city')) has-error @endif">
+							<label class="form-label">{{ trans('global.address.city') }}</label>
+							<input class="form-control" type="text" name="address_city" placeholder="Lillehammer" value="{{ $address_city ?? old('address_city') }}">
+							@if($errors->has('address_city'))
+								<p class="text-danger">{{ $errors->first('address_city') }}</p>
+							@endif
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 form-group @if($errors->has('address_county')) has-error @endif">
+							<label class="form-label">{{ trans('global.address.county') }}</label>
+							<input class="form-control" type="text" name="address_county" placeholder="Oppland" value="{{ $address_county ?? old('address_county') }}">
+							@if($errors->has('address_county'))
+								<p class="text-danger">{{ $errors->first('address_county') }}</p>
+							@endif
+						</div>
+
+						<div class="col-md-6 form-group @if($errors->has('address_country')) has-error @endif">
+							<label class="form-label">{{ trans('global.address.country') }}</label>
+							<input class="form-control" type="text" name="address_country" placeholder="Norway" value="{{ $address_country ?? old('address_country') }}">
+							@if($errors->has('address_country'))
+								<p class="text-danger">{{ $errors->first('address_country') }}</p>
+							@endif
+						</div>
+					</div>
+
 				</div>
 			</div>
 
@@ -214,15 +283,22 @@
 	<script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
 	<script>
 		var input = document.querySelector("#phone");
-		window.intlTelInput(input, {
+		var countryinput = document.querySelector("#phone_country");
+		var iti = window.intlTelInput(input, {
 			preferredCountries: ["no"],
-			initialCountry: "auto",
+			initialCountry: "{{ $phone_country ?? 'auto' }}",
 			geoIpLookup: function(success, failure) {
 				$.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
 					var countryCode = (resp && resp.country) ? resp.country : "";
 					success(countryCode);
 				});
 			},
+		});
+		countryinput.value = iti.getSelectedCountryData().iso2;
+		// listen to the telephone input for changes
+		input.addEventListener('countrychange', function(e) {
+			countryinput.value = iti.getSelectedCountryData().iso2;
+			console.log('countrychange: '+iti.getSelectedCountryData().iso2);
 		});
 	</script>
 	<script src="{{ Theme::url('js/cleave.js') }}"></script>

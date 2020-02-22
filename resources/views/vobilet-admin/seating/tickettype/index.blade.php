@@ -88,7 +88,9 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
-		        "order": [3, "asc"]
+		        "order": [3, "asc"],
+		        responsive: true,
+		    	"iDisplayLength": 25
 		    });
 		} );
 	</script>

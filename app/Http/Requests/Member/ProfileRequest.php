@@ -29,7 +29,8 @@ class ProfileRequest extends Request
             'firstname'         => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'lastname'          => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
-            'phone'             => 'required|phone:AUTO,NO',
+            'phone'             => 'required|phone:LENIENT,NO',
+            'phone_country'     => 'required_with:phone',
             'gender'            => '',
             'location'          => 'regex:/^[A-Za-z ,\']+$/|nullable',
             'occupation'        => 'regex:/^[A-Za-z ,\']+$/|nullable',
@@ -39,6 +40,12 @@ class ProfileRequest extends Request
             'language'          => '',
             'theme'             => '',
             'about'             => 'nullable',
+            'clothing_size' => 'nullable',
+            'address_street' => 'nullable|regex:/^((.){1,}(\d){1,}(.){0,})$/|max:150',
+            'address_postalcode' => 'nullable|alpha_dash|min:4',
+            'address_city' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
+            'address_county' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
+            'address_country' => 'nullable|alpha',
         ];
     }
 }

@@ -2,9 +2,11 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Exception\ServerErrorException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Seating\PaymentRequest;
 
@@ -17,8 +19,8 @@ class CardController extends Controller
      */
     public function index()
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $user = \Sentinel::getUser();
+        $scus = $user->stripecustomer;
 
         if ($scus) {
             $sccus = $scus->cus;
@@ -37,8 +39,8 @@ class CardController extends Controller
      */
     public function create()
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
-            return \Redirect::route('account-billing-card')->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAddress()) {
+            return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
         return view('account.billing.card.create');
@@ -52,8 +54,8 @@ class CardController extends Controller
      */
     public function store(PaymentRequest $request)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
-            return \Redirect::route('account-billing-card')->with('messagetype', 'warning')
+        if (!Sentinel::getUser()->hasAddress()) {
+            return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
 
@@ -97,7 +99,7 @@ class CardController extends Controller
             // Get the error type returned by Stripe
             $type = $e->getErrorType();
 
-            return \Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
+            return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
                                 ->with('message', trans('seating.alert.carderror').': '.$message);
         }
 
@@ -129,7 +131,7 @@ class CardController extends Controller
                                 ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
         }
 
-        return \Redirect::route('account-billing-card')->with('messagetype', 'success')
+        return Redirect::route('account-billing-card')->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.card.alert.added'));
     }
 
@@ -175,12 +177,12 @@ class CardController extends Controller
      */
     public function destroy($id)
     {
-        $user       = \Sentinel::getUser();
-        $scus       = $user->stripecustomer;
+        $user = \Sentinel::getUser();
+        $scus = $user->stripecustomer;
         if ($scus) {
             $sccus = $scus->cus;
             $cards = \Stripe::cards()->delete($scus->cus, $id);
-            return \Redirect::route('account-billing-card')->with('messagetype', 'success')
+            return Redirect::route('account-billing-card')->with('messagetype', 'success')
                                 ->with('message', trans('user.account.billing.card.alert.deleted'));
         } else {
             abort(403);

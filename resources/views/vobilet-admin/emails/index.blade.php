@@ -57,7 +57,8 @@
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
 		    	responsive: true,
-		    	"order": [0, "desc"]
+		    	"order": [0, "desc"],
+		    	"iDisplayLength": 25
 		    });
 		} );
 	</script>

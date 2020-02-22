@@ -97,6 +97,21 @@ class SeatReservation extends Model
         }
     }
 
+    public function scopeIsPaid($query)
+    {
+        return $query->where('payment_id', '<>', 0);
+    }
+
+    public function scopeOnlyReserved($query)
+    {
+        return $query->where('status_id', 1);
+    }
+
+    public function scopeOnlyTempReserved($query)
+    {
+        return $query->where('status_id', 2);
+    }
+
     public function scopeGetExpireTime($query, $id)
     {
         $reservation = $query->where('id', '=', $id)->first();
