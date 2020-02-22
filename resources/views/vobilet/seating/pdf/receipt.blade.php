@@ -75,11 +75,11 @@
             </tr>
             <tr class="item last">
                 <td>{{ trans('pdf.receipt.ticket') }} {{ $payment->reservation->year }} - {{ $payment->reservation->seat->name }}</td>
-                <td>{{ substr($charge['amount'], 0, -2) }} {{ strtoupper($charge['currency']) }}</td>
+                <td>{{ moneyFormat(substr($charge['amount'], 0, -2), strtoupper($charge['currency'])) }}</td>
             </tr>
             <tr class="total">
                 <td></td>
-                <td>{{ trans('pdf.receipt.total') }}: {{ substr($charge['amount'], 0, -2) }} {{ strtoupper($charge['currency']) }}</td>
+                <td>{{ trans('pdf.receipt.total') }}: {{ moneyFormat(substr($charge['amount'], 0, -2), strtoupper($charge['currency'])) }}</td>
             </tr>
         </table>
     </div>
