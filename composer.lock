@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c756001fb0eb811f82f7b2df32d5f50d",
+    "content-hash": "24deb0d7b73d118671a698418f1cd17b",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -54,6 +54,7 @@
                 "laravel",
                 "toolkit"
             ],
+            "abandoned": true,
             "time": "2015-05-16T19:24:58+00:00"
         },
         {
