@@ -182,9 +182,6 @@
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
 						</li>
-						<li>
-							<a class="side-menu__item @if(Request::is('admin/users')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
-						</li>
 						@if(Sentinel::getUser()->hasAccess(['admin.emails.*']))
 							<li>
 								<a class="side-menu__item @if(Request::is('admin/email*')){{'active'}} @endif" href="{{ route('admin-emails') }}"><i class="side-menu__icon fas fa-envelope"></i><span class="side-menu__label">Emails</span></a>
