@@ -18,14 +18,17 @@
 					<div class="d-flex flex-row align-items-center justify-content-center" style="min-height: 300px">
 						<div class="col-6">
 							<h3 class="text-white">{{ trans('seating.checkin.subtitle') }}</h3>
-							<div class="input-group">
-								<input type="text" class="form-control br-tl-7 br-bl-7" placeholder="">
-								<div class="input-group-append ">
-									<button type="button" class="btn btn-primary br-tr-7 br-br-7">
-										<i class="fa fa-search" aria-hidden="true"></i>
-									</button>
+							<form method="post" action="{{ route('seating-checkin-verifyphone') }}">
+								<div class="input-group">
+									<input type="text" class="form-control br-tl-7 br-bl-7" placeholder="" name="id" autocomplete="off">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<div class="input-group-append ">
+										<button type="submit" class="btn btn-primary br-tr-7 br-br-7">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
