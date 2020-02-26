@@ -19,7 +19,7 @@ return [
         'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
         'unpaidinvoice' => 'Du har en eller flere ubetalte fakturaer, betal disse først. Du vil kunne reservere plass når dette er tatt hånd om.',
         'tickets' => 'For mer informasjon om de forskjellige billetttypene, besøk <a href=":url">denne siden</a>.',
-        'entrancepaymentnotallowed' => 'Denne billetten kan ikke betales ved inngangen akkurat nå. Betal med kort i stedet.',
+        'entrancepaymentnotallowed' => 'Denne billetten kan ikke betales ved inngangen. Betal med kort i stedet.',
     ),
 
     'closed' => 'Sitteområdet er ikke tilgjengelig for øyeblikket!',
