@@ -137,7 +137,7 @@
 								<select name="reservedfor" class="select2">
 									<option value="0">-- {{ trans('global.pleaseselect') }} --</option>
 									@foreach(User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
-										<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
+										<option value="{{ $user->id }}" {{ ($user->id == Sentinel::getUser()->id) ? 'selected' : '' }} >{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 									@endforeach
 								</select>
 								@if($errors->has('reservedfor'))
