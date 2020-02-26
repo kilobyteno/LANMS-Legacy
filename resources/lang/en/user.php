@@ -179,8 +179,8 @@ return [
                 'show' => 'Show',
                 'fullname' => 'Fullname',
                 'onlinestatus' => 'Online Status',
-                'language' => 'Preffered Language',
-                'theme' => 'Preffered Theme',
+                'language' => 'Preferred Language',
+                'theme' => 'Preferred Theme',
             ),
 
             'confirmpassword' => array(
