@@ -127,6 +127,12 @@ return [
     'checkin' => array(
         'title' => 'Self check-in',
         'subtitle' => 'Enter your check-in code here',
+        'alert' => array(
+            'success' => 'Success! Please see your nearest crew for your band.',
+            'notfound' => 'Not found.',
+            'notallowed' => 'You are not allowed to self check-in, either you are too young, not have verified your phone or you have not paid.',
+            'failed' => 'Self check-in failed.',
+        ),
     ),
 
 ];

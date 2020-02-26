@@ -127,6 +127,12 @@ return [
     'checkin' => array(
         'title' => 'Innskjekking',
         'subtitle' => 'Skriv inn innsjekkskoden her',
+        'alert' => array(
+            'success' => 'Suksess! Vennligst se ditt nærmeste mannskap for bandet ditt.',
+            'notfound' => 'Ikke funnet.',
+            'notallowed' => 'Du har ikke lov til å sjekke inn selv, enten er du for ung, ikke har bekreftet telefonen, eller så har du ikke betalt.',
+            'failed' => 'Innskjekking feilet.',
+        ),
     ),
 
 ];
