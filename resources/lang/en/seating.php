@@ -127,6 +127,7 @@ return [
     'checkin' => array(
         'title' => 'Self check-in',
         'subtitle' => 'Enter your check-in code here',
+        'info' => 'You need to your phone verified, be 15 years or older and paid for your ticket to use this check-in.',
         'alert' => array(
             'success' => 'Success! Please see your nearest crew for your band.',
             'notfound' => 'Not found.',

@@ -13,6 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
+			<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.checkin.info') }}</div>
 			<div class="card card-profile " style="background: url({{ '/images/profilecover/0.jpg' }}); background-size:cover;min-height: 300px">
 				<div class="card-body text-center">
 					<div class="d-flex flex-row align-items-center justify-content-center" style="min-height: 300px">

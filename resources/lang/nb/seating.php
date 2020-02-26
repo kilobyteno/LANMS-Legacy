@@ -127,6 +127,7 @@ return [
     'checkin' => array(
         'title' => 'Innskjekking',
         'subtitle' => 'Skriv inn innsjekkskoden her',
+        'info' => 'Du må ha bekreftet telefonen din, være minst 15 år og ha betalt for billetten din for å bruke denne innsjekkingen.',
         'alert' => array(
             'success' => 'Suksess! Vennligst se ditt nærmeste mannskap for bandet ditt.',
             'notfound' => 'Ikke funnet.',
