@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse. Du må <a href=":url" class="alert-link">legge til</a> en.',
+        'noaddress' => 'Det ser ut til at du ikke har adresse knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en adresse. Du må <a href=":url" class="alert-link">legge til</a> en.',
         'closed' => 'Sitteområdet er stengt for øyeblikket, du kan ikke reservere plasser eller endre reservasjoner.',
         'seatnotfound' => 'Fant ikke setet.',
         'seatingclosed' => 'Det er ikke mulig å reservere plasser på dette tidspunktet.',

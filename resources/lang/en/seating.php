@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href=":url" class="alert-link">add</a> one.',
+        'noaddress' => 'It seems like you do not have a address attached to your account. You will not be able to reserve any seat before you have added a address. You should <a href=":url" class="alert-link">add</a> one.',
         'closed' => 'Seating is closed at this moment, you cannot reserve seats or change reservations.',
         'seatnotfound' => 'Could not find seat.',
         'seatingclosed' => 'It is not possible to reserve seats at this time.',
