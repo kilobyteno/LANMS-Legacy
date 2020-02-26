@@ -2,12 +2,13 @@
 
 namespace LANMS\Http\Controllers\Seating;
 
+use Authy\AuthyApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use LANMS\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use LANMS\Checkin;
+use LANMS\Http\Controllers\Controller;
 use LANMS\SeatTicket;
-use Authy\AuthyApi;
 
 class SelfCheckinController extends Controller
 {
@@ -74,6 +75,7 @@ class SelfCheckinController extends Controller
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.checkin.alert.alreadycheckedin'));
         }
+
         return view('seating.checkin.show')->withTicket($ticket);
     }
 
@@ -151,6 +153,18 @@ class SelfCheckinController extends Controller
                 if ($response->ok()) {
                     //
                     // DO CHECKIN SHIT HERE
+                    //
+                    $checkin                    = new Checkin;
+                    $checkin->ticket_id         = $ticket->id;
+                    $checkin->bandnumber        = $ticket->barcode;
+                    $checkin->year              = \Setting::get('SEATING_YEAR');
+                    $checkin->save();
+
+                    $ticket                     = SeatTicket::find($ticket->id);
+                    $ticket->checkin_id         = $checkin->id;
+                    $ticket->save();
+                    //
+                    //
                     //
                     return Redirect::route('seating-checkin')
                         ->with('messagetype', 'success')
