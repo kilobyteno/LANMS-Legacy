@@ -84,7 +84,8 @@
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
-																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
+																<a class="dropdown-item" href="{{ route('seating-ticket-show', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
+																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="far fa-file-pdf"></i> {{ trans('seating.reservation.download') }}</a>
 															@endif
 															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
@@ -150,7 +151,8 @@
 																<a class="dropdown-item" href="{{ route('seating-changepayment', $reservation->seat->slug) }}"><i class="fas fa-money-bill-wave"></i> {{ trans('seating.reservation.changepayment') }}</a>
 															@endif
 															@if(!is_null($reservation->ticket) and Sentinel::getUser()->id == $reservation->reservedfor->id)
-																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
+																<a class="dropdown-item" href="{{ route('seating-ticket-show', $reservation->seat->slug) }}"><i class="fas fa-ticket-alt"></i> {{ trans('seating.reservation.ticket') }}</a>
+																<a class="dropdown-item" href="{{ route('seating-ticket-download', $reservation->seat->slug) }}"><i class="far fa-file-pdf"></i> {{ trans('seating.reservation.download') }}</a>
 															@endif
 															@if($reservation->reservedfor->age() < 15)
 																<a class="dropdown-item" href="{{ route('seating-consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>

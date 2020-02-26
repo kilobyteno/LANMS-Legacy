@@ -45,6 +45,11 @@ class RefreshSettings extends Command
             Setting::set('HEADER_INFO_CONSENT_FORM', '1');
             $this->info('Added HEADER_INFO_CONSENT_FORM.');
         }
+        // LANMS-328
+        if (!Setting::has('SEATING_SELF_CHECKIN_OPEN')) {
+            Setting::set('SEATING_SELF_CHECKIN_OPEN', '0');
+            $this->info('Added SEATING_SELF_CHECKIN_OPEN.');
+        }
         // LANMS-421
         if (!Setting::has('MAIN_ENABLE_GRASROTANDELEN_WIDGET')) {
             Setting::set('MAIN_ENABLE_GRASROTANDELEN_WIDGET', '0');
@@ -54,7 +59,6 @@ class RefreshSettings extends Command
             Setting::set('MAIN_ORGNR', '');
             $this->info('Added MAIN_ORGNR.');
         }
-
         // LANMS-428
         if (!Setting::has('GOOGLE_CALENDAR_DAYS_TO_SHOW')) {
             Setting::set('GOOGLE_CALENDAR_DAYS_TO_SHOW', '3');
@@ -158,6 +162,7 @@ class RefreshSettings extends Command
             'MAIN_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
+            'SEATING_SELF_CHECKIN_OPEN' => 'Set this to "0" (without quotes) to disable users from seeing and using the self-checkin. If it is set to "1" (without quotes) it will be enabled.',
             'WEB_COPYRIGHT' => 'String only. Example: 2015-2019 Infihex',
             'WEB_DOMAIN' => 'String only. This would be the domain your website is hosted on. Example: lanms.infihex.com',
             'WEB_LOGO_LIGHT' => 'Path to your light logo, used for dark backgrounds.',

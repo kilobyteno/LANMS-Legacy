@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Ikke betalt ennå',
         'notpaidyetdesc' => 'Betal ved inngangen',
         'notpaid' => 'Ubetalt',
-        'view' => 'Vis',
+        'view' => 'Vis sete',
         'pay' => 'Betal nå',
         'changepayment' => 'Endre betaling',
-        'ticket' => 'Last ned billett',
+        'download' => 'Last ned PDF billett',
+        'ticket' => 'Vis digital billett',
         'remove' => 'Fjern reservasjonen',
         'consentform' => array(
             'title' => 'Samtykkeskjema',
@@ -113,6 +114,25 @@ return [
             'expyear' => 'UTLØPSÅR',
             'cvc' => 'CVC',
             'name' => 'NAVN PÅ KORT',
+        ),
+    ),
+
+    'ticket' => array(
+        'title' => 'Digital billett',
+        'checkin' => array(
+            'title' => 'Innsjekkingskoden din',
+        ),
+    ),
+
+    'checkin' => array(
+        'title' => 'Innskjekking',
+        'subtitle' => 'Skriv inn innsjekkskoden her',
+        'info' => 'Du må ha bekreftet telefonen din, være minst 15 år og ha betalt for billetten din for å bruke denne innsjekkingen.',
+        'alert' => array(
+            'success' => 'Suksess! Vennligst se ditt nærmeste mannskap for bandet ditt.',
+            'notfound' => 'Ikke funnet.',
+            'notallowed' => 'Du har ikke lov til å sjekke inn selv, enten er du for ung, ikke har bekreftet telefonen, eller så har du ikke betalt.',
+            'failed' => 'Innskjekking feilet.',
         ),
     ),
 

@@ -108,6 +108,30 @@ Route::group([
                     'uses' => 'Compo\CompoController@show'
                 ]);
             });
+        Route::group([
+            'prefix' => 'user/seating/checkin',
+            ], function () {
+                Route::get('/', [
+                    'as' => 'seating-checkin',
+                    'uses' => 'Seating\SelfCheckinController@index'
+                ]);
+                Route::post('/', [
+                    'as' => 'seating-checkin-create',
+                    'uses' => 'Seating\SelfCheckinController@create'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'seating-checkin-show',
+                    'uses' => 'Seating\SelfCheckinController@show'
+                ]);
+                Route::post('/verifyphone', [
+                    'as' => 'seating-checkin-verifyphone',
+                    'uses' => 'Seating\SelfCheckinController@startVerification'
+                ]);
+                Route::post('/verifycode', [
+                    'as' => 'seating-checkin-verifycode',
+                    'uses' => 'Seating\SelfCheckinController@verifyCode'
+                ]);
+            });
     });
 
 Route::group([
@@ -403,11 +427,15 @@ Route::group([
                     'as' => 'seating-reserve',
                     'uses' => 'Seating\ReserveSeatingController@reserve'
                 ]);
+                Route::get('/{slug}/ticket/show', [
+                    'as' => 'seating-ticket-show',
+                    'uses' => 'Seating\ReserveSeatingController@ticketshow'
+                ]);
                 Route::get('/{slug}/ticket/download', [
                     'as' => 'seating-ticket-download',
                     'uses' => 'Seating\ReserveSeatingController@ticketdownload'
                 ]);
-            });
+        });
     });
 
 // ADMIN PANEL

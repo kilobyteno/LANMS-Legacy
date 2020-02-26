@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Not paid yet',
         'notpaidyetdesc' => 'Pay at the entrance',
         'notpaid' => 'Unpaid',
-        'view' => 'View',
+        'view' => 'View seat',
         'pay' => 'Pay now',
         'changepayment' => 'Change payment',
-        'ticket' => 'Download Ticket',
+        'download' => 'Download PDF ticket',
+        'ticket' => 'Show digital ticket',
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
@@ -113,6 +114,25 @@ return [
             'expyear' => 'EXP. YEAR',
             'cvc' => 'CVC',
             'name' => 'NAME ON CARD',
+        ),
+    ),
+
+    'ticket' => array(
+        'title' => 'Digital Ticket',
+        'checkin' => array(
+            'title' => 'Your checkin code',
+        ),
+    ),
+
+    'checkin' => array(
+        'title' => 'Self check-in',
+        'subtitle' => 'Enter your check-in code here',
+        'info' => 'You need to your phone verified, be 15 years or older and paid for your ticket to use this check-in.',
+        'alert' => array(
+            'success' => 'Success! Please see your nearest crew for your band.',
+            'notfound' => 'Not found.',
+            'notallowed' => 'You are not allowed to self check-in, either you are too young, not have verified your phone or you have not paid.',
+            'failed' => 'Self check-in failed.',
         ),
     ),
 

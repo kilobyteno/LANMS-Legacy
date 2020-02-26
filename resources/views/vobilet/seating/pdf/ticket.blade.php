@@ -51,7 +51,9 @@
 					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $seat->name }}</strong></h2>
 				</div>
 			</div>
-			
+			@if($payment && $reservedfor->age() >= 15)
+				<p class="text-center" style="border-bottom: 1px solid #eee;margin-bottom: 17px;padding-bottom: 20px">{{ trans('seating.ticket.checkin.title') }}: <strong>{{ $ticket->code ?? trans('global.unknown') }}</strong></p>
+			@endif
 			<div style="padding-top: 20px">
 				<img style="display: inline-block;" src="data:image/png;base64,{{ DNS1D::getBarcodePNG($ticket->barcode, "I25", 4, 40) }}" />
 				<br>
