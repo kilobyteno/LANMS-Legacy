@@ -53,7 +53,7 @@ class AccountController extends Controller
             'lastname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan],
             'phone' => 'required|phone:LENIENT,NO',
-            'phone_country'     => 'required_with:phone',
+            'phone_country' => 'alpha|max:3|required_with:phone',
             'gender' => '',
             'location' => 'regex:/^[A-Za-z ,\']+$/|nullable',
             'occupation' => 'regex:/^[A-Za-z ,\']+$/|nullable',
