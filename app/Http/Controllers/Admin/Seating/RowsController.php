@@ -10,6 +10,7 @@ use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Admin\Seating\RowCreateRequest;
 use LANMS\Http\Requests\Admin\Seating\RowEditRequest;
 use LANMS\SeatRows;
+use LANMS\Seats;
 use LANMS\TicketType;
 
 class RowsController extends Controller
@@ -107,6 +108,17 @@ class RowsController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $row = SeatRows::withTrashed()->find($id);
+
+        if ($row->name !== $request->name) {
+            foreach ($row->seats as $seat) {
+                if (preg_match('/\d+/', $seat->name)) {
+                    $seatnumber = preg_replace('/\D/', '', $seat->name);
+                    $name = $request->name.$seatnumber;
+                    Seats::find($seat->id)->update(['name' => $name, 'slug' => Str::slug($name)]);
+                }
+            }
+        }
+
         $row->name = $request->name;
         $row->slug = Str::slug($request->name);
         $row->sort_order = $request->sort_order;

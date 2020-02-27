@@ -9,42 +9,60 @@ use anlutro\LaravelSettings\Facade as Setting;
 class RefreshSettings extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    * The name and signature of the console command.
+    *
+    * @var string
+    */
     protected $signature = 'lanms:refreshsettings';
 
     /**
-     * The console command description.
-     *
-     * @var string
-     */
+    * The console command description.
+    *
+    * @var string
+    */
     protected $description = 'This will update all settings with proper description fields.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    * Create a new command instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    * Execute the console command.
+    *
+    * @return mixed
+    */
     public function handle()
     {
-        
         // Add new settings
         // LANMS-377
         if (!Setting::has('HEADER_INFO_CONSENT_FORM')) {
             Setting::set('HEADER_INFO_CONSENT_FORM', '1');
             $this->info('Added HEADER_INFO_CONSENT_FORM.');
+        }
+        // LANMS-328
+        if (!Setting::has('SEATING_SELF_CHECKIN_OPEN')) {
+            Setting::set('SEATING_SELF_CHECKIN_OPEN', '0');
+            $this->info('Added SEATING_SELF_CHECKIN_OPEN.');
+        }
+        // LANMS-421
+        if (!Setting::has('MAIN_ENABLE_GRASROTANDELEN_WIDGET')) {
+            Setting::set('MAIN_ENABLE_GRASROTANDELEN_WIDGET', '0');
+            $this->info('Added MAIN_ENABLE_GRASROTANDELEN_WIDGET.');
+        }
+        if (!Setting::has('MAIN_ORGNR')) {
+            Setting::set('MAIN_ORGNR', '');
+            $this->info('Added MAIN_ORGNR.');
+        }
+        // LANMS-428
+        if (!Setting::has('GOOGLE_CALENDAR_DAYS_TO_SHOW')) {
+            Setting::set('GOOGLE_CALENDAR_DAYS_TO_SHOW', '3');
+            $this->info('Added GOOGLE_CALENDAR_DAYS_TO_SHOW.');
         }
 
         // Remove old settings
@@ -63,6 +81,31 @@ class RefreshSettings extends Command
         if (Setting::has('GOOGLE_MAPS_API_KEY')) {
             Setting::forget('GOOGLE_MAPS_API_KEY');
             $this->info('Removed GOOGLE_MAPS_API_KEY.');
+        }
+        if (Setting::has('SEATING_SEAT_PRICE')) {
+            Setting::forget('SEATING_SEAT_PRICE');
+            $this->info('Removed SEATING_SEAT_PRICE.');
+        }
+        if (Setting::has('SEATING_SEAT_PRICE_ALT')) {
+            Setting::forget('SEATING_SEAT_PRICE_ALT');
+            $this->info('Removed SEATING_SEAT_PRICE_ALT.');
+        }
+        // LANMS-434
+        if (Setting::has('MAIL_SUPPORT_EMAIL')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL');
+            $this->info('Removed MAIL_SUPPORT_EMAIL.');
+        }
+        if (Setting::has('MAIL_SUPPORT_EMAIL_NAME')) {
+            Setting::forget('MAIL_SUPPORT_EMAIL_NAME');
+            $this->info('Removed MAIL_SUPPORT_EMAIL_NAME.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL')) {
+            Setting::forget('MAIL_DEBUG_EMAIL');
+            $this->info('Removed MAIL_DEBUG_EMAIL.');
+        }
+        if (Setting::has('MAIL_DEBUG_EMAIL_NAME')) {
+            Setting::forget('MAIL_DEBUG_EMAIL_NAME');
+            $this->info('Removed MAIL_DEBUG_EMAIL_NAME.');
         }
 
         // Rename old styled settings
@@ -92,26 +135,34 @@ class RefreshSettings extends Command
             $this->info('Renmamed FACEBOOK_PAGE_ID to FACEBOOK_MESSENGER_PAGE_ID');
         }
 
+        if (Setting::has('SEATING_SEAT_PRICE_CURRENCY')) {
+            Setting::set('MAIN_CURRENCY', Setting::get('SEATING_SEAT_PRICE_CURRENCY'));
+            Setting::forget('SEATING_SEAT_PRICE_CURRENCY');
+            $this->info('Renmamed SEATING_SEAT_PRICE_CURRENCY to MAIN_CURRENCY');
+        }
+
         Setting::save();
 
         // Add description to settings
         $settings = AppSetting::all();
         $descriptions = array(
+            'MAIN_ORGNR' => 'Add your orgnr from BRREG here. Used for footer and Grasrotandelen.',
+            'MAIN_ENABLE_GRASROTANDELEN_WIDGET' => 'Set this to "0" (without quotes) to disable Grasrotandelen on the homepage. If it is set to "1" (without quotes) Grasrotandelen will be visible on the homepage.',
             'FACEBOOK_MESSENGER_APP_ID' => 'This is used for the messenger integration for users. Create an app on <a target="_blank" href="https://developers.facebook.com/">https://developers.facebook.com/</a> and paste its ID here. Example: 1234567890123456',
             'FACEBOOK_MESSENGER_PAGE_ID' => 'This is used for the messenger integration for users. This is the ID not the URL of the page. You will find it under "about" on the bottom on your page. Example: 1234567890123456',
             'GOOGLE_ANALYTICS_TRACKING_ID' => 'This is used for tracking traffic on your website. Example: UA-12345678-0',
             'GOOGLE_CALENDAR_API_KEY' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_ID' => 'Please refer to <a target="_blank" href="https://my.infihex.com/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_START_DATE' => 'This will be the date you want the calendar to start. Example: 1970-01-30',
+            'GOOGLE_CALENDAR_DAYS_TO_SHOW' => 'Days to show in the calendar. Example: 3',
             'LOGIN_ENABLED' => 'If you only want users with the "admin"-permission to login set this to "0" (without quotes). If it is set to "1" (without quotes) all users will be able to login.',
             'REFERRAL_ACTIVE' => 'You can enable or disable the view of referral on the users dashboard.',
             'SEATING_OPEN' => 'Set this to "0" (without quotes) to disable users from making changes to reservations. If it is set to "1" (without quotes) users will be able to make changes to their reservations.',
             'SEATING_SEAT_EXPIRE_HOURS' => 'Integer only. Set this to the amount of hours you want temporary reserved seats to last.',
-            'SEATING_SEAT_PRICE' => 'Integer only. Set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_ALT' => 'Integer only. if you have a alternate price at the entrance set this to the amount you want the seat to cost. Decimal is not supported at this time.',
-            'SEATING_SEAT_PRICE_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
+            'MAIN_CURRENCY' => 'String only. Your currency in ISO 4217 format.',
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
+            'SEATING_SELF_CHECKIN_OPEN' => 'Set this to "0" (without quotes) to disable users from seeing and using the self-checkin. If it is set to "1" (without quotes) it will be enabled.',
             'WEB_COPYRIGHT' => 'String only. Example: 2015-2019 Infihex',
             'WEB_DOMAIN' => 'String only. This would be the domain your website is hosted on. Example: lanms.infihex.com',
             'WEB_LOGO_LIGHT' => 'Path to your light logo, used for dark backgrounds.',

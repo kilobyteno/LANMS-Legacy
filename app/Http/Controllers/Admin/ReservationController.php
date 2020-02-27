@@ -98,13 +98,13 @@ class ReservationController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.reservation.create'])) {
             $slug = strtolower($slug); // Just to be sure it is correct
-            $currentseat = Seats::where('slug', $slug)->first();
-            if ($currentseat == null) {
+            $seat = Seats::where('slug', $slug)->first();
+            if ($seat == null) {
                 return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
                                     ->with('message', 'Could not find seat.');
             }
             $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-            return view('seating.reservation.show')->withRows($rows)->with('currentseat', $currentseat);
+            return view('seating.reservation.show')->with('seat', $seat);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -158,9 +158,9 @@ class ReservationController extends Controller
             }
 
             /* RESERVED FOR USER */
-            if ($reservedfor->addresses->count() == 0) {
+            if (!$reservedfor->hasAddress()) {
                 return Redirect::route('admin-seating-reservation-show', $slug)->with('messagetype', 'warning')
-                                    ->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added one primary address.');
+                                    ->with('message', 'It seems like '.$reservedfor->username.' does not have any addresses attached to their account. They will not be able to reserve any seat before they have added a address.');
             }
 
             if (\Setting::get('SEATING_YEAR')) {

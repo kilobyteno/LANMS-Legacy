@@ -35,7 +35,7 @@
 		</div>
 	@endif
 
-	{{--
+	
 	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
@@ -47,6 +47,7 @@
 		</div>
 	@endif
 
+	{{--
 	@if(!env('AUTHY_API_KEY'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
@@ -184,7 +185,7 @@
 <div class="row row-cards">
 	
 	@if(User::withTrashed()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
@@ -202,7 +203,7 @@
 	@endif
 
 	@if(Checkin::thisYear()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
@@ -219,17 +220,35 @@
 		</div>
 	@endif
 
-	@if(SeatReservation::thisYear()->count() > 0)
-		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+	@if(SeatReservation::thisYear()->onlyReserved()->count() > 0)
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
 			<div class="card">
 				<div class="card-body">
 					<div class="row">
 						<div class="col">
 							<div class="text-muted">Paid Reservations</div>
-							<div class="h3 m-0"><b>{{ SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() }} <small>/{{ SeatReservation::thisYear()->count() }}</small></b></div>
+							<div class="h3 m-0"><b>{{ SeatReservation::thisYear()->onlyReserved()->isPaid()->count() }} <small>/{{ SeatReservation::thisYear()->onlyReserved()->count() }}</small></b></div>
 						</div>
 						<div class="col-auto align-self-center ">
-							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", SeatReservation::thisYear()->where('payment_id', '<>', '0')->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", SeatReservation::thisYear()->onlyReserved()->isPaid()->count() / SeatReservation::thisYear()->onlyReserved()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	@endif
+
+	@if(SeatReservation::thisYear()->onlyTempReserved()->count() > 0)
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<div class="text-muted">Temporary Reserved Reservations</div>
+							<div class="h3 m-0"><b>{{ SeatReservation::thisYear()->onlyTempReserved()->count() }} <small>/{{ SeatReservation::thisYear()->count() }}</small></b></div>
+						</div>
+						<div class="col-auto align-self-center ">
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", SeatReservation::thisYear()->onlyTempReserved()->count() / SeatReservation::thisYear()->count()) }}" data-thickness="6" data-color="#17a2b8"><canvas width="40" height="40"></canvas></div>
 						</div>
 					</div>
 				</div>

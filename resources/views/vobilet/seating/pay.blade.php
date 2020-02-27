@@ -14,8 +14,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			@if(Sentinel::getUser()->addresses->count() == 0)
-				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('account-addressbook-create')]) !!}</div>
+			@if(!Sentinel::getUser()->hasAddress())
+				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
 				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.closed') }}</div>
@@ -38,7 +38,7 @@
 							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.tickettype') }}:</small><br>{{ $currentseat->tickettype->name }}</h1>
 						</div>
 						<div class="col-6">
-							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }}</h1>
+							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('MAIN_CURRENCY')) }}</h1>
 						</div>						
 					</div>
 					<hr>

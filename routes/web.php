@@ -1,5 +1,8 @@
 <?php
 
+use LANMS\Notifications\SeatReservationExpires;
+use LANMS\SeatReservation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +21,12 @@ if (Config::get('app.debug')) {
     Route::get('/resetdb', function () {
         \Session::forget('laravel_session');
         Artisan::call('migrate:reset');
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
         Artisan::call('lanms:update');
+        Artisan::call('db:seed');
         return Redirect::to('/')->with('messagetype', 'success')->with('message', 'The database has been reset!');
     });
     Route::get('/test/notification', function () {
-        $user = Sentinel::getUser();
+        /*$user = Sentinel::getUser();
         if ($user->stripecustomer) {
             $stripe_customer_code = $user->stripecustomer->cus;
             $invoices = \Stripe::invoices()->all(array('customer' => $stripe_customer_code, 'limit' => 100));
@@ -43,18 +45,15 @@ if (Config::get('app.debug')) {
                     Notification::send($user, new LANMS\Notifications\InvoiceUnPaid($invoice));
                 }
             }
+        }*/
+        $reservation = SeatReservation::all()->first();
+        if ($reservation) {
+            $reservation->reservedby->notify(new SeatReservationExpires($reservation));
+            dd('Reminder sent to '.$reservation->reservedby->username.' for seat '.$reservation->seat->name.' in reservation '.$reservation->id.'.');
         }
     });
     Route::get('/test', function () {
         App::abort(404);
-        /*\Toolkito\Larasap\SendTo::Facebook(
-            'link',
-            [
-                'link' => 'https://downlinkdg.no/',
-                'message' => 'Test'
-            ]
-        );*/
-        //\Toolkito\Larasap\SendTo::Twitter('https://downlinkdg.no/');
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
@@ -107,6 +106,30 @@ Route::group([
                 Route::get('/{slug}', [
                     'as' => 'compo-show',
                     'uses' => 'Compo\CompoController@show'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'user/seating/checkin',
+            ], function () {
+                Route::get('/', [
+                    'as' => 'seating-checkin',
+                    'uses' => 'Seating\SelfCheckinController@index'
+                ]);
+                Route::post('/', [
+                    'as' => 'seating-checkin-create',
+                    'uses' => 'Seating\SelfCheckinController@create'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'seating-checkin-show',
+                    'uses' => 'Seating\SelfCheckinController@show'
+                ]);
+                Route::post('/verifyphone', [
+                    'as' => 'seating-checkin-verifyphone',
+                    'uses' => 'Seating\SelfCheckinController@startVerification'
+                ]);
+                Route::post('/verifycode', [
+                    'as' => 'seating-checkin-verifycode',
+                    'uses' => 'Seating\SelfCheckinController@verifyCode'
                 ]);
             });
     });
@@ -164,15 +187,123 @@ Route::group([
             'uses' => 'Member\RecoverController@postResendVerification'
         ]);
     });
-
+Route::group([
+    'middleware' => ['sentinel.auth', 'setTheme:vobilet', 'gdpr.terms'],
+    'prefix' => 'account'
+    ], function () {
+        Route::get('/', [
+            'as' => 'account' ,
+            'uses' => 'Member\AccountController@getAccount'
+        ]);
+        Route::get('/change/password', [
+            'as' => 'account-change-password' ,
+            'uses' => 'Member\AccountController@getChangePassword'
+        ]);
+        Route::post('/change/password', [
+            'as' => 'account-change-password-post' ,
+            'uses' => 'Member\AccountController@postChangePassword'
+        ]);
+        Route::get('/change/images', [
+            'as' => 'account-change-images' ,
+            'uses' => 'Member\AccountController@getChangeImages'
+        ]);
+        Route::post('/change/images/profile', [
+            'as' => 'account-change-image-profile-post' ,
+            'uses' => 'Member\AccountController@postChangeProfileImage'
+        ]);
+        Route::post('/change/images/cover', [
+            'as' => 'account-change-image-cover-post' ,
+            'uses' => 'Member\AccountController@postChangeProfileCover'
+        ]);
+        Route::get('/download', [
+            'as' => 'account-gdpr-download' ,
+            'uses' => 'Member\AccountController@getGDPRDownload'
+        ]);
+        Route::get('/delete', [
+            'as' => 'account-gdpr-delete' ,
+            'uses' => 'Member\AccountController@getGDPRDelete'
+        ]);
+        Route::post('/delete', [
+            'as' => 'account-gdpr-delete-post' ,
+            'uses' => 'Member\AccountController@postGDPRDelete'
+        ]);
+        Route::get('/verifyphone', [
+            'as' => 'account-verifyphone',
+            'uses' => 'Auth\PhoneVerificationController@startVerification'
+        ]);
+        Route::post('/verifycode', [
+            'as' => 'account-verifycode',
+            'uses' => 'Auth\PhoneVerificationController@verifyCode'
+        ]);
+        Route::group([
+            'prefix' => 'billing'
+            ], function () {
+                Route::get('/payments', [
+                    'as' => 'account-billing-payments' ,
+                    'uses' => 'Member\BillingController@getPayments'
+                ]);
+                Route::get('/payment/{id}', [
+                    'as' => 'account-billing-payment' ,
+                    'uses' => 'Member\BillingController@getPayment'
+                ]);
+                Route::get('/receipt/{id}', [
+                    'as' => 'account-billing-receipt' ,
+                    'uses' => 'Member\BillingController@getReceipt'
+                ]);
+                Route::get('/charges', [
+                    'as' => 'account-billing-charges' ,
+                    'uses' => 'Member\BillingController@getCharges'
+                ]);
+                Route::get('/invoice', [
+                    'as' => 'account-billing-invoice' ,
+                    'uses' => 'Billing\InvoiceController@index'
+                ]);
+                Route::get('/invoice/{id}', [
+                    'as' => 'account-billing-invoice-view' ,
+                    'uses' => 'Billing\InvoiceController@view'
+                ]);
+                Route::get('/invoice/{id}/pay', [
+                    'as' => 'account-billing-invoice-pay' ,
+                    'uses' => 'Billing\InvoiceController@pay'
+                ]);
+                Route::get('/invoice/{id}/charge', [
+                    'as' => 'account-billing-invoice-charge' ,
+                    'uses' => 'Billing\InvoiceController@charge'
+                ]);
+                Route::get('/card', [
+                    'as' => 'account-billing-card' ,
+                    'uses' => 'Billing\CardController@index'
+                ]);
+                Route::get('/card/create', [
+                    'as' => 'account-billing-card-create' ,
+                    'uses' => 'Billing\CardController@create'
+                ]);
+                Route::post('/card/store', [
+                    'as' => 'account-billing-card-store' ,
+                    'uses' => 'Billing\CardController@store'
+                ]);
+                Route::get('/card/{id}/destroy', [
+                    'as' => 'account-billing-card-destroy' ,
+                    'uses' => 'Billing\CardController@destroy'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'reservation'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'account-reservation' ,
+                    'uses' => 'Member\ReservationController@index'
+                ]);
+                Route::get('/{id}', [
+                    'as' => 'account-reservation-view' ,
+                    'uses' => 'Member\ReservationController@view'
+                ]);
+            });
+    });
 Route::group([
     'middleware' => ['sentinel.auth', 'setTheme:vobilet', 'gdpr.terms'],
     'prefix' => 'user',
     ], function () {
-        Route::get('/', [
-            'as' => 'dashboard' ,
-            'uses' => 'Member\AccountController@getDashboard'
-        ]);
         Route::get('/logout', [
             'as' => 'logout',
             'uses' => 'Member\AuthController@getLogout'
@@ -296,143 +427,15 @@ Route::group([
                     'as' => 'seating-reserve',
                     'uses' => 'Seating\ReserveSeatingController@reserve'
                 ]);
+                Route::get('/{slug}/ticket/show', [
+                    'as' => 'seating-ticket-show',
+                    'uses' => 'Seating\ReserveSeatingController@ticketshow'
+                ]);
                 Route::get('/{slug}/ticket/download', [
                     'as' => 'seating-ticket-download',
                     'uses' => 'Seating\ReserveSeatingController@ticketdownload'
                 ]);
-            });
-        Route::group([
-            'prefix' => 'account'
-            ], function () {
-                Route::get('/', [
-                    'as' => 'account' ,
-                    'uses' => 'Member\AccountController@getAccount'
-                ]);
-                Route::get('/change/password', [
-                    'as' => 'account-change-password' ,
-                    'uses' => 'Member\AccountController@getChangePassword'
-                ]);
-                Route::post('/change/password', [
-                    'as' => 'account-change-password-post' ,
-                    'uses' => 'Member\AccountController@postChangePassword'
-                ]);
-                Route::get('/change/images', [
-                    'as' => 'account-change-images' ,
-                    'uses' => 'Member\AccountController@getChangeImages'
-                ]);
-                Route::post('/change/images/profile', [
-                    'as' => 'account-change-image-profile-post' ,
-                    'uses' => 'Member\AccountController@postChangeProfileImage'
-                ]);
-                Route::post('/change/images/cover', [
-                    'as' => 'account-change-image-cover-post' ,
-                    'uses' => 'Member\AccountController@postChangeProfileCover'
-                ]);
-                Route::get('/download', [
-                    'as' => 'account-gdpr-download' ,
-                    'uses' => 'Member\AccountController@getGDPRDownload'
-                ]);
-                Route::get('/delete', [
-                    'as' => 'account-gdpr-delete' ,
-                    'uses' => 'Member\AccountController@getGDPRDelete'
-                ]);
-                Route::post('/delete', [
-                    'as' => 'account-gdpr-delete-post' ,
-                    'uses' => 'Member\AccountController@postGDPRDelete'
-                ]);
-                Route::group([
-                    'prefix' => 'billing'
-                    ], function () {
-                        Route::get('/payments', [
-                            'as' => 'account-billing-payments' ,
-                            'uses' => 'Member\BillingController@getPayments'
-                        ]);
-                        Route::get('/payment/{id}', [
-                            'as' => 'account-billing-payment' ,
-                            'uses' => 'Member\BillingController@getPayment'
-                        ]);
-                        Route::get('/receipt/{id}', [
-                            'as' => 'account-billing-receipt' ,
-                            'uses' => 'Member\BillingController@getReceipt'
-                        ]);
-                        Route::get('/charges', [
-                            'as' => 'account-billing-charges' ,
-                            'uses' => 'Member\BillingController@getCharges'
-                        ]);
-                        Route::get('/invoice', [
-                            'as' => 'account-billing-invoice' ,
-                            'uses' => 'Billing\InvoiceController@index'
-                        ]);
-                        Route::get('/invoice/{id}', [
-                            'as' => 'account-billing-invoice-view' ,
-                            'uses' => 'Billing\InvoiceController@view'
-                        ]);
-                        Route::get('/invoice/{id}/pay', [
-                            'as' => 'account-billing-invoice-pay' ,
-                            'uses' => 'Billing\InvoiceController@pay'
-                        ]);
-                        Route::get('/invoice/{id}/charge', [
-                            'as' => 'account-billing-invoice-charge' ,
-                            'uses' => 'Billing\InvoiceController@charge'
-                        ]);
-                        Route::get('/card', [
-                            'as' => 'account-billing-card' ,
-                            'uses' => 'Billing\CardController@index'
-                        ]);
-                        Route::get('/card/create', [
-                            'as' => 'account-billing-card-create' ,
-                            'uses' => 'Billing\CardController@create'
-                        ]);
-                        Route::post('/card/store', [
-                            'as' => 'account-billing-card-store' ,
-                            'uses' => 'Billing\CardController@store'
-                        ]);
-                        Route::get('/card/{id}/destroy', [
-                            'as' => 'account-billing-card-destroy' ,
-                            'uses' => 'Billing\CardController@destroy'
-                        ]);
-                    });
-                Route::group([
-                    'prefix' => 'reservation'
-                    ], function () {
-                        Route::get('/', [
-                            'as' => 'account-reservation' ,
-                            'uses' => 'Member\ReservationController@index'
-                        ]);
-                        Route::get('/{id}', [
-                            'as' => 'account-reservation-view' ,
-                            'uses' => 'Member\ReservationController@view'
-                        ]);
-                    });
-                Route::group([
-                    'prefix' => 'addressbook'
-                    ], function () {
-                        Route::get('/', [
-                            'as' => 'account-addressbook',
-                            'uses' => 'Member\AddressBookController@index'
-                        ]);
-                        Route::get('/create', [
-                            'as' => 'account-addressbook-create',
-                            'uses' => 'Member\AddressBookController@create'
-                        ]);
-                        Route::post('/store', [
-                            'as' => 'account-addressbook-store',
-                            'uses' => 'Member\AddressBookController@store'
-                        ]);
-                        Route::get('/{id}/edit', [
-                            'as' => 'account-addressbook-edit',
-                            'uses' => 'Member\AddressBookController@edit'
-                        ]);
-                        Route::post('/{id}/update', [
-                            'as' => 'account-addressbook-update',
-                            'uses' => 'Member\AddressBookController@update'
-                        ]);
-                        Route::get('/{id}/destroy', [
-                            'as' => 'account-addressbook-destroy',
-                            'uses' => 'Member\AddressBookController@destroy'
-                        ]);
-                    });
-            });
+        });
     });
 
 // ADMIN PANEL
@@ -895,6 +898,10 @@ Route::group([
                     'as' => 'admin-pages-destroy',
                     'uses' => 'Page\PagesController@destroy'
                 ]);
+                Route::get('/{id}/restore', [
+                    'as' => 'admin-pages-restore',
+                    'uses' => 'Page\PagesController@restore'
+                ]);
             });
         Route::group([
             'prefix' => 'users'
@@ -998,6 +1005,10 @@ Route::group([
                             'as' => 'admin-billing-invoice-destroy',
                             'uses' => 'Billing\InvoiceController@destroy'
                         ]);
+                        Route::get('/{id}/finalize', [
+                            'as' => 'admin-billing-invoice-finalize',
+                            'uses' => 'Billing\InvoiceController@finalize'
+                        ]);
                     });
             });
         Route::group([
@@ -1070,6 +1081,22 @@ Route::group([
                 Route::get('/{id}', [
                     'as' => 'admin-emails-show',
                     'uses' => 'Admin\EmailController@show'
+                ]);
+            });
+        Route::group([
+            'prefix' => 'sms'
+            ], function () {
+                Route::get('/', [
+                    'as' => 'admin-sms',
+                    'uses' => 'Admin\SMSController@index'
+                ]);
+                Route::get('/create', [
+                    'as' => 'admin-sms-create',
+                    'uses' => 'Admin\SMSController@create'
+                ]);
+                Route::post('/store', [
+                    'as' => 'admin-sms-store',
+                    'uses' => 'Admin\SMSController@store'
                 ]);
             });
         Route::group([

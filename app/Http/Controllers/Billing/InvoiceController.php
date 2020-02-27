@@ -2,9 +2,13 @@
 
 namespace LANMS\Http\Controllers\Billing;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
+use LANMS\Info;
+use LANMS\User;
 
 class InvoiceController extends Controller
 {
@@ -16,12 +20,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $user = \Sentinel::getUser();
-        $scus = $user->stripecustomer;
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
-        if ($scus) {
-            $sccus = $scus->cus;
-            $invoices = \Stripe::invoices()->all(array('customer' => $sccus, 'limit' => 100));
+        if ($stripe_customer) {
+            $invoices = Stripe::invoices()->all(array('customer' => $stripe_customer, 'limit' => 100));
             $invoices = $invoices['data'];
         } else {
             $invoices = [];
@@ -37,11 +39,11 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
-        $invoice = \Stripe::invoices()->find($id);
+        $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         return view('account.billing.invoice.view')->withInvoice($invoice);
     }
@@ -54,11 +56,11 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
-        $invoice = \Stripe::invoices()->find($id);
+        $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['paid'] == true) {
             abort(403);
@@ -74,35 +76,23 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
-        if (\Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
-        $invoice = \Stripe::invoices()->find($id);
+        $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
-        if ($invoice['paid'] == true) {
-            abort(403);
-        }
+        abort_unless(!$invoice['paid'], 403);
 
-        $stripecust = \LANMS\StripeCustomer::where('user_id', \Sentinel::getUser()->id)->first();
-        if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
-                'email' => \Sentinel::getUser()->email,
-            ]);
-            $stripecustomer             = new \LANMS\StripeCustomer;
-            $stripecustomer->cus        = $customer['id'];
-            $stripecustomer->user_id    = \Sentinel::getUser()->id;
-            $stripecustomer->save();
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
+        $customer = Stripe::customers()->find($stripe_customer);
 
-            $stripecust = $stripecustomer;
-        }
-        $customer = \Stripe::customers()->find($stripecust->cus);
         if ($customer['sources']['total_count'] == 0) {
             return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
         }
         try {
-            \Stripe::invoices()->pay($id);
+            Stripe::invoices()->pay($id);
         } catch (\Cartalyst\Stripe\Exception\MissingParameterException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -139,7 +129,7 @@ class InvoiceController extends Controller
      */
     public function admin()
     {
-        $invoices = \Stripe::invoices()->all(array('limit' => 100));
+        $invoices = Stripe::invoices()->all(array('limit' => 100));
         return view('billing.invoice.index')->withInvoices($invoices['data']);
     }
     
@@ -150,7 +140,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+        if (!Info::getContent('address_city') || !Info::getContent('address_country') || !Info::getContent('address_county') || !Info::getContent('address_postal_code') || !Info::getContent('address_street')) {
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
         }
@@ -165,41 +155,32 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        if (!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street')) {
+        if (!Info::getContent('address_city') || !Info::getContent('address_country') || !Info::getContent('address_county') || !Info::getContent('address_postal_code') || !Info::getContent('address_street')) {
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
         }
-        $user = \LANMS\User::find($request->get('user_id'));
+        $user = User::find($request->get('user_id'));
         if (is_null($user)) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
-        if ($user->addresses->count() == 0) {
+        if (!$user->hasAddress()) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
-        $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
-        if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
-                'email' => $user->email,
-                'name' => $user->firstname.' '.$user->lastname,
-            ]);
-            $stripecustomer             = new \LANMS\StripeCustomer;
-            $stripecustomer->cus        = $customer['id'];
-            $stripecustomer->user_id    = $user->id;
-            $stripecustomer->save();
-            $stripecust = $stripecustomer;
-        }
+
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
+
         try {
             for ($i=0; $i < count($request->get('description')); $i++) {
-                \Stripe::invoiceItems()->create($stripecust->cus, [
+                Stripe::invoiceItems()->create($stripe_customer, [
                     'description' => $request->get('description')[$i],
                     'unit_amount' => ($request->get('price')[$i]*100),
                     'quantity' => $request->get('qty')[$i],
-                    'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                    'currency' => strtolower(\Setting::get('MAIN_CURRENCY')),
                 ]);
             }
-            $invoice = \Stripe::invoices()->create($stripecust->cus, [
+            $invoice = Stripe::invoices()->create($stripe_customer, [
                 'billing' => 'send_invoice',
                 'days_until_due' => $request->get('days_until_due'),
                 'description' => $request->get('memo'),
@@ -231,8 +212,8 @@ class InvoiceController extends Controller
     public function show($id)
     {
         try {
-            $invoice = \Stripe::invoices()->find($id);
-            $events = \Stripe::events()->all(['object_id' => $id]);
+            $invoice = Stripe::invoices()->find($id);
+            $events = Stripe::events()->all(['object_id' => $id]);
             $events = $events['data'];
         } catch (\Cartalyst\Stripe\Exception\NotFoundException $e) {
             // Get the status code
@@ -247,11 +228,7 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', $message);
         }
-        $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        $user = null;
-        if (!is_null($stripecustomer)) {
-            $user = \LANMS\User::find($stripecustomer->user_id);
-        }
+        $user = User::where('stripe_customer', $invoice['customer'])->first();
         return view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
     }
 
@@ -263,17 +240,13 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $invoice = \Stripe::invoices()->find($id);
+        $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['status'] != 'draft') {
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
-        $stripecustomer = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first();
-        $user = null;
-        if (!is_null($stripecustomer)) {
-            $user = \LANMS\User::find($stripecustomer->user_id);
-        }
+        $user = User::where('stripe_customer', $invoice['customer'])->first();
         return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
     }
 
@@ -286,8 +259,8 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = \LANMS\User::find($request->get('user_id'));
-        if (is_null($user)) {
+        $user = User::find($request->get('user_id'));
+        if (!$user) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', 'User not found.');
         }
@@ -295,17 +268,9 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
-        $stripecust = \LANMS\StripeCustomer::where('user_id', $user->id)->first();
-        if ($stripecust == null) {
-            $customer = \Stripe::customers()->create([
-                'email' => $user->email,
-            ]);
-            $stripecustomer             = new \LANMS\StripeCustomer;
-            $stripecustomer->cus        = $customer['id'];
-            $stripecustomer->user_id    = $user->id;
-            $stripecustomer->save();
-            $stripecust = $stripecustomer;
-        }
+
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
+
         try {
             $invoice = \Stripe::invoices()->find($id);
             if ($invoice['status'] != 'draft') {
@@ -349,7 +314,7 @@ class InvoiceController extends Controller
                         'description' => $request->get('description')[$i],
                         'unit_amount' => ($request->get('price')[$i]*100),
                         'quantity' => $request->get('qty')[$i],
-                        'currency' => strtolower(\Setting::get('SEATING_SEAT_PRICE_CURRENCY')),
+                        'currency' => strtolower(\Setting::get('MAIN_CURRENCY')),
                     ]);
                 }
             }
@@ -383,6 +348,15 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Stripe::invoices()->delete($id);
+        return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been voided.');
+    }
+
+    public function finalize($id)
+    {
+        \Stripe::invoices()->finalize($id);
+        return Redirect::route('admin-billing-invoice-show', $id)->with('messagetype', 'success')
+                                ->with('message', 'Invoice has been finalized and sent.');
     }
 }

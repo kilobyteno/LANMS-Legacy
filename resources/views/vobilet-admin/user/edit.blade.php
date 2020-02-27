@@ -37,6 +37,8 @@
                                 <div class="expanel-title">User Information</div>
                             </div>
                             <div class="expanel-body">
+                                <label class="form-label">User ID:</label>
+                                <p>{{ $user->id }}</p>
                                 <label class="form-label">Last Login:</label>
                                 <p>{{ ucfirst(\Carbon::parse($user->last_login)->isoFormat('LLLL')) }}</p>
                                 <label class="form-label">Last Activity:</label>
@@ -95,7 +97,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-sm-4">
                         <div class="expanel expanel-default" data-collapsed="0">
                             <div class="expanel-heading">
@@ -164,11 +165,12 @@
                                         <p class="text-danger">{{ $errors->first('birthdate') }}</p>
                                     @endif
                                 </div>
-                                <div class="form-group @if($errors->has('phone')) has-error @endif">
+                                <div class="form-group @if($errors->has('phone') || $errors->has('phone_country')) has-error @endif">
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off" value="{{ (old('phone')) ? old('phone') : $user->phone }}" />
-                                    @if($errors->has('phone'))
-                                        <p class="text-danger">{{ $errors->first('phone') }}</p>
+                                    <input type="hidden" name="phone_country" id="phone_country" value="{{ $user->phone_country }}">
+                                    @if($errors->has('phone') || $errors->has('phone_country'))
+                                        <p class="text-danger">{{ $errors->first('phone') }}{{ $errors->first('phone_country') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('about')) has-error @endif">
@@ -178,6 +180,23 @@
                                         <p class="text-danger">{{ $errors->first('about') }}</p>
                                     @endif
                                 </div>
+                            </div>
+                        </div>
+                        <div class="expanel expanel-default" data-collapsed="0">
+                            <div class="expanel-heading">
+                                <div class="expanel-title">Address</div>
+                            </div>
+                            <div class="expanel-body">
+                                @if($user->hasAddress())
+                                    <address>
+                                        <strong>{{ $user->address_street }}</strong><br>
+                                        {{ $user->address_postalcode }}, {{ $user->address_city }}<br>
+                                        {{ $user->address_county }}<br>
+                                        {{ $user->address_country }}
+                                    </address>
+                                @else
+                                    <p><em>User has no address.</em></p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -254,40 +273,6 @@
 </div>
 
 <div class="row">
-    <div class="col-8">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Addresses</h3>
-            </div>
-            <div class="card-body row">
-                @if(count($user->addresses) > 0)
-                    <?php $i=0; ?>
-                    @foreach($user->addresses as $address)
-                        <?php $i++; ?>
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header @if($address->main_address) bg-primary @endif br-tr-7 br-tl-7">
-                                    <h3 class="card-title  @if($address->main_address) text-white @endif">{{ trans('user.addressbook.address') }} #{{ $i }}</h3>
-                                </div>
-                                <div class="card-body">
-                                    <address>
-                                        <strong>{{ $address->address1 }}</strong>@if($address->address2), {{ $address->address2 }}@endif<br>
-                                        {{ $address->postalcode }}, {{ $address->city }}<br>
-                                        {{ $address->county }}<br>
-                                        {{ $address->country }}
-                                    </address>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <div class="col-12">
-                        <p>{{ trans('global.nodata') }}</p>
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
 
     <div class="col-4">
         <form action="{{ route('admin-user-update-permission', $user->id) }}" method="post" class="card">
@@ -322,15 +307,22 @@
     <script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
     <script>
         var input = document.querySelector("#phone");
-        window.intlTelInput(input, {
+        var countryinput = document.querySelector("#phone_country");
+        var iti = window.intlTelInput(input, {
             preferredCountries: ["no"],
-            initialCountry: "auto",
+            initialCountry: "{{ $user->phone_country ?? 'auto' }}",
             geoIpLookup: function(success, failure) {
                 $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
                     var countryCode = (resp && resp.country) ? resp.country : "";
                     success(countryCode);
                 });
             },
+        });
+        countryinput.value = iti.getSelectedCountryData().iso2;
+        // listen to the telephone input for changes
+        input.addEventListener('countrychange', function(e) {
+            countryinput.value = iti.getSelectedCountryData().iso2;
+            console.log('countrychange: '+iti.getSelectedCountryData().iso2);
         });
     </script>
     <script src="{{ Theme::url('js/cleave.js') }}"></script>

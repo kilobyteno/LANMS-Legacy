@@ -42,7 +42,7 @@
 				</div>
 				<div class="aclm">
 					@if(is_null($payment))
-						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($seat->tickettype->price, Setting::get('SEATING_SEAT_PRICE_CURRENCY')) }})</span></strong></h2>
+						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-danger">{{ trans('global.no') }} ({{ moneyFormat($seat->tickettype->price, Setting::get('MAIN_CURRENCY')) }})</span></strong></h2>
 					@else
 						<h2><strong><small>{{ trans('global.payment.paid') }}:</small><br><span class="text-success">{{ trans('global.yes') }}</span></strong></h2>
 					@endif
@@ -51,7 +51,9 @@
 					<h2><strong><small>{{ trans('pdf.ticket.yourseat') }}:</small><br>{{ $seat->name }}</strong></h2>
 				</div>
 			</div>
-			
+			@if($payment && $reservedfor->age() >= 15)
+				<p class="text-center" style="border-bottom: 1px solid #eee;margin-bottom: 17px;padding-bottom: 20px">{{ trans('seating.ticket.checkin.title') }}: <strong>{{ $ticket->code ?? trans('global.unknown') }}</strong></p>
+			@endif
 			<div style="padding-top: 20px">
 				<img style="display: inline-block;" src="data:image/png;base64,{{ DNS1D::getBarcodePNG($ticket->barcode, "I25", 4, 40) }}" />
 				<br>

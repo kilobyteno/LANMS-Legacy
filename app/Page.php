@@ -39,6 +39,6 @@ class Page extends Model
 
     public function scopeForMenu($query)
     {
-        return $this->where('active', '=', 1)->where('showinmenu', '=', 1)->get();
+        return $this->orderBy('title', 'asc')->where('active', '=', 1)->where('showinmenu', '=', 1)->get();
     }
 }

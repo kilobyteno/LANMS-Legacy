@@ -72,8 +72,8 @@
 									<div class="expanel-title">Light Logo (335x90)</div>
 								</div>
 								<div class="expanel-body">
-									<label class="text-muted">This logo should be of lighter colors and work on dark background.</label>
-									<div style="max-width: 335px; height: 90px;">
+									<label class="text-muted">This logo should be of lighter colors and work on dark background. Dark background is added on preview below.</label>
+									<div style="max-width: 335px; height: 90px; background-color: #333">
 										<img src="{{ $sponsor->image_light }}" alt="{{ $sponsor->name }}">
 									</div>
 									<div class="custom-file">
@@ -91,8 +91,8 @@
 									<div class="expanel-title">Dark Logo (335x90)</div>
 								</div>
 								<div class="expanel-body">
-									<label class="text-muted">This logo should be of darker colors and work on light background.</label>
-									<div style="max-width: 335px; height: 90px;">
+									<label class="text-muted">This logo should be of darker colors and work on light background. Light background is added on preview below.</label>
+									<div style="max-width: 335px; height: 90px; background-color: #fff">
 										<img src="{{ $sponsor->image_dark }}" alt="{{ $sponsor->name }}">
 									</div>
 									<div class="custom-file">

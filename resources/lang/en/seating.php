@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address. You should <a href=":url" class="alert-link">add</a> one.',
+        'noaddress' => 'It seems like you do not have a address attached to your account. You will not be able to reserve any seat before you have added a address. You should <a href=":url" class="alert-link">add</a> one.',
         'closed' => 'Seating is closed at this moment, you cannot reserve seats or change reservations.',
         'seatnotfound' => 'Could not find seat.',
         'seatingclosed' => 'It is not possible to reserve seats at this time.',
@@ -19,7 +19,7 @@ return [
         'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
         'unpaidinvoice' => 'You have one or more unpaid invoices, please pay these first. You will be able to reserve a seat once this has been taken care of.',
         'tickets' => 'For more information about the different ticket types, visit <a href=":url">this page</a>.',
-        'entrancepaymentnotallowed' => 'This ticket cannot be paid at the entrance right now. Pay by card instead.',
+        'entrancepaymentnotallowed' => 'This ticket cannot be paid at the entrance. Pay by card instead.',
     ),
 
     'closed' => 'Seatmap is not available at this moment!',
@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Not paid yet',
         'notpaidyetdesc' => 'Pay at the entrance',
         'notpaid' => 'Unpaid',
-        'view' => 'View',
+        'view' => 'View seat',
         'pay' => 'Pay now',
         'changepayment' => 'Change payment',
-        'ticket' => 'Download Ticket',
+        'download' => 'Download PDF ticket',
+        'ticket' => 'Show digital ticket',
         'remove' => 'Remove reservation',
         'consentform' => array(
             'title' => 'Consent Form',
@@ -62,6 +63,7 @@ return [
         'alert' => array(
             'notpossibleonthisrow' => 'It is not possible to reserve seats on this row.',
             'alreadyreserved' => 'Seat has already been reserved.',
+            'youcannotpay' => 'You cannot pay for this reservation, the person who reserved it has to do it.',
             'nobirthday' => 'You need to have an birthdate assigned to your account to be able to reserve a seat.',
             'noaddresses' => 'It seems like you do not have any addresses attached to your account. You will not be able to reserve any seat before you have added one primary address.',
             'limit' => 'You have reached the reservation limit. So you are not allowed to reserve more seats.',
@@ -112,6 +114,25 @@ return [
             'expyear' => 'EXP. YEAR',
             'cvc' => 'CVC',
             'name' => 'NAME ON CARD',
+        ),
+    ),
+
+    'ticket' => array(
+        'title' => 'Digital Ticket',
+        'checkin' => array(
+            'title' => 'Your checkin code',
+        ),
+    ),
+
+    'checkin' => array(
+        'title' => 'Self check-in',
+        'subtitle' => 'Enter your check-in code here',
+        'info' => 'You need to your phone verified, be 15 years or older and paid for your ticket to use this check-in.',
+        'alert' => array(
+            'success' => 'Success! Please see your nearest crew for your band.',
+            'notfound' => 'Not found.',
+            'notallowed' => 'You are not allowed to self check-in, either you are too young, not have verified your phone or you have not paid.',
+            'failed' => 'Self check-in failed.',
         ),
     ),
 

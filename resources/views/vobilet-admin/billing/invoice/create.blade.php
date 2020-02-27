@@ -59,7 +59,7 @@
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total[]" placeholder="0" class="form-control total" readonly />
 										<div class="input-group-append">
-						                	<span class="input-group-text">{{ \Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</span>
+						                	<span class="input-group-text">{{ \Setting::get('MAIN_CURRENCY') }}</span>
 						                </div>
 						            </div>
 								</td>
@@ -73,7 +73,7 @@
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="sub_total" placeholder="0.00" class="form-control" id="sub_total" readonly />
 										<div class="input-group-append">
-						                	<span class="input-group-text">{{ \Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</span>
+						                	<span class="input-group-text">{{ \Setting::get('MAIN_CURRENCY') }}</span>
 						                </div>
 						            </div>
 								</td>
@@ -95,7 +95,7 @@
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="tax_amount" id="tax_amount" placeholder="0.00" class="form-control" readonly />
 										<div class="input-group-append">
-						                	<span class="input-group-text">{{ \Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</span>
+						                	<span class="input-group-text">{{ \Setting::get('MAIN_CURRENCY') }}</span>
 						                </div>
 						            </div>
 								</td>
@@ -106,7 +106,7 @@
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total_amount" id="total_amount" placeholder="0.00" class="form-control" readonly />
 										<div class="input-group-append">
-						                	<span class="input-group-text">{{ \Setting::get('SEATING_SEAT_PRICE_CURRENCY') }}</span>
+						                	<span class="input-group-text">{{ \Setting::get('MAIN_CURRENCY') }}</span>
 						                </div>
 						            </div>
 								</td>

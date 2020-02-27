@@ -7,6 +7,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
+        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
         <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.invoice.title') }}</li>
     </ol>
 </div>
@@ -45,10 +46,10 @@
                             @foreach($invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice['number'] }}</td>
-                                    <?php $user = \LANMS\StripeCustomer::where('cus', $invoice['customer'])->first() or null; ?>
-                                    <td>@if($user)<a href="{{ route('admin-user-edit', $user->user->id) }}">{{ $user->user->firstname . ' "' . $user->user->username . '" ' . $user->user->lastname }}</a>@endif</td>
+                                    <?php $user = \LANMS\User::where('stripe_customer', $invoice['customer'])->first() or null; ?>
+                                    <td>@if($user)<a href="{{ route('admin-user-edit', $user->id) }}">{{ $user->firstname . ' "' . $user->username . '" ' . $user->lastname }}</a>@endif</td>
                                     <td>{{ \Carbon::parse($invoice['date'])->toDateTimeString() }}</td>
-                                    <td>{{ floatval($invoice['total']/100).' '.strtoupper($invoice['currency']) }}</td>
+                                    <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
                                     <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && $invoice['status'] != 'void' && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</span> @else {{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}@endif</td>
                                     <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
                                     <td>

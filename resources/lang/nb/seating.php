@@ -3,7 +3,7 @@
 return [
 
     'alert' => array(
-        'noaddress' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse. Du burde <a href=":url" class="alert-link">legge til</a> en.',
+        'noaddress' => 'Det ser ut til at du ikke har adresse knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en adresse. Du må <a href=":url" class="alert-link">legge til</a> en.',
         'closed' => 'Sitteområdet er stengt for øyeblikket, du kan ikke reservere plasser eller endre reservasjoner.',
         'seatnotfound' => 'Fant ikke setet.',
         'seatingclosed' => 'Det er ikke mulig å reservere plasser på dette tidspunktet.',
@@ -19,7 +19,7 @@ return [
         'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
         'unpaidinvoice' => 'Du har en eller flere ubetalte fakturaer, betal disse først. Du vil kunne reservere plass når dette er tatt hånd om.',
         'tickets' => 'For mer informasjon om de forskjellige billetttypene, besøk <a href=":url">denne siden</a>.',
-        'entrancepaymentnotallowed' => 'Denne billetten kan ikke betales ved inngangen akkurat nå. Betal med kort i stedet.',
+        'entrancepaymentnotallowed' => 'Denne billetten kan ikke betales ved inngangen. Betal med kort i stedet.',
     ),
 
     'closed' => 'Sitteområdet er ikke tilgjengelig for øyeblikket!',
@@ -45,10 +45,11 @@ return [
         'notpaidyet' => 'Ikke betalt ennå',
         'notpaidyetdesc' => 'Betal ved inngangen',
         'notpaid' => 'Ubetalt',
-        'view' => 'Vis',
+        'view' => 'Vis sete',
         'pay' => 'Betal nå',
         'changepayment' => 'Endre betaling',
-        'ticket' => 'Last ned billett',
+        'download' => 'Last ned PDF billett',
+        'ticket' => 'Vis digital billett',
         'remove' => 'Fjern reservasjonen',
         'consentform' => array(
             'title' => 'Samtykkeskjema',
@@ -62,12 +63,13 @@ return [
         'alert' => array(
             'notpossibleonthisrow' => 'Det er ikke mulig å reservere plasser på denne raden.',
             'alreadyreserved' => 'Stolen er allerede reservert.',
+            'youcannotpay' => 'Du kan ikke betale for denne reservasjonen, personen som har reservert det må gjøre det.',
             'nobirthday' => 'Du må ha en fødselsdato tildelt kontoen din for å kunne reservere et sete.',
             'noaddresses' => 'Det ser ut til at du ikke har noen adresser knyttet til kontoen din. Du kan ikke reservere et sete før du har lagt til en primæradresse.',
             'limit' => 'Du har nådd reservasjonsgrensen. Så du har ikke lov til å reservere flere seter.',
             'limitself' => 'Du kan ikke reservere mer enn ett sete til deg selv. Vennligst velg et annet medlem du vil reservere dette setet for.',
-            'nobirthdayfor' => 'Det ser ut som :name har ikke fødselsdato tildelt sin konto, de trenger det for å kunne reservere et sete.',
-            'noaddressesfor' => 'Det ser ut som :name har ingen adresser knyttet til kontoen sin. De kan ikke reservere noe sete før de har lagt til en primæradresse.',
+            'nobirthdayfor' => 'Det ser ut som :name har ikke fødselsdato lagret på sin konto, de trenger det for å kunne reservere et sete.',
+            'noaddressesfor' => 'Det ser ut som :name har ingen adresser lagret på til kontoen sin. De kan ikke reservere noe sete før de har lagt til en primæradresse.',
             'limitreservedfor' => ':name har ikke lov til å reservere flere seter.',
             'alreadyreservedfor' => ':name har allerede reservert plass.',
             'success' => 'Du har reservert dette setet!',
@@ -88,7 +90,7 @@ return [
         'seat' => 'Sete',
         'reserved' => 'Dette setet er :type for dette medlemmet.',
         'reservedfor' => 'Reservert for',
-        'agreement' => 'Jeg har lest og godkjent <strong>kjøpsbetingelser</strong> og <strong>regler</strong> for dette arrangementet.',
+        'agreement' => 'Jeg har lest og akseptert <strong>kjøpsbetingelser</strong> og <strong>regler</strong> for dette arrangementet.',
         'button' => 'Reserver sete',
         'alert' => array(
             'cannotbereserved' => 'Dette setet kan ikke reserveres!',
@@ -112,6 +114,25 @@ return [
             'expyear' => 'UTLØPSÅR',
             'cvc' => 'CVC',
             'name' => 'NAVN PÅ KORT',
+        ),
+    ),
+
+    'ticket' => array(
+        'title' => 'Digital billett',
+        'checkin' => array(
+            'title' => 'Innsjekkingskoden din',
+        ),
+    ),
+
+    'checkin' => array(
+        'title' => 'Innskjekking',
+        'subtitle' => 'Skriv inn innsjekkskoden her',
+        'info' => 'Du må ha bekreftet telefonen din, være minst 15 år og ha betalt for billetten din for å bruke denne innsjekkingen.',
+        'alert' => array(
+            'success' => 'Suksess! Vennligst se ditt nærmeste mannskap for bandet ditt.',
+            'notfound' => 'Ikke funnet.',
+            'notallowed' => 'Du har ikke lov til å sjekke inn selv, enten er du for ung, ikke har bekreftet telefonen, eller så har du ikke betalt.',
+            'failed' => 'Innskjekking feilet.',
         ),
     ),
 

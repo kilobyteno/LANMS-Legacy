@@ -1,6 +1,7 @@
 <?php namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class SeatTicket extends Model
@@ -11,6 +12,7 @@ class SeatTicket extends Model
 
     protected $fillable = [
         'barcode',
+        'code',
         'reservation_id',
         'user_id',
         'checkin_id',
@@ -21,10 +23,19 @@ class SeatTicket extends Model
     protected static $logOnlyDirty = true;
     protected static $logAttributes = [
         'barcode',
+        'code',
         'reservation_id',
         'user_id',
         'checkin_id',
     ];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($ticket) {
+            $ticket->code = bin2hex(Str::random(3));
+        });
+    }
 
     public function reservation()
     {

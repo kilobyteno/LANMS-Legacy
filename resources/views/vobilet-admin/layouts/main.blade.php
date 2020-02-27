@@ -95,10 +95,6 @@
 											</span>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
-											</a>
-											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
 												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
 											</a>
@@ -125,7 +121,7 @@
 							<a class="side-menu__item @if(Request::is('admin')){{'active'}} @endif" href="{{ route('admin') }}"><i class="side-menu__icon fa fa-tachometer-alt"></i><span class="side-menu__label">Dashboard</span></a>
 						</li>
 						<li class="slide @if(Request::is('admin/users*')){{'is-expanded'}} @endif">
-							<a class="side-menu__item @if(Request::is('admin/billing*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users-cog"></i><span class="side-menu__label">Members</span><i class="angle fa fa-angle-right"></i></a>
+							<a class="side-menu__item @if(Request::is('admin/users*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users-cog"></i><span class="side-menu__label">Members</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li>
 									<a class="side-menu__item @if(Request::is('admin/users*') && !Request::is('admin/users/roles*')){{'active'}} @endif" href="{{ route('admin-users') }}"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Users</span></a>
@@ -135,12 +131,14 @@
 								</li>
 							</ul>
 						</li>
-						
 						<li class="slide @if(Request::is('admin/billing*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/billing*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-money-bill-alt"></i><span class="side-menu__label">Billing</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item @if(Request::is('admin/billing/invoice*')){{'active'}} @endif" href="{{ route('admin-billing-invoice') }}"><i class="fas fa-file-invoice mr-1"></i> Invoice</a></li>
 							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/compo')){{'active'}} @endif" href="{{ route('admin-compo') }}"><i class="side-menu__icon fas fa-compress-arrows-alt"></i><span class="side-menu__label">Compo</span></a>
 						</li>
 						<li class="slide @if(Request::is('admin/crew*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/crew*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-crown"></i><span class="side-menu__label">Crew</span><i class="angle fa fa-angle-right"></i></a>
@@ -149,6 +147,9 @@
 								<li><a class="slide-item @if(Request::is('admin/crew/categories*')){{'active'}} @endif" href="{{ route('admin-crew-category') }}"><i class="fa fa-tag mr-1"></i> Categories</a></li>
 								<li><a class="slide-item @if(Request::is('admin/crew/skill*') && !Request::is('admin/crew/skill/attachment*')){{'active'}} @endif" href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase mr-1"></i> Skills</a></li>
 							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/info')){{'active'}} @endif" href="{{ route('admin-info') }}"><i class="side-menu__icon fas fa-info-circle"></i><span class="side-menu__label">Info</span></a>
 						</li>
 						<li class="slide @if(Request::is('admin/news*')){{'is-expanded'}} @endif">
 							<a class="side-menu__item @if(Request::is('admin/news*')){{'active'}} @endif" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-newspaper"></i><span class="side-menu__label">News</span><i class="angle fa fa-angle-right"></i></a>
@@ -172,16 +173,14 @@
 							</ul>
 						</li>
 						<li>
-							<a class="side-menu__item @if(Request::is('admin/compo')){{'active'}} @endif" href="{{ route('admin-compo') }}"><i class="side-menu__icon fas fa-compress-arrows-alt"></i><span class="side-menu__label">Compo</span></a>
-						</li>
-						<li>
-							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
-						</li>
-						<li>
-							<a class="side-menu__item @if(Request::is('admin/info')){{'active'}} @endif" href="{{ route('admin-info') }}"><i class="side-menu__icon fas fa-info-circle"></i><span class="side-menu__label">Info</span></a>
+							<a class="side-menu__item @if(Request::is('admin/sms*')){{'active'}} @endif" href="{{ route('admin-sms') }}"><i class="side-menu__icon fas fa-sms"></i><span class="side-menu__label">SMS</span></a>
 						</li>
 						<li>
 							<a class="side-menu__item @if(Request::is('admin/sponsor')){{'active'}} @endif" href="{{ route('admin-sponsor') }}"><i class="side-menu__icon fas fa-money-check-alt"></i><span class="side-menu__label">Sponsor</span></a>
+						</li>
+						
+						<li>
+							<a class="side-menu__item @if(Request::is('admin/pages')){{'active'}} @endif" href="{{ route('admin-pages') }}"><i class="side-menu__icon fas fa-file-alt"></i><span class="side-menu__label">Pages</span></a>
 						</li>
 						@if(Sentinel::getUser()->hasAccess(['admin.emails.*']))
 							<li>

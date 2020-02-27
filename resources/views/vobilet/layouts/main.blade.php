@@ -152,9 +152,6 @@
 												</a>
 												<div class="dropdown-divider"></div>
 											@endif
-											<a class="dropdown-item" href="{{ route('dashboard') }}">
-												<i class="fas fa-tachometer-alt"></i> {{ trans('user.dashboard.title') }}
-											</a>
 											<a class="dropdown-item" href="{{ route('members') }}">
 												<i class="fas fa-users"></i> {{ trans('header.members') }}
 											</a>
@@ -197,14 +194,14 @@
 									<li class="nav-item">
 										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ trans('header.home') }}</a>
 									</li>
-									@if(count(\LANMS\Page::orderBy('name', 'desc')->forMenu()) > 0)
+									@if(\LANMS\Page::forMenu()->count() > 0)
 										<li class="nav-item">
 											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
 												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
 												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('header.tickets') }}</a>
 												@if(Setting::get('HEADER_INFO_CONSENT_FORM'))
-													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('seating.reservation.consentform.title') }}</a>
+													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('global.download') .' '. trans('seating.reservation.consentform.title') }}</a>
 												@endif
 												<div class="dropdown-divider"></div>
 												@foreach(\LANMS\Page::forMenu() as $page)

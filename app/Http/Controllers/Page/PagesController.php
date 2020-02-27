@@ -35,7 +35,7 @@ class PagesController extends Controller
     public function admin()
     {
         if (Sentinel::getUser()->hasAccess(['admin.pages.*'])) {
-            $pages = Page::all();
+            $pages = Page::withTrashed()->get();
             return view('pages.index')
                         ->withPages($pages);
         } else {
@@ -213,6 +213,31 @@ class PagesController extends Controller
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
+        }
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.pages.restore'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+
+        $page = Page::withTrashed()->find($id);
+        if ($page->restore()) {
+            return Redirect::route('admin-pages')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The page has now been restored!');
+        } else {
+            return Redirect::route('admin-pages')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while restoring the page.');
         }
     }
 }

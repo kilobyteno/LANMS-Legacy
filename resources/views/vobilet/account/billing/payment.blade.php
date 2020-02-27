@@ -6,7 +6,6 @@
         <h4 class="page-title">{{ trans('user.account.billing.payments.payment.title') }} #{{ $seatpayment->id }}</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ trans('user.dashboard.title') }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
             <li class="breadcrumb-item">{{ trans('user.account.billing.payments.title') }}</li>
@@ -69,8 +68,7 @@
             <h3>{{ trans('user.account.billing.payments.payment.title') }} <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> {{ trans('user.account.billing.payments.payment.downloadreceipt') }}</a></h3>
             <hr style="margin-top: 0">
             <p><strong>{{ trans('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
-            <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ substr($charge['amount'], 0, -2) }}</p>
-            <p><strong>{{ trans('global.payment.currency') }}:</strong> {{ strtoupper($charge['currency']) }}</p>
+            <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</p>
             <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</p>
             <p><strong>{{ trans('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? trans('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : trans('global.no')) }}</p>
             <p>

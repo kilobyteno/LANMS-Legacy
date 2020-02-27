@@ -63,7 +63,7 @@
 									</div>
 									<div class="@if($errors->has('showinmenu')) text-danger @endif">
 										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" name="showinmenu" @if($page->active) checked @endif>
+											<input type="checkbox" class="custom-control-input" name="showinmenu" @if($page->showinmenu) checked @endif>
 											<span class="custom-control-label">Show in Menu</span>
 										</label>
 										<p><small><em>If checked the page will be visible in the menu on the frontend</em></small></p>

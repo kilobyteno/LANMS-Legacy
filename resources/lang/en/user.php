@@ -86,6 +86,7 @@ return [
                         'marked_uncollectible' => 'Invoice was marked uncollectible.',
                         'voided' => 'Invoice was voided.',
                         'payment_failed' => 'Payment failed.',
+                        'payment_succeeded' => 'Payment succeeded.',
                     ),
                 ),
                 'product' => 'Product',
@@ -134,6 +135,18 @@ return [
             'editpassword' => 'Edit your password',
             'button' => 'Update Password',
         ),
+        'verifyphone' => array(
+            'title' => 'Verify Phone',
+            'alert' => array(
+                'saved' => 'Phonenumber was successfully verified.',
+                'failed' => 'Verification failed!',
+                'nophone' => 'No phonenumber saved.',
+                'alreadyverified' => 'Phone has already been verified.',
+                'info' => 'Verification token has been sent! Please wait up to one minute. ',
+            ),
+            'typecode' => 'Type in the code you received on a SMS',
+            'button' => 'Verify',
+        ),
     ),
 
     'profile' => array(
@@ -157,13 +170,17 @@ return [
                 'phonewhydesc' => 'We need your phone number in case of an emergency during the event.',
             ),
 
+            'address' => array(
+                'title' => 'Edit your address',
+            ),
+
             'settings' => array(
                 'title' => 'Edit your settings',
                 'show' => 'Show',
                 'fullname' => 'Fullname',
                 'onlinestatus' => 'Online Status',
-                'language' => 'Preffered Language',
-                'theme' => 'Preffered Theme',
+                'language' => 'Preferred Language',
+                'theme' => 'Preferred Theme',
             ),
 
             'confirmpassword' => array(

@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.users.update'])) {
             $user = User::withTrashed()->find($id);
-            $roles = EloquentRole::all();
+            $roles = EloquentRole::where('name', '<>', 'Default')->get();
             return view('user.edit')->withUser($user)->withRoles($roles);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -94,6 +94,7 @@ class UserController extends Controller
             'location'          => $request->get('location'),
             'occupation'        => $request->get('occupation'),
             'birthdate'         => $request->get('birthdate'),
+            'phone_country'     => $request->get('phone_country'),
             'phone'             => $request->get('phone'),
             'about'             => $request->get('about'),
             'showemail'         => $request->get('showemail'),

@@ -14,38 +14,42 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Category</th>
-					<th>Created at</th>
-					<th>Created by</th>
-					<th>Updated at</th>
-					<th>Updated by</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($crewassignment as $crew)
-					<tr>
-						<td scope="row">{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
-						<td>{{ $crew->category->title ?? 'N/A' }}</td>
-						<td>{{ \Carbon::parse($crew->created_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
-						<td>{{ \Carbon::parse($crew->updated_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
-						<td>
-							<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#crew-destroy-{{ $crew->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Category</th>
+							<th>Created at</th>
+							<th>Created by</th>
+							<th>Updated at</th>
+							<th>Updated by</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($crewassignment as $crew)
+							<tr>
+								<td scope="row">{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
+								<td>{{ $crew->category->title ?? 'N/A' }}</td>
+								<td>{{ \Carbon::parse($crew->created_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
+								<td>{{ \Carbon::parse($crew->updated_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
+								<td>
+									<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.crew.destroy'))
+										<a href="javascript:;" onclick="jQuery('#crew-destroy-{{ $crew->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@endif
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 	</div>
 </div>
 

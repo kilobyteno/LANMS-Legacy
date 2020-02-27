@@ -14,13 +14,19 @@ return [
     'type' => 'Type',
     'nodata' => 'Vi kan ikke finne noen data til deg...',
     'noaccess' => 'Du har ikke tilgang til denne siden!',
+    'verification' => 'Verifisering',
+    'verified' => 'verifisert',
+    'notverified' => 'ikke verifisert',
     'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
+    'unknown' => 'Ukjent',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.
     'delete' => 'Slett', // As in 'Delete Address' etc.
     'savechanges' => 'Lagre endringer',
     'download' => 'Last ned',
+    'send' => 'Send',
+    'print' => 'Skriv ut',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',
@@ -102,8 +108,7 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Gateadresse',
-        'address2' => 'Husnummer',
+        'street' => 'Gate',
         'postalcode' => 'Postnummer',
         'city' => 'By',
         'county' => 'Fylke',

@@ -14,13 +14,19 @@ return [
     'type' => 'Type',
     'nodata' => 'We can\'t find any data for you...',
     'noaccess' => 'You do not have access to this page!',
+    'verification' => 'Verification',
+    'verified' => 'verified',
+    'notverified' => 'not verified',
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
+    'unknown' => 'Unknown',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
     'delete' => 'Delete', // As in 'Delete Address' etc.
     'savechanges' => 'Save Changes',
     'download' => 'Download',
+    'send' => 'Send',
+    'print' => 'Print',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',
@@ -102,8 +108,7 @@ return [
     ),
 
     'address' => array(
-        'address1' => 'Street',
-        'address2' => 'House Number',
+        'street' => 'Street',
         'postalcode' => 'Postal Code',
         'city' => 'City',
         'county' => 'County',

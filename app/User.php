@@ -2,26 +2,23 @@
 
 namespace LANMS;
 
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;
 use Cartalyst\Sentinel\Persistences\PersistableInterface;
-use Cartalyst\Sentinel\Roles\RoleableInterface;
 use Cartalyst\Sentinel\Roles\RoleInterface;
+use Cartalyst\Sentinel\Roles\RoleableInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Dialect\Gdpr\Anonymizable;
+use Dialect\Gdpr\Portable;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Spatie\Activitylog\Traits\LogsActivity;
-
-use Dialect\Gdpr\Portable;
-use Dialect\Gdpr\Anonymizable;
-
-use Illuminate\Contracts\Translation\HasLocalePreference;
-
+use LANMS\StripeCustomer;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
@@ -67,6 +64,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'firstname',
         'birthdate',
         'phone',
+        'phone_country',
+        'phone_verified_at',
         'gender',
         'occupation',
         'location',
@@ -76,7 +75,13 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'language',
         'theme',
         'clothing_size',
+        'stripe_customer',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
     ];
 
     /**
@@ -99,6 +104,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'last_activity',
         'birthdate',
         'phone',
+        'phone_country',
+        'phone_verified_at',
         'gender',
         'occupation',
         'location',
@@ -111,10 +118,53 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'language',
         'theme',
         'clothing_size',
+        'stripe_customer',
         'about',
+        'address_street',
+        'address_postalcode',
+        'address_city',
+        'address_county',
+        'address_country',
         'accepted_gdpr',
         'isAnonymized'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            if (!$model->stripe_customer) {
+                $customer = Stripe::customers()->create([
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+                $stripe_customer = $customer['id'];
+                $model->stripe_customer = $stripe_customer;
+            }
+        });
+
+        self::updating(function ($model) {
+            $sc = StripeCustomer::where('user_id', $model->id)->first();
+            if ($sc && !$model->stripe_customer) {
+                $stripe_customer = $sc->cus;
+                $model->stripe_customer = $stripe_customer;
+                $sc->delete();
+            } elseif (!$sc && !$model->stripe_customer) {
+                $customer = Stripe::customers()->create([
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+                $stripe_customer = $customer['id'];
+                $model->stripe_customer = $stripe_customer;
+            } else {
+                Stripe::customers()->update($model->stripe_customer, [
+                    'email' => $model->email,
+                    'name' => $model->firstname.' '.$model->lastname,
+                ]);
+            }
+        });
+    }
 
     /**
      * Get the user's preferred locale.
@@ -741,8 +791,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function scopeGetUserTimeFormat($query)
     {
         if (Sentinel::check()) {
-            $user       = $query->where('id', '=', Sentinel::getUser()->id)->first();
-            $format     = $user->usertimeformat;
+            $user = $query->where('id', '=', Sentinel::getUser()->id)->first();
+            $format = $user->usertimeformat;
 
             if ($format == null) {
                 $format = 'H:i';
@@ -792,6 +842,15 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function scopeActive()
     {
         return $this->orderBy('firstname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+    }
+
+    public function scopeHasAddress()
+    {
+        if ($this->address_street && $this->address_postalcode && $this->address_city && $this->address_county && $this->address_county) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function scopeGetGenderIcon($query, $gender)

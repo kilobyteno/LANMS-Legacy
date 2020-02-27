@@ -15,36 +15,40 @@
 <div class="row">
 	<div class="col-md-12">
 		
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>Title</th>
-					<th>Created at</th>
-					<th>Created by</th>
-					<th>Updated at</th>
-					<th>Updated by</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($categories as $category)
-					<tr>
-						<td>{{ $category->title }}</td>
-						<td>{{ \Carbon::parse($category->created_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
-						<td>{{ \Carbon::parse($category->updated_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $category->editor->username) }}">{{ User::getFullnameByID($category->editor->id) }}</a></td>
-						<td>
-							<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.crew.destroy'))
-								<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-
+		<div class="card">
+			<div class="card-body">
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Created at</th>
+							<th>Created by</th>
+							<th>Updated at</th>
+							<th>Updated by</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($categories as $category)
+							<tr>
+								<td>{{ $category->title }}</td>
+								<td>{{ \Carbon::parse($category->created_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $category->author->username) }}">{{ User::getFullnameByID($category->author->id) }}</a></td>
+								<td>{{ \Carbon::parse($category->updated_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $category->editor->username) }}">{{ User::getFullnameByID($category->editor->id) }}</a></td>
+								<td>
+									<a href="{{ route('admin-crew-category-edit', $category->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.crew.destroy'))
+										<a href="javascript:;" onclick="jQuery('#category-destroy-{{ $category->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
+									@endif
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 	</div>
 </div>
 

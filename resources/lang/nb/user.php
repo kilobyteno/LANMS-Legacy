@@ -86,6 +86,7 @@ return [
                         'marked_uncollectible' => 'Fakturaen ble merket som tap.',
                         'voided' => 'Fakturaen ble merket som ugyldig.',
                         'payment_failed' => 'Betalingen feilet.',
+                        'payment_succeeded' => 'Betalingen lyktes.',
                     ),
                 ),
                 'product' => 'Produkt',
@@ -134,6 +135,18 @@ return [
             'editpassword' => 'Rediger passordet ditt',
             'button' => 'Oppdater passord',
         ),
+        'verifyphone' => array(
+            'title' => 'Bekreft telefonnummer',
+            'alert' => array(
+                'saved' => 'Telefonnummeret ble bekreftet.',
+                'failed' => 'Bekreftelsen mislyktes!',
+                'nophone' => 'Ingen telefonnummer lagret.',
+                'alreadyverified' => 'Telefonen er allerede bekreftet.',
+                'info' => 'Verifikasjonskode er sendt! Vennligst vent opptil ett minutt.',
+            ),
+            'typecode' => 'Skriv inn koden du mottok på en SMS',
+            'button' => 'Bekreft',
+        ),
     ),
 
     'profile' => array(
@@ -155,6 +168,10 @@ return [
                 'title' => 'Rediger profilinformasjonen din',
                 'phonewhy' => 'Hvorfor?',
                 'phonewhydesc' => 'Vi trenger telefonnummeret ditt i tilfelle det skulle oppstå et nødstilfelle under arrangementet.',
+            ),
+
+            'address' => array(
+                'title' => 'Rediger adressen din',
             ),
 
             'settings' => array(

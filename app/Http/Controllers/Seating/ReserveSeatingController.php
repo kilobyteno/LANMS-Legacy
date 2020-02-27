@@ -97,7 +97,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthday'));
         }
-        if (Sentinel::getUser()->addresses->count() == 0) {
+        if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.noaddresses'));
         }
@@ -115,7 +115,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.nobirthdayfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
-        if ($reservedfor->addresses->count() == 0) {
+        if (!$reservedfor->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.noaddressesfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
@@ -170,12 +170,27 @@ class ReserveSeatingController extends Controller
         $payment = $seat->reservationsThisYear()->first()->payment;
         if (Sentinel::getUser()->id == $reservedfor->id && !is_null($ticket)) {
             $html = view('seating.pdf.ticket')->with('seat', $seat)->with('payment', $payment)->with('reservedfor', $reservedfor)->with('ticket', $ticket)->render();
-            $pdf = PDF::loadHTML($html);
-            return $pdf->stream();
+            return PDF::loadHTML($html)->download();
         } else {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.ticketnoaccess'));
         }
+    }
+
+    public function ticketshow($slug)
+    {
+        $slug = strtolower($slug); // Just to be sure it is correct
+        $seat = Seats::where('slug', $slug)->first();
+        if (is_null($seat)) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.alert.seatnotfound'));
+        }
+        $reservation = $seat->reservationsThisYear()->first();
+        if (!Sentinel::getUser()->id == $reservation->reservedfor->id && !$reservation->ticket) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', trans('seating.reservation.alert.ticketnoaccess'));
+        }
+        return view('seating.ticket')->with('reservation', $reservation);
     }
 
     public function consentform()
@@ -186,7 +201,7 @@ class ReserveSeatingController extends Controller
             $user = null;
         }
         $html = view('seating.pdf.consentform')->withUser($user)->render();
-        return PDF::loadHTML($html)->stream();
+        return PDF::loadHTML($html)->download();
     }
 
     public function destroy($id)
@@ -201,7 +216,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.alert.seatingclosed'));
         }
-        if (Sentinel::getUser()->id <> $reservation->reservedby->id) {
+        if (Sentinel::getUser()->id !== $reservation->reservedby->id) {
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', trans('seating.reservation.alert.destroy.noaccess'));
         }
