@@ -204,6 +204,16 @@
 												<div class="invalid-feedback">{{ $errors->first('toornament_stage_id') }}</div>
 											@endif
 										</div>
+										<p class="text-center m-5"><em>~ or ~</em></p>
+										<div class="input-group">
+											<span class="input-group-prepend">
+												<span class="input-group-text">Toornament Match ID</span>
+											</span>
+											<input type="text" class="form-control input-lg {{ ($errors->has('toornament_match_id')) ? 'is-invalid state-invalid' : '' }}" name="toornament_match_id" autocomplete="off" placeholder="Toornament Stage ID" value="{{ (old('toornament_match_id')) ? old('toornament_match_id') : '' }}" />
+											@if($errors->has('toornament_match_id'))
+												<div class="invalid-feedback">{{ $errors->first('toornament_match_id') }}</div>
+											@endif
+										</div>
 									</div>
 									
 								</div>
