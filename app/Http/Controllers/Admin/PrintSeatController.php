@@ -24,7 +24,7 @@ class PrintSeatController extends Controller
     public function index()
     {
         if (Sentinel::getUser()->hasAccess(['admin.print.*'])) {
-            $rows = SeatRows::all();
+            $rows = SeatRows::orderBy('sort_order', 'asc')->get();
             return view('seating.print.index')->withRows($rows);
         } else {
             return Redirect::back()->with('messagetype', 'warning')

@@ -69,8 +69,9 @@ class CompoController extends Controller
             'page_id' => 'nullable|integer',
             'challonge_subdomain' => 'nullable|string',
             'challonge_url' => 'nullable|string',
-            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id',
-            'toornament_stage_id' => 'nullable|numeric|required_with:toornament_id',
+            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id,toornament_match_id',
+            'toornament_stage_id' => 'nullable|numeric|required_without:toornament_match_id',
+            'toornament_match_id' => 'nullable|numeric|required_without:toornament_stage_id',
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
@@ -92,7 +93,12 @@ class CompoController extends Controller
             'start_at_time' => 'required|date_format:H:i',
         ]);
 
-        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id'))) {
+        if ($request->get('toornament_stage_id') && $request->get('toornament_match_id')) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You cannot save Toornament Match ID and Toornament Stage ID set at the same time!')->withInput();
+        }
+
+        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id') || $request->get('toornament_match_id'))) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You cannot save Challonge and Toornament with eachother, pick one of them!')->withInput();
         }
@@ -134,6 +140,7 @@ class CompoController extends Controller
             'challonge_url' => $request->get('challonge_url'),
             'toornament_id' => $request->get('toornament_id'),
             'toornament_stage_id' => $request->get('toornament_stage_id'),
+            'toornament_match_id' => $request->get('toornament_match_id'),
             'year' => \Setting::get('SEATING_YEAR'),
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
@@ -205,8 +212,9 @@ class CompoController extends Controller
             'page_id' => 'nullable|integer',
             'challonge_subdomain' => 'nullable|string',
             'challonge_url' => 'nullable|string',
-            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id',
-            'toornament_stage_id' => 'nullable|numeric|required_with:toornament_id',
+            'toornament_id' => 'nullable|numeric|required_with:toornament_stage_id,toornament_match_id',
+            'toornament_stage_id' => 'nullable|numeric|required_without:toornament_match_id',
+            'toornament_match_id' => 'nullable|numeric|required_without:toornament_stage_id',
             'type' => 'integer',
             'signup_type' => 'integer',
             'signup_size' => 'required|integer',
@@ -228,9 +236,14 @@ class CompoController extends Controller
             'start_at_time' => 'required|date_format:H:i',
         ]);
 
-        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id'))) {
+        if (($request->get('challonge_subdomain') || $request->get('challonge_url')) && ($request->get('toornament_id') || $request->get('toornament_stage_id') || $request->get('toornament_match_id'))) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You cannot save Challonge and Toornament with eachother, pick one of them!')->withInput();
+        }
+
+        if ($request->get('toornament_stage_id') && $request->get('toornament_match_id')) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You cannot save Toornament Match ID and Toornament Stage ID set at the same time!')->withInput();
         }
 
         if ($request->get('min_signups') == 0) {
@@ -272,6 +285,7 @@ class CompoController extends Controller
             'challonge_url' => $request->get('challonge_url'),
             'toornament_id' => $request->get('toornament_id'),
             'toornament_stage_id' => $request->get('toornament_stage_id'),
+            'toornament_match_id' => $request->get('toornament_match_id'),
             'year' => \Setting::get('SEATING_YEAR'),
             'type' => $request->get('type'),
             'signup_type' => $request->get('signup_type'),
