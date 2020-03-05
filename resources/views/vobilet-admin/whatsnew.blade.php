@@ -21,6 +21,90 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#261" aria-expanded="true">Version 2.6.1</a>
+							</h4>
+						</div>
+						<div id="261" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-448'>LANMS-448</a>] - Row sorting on print page does not work</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-450'>LANMS-450</a>] - Add age to edit user admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-451'>LANMS-451</a>] - Add match to toornament in compo</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-372'>LANMS-372</a>] - Merge stripecust and user</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-453'>LANMS-453</a>] - Remove sponsors from widget sidebar</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#260" aria-expanded="true">Version 2.6.0</a>
+							</h4>
+						</div>
+						<div id="260" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-249'>LANMS-249</a>] - Remember me-function does not appear to work</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-420'>LANMS-420</a>] - Another user reserved seat; cannot pay</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-423'>LANMS-423</a>] - Missing card info on Charges-page</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-425'>LANMS-425</a>] - When editing page; &quot;Show in menu&quot; is checked by the &quot;active&quot; option</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-430'>LANMS-430</a>] - When editing sponsor and not editing image, image dissapears when saving</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-433'>LANMS-433</a>] - Reservation emails does not show name for website</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-440'>LANMS-440</a>] - Invoice notifications spammed every hour</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-442'>LANMS-442</a>] - Edit profile should remember last input if validation fails</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-443'>LANMS-443</a>] - Phone Country does not save when editing user in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-444'>LANMS-444</a>] - When clicking view on a reservation it shows the reservation page</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-214'>LANMS-214</a>] - Create a own ticket system, with several types of tickets</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-301'>LANMS-301</a>] - Twilio SMS Integration</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-328'>LANMS-328</a>] - Self Check-in</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-421'>LANMS-421</a>] - Add Grasrotandelen widget</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-422'>LANMS-422</a>] - Add delete/void function to invoices</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-432'>LANMS-432</a>] - Add reserved statuses widgets to admin dashboard</li>
+								</ul>
+								    
+								<h4>Task</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-319'>LANMS-319</a>] - Update Sentry SDK</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-311'>LANMS-311</a>] - Phone verification via Twilio</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-313'>LANMS-313</a>] - Sort menu in admin </li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-373'>LANMS-373</a>] - Create one setting for all currency</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-409'>LANMS-409</a>] - Renaming a row should reflect on seats</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-415'>LANMS-415</a>] - Merge address into user, only one address per user</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-418'>LANMS-418</a>] - Add &quot;Send&quot; to invoices</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-424'>LANMS-424</a>] - Sort pages by the alphabet in the menu</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-426'>LANMS-426</a>] - Remove &quot;User&quot;/&quot;Dashboard&quot;-page</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-427'>LANMS-427</a>] - Admin: Allow more than one reservation on one user</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-428'>LANMS-428</a>] - Enable days for google calendar</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-429'>LANMS-429</a>] - Add support for Toornament in compos</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-434'>LANMS-434</a>] - Remove old settings</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-437'>LANMS-437</a>] - Show deleted pages and add restore</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-441'>LANMS-441</a>] - Make pdf files download instead of stream</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2513" aria-expanded="true">Version 2.5.13</a>
 							</h4>
 						</div>
@@ -29,8 +113,9 @@
 								<h4>Bug</h4>
 								<ul>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-417'>LANMS-417</a>] - Seatmap in admin panel does not have sort order for rows</li>
-									<li>[<a href='http://jira.infihex.com/browse/LANMS-419'>LANMS-419</a>] - User gets notifications on voided invoices
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-419'>LANMS-419</a>] - User gets notifications on voided invoices</li>
 								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
@@ -55,6 +140,7 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-412'>LANMS-412</a>] - Send names to stripe</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-414'>LANMS-414</a>] - Add &quot;Reservations left&quot; in seating</li>
 								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
