@@ -118,6 +118,8 @@ class RefreshPermissions extends Command
         $default_role->addPermission('admin.print.restore', false);
 
         $default_role->addPermission('admin.info.update', false);
+        
+        $default_role->addPermission('admin.sms.create', false);
 
         $default_role->addPermission('admin.sponsor.create', false);
         $default_role->addPermission('admin.sponsor.update', false);
