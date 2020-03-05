@@ -52,18 +52,6 @@
 					<iframe frameborder="0" scrolling="no" src="https://www.norsk-tipping.no/grasrotandelen/stats-iframe?title=lowercase#receiver={{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 500px; height: auto;" class="rounded"></iframe>
 				</div>
 			@endif
-			@if(LANMS\Sponsor::thisYear()->count() > 0)
-				<h4>{{ trans('header.sponsor') }}</h4>
-				@foreach(LANMS\Sponsor::ordered()->thisYear()->get() as $sponsor)
-					<div class="card">
-						<div class="card-body d-flex flex-column">
-							<h4><a href="{{ $sponsor->url }}">{{ $sponsor->name }}</a></h4>
-							@if($sponsor->description)<div class="text-muted">{{ $sponsor->description }}</div>@endif
-						</div>
-						<a href="{{ $sponsor->url }}"><img class="card-img-top br-br-7 br-bl-7" src="@if(Sentinel::check()){{ (Sentinel::getUser()->theme == 'dark') ? ($sponsor->image_light) : asset($sponsor->image_dark) }} @else {{ $sponsor->image_dark }}@endif" alt="{{ $sponsor->name }}"></a> 
-					</div>
-				@endforeach
-			@endif
 		</div>
 		
 	</div>
