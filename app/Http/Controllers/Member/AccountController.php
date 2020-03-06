@@ -49,6 +49,7 @@ class AccountController extends Controller
     {
 
         $request->validate([
+            'username' => 'required|unique:users,username|between:3,250',
             'firstname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'lastname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan],
@@ -97,6 +98,7 @@ class AccountController extends Controller
         }
 
         $info = [
+            'username'          => $request->get('username'),
             'firstname'         => $request->get('firstname'),
             'lastname'          => $request->get('lastname'),
             'gender'            => $request->get('gender'),
