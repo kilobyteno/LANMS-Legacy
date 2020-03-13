@@ -152,7 +152,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('birthdate')) has-error @endif">
-                                    <label for="birthdate" class="form-label">Birthdate ({{ \Carbon::parse($user->birthdate)->age }} {{ trans('global.yearsold') }})</label>
+                                    <label for="birthdate" class="form-label">Birthdate <small>({{ \Carbon::parse($user->birthdate)->age }} {{ trans('global.yearsold') }})</small></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
