@@ -104,6 +104,11 @@ class UserController extends Controller
             'theme'             => $request->get('theme'),
             'about'             => $request->get('about'),
             'clothing_size'     => $request->get('clothing_size'),
+            'address_street' => $request->get('address_street'),
+            'address_postalcode' => $request->get('address_postalcode'),
+            'address_city' => $request->get('address_city'),
+            'address_county' => $request->get('address_county'),
+            'address_country' => $request->get('address_country'),
         ];
 
         $updateuser = Sentinel::update($finduser, $info);
