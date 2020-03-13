@@ -103,6 +103,7 @@ class UserController extends Controller
             'language'          => $request->get('language'),
             'theme'             => $request->get('theme'),
             'about'             => $request->get('about'),
+            'clothing_size'     => $request->get('clothing_size'),
         ];
 
         $updateuser = Sentinel::update($finduser, $info);

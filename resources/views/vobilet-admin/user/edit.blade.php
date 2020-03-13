@@ -173,6 +173,22 @@
                                         <p class="text-danger">{{ $errors->first('phone') }}{{ $errors->first('phone_country') }}</p>
                                     @endif
                                 </div>
+                                <div class="form-group @if ($errors->has('clothing_size')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.clothingsize.title') }}</label>
+                                    <select class="form-control" name="clothing_size">
+                                        <option value="0">{{ trans('global.clothingsize.nochoice') }}</option>
+                                        <option value="1" {{ ($user->clothing_size === 1) ? 'selected' : '' }}>{{ trans('global.clothingsize.xs') }}</option>
+                                        <option value="2" {{ ($user->clothing_size === 2) ? 'selected' : '' }}>{{ trans('global.clothingsize.s') }}</option>
+                                        <option value="3" {{ ($user->clothing_size === 3) ? 'selected' : '' }}>{{ trans('global.clothingsize.m') }}</option>
+                                        <option value="4" {{ ($user->clothing_size === 4) ? 'selected' : '' }}>{{ trans('global.clothingsize.l') }}</option>
+                                        <option value="5" {{ ($user->clothing_size === 5) ? 'selected' : '' }}>{{ trans('global.clothingsize.xl') }}</option>
+                                        <option value="6" {{ ($user->clothing_size === 6) ? 'selected' : '' }}>{{ trans('global.clothingsize.xxl') }}</option>
+                                        <option value="7" {{ ($user->clothing_size === 7) ? 'selected' : '' }}>{{ trans('global.clothingsize.3xl') }}</option>
+                                    </select>
+                                    @if($errors->has('clothing_size'))
+                                        <p class="text-danger">{{ $errors->first('clothing_size') }}</p>
+                                    @endif
+                                </div>
                                 <div class="form-group @if($errors->has('about')) has-error @endif">
                                     <label class="form-label">{{ trans('global.about') }}</label>
                                     <textarea class="form-control" rows="2" name="about">{{ (old('about')) ? old('about') : $user->about }}</textarea>
