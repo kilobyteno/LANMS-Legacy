@@ -187,6 +187,41 @@
                                 <div class="expanel-title">Address</div>
                             </div>
                             <div class="expanel-body">
+                                <div class="form-group @if($errors->has('address_street')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address_street') }}</label>
+                                    <textarea class="form-control" rows="2" name="address_street">{{ (old('address_street')) ? old('address_street') : $user->address_street }}</textarea>
+                                    @if($errors->has('address_street'))
+                                        <p class="text-danger">{{ $errors->first('address_street') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_postalcode')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address_postalcode') }}</label>
+                                    <textarea class="form-control" rows="2" name="address_postalcode">{{ (old('address_postalcode')) ? old('address_postalcode') : $user->address_postalcode }}</textarea>
+                                    @if($errors->has('address_postalcode'))
+                                        <p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_city')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address_city') }}</label>
+                                    <textarea class="form-control" rows="2" name="address_city">{{ (old('address_city')) ? old('address_city') : $user->address_city }}</textarea>
+                                    @if($errors->has('address_city'))
+                                        <p class="text-danger">{{ $errors->first('address_city') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_county')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address_county') }}</label>
+                                    <textarea class="form-control" rows="2" name="address_county">{{ (old('address_county')) ? old('address_county') : $user->address_county }}</textarea>
+                                    @if($errors->has('address_county'))
+                                        <p class="text-danger">{{ $errors->first('address_county') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_country')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address_country') }}</label>
+                                    <textarea class="form-control" rows="2" name="address_country">{{ (old('address_country')) ? old('address_country') : $user->address_country }}</textarea>
+                                    @if($errors->has('address_country'))
+                                        <p class="text-danger">{{ $errors->first('address_country') }}</p>
+                                    @endif
+                                </div>
                                 @if($user->hasAddress())
                                     <address>
                                         <strong>{{ $user->address_street }}</strong><br>
