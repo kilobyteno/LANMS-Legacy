@@ -47,9 +47,9 @@ class AccountController extends Controller
 
     public function postEditProfile(Request $request)
     {
-
+        $user = Sentinel::getUser();
         $request->validate([
-            'username' => 'required|unique:users,username|between:3,250',
+            'username' => 'required|unique:users,username,'.$user->id.'|between:3,250',
             'firstname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'lastname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan],
@@ -71,8 +71,6 @@ class AccountController extends Controller
             'address_county' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
             'address_country' => 'nullable|alpha',
         ]);
-
-        $user = Sentinel::getUser();
 
         $credentials = [
             'login'         => $user->username,
