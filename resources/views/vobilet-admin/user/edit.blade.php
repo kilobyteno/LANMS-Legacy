@@ -274,7 +274,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('address_postalcode')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address_postalcode') }}</label>
+                                    <label class="form-label">{{ trans('global.address.postalcode') }}</label>
                                     <input class="form-control" name="address_postalcode" value="{{ (old('address_postalcode')) ? old('address_postalcode') : $user->address_postalcode }}">
                                     @if($errors->has('address_postalcode'))
                                         <p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
