@@ -3,6 +3,7 @@
 return [
 
     'title' => 'Compo',
+    'previous' => 'Previous Compos',
     'starts' => 'Starts',
     'firstsignup' => 'Registration start',
     'lastsignup' => 'Last registration',

@@ -26,6 +26,17 @@ class CompoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function previous()
+    {
+        $compos = Compo::lastYear()->paginate(6);
+        return view('compo.previous')->with('compos', $compos);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin()
     {
         if (!Sentinel::getUser()->hasAccess(['admin.compo.*'])) {

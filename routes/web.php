@@ -103,6 +103,10 @@ Route::group([
                     'as' => 'compo',
                     'uses' => 'Compo\CompoController@index'
                 ]);
+                Route::get('/previous', [
+                    'as' => 'compo-previous',
+                    'uses' => 'Compo\CompoController@previous'
+                ]);
                 Route::get('/{slug}', [
                     'as' => 'compo-show',
                     'uses' => 'Compo\CompoController@show'
