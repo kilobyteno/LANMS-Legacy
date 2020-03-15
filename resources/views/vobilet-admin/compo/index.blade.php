@@ -40,10 +40,11 @@
 								<td>
 									@if($compo->year != \Setting::get('SEATING_YEAR'))
 										<span class="badge badge-dark">Previous</span>
-									@elseif($compo->deleted_at)
+									@endif
+									@if($compo->deleted_at)
 										<span class="badge badge-danger">Deleted</span>
 									@elseif(!$compo->deleted_at)
-										<span class="badge badge-info">Visible</span>
+										<span class="badge badge-info">Active</span>
 									@endif									
 								</td>
 								<td>
@@ -57,7 +58,7 @@
 										@endif
 									@else
 										@if(Sentinel::hasAccess('admin.compo.create'))
-											<a href="{{ route('admin-compo-duplicate', $compo->id) }}" class="btn btn-info btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
+											<a href="{{ route('admin-compo-duplicate', $compo->id) }}" class="btn btn-purple btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
 										@endif
 									@endif
 								</td>

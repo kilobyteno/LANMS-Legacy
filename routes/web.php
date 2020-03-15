@@ -874,6 +874,14 @@ Route::group([
                     'as' => 'admin-compo-destroy',
                     'uses' => 'Compo\CompoController@destroy'
                 ]);
+                Route::get('/{id}/restore', [
+                    'as' => 'admin-compo-restore',
+                    'uses' => 'Compo\CompoController@restore'
+                ]);
+                Route::get('/{id}/duplicate', [
+                    'as' => 'admin-compo-duplicate',
+                    'uses' => 'Compo\CompoController@duplicate'
+                ]);
             });
         Route::group([
             'prefix' => 'pages'
