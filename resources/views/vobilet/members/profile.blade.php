@@ -46,37 +46,53 @@
 						<p class="@if($phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
 					</div>
 				</div>
+
 				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">{{ trans('user.profile.attendance') }}</h3>
-					</div>
-					@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0 || Sentinel::findById($id)->ownReservationsLastYear->count()>0)
-						<div class="table-responsive">
-							<table class="table card-table table-vcenter text-nowrap">
-								<tbody>
-									@if(Sentinel::findById($id)->ownReservationsThisYear->count()>0)
-										@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
-											<tr>
-												<td class="no-border">{{ trans('user.profile.reservedaseatfor') }} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
-												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
-											</tr>
-										@endforeach
-									@endif
-									@if(Sentinel::findById($id)->ownReservationsLastYear->count()>0)
-										@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
-											<tr>
-												<td class="no-border">{{ trans('user.profile.reservedaseatfor') }} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</td>
-												<td class="no-border text-right"><span class="tag tag-rounded">{{ date('M Y', strtotime($reservation->created_at)) }}</span></td>
-											</tr>
-										@endforeach
-									@endif
-								</tbody>
-							</table>
+					<div class="card-body">
+						<div class="d-flex justify-content-between mb-5">
+							<h4 class="card-title">{{ trans('user.profile.activity.title') }}</h4>
 						</div>
-					@else
-						<div class="card-body"><p class="text-muted"><em>{{ trans('user.profile.noattendance') }}</em></p></div>
-					@endif
+						@if(Sentinel::findById($id)->ownReservationsThisYear->count() > 0)
+							@foreach(Sentinel::findById($id)->ownReservationsThisYearDecending as $reservation)
+								<div class="list d-flex align-items-center border-bottom py-3">
+									<div class="avatar brround d-block" style="background-image: url({{ $profilepicture ?? '/images/profilepicture/0.png' }})">
+										{{--<span class="avatar-status bg-green"></span>--}}
+									</div>
+									<div class="wrapper w-100 ml-3">
+										<p class="mb-0">{!! trans('user.profile.activity.reservedaseatfor', ['name' => $firstname]) !!} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</p>
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="d-flex align-items-center">
+												<i class="mdi mdi-clock text-muted mr-1"></i>
+												<p class="mb-0">{{ \Carbon::parse($reservation->created_at)->isoFormat('LL') }}</p>
+											</div>
+											<small class="text-muted ml-auto">{{ \Carbon::parse($reservation->created_at)->diffForHumans() }}</small>
+										</div>
+									</div>
+								</div>
+							@endforeach
+						@endif
+						@if(Sentinel::findById($id)->ownReservationsLastYear->count() > 0)
+							@foreach(Sentinel::findById($id)->ownReservationsLastYearDecending as $reservation)
+								<div class="list d-flex align-items-center border-bottom py-3">
+									<div class="avatar brround d-block" style="background-image: url({{ $profilepicture ?? '/images/profilepicture/0.png' }})">
+										{{--<span class="avatar-status bg-green"></span>--}}
+									</div>
+									<div class="wrapper w-100 ml-3">
+										<p class="mb-0">{!! trans('user.profile.activity.reservedaseatfor', ['name' => $firstname]) !!} {{\Setting::get('WEB_NAME')}} {{ $reservation->year }}</p>
+										<div class="d-flex justify-content-between align-items-center">
+											<div class="d-flex align-items-center">
+												<i class="mdi mdi-clock text-muted mr-1"></i>
+												<p class="mb-0">{{ \Carbon::parse($reservation->created_at)->isoFormat('LL') }}</p>
+											</div>
+											<small class="text-muted ml-auto">{{ \Carbon::parse($reservation->created_at)->diffForHumans() }}</small>
+										</div>
+									</div>
+								</div>
+							@endforeach
+						@endif
+					</div>
 				</div>
+
 			</div>
 			<div class="col-lg-7">
 				<div class="card">

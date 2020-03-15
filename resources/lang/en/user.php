@@ -152,13 +152,15 @@ return [
     'profile' => array(
         'title' => 'Profile',
         'myprofile' => 'My profile',
-        'attendance' => 'Attendance',
         'editprofile' => 'Edit Profile',
         'editimages' => 'Edit Images',
-        'reservedaseatfor' => 'Reserved a seat for',
         'noattendance' => 'No attendance yet.',
         'alert' => array(
             'userdeleted' => 'This user has been deleted.',
+        ),
+        'activity' => array(
+            'title' => 'Activity',
+            'reservedaseatfor' => '<strong>:Name</strong> reserved a seat for',
         ),
         'edit' => array(
             'title' => 'Edit profile',
