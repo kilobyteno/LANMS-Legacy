@@ -52,6 +52,12 @@
 										<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
 										@if(Sentinel::hasAccess('admin.compo.destroy') && !$compo->deleted_at)
 											<a href="javascript:;" onclick="jQuery('#compo-destroy-{{ $compo->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+										@elseif(Sentinel::hasAccess('admin.compo.destroy') && $compo->deleted_at)
+											<a href="{{ route('admin-compo-restore', $compo->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
+										@endif
+									@else
+										@if(Sentinel::hasAccess('admin.compo.create'))
+											<a href="{{ route('admin-compo-duplicate', $compo->id) }}" class="btn btn-info btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
 										@endif
 									@endif
 								</td>
