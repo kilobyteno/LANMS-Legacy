@@ -43,7 +43,7 @@ class CompoController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $compos = Compo::thisYear()->get();
+        $compos = Compo::withTrashed()->get();
         return view('compo.index')->with('compos', $compos);
     }
 
