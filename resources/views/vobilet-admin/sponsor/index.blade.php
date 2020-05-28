@@ -58,7 +58,7 @@
 										@endif
 									@else
 										@if(Sentinel::hasAccess('admin.sponsor.create'))
-											<a href="{{ route('admin-sponsor-duplicate', $sponsor->id) }}" class="btn btn-info btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
+											<a href="{{ route('admin-sponsor-duplicate', $sponsor->id) }}" class="btn btn-purple btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
 										@endif
 									@endif
 								</td>

@@ -26,13 +26,24 @@ class CompoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function previous()
+    {
+        $compos = Compo::lastYear()->paginate(6);
+        return view('compo.previous')->with('compos', $compos);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function admin()
     {
         if (!Sentinel::getUser()->hasAccess(['admin.compo.*'])) {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        $compos = Compo::thisYear()->get();
+        $compos = Compo::withTrashed()->get();
         return view('compo.index')->with('compos', $compos);
     }
 
@@ -325,5 +336,50 @@ class CompoController extends Controller
         return Redirect::route('admin-compo')
                 ->with('messagetype', 'success')
                 ->with('message', 'Deleted compo successfully!');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function restore($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.restore'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $compo = Compo::withTrashed()->find($id);
+        if ($compo->restore()) {
+            return Redirect::route('admin-compo')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The compo has now been restored!');
+        } else {
+            return Redirect::route('admin-compo')
+                ->with('messagetype', 'danger')
+                ->with('message', 'Something went wrong while restoring the compo.');
+        }
+    }
+
+    /**
+     * Duplicate the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function duplicate($id)
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.compo.create'])) {
+            return Redirect::back()->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        $compo = Compo::withTrashed()->find($id);
+        $dupe_compo = $compo->replicate();
+        $dupe_compo->year = \Setting::get('SEATING_YEAR');
+        $dupe_compo->save();
+        return Redirect::route('admin-compo')
+                ->with('messagetype', 'success')
+                ->with('message', 'The compo has now been duplicated!');
     }
 }

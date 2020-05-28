@@ -152,13 +152,15 @@ return [
     'profile' => array(
         'title' => 'Profil',
         'myprofile' => 'Min profil',
-        'attendance' => 'Deltakelse',
         'editprofile' => 'Rediger profil',
         'editimages' => 'Rediger bilder',
-        'reservedaseatfor' => 'Reserverte et sete for',
         'noattendance' => 'Ingen oppmøte ennå.',
         'alert' => array(
             'userdeleted' => 'Denne brukeren er slettet.',
+        ),
+        'activity' => array(
+            'title' => 'Aktivitet',
+            'reservedaseatfor' => '<strong>:Name</strong> reserverte et sete for',
         ),
         'edit' => array(
             'title' => 'Rediger profil',

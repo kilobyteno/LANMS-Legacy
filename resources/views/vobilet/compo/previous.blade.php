@@ -1,13 +1,14 @@
 @extends('layouts.main')
-@section('title', trans('header.compo'))
+@section('title', trans('compo.previous'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.compo') }}@if(\Sentinel::check())<a class="btn btn-sm btn-info ml-2" href="{{ route('compo-team') }}"><i class="fa fa-user-shield mr-2"></i> {{ trans('compo.teams') }}</a>@endif</h4>
+		<h4 class="page-title">{{ trans('compo.previous') }}</h4>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.compo') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('compo') }}">{{ trans('header.compo') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ trans('compo.previous') }}</li>
 		</ol>
 	</div>
 	<div class="row">
@@ -28,6 +29,7 @@
 						<div class="card-body d-flex flex-column">
 							<p class="mb-5 pb-5 border-bottom">
 								<small>
+									<span class="badge badge-default"><i class="fas fa-history"></i> {{ $compo->year }}</span>
 									@if(\Carbon\Carbon::now() < $compo->start_at)
 										<span class="badge badge-default"><i class="fas fa-hourglass-start"></i> {{ trans('compo.notstarted') }}</span>
 									@elseif(\Carbon\Carbon::now() > $compo->start_at && \Carbon\Carbon::now() < $compo->end_at)
@@ -83,14 +85,14 @@
 					</div>
 				</div>
 			@endforeach
+			<div class="col-12">
+				{{ $compos->links('layouts.pagination') }}
+			</div>
 		@else
 			<div class="col-md-12 col-lg-12 col-sm-12">
 				<p>{{ trans('global.nodata') }}</p>
 			</div>
 		@endif
-		<div class="col-12">
-			<a href="{{ route('compo-previous') }}" class="btn btn-outline-info"><i class="fas fa-history"></i> {{ trans('compo.previous') }}</a>
-		</div>
 	</div>
 </div>
 

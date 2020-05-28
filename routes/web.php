@@ -103,6 +103,10 @@ Route::group([
                     'as' => 'compo',
                     'uses' => 'Compo\CompoController@index'
                 ]);
+                Route::get('/previous', [
+                    'as' => 'compo-previous',
+                    'uses' => 'Compo\CompoController@previous'
+                ]);
                 Route::get('/{slug}', [
                     'as' => 'compo-show',
                     'uses' => 'Compo\CompoController@show'
@@ -869,6 +873,14 @@ Route::group([
                 Route::get('/{id}/destroy', [
                     'as' => 'admin-compo-destroy',
                     'uses' => 'Compo\CompoController@destroy'
+                ]);
+                Route::get('/{id}/restore', [
+                    'as' => 'admin-compo-restore',
+                    'uses' => 'Compo\CompoController@restore'
+                ]);
+                Route::get('/{id}/duplicate', [
+                    'as' => 'admin-compo-duplicate',
+                    'uses' => 'Compo\CompoController@duplicate'
                 ]);
             });
         Route::group([

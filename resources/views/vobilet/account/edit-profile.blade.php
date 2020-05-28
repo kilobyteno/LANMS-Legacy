@@ -105,6 +105,15 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
+							<div class="form-group @if($errors->has('username')) has-error @endif">
+								<label class="form-label">{{ trans('global.username') }}</label>
+								<div class="input-group">
+									<input class="form-control" type="text" name="username" placeholder="johnman" value="{{ $username ?? old('username') }}">
+								</div>
+								@if($errors->has('firstname'))
+									<p class="text-danger">{{ $errors->first('firstname') }}</p>
+								@endif
+							</div>
 							<div class="form-group @if($errors->has('firstname')) has-error @endif">
 								<label class="form-label">{{ trans('global.firstname') }}</label>
 								<div class="input-group">

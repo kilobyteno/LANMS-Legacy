@@ -3,6 +3,7 @@
 return [
 
     'title' => 'Konkuranse',
+    'previous' => 'Tidligere konkuranser',
     'starts' => 'Starter',
     'firstsignup' => 'Påmeldingsstart',
     'lastsignup' => 'Siste påmelding',

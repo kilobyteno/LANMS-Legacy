@@ -21,6 +21,42 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#262" aria-expanded="true">Version 2.6.2</a>
+							</h4>
+						</div>
+						<div id="262" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-456'>LANMS-456</a>] - Default role is missing sms permission</li>
+								</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-445'>LANMS-445</a>] - Allow users to change username</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-452'>LANMS-452</a>] - Add previous compos page</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-461'>LANMS-461</a>] - Add restore &amp; duplicate to compos</li>
+								</ul>
+								    
+								<h4>Task</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-455'>LANMS-455</a>] - Test and check the admin panel on mobile</li>
+								</ul>
+								    
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-359'>LANMS-359</a>] - Add possibility to add winners for compos</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-457'>LANMS-457</a>] - Add view buttons to compo in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-458'>LANMS-458</a>] - Add address fields to users in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-460'>LANMS-460</a>] - Show previous compos in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-462'>LANMS-462</a>] - Show signups for compos for admins</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#261" aria-expanded="true">Version 2.6.1</a>
 							</h4>
 						</div>

@@ -222,11 +222,11 @@ class SponsorController extends Controller
         if ($sponsor->restore()) {
             return Redirect::route('admin-sponsor')
                     ->with('messagetype', 'success')
-                    ->with('message', 'The sponsor has now been deleted!');
+                    ->with('message', 'The sponsor has now been restored!');
         } else {
             return Redirect::route('admin-sponsor')
                 ->with('messagetype', 'danger')
-                ->with('message', 'Something went wrong while deleting the page.');
+                ->with('message', 'Something went wrong while restoring the sponsor.');
         }
     }
 

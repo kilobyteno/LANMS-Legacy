@@ -21,9 +21,11 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Year</th>
 							<th>Start at</th>
 							<th>Last sign up at</th>
 							<th>End at</th>
+							<th>Status</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -31,13 +33,33 @@
 						@foreach($compos as $compo)
 							<tr>
 								<td>{{ $compo->name }}</td>
+								<td>{{ $compo->year }}</td>
 								<td>{{ \Carbon::parse($compo->start_at)->toDateTimeString() }}</td>
 								<td>{{ \Carbon::parse($compo->last_sign_up_at)->toDateTimeString() }}</td>
 								<td>{{ \Carbon::parse($compo->end_at)->toDateTimeString() }}</td>
 								<td>
-									<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
-									@if(Sentinel::hasAccess('admin.compo.destroy'))
-										<a href="javascript:;" onclick="jQuery('#compo-destroy-{{ $compo->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+									@if($compo->year != \Setting::get('SEATING_YEAR'))
+										<span class="badge badge-dark">Previous</span>
+									@endif
+									@if($compo->deleted_at)
+										<span class="badge badge-danger">Deleted</span>
+									@elseif(!$compo->deleted_at)
+										<span class="badge badge-info">Active</span>
+									@endif									
+								</td>
+								<td>
+									<a href="{{ route('compo-show', $compo->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
+									@if($compo->year == \Setting::get('SEATING_YEAR'))
+										<a href="{{ route('admin-compo-edit', $compo->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
+										@if(Sentinel::hasAccess('admin.compo.destroy') && !$compo->deleted_at)
+											<a href="javascript:;" onclick="jQuery('#compo-destroy-{{ $compo->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-2"></i>Delete</a>
+										@elseif(Sentinel::hasAccess('admin.compo.destroy') && $compo->deleted_at)
+											<a href="{{ route('admin-compo-restore', $compo->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-redo mr-2"></i>Restore</a>
+										@endif
+									@else
+										@if(Sentinel::hasAccess('admin.compo.create'))
+											<a href="{{ route('admin-compo-duplicate', $compo->id) }}" class="btn btn-purple btn-sm"><i class="far fa-clone mr-2"></i>Duplicate</a>
+										@endif
 									@endif
 								</td>
 							</tr>
@@ -81,7 +103,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $('#table-1').DataTable({
-		    	order: [1, "asc"],
+		    	order: [1, "desc"],
 		    	responsive: true,
 		    	"iDisplayLength": 25
 		    });

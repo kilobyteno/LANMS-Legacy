@@ -45,7 +45,7 @@
 									<div class="col-xl-12">
 										<div class="input-group">
 											<span class="input-group-prepend">
-												<span class="input-group-text">Compo Name</span>
+												<span class="input-group-text">Name</span>
 											</span>
 											<input type="text" class="form-control input-lg {{ ($errors->has('name')) ? 'is-invalid state-invalid' : '' }}" name="name" autocomplete="off" placeholder="Name" value="{{ (old('name')) ? old('name') : $compo->name }}" />
 											@if($errors->has('name'))
@@ -420,23 +420,33 @@
 					</div>
 				</div>
 
-				
-
-				
-
-				
-
-				
-
-
-				
-
-				
-
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			</div>
 		</form>
+
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">
+					Signups
+				</div>
+			</div>
+			<div class="card-body">
+				@foreach($compo->signupsthisYear as $signup)
+					@if($signup->team_id)
+						<div class="col-lg-3 mb-5">
+							<h5><strong>{{ $signup->team->name }}</strong></h5>
+							<p class="m-0"><i class="fas fa-user mr-2"></i>{{ \LANMS\User::getFullnameAndNicknameByID($signup->team->user_id) }}</p>
+							@foreach($signup->team->players as $player)
+								<p class="m-0"><i class="far fa-user mr-2"></i>{{ \LANMS\User::getFullnameAndNicknameByID($player->id) }}</p>
+							@endforeach
+						</div>
+					@elseif(!$signup->team_id && $signup->user_id)
+						<div class="col-lg-3 mb-4">{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}</div>
+					@endif
+				@endforeach
+			</div>
+		</div>
 
 	</div>
 </div>

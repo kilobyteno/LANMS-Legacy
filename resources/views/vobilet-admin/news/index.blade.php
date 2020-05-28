@@ -14,41 +14,47 @@
 <div class="row">
 	<div class="col-md-12">
 		
-		<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Title</th>
-					<th>Category</th>
-					<th>Published at</th>
-					<th>Created by</th>
-					<th>Updated at</th>
-					<th>Updated by</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($news as $article)
-					<tr>
-						<th scope="row">{{ $article->id }}</th>
-						<td>{{ $article->title }}</td>
-						<td><a href="{{ route('admin-news-category') }}"><div class="badge badge-info"><i class="fa fa-tag"></i> {{ $article->category->name }}</div></a></td>
-						<td>{{ \Carbon::parse($article->published_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a></td>
-						<td>{{ \Carbon::parse($article->updated_at)->toDateTimeString() }}</td>
-						<td><a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></td>
-						<td>
-							<a href="{{ route('news-show', $article->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
-							<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
-							@if(Sentinel::hasAccess('admin.news.destroy'))
-								<a href="javascript:;" onclick="jQuery('#news-destroy-{{ $article->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
-							@endif
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="card">
+			<div class="card-body">
 
+				<table class="table table-striped table-bordered dataTable no-footer" id="table-1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Title</th>
+							<th>Category</th>
+							<th>Published at</th>
+							<th>Created by</th>
+							<th>Updated at</th>
+							<th>Updated by</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($news as $article)
+							<tr>
+								<th scope="row">{{ $article->id }}</th>
+								<td>{{ $article->title }}</td>
+								<td><a href="{{ route('admin-news-category') }}"><div class="badge badge-info"><i class="fa fa-tag"></i> {{ $article->category->name }}</div></a></td>
+								<td>{{ \Carbon::parse($article->published_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a></td>
+								<td>{{ \Carbon::parse($article->updated_at)->toDateTimeString() }}</td>
+								<td><a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></td>
+								<td>
+									<a href="{{ route('news-show', $article->slug) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
+									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>Edit</a>
+									@if(Sentinel::hasAccess('admin.news.destroy'))
+										<a href="javascript:;" onclick="jQuery('#news-destroy-{{ $article->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Delete</a>
+									@endif
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		
 	</div>
 </div>
 

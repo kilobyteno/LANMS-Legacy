@@ -152,7 +152,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('birthdate')) has-error @endif">
-                                    <label for="birthdate" class="form-label">Birthdate ({{ \Carbon::parse($user->birthdate)->age }} {{ trans('global.yearsold') }})</label>
+                                    <label for="birthdate" class="form-label">Birthdate <small>({{ \Carbon::parse($user->birthdate)->age }} {{ trans('global.yearsold') }})</small></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -173,6 +173,22 @@
                                         <p class="text-danger">{{ $errors->first('phone') }}{{ $errors->first('phone_country') }}</p>
                                     @endif
                                 </div>
+                                <div class="form-group @if ($errors->has('clothing_size')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.clothingsize.title') }}</label>
+                                    <select class="form-control" name="clothing_size">
+                                        <option value="0">{{ trans('global.clothingsize.nochoice') }}</option>
+                                        <option value="1" {{ ($user->clothing_size === 1) ? 'selected' : '' }}>{{ trans('global.clothingsize.xs') }}</option>
+                                        <option value="2" {{ ($user->clothing_size === 2) ? 'selected' : '' }}>{{ trans('global.clothingsize.s') }}</option>
+                                        <option value="3" {{ ($user->clothing_size === 3) ? 'selected' : '' }}>{{ trans('global.clothingsize.m') }}</option>
+                                        <option value="4" {{ ($user->clothing_size === 4) ? 'selected' : '' }}>{{ trans('global.clothingsize.l') }}</option>
+                                        <option value="5" {{ ($user->clothing_size === 5) ? 'selected' : '' }}>{{ trans('global.clothingsize.xl') }}</option>
+                                        <option value="6" {{ ($user->clothing_size === 6) ? 'selected' : '' }}>{{ trans('global.clothingsize.xxl') }}</option>
+                                        <option value="7" {{ ($user->clothing_size === 7) ? 'selected' : '' }}>{{ trans('global.clothingsize.3xl') }}</option>
+                                    </select>
+                                    @if($errors->has('clothing_size'))
+                                        <p class="text-danger">{{ $errors->first('clothing_size') }}</p>
+                                    @endif
+                                </div>
                                 <div class="form-group @if($errors->has('about')) has-error @endif">
                                     <label class="form-label">{{ trans('global.about') }}</label>
                                     <textarea class="form-control" rows="2" name="about">{{ (old('about')) ? old('about') : $user->about }}</textarea>
@@ -180,23 +196,6 @@
                                         <p class="text-danger">{{ $errors->first('about') }}</p>
                                     @endif
                                 </div>
-                            </div>
-                        </div>
-                        <div class="expanel expanel-default" data-collapsed="0">
-                            <div class="expanel-heading">
-                                <div class="expanel-title">Address</div>
-                            </div>
-                            <div class="expanel-body">
-                                @if($user->hasAddress())
-                                    <address>
-                                        <strong>{{ $user->address_street }}</strong><br>
-                                        {{ $user->address_postalcode }}, {{ $user->address_city }}<br>
-                                        {{ $user->address_county }}<br>
-                                        {{ $user->address_country }}
-                                    </address>
-                                @else
-                                    <p><em>User has no address.</em></p>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -258,6 +257,48 @@
                                     </select>
                                     @if($errors->has('theme'))
                                         <p class="text-danger">{{ $errors->first('theme') }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="expanel expanel-default" data-collapsed="0">
+                            <div class="expanel-heading">
+                                <div class="expanel-title">Address</div>
+                            </div>
+                            <div class="expanel-body">
+                                <div class="form-group @if($errors->has('address_street')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address.street') }}</label>
+                                    <input class="form-control" name="address_street" value="{{ (old('address_street')) ? old('address_street') : $user->address_street }}">
+                                    @if($errors->has('address_street'))
+                                        <p class="text-danger">{{ $errors->first('address_street') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_postalcode')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address.postalcode') }}</label>
+                                    <input class="form-control" name="address_postalcode" value="{{ (old('address_postalcode')) ? old('address_postalcode') : $user->address_postalcode }}">
+                                    @if($errors->has('address_postalcode'))
+                                        <p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_city')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address.city') }}</label>
+                                    <input class="form-control" name="address_city" value="{{ (old('address_city')) ? old('address_city') : $user->address_city }}">
+                                    @if($errors->has('address_city'))
+                                        <p class="text-danger">{{ $errors->first('address_city') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_county')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address.county') }}</label>
+                                    <input class="form-control" name="address_county" value="{{ (old('address_county')) ? old('address_county') : $user->address_county }}">
+                                    @if($errors->has('address_county'))
+                                        <p class="text-danger">{{ $errors->first('address_county') }}</p>
+                                    @endif
+                                </div>
+                                <div class="form-group @if($errors->has('address_country')) has-error @endif">
+                                    <label class="form-label">{{ trans('global.address.country') }}</label>
+                                    <input class="form-control" name="address_country" value="{{ (old('address_country')) ? old('address_country') : $user->address_country }}">
+                                    @if($errors->has('address_country'))
+                                        <p class="text-danger">{{ $errors->first('address_country') }}</p>
                                     @endif
                                 </div>
                             </div>

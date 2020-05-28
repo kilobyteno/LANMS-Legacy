@@ -75,3 +75,11 @@ a:hover, .btn-link:hover {
 .badge {
 	padding: 0.4em;
 }
+
+.header-brand-img {
+    height: 2.5rem;
+}
+
+.card-body {
+	overflow-x: auto;
+}
