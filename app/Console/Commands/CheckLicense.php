@@ -3,9 +3,7 @@
 namespace LANMS\Console\Commands;
 
 use Illuminate\Console\Command;
-
 use Request;
-
 use anlutro\LaravelSettings\Facade as Setting;
 
 class CheckLicense extends Command
@@ -75,6 +73,7 @@ class CheckLicense extends Command
                     if ($md5hash == md5($originalcheckdate . $licensing_secret_key)) {
                         $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - $localkeydays, date("Y")));
                         if ($originalcheckdate > $localexpiry) {
+                            print('Local key is valid.' . PHP_EOL);
                             $localkeyvalid = true;
                             $results = $localkeyresults;
                             $validdomains = explode(',', $results['validdomain']);
@@ -83,6 +82,7 @@ class CheckLicense extends Command
                                 $localkeyresults['status'] = "Invalid";
                                 $localkeyresults['description'] = "Domain is invalid";
                                 $results = array();
+                                print('Domain is invalid' . PHP_EOL);
                             }
                             if (isset($results['validip'])) {
                                 $validips = explode(',', $results['validip']);
@@ -91,6 +91,7 @@ class CheckLicense extends Command
                                     $localkeyresults['status'] = "Invalid";
                                     $localkeyresults['description'] = "IP Address is invalid";
                                     $results = array();
+                                    print('IP Address is invalid' . PHP_EOL);
                                 }
                             }
                             if (isset($results['validdirectory'])) {
@@ -100,6 +101,7 @@ class CheckLicense extends Command
                                     $localkeyresults['status'] = "Invalid";
                                     $localkeyresults['description'] = "Directory is invalid";
                                     $results = array();
+                                    print('Directory is invalid' . PHP_EOL);
                                 }
                             }
                         }
@@ -107,6 +109,7 @@ class CheckLicense extends Command
                 }
             }
             if (!$localkeyvalid) {
+                print('Localkey is not valid' . PHP_EOL);
                 $responseCode = 0;
                 $postfields = array(
                     'licensekey' => $licensekey,
@@ -169,6 +172,7 @@ class CheckLicense extends Command
                         $results = array();
                         $results['status'] = "Invalid";
                         $results['description'] = "Remote Check Failed";
+                        print('Remote Check Failed' . PHP_EOL);
                         return $results;
                     }
                 } else {
@@ -182,16 +186,18 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
                     Setting::set("APP_LICENSE_STATUS_DESC", "Invalid License Server Response");
                     Setting::save();
-                    $this->error("Invalid License Server Response");
+                    print("Invalid License Server Response" . PHP_EOL);
                 }
                 if (isset($results['md5hash'])) {
                     if ($results['md5hash'] != md5($licensing_secret_key . $check_token)) {
                         $results['status'] = "Invalid";
                         $results['description'] = "MD5 Checksum Verification Failed";
+                        print('MD5 Checksum Verification Failed' . PHP_EOL);
                         return $results;
                     }
                 }
                 if ($results['status'] == "Active") {
+                    print('Result status is Active' . PHP_EOL);
                     $results['checkdate'] = $checkdate;
                     $data_encoded = serialize($results);
                     $data_encoded = base64_encode($data_encoded);
@@ -202,10 +208,13 @@ class CheckLicense extends Command
                     $results['localkey'] = $data_encoded;
                 }
                 $results['remotecheck'] = true;
+                print('remotecheck is true' . PHP_EOL);
             }
             unset($postfields, $data, $matches, $whmcsurl, $licensing_secret_key, $checkdate, $usersip, $localkeydays, $allowcheckfaildays, $md5hash);
             return $results;
         }
+        /* END OF FUNCTION */
+
         $this->info("Hostname: ".Request::server("SERVER_NAME"));
         // Get the license key and local key from storage
         $app_licensekey = Setting::get("APP_LICENSE_KEY");
@@ -222,13 +231,17 @@ class CheckLicense extends Command
             $status = $results['status'];
             if (isset($results['message'])) {
                 $status_message = $results['message'];
+                $this->line('Message is set! Message is: '.$status_message);
             } else {
                 $status_message = "";
+                $this->line('Message is not set! Something wrong with the result?');
             }
             if (isset($results['localkey'])) {
                 $res_localkey = $results['localkey'];
+                $this->info('Localkey is set!');
             } else {
                 $res_localkey = "";
+                $this->line('Localkey is not set! Something wrong with the result?');
             }
             switch ($status) {
                 case "Active":
@@ -236,7 +249,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", $status);
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
-                    $this->info('Status: '.$status);
+                    $this->success('Status: '.$status);
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
@@ -260,6 +273,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
                     Setting::set("APP_LICENSE_STATUS_DESC", "No defined result. ".$status_message);
                     Setting::save();
+                    $this->error('Unknown Status: '.$status);
                     break;
             }
             $this->info('Descripton: '.$status_message);
