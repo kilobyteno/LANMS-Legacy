@@ -249,7 +249,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", $status);
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
-                    $this->success('Status: '.$status);
+                    $this->info('Status: '.$status);
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
