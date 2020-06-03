@@ -22,7 +22,7 @@ class CheckLicense extends Command
      *
      * @var string
      */
-    protected $description = 'This will check the license data towards Infihex´s servers.';
+    protected $description = 'This will check the license data towards Infihex\'s servers.';
 
     /**
      * Create a new command instance.
@@ -81,6 +81,7 @@ class CheckLicense extends Command
                             if (!in_array(Request::server("SERVER_NAME"), $validdomains)) {
                                 $localkeyvalid = false;
                                 $localkeyresults['status'] = "Invalid";
+                                $localkeyresults['description'] = "Domain is invalid";
                                 $results = array();
                             }
                             if (isset($results['validip'])) {
@@ -88,6 +89,7 @@ class CheckLicense extends Command
                                 if (!in_array($usersip, $validips)) {
                                     $localkeyvalid = false;
                                     $localkeyresults['status'] = "Invalid";
+                                    $localkeyresults['description'] = "IP Address is invalid";
                                     $results = array();
                                 }
                             }
@@ -96,6 +98,7 @@ class CheckLicense extends Command
                                 if (!in_array($dirpath, $validdirs)) {
                                     $localkeyvalid = false;
                                     $localkeyresults['status'] = "Invalid";
+                                    $localkeyresults['description'] = "Directory is invalid";
                                     $results = array();
                                 }
                             }
@@ -161,6 +164,7 @@ class CheckLicense extends Command
                     $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - ($localkeydays + $allowcheckfaildays), date("Y")));
                     if ($originalcheckdate > $localexpiry) {
                         $results = $localkeyresults;
+                        $this->error("Invalid Date Response");
                     } else {
                         $results = array();
                         $results['status'] = "Invalid";
