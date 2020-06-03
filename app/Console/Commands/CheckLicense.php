@@ -73,7 +73,7 @@ class CheckLicense extends Command
                     if ($md5hash == md5($originalcheckdate . $licensing_secret_key)) {
                         $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - $localkeydays, date("Y")));
                         if ($originalcheckdate > $localexpiry) {
-                            print('Local key is valid.' . PHP_EOL);
+                            print('Local key is valid. Results: ' . $localkeyresults . PHP_EOL);
                             $localkeyvalid = true;
                             $results = $localkeyresults;
                             $validdomains = explode(',', $results['validdomain']);
