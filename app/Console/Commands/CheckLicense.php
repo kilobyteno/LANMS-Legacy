@@ -74,7 +74,7 @@ class CheckLicense extends Command
                     if ($md5hash == md5($originalcheckdate . $licensing_secret_key)) {
                         $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - $localkeydays, date("Y")));
                         if ($originalcheckdate > $localexpiry) {
-                            print('Local key is valid' . PHP_EOL);
+                            //print('Local key is valid' . PHP_EOL);
                             $localkeyvalid = true;
                             $results = $localkeyresults;
                             $validdomains = explode(',', $results['validdomain']);
@@ -83,7 +83,7 @@ class CheckLicense extends Command
                                 $localkeyresults['status'] = "Invalid";
                                 $localkeyresults['description'] = "Domain is invalid";
                                 $results = array();
-                                print('Domain is invalid' . PHP_EOL);
+                                //print('Domain is invalid' . PHP_EOL);
                             }
                             if (isset($results['validip'])) {
                                 $validips = explode(',', $results['validip']);
@@ -92,7 +92,7 @@ class CheckLicense extends Command
                                     $localkeyresults['status'] = "Invalid";
                                     $localkeyresults['description'] = "IP Address is invalid";
                                     $results = array();
-                                    print('IP Address is invalid' . PHP_EOL);
+                                    //print('IP Address is invalid' . PHP_EOL);
                                 }
                             }
                             if (isset($results['validdirectory'])) {
@@ -102,7 +102,7 @@ class CheckLicense extends Command
                                     $localkeyresults['status'] = "Invalid";
                                     $localkeyresults['description'] = "Directory is invalid";
                                     $results = array();
-                                    print('Directory is invalid' . PHP_EOL);
+                                    //print('Directory is invalid' . PHP_EOL);
                                 }
                             }
                         }
@@ -110,7 +110,7 @@ class CheckLicense extends Command
                 }
             }
             if (!$localkeyvalid) {
-                print('Localkey is not valid' . PHP_EOL);
+                //print('Localkey is not valid' . PHP_EOL);
                 $responseCode = 0;
                 $postfields = array(
                     'licensekey' => $licensekey,
@@ -168,12 +168,12 @@ class CheckLicense extends Command
                     $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - ($localkeydays + $allowcheckfaildays), date("Y")));
                     if ($originalcheckdate > $localexpiry) {
                         $results = $localkeyresults;
-                        print("Invalid Date Response");
+                        //print("Invalid Date Response");
                     } else {
                         $results = array();
                         $results['status'] = "Invalid";
                         $results['description'] = "Remote Check Failed";
-                        print('Remote Check Failed' . PHP_EOL);
+                        //print('Remote Check Failed' . PHP_EOL);
                         return $results;
                     }
                 } else {
@@ -187,18 +187,18 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", "Invalid");
                     Setting::set("APP_LICENSE_STATUS_DESC", "Invalid License Server Response");
                     Setting::save();
-                    print("Invalid License Server Response" . PHP_EOL);
+                    //print("Invalid License Server Response" . PHP_EOL);
                 }
                 if (isset($results['md5hash'])) {
                     if ($results['md5hash'] != md5($licensing_secret_key . $check_token)) {
                         $results['status'] = "Invalid";
                         $results['description'] = "MD5 Checksum Verification Failed";
-                        print('MD5 Checksum Verification Failed' . PHP_EOL);
+                        //print('MD5 Checksum Verification Failed' . PHP_EOL);
                         return $results;
                     }
                 }
                 if ($results['status'] == "Active") {
-                    print('Result status is Active' . PHP_EOL);
+                    //print('Result status is Active' . PHP_EOL);
                     $results['checkdate'] = $checkdate;
                     $data_encoded = serialize($results);
                     $data_encoded = base64_encode($data_encoded);
@@ -209,7 +209,7 @@ class CheckLicense extends Command
                     $results['localkey'] = $data_encoded;
                 }
                 $results['remotecheck'] = true;
-                print('remotecheck is true' . PHP_EOL);
+                //print('remotecheck is true' . PHP_EOL);
             }
             unset($postfields, $data, $matches, $whmcsurl, $licensing_secret_key, $checkdate, $usersip, $localkeydays, $allowcheckfaildays, $md5hash);
             return $results;
@@ -230,7 +230,7 @@ class CheckLicense extends Command
             $this->info('Checking License...');
             $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
 
-            print(json_encode($results).PHP_EOL);
+            // print(json_encode($results).PHP_EOL);
 
             $status = $results['status'];
             if (isset($results['message'])) {
