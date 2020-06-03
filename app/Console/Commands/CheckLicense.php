@@ -69,11 +69,12 @@ class CheckLicense extends Command
                     $localdata = substr($localdata, 32); # Extract License Data
                     $localdata = base64_decode($localdata);
                     $localkeyresults = unserialize($localdata);
+                    // print (json_encode($localkeyresults) . PHP_EOL);
                     $originalcheckdate = $localkeyresults['checkdate'];
                     if ($md5hash == md5($originalcheckdate . $licensing_secret_key)) {
                         $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - $localkeydays, date("Y")));
                         if ($originalcheckdate > $localexpiry) {
-                            print('Local key is valid. Results: ' . implode(" | ", $localkeyresults) . PHP_EOL);
+                            print('Local key is valid' . PHP_EOL);
                             $localkeyvalid = true;
                             $results = $localkeyresults;
                             $validdomains = explode(',', $results['validdomain']);
@@ -167,7 +168,7 @@ class CheckLicense extends Command
                     $localexpiry = date("Ymd", mktime(0, 0, 0, date("m"), date("d") - ($localkeydays + $allowcheckfaildays), date("Y")));
                     if ($originalcheckdate > $localexpiry) {
                         $results = $localkeyresults;
-                        $this->error("Invalid Date Response");
+                        print("Invalid Date Response");
                     } else {
                         $results = array();
                         $results['status'] = "Invalid";
@@ -228,6 +229,9 @@ class CheckLicense extends Command
         } else {
             $this->info('Checking License...');
             $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
+
+            print(json_encode($results).PHP_EOL);
+
             $status = $results['status'];
             if (isset($results['message'])) {
                 $status_message = $results['message'];
@@ -249,7 +253,7 @@ class CheckLicense extends Command
                     Setting::set("APP_LICENSE_STATUS", $status);
                     Setting::set("APP_LICENSE_STATUS_DESC", $status_message);
                     Setting::save();
-                    $this->success('Status: '.$status);
+                    $this->info('Status: '.$status);
                     break;
                 case "Invalid":
                     Setting::set("APP_LICENSE_STATUS", $status);
