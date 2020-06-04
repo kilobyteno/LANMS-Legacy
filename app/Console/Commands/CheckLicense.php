@@ -232,6 +232,15 @@ class CheckLicense extends Command
 
             // print(json_encode($results).PHP_EOL);
 
+            Setting::set("APP_LICENSE_INFO_NAME", (array_key_exists('registeredname', $results) ? $results['registeredname'] : ''));
+            Setting::set("APP_LICENSE_INFO_COMPANY", (array_key_exists('companyname', $results) ? $results['companyname'] : ''));
+            Setting::set("APP_LICENSE_INFO_EMAIL", (array_key_exists('email', $results) ? $results['email'] : ''));
+            Setting::set("APP_LICENSE_INFO_PRODUCTNAME", (array_key_exists('productname', $results) ? $results['productname'] : ''));
+            Setting::set("APP_LICENSE_INFO_REGDATE", (array_key_exists('regdate', $results) ? $results['regdate'] : ''));
+            Setting::set("APP_LICENSE_INFO_NEXTDUE", (array_key_exists('nextduedate', $results) ? $results['nextduedate'] : ''));
+            Setting::set("APP_LICENSE_INFO_CYCLE", (array_key_exists('billingcycle', $results) ? $results['billingcycle'] : ''));
+            Setting::save();
+
             $status = $results['status'];
             if (isset($results['message'])) {
                 $status_message = $results['message'];

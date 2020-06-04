@@ -19,6 +19,13 @@ class SettingsTableSeeder extends Seeder
         Setting::set('APP_LICENSE_STATUS_DESC', '');
         Setting::set('APP_LICENSE_LOCAL_KEY', '');
         Setting::set('APP_LICENSE_KEY', $license);
+        Setting::set('APP_LICENSE_INFO_NAME', '');
+        Setting::set('APP_LICENSE_INFO_COMPANY', '');
+        Setting::set('APP_LICENSE_INFO_EMAIL', '');
+        Setting::set('APP_LICENSE_INFO_PRODUCTNAME', '');
+        Setting::set('APP_LICENSE_INFO_REGDATE', '');
+        Setting::set('APP_LICENSE_INFO_NEXTDUE', '');
+        Setting::set('APP_LICENSE_INFO_CYCLE', '');
         Setting::set('APP_SHOW_RESETDB', true);
 
         Setting::set('WEB_PROTOCOL', 'http');
