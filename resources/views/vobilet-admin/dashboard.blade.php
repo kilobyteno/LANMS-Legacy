@@ -104,7 +104,7 @@
 					<i class="fa fa-users"></i>
 				</span>
 				<div>
-					<h4 class="m-0"><a href="{{ route('admin-users') }}"><strong>{{ User::where('last_activity', '<>', '')->orWhere('isAnonymized', '0')->orWhere('deleted_at', '<>', '')->count() }}</strong> <small>Users</small></a></h4>
+					<h4 class="m-0"><a href="{{ route('admin-users') }}"><strong>{{ User::whereNotNull('last_activity')->orWhere('isAnonymized', '0')->orWhereNotNull('deleted_at')->count() }}</strong> <small>Users</small></a></h4>
 					<small class="text-muted">{{ User::onlyTrashed()->count() }} deleted</small>
 				</div>
 			</div>
