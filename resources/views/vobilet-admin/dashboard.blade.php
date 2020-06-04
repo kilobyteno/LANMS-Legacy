@@ -191,10 +191,10 @@
 					<div class="row">
 						<div class="col">
 							<div class="text-muted">Active users</div>
-							<div class="h3 m-0"><b>{{ User::where('last_activity', '<>', '')->orWhere('isAnonymized', '0')->orWhere('deleted_at', '<>', '')->count() ?? 1 }} <small>/{{ User::withTrashed()->count() }}</small></b></div>
+							<div class="h3 m-0"><b>{{ User::whereNotNull('last_activity')->orWhere('isAnonymized', '0')->orWhereNotNull('deleted_at')->count() ?? 1 }} <small>/{{ User::withTrashed()->count() }}</small></b></div>
 						</div>
 						<div class="col-auto align-self-center">
-							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", User::where('last_activity', '<>', '')->orWhere('isAnonymized', '1')->orWhere('deleted_at', '<>', '')->count() / User::withTrashed()->count()) }}" data-thickness="6" data-color="#0061da"><canvas width="40" height="40"></canvas></div>
+							<div class="chart-circle chart-circle-xs" data-value="{{ sprintf("%.2f", User::whereNotNull('last_activity')->orWhere('isAnonymized', '1')->orWhereNotNull('deleted_at')->count() / User::withTrashed()->count()) }}" data-thickness="6" data-color="#0061da"><canvas width="40" height="40"></canvas></div>
 						</div>
 					</div>
 				</div>
