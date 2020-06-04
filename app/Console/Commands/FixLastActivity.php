@@ -38,7 +38,7 @@ class FixLastActivity extends Command
      */
     public function handle()
     {
-        $users = User::withTrashed()->where('last_activity', '0000-00-00')->get();
+        $users = User::withTrashed()->where('last_activity', '<', '0000-01-01 00:00:00')->get();
         $this->line('Count: '.$users->count());
         foreach ($users as $user) {
             $this->line('Fixing user with ID: '.$user->id);
