@@ -45,16 +45,25 @@ class Update extends Command
 
         $this->info('Migrating...');
         Artisan::call('migrate --force');
+
+        $this->info('Fixing last_activity issues...');
+        Artisan::call('lanms:fla');
+
         $this->info('Refreshing permissions...');
         Artisan::call('lanms:refreshpermissions');
+
         $this->info('Refreshing info descriptions...');
         Artisan::call('lanms:refreshinfo');
+
         $this->info('Refreshing setting descriptions...');
         Artisan::call('lanms:refreshsettings');
+
         $this->info('Checking license...');
         Artisan::call('lanms:checklicense');
+
         $this->info('Creating the symbolic link...');
         Artisan::call('storage:link');
+
         $this->info('Updating version...');
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
