@@ -50,6 +50,7 @@
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-458'>LANMS-458</a>] - Add address fields to users in admin panel</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-460'>LANMS-460</a>] - Show previous compos in admin panel</li>
 									<li>[<a href='http://jira.infihex.com/browse/LANMS-462'>LANMS-462</a>] - Show signups for compos for admins</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-464'>LANMS-464</a>] - Add more info to the license page</li>
 								</ul>
 							</div>
 						</div>
