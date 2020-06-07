@@ -50,6 +50,10 @@ return [
             'title' => 'Page Not Found',
             'desc' => 'Seems like this page does not exist.',
         ),
+        '429' => array(
+            'title' => 'Too Many Requests',
+            'desc' => 'It seems like you have sent too many requests in a given amount of time.',
+        ),
         '500' => array(
             'title' => 'Server Error',
             'desc' => 'Looks like we\'re having some server issues.',
