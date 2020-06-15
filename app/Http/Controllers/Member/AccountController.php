@@ -34,6 +34,12 @@ class AccountController extends Controller
                     ->withNews($news);
     }
 
+    public function getIdentity()
+    {
+        $authuser = Sentinel::getUser();
+        return view('account.identity')->with($authuser->toArray());
+    }
+
     public function getAccount()
     {
         return view('account.index');
