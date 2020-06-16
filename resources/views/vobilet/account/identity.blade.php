@@ -17,7 +17,7 @@
 						<div class="card-body text-center">
 							<p class="@if(Activation::completed(Sentinel::findById($id))){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ trans('global.email') }} @if(Activation::completed(Sentinel::findById($id))){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
 							<p class="@if($phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
-							<p class="@if($blc->diffInMinutes(Carbon\Carbon::now()) < 5){{'text-danger'}}@elseif($blc->diffInMinutes(Carbon\Carbon::now()) > 5 && $blc->diffInMinutes(Carbon\Carbon::now()) <= 60){{'text-warning'}}@else{{'text-success'}}@endif"><i class="fas fa-birthday-cake"></i> {{ __('global.lastchanged') }}: {{ $blc->diffForHumans() }}</p>
+							<p class="@if($blc->diffInMinutes(Carbon\Carbon::now()) < 5){{'text-danger'}}@elseif($blc->diffInMinutes(Carbon\Carbon::now()) > 5 && $blc->diffInDays(Carbon\Carbon::now()) < 1){{'text-warning'}}@else{{'text-success'}}@endif"><i class="fas fa-birthday-cake"></i> {{ __('global.lastchanged') }}: {{ $blc->diffForHumans() }}</p>
 						</div>
 					</div>
 					<div class="card">
