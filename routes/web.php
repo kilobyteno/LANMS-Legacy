@@ -199,6 +199,10 @@ Route::group([
             'as' => 'account' ,
             'uses' => 'Member\AccountController@getAccount'
         ]);
+        Route::get('/id', [
+            'as' => 'account-identity' ,
+            'uses' => 'Member\AccountController@getIdentity'
+        ]);
         Route::get('/change/password', [
             'as' => 'account-change-password' ,
             'uses' => 'Member\AccountController@getChangePassword'
@@ -439,7 +443,7 @@ Route::group([
                     'as' => 'seating-ticket-download',
                     'uses' => 'Seating\ReserveSeatingController@ticketdownload'
                 ]);
-        });
+            });
     });
 
 // ADMIN PANEL

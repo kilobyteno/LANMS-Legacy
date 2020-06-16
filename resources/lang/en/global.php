@@ -19,6 +19,7 @@ return [
     'notverified' => 'not verified',
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
     'unknown' => 'Unknown',
+    'lastchanged' => 'Last Changed',
 
     'add' => 'Add', // As in 'Add Address' etc.
     'edit' => 'Edit', // As in 'edit Address' etc.
