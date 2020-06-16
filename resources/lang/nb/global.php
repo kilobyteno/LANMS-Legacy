@@ -19,6 +19,7 @@ return [
     'notverified' => 'ikke verifisert',
     'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
     'unknown' => 'Ukjent',
+    'lastchanged' => 'Sist endret',
 
     'add' => 'Legg til', // As in 'Add Address' etc.
     'edit' => 'Rediger', // As in 'edit Address' etc.

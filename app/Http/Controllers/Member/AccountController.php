@@ -16,7 +16,7 @@ use LANMS\Http\Requests\Member\ProfileRequest;
 use LANMS\News;
 use LANMS\Rules\OlderThan;
 use LANMS\User;
-use Regulus\ActivityLog\Models\Activity;
+use Spatie\Activitylog\Models\Activity;
 
 class AccountController extends Controller
 {
@@ -37,7 +37,8 @@ class AccountController extends Controller
     public function getIdentity()
     {
         $authuser = Sentinel::getUser();
-        return view('account.identity')->with($authuser->toArray());
+        $birthday_last_changed = Activity::where('properties', 'LIKE', '%"birthdate":%')->where('subject_type', 'LANMS\User')->where('subject_id', $authuser->id)->orderBy('created_at', 'DESC')->first();
+        return view('account.identity')->with($authuser->toArray())->with('blc', $birthday_last_changed->created_at);
     }
 
     public function getAccount()

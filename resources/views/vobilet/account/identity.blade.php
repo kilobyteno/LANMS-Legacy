@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row justify-content-md-center">
 		<div class="col-12 col-lg-6 col-xl-6">
-			<p class="text-muted text-center">{{ Carbon::now() }} &middot; {{ $uuid }}</p>
+			<p class="text-muted text-center">{{ Carbon::now() }} &middot; {{ $uuid }} &middot; {{ $blc }}</p>
 			<div class="row">
 				<div class="col-12">
 					<div class="card card-profile " style="background: url({{ $profilecover ?? '/images/profilecover/0.jpg' }}); background-size:cover;">
@@ -17,6 +17,7 @@
 						<div class="card-body text-center">
 							<p class="@if(Activation::completed(Sentinel::findById($id))){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ trans('global.email') }} @if(Activation::completed(Sentinel::findById($id))){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
 							<p class="@if($phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
+							<p class="@if($blc->diffInMinutes(Carbon\Carbon::now()) < 5){{'text-danger'}}@elseif($blc->diffInMinutes(Carbon\Carbon::now()) > 5 && $blc->diffInMinutes(Carbon\Carbon::now()) <= 60){{'text-warning'}}@else{{'text-success'}}@endif"><i class="fas fa-birthday-cake"></i> {{ __('global.lastchanged') }}: {{ $blc->diffForHumans() }}</p>
 						</div>
 					</div>
 					<div class="card">
@@ -89,7 +90,7 @@
 					</div>
 				</div>
 			</div>
-			<p class="text-muted text-center">{{ Carbon::now() }} &middot; {{ $uuid }}</p>
+			<p class="text-muted text-center">{{ Carbon::now() }} &middot; {{ $uuid }} &middot; {{ $blc }}</p>
 		</div>
 	</div>
 </div>
