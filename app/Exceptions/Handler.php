@@ -1,10 +1,11 @@
 <?php namespace LANMS\Exceptions;
 
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Exception;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -53,6 +54,10 @@ class Handler extends ExceptionHandler
         \Theme::set('vobilet');
         if ($exception instanceof NotFoundHttpException) {
             return view('errors.404');
+        }
+
+        if ($exception instanceof ThrottlingException) {
+            return view('errors.429')->with('message', $exception->getMessage());
         }
 
         if ($exception instanceof TokenMismatchException) {

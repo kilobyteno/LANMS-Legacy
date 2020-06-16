@@ -15,10 +15,10 @@
 <div class="card-columns">
 	<div class="card">
 		<div class="card-header">
-			<div class="card-title">Client</div>
+			<div class="card-title">Server Software</div>
 		</div>
 		<div class="card-body">
-			@foreach(Larinfo::getHostIpinfo() as $key => $value)
+			@foreach(Larinfo::getServerInfoSoftware() as $key => $value)
 				<p><strong class="text-uppercase">{{ $key }}:</strong> {{ $value }}</p>
 			@endforeach
 		</div>
@@ -45,10 +45,33 @@
 	</div>
 	<div class="card">
 		<div class="card-header">
-			<div class="card-title">Server Software</div>
+			<div class="card-title">Carbon</div>
 		</div>
 		<div class="card-body">
-			@foreach(Larinfo::getServerInfoSoftware() as $key => $value)
+			<p><strong class="text-uppercase">Now:</strong> {{ Carbon::now() }}</p>
+			<p><strong class="text-uppercase">toDateString:</strong> {{ Carbon::now()->toDateString() }}</p>
+			<p><strong class="text-uppercase">toFormattedDateString:</strong> {{ Carbon::now()->toFormattedDateString() }}</p>
+			<p><strong class="text-uppercase">toTimeString:</strong> {{ Carbon::now()->toTimeString() }}</p>
+			<p><strong class="text-uppercase">toDateTimeString:</strong> {{ Carbon::now()->toDateTimeString() }}</p>
+			<p><strong class="text-uppercase">toDayDateTimeString:</strong> {{ Carbon::now()->toDayDateTimeString() }}</p>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title">Host</div>
+		</div>
+		<div class="card-body">
+			@foreach(Larinfo::getHostIpinfo() as $key => $value)
+				<p><strong class="text-uppercase">{{ $key }}:</strong> {{ $value }}</p>
+			@endforeach
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<div class="card-title">Client</div>
+		</div>
+		<div class="card-body">
+			@foreach(Larinfo::getClientIpinfo() as $key => $value)
 				<p><strong class="text-uppercase">{{ $key }}:</strong> {{ $value }}</p>
 			@endforeach
 		</div>

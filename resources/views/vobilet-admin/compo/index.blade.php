@@ -39,12 +39,11 @@
 								<td>{{ \Carbon::parse($compo->end_at)->toDateTimeString() }}</td>
 								<td>
 									@if($compo->year != \Setting::get('SEATING_YEAR'))
-										<span class="badge badge-dark">Previous</span>
-									@endif
-									@if($compo->deleted_at)
-										<span class="badge badge-danger">Deleted</span>
+										<span class="badge badge-dark"><i class="far fa-eye-slash"></i> Previous</span>
+									@elseif($compo->deleted_at)
+										<span class="badge badge-danger"><i class="far fa-trash-alt"></i> Deleted</span>
 									@elseif(!$compo->deleted_at)
-										<span class="badge badge-info">Active</span>
+										<span class="badge badge-info"><i class="far fa-eye"></i> Active</span>
 									@endif									
 								</td>
 								<td>

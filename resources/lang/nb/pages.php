@@ -50,6 +50,10 @@ return [
             'title' => 'Side ikke funnet',
             'desc' => 'Virker som om denne siden ikke eksisterer.',
         ),
+        '429' => array(
+            'title' => 'For mange forespørsler',
+            'desc' => 'Det virker som om du har sendt for mange forespørsler på en gitt tid.',
+        ),
         '500' => array(
             'title' => 'Server Feil',
             'desc' => 'Ser ut som om vi har noen serverproblemer.',

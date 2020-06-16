@@ -21,6 +21,37 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#263" aria-expanded="true">Version 2.6.3</a>
+							</h4>
+						</div>
+						<div id="263" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-465'>LANMS-465</a>] - SQLSTATE[HY000]: General error: 1525 Incorrect TIMESTAMP value</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-466'>LANMS-466</a>] - Dashboard cards have scrollbar</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-467'>LANMS-467</a>] - Uncaught Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [609] second(s).</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-469'>LANMS-469</a>] - ErrorException consentform: Trying to access array offset on value of type null</li>
+									</ul>
+								    
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-431'>LANMS-431</a>] - ID - Identification-page</li>
+								</ul>
+
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-468'>LANMS-468</a>] - Add user verifications in admin panel</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-470'>LANMS-470</a>] - Change sorting on prev compos</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-471'>LANMS-471</a>] - Hide &quot;needs more attendees&quot; after finished for compos</li>
+									<li>[<a href='http://jira.infihex.com/browse/LANMS-472'>LANMS-472</a>] - Add system time to &quot;System Info&quot;</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#262" aria-expanded="true">Version 2.6.2</a>
 							</h4>
 						</div>

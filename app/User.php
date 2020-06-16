@@ -2,6 +2,7 @@
 
 namespace LANMS;
 
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;
@@ -19,10 +20,11 @@ use Illuminate\Notifications\Notifiable;
 use LANMS\StripeCustomer;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Webpatser\Uuid\Uuid;
 
 class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
 {
-    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasApiTokens;
+    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasApiTokens, HasUUID;
 
     /**
      * The attributes that should be hidden for the downloadable data.
@@ -134,6 +136,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         parent::boot();
 
         self::creating(function ($model) {
+            $model->uuid = (string) Uuid::generate(4);
+
             if (!$model->stripe_customer) {
                 $customer = Stripe::customers()->create([
                     'email' => $model->email,
@@ -145,6 +149,10 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         });
 
         self::updating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = (string) Uuid::generate(4);
+            }
+
             $sc = StripeCustomer::where('user_id', $model->id)->first();
             if ($sc && !$model->stripe_customer) {
                 $stripe_customer = $sc->cus;

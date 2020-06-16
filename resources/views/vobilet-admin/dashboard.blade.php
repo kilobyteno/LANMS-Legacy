@@ -98,7 +98,7 @@
 <div class="row">
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-blue mr-3">
 					<i class="fa fa-users"></i>
@@ -112,7 +112,7 @@
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
 					<i class="fa fa-newspaper"></i>
@@ -126,7 +126,7 @@
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-purple mr-3">
 					<i class="fa fa-file-alt"></i>
@@ -140,7 +140,7 @@
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-teal mr-3">
 					<i class="fa fa-street-view"></i>
@@ -154,7 +154,7 @@
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-cyan mr-3">
 					<i class="fas fa-user-astronaut"></i>
@@ -168,7 +168,7 @@
 	</div>
 
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-		<div class="card p-3">
+		<div class="card no-scroll p-3">
 			<div class="d-flex align-items-center">
 				<span class="stamp stamp-md bg-indigo mr-3">
 					<i class="fa fa-street-view"></i>
@@ -186,7 +186,7 @@
 	
 	@if(User::withTrashed()->count() > 0)
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-			<div class="card">
+			<div class="card no-scroll">
 				<div class="card-body">
 					<div class="row">
 						<div class="col">
@@ -204,7 +204,7 @@
 
 	@if(Checkin::thisYear()->count() > 0)
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-			<div class="card">
+			<div class="card no-scroll">
 				<div class="card-body">
 					<div class="row">
 						<div class="col">
@@ -222,7 +222,7 @@
 
 	@if(SeatReservation::thisYear()->onlyReserved()->count() > 0)
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-			<div class="card">
+			<div class="card no-scroll">
 				<div class="card-body">
 					<div class="row">
 						<div class="col">
@@ -240,7 +240,7 @@
 
 	@if(SeatReservation::thisYear()->onlyTempReserved()->count() > 0)
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-			<div class="card">
+			<div class="card no-scroll">
 				<div class="card-body">
 					<div class="row">
 						<div class="col">
