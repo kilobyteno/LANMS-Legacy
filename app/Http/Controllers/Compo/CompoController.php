@@ -28,7 +28,7 @@ class CompoController extends Controller
      */
     public function previous()
     {
-        $compos = Compo::lastYear()->paginate(6);
+        $compos = Compo::lastYear()->orderBy('year', 'DESC')->orderBy('end_at', 'DESC')->paginate(6);
         return view('compo.previous')->with('compos', $compos);
     }
 
