@@ -24,6 +24,7 @@ return [
 
     'account' => array(
         'title' => 'Konto',
+        'identity' => 'Vis min identitet',
         'details' => array(
             'title' => 'Detaljer',
             'alert' => array(

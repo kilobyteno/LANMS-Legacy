@@ -24,6 +24,7 @@ return [
 
     'account' => array(
         'title' => 'Account',
+        'identity' => 'Show my identity',
         'details' => array(
             'title' => 'Details',
             'alert' => array(

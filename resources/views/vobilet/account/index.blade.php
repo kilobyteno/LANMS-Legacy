@@ -50,6 +50,9 @@
 									<tr class="border-bottom">
 										<td><a href="{{ route('account-change-password') }}" class="text-inherit"><i class="fas fa-key"></i> {{ trans('user.account.details.password') }}</a></td>
 									</tr>
+									<tr class="border-bottom">
+										<td><a href="{{ route('account-identity') }}" class="text-inherit"><i class="fas fa-id-card-alt"></i> {{ trans('user.account.identity') }}</a></td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
