@@ -30,10 +30,10 @@
 							@elseif($compo->end_at < \Carbon\Carbon::now())
 								<span class="badge badge-success"><i class="fas fa-hourglass-end"></i> {{ trans('compo.finished') }}</span>
 							@endif
-							@if($compo->min_signups && $compo->signupsThisYear->count() < $compo->min_signups)
+							@if($compo->min_signups && $compo->signupsThisYear->count() < $compo->min_signups && \Carbon\Carbon::now() < $compo->end_at)
 								<span class="tag tag-yellow"><i class="fas fa-thermometer-quarter"></i> {{ trans('compo.signup.missingattendance') }}</span>
 							@endif
-							@if($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups)
+							@if($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups && \Carbon\Carbon::now() < $compo->end_at)
 								<span class="badge badge-danger"><i class="fas fa-thermometer-full"></i> {{ trans('compo.signup.full') }}</span>
 							@endif
 							@if($compo->prize_pool_total)
