@@ -28,6 +28,11 @@ return [
     'download' => 'Download',
     'send' => 'Send',
     'print' => 'Print',
+    'activate' => 'Activate',
+    'activated' => 'Activated',
+    'deactivate' => 'Deactivate',
+    'deactivated' => 'Deactivated',
+    'verify' => 'Verify',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',

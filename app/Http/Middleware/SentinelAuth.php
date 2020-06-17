@@ -32,6 +32,12 @@ class SentinelAuth
                 'last_activity' => $now
             ];
             Sentinel::update($user, $details);
+
+            if ($user->authy_id) { // Check if user has setup 2fa
+                if (!session("isVerified")) { // Check if user has verified 2fa
+                    return redirect()->route('account-2fa-verify');
+                }
+            }
         }
 
         return $next($request);

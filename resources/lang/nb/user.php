@@ -184,6 +184,15 @@ return [
                 'onlinestatus' => 'Online status',
                 'language' => 'Ønsket Språk',
                 'theme' => 'Ønsket Tema',
+                '2fa' => array(
+                    'title' => 'Tofaktorautentisering',
+                    'desc' => 'Vennligst tast inn engangspassordet sendt til telefonnummeret ditt',
+                    'disabled' => 'Du må bekrefte telefonnummeret ditt før du kan aktivere 2FA!',
+                    'alert' => array(
+                        'activated' => 'Tofaktorautentisering er nå aktivert!',
+                        'deactivated' => 'Tofaktorautentisering er deaktivert!',
+                    ),
+                ),
             ),
 
             'confirmpassword' => array(

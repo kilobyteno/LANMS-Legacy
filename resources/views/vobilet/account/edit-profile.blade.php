@@ -94,6 +94,20 @@
 						@endif
 					</div>
 
+					<div class="form-group">
+						<label class="form-label">{{ trans('user.profile.edit.settings.2fa.title') }} &middot; @if(!$authy_id) <span class="text-danger">{{ ucfirst(trans('global.deactivated')) }}</a> @else <span class="text-success">{{ ucfirst(trans('global.activated')) }}</span> @endif</label>
+						@if($phone_verified_at)
+							@if(!$authy_id)
+								<a class="btn btn-success text-white" href="{{ route('account-2fa-activate') }}"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</a>
+							@elseif($authy_id)
+								<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="fas fa-check-double"></i> {{ trans('global.deactivate') }}</a>
+							@endif
+						@else
+							<button class="btn btn-success text-white" disabled="disabled"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</button>
+							<p class="text-warning font-weight-bold mt-1"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.disabled') }}</p>
+						@endif
+					</div>
+
 				</div>
 			</div>
 		</div>

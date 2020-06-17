@@ -28,6 +28,11 @@ return [
     'download' => 'Last ned',
     'send' => 'Send',
     'print' => 'Skriv ut',
+    'activate' => 'Aktiver',
+    'activated' => 'Aktivert',
+    'deactivate' => 'Deaktiver',
+    'deactivated' => 'Deaktivert',
+    'verify' => 'Verifiser',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',

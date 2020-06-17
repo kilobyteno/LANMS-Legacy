@@ -184,6 +184,15 @@ return [
                 'onlinestatus' => 'Online Status',
                 'language' => 'Preferred Language',
                 'theme' => 'Preferred Theme',
+                '2fa' => array(
+                    'title' => 'Two Factor Authentication',
+                    'desc' => 'Please enter the OTP sent to your phone number',
+                    'disabled' => 'You need to verify your phone number before you can activate 2FA!',
+                    'alert' => array(
+                        'activated' => 'Two-factor authentication is now enabled!',
+                        'deactivated' => 'Two-factor authentication is disabled!',
+                    ),
+                ),
             ),
 
             'confirmpassword' => array(
