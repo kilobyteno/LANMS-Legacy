@@ -100,7 +100,7 @@
 							@if(!$authy_id)
 								<a class="btn btn-success text-white" href="{{ route('account-2fa-activate') }}"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</a>
 							@elseif($authy_id)
-								<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="fas fa-check-double"></i> {{ trans('global.deactivate') }}</a>
+								<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="far fa-times-circle"></i> {{ trans('global.deactivate') }}</a>
 							@endif
 						@else
 							<button class="btn btn-success text-white" disabled="disabled"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</button>
