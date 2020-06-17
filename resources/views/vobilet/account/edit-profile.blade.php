@@ -102,6 +102,7 @@
 							@elseif($authy_id)
 								<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="far fa-times-circle"></i> {{ trans('global.deactivate') }}</a>
 							@endif
+							<div class="alert alert-info my-3"><i class="fas fa-info-circle"></i> {!! __('user.profile.edit.settings.2fa.info', ['url' => 'https://authy.com/download/']) !!}</div>
 						@else
 							<button class="btn btn-success text-white" disabled="disabled"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</button>
 							<p class="text-warning font-weight-bold mt-1"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.disabled') }}</p>

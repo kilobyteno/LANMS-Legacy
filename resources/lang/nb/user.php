@@ -188,6 +188,7 @@ return [
                     'title' => 'Tofaktorautentisering',
                     'desc' => 'Vennligst tast inn engangspassordet sendt til telefonnummeret ditt',
                     'disabled' => 'Du må bekrefte telefonnummeret ditt før du kan aktivere 2FA!',
+                    'info' => 'Vi bruker Authy for tofaktorautentisering og vi anbefaler på det sterkeste at du bruker <a class="alert-link" href=":url">Authy-appen</a>.',
                     'alert' => array(
                         'activated' => 'Tofaktorautentisering er nå aktivert!',
                         'deactivated' => 'Tofaktorautentisering er deaktivert!',
