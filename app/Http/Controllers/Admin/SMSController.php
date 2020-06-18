@@ -15,7 +15,7 @@ class SMSController extends Controller
 {
     public function __construct()
     {
-        abort_unless((env('TWILIO_SID') || env('TWILIO_TOKEN')), 403);
+        $this->middleware('checktwilioenv');
         $this->twilio = new TwilioClient(env('TWILIO_SID'), env('TWILIO_TOKEN'));
     }
 

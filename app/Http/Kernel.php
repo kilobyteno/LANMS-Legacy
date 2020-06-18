@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'ajax.check' => \LANMS\Http\Middleware\AjaxCheck::class,
         'client' =>  \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
         'checkauthyenv' => \LANMS\Http\Middleware\CheckAuthyEnv::class,
+        'checktwilioenv' => \LANMS\Http\Middleware\CheckTwilioEnv::class,
     ];
 }
