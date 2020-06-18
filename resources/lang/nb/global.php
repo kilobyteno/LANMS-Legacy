@@ -33,6 +33,7 @@ return [
     'deactivate' => 'Deaktiver',
     'deactivated' => 'Deaktivert',
     'verify' => 'Verifiser',
+    '2fa' => 'Tofaktorautentisering (2FA)',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',

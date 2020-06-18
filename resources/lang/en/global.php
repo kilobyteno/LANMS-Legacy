@@ -33,6 +33,7 @@ return [
     'deactivate' => 'Deactivate',
     'deactivated' => 'Deactivated',
     'verify' => 'Verify',
+    '2fa' => 'Two-factor authentication (2FA)',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',
