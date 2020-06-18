@@ -47,18 +47,15 @@
 		</div>
 	@endif
 
-	{{--
-	@if(!env('AUTHY_API_KEY'))
+	@if(!env('AUTHY_SECRET'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
 				<p>You are missing the Authy keys in the environment file. Users will not be able to setup two factor authentication!</p>
 			</div>
 		</div>
 	@endif
-	--}}
 
 	@if(env('APP_ENV') == 'development' || env('APP_ENV') == 'local')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">

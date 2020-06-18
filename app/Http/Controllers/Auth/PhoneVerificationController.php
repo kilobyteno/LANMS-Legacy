@@ -14,6 +14,7 @@ class PhoneVerificationController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('checkauthyenv');
         $this->authyApi = new AuthyApi(env('AUTHY_SECRET'));
     }
 

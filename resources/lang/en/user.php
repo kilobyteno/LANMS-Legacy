@@ -192,6 +192,7 @@ return [
                     'alert' => array(
                         'activated' => 'Two-factor authentication is now enabled!',
                         'deactivated' => 'Two-factor authentication is disabled!',
+                        'missingenv' => 'Two-factor authentication is not activated by the administrator!',
                     ),
                 ),
             ),

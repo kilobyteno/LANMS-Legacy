@@ -192,6 +192,7 @@ return [
                     'alert' => array(
                         'activated' => 'Tofaktorautentisering er nå aktivert!',
                         'deactivated' => 'Tofaktorautentisering er deaktivert!',
+                        'missingenv' => 'Tofaktorautentisering er ikke aktivert av administratoren!',
                     ),
                 ),
             ),
