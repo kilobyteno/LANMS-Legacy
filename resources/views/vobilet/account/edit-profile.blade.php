@@ -93,22 +93,27 @@
 							<p class="text-danger">{{ $errors->first('theme') }}</p>
 						@endif
 					</div>
-
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">{{ trans('user.profile.edit.settings.2fa.title') }}</h3>
+					<div class="card-options">@if(!$authy_id) <span class="badge badge-danger">{{ ucfirst(trans('global.deactivated')) }}</a> @else <span class="badge badge-success">{{ ucfirst(trans('global.activated')) }}</span> @endif</div>
+				</div>
+				<div class="card-body">
 					<div class="form-group">
-						<label class="form-label">{{ trans('user.profile.edit.settings.2fa.title') }} &middot; @if(!$authy_id) <span class="text-danger">{{ ucfirst(trans('global.deactivated')) }}</a> @else <span class="text-success">{{ ucfirst(trans('global.activated')) }}</span> @endif</label>
 						@if($phone_verified_at)
+							<div class="alert alert-info mb-3"><i class="fas fa-info-circle"></i> {!! __('user.profile.edit.settings.2fa.info', ['url' => 'https://authy.com/download/']) !!}</div>
 							@if(!$authy_id)
 								<a class="btn btn-success text-white" href="{{ route('account-2fa-activate') }}"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</a>
 							@elseif($authy_id)
 								<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="far fa-times-circle"></i> {{ trans('global.deactivate') }}</a>
 							@endif
-							<div class="alert alert-info my-3"><i class="fas fa-info-circle"></i> {!! __('user.profile.edit.settings.2fa.info', ['url' => 'https://authy.com/download/']) !!}</div>
 						@else
+							<div class="alert alert-warning mb-3"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.disabled') }}</div>
 							<button class="btn btn-success text-white" disabled="disabled"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</button>
-							<p class="text-warning font-weight-bold mt-1"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.disabled') }}</p>
 						@endif
 					</div>
-
 				</div>
 			</div>
 		</div>
