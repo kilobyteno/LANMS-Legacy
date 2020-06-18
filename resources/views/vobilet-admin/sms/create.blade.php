@@ -20,7 +20,7 @@
 				<div style="max-width: 250px">
 					<select name="user_id" class="select2" required="required">
 						<option value="">--- Please Select ---</option>
-						@foreach(\User::orderBy('lastname', 'asc')->where('phone', '<>', '')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+						@foreach(\User::orderBy('lastname', 'asc')->whereNotNull('phone')->whereNotNull('phone_country')->whereNotNull('last_activity')->orWhere('isAnonymized', '0')->orWhereNotNull('deleted_at')->get() as $user)
 							<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 						@endforeach
 					</select>
