@@ -93,7 +93,33 @@
 							<p class="text-danger">{{ $errors->first('theme') }}</p>
 						@endif
 					</div>
-
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">{{ trans('user.profile.edit.settings.2fa.title') }}</h3>
+					@if(env('AUTHY_SECRET'))
+						<div class="card-options">@if(!$authy_id) <span class="badge badge-danger">{{ ucfirst(trans('global.deactivated')) }}</a> @else <span class="badge badge-success">{{ ucfirst(trans('global.activated')) }}</span> @endif</div>
+					@endif
+				</div>
+				<div class="card-body">
+					@if(env('AUTHY_SECRET'))
+						<div class="form-group">
+							@if($phone_verified_at)
+								<div class="alert alert-info mb-3"><i class="fas fa-info-circle"></i> {!! __('user.profile.edit.settings.2fa.info', ['url' => 'https://authy.com/download/']) !!}</div>
+								@if(!$authy_id)
+									<a class="btn btn-success text-white" href="{{ route('account-2fa-activate') }}"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</a>
+								@elseif($authy_id)
+									<a class="btn btn-danger text-white" href="{{ route('account-2fa-deactivate') }}"><i class="far fa-times-circle"></i> {{ trans('global.deactivate') }}</a>
+								@endif
+							@else
+								<div class="alert alert-warning mb-3"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.disabled') }}</div>
+								<button class="btn btn-success text-white" disabled="disabled"><i class="fas fa-check-double"></i> {{ trans('global.activate') }}</button>
+							@endif
+						</div>
+					@else
+						<div class="alert alert-warning m-0"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.alert.missingenv') }}</div>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -140,7 +166,7 @@
 								@endif
 							</div>
 							<div class="form-group @if ($errors->has('phone')) has-error @endif">
-								<label class="form-label">{{ trans('global.phone') }} @if(!$phone_verified_at) <a class="badge badge-danger" href="{{ route('account-verifyphone') }}">{{ ucfirst(trans('global.notverified')) }}</a> @else &middot; <span class="text-success">{{ ucfirst(trans('global.verified')) }}</span> @endif <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+								<label class="form-label">{{ trans('global.phone') }} @if(env('AUTHY_SECRET'))@if(!$phone_verified_at) <a class="badge badge-danger" href="{{ route('account-verifyphone') }}">{{ ucfirst(trans('global.notverified')) }}</a> @else &middot; <span class="text-success">{{ ucfirst(trans('global.verified')) }}</span> @endif @endif <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
 								<div class="input-group">
 									<input class="form-control" type="tel" id="phone" name="phone" placeholder="22225555" value="{{ $phone ?? old('phone') }}">
 									<input type="hidden" name="phone_country" id="phone_country" value="{{ $phone_country ?? old('phone_country') }}">

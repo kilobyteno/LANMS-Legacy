@@ -30,7 +30,10 @@
 						<label class="form-label">{{ trans('global.birthdate') }}</label>
 						<input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{ trans('auth.signup.dateofbirth') }} (YYYY-MM-DD)" autocomplete="off" value="{{ old('birthdate') }}" />
 						<label class="form-label">{{ trans('global.phone') }} <small class="float-right"><a data-toggle="tooltip" data-placement="top" title="{{ trans('user.profile.edit.details.phonewhydesc') }}"><i class="fas fa-question-circle"></i> {{ trans('user.profile.edit.details.phonewhy') }}</a></small></label>
+
 						<input type="text" class="form-control" type="tel" id="phone" name="phone" placeholder="{{ trans('global.phone') }}" autocomplete="off" value="{{ old('phone') }}" />
+						<input type="hidden" name="phone_country" id="phone_country" value="{{ old('phone_country') }}">
+
 						<label class="form-label">{{ trans('global.email') }}</label>
 						<input type="email" class="form-control" name="email" placeholder="{{ trans('global.email') }}" autocomplete="off" value="{{ old('email') }}" onkeypress="changecase(event, this);">
 						<label class="form-label">{{ trans('global.password') }}</label>
@@ -75,7 +78,23 @@
 	<script src="{{ Theme::url('js/vendors/intlTelInput.min.js') }}"></script>
 	<script>
 		var input = document.querySelector("#phone");
-		window.intlTelInput(input);
+		var countryinput = document.querySelector("#phone_country");
+		var iti = window.intlTelInput(input, {
+			preferredCountries: ["no"],
+			initialCountry: "{{ $phone_country ?? 'auto' }}",
+			geoIpLookup: function(success, failure) {
+				$.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+					var countryCode = (resp && resp.country) ? resp.country : "";
+					success(countryCode);
+				});
+			},
+		});
+		countryinput.value = iti.getSelectedCountryData().iso2;
+		// listen to the telephone input for changes
+		input.addEventListener('countrychange', function(e) {
+			countryinput.value = iti.getSelectedCountryData().iso2;
+			console.log('countrychange: '+iti.getSelectedCountryData().iso2);
+		});
 	</script>
 
 	<script type="text/javascript">
