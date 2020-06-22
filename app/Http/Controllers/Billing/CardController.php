@@ -58,7 +58,7 @@ class CardController extends Controller
                                 ->with('message', trans('user.account.billing.alert.noaddress'));
         }
 
-        $stripe_customer = $user->stripe_customer;
+        $stripe_customer = Sentinel::getUser()->stripe_customer;
 
         $cardNumber         = str_replace(' ', '', $request->get('number'));
         $cardMonthExpiry    = $request->get('expiryMonth');
