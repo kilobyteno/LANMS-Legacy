@@ -39,6 +39,8 @@
                             <div class="expanel-body">
                                 <label class="form-label">User ID:</label>
                                 <p>{{ $user->id }}</p>
+                                <label class="form-label">UUID:</label>
+                                <p>{{ $user->uuid }}</p>
                                 <label class="form-label">Last Login:</label>
                                 <p>{{ ucfirst(\Carbon::parse($user->last_login)->isoFormat('LLLL')) }}</p>
                                 <label class="form-label">Last Activity:</label>
@@ -54,6 +56,7 @@
                             <div class="expanel-body">
                                 <p class="@if(Activation::completed($user)){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ trans('global.email') }} @if(Activation::completed($user)){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
                                 <p class="@if($user->phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($user->phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
+                                <p class="@if($user->authy_id){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-user-lock"></i> {{ trans('global.2fa') }} <span class="text-lowercase">@if($user->authy_id){{ trans('global.activated') }}@else{{ trans('global.deactivated') }}@endif</span></p>
                             </div>
                         </div>
                         <div class="expanel expanel-default" data-collapsed="0">

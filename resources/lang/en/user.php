@@ -184,6 +184,17 @@ return [
                 'onlinestatus' => 'Online Status',
                 'language' => 'Preferred Language',
                 'theme' => 'Preferred Theme',
+                '2fa' => array(
+                    'title' => 'Two Factor Authentication',
+                    'desc' => 'Please enter the OTP sent to your phone number',
+                    'disabled' => 'You need to verify your phone number before you can activate 2FA!',
+                    'info' => 'We use Authy for 2FA and we highly recommend you to use the <a class="alert-link" href=":url">Authy app</a>.',
+                    'alert' => array(
+                        'activated' => 'Two-factor authentication is now enabled!',
+                        'deactivated' => 'Two-factor authentication is disabled!',
+                        'missingenv' => 'Two-factor authentication is not activated by the administrator!',
+                    ),
+                ),
             ),
 
             'confirmpassword' => array(
