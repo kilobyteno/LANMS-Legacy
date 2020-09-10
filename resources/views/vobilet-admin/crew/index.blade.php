@@ -31,12 +31,12 @@
 					<tbody>
 						@foreach($crewassignment as $crew)
 							<tr>
-								<td scope="row">{{ User::getFullnameByID($crew->user->id) ?? 'N/A' }}</td>
+								<td scope="row">{{ $crew->user->fullname() ?? 'N/A' }}</td>
 								<td>{{ $crew->category->title ?? 'N/A' }}</td>
 								<td>{{ \Carbon::parse($crew->created_at)->toDateTimeString() }}</td>
-								<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ User::getFullnameByID($crew->author->id) }}</a></td>
+								<td><a href="{{ URL::route('user-profile', $crew->author->username) }}">{{ $crew->author->fullname() }}</a></td>
 								<td>{{ \Carbon::parse($crew->updated_at)->toDateTimeString() }}</td>
-								<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ User::getFullnameByID($crew->editor->id) }}</a></td>
+								<td><a href="{{ URL::route('user-profile', $crew->editor->username) }}">{{ $crew->editor->fullname() }}</a></td>
 								<td>
 									<a href="{{ route('admin-crew-edit', $crew->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit mr-2"></i>Edit</a>
 									@if(Sentinel::hasAccess('admin.crew.destroy'))
@@ -58,7 +58,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title"><strong>Delete Crew:</strong> #{{ $crew->id }} - {{ User::getFullnameByID($crew->user->id) }}</h4>
+					<h4 class="modal-title"><strong>Delete Crew:</strong> #{{ $crew->id }} - {{ $crew->user->fullname() }}</h4>
 				</div>
 				<div class="modal-body">
 					<h4 class="text-danger text-center"><strong>Are you sure you want to delete this crew?</strong></h4>
