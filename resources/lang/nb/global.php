@@ -133,8 +133,8 @@ return [
     ),
 
     'cookieconsent' => array(
-        'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt. Accepterer du dette?',
-        'dismiss' => 'JEG AKSEPTERER',
+        'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt.',
+        'dismiss' => 'OK, den er grei',
         'link' => 'Lær mer',
     ),
 
