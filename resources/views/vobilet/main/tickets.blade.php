@@ -13,6 +13,9 @@
 	<div class="row">
 		<div class="col-md-12 col-lg-12 col-sm-12">
 			<div class="row shop-dec">
+				@if(!$ticket_types->count())
+					<div class="alert alert-info"><i class="fas fa-info mr-2" aria-hidden="true"></i>{{ trans('pages.tickets.none') }}</div>
+				@endif
 				@foreach($ticket_types as $type)
 					<div class="col-lg-6">
 						<div class="card card-item">
