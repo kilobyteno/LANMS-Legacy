@@ -192,6 +192,19 @@ Route::group([
         ]);
     });
 Route::group([
+    'middleware' => ['setTheme:vobilet', 'gdpr.terms'],
+    'prefix' => 'account'
+    ], function () {
+        Route::get('/2fa/verify', [
+            'as' => 'account-2fa-verify' ,
+            'uses' => 'Auth\TwoFactorAuthController@index',
+        ]);
+        Route::post('/2fa/verify', [
+            'as' => 'account-2fa-verify' ,
+            'uses' => 'Auth\TwoFactorAuthController@verify',
+        ]);
+    });
+Route::group([
     'middleware' => ['sentinel.auth', 'setTheme:vobilet', 'gdpr.terms'],
     'prefix' => 'account'
     ], function () {
@@ -202,6 +215,15 @@ Route::group([
         Route::get('/id', [
             'as' => 'account-identity' ,
             'uses' => 'Member\AccountController@getIdentity'
+        ]);
+        
+        Route::get('/2fa/activate', [
+            'as' => 'account-2fa-activate' ,
+            'uses' => 'Auth\TwoFactorAuthController@activate'
+        ]);
+        Route::get('/2fa/deactivate', [
+            'as' => 'account-2fa-deactivate' ,
+            'uses' => 'Auth\TwoFactorAuthController@deactivate'
         ]);
         Route::get('/change/password', [
             'as' => 'account-change-password' ,
@@ -537,34 +559,6 @@ Route::group([
                             'as' => 'admin-crew-skill-destroy',
                             'uses' => 'Crew\CrewSkillController@destroy'
                         ]);
-                        Route::group([
-                            'prefix' => 'attachment'
-                            ], function () {
-                                Route::get('/', [
-                                    'as' => 'admin-crew-skill-attachment',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@admin'
-                                ]);
-                                Route::get('/create', [
-                                    'as' => 'admin-crew-skill-attachment-create',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@create'
-                                ]);
-                                Route::post('/store', [
-                                    'as' => 'admin-crew-skill-attachment-store',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@store'
-                                ]);
-                                Route::get('/{id}/edit', [
-                                    'as' => 'admin-crew-skill-attachment-edit',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@edit'
-                                ]);
-                                Route::post('/{id}/update', [
-                                    'as' => 'admin-crew-skill-attachment-update',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@update'
-                                ]);
-                                Route::get('/{id}/destroy', [
-                                    'as' => 'admin-crew-skill-attachment-destroy',
-                                    'uses' => 'Crew\CrewSkillAttachmentController@destroy'
-                                ]);
-                            });
                     });
             });
         Route::group([

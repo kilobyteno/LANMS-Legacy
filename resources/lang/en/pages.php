@@ -62,6 +62,7 @@ return [
 
     'tickets' => array(
         'free' => 'Free',
+        'none' => 'We do not have any tickets available yet.',
     ),
 
 ];

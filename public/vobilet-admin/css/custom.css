@@ -87,3 +87,7 @@ a:hover, .btn-link:hover {
 .card.no-scroll > .card-body {
 	overflow: hidden; /* Hide scrollbars */
 }
+
+.app-sidebar {
+	overflow-y:auto;
+}

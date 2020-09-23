@@ -115,7 +115,7 @@
 
 				<!-- Sidebar menu-->
 				<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-				<aside class="app-sidebar mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+				<aside class="app-sidebar mCustomScrollbar _mCS_1 mCS-autoHide"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
 					<ul class="side-menu">
 						<li>
 							<a class="side-menu__item @if(Request::is('admin')){{'active'}} @endif" href="{{ route('admin') }}"><i class="side-menu__icon fa fa-tachometer-alt"></i><span class="side-menu__label">Dashboard</span></a>

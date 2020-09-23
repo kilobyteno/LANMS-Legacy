@@ -28,6 +28,12 @@ return [
     'download' => 'Download',
     'send' => 'Send',
     'print' => 'Print',
+    'activate' => 'Activate',
+    'activated' => 'Activated',
+    'deactivate' => 'Deactivate',
+    'deactivated' => 'Deactivated',
+    'verify' => 'Verify',
+    '2fa' => 'Two-factor authentication (2FA)',
 
     'fullname' => 'Full name',
     'firstname' => 'Firstname',
@@ -127,8 +133,8 @@ return [
     ),
 
     'cookieconsent' => array(
-        'message' => 'This website uses cookies to ensure you get the best experience on our website. Do you accept this?',
-        'dismiss' => 'I ACCEPT',
+        'message' => 'This website uses cookies to ensure you get the best experience on our website.',
+        'dismiss' => 'OK, that\'s fine',
         'link' => 'Learn more',
     ),
 

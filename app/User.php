@@ -38,7 +38,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'profilepicturesmall',
         'profilecover',
         'isAnonymized',
-        'accepted_gdpr'
+        'accepted_gdpr',
+        'authy_id',
     ];
 
     /**
@@ -68,6 +69,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'phone',
         'phone_country',
         'phone_verified_at',
+        'authy_id',
         'gender',
         'occupation',
         'location',
@@ -108,6 +110,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'phone',
         'phone_country',
         'phone_verified_at',
+        'authy_id',
         'gender',
         'occupation',
         'location',
@@ -845,6 +848,15 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     public function age()
     {
         return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
+    }
+
+    public function fullname()
+    {
+        if ($this->showname) {
+            return $this->firstname . ' ' . $this->lastname;
+        } else {
+            return $this->firstname;
+        }
     }
 
     public function scopeActive()

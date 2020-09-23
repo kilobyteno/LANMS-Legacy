@@ -28,6 +28,12 @@ return [
     'download' => 'Last ned',
     'send' => 'Send',
     'print' => 'Skriv ut',
+    'activate' => 'Aktiver',
+    'activated' => 'Aktivert',
+    'deactivate' => 'Deaktiver',
+    'deactivated' => 'Deaktivert',
+    'verify' => 'Verifiser',
+    '2fa' => 'Tofaktorautentisering (2FA)',
 
     'fullname' => 'Fullt navn',
     'firstname' => 'Fornavn',
@@ -127,8 +133,8 @@ return [
     ),
 
     'cookieconsent' => array(
-        'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt. Accepterer du dette?',
-        'dismiss' => 'JEG AKSEPTERER',
+        'message' => 'Dette nettstedet bruker informasjonskapsler for å sikre at du får den beste opplevelsen på nettstedet vårt.',
+        'dismiss' => 'OK, den er grei',
         'link' => 'Lær mer',
     ),
 

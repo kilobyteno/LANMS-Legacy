@@ -16,7 +16,6 @@
 	@if(!env('STRIPE_API_KEY'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
 				<hr class="message-inner-separator">
 				<p>The Stripe API key has not been set in the environment file. You will not be able to accept payments!</p>
@@ -27,7 +26,6 @@
 	@if(!env('MAIL_DRIVER') || !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION') || !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
 				<hr class="message-inner-separator">
 				<p>One or more mail keys in the environment file. Users will not be able get emails from this application!</p>
@@ -39,34 +37,29 @@
 	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
-				<p>You are missing one or more Twilio keys in the environment file. Users will not be able to verify their phonenumbers!</p>
+				<p>You are missing one or more Twilio keys in the environment file. Users will not be able to verify their phone numbers!</p>
 			</div>
 		</div>
 	@endif
 
-	{{--
-	@if(!env('AUTHY_API_KEY'))
+	@if(!env('AUTHY_SECRET'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
 				<p>You are missing the Authy keys in the environment file. Users will not be able to setup two factor authentication!</p>
 			</div>
 		</div>
 	@endif
-	--}}
 
-	@if(env('APP_ENV') == 'development' || env('APP_ENV') == 'local')
+	@if(env('APP_ENV') != 'production')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-			<div class="alert alert-warning">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environemnt Warning</strong>
+			<div class="alert alert-info">
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environemnt Information</strong>
 				<hr class="message-inner-separator">
-				<p>You have set '{{ env('APP_ENV') }}' as the environment file.</p>
+				<p>You have set '{{ env('APP_ENV') }}' as the environment in the environment file. Make sure this is correct.</p>
 			</div>
 		</div>
 	@endif
@@ -74,7 +67,6 @@
 	@if(!env('SENTRY_LARAVEL_DSN'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-warning">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
 				<p>There is no value for Sentry in the environment file. If this is not set, the developers will not get application error alerts.</p>
@@ -85,7 +77,6 @@
 	@if(!\LANMS\Info::getContent('address_city') || !\LANMS\Info::getContent('address_country') || !\LANMS\Info::getContent('address_county') || !\LANMS\Info::getContent('address_postal_code') || !\LANMS\Info::getContent('address_street'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical info value</strong>
 				<hr class="message-inner-separator">
 				<p>One or more address fields in Info is missing. You need this to be able to send invoices! <a href="{{ route('admin-info') }}" class="alert-link">Click here to fix it!</a></p>

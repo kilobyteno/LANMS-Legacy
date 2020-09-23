@@ -2,6 +2,7 @@
 
 namespace LANMS\Http\Controllers\Member;
 
+use Authy\AuthyApi;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
@@ -97,6 +98,11 @@ class AuthController extends Controller
                         return Redirect::route('account-signin')->with('messagetype', 'warning')
                                             ->with('message', trans('auth.alert.loginfailed'))->withInput();
                     } else {
+                        if ($user->authy_id) { // Check if user has setup 2fa
+                            if (!session("isVerified")) { // Check if user has verified 2fa
+                                return redirect()->route('account-2fa-verify');
+                            }
+                        }
                         return Redirect::route('account')->with('messagetype', 'success')
                                             ->with('message', trans('auth.alert.loggedin'));
                     }
@@ -134,6 +140,7 @@ class AuthController extends Controller
         $password           = $request->input('password');
         $birthdate          = $request->input('birthdate');
         $phone              = $request->input('phone');
+        $phone_country      = $request->input('phone_country');
 
         $referral           = \Session::get('referral');
         $referral_code      = str_random(15);
@@ -152,17 +159,24 @@ class AuthController extends Controller
         }
 
         if (is_null($checkusername) && is_null($checkemail)) {
-            $user = \Sentinel::register(array(
+            $data = array(
                 'email'             => $email,
                 'username'          => $username,
                 'firstname'         => $firstname,
                 'lastname'          => $lastname,
                 'birthdate'         => $birthdate,
                 'phone'             => $phone,
+                'phone_country'     => $phone_country,
                 'password'          => $password,
                 'referral'          => $referral,
                 'referral_code'     => $referral_code,
-            ));
+            );
+
+            $authy_api = new AuthyApi(getenv("AUTHY_SECRET"));
+            $authy_user = $authy_api->registerUser($data['email'], $data['phone'], \libphonenumber\PhoneNumberUtil::getInstance()->getCountryCodeForRegion(strtoupper($data['phone_country'])));
+            $data['authy_id'] = $authy_user->id();
+            
+            $user = \Sentinel::register($data);
 
             if ($user) {
                 $customer = \Stripe::customers()->create([
