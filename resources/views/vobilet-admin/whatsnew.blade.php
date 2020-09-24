@@ -32,23 +32,14 @@
 									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-475'>LANMS-475</a>] - ErrorException account-billing-card-store</li>
 									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-477'>LANMS-477</a>] - Trying to get property &#39;id&#39; of non-object (View: /admin/crew/index.blade.php)</li>
 								</ul>
-									
+
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-276'>LANMS-276</a>] - Compo Submission System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-277'>LANMS-277</a>] - Kiosk system via iZettle/Stripe</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-439'>LANMS-439</a>] - Add possibility to link ticket to invoice</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-459'>LANMS-459</a>] - Photo Album</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-463'>LANMS-463</a>] - Add support for translated uri&#39;s</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-310'>LANMS-310</a>] - 2FA via Twilio</li>
 								</ul>
-									
+								
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-310'>LANMS-310</a>] - 2FA via Twilio</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-356'>LANMS-356</a>] - Add possibility for a member to be in more than one team, when signing up for a compo</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-393'>LANMS-393</a>] - Admins should be able to change payment for reservation after expire time</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-435'>LANMS-435</a>] - Add option to check if users has valid ticket, when signing up for compo</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-438'>LANMS-438</a>] - Add automatic signup in toornament for compos</li>
 									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-478'>LANMS-478</a>] - Message when no ticket types</li>
 								</ul>
 							</div>
