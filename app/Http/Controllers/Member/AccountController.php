@@ -15,6 +15,7 @@ use LANMS\Http\Requests\Member\ProfileImageRequest;
 use LANMS\Http\Requests\Member\ProfileRequest;
 use LANMS\News;
 use LANMS\Rules\OlderThan;
+use LANMS\Rules\YoungerThan;
 use LANMS\User;
 use Spatie\Activitylog\Models\Activity;
 
@@ -59,7 +60,7 @@ class AccountController extends Controller
             'username' => 'required|unique:users,username,'.$user->id.'|between:3,250',
             'firstname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'lastname' => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
-            'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan],
+            'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
             'phone' => 'required|phone:LENIENT,NO',
             'phone_country' => 'alpha|max:3|required_with:phone',
             'gender' => '',

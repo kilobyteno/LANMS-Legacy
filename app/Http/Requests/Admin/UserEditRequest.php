@@ -4,6 +4,7 @@ namespace LANMS\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use LANMS\Rules\OlderThan;
+use LANMS\Rules\YoungerThan;
 
 class UserEditRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class UserEditRequest extends FormRequest
             'gender'            => '',
             'location'          => 'regex:/^[A-Za-z ,\']+$/|nullable',
             'occupation'        => 'regex:/^[A-Za-z ,\']+$/|nullable',
-            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
+            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
             'phone'             => 'required|phone:AUTO,NO',
             'showname'          => 'integer',
             'showemail'         => 'integer',
