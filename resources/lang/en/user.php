@@ -34,7 +34,6 @@ return [
             ),
             'editprofile' => 'Edit Profile',
             'images' => 'Change Profile Images',
-            'addressbook' => 'Manage Address Book',
             'password' => 'Change Password',
         ),
         'personaldata' => array(
@@ -55,7 +54,7 @@ return [
         'billing' => array(
             'title' => 'Billing',
             'alert' => array(
-                'noaddress' => 'It seems like there is no addresses attached to this account. It will not be possible to pay for invoices before there is a address on this account. You can <a href=":url" class="alert-link">add one here</a>.',
+                'noaddress' => 'It seems like there is no address attached to this account. It will not be possible to pay for invoices before there is a address on this account. You can <a href=":url" class="alert-link">add one here</a>.',
             ),
             'payments' => array(
                 'title' => 'Payments',
@@ -215,33 +214,6 @@ return [
             'profilephoto' => 'Profile Photo',
         ),
         
-    ),
-
-    'addressbook' => array(
-        'title' => 'Addressbook',
-        'address' => 'Address',
-        'noaddress' => 'We can\'t find any addresses tied to your account. You should <a href=":url">add</a> one.',
-        'areyousure' => 'Are you sure you want to delete this address?',
-        'primaryaddress' => 'I want this as my primary address',
-        'confirmchanges' => 'Confirm changes with your password',
-        'alert' => array(
-            'nodeletewhilereservation' => 'You will not be able to delete any addresses while you have reserved seats.',
-            'saved' => 'The address has now been added!',
-            'updated' => 'The address has now been updated!',
-            'deleted' => 'The address has now been deleted!',
-            'failed' => 'Something went wrong while saving the address to the address book.',
-            'wrongpassword' => 'Your current password does not seem to match.',
-        ),
-        'swal' => array(
-            'title' => 'Nothing has been done.',
-            'text' => 'The address was not deleted!',
-        ),
-        'create' => array(
-            'title' => 'Add Address',
-        ),
-        'edit' => array(
-            'title' => 'Edit Address',
-        ),
     ),
 
     'gdpr' => array(
