@@ -5,6 +5,7 @@ namespace LANMS\Console\Commands;
 use Illuminate\Console\Command;
 use Request;
 use anlutro\LaravelSettings\Facade as Setting;
+use Carbon\Carbon;
 
 class CheckLicense extends Command
 {
@@ -231,7 +232,7 @@ class CheckLicense extends Command
             $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
 
             // print(json_encode($results).PHP_EOL);
-
+            Setting::set("APP_LICENSE_LAST_CHECKED", Carbon::now());
             Setting::set("APP_LICENSE_INFO_NAME", (array_key_exists('registeredname', $results) ? $results['registeredname'] : ''));
             Setting::set("APP_LICENSE_INFO_COMPANY", (array_key_exists('companyname', $results) ? $results['companyname'] : ''));
             Setting::set("APP_LICENSE_INFO_EMAIL", (array_key_exists('email', $results) ? $results['email'] : ''));
