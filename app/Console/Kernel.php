@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('lanms:checklicense')->daily();
+        $schedule->command('lanms:checklicense')->twiceDaily(1, 13);
         $schedule->command('lanms:desr')->hourly();
         $schedule->command('lanms:dnau')->daily();
         $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
