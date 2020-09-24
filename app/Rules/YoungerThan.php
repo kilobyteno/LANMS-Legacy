@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 use InvalidArgumentException;
 
-class OlderThan implements Rule
+class YoungerThan implements Rule
 {
     /**
      * Create a new rule instance.
@@ -15,7 +15,7 @@ class OlderThan implements Rule
      */
     public function __construct()
     {
-        $this->minAge = 13;
+        $this->maxAge = 100;
     }
 
     /**
@@ -28,7 +28,7 @@ class OlderThan implements Rule
     public function passes($attribute, $value)
     {
         try {
-            return Carbon::now()->diff(Carbon::createFromFormat('Y-m-d', $value))->y >= $this->minAge;
+            return Carbon::now()->diff(Carbon::createFromFormat('Y-m-d', $value))->y < $this->maxAge;
         } catch (InvalidArgumentException $e) {
             return false;
         }
@@ -41,6 +41,6 @@ class OlderThan implements Rule
      */
     public function message()
     {
-        return trans('validation.OlderThan', ['age' => $this->minAge]);
+        return trans('validation.YoungerThan', ['age' => $this->maxAge]);
     }
 }

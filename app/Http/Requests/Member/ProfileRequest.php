@@ -4,6 +4,7 @@ namespace LANMS\Http\Requests\Member;
 
 use LANMS\Http\Requests\Request;
 use LANMS\Rules\OlderThan;
+use LANMS\Rules\YoungerThan;
 
 class ProfileRequest extends Request
 {
@@ -28,7 +29,7 @@ class ProfileRequest extends Request
         return [
             'firstname'         => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'lastname'          => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
-            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
+            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
             'phone'             => 'required|phone:LENIENT,NO',
             'phone_country'     => 'required_with:phone',
             'gender'            => '',
