@@ -12,7 +12,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="display-1 text-dark mb-5">404</div>
+			<div class="display-1 mb-5">404</div>
 			<h1>{{ trans('pages.errors.404.desc') }}</h1>
 			<p><a class="btn btn-primary mt-10" href="{{ url('/') }}"><i class="fas fa-arrow-left"></i> {{ trans('pages.errors.button') }}</a></p>
 		</div>		

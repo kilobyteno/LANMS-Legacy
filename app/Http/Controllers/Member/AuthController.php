@@ -73,26 +73,6 @@ class AuthController extends Controller
                     return Redirect::route('account-signin')->with('messagetype', 'info')
                                         ->with('message', trans('auth.alert.logindisabled'));
                 } elseif (\Sentinel::authenticate($credentials)) {
-                    // LANMS-415 -- START
-                    $addresses = $user->addresses;
-                    $main_address = Address::where('user_id', $user->id)->where('main_address', 1)->first();
-                    if ($main_address) {
-                        $info = [
-                            'address_street' => $main_address->address1.' '.$main_address->address2,
-                            'address_postalcode' => $main_address->postalcode,
-                            'address_city' => $main_address->city,
-                            'address_county' => $main_address->county,
-                            'address_country' => $main_address->country,
-                        ];
-                        Sentinel::update($user, $info);
-                    }
-                    if ($addresses) {
-                        foreach ($addresses as $address) {
-                            $address->delete();
-                        }
-                    }
-                    // LANMS-415 -- END
-
                     $login = \Sentinel::login($user, $remember);
                     if (!$login) {
                         return Redirect::route('account-signin')->with('messagetype', 'warning')

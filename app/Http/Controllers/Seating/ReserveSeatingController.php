@@ -99,7 +99,7 @@ class ReserveSeatingController extends Controller
         }
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.reservation.alert.noaddresses'));
+                                ->with('message', trans('seating.reservation.alert.noaddress'));
         }
         if (Sentinel::getUser()->reservationsThisYear()->count() >= 5) {
             return Redirect::route('seating')->with('messagetype', 'warning')
@@ -117,7 +117,7 @@ class ReserveSeatingController extends Controller
         }
         if (!$reservedfor->hasAddress()) {
             return Redirect::route('seating-show', $slug)->with('messagetype', 'warning')
-                                ->with('message', trans('seating.reservation.alert.noaddressesfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
+                                ->with('message', trans('seating.reservation.alert.noaddressfor', ['name' => \User::getFullnameAndNicknameByID($reservedfor->id)]));
         }
         if ($reservedfor->reservationsThisYear()->count() >= 5) {
             return Redirect::route('seating')->with('messagetype', 'warning')

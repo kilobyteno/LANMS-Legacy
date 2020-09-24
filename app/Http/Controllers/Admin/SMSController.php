@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Http\Controllers\Controller;
 use LANMS\User;
+use Twilio\Exceptions\ConfigurationException;
 use Twilio\Exceptions\RestException;
 use Twilio\Rest\Client as TwilioClient;
 use Validator;
@@ -29,6 +30,8 @@ class SMSController extends Controller
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.*']), 403);
         try {
             $messages = $this->twilio->messages->read();
+        } catch (ConfigurationException $e) {
+            return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
         } catch (RestException $e) {
             return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
         }
@@ -76,8 +79,10 @@ class SMSController extends Controller
             return Redirect::route('admin-sms')
                             ->with('messagetype', 'success')
                             ->with('message', "SMS sent!");
-        } catch (Exception $e) {
-            return Redirect::route('admin-sms')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
+        } catch (ConfigurationException $e) {
+            return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
+        } catch (RestException $e) {
+            return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
         }
     }
 

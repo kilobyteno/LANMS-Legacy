@@ -34,7 +34,6 @@ return [
             ),
             'editprofile' => 'Rediger profil',
             'images' => 'Endre profilbilder',
-            'addressbook' => 'Administrer adressebok',
             'password' => 'Bytt passord',
         ),
         'personaldata' => array(
@@ -55,7 +54,7 @@ return [
         'billing' => array(
             'title' => 'Fakturering',
             'alert' => array(
-                'noaddress' => 'Det ser ut til at det ikke er adresser knyttet til denne kontoen. Det vil ikke være mulig å betale for fakturaer før det er en adresse på denne kontoen. Du kan <a href=":url" class="alert-link">legge til en her</a>.',
+                'noaddress' => 'Det ser ut til at det ikke er en adresse knyttet til denne kontoen. Det vil ikke være mulig å betale for fakturaer før det er en adresse på denne kontoen. Du kan <a href=":url" class="alert-link">legge til en her</a>.',
             ),
             'payments' => array(
                 'title' => 'Betalinger',
@@ -215,33 +214,6 @@ return [
             'profilephoto' => 'Profilbilde',
         ),
         
-    ),
-
-    'addressbook' => array(
-        'title' => 'Adressebok',
-        'address' => 'Adresse',
-        'noaddress' => 'Vi kan ikke finne noen adresser knyttet til kontoen din. Du bør <a href=":url">legge til</a> en.',
-        'areyousure' => 'Er du sikker på at du vil slette denne adressen?',
-        'primaryaddress' => 'Jeg vil ha dette som min primær adresse',
-        'confirmchanges' => 'Bekreft endringer med passordet ditt',
-        'alert' => array(
-            'nodeletewhilereservation' => 'Du vil ikke kunne slette adresser mens du har reserverte plasser.',
-            'saved' => 'Adressen er nå lagt til!',
-            'updated' => 'Adressen er nå oppdatert!',
-            'deleted' => 'Adressen er nå slettet!',
-            'failed' => 'Noe gikk galt mens du lagret adressen til adresseboken.',
-            'wrongpassword' => 'Ditt nåværende passord ser ikke ut til å samsvare.',
-        ),
-        'swal' => array(
-            'title' => 'Ingenting har blitt gjort.',
-            'text' => 'Adressen ble ikke slettet!',
-        ),
-        'create' => array(
-            'title' => 'Legg til adresse',
-        ),
-        'edit' => array(
-            'title' => 'Rediger adresse',
-        ),
     ),
 
     'gdpr' => array(
