@@ -60,6 +60,9 @@ class Update extends Command
 
         $this->info('Deleting old addresses...');
         Artisan::call('lanms:doae');
+
+        $this->info('Checking if birthdates is valid...');
+        Artisan::call('lanms:checkbirthdate');
         
         $this->info('Checking license...');
         Artisan::call('lanms:checklicense');

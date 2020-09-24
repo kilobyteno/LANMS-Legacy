@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
         $schedule->command('lanms:cleanupactivity')->daily();
         $schedule->command('lanms:updatenotifications')->hourly();
+        $schedule->command('lanms:checkbirthdate')->daily();
     }
 
     /**
