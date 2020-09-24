@@ -10,6 +10,7 @@ use Cartalyst\Sentinel\Persistences\PersistableInterface;
 use Cartalyst\Sentinel\Roles\RoleInterface;
 use Cartalyst\Sentinel\Roles\RoleableInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
+use Cartalyst\Stripe\Exception\NotFoundException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Dialect\Gdpr\Anonymizable;
 use Dialect\Gdpr\Portable;
@@ -169,10 +170,19 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
                 $stripe_customer = $customer['id'];
                 $model->stripe_customer = $stripe_customer;
             } else {
-                Stripe::customers()->update($model->stripe_customer, [
-                    'email' => $model->email,
-                    'name' => $model->firstname.' '.$model->lastname,
-                ]);
+                try {
+                    Stripe::customers()->update($model->stripe_customer, [
+                        'email' => $model->email,
+                        'name' => $model->firstname.' '.$model->lastname,
+                    ]);
+                } catch (NotFoundException $e) {
+                    $customer = Stripe::customers()->create([
+                        'email' => $model->email,
+                        'name' => $model->firstname.' '.$model->lastname,
+                    ]);
+                    $stripe_customer = $customer['id'];
+                    $model->stripe_customer = $stripe_customer;
+                }
             }
         });
     }
