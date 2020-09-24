@@ -20,6 +20,35 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2025" aria-expanded="true">Version 20.2.5</a>
+							</h4>
+						</div>
+						<div id="2025" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-479'>LANMS-479</a>] - &#39;Whats new&#39; has features from newer versions</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-481'>LANMS-481</a>] - Numbers on error pages are not readable when in dark mode</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-482'>LANMS-482</a>] - Twilio\Exceptions\ConfigurationException admin-sms</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-485'>LANMS-485</a>] - Cartalyst\Stripe\Exception\NotFoundException admin</li>
+								</ul>
+									
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-484'>LANMS-484</a>] - Add license last checked</li>
+								</ul>
+									
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-416'>LANMS-416</a>] - Clean up old address entries, translations and functions</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-486'>LANMS-486</a>] - Tone down the unlicenced front end</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2024" aria-expanded="true">Version 20.2.4</a>
 							</h4>
 						</div>
