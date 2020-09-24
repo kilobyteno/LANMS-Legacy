@@ -58,6 +58,9 @@ class Update extends Command
         $this->info('Refreshing setting descriptions...');
         Artisan::call('lanms:refreshsettings');
 
+        $this->info('Deleting old addresses...');
+        Artisan::call('lanms:doae');
+        
         $this->info('Checking license...');
         Artisan::call('lanms:checklicense');
 
