@@ -44,7 +44,7 @@
 				<div class="row">
 					@foreach($noncheckedin as $ticket)
 						<div class="col-lg-6">
-							{{ $ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($ticket->user->id) }}  @if($ticket->reservation->payment) @if($ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span> @endif @endif
+							{{ $ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($ticket->user->id) }}  @if($ticket->reservation->payment) @if($ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ __('seating.reservation.pizza.title') }}</span> @endif @endif
 						</div>
 					@endforeach
 				</div>
@@ -55,7 +55,7 @@
 				<div class="row">
 					@foreach($checkins as $checkin)
 						<div class="col-lg-6">
-							{{ $checkin->ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}  @if($checkin->ticket->reservation->payment) @if($checkin->ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ trans('seating.reservation.pizza.title') }}</span> @endif @endif
+							{{ $checkin->ticket->reservation->seat->name }} &middot; {{ User::getFullnameAndNicknameByID($checkin->ticket->user->id) }}  @if($checkin->ticket->reservation->payment) @if($checkin->ticket->reservation->payment->created_at < '2019-01-01 00:00:00')<span class="badge badge-warning"><i class="fas fa-stroopwafel"></i> {{ __('seating.reservation.pizza.title') }}</span> @endif @endif
 						</div>
 					@endforeach
 				</div>

@@ -29,7 +29,7 @@ class RecoverController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-forgot-password')->with('messagetype', 'info')
-                                ->with('message', trans('auth.alert.logindisabled'));
+                                ->with('message', __('auth.alert.logindisabled'));
         }
 
         $username = $request->input('username');
@@ -37,7 +37,7 @@ class RecoverController extends Controller
         $user = \Sentinel::findByCredentials($credentials);
         if ($user == null) {
             return Redirect::route('account-forgot-password')->with('messagetype', 'error')
-                                    ->with('message', trans('auth.alert.usernotfound'));
+                                    ->with('message', __('auth.alert.usernotfound'));
         }
 
         $actex = \Activation::exists($user);
@@ -57,10 +57,10 @@ class RecoverController extends Controller
 
         if ($active == false) {
             return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.forgot.alert.notactive'));
+                                    ->with('message', __('auth.forgot.alert.notactive'));
         } elseif ($reminder == true) {
             return Redirect::route('account-signin')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.forgot.alert.alreadyasked'));
+                                    ->with('message', __('auth.forgot.alert.alreadyasked'));
         } elseif ($active == true && $reminder == false) {
             $reminder       = \Reminder::create($user);
             $reminder_code  = $reminder->code;
@@ -73,16 +73,16 @@ class RecoverController extends Controller
                     'username' => $user->username,
                 ),
                 function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.forgotpassword.title'));
+                    $message->to($user->email, $user->firstname)->subject(__('email.auth.forgotpassword.title'));
                 }
             );
             
             if (count(\Mail::failures()) > 0) {
                 return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.forgot.alert.emailfailure'));
+                                    ->with('message', __('auth.forgot.alert.emailfailure'));
             } else {
                 return Redirect::route('account-forgot-password')->with('messagetype', 'success')
-                                    ->with('message', trans('auth.forgot.alert.emailsuccess'));
+                                    ->with('message', __('auth.forgot.alert.emailsuccess'));
             }
         }
     }
@@ -93,7 +93,7 @@ class RecoverController extends Controller
         if ($act == null) {
             return Redirect::route('home')
                 ->with('messagetype', 'warning')
-                ->with('message', trans('auth.reset.alert.noreminder'));
+                ->with('message', __('auth.reset.alert.noreminder'));
         } else {
             return view('auth.reset-password')->with('resetpassword_code', $resetpassword_code);
         }
@@ -103,14 +103,14 @@ class RecoverController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-reset-password', $resetpassword_code)->with('messagetype', 'info')
-                                ->with('message', trans('auth.alert.logindisabled'));
+                                ->with('message', __('auth.alert.logindisabled'));
         }
 
         $act = Rem::where('code', '=', $resetpassword_code)->where('completed', '=', 0)->first();
         if ($act == null) {
             return Redirect::route('home')
                 ->with('messagetype', 'warning')
-                ->with('message', trans('auth.reset.alert.noreminder'));
+                ->with('message', __('auth.reset.alert.noreminder'));
         }
 
         $username           = $request->input('username');
@@ -120,16 +120,16 @@ class RecoverController extends Controller
 
         if ($user == null) {
             return Redirect::route('account-reset-password', $resetpassword_code)->with('messagetype', 'danger')
-                                ->with('message', trans('auth.alert.usernotfound'));
+                                ->with('message', __('auth.alert.usernotfound'));
         } elseif ($user->id != $act->user_id) {
             return Redirect::route('account-reset-password', $resetpassword_code)->with('messagetype', 'danger')
-                                ->with('message', trans('auth.reset.alert.nomatch'));
+                                ->with('message', __('auth.reset.alert.nomatch'));
         } elseif (\Reminder::complete($user, $resetpassword_code, $password)) {
             return Redirect::route('account-signin')->with('messagetype', 'success')
-                                    ->with('message', trans('auth.reset.alert.cansignin'));
+                                    ->with('message', __('auth.reset.alert.cansignin'));
         } else {
             return Redirect::route('account-reset-password', $resetpassword_code)->with('messagetype', 'danger')
-                                ->with('message', trans('auth.reset.alert.failure'));
+                                ->with('message', __('auth.reset.alert.failure'));
         }
     }
 
@@ -142,33 +142,33 @@ class RecoverController extends Controller
     {
         if (!\Setting::get('LOGIN_ENABLED')) {
             return Redirect::route('account-resendverification')->with('messagetype', 'info')
-                                ->with('message', trans('auth.alert.logindisabled'));
+                                ->with('message', __('auth.alert.logindisabled'));
         }
 
         $user = \User::where('email', '=', $request->email)->first();
         if ($user == null) {
             return Redirect::route('account-resendverification')->with('messagetype', 'danger')
-                                ->with('message', trans('auth.resend.alert.usernotfound'));
+                                ->with('message', __('auth.resend.alert.usernotfound'));
         } else {
             $activation = \Activation::exists($user);
 
             if ($activation == null) {
                 return Redirect::route('account-resendverification')->with('messagetype', 'warning')
-                                ->with('message', trans('auth.resend.alert.noactivations'));
+                                ->with('message', __('auth.resend.alert.noactivations'));
             } elseif ($activation->completed == true) {
                 return Redirect::route('account-resendverification')->with('messagetype', 'info')
-                                ->with('message', trans('auth.resend.alert.activationcompleted'));
+                                ->with('message', __('auth.resend.alert.activationcompleted'));
             } else {
                 \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation->code), 'firstname' => $user->firstname), function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject(trans('email.activate.title'));
+                    $message->to($user->email, $user->firstname)->subject(__('email.activate.title'));
                 });
 
                 if (count(\Mail::failures()) > 0) {
                     return Redirect::route('account-forgot-password')->with('messagetype', 'warning')
-                                    ->with('message', trans('auth.resend.alert.emailfailure'));
+                                    ->with('message', __('auth.resend.alert.emailfailure'));
                 } else {
                     return Redirect::route('account-resendverification')->with('messagetype', 'success')
-                                    ->with('message', trans('auth.resend.alert.emailsuccess'));
+                                    ->with('message', __('auth.resend.alert.emailsuccess'));
                 }
             }
         }

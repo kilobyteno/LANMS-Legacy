@@ -23,7 +23,7 @@ class SentinelAuth
             } else {
                 return redirect()->route('account-signin')
                                         ->with('messagetype', 'info')
-                                        ->with('message', trans('global.noaccess'));
+                                        ->with('message', __('global.noaccess'));
             }
         } else {
             $now = date_create('now');

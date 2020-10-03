@@ -7,8 +7,8 @@
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
+        <li class="breadcrumb-item">{{ __('user.account.billing.title') }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ __('user.account.billing.invoice.title') }}</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Edit Invoice</li>
 	</ol>
 </div>
@@ -16,7 +16,7 @@
 @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
 	<div class="alert alert-info" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
+		<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ __('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
 	</div>
 @endif
 
@@ -24,7 +24,7 @@
 	<div class="col-xl-8">
 		<div class="card">
 			<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
-				<h3 class="card-title">{{ trans('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
+				<h3 class="card-title">{{ __('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ __('user.account.billing.invoice.status.scheduled') }}@else{{ __('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
 			</div>
 			<div class="card-body">
 				<div class="row">
@@ -56,8 +56,8 @@
 				</div>
 				
 				<div>
-					<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['created'])->isoFormat('LLLL')) }}</p>
-					<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> {{ \Carbon::parse($invoice['due_date'])->isoFormat('LL') }}</p>
+					<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ __('user.account.billing.invoice.title') }} {{ __('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['created'])->isoFormat('LLLL')) }}</p>
+					<p class="mb-5"><span class="font-weight-semibold">{{ __('global.payment.duedate') }}:</span> {{ \Carbon::parse($invoice['due_date'])->isoFormat('LL') }}</p>
 					<p class="mb-2">
 						<button type="button" id="add_row" class="btn btn-outline-success d-inline">Add Row</button>
 						<button type="button" id="delete_row" class="btn btn-outline-danger d-inline">Delete Row</button>
@@ -68,10 +68,10 @@
 						<tbody>
 							<tr class="">
 								<th class="text-center" style="width: 5%">#</th>
-								<th>{{ trans('user.account.billing.invoice.product') }}</th>
-								<th class="text-center" style="width: 10%">{{ trans('user.account.billing.invoice.quantity') }}</th>
-								<th class="text-right" style="width: 15%">{{ trans('user.account.billing.invoice.unitprice') }}</th>
-								<th class="text-right" style="width: 20%">{{ trans('user.account.billing.invoice.amount') }}</th>
+								<th>{{ __('user.account.billing.invoice.product') }}</th>
+								<th class="text-center" style="width: 10%">{{ __('user.account.billing.invoice.quantity') }}</th>
+								<th class="text-right" style="width: 15%">{{ __('user.account.billing.invoice.unitprice') }}</th>
+								<th class="text-right" style="width: 20%">{{ __('user.account.billing.invoice.amount') }}</th>
 							</tr>
 							@for($i = 0; $i < count($invoice['lines']['data']); $i++)
 								<tr id="{{ 'addr'.string($i) }}">
@@ -107,7 +107,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.subtotal') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.subtotal') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="sub_total" placeholder="0.00" class="form-control" id="sub_total" readonly />
@@ -118,7 +118,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxrate') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxrate') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 						                <input type="number" class="form-control" id="tax" placeholder="0" min="0" max="100" value="0">
@@ -129,7 +129,7 @@
 						       	</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxdue') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxdue') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="tax_amount" id="tax_amount" placeholder="0.00" class="form-control" readonly />
@@ -140,7 +140,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ trans('user.account.billing.invoice.totaldue') }}</td>
+								<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ __('user.account.billing.invoice.totaldue') }}</td>
 								<td class="font-weight-bold text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total_amount" id="total_amount" placeholder="0.00" class="form-control" readonly />
@@ -160,7 +160,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="form-group">
-					<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
+					<label class="form-label">{{ __('user.account.billing.invoice.invoiceto') }}:</label>
 					<p>{{ User::getFullnameAndNicknameByID($user->id) }}</p>
 					<input type="hidden" name="user_id" value="{{ $user->id }}">
 				</div>
@@ -171,7 +171,7 @@
 			</div>
 			<div class="card-footer">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<button class="btn btn-success" type="submit"><i class="fas fa-save mr-2"></i>{{ trans('global.savechanges') }}</button>
+				<button class="btn btn-success" type="submit"><i class="fas fa-save mr-2"></i>{{ __('global.savechanges') }}</button>
 			</div>
 		</div>
 	</div>

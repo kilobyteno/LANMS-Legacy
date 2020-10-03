@@ -1,15 +1,15 @@
 @extends('layouts.main')
-@section('title', trans('user.account.billing.payments.payment.title').' #'.$seatpayment->id)
+@section('title', __('user.account.billing.payments.payment.title').' #'.$seatpayment->id)
 @section('content')
 <div class="container">
     <div class="page-header">
-        <h4 class="page-title">{{ trans('user.account.billing.payments.payment.title') }} #{{ $seatpayment->id }}</h4>
+        <h4 class="page-title">{{ __('user.account.billing.payments.payment.title') }} #{{ $seatpayment->id }}</h4>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
-            <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-            <li class="breadcrumb-item">{{ trans('user.account.billing.payments.title') }}</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.payments.payment.title') }} #{{ $seatpayment->id }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('account') }}">{{ __('user.account.title') }}</a></li>
+            <li class="breadcrumb-item">{{ __('user.account.billing.title') }}</li>
+            <li class="breadcrumb-item">{{ __('user.account.billing.payments.title') }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('user.account.billing.payments.payment.title') }} #{{ $seatpayment->id }}</li>
         </ol>
     </div>
     <div class="row">
@@ -65,33 +65,33 @@
 
         </div>
         <div class="col-md-4">
-            <h3>{{ trans('user.account.billing.payments.payment.title') }} <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> {{ trans('user.account.billing.payments.payment.downloadreceipt') }}</a></h3>
+            <h3>{{ __('user.account.billing.payments.payment.title') }} <a href="{{ route('account-billing-receipt', $seatpayment->id) }}" class="btn btn-secondary btn-sm"><i class="fa fa-print"></i> {{ __('user.account.billing.payments.payment.downloadreceipt') }}</a></h3>
             <hr style="margin-top: 0">
-            <p><strong>{{ trans('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
-            <p><strong>{{ trans('global.payment.amount') }}:</strong> {{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</p>
-            <p><strong>{{ trans('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? trans('global.yes') : trans('global.no')) }}</p>
-            <p><strong>{{ trans('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? trans('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : trans('global.no')) }}</p>
+            <p><strong>{{ __('global.date') }}:</strong> {{ ucfirst(\Carbon::parse($charge['created'])->isoFormat('LLLL')) }}</p>
+            <p><strong>{{ __('global.payment.amount') }}:</strong> {{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</p>
+            <p><strong>{{ __('global.payment.paid') }}:</strong> {{ ($charge['paid'] ? __('global.yes') : __('global.no')) }}</p>
+            <p><strong>{{ __('global.payment.refunded') }}:</strong> {{ ($charge['refunded'] ? __('global.yes')." - ".substr($charge['amount_refunded'], 0, -2)." ".strtoupper($charge['currency']) : __('global.no')) }}</p>
             <p>
-                <strong>{{ trans('global.status') }}:</strong>
+                <strong>{{ __('global.status') }}:</strong>
                 @if($charge['failure_message'])
-                    <a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="{{ trans('global.failure') }} {{ trans('global.payment.message') }}">{{ trans('global.payment.failure') }}</a>
+                    <a href="javascript:void(0);" class="btn btn-danger btn-sm popover-danger" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="{{ $charge['failure_message'] }}" data-original-title="{{ __('global.failure') }} {{ __('global.payment.message') }}">{{ __('global.payment.failure') }}</a>
                 @else
-                    {{ trans('global.payment.'.$charge['status']) }}
+                    {{ __('global.payment.'.$charge['status']) }}
                 @endif
             </p>
         </div>
         <div class="col-md-4">
             <?php $payment = \LANMS\SeatPayment::where('stripecharge', '=', $charge['id'])->with('reservation')->first(); ?>
             @if($payment->reservation)
-              <h3>{{ trans('user.account.reservations.reservation.title') }} <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ trans('global.view') }} {{ trans('user.account.reservations.reservation.title') }}</a></h3>
+              <h3>{{ __('user.account.reservations.reservation.title') }} <a href="{{ route('account-reservation-view', $payment->reservation->id) }}" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> {{ __('global.view') }} {{ __('user.account.reservations.reservation.title') }}</a></h3>
               <hr style="margin-top: 0">
             @endif
             @if($charge)
                 <p><strong>ID:</strong> {{ $payment->reservation->id }}</p>
-                <p><strong>{{ trans('global.year') }}:</strong> {{ $payment->reservation->year }}</p>
-                <p><strong>{{ trans('global.seat') }}:</strong> {{ $payment->reservation->seat->name }}</p>
-                <p><strong>{{ trans('global.reservedfor') }}:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}</p>
-                <p><strong>{{ trans('global.reservedby') }}:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedby->id) }}</p>
+                <p><strong>{{ __('global.year') }}:</strong> {{ $payment->reservation->year }}</p>
+                <p><strong>{{ __('global.seat') }}:</strong> {{ $payment->reservation->seat->name }}</p>
+                <p><strong>{{ __('global.reservedfor') }}:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedfor->id) }}</p>
+                <p><strong>{{ __('global.reservedby') }}:</strong> {{ User::getFullnameAndNicknameByID($payment->reservation->reservedby->id) }}</p>
             @else
                 <em>N/A</em>
             @endif

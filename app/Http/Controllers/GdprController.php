@@ -57,7 +57,7 @@ class GdprController extends Controller
             'accepted_gdpr' => true,
         ]);
 
-        return redirect()->route('account')->with('messagetype', 'success')->with('message', trans('user.gdpr.message.alert.saved'));
+        return redirect()->route('account')->with('messagetype', 'success')->with('message', __('user.gdpr.message.alert.saved'));
     }
 
     /**
@@ -73,7 +73,7 @@ class GdprController extends Controller
             'accepted_gdpr' => false,
         ]);
         \Sentinel::logout();
-        return redirect()->to('/')->with('messagetype', 'danger')->with('message', trans('user.gdpr.message.alert.denied'));
+        return redirect()->to('/')->with('messagetype', 'danger')->with('message', __('user.gdpr.message.alert.denied'));
     }
 
     /**

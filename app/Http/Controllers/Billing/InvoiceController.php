@@ -41,7 +41,7 @@ class InvoiceController extends Controller
     {
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
         $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
@@ -58,7 +58,7 @@ class InvoiceController extends Controller
     {
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
         $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
@@ -78,7 +78,7 @@ class InvoiceController extends Controller
     {
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
         $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
@@ -89,7 +89,7 @@ class InvoiceController extends Controller
 
         if ($customer['sources']['total_count'] == 0) {
             return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
+                                ->with('message', __('user.account.billing.invoice.alert.nocards', ['url' => route('account-billing-card-create')]));
         }
         try {
             Stripe::invoices()->pay($id);
@@ -119,7 +119,7 @@ class InvoiceController extends Controller
                                 ->with('message', $message);
         }
         return Redirect::route('account-billing-invoice-view', $invoice['id'])->with('messagetype', 'success')
-                                ->with('message', trans('user.account.billing.invoice.alert.paid'));
+                                ->with('message', __('user.account.billing.invoice.alert.paid'));
     }
 
     /**
@@ -166,7 +166,7 @@ class InvoiceController extends Controller
         }
         if (!$user->hasAddress()) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
 
         $stripe_customer = Sentinel::getUser()->stripe_customer;
@@ -266,7 +266,7 @@ class InvoiceController extends Controller
         }
         if (!$user->hasAddress) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
 
         $stripe_customer = Sentinel::getUser()->stripe_customer;

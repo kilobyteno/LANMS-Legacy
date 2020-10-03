@@ -88,7 +88,7 @@ class AccountController extends Controller
         if (!Sentinel::authenticate($credentials)) {
             return Redirect::route('user-profile-edit', $user->username)
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('user.account.details.alert.wrongpassword'));
+                    ->with('message', __('user.account.details.alert.wrongpassword'));
         }
 
         $phone = $request->get('phone');
@@ -145,11 +145,11 @@ class AccountController extends Controller
         if ($updateuser) {
             return Redirect::route('user-profile', $user->username)
                     ->with('messagetype', 'success')
-                    ->with('message', trans('user.account.details.alert.saved'));
+                    ->with('message', __('user.account.details.alert.saved'));
         } else {
             return Redirect::route('user-profile', $user->username)
                 ->with('messagetype', 'danger')
-                ->with('message', trans('user.account.details.alert.failed'));
+                ->with('message', __('user.account.details.alert.failed'));
         }
     }
 
@@ -178,16 +178,16 @@ class AccountController extends Controller
                 Sentinel::logout();
                 return Redirect::route('home')
                         ->with('messagetype', 'success')
-                        ->with('message', trans('user.account.changepassword.alert.saved'));
+                        ->with('message', __('user.account.changepassword.alert.saved'));
             } else {
                 return Redirect::route('account-change-password')
                     ->with('messagetype', 'danger')
-                    ->with('message', trans('user.account.changepassword.alert.failed'));
+                    ->with('message', __('user.account.changepassword.alert.failed'));
             }
         } else {
             return Redirect::route('account-change-password')
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('user.account.changepassword.alert.wrongpassword'));
+                    ->with('message', __('user.account.changepassword.alert.wrongpassword'));
         }
     }
 
@@ -206,7 +206,7 @@ class AccountController extends Controller
         if ($image == null) {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('user.profile.changeimages.alert.noimage'));
+                    ->with('message', __('user.profile.changeimages.alert.noimage'));
         }
         
         $filename           = Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
@@ -229,11 +229,11 @@ class AccountController extends Controller
         if ($imagesave && $updateuser && $imagesave_small) {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'success')
-                    ->with('message', trans('user.profile.changeimages.alert.saved'));
+                    ->with('message', __('user.profile.changeimages.alert.saved'));
         } else {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'danger')
-                    ->with('message', trans('user.profile.changeimages.alert.failed'));
+                    ->with('message', __('user.profile.changeimages.alert.failed'));
         }
     }
 
@@ -246,7 +246,7 @@ class AccountController extends Controller
         if ($image == null) {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('user.profile.changeimages.alert.noimage'));
+                    ->with('message', __('user.profile.changeimages.alert.noimage'));
         }
         
         $filename           = Sentinel::getUser()->id . '.' . $image->getClientOriginalExtension();
@@ -265,11 +265,11 @@ class AccountController extends Controller
         if ($imagesave && $updateuser) {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'success')
-                    ->with('message', trans('user.profile.changeimages.alert.saved'));
+                    ->with('message', __('user.profile.changeimages.alert.saved'));
         } else {
             return Redirect::route('account-change-images')
                     ->with('messagetype', 'danger')
-                    ->with('message', trans('user.profile.changeimages.alert.failed'));
+                    ->with('message', __('user.profile.changeimages.alert.failed'));
         }
     }
 
@@ -306,6 +306,6 @@ class AccountController extends Controller
 
         return Redirect::route('home')
                         ->with('messagetype', 'success')
-                        ->with('message', trans('user.gdpr.delete.alert.saved'));
+                        ->with('message', __('user.gdpr.delete.alert.saved'));
     }
 }

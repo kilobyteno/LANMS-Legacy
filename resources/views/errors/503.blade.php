@@ -42,7 +42,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="title">503</div>
-				<div class="hero">{{ trans('global.maintenance') }}</div>
+				<div class="hero">{{ __('global.maintenance') }}</div>
 			</div>
 		</div>
 	</body>

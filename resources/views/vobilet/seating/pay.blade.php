@@ -1,24 +1,24 @@
 @extends('layouts.main')
-@section('title', trans('seating.pay.title').' - '.$currentseat->name)
+@section('title', __('seating.pay.title').' - '.$currentseat->name)
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('seating.pay.title') }}</h4>
+		<h4 class="page-title">{{ __('seating.pay.title') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('seating') }}">{{ trans('header.seating') }}</a></li>
-			<li class="breadcrumb-item">{{ trans('seating.pay.title') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('seating') }}">{{ __('header.seating') }}</a></li>
+			<li class="breadcrumb-item">{{ __('seating.pay.title') }}</li>
 			<li class="breadcrumb-item active" aria-current="page">{{ $currentseat->name }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
 			@if(!Sentinel::getUser()->hasAddress())
-				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! trans('seating.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
+				<div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! __('seating.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
 			@endif
 			@if(!Setting::get('SEATING_OPEN'))
-				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.closed') }}</div>
+				<div class="alert alert-info" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ __('seating.alert.closed') }}</div>
 			@endif
 
 			<div class="row justify-content-between">	
@@ -27,30 +27,30 @@
 					@if(Setting::get('SEATING_SHOW_MAP'))
 						@include('seating.seatmap')
 					@else
-						<h2>{{ trans('seating.closed') }}</h2>
-						<p>{{ trans('seating.checklater') }}</p>
+						<h2>{{ __('seating.closed') }}</h2>
+						<p>{{ __('seating.checklater') }}</p>
 					@endif
 
 				</div>
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col-6">
-							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.tickettype') }}:</small><br>{{ $currentseat->tickettype->name }}</h1>
+							<h1 class="text-center"><small class="text-muted">{{ __('seating.pay.tickettype') }}:</small><br>{{ $currentseat->tickettype->name }}</h1>
 						</div>
 						<div class="col-6">
-							<h1 class="text-center"><small class="text-muted">{{ trans('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('MAIN_CURRENCY')) }}</h1>
+							<h1 class="text-center"><small class="text-muted">{{ __('seating.pay.price') }}:</small><br>{{ moneyFormat($currentseat->tickettype->price, Setting::get('MAIN_CURRENCY')) }}</h1>
 						</div>						
 					</div>
 					<hr>
 					@if($currentseat->tickettype->allow_entrance_payment)
-						<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ trans('seating.pay.entrancebutton') }}</a>
-						<p class="text-center text-muted"><small><em>{!! trans('seating.pay.entrancedesc') !!}</em></small></p>
+						<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ __('seating.pay.entrancebutton') }}</a>
+						<p class="text-center text-muted"><small><em>{!! __('seating.pay.entrancedesc') !!}</em></small></p>
 
 						<br>
-						<h4 class="text-center text-muted"><em>~ {{ trans('seating.pay.or') }} ~</em></h4>
+						<h4 class="text-center text-muted"><em>~ {{ __('seating.pay.or') }} ~</em></h4>
 						<br>
 					@else
-						<div class="alert alert-warning mb-5" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('seating.alert.entrancepaymentnotallowed') }}</div>
+						<div class="alert alert-warning mb-5" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ __('seating.alert.entrancepaymentnotallowed') }}</div>
 					@endif
 
 					<div class="card-wrapper" style="margin-bottom: 10px"></div>
@@ -60,7 +60,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group @if($errors->has('number')) has-error @endif">
-											<label for="number">{{ trans('seating.pay.card.number') }}</label>
+											<label for="number">{{ __('seating.pay.card.number') }}</label>
 											<div class="input-group">
 												<input type="tel" class="form-control" name="number" placeholder="0000 0000 0000 0000" required autofocus value="{{ (old('number')) ? old('number') : '' }}" autocomplete="off" />
 												<div class="input-group-append">
@@ -73,19 +73,19 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group @if($errors->has('expiryMonth')) has-error @endif">
-											<label for="expiryMonth">{{ trans('seating.pay.card.expmonth') }}</label>
+											<label for="expiryMonth">{{ __('seating.pay.card.expmonth') }}</label>
 											<input type="tel" class="form-control" name="expiryMonth" placeholder="MM" required value="{{ (old('expiryMonth')) ? old('expiryMonth') : '' }}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group @if($errors->has('expiryYear')) has-error @endif">
-											<label for="expiryYear">{{ trans('seating.pay.card.expyear') }}</label>
+											<label for="expiryYear">{{ __('seating.pay.card.expyear') }}</label>
 											<input type="tel" class="form-control" name="expiryYear" placeholder="YY" required value="{{ (old('expiryYear')) ? old('expiryYear') : '' }}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group @if($errors->has('cvc')) has-error @endif">
-											<label for="cvc">{{ trans('seating.pay.card.cvc') }}</label>
+											<label for="cvc">{{ __('seating.pay.card.cvc') }}</label>
 											<input type="tel" class="form-control" name="cvc" placeholder="CVC" required value="{{ (old('cvc')) ? old('cvc') : '' }}" autocomplete="off" />
 										</div>
 									</div>
@@ -93,13 +93,13 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group @if($errors->has('name')) has-error @endif">
-											<label for="name">{{ trans('seating.pay.card.name') }}</label>
+											<label for="name">{{ __('seating.pay.card.name') }}</label>
 											<input type="text" class="form-control" name="name" placeholder="John Doe" required value="{{ (old('name')) ? old('name') : '' }}" autocomplete="off" />
 										</div>
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class="fas fa-shopping-cart"></i> {{ trans('seating.pay.button') }}</button>
+										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class="fas fa-shopping-cart"></i> {{ __('seating.pay.button') }}</button>
 										<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">
-											<i class="fas fa-spinner fa-spin"></i> {{ trans('seating.pay.processing') }}
+											<i class="fas fa-spinner fa-spin"></i> {{ __('seating.pay.processing') }}
 										</div>
 									</div>
 								</div>

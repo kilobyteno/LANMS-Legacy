@@ -47,9 +47,9 @@
 						<h3 class="mb-3 text-white">{{ User::getFullnameAndNicknameByID($seat->reservationsThisYear()->first()->reservedfor->id) }}</h3>
 					</a>
 					@if(Sentinel::findById($seat->reservationsThisYear()->first()->reservedfor->id)->inRole('admin') || Sentinel::findById($seat->reservationsThisYear()->first()->reservedfor->id)->inRole('superadmin') || Sentinel::findById($seat->reservationsThisYear()->first()->reservedfor->id)->inRole('moderator'))
-						<p class="mb-4 text-white">{{ trans('global.staff') }}</p>
+						<p class="mb-4 text-white">{{ __('global.staff') }}</p>
 					@else
-						<p class="mb-4 text-white">{{ trans('global.member') }}</p>
+						<p class="mb-4 text-white">{{ __('global.member') }}</p>
 					@endif
 					<div class="row text-white">
 						@if($seat->reservationsThisYear()->first()->reservedfor->occupation)

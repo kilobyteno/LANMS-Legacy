@@ -70,9 +70,9 @@
 			    }
 			  },
 			  "content": {
-			    "message": "{{ trans('global.cookieconsent.message') }}",
-			    "dismiss": "{{ trans('global.cookieconsent.dismiss') }}",
-			    "link": "{{ trans('global.cookieconsent.link') }}",
+			    "message": "{{ __('global.cookieconsent.message') }}",
+			    "dismiss": "{{ __('global.cookieconsent.dismiss') }}",
+			    "link": "{{ __('global.cookieconsent.link') }}",
 			    "href": "{{ url('/privacy') }}"
 			  }
 			})});

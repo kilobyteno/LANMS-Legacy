@@ -38,7 +38,7 @@ class SelfCheckinController extends Controller
         $ticket = SeatTicket::where('code', $id)->first();
         if (!$ticket) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notfound'));
+                                ->with('message', __('seating.checkin.alert.notfound'));
         }
         return Redirect::route('seating-checkin-show', $id);
     }
@@ -65,15 +65,15 @@ class SelfCheckinController extends Controller
         $ticket = SeatTicket::where('code', $id)->first();
         if (!$ticket) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notfound'));
+                                ->with('message', __('seating.checkin.alert.notfound'));
         }
         if (!$ticket->reservation->payment || $ticket->user->age() < 15 || !$ticket->user->phone_verified_at) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notallowed'));
+                                ->with('message', __('seating.checkin.alert.notallowed'));
         }
         if ($ticket->checkin) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.alreadycheckedin'));
+                                ->with('message', __('seating.checkin.alert.alreadycheckedin'));
         }
 
         return view('seating.checkin.show')->withTicket($ticket);
@@ -91,16 +91,16 @@ class SelfCheckinController extends Controller
         $ticket = SeatTicket::where('code', $id)->first();
         if (!$ticket) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notfound'));
+                                ->with('message', __('seating.checkin.alert.notfound'));
         }
         if (!$ticket->reservation->payment || $ticket->user->age() < 15 || !$ticket->user->phone_verified_at) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notallowed'));
+                                ->with('message', __('seating.checkin.alert.notallowed'));
         }
         if (is_null($ticket->user->phone) && is_null($ticket->user->phone_country)) {
             return Redirect::route('seating-checkin')
                             ->with('messagetype', 'warning')
-                            ->with('message', trans('seating.checkin.alert.nophone'));
+                            ->with('message', __('seating.checkin.alert.nophone'));
         }
         try {
             $response = $this->authyApi->phoneVerificationStart($ticket->user->phone, \libphonenumber\PhoneNumberUtil::getInstance()->getCountryCodeForRegion(strtoupper($ticket->user->phone_country)), 'sms');
@@ -109,12 +109,12 @@ class SelfCheckinController extends Controller
             } else {
                 return Redirect::route('seating-checkin')
                         ->with('messagetype', 'danger')
-                        ->with('message', trans('seating.checkin.alert.failed').' '.$response->message());
+                        ->with('message', __('seating.checkin.alert.failed').' '.$response->message());
             }
         } catch (Exception $e) {
             return Redirect::route('seating-checkin')
                     ->with('messagetype', 'danger')
-                    ->with('message', trans('seating.checkin.alert.failed').' '.$e->getMessage());
+                    ->with('message', __('seating.checkin.alert.failed').' '.$e->getMessage());
         }
     }
 
@@ -130,16 +130,16 @@ class SelfCheckinController extends Controller
         $ticket = SeatTicket::where('code', $id)->first();
         if (!$ticket) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notfound'));
+                                ->with('message', __('seating.checkin.alert.notfound'));
         }
         if (!$ticket->reservation->payment || $ticket->user->age() < 15 || !$ticket->user->phone_verified_at) {
             return Redirect::route('seating-checkin')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.checkin.alert.notallowed'));
+                                ->with('message', __('seating.checkin.alert.notallowed'));
         }
         if (is_null($ticket->user->phone) && is_null($ticket->user->phone_country)) {
             return Redirect::route('seating-checkin')
                             ->with('messagetype', 'warning')
-                            ->with('message', trans('seating.checkin.alert.nophone'));
+                            ->with('message', __('seating.checkin.alert.nophone'));
         }
         $data = $request->all();
         $validator = Validator::make($data, [
@@ -168,7 +168,7 @@ class SelfCheckinController extends Controller
                     //
                     return Redirect::route('seating-checkin')
                         ->with('messagetype', 'success')
-                        ->with('message', trans('seating.checkin.alert.success'));
+                        ->with('message', __('seating.checkin.alert.success'));
                 } else {
                     return Redirect::back()
                                     ->with('messagetype', 'danger')
@@ -177,7 +177,7 @@ class SelfCheckinController extends Controller
             } catch (Exception $e) {
                 return Redirect::route('seating-checkin')
                         ->with('messagetype', 'danger')
-                        ->with('message', trans('seating.checkin.alert.failed').' '.$e->getMessage());
+                        ->with('message', __('seating.checkin.alert.failed').' '.$e->getMessage());
             }
         } else {
             return Redirect::back()->withErrors();

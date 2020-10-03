@@ -46,17 +46,17 @@
                                 <label class="form-label">Last Activity:</label>
                                 <p>{{ ucfirst(\Carbon::parse($user->last_activity)->isoFormat('LLLL')) }}</p>
                                 <label class="form-label">Accepted GDPR:</label>
-                                @if($user->accepted_gdpr){{ trans('global.yes') }}@elseif(!$user->accepted_gdpr){{ trans('global.no') }}@endif
+                                @if($user->accepted_gdpr){{ __('global.yes') }}@elseif(!$user->accepted_gdpr){{ __('global.no') }}@endif
                             </div>
                         </div>
                         <div class="expanel expanel-default" data-collapsed="0">
                             <div class="expanel-heading">
-                                <h3 class="expanel-title">{{ trans('global.verification') }}</h3>
+                                <h3 class="expanel-title">{{ __('global.verification') }}</h3>
                             </div>
                             <div class="expanel-body">
-                                <p class="@if(Activation::completed($user)){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ trans('global.email') }} @if(Activation::completed($user)){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
-                                <p class="@if($user->phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ trans('global.phone') }} @if($user->phone_verified_at){{ trans('global.verified') }}@else{{ trans('global.notverified') }}@endif</p>
-                                <p class="@if($user->authy_id){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-user-lock"></i> {{ trans('global.2fa') }} <span class="text-lowercase">@if($user->authy_id){{ trans('global.activated') }}@else{{ trans('global.deactivated') }}@endif</span></p>
+                                <p class="@if(Activation::completed($user)){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-envelope"></i> {{ __('global.email') }} @if(Activation::completed($user)){{ __('global.verified') }}@else{{ __('global.notverified') }}@endif</p>
+                                <p class="@if($user->phone_verified_at){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-phone"></i> {{ __('global.phone') }} @if($user->phone_verified_at){{ __('global.verified') }}@else{{ __('global.notverified') }}@endif</p>
+                                <p class="@if($user->authy_id){{'text-success'}}@else{{'text-danger'}}@endif"><i class="fas fa-user-lock"></i> {{ __('global.2fa') }} <span class="text-lowercase">@if($user->authy_id){{ __('global.activated') }}@else{{ __('global.deactivated') }}@endif</span></p>
                             </div>
                         </div>
                         <div class="expanel expanel-default" data-collapsed="0">
@@ -164,7 +164,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('birthdate')) has-error @endif">
-                                    <label for="birthdate" class="form-label">Birthdate <small>({{ \Carbon::parse($user->birthdate)->age }} {{ trans('global.yearsold') }})</small></label>
+                                    <label for="birthdate" class="form-label">Birthdate <small>({{ \Carbon::parse($user->birthdate)->age }} {{ __('global.yearsold') }})</small></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -186,23 +186,23 @@
                                     @endif
                                 </div>
                                 <div class="form-group @if ($errors->has('clothing_size')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.clothingsize.title') }}</label>
+                                    <label class="form-label">{{ __('global.clothingsize.title') }}</label>
                                     <select class="form-control" name="clothing_size">
-                                        <option value="0">{{ trans('global.clothingsize.nochoice') }}</option>
-                                        <option value="1" {{ ($user->clothing_size === 1) ? 'selected' : '' }}>{{ trans('global.clothingsize.xs') }}</option>
-                                        <option value="2" {{ ($user->clothing_size === 2) ? 'selected' : '' }}>{{ trans('global.clothingsize.s') }}</option>
-                                        <option value="3" {{ ($user->clothing_size === 3) ? 'selected' : '' }}>{{ trans('global.clothingsize.m') }}</option>
-                                        <option value="4" {{ ($user->clothing_size === 4) ? 'selected' : '' }}>{{ trans('global.clothingsize.l') }}</option>
-                                        <option value="5" {{ ($user->clothing_size === 5) ? 'selected' : '' }}>{{ trans('global.clothingsize.xl') }}</option>
-                                        <option value="6" {{ ($user->clothing_size === 6) ? 'selected' : '' }}>{{ trans('global.clothingsize.xxl') }}</option>
-                                        <option value="7" {{ ($user->clothing_size === 7) ? 'selected' : '' }}>{{ trans('global.clothingsize.3xl') }}</option>
+                                        <option value="0">{{ __('global.clothingsize.nochoice') }}</option>
+                                        <option value="1" {{ ($user->clothing_size === 1) ? 'selected' : '' }}>{{ __('global.clothingsize.xs') }}</option>
+                                        <option value="2" {{ ($user->clothing_size === 2) ? 'selected' : '' }}>{{ __('global.clothingsize.s') }}</option>
+                                        <option value="3" {{ ($user->clothing_size === 3) ? 'selected' : '' }}>{{ __('global.clothingsize.m') }}</option>
+                                        <option value="4" {{ ($user->clothing_size === 4) ? 'selected' : '' }}>{{ __('global.clothingsize.l') }}</option>
+                                        <option value="5" {{ ($user->clothing_size === 5) ? 'selected' : '' }}>{{ __('global.clothingsize.xl') }}</option>
+                                        <option value="6" {{ ($user->clothing_size === 6) ? 'selected' : '' }}>{{ __('global.clothingsize.xxl') }}</option>
+                                        <option value="7" {{ ($user->clothing_size === 7) ? 'selected' : '' }}>{{ __('global.clothingsize.3xl') }}</option>
                                     </select>
                                     @if($errors->has('clothing_size'))
                                         <p class="text-danger">{{ $errors->first('clothing_size') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('about')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.about') }}</label>
+                                    <label class="form-label">{{ __('global.about') }}</label>
                                     <textarea class="form-control" rows="2" name="about">{{ (old('about')) ? old('about') : $user->about }}</textarea>
                                     @if($errors->has('about'))
                                         <p class="text-danger">{{ $errors->first('about') }}</p>
@@ -252,7 +252,7 @@
                                     <select class="form-control" name="language">
                                         <option value="">-- Please Select --</option>
                                         @foreach(array_flip(config('app.locales')) as $lang)
-                                            <option value="{{ $lang }}" {{ ($user->language == $lang) ? 'selected' : '' }}>{{ trans('language.'.$lang) }}</option>
+                                            <option value="{{ $lang }}" {{ ($user->language == $lang) ? 'selected' : '' }}>{{ __('language.'.$lang) }}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->has('language'))
@@ -262,9 +262,9 @@
                                 <div class="form-group">
                                     <label class="form-label">Theme</label>
                                     <select class="form-control" name="theme">
-                                        <option value="">-- {{ trans('global.pleaseselect') }} --</option>
+                                        <option value="">-- {{ __('global.pleaseselect') }} --</option>
                                         @foreach(array_flip(config('app.themes')) as $lang)
-                                            <option value="{{ $lang }}" {{ ($user->theme == $lang) ? 'selected' : '' }}>{{ trans('theme.'.$lang) }}</option>
+                                            <option value="{{ $lang }}" {{ ($user->theme == $lang) ? 'selected' : '' }}>{{ __('theme.'.$lang) }}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->has('theme'))
@@ -279,35 +279,35 @@
                             </div>
                             <div class="expanel-body">
                                 <div class="form-group @if($errors->has('address_street')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address.street') }}</label>
+                                    <label class="form-label">{{ __('global.address.street') }}</label>
                                     <input class="form-control" name="address_street" value="{{ (old('address_street')) ? old('address_street') : $user->address_street }}">
                                     @if($errors->has('address_street'))
                                         <p class="text-danger">{{ $errors->first('address_street') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('address_postalcode')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address.postalcode') }}</label>
+                                    <label class="form-label">{{ __('global.address.postalcode') }}</label>
                                     <input class="form-control" name="address_postalcode" value="{{ (old('address_postalcode')) ? old('address_postalcode') : $user->address_postalcode }}">
                                     @if($errors->has('address_postalcode'))
                                         <p class="text-danger">{{ $errors->first('address_postalcode') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('address_city')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address.city') }}</label>
+                                    <label class="form-label">{{ __('global.address.city') }}</label>
                                     <input class="form-control" name="address_city" value="{{ (old('address_city')) ? old('address_city') : $user->address_city }}">
                                     @if($errors->has('address_city'))
                                         <p class="text-danger">{{ $errors->first('address_city') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('address_county')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address.county') }}</label>
+                                    <label class="form-label">{{ __('global.address.county') }}</label>
                                     <input class="form-control" name="address_county" value="{{ (old('address_county')) ? old('address_county') : $user->address_county }}">
                                     @if($errors->has('address_county'))
                                         <p class="text-danger">{{ $errors->first('address_county') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group @if($errors->has('address_country')) has-error @endif">
-                                    <label class="form-label">{{ trans('global.address.country') }}</label>
+                                    <label class="form-label">{{ __('global.address.country') }}</label>
                                     <input class="form-control" name="address_country" value="{{ (old('address_country')) ? old('address_country') : $user->address_country }}">
                                     @if($errors->has('address_country'))
                                         <p class="text-danger">{{ $errors->first('address_country') }}</p>
