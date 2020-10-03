@@ -16,14 +16,14 @@
 
 		<div class="card">
 			<div class="card-header @if(Setting::get('APP_LICENSE_STATUS') == 'Active') bg-success @else bg-danger @endif">
-				<h3 class="card-title text-white">@if(Setting::get('APP_LICENSE_STATUS') == 'Active') <i class="fas fa-clipboard-check"></i> @else <i class="fas fa-exclamation-triangle"></i> @endif{{ Setting::get('APP_LICENSE_STATUS') }}</h3>
+				<h3 class="card-title text-white">@if(Setting::get('APP_LICENSE_STATUS') == 'Active') <i class="fas fa-clipboard-check"></i> @else <i class="fas fa-exclamation-triangle"></i> @endif{{ Setting::get('APP_LICENSE_STATUS') ?? 'Not checked!' }}</h3>
 				<div class="card-options">
 					<a href="{{ route('admin-license-check') }}" class="btn btn-secondary btn-sm"><i class="fas fa-sync"></i> Check License</a>
 				</div>
 			</div>
 			<div class="card-body">
 				@if(Setting::get('APP_LICENSE_STATUS_DESC') != "")<p>Description: <em>{{ Setting::get('APP_LICENSE_STATUS_DESC') }}</em></p>@endif
-				@if(Setting::get('APP_LICENSE_LAST_CHECKED') != "")<p>Last checked: <em>{{ Setting::get('APP_LICENSE_LAST_CHECKED') }}</em></p>@endif
+				<p>Last checked: <em>{{ Setting::get('APP_LICENSE_LAST_CHECKED') ?? 'Never.' }}</em></p>
 				<form action="{{ route('admin-license-store') }}" method="post">
 					<div class="input-group">
 						<input type="text" class="form-control" name="licensekey" placeholder="LANMS-XXX-XXXXXXXXXXXXXX" value="{{ (old('licensekey')) ? old('licensekey') : Setting::get('APP_LICENSE_KEY') }}" />
