@@ -10,7 +10,7 @@
         "authy/php": "^3.0",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "binarycabin/laravel-uuid": "^1.0",
-        "cartalyst/sentinel": "3.*",
+        "cartalyst/sentinel": "^3.0",
         "cartalyst/stripe": "~2.0",
         "cartalyst/stripe-laravel": "11.0.*",
         "dialect/laravel-gdpr-compliance": "^1.4",

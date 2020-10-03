@@ -3,29 +3,40 @@
 namespace LANMS;
 
 use BinaryCabin\LaravelUUID\Traits\HasUUID;
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Cartalyst\Sentinel\Permissions\PermissibleInterface;
-use Cartalyst\Sentinel\Permissions\PermissibleTrait;
-use Cartalyst\Sentinel\Persistences\PersistableInterface;
-use Cartalyst\Sentinel\Roles\RoleInterface;
-use Cartalyst\Sentinel\Roles\RoleableInterface;
+use Carbon\Carbon;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Cartalyst\Stripe\Exception\NotFoundException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Dialect\Gdpr\Anonymizable;
 use Dialect\Gdpr\Portable;
 use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use LANMS\StripeCustomer;
-use Laravel\Passport\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Webpatser\Uuid\Uuid;
 
-class User extends Model implements RoleableInterface, PermissibleInterface, PersistableInterface, UserInterface, HasLocalePreference
+use IteratorAggregate;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Cartalyst\Sentinel\Roles\EloquentRole;
+use Cartalyst\Sentinel\Roles\RoleInterface;
+use Cartalyst\Sentinel\Roles\RoleableInterface;
+use Cartalyst\Sentinel\Reminders\EloquentReminder;
+use Cartalyst\Sentinel\Throttling\EloquentThrottle;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cartalyst\Sentinel\Permissions\PermissibleTrait;
+use Cartalyst\Sentinel\Activations\EloquentActivation;
+use Cartalyst\Sentinel\Permissions\PermissibleInterface;
+use Cartalyst\Sentinel\Permissions\PermissionsInterface;
+use Cartalyst\Sentinel\Persistences\EloquentPersistence;
+use Cartalyst\Sentinel\Persistences\PersistableInterface;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Passport\HasApiTokens;
+
+class User extends Model implements HasLocalePreference, PermissibleInterface, PersistableInterface, RoleableInterface, UserInterface
 {
-    use PermissibleTrait, SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasApiTokens, HasUUID;
+    use SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasUUID, PermissibleTrait;
 
     /**
      * The attributes that should be hidden for the downloadable data.
@@ -42,6 +53,8 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'accepted_gdpr',
         'authy_id',
     ];
+
+    protected $primaryKey = 'id';
 
     /**
      * Using replacement strings.
@@ -198,418 +211,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     }
 
     /**
-     * {@inheritDoc}
-     */
-    protected $persistableKey = 'user_id';
-
-    /**
-     * {@inheritDoc}
-     */
-    protected $persistableRelationship = 'persistences';
-
-    /**
-     * Array of login column names.
-     *
-     * @var array
-     */
-    protected $loginNames = ['email', 'username'];
-
-    /**
-     * The Eloquent roles model name.
-     *
-     * @var string
-     */
-    protected static $rolesModel = 'Cartalyst\Sentinel\Roles\EloquentRole';
-
-    /**
-     * The Eloquent persistences model name.
-     *
-     * @var string
-     */
-    protected static $persistencesModel = 'Cartalyst\Sentinel\Persistences\EloquentPersistence';
-
-    /**
-     * The Eloquent activations model name.
-     *
-     * @var string
-     */
-    protected static $activationsModel = 'Cartalyst\Sentinel\Activations\EloquentActivation';
-
-    /**
-     * The Eloquent reminders model name.
-     *
-     * @var string
-     */
-    protected static $remindersModel = 'Cartalyst\Sentinel\Reminders\EloquentReminder';
-
-    /**
-     * The Eloquent throttling model name.
-     *
-     * @var string
-     */
-    protected static $throttlingModel = 'Cartalyst\Sentinel\Throttling\EloquentThrottle';
-
-    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
     protected $dates = ['deleted_at'];
-
-    /**
-     * Returns an array of login column names.
-     *
-     * @return array
-     */
-    public function getLoginNames()
-    {
-        return $this->loginNames;
-    }
-
-    /**
-     * Returns the roles relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id')->withTimestamps();
-    }
-
-    /**
-     * Returns the persistences relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function persistences()
-    {
-        return $this->hasMany(static::$persistencesModel, 'user_id');
-    }
-
-    /**
-     * Returns the activations relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function activations()
-    {
-        return $this->hasMany(static::$activationsModel, 'user_id');
-    }
-
-    /**
-     * Returns the reminders relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function reminders()
-    {
-        return $this->hasMany(static::$remindersModel, 'user_id');
-    }
-
-    /**
-     * Returns the throttle relationship.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function throttle()
-    {
-        return $this->hasMany(static::$throttlingModel, 'user_id');
-    }
-
-    /**
-     * Get mutator for the "permissions" attribute.
-     *
-     * @param  mixed  $permissions
-     * @return array
-     */
-    public function getPermissionsAttribute($permissions)
-    {
-        return $permissions ? json_decode($permissions, true) : [];
-    }
-
-    /**
-     * Set mutator for the "permissions" attribute.
-     *
-     * @param  mixed  $permissions
-     * @return void
-     */
-    public function setPermissionsAttribute(array $permissions)
-    {
-        $this->attributes['permissions'] = $permissions ? json_encode($permissions) : '';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function inRole($role)
-    {
-        if ($role instanceof RoleInterface) {
-            $roleId = $role->getRoleId();
-        }
-
-        foreach ($this->roles as $instance) {
-            if ($role instanceof RoleInterface) {
-                if ($instance->getRoleId() === $roleId) {
-                    return true;
-                }
-            } else {
-                if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function generatePersistenceCode()
-    {
-        return str_random(32);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUserId()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPersistableId()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPersistableKey()
-    {
-        return $this->persistableKey;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPersistableKey($key)
-    {
-        $this->persistableKey = $key;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPersistableRelationship($persistableRelationship)
-    {
-        $this->persistableRelationship = $persistableRelationship;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getPersistableRelationship()
-    {
-        return $this->persistableRelationship;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUserLogin()
-    {
-        return $this->getAttribute($this->getUserLoginName());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUserLoginName()
-    {
-        return reset($this->loginNames);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUserPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Returns the roles model.
-     *
-     * @return string
-     */
-    public static function getRolesModel()
-    {
-        return static::$rolesModel;
-    }
-
-    /**
-     * Sets the roles model.
-     *
-     * @param  string  $rolesModel
-     * @return void
-     */
-    public static function setRolesModel($rolesModel)
-    {
-        static::$rolesModel = $rolesModel;
-    }
-
-    /**
-     * Returns the persistences model.
-     *
-     * @return string
-     */
-    public static function getPersistencesModel()
-    {
-        return static::$persistencesModel;
-    }
-
-    /**
-     * Sets the persistences model.
-     *
-     * @param  string  $persistencesModel
-     * @return void
-     */
-    public static function setPersistencesModel($persistencesModel)
-    {
-        static::$persistencesModel = $persistencesModel;
-    }
-
-    /**
-     * Returns the activations model.
-     *
-     * @return string
-     */
-    public static function getActivationsModel()
-    {
-        return static::$activationsModel;
-    }
-
-    /**
-     * Sets the activations model.
-     *
-     * @param  string  $activationsModel
-     * @return void
-     */
-    public static function setActivationsModel($activationsModel)
-    {
-        static::$activationsModel = $activationsModel;
-    }
-
-    /**
-     * Returns the reminders model.
-     *
-     * @return string
-     */
-    public static function getRemindersModel()
-    {
-        return static::$remindersModel;
-    }
-
-    /**
-     * Sets the reminders model.
-     *
-     * @param  string  $remindersModel
-     * @return void
-     */
-    public static function setRemindersModel($remindersModel)
-    {
-        static::$remindersModel = $remindersModel;
-    }
-
-    /**
-     * Returns the throttling model.
-     *
-     * @return string
-     */
-    public static function getThrottlingModel()
-    {
-        return static::$throttlingModel;
-    }
-
-    /**
-     * Sets the throttling model.
-     *
-     * @param  string  $throttlingModel
-     * @return void
-     */
-    public static function setThrottlingModel($throttlingModel)
-    {
-        static::$throttlingModel = $throttlingModel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function delete()
-    {
-        $isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
-
-        if ($this->exists && ! $isSoftDeleted) {
-            $this->activations()->delete();
-            $this->persistences()->delete();
-            $this->reminders()->delete();
-            $this->roles()->detach();
-            $this->throttle()->delete();
-        }
-
-        return parent::delete();
-    }
-
-    /**
-     * Dynamically pass missing methods to the user.
-     *
-     * @param  string  $method
-     * @param  array  $parameters
-     * @return mixed
-     */
-    public function __call($method, $parameters)
-    {
-        $methods = ['hasAccess', 'hasAnyAccess'];
-
-        if (in_array($method, $methods)) {
-            $permissions = $this->getPermissionsInstance();
-
-            return call_user_func_array([$permissions, $method], $parameters);
-        }
-
-        return parent::__call($method, $parameters);
-    }
-
-    /**
-     * Creates a permissions object.
-     *
-     * @return \Cartalyst\Sentinel\Permissions\PermissionsInterface
-     */
-    protected function createPermissions()
-    {
-        $userPermissions = $this->permissions;
-
-        $rolePermissions = [];
-
-        foreach ($this->roles as $role) {
-            $rolePermissions[] = $role->permissions;
-        }
-
-        return new static::$permissionsClass($userPermissions, $rolePermissions);
-    }
 
     public function addresses()
     {
@@ -857,7 +463,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 
     public function age()
     {
-        return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
+        return Carbon::parse($this->birthdate)->diff(Carbon::now())->format('%y');
     }
 
     public function fullname()
@@ -897,5 +503,423 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
             default:
                 return "genderless";
         }
+    }
+
+    /*
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $persistableKey = 'user_id';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $persistableRelationship = 'persistences';
+
+    /**
+     * Array of login column names.
+     *
+     * @var array
+     */
+    protected $loginNames = ['email', 'username'];
+
+    /**
+     * The Roles model FQCN.
+     *
+     * @var string
+     */
+    protected static $rolesModel = EloquentRole::class;
+
+    /**
+     * The Persistences model FQCN.
+     *
+     * @var string
+     */
+    protected static $persistencesModel = EloquentPersistence::class;
+
+    /**
+     * The Activations model FQCN.
+     *
+     * @var string
+     */
+    protected static $activationsModel = EloquentActivation::class;
+
+    /**
+     * The Reminders model FQCN.
+     *
+     * @var string
+     */
+    protected static $remindersModel = EloquentReminder::class;
+
+    /**
+     * The Throttling model FQCN.
+     *
+     * @var string
+     */
+    protected static $throttlingModel = EloquentThrottle::class;
+
+    /**
+     * Returns the activations relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activations(): HasMany
+    {
+        return $this->hasMany(static::$activationsModel, 'user_id');
+    }
+
+    /**
+     * Returns the persistences relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function persistences(): HasMany
+    {
+        return $this->hasMany(static::$persistencesModel, 'user_id');
+    }
+
+    /**
+     * Returns the reminders relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reminders(): HasMany
+    {
+        return $this->hasMany(static::$remindersModel, 'user_id');
+    }
+
+    /**
+     * Returns the roles relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(static::$rolesModel, 'role_users', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    /**
+     * Returns the throttle relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function throttle(): HasMany
+    {
+        return $this->hasMany(static::$throttlingModel, 'user_id');
+    }
+
+    /**
+     * Returns an array of login column names.
+     *
+     * @return array
+     */
+    public function getLoginNames(): array
+    {
+        return $this->loginNames;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles(): IteratorAggregate
+    {
+        return $this->roles;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function inRole($role): bool
+    {
+        if ($role instanceof RoleInterface) {
+            $roleId = $role->getRoleId();
+        }
+
+        foreach ($this->roles as $instance) {
+            if ($role instanceof RoleInterface) {
+                if ($instance->getRoleId() === $roleId) {
+                    return true;
+                }
+            } else {
+                if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function inAnyRole(array $roles): bool
+    {
+        foreach ($roles as $role) {
+            if ($this->inRole($role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function generatePersistenceCode(): string
+    {
+        return Str::random(32);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserId(): int
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPersistableId(): string
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPersistableKey(): string
+    {
+        return $this->persistableKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPersistableKey(string $key): void
+    {
+        $this->persistableKey = $key;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPersistableRelationship(): string
+    {
+        return $this->persistableRelationship;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPersistableRelationship(string $persistableRelationship): void
+    {
+        $this->persistableRelationship = $persistableRelationship;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserLogin(): string
+    {
+        return $this->getAttribute($this->getUserLoginName());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserLoginName(): string
+    {
+        return reset($this->loginNames);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * Returns the roles model.
+     *
+     * @return string
+     */
+    public static function getRolesModel(): string
+    {
+        return static::$rolesModel;
+    }
+
+    /**
+     * Sets the roles model.
+     *
+     * @param string $rolesModel
+     *
+     * @return void
+     */
+    public static function setRolesModel(string $rolesModel): void
+    {
+        static::$rolesModel = $rolesModel;
+    }
+
+    /**
+     * Returns the persistences model.
+     *
+     * @return string
+     */
+    public static function getPersistencesModel()
+    {
+        return static::$persistencesModel;
+    }
+
+    /**
+     * Sets the persistences model.
+     *
+     * @param string $persistencesModel
+     *
+     * @return void
+     */
+    public static function setPersistencesModel(string $persistencesModel): void
+    {
+        static::$persistencesModel = $persistencesModel;
+    }
+
+    /**
+     * Returns the activations model.
+     *
+     * @return string
+     */
+    public static function getActivationsModel(): string
+    {
+        return static::$activationsModel;
+    }
+
+    /**
+     * Sets the activations model.
+     *
+     * @param string $activationsModel
+     *
+     * @return void
+     */
+    public static function setActivationsModel(string $activationsModel): void
+    {
+        static::$activationsModel = $activationsModel;
+    }
+
+    /**
+     * Returns the reminders model.
+     *
+     * @return string
+     */
+    public static function getRemindersModel(): string
+    {
+        return static::$remindersModel;
+    }
+
+    /**
+     * Sets the reminders model.
+     *
+     * @param string $remindersModel
+     *
+     * @return void
+     */
+    public static function setRemindersModel(string $remindersModel): void
+    {
+        static::$remindersModel = $remindersModel;
+    }
+
+    /**
+     * Returns the throttling model.
+     *
+     * @return string
+     */
+    public static function getThrottlingModel(): string
+    {
+        return static::$throttlingModel;
+    }
+
+    /**
+     * Sets the throttling model.
+     *
+     * @param string $throttlingModel
+     *
+     * @return void
+     */
+    public static function setThrottlingModel(string $throttlingModel): void
+    {
+        static::$throttlingModel = $throttlingModel;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete()
+    {
+        $isSoftDeletable = property_exists($this, 'forceDeleting');
+
+        $isSoftDeleted = $isSoftDeletable && ! $this->forceDeleting;
+
+        if ($this->exists && ! $isSoftDeleted) {
+            $this->activations()->delete();
+            $this->persistences()->delete();
+            $this->reminders()->delete();
+            $this->roles()->detach();
+            $this->throttle()->delete();
+        }
+
+        return parent::delete();
+    }
+
+    /**
+     * Dynamically pass missing methods to the user.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        $methods = ['hasAccess', 'hasAnyAccess'];
+
+        if (in_array($method, $methods)) {
+            $permissions = $this->getPermissionsInstance();
+
+            return call_user_func_array([$permissions, $method], $parameters);
+        }
+
+        return parent::__call($method, $parameters);
+    }
+
+    /**
+     * Creates a permissions object.
+     *
+     * @return \Cartalyst\Sentinel\Permissions\PermissionsInterface
+     */
+    protected function createPermissions(): PermissionsInterface
+    {
+        $userPermissions = $this->getPermissions();
+
+        $rolePermissions = [];
+
+        foreach ($this->roles as $role) {
+            $rolePermissions[] = $role->getPermissions();
+        }
+
+        return new static::$permissionsClass($userPermissions, $rolePermissions);
     }
 }
