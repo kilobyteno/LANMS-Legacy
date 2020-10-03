@@ -38,6 +38,12 @@ class AuthController extends Controller
         $password = $request->input('password');
         $remember = $request->input('remember');
 
+        if ($remember = "ON") {
+            $remember = true;
+        } else {
+            $remember = false;
+        }
+
         $validated = $request->validated();
 
         if (!$validated) {
