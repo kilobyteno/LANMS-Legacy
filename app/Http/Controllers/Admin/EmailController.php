@@ -4,11 +4,13 @@ namespace LANMS\Http\Controllers\Admin;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use LANMS\Email;
 use LANMS\Http\Controllers\Controller;
 use LANMS\SeatTicket;
 use LANMS\User;
+use Swift_TransportException;
 
 class EmailController extends Controller
 {
@@ -39,6 +41,39 @@ class EmailController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         return view('emails.create');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function test()
+    {
+        if (!Sentinel::getUser()->hasAccess(['admin.emails.create'])) {
+            return Redirect::route('admin')->with('messagetype', 'warning')
+                                ->with('message', 'You do not have access to this page!');
+        }
+        try {
+            Mail::raw('Test email was sent successfully!', function($message) {
+                $message->to(Sentinel::getUser()->email)->subject('Test email');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            });
+        } catch (Swift_TransportException $e) {
+            return Redirect::route('admin-emails')
+                    ->with('messagetype', 'danger')
+                    ->with('message', '<strong>Something went wrong while sending a test email!</strong><br><br>'.$e->getMessage());
+        }
+
+        if(count(Mail::failures()) > 0 ) {
+            return Redirect::route('admin-emails')
+                    ->with('messagetype', 'danger')
+                    ->with('message', '<strong>Something went wrong while sending a test email!</strong> Check the system logs.');
+        } else {
+            return Redirect::route('admin-emails')
+                    ->with('messagetype', 'success')
+                    ->with('message', 'The test email was sent to: '.Sentinel::getUser()->email);
+        }
     }
 
     /**
@@ -75,7 +110,7 @@ class EmailController extends Controller
             ]);
             $email->users()->attach($user->id);
                 $firstname = ($user->firstname) ? $user->firstname : $user->username;
-                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $firstname), function ($message) use ($user, $subject, $firstname) {
+                Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $subject, 'firstname' => $firstname), function ($message) use ($user, $subject, $firstname) {
                     $message->to($user->email, $firstname)->subject($subject);
                 });
         } elseif ($request->bulk) {
@@ -100,7 +135,7 @@ class EmailController extends Controller
             // SEND EMAIL TO ALL USERS IN LIST
             foreach ($users as $user) {
                 $firstname = ($user->firstname) ? $user->firstname : $user->username;
-                \Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $request->subject, 'firstname' => $firstname), function ($message) use ($user, $request, $firstname) {
+                Mail::send('emails.admin.message', array('content' => $request->content, 'subject' => $request->subject, 'firstname' => $firstname), function ($message) use ($user, $request, $firstname) {
                     $message->to($user->email, $firstname)->subject($request->subject);
                 });
             }

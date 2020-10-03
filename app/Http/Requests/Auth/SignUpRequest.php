@@ -4,6 +4,7 @@ namespace LANMS\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 use LANMS\Rules\OlderThan;
+use LANMS\Rules\YoungerThan;
 
 class SignUpRequest extends FormRequest
 {
@@ -30,7 +31,7 @@ class SignUpRequest extends FormRequest
             'lastname'          => 'required|between:3,250|regex:/^[\pL\s\-]+$/u',
             'username'          => 'required|unique:users,username',
             'password'          => 'required|confirmed|min:8|max:64',
-            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan],
+            'birthdate'         => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
             'phone'             => 'required|phone:AUTO,NO',
             'tos-pp'            => 'accepted',
         ];

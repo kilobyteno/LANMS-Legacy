@@ -1084,6 +1084,10 @@ Route::group([
                     'as' => 'admin-emails-create',
                     'uses' => 'Admin\EmailController@create'
                 ]);
+                Route::get('/test', [
+                    'as' => 'admin-emails-test',
+                    'uses' => 'Admin\EmailController@test'
+                ]);
                 Route::post('/store', [
                     'as' => 'admin-emails-store',
                     'uses' => 'Admin\EmailController@store'

@@ -13,6 +13,16 @@
 
 <div class="row">
 
+	@if(!Setting::get('APP_SCHEDULE_LAST_RUN') || Carbon::parse(Setting::get('APP_SCHEDULE_LAST_RUN'))->diffInMinutes(Carbon::now()) > 5)
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-danger">
+				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Schedule is not running!</strong>
+				<hr class="message-inner-separator">
+				<p>It was last ran at <strong>{{ Setting::get('APP_SCHEDULE_LAST_RUN') ?? 'N/A' }}</strong>. If this is not running a lot of automated tasks will not do their work.</p>
+			</div>
+		</div>
+	@endif
+
 	@if(!env('STRIPE_API_KEY'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">

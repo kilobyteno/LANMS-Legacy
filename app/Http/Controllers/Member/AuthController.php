@@ -3,15 +3,22 @@
 namespace LANMS\Http\Controllers\Member;
 
 use Authy\AuthyApi;
+use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use LANMS\Act;
-use LANMS\Address;
 use LANMS\Http\Controllers\Controller;
 use LANMS\Http\Requests\Auth\ActivateRequest;
 use LANMS\Http\Requests\Auth\SignInRequest;
 use LANMS\Http\Requests\Auth\SignUpRequest;
+use LANMS\User;
 
 class AuthController extends Controller
 {
@@ -39,7 +46,7 @@ class AuthController extends Controller
         }
 
         $credentials = ['login' => $username, 'password' => $password];
-        $user = \Sentinel::findByCredentials($credentials);
+        $user = Sentinel::findByCredentials($credentials);
 
         if ($user == null) {
             return Redirect::route('account-signin')->with('messagetype', 'danger')
@@ -52,8 +59,8 @@ class AuthController extends Controller
                                 ->with('message', trans('auth.alert.isanonymized'))->withInput();
         }
 
-        $actex = \Activation::exists($user);
-        $actco = \Activation::completed($user);
+        $actex = Activation::exists($user);
+        $actco = Activation::completed($user);
         $active = false;
         if ($actex) {
             $active = false;
@@ -64,7 +71,7 @@ class AuthController extends Controller
         if ($active === false) {
             return Redirect::route('account-signin')->with('messagetype', 'warning')
                                 ->with('message', trans('auth.alert.usernotactive'));
-        } elseif (\Reminder::exists($user)) {
+        } elseif (Reminder::exists($user)) {
             return Redirect::route('account-signin')->with('messagetype', 'warning')
                                 ->with('message', trans('auth.alert.resetpassword'));
         } elseif ($active === true) {
@@ -72,8 +79,8 @@ class AuthController extends Controller
                 if (!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
                     return Redirect::route('account-signin')->with('messagetype', 'info')
                                         ->with('message', trans('auth.alert.logindisabled'));
-                } elseif (\Sentinel::authenticate($credentials)) {
-                    $login = \Sentinel::login($user, $remember);
+                } elseif (Sentinel::authenticate($credentials)) {
+                    $login = Sentinel::login($user, $remember);
                     if (!$login) {
                         return Redirect::route('account-signin')->with('messagetype', 'warning')
                                             ->with('message', trans('auth.alert.loginfailed'))->withInput();
@@ -90,10 +97,10 @@ class AuthController extends Controller
                     return Redirect::route('account-signin')->with('messagetype', 'danger')
                                             ->with('message', trans('auth.alert.usernamepasswordwrong'))->withInput();
                 }
-            } catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e) {
+            } catch (NotActivatedException $e) {
                 return Redirect::route('account-signin')->with('messagetype', 'danger')
                                     ->with('message', trans('auth.alert.accountnotactive'));
-            } catch (\Cartalyst\Sentinel\Checkpoints\ThrottlingException $e) {
+            } catch (ThrottlingException $e) {
                 $delay = $e->getDelay();
                 return Redirect::route('account-signin')->with('messagetype', 'danger')
                                     ->with('message', trans('auth.alert.throttle', ['delay' => $delay]));
@@ -122,11 +129,11 @@ class AuthController extends Controller
         $phone              = $request->input('phone');
         $phone_country      = $request->input('phone_country');
 
-        $referral           = \Session::get('referral');
-        $referral_code      = str_random(15);
+        $referral           = Session::get('referral');
+        $referral_code      = Str::random(15);
 
-        $checkusername      = \User::where('username', '=', $username)->first();
-        $checkemail         = \User::where('email', '=', $email)->first();
+        $checkusername      = User::where('username', '=', $username)->first();
+        $checkemail         = User::where('email', '=', $email)->first();
 
         if (!is_null($checkusername)) {
             return Redirect::route('account-signup')->with('messagetype', 'warning')
@@ -156,10 +163,10 @@ class AuthController extends Controller
             $authy_user = $authy_api->registerUser($data['email'], $data['phone'], \libphonenumber\PhoneNumberUtil::getInstance()->getCountryCodeForRegion(strtoupper($data['phone_country'])));
             $data['authy_id'] = $authy_user->id();
             
-            $user = \Sentinel::register($data);
+            $user = Sentinel::register($data);
 
             if ($user) {
-                $customer = \Stripe::customers()->create([
+                $customer = Stripe::customers()->create([
                     'email' => $user->email,
                     'name' => $user->firstname.' '.$user->lastname,
                 ]);
@@ -168,19 +175,19 @@ class AuthController extends Controller
                 $stripecustomer->user_id    = $user->id;
                 $stripecustomer->save();
 
-                $activation = \Activation::create($user);
+                $activation = Activation::create($user);
                 $activation_code = $activation->code;
 
-                \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation_code), 'firstname' => $firstname), function ($message) use ($user) {
+                Mail::send('emails.auth.activate', array('link' => route('account-activate', $activation_code), 'firstname' => $firstname), function ($message) use ($user) {
                     $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
                 });
 
-                if (count(\Mail::failures()) > 0) {
+                if (count(Mail::failures()) > 0) {
                     return Redirect::route('account-signup')->with('messagetype', 'warning')
                                     ->with('message', trans('auth.alert.emailfailure'));
                 }
 
-                \Session::forget('referral'); //forget the referral
+                Session::forget('referral'); //forget the referral
 
                 return Redirect::route('account-signin')->with('messagetype', 'success')
                                     ->with('message', trans('auth.alert.accountcreated'));
@@ -193,7 +200,7 @@ class AuthController extends Controller
 
     public function getLogout()
     {
-        \Sentinel::logout();
+        Sentinel::logout();
         return Redirect::route('home')
                         ->with('messagetype', 'success')
                         ->with('message', trans('auth.alert.loggedout'));
@@ -220,7 +227,7 @@ class AuthController extends Controller
 
         $username           = $request->input('username');
         $credentials        = ['login' => $username];
-        $user               = \Sentinel::findByCredentials($credentials);
+        $user               = Sentinel::findByCredentials($credentials);
 
         if ($user == null) {
             return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
@@ -231,7 +238,7 @@ class AuthController extends Controller
                 return Redirect::route('account-activate', $activation_code)->with('messagetype', 'warning')
                                     ->with('message', trans('auth.alert.usernameactivationfailure'));
             } else {
-                if (\Activation::complete($user, $activation_code)) {
+                if (Activation::complete($user, $activation_code)) {
                     return Redirect::route('account-signin')->with('messagetype', 'success')
                                     ->with('message', trans('auth.alert.accountactivated'));
                 } else {

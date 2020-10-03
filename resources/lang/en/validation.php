@@ -100,6 +100,7 @@ return [
     */
 
     'OlderThan' => 'You need to be older than :age years old.',
+    'YoungerThan' => 'You need to be younger than :age years old.',
     'phone' => 'The :attribute field contains an invalid phonenumber.',
 
     'custom' => [

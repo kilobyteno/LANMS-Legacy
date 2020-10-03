@@ -100,6 +100,8 @@ return [
     */
 
     'phone' => ':attribute feltet inneholder et ugyldig telefonnummer.',
+    'OlderThan' => 'Du må være eldre enn :age år gammel.',
+    'YoungerThan' => 'Du må være yngre enn :age år gammel.',
 
     'custom' => [
         'attribute-name' => [
