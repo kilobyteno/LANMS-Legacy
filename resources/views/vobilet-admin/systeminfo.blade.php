@@ -13,6 +13,14 @@
 </div>
 
 <div class="card-columns">
+	<div class="card text-white @if(!Setting::get('APP_SCHEDULE_LAST_RUN') || Carbon::parse(Setting::get('APP_SCHEDULE_LAST_RUN'))->diffInMinutes(Carbon::now()) > 5) bg-danger @elseif(Carbon::parse(Setting::get('APP_SCHEDULE_LAST_RUN'))->diffInMinutes(Carbon::now()) < 5) bg-success @endif">
+		<div class="card-header">
+			<div class="card-title">Schedule</div>
+		</div>
+		<div class="card-body">
+			<p><strong class="text-uppercase">Last run:</strong> <span data-toggle="tooltip" data-placement="right" title="{{ Setting::get('APP_SCHEDULE_LAST_RUN') ?? ':(' }}">@if(Setting::get('APP_SCHEDULE_LAST_RUN')){{ Carbon::parse(Setting::get('APP_SCHEDULE_LAST_RUN'))->diffForHumans() }}@else Never. @endif</span></p>
+		</div>
+	</div>
 	<div class="card">
 		<div class="card-header">
 			<div class="card-title">Server Software</div>
