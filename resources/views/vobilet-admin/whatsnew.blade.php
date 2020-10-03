@@ -20,6 +20,27 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2026" aria-expanded="true">Version 20.2.6</a>
+							</h4>
+						</div>
+						<div id="2026" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-483'>LANMS-483</a>] - Add test email function in admin panel</li>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-490'>LANMS-490</a>] - Check when schedule last ran</li>
+								</ul>
+									
+								<h4>Improvement</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-487'>LANMS-487</a>] - Update birthday validation</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2025" aria-expanded="true">Version 20.2.5</a>
 							</h4>
 						</div>
