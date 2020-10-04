@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use LANMS\News;
 use LANMS\NewsCategory;
@@ -15,7 +16,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -24,7 +25,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -33,7 +34,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -42,7 +43,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -51,7 +52,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -60,7 +61,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -69,7 +70,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -78,7 +79,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -87,7 +88,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -96,7 +97,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -105,7 +106,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -114,7 +115,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -123,7 +124,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -132,7 +133,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -141,7 +142,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
         News::create(array(
             'title'         => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -150,7 +151,7 @@ class NewsSeeder extends Seeder
             'editor_id'     => 2,
             'author_id'     => 1,
             'category_id'   => 1,
-            'published_at'  => \Carbon::now(),
+            'published_at'  => Carbon::now(),
         ));
 
         NewsCategory::create([
