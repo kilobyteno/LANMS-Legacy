@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af16a166af01539e35093bbcb517f88f",
+    "content-hash": "dbfa689c9bcd629abfed9661eba566b7",
     "packages": [
         {
             "name": "anlutro/l4-settings",
