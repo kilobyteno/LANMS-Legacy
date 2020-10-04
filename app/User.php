@@ -871,7 +871,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 
     public function scopeActive()
     {
-        return $this->orderBy('firstname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+        return $this->orderBy('firstname', 'asc')->whereNotNull('last_activity')->where('isAnonymized', '0')->get();
     }
 
     public function scopeHasAddress()
