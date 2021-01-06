@@ -87,20 +87,22 @@
 								<th class="d-none d-sm-table-cell">{{ __('pages.members.table.joined') }}</th>
 								<th class="d-none d-sm-table-cell">{{ __('pages.members.table.lastseen') }}</th>
 							</tr>
-						@foreach($members as $member)
-							<tr>
-								<td><a href="{{ route('user-profile', $member->username) }}"><span class="avatar d-block rounded" style="background-image: url({{ $member->profilepicture ?? '/images/profilepicture/0.png' }})"></span></a></td>
-								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->username }}</a></td>
-								<td><a href="{{ route('user-profile', $member->username) }}" class="text-inherit">{{ $member->firstname }}@if($member->showname) {{ $member->lastname }}@endif</a></td>
-								<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $member->created_at }}">{{ \Carbon::parse($member->created_at)->diffForHumans() }}</span></td>
-								<td class="d-none d-sm-table-cell">{{ \Carbon::parse($member->last_activity)->diffForHumans() }}</td>
-							</tr>
-						@endforeach
+							@foreach($searchResults->groupByType() as $type => $modelSearchResults)
+								@foreach($modelSearchResults as $searchResult)
+									<tr>
+										<td><a href="{{ route('user-profile', $searchResult->searchable->username) }}"><span class="avatar d-block rounded" style="background-image: url({{ $searchResult->searchable->profilepicture ?? '/images/profilepicture/0.png' }})"></span></a></td>
+										<td><a href="{{ route('user-profile', $searchResult->searchable->username) }}" class="text-inherit">{{ $searchResult->searchable->username }}</a></td>
+										<td><a href="{{ route('user-profile', $searchResult->searchable->username) }}" class="text-inherit">{{ $searchResult->searchable->firstname }}@if($searchResult->searchable->showname) {{ $searchResult->searchable->lastname }}@endif</a></td>
+										<td class="d-none d-sm-table-cell"><span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $searchResult->searchable->created_at }}">{{ \Carbon::parse($searchResult->searchable->created_at)->diffForHumans() }}</span></td>
+										<td class="d-none d-sm-table-cell">{{ \Carbon::parse($searchResult->searchable->last_activity)->diffForHumans() }}</td>
+									</tr>
+								@endforeach
+							@endforeach
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<p class="text-muted">{{ $members->count() }} {{ __('pages.members.search.results') }}</p>
+			<p class="text-muted">{{ $searchResults->count() }} {{ __('pages.members.search.results') }}</p>
 		</div>
 	</div>
 </div>

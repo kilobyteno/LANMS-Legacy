@@ -2,10 +2,11 @@
 
 namespace LANMS\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
 use LANMS\User;
-use LANMS\Http\Requests\Member\SearchRequest;
 use Spatie\Searchable\Search;
+use LANMS\Http\Controllers\Controller;
+use Spatie\Searchable\ModelSearchAspect;
+use LANMS\Http\Requests\Member\SearchRequest;
 
 class MemberController extends Controller
 {
@@ -38,15 +39,22 @@ class MemberController extends Controller
     public function search(SearchRequest $request)
     {
         //$members = \Searchy::users('firstname', 'lastname', 'username')->query($request->search)->getQuery()->having('last_activity', '<>', '')->having('isAnonymized', '0')->get();
-        $members = (new Search())
-           ->registerModel(User::class, ['firstname', 'lastname', 'username'])
-           ->search($request->search);
+        $searchResults = (new Search())
+           ->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect){
+            $modelSearchAspect
+               ->addSearchableAttribute('username')
+               ->addSearchableAttribute('firstname')
+               ->addSearchableAttribute('lastname')
+               ->active();
+            })->search($request->search);
+
+        //dd($members);
         $newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         $onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         
         return view('members.search')
                 ->with('query', $request->search)
-                ->with('members', $members)
+                ->with('searchResults', $searchResults)
                 ->with('newestmembers', $newestmembers)
                 ->with('onlinemembers', $onlinemembers);
     }
