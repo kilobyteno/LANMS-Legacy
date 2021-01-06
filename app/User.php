@@ -2,26 +2,29 @@
 
 namespace LANMS;
 
-use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Carbon\Carbon;
-use Cartalyst\Sentinel\Users\UserInterface;
-use Cartalyst\Stripe\Exception\NotFoundException;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
-use Dialect\Gdpr\Anonymizable;
-use Dialect\Gdpr\Portable;
-use Illuminate\Contracts\Translation\HasLocalePreference;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use LANMS\StripeCustomer;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Webpatser\Uuid\Uuid;
-
 use IteratorAggregate;
+use Webpatser\Uuid\Uuid;
+use LANMS\StripeCustomer;
+use Dialect\Gdpr\Portable;
 use Illuminate\Support\Str;
+use Dialect\Gdpr\Anonymizable;
+use Spatie\Searchable\Searchable;
+use Laravel\Passport\HasApiTokens;
+use Spatie\Searchable\SearchResult;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Cartalyst\Sentinel\Roles\EloquentRole;
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Cartalyst\Sentinel\Roles\RoleInterface;
+
+use Cartalyst\Sentinel\Users\UserInterface;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Cartalyst\Sentinel\Roles\RoleableInterface;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Stripe\Exception\NotFoundException;
 use Cartalyst\Sentinel\Reminders\EloquentReminder;
 use Cartalyst\Sentinel\Throttling\EloquentThrottle;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -31,10 +34,10 @@ use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissionsInterface;
 use Cartalyst\Sentinel\Persistences\EloquentPersistence;
 use Cartalyst\Sentinel\Persistences\PersistableInterface;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Laravel\Passport\HasApiTokens;
 
-class User extends Model implements HasLocalePreference, PermissibleInterface, PersistableInterface, RoleableInterface, UserInterface
+class User extends Model implements HasLocalePreference, PermissibleInterface, PersistableInterface, RoleableInterface, UserInterface, Searchable
 {
     use SoftDeletes, LogsActivity, Portable, Anonymizable, Notifiable, HasUUID, PermissibleTrait;
 
@@ -503,6 +506,20 @@ class User extends Model implements HasLocalePreference, PermissibleInterface, P
             default:
                 return "genderless";
         }
+    }
+
+    /**
+    * Make the model searchable
+    **/
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('user-profile', $this->username);
+     
+        return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->username,
+            $url
+         );
     }
 
     /*
