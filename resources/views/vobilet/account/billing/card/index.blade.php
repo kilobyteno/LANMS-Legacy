@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             @if(!Sentinel::getUser()->hasAddress())
-                <div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! __('user.account.billing.alert.noaddress', ['url' => route('account-profile-edit')]) !!}</div>
+                <div class="alert alert-warning" role="alert"> <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {!! __('user.account.billing.alert.noaddress', ['url' => route('user-profile-edit', Sentinel::getUser()->username)]) !!}</div>
             @endif
             <div class="card">
                 @if(count($cards) == 0)
