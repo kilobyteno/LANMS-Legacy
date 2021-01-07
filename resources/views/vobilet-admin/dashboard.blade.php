@@ -67,7 +67,7 @@
 	@if(env('APP_ENV') != 'production')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-info">
-				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environemnt Information</strong>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environement Information</strong>
 				<hr class="message-inner-separator">
 				<p>You have set '{{ env('APP_ENV') }}' as the environment in the environment file. Make sure this is correct.</p>
 			</div>
