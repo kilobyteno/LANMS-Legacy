@@ -118,7 +118,7 @@
 							@endif
 						</div>
 					@else
-						<div class="alert alert-warning m-0"><i class="fas fa-exclamation-triangle"></i> {{ __('user.profile.edit.settings.2fa.alert.missingenv') }}</div>
+						<div class="alert alert-info m-0"><i class="fas fa-info-circle"></i> {{ __('user.profile.edit.settings.2fa.alert.missingenv') }}</div>
 					@endif
 				</div>
 			</div>
