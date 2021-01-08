@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-md-12">
 
-		<form class="card" action="{{ route('admin-seating-tickettype-store') }}" method="post">
+		<form class="card" action="{{ route('admin-seating-tickettype-store') }}" method="post" enctype="multipart/form-data">
 			<div class="card-body">
 
 				<div class="row">
@@ -31,7 +31,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label class="form-control-label">Price</label>
 							<input type="text" class="form-control input-lg" name="price" placeholder="100" value="{{ (old('price')) ? old('price') : '' }}" />
@@ -41,7 +41,7 @@
 						</div>
 					</div>
 
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label class="form-control-label">Color <small class="text-muted">in hex format without #</small></label>
 							<input type="text" class="form-control input-lg" name="color" placeholder="4bcffa" value="{{ (old('color')) ? old('color') : '' }}" />
@@ -52,6 +52,19 @@
 					</div>
 
 					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="form-control-label">Image <small class="text-muted">115x115</small></label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="image">
+								<label class="custom-file-label">{{ __('global.choosefile') }}</label>
+							</div>
+							@if($errors->has('image'))
+								<p class="text-danger">{{ $errors->first('image') }}</p>
+							@endif
+						</div>
+					</div>
+
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label class="form-control-label">Active <small class="text-muted">Shown on tickets page</small></label>
 							<label class="custom-control custom-checkbox">
@@ -85,4 +98,13 @@
 	</div>
 </div>
 
+@stop
+
+@section('javascript')
+	<script type="text/javascript">
+		$('.custom-file-input').on('change', function() { 
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+		});
+	</script>
 @stop

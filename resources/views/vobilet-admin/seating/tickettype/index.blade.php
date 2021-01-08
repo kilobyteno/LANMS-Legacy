@@ -24,6 +24,7 @@
 							<th>Description</th>
 							<th>Price</th>
 							<th>Color</th>
+							<th>Image</th>
 							<th>Status</th>
 							<th>Updated at</th>
 							<th>Updated by</th>
@@ -38,6 +39,7 @@
 								<td>{{ $tickettype->description }}</td>
 								<td>{{ $tickettype->price }}</td>
 								<td style="background-color: #{{ $tickettype->color }};color:#fff">#{{ $tickettype->color }}</td>
+								<td><div class="hover_img"><a href="#">Hover to show image<span><img src="{{ $tickettype->image ?? Theme::url('images/profilepicture/0.png') }}" alt="{{ $tickettype->name }}" /></span></a></div></td>
 								<td>{!! ($tickettype->active && !$tickettype->deleted_at) ? '<span class="badge badge-info">Visible</span>' : '<span class="badge badge-default">Invisible</span>' !!}{!! ($tickettype->deleted_at) ? '<span class="badge badge-danger">Deleted</span>' : '' !!}</td>
 								<td>{{ \Carbon::parse($tickettype->updated_at)->toDateTimeString() }}</td>
 								<td><a href="{{ URL::route('user-profile', $tickettype->editor->username) }}">{{ User::getFullnameByID($tickettype->editor->id) }}</a></td>
@@ -81,6 +83,12 @@
 @stop
 @section('css')
 	<link href="{{ Theme::url('plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+	<style type="text/css">
+		.hover_img a { position:relative; }
+		.hover_img a span { position:absolute; display:none; z-index:99; }
+		.hover_img a:hover span { display:block; }
+		.hover_img img { background: rgba(255,255,255,0.8); padding: 3px; border: 1px rgba(0,0,0,0.8) solid; border-radius: 5px; height: auto; width: auto; max-width: 250px; max-height: 100px; }
+	</style>
 @stop
 @section('javascript')
 	<script src="{{ Theme::url('plugins/datatable/jquery.dataTables.min.js') }}"></script>

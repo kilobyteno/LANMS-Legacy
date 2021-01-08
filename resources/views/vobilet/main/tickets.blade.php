@@ -24,7 +24,7 @@
 									<div class="row">
 										<div class="col-md-4 pr-0">
 											<div class="text-center p-5" style="background-color: #{{ $type->color }}">
-												<img src="/images/profilepicture/0.png" class="img-fluid">
+												<img src="{{ $type->image ?? Theme::url('images/profilepicture/0.png') }}" class="img-fluid">
 											</div>
 										</div>
 										<div class="col-md-8 pl-0">
