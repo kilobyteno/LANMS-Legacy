@@ -41,6 +41,6 @@ class OlderThan implements Rule
      */
     public function message()
     {
-        return trans('validation.OlderThan', ['age' => $this->minAge]);
+        return __('validation.OlderThan', ['age' => $this->minAge]);
     }
 }

@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', trans('header.schedule'))
+@section('title', __('header.schedule'))
 @section('content')
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.schedule') }}</h4>
+		<h4 class="page-title">{{ __('header.schedule') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.schedule') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ __('header.schedule') }}</li>
 		</ol>
 	</div>
 	<div class="row">
@@ -16,7 +16,7 @@
 					@if(Setting::get('GOOGLE_CALENDAR_API_KEY') && Setting::get('GOOGLE_CALENDAR_ID'))
 						<div id="calendar"></div>
 					@else
-						<p>{{ trans('global.nodata') }}</p>
+						<p>{{ __('global.nodata') }}</p>
 					@endif
 				</div>
 			</div>

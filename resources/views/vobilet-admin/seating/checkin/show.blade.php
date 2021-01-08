@@ -104,26 +104,26 @@
 									<table class="table row table-borderless w-100 m-0">
 										<tbody class="col-lg-6 p-0">
 											<tr>
-												<td><strong>{{ trans('global.phone') }}:</strong> {!! $ticket->user->phone ?? '<strong class="text-danger">NO PHONE!</strong>' !!}</td>
+												<td><strong>{{ __('global.phone') }}:</strong> {!! $ticket->user->phone ?? '<strong class="text-danger">NO PHONE!</strong>' !!}</td>
 											</tr>
 											@if($ticket->user->birthdate)
 												<tr>
-													<td><strong>{{ trans('global.age') }}:</strong> {{ \Carbon::parse($ticket->user->birthdate)->age }} {{ trans('global.yearsold') }} ({{ $ticket->user->birthdate }})</td>
+													<td><strong>{{ __('global.age') }}:</strong> {{ \Carbon::parse($ticket->user->birthdate)->age }} {{ __('global.yearsold') }} ({{ $ticket->user->birthdate }})</td>
 												</tr>
 											@endif
 										</tbody>
 										<tbody class="col-lg-6 p-0">
 											@if($ticket->user->showonline && $ticket->user->last_activity && $ticket->user->last_activity != '0000-00-00 00:00:00')
 												<tr>
-													<td><strong>{{ trans('global.lastseen') }}:</strong> {{ \Carbon::parse($ticket->user->last_activity)->diffForHumans() }}</td>
+													<td><strong>{{ __('global.lastseen') }}:</strong> {{ \Carbon::parse($ticket->user->last_activity)->diffForHumans() }}</td>
 												</tr>
 											@endif
 											<tr>
-												<td><strong>{{ trans('global.joined') }}:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $ticket->user->created_at }}">{{ \Carbon::parse($ticket->user->created_at)->diffForHumans() }}</span></td>
+												<td><strong>{{ __('global.joined') }}:</strong> <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ $ticket->user->created_at }}">{{ \Carbon::parse($ticket->user->created_at)->diffForHumans() }}</span></td>
 											</tr>
 											@if($ticket->user->gender)
 												<tr>
-													<td><strong>{{ trans('global.gender.title') }}:</strong> <i class="fa fa-{{ User::getGenderIcon($ticket->user->gender) }}"></i> {{ trans('global.gender.'.strtolower($ticket->user->gender)) }}</td>
+													<td><strong>{{ __('global.gender.title') }}:</strong> <i class="fa fa-{{ User::getGenderIcon($ticket->user->gender) }}"></i> {{ __('global.gender.'.strtolower($ticket->user->gender)) }}</td>
 												</tr>
 											@endif
 										</tbody>
@@ -133,7 +133,7 @@
 									<div class="row mt-5">
 										<div class="col-md-12">
 											<div class="media-heading">
-												<h5><strong>{{ trans('global.about') }}</strong></h5>
+												<h5><strong>{{ __('global.about') }}</strong></h5>
 											</div>
 											<p>{{ $ticket->user->about }}</p>
 										</div>

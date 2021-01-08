@@ -117,7 +117,7 @@ class ReservationController extends Controller
         $seat = Seats::where('slug', $slug)->first();
         if (is_null($seat)) {
             return Redirect::route('admin-seating-reservations')->with('messagetype', 'warning')
-                                ->with('message', trans('seating.alert.seatnotfound'));
+                                ->with('message', __('seating.alert.seatnotfound'));
         }
 
         if ($seat->reservationsThisYear()->first() == null) {

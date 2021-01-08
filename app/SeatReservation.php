@@ -117,7 +117,7 @@ class SeatReservation extends Model
         $reservation = $query->where('id', '=', $id)->first();
 
         if ($reservation->status_id == 1) { // 1 = reserved
-            return trans('global.time.never');
+            return __('global.time.never');
         }
 
         $time = strtotime('+'.\Setting::get('SEATING_SEAT_EXPIRE_HOURS').' hours', strtotime($reservation->created_at));
@@ -130,11 +130,11 @@ class SeatReservation extends Model
         $after = $time - time();
 
         if ($after < 0) {
-            return trans('global.time.expired');
+            return __('global.time.expired');
         }
 
         if ($time == '0000-00-00 00:00:00') {
-            return trans('global.time.never');
+            return __('global.time.never');
         }
 
         return \Carbon::parse($time)->diffForHumans();
@@ -158,7 +158,7 @@ class SeatReservation extends Model
         }
 
         if ($time == '0000-00-00 00:00:00') {
-            return trans('global.time.never');
+            return __('global.time.never');
         }
 
         return \Carbon::parse($time)->diffForHumans();

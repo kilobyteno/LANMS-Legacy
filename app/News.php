@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class News extends Model
@@ -49,7 +50,7 @@ class News extends Model
 
     public function scopeIsPublished($query)
     {
-        return $query->where('published_at', '<', \DB::raw('now()'))->orderBy('published_at', 'desc');
+        return $query->where('published_at', '<', DB::raw('now()'))->orderBy('published_at', 'desc');
     }
 
     public function scopeIsActive($query)

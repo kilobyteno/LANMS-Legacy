@@ -28,50 +28,50 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="text-center">{{ trans('pdf.consentform.title') }}<br><small>{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</small></h1>
+				<h1 class="text-center">{{ __('pdf.consentform.title') }}<br><small>{{ Setting::get('WEB_NAME') }} {{ Setting::get('SEATING_YEAR') }}</small></h1>
 				<hr>
-				<p>{{ trans('pdf.consentform.desc') }}</p>
+				<p>{{ __('pdf.consentform.desc') }}</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6" style="float: left;">
-				<p>{{ trans('pdf.consentform.organizerswantright') }}:</p>
+				<p>{{ __('pdf.consentform.organizerswantright') }}:</p>
 				<ul>
-					{!! trans('pdf.consentform.organizerswantrightpoints') !!}
+					{!! __('pdf.consentform.organizerswantrightpoints') !!}
 				</ul>
 			</div>
 			<div class="col-md-6" style="float: right;">
-				<p>{{ trans('pdf.consentform.shouldalsobementioned') }}:</p>
+				<p>{{ __('pdf.consentform.shouldalsobementioned') }}:</p>
 				<ul>
-					{!! trans('pdf.consentform.shouldalsobementionedpoints') !!}
+					{!! __('pdf.consentform.shouldalsobementionedpoints') !!}
 				</ul>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<p>{!! trans('pdf.consentform.moreinfo', ['url'=>Setting::get('WEB_PROTOCOL').'://'.Setting::get('WEB_DOMAIN')]) !!}</p>
+				<p>{!! __('pdf.consentform.moreinfo', ['url'=>Setting::get('WEB_PROTOCOL').'://'.Setting::get('WEB_DOMAIN')]) !!}</p>
 				<hr>
-				<h2>{!! trans('pdf.consentform.permission', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR')]) !!}</h2>
-				<p>{!! trans('pdf.consentform.permissiondesc', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR'), 'name' => ($user ? LANMS\User::getFullnameByID($user->id) : '______________________________________________________'), 'birthdate' => ($user ? $user->birthdate : '__________________'), 'location'=>LANMS\Info::getContent('where').', '.LANMS\Info::getContent('when')]) !!}</p>
-				<p>{!! trans('pdf.consentform.myrelationship') !!}<br>______________________________________________________________________</p>
-				<p>{!! trans('pdf.consentform.contact') !!}:</p>
-				<p>{{ trans('global.fullname') }}: ____________________________________________________________________<br>{{ trans('global.phone') }}: _________________________________<br>{{ trans('global.email') }}: _________________________________</p>
-				<p>{{ trans('pdf.consentform.icanbecontacted') }}</p>
+				<h2>{!! __('pdf.consentform.permission', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR')]) !!}</h2>
+				<p>{!! __('pdf.consentform.permissiondesc', ['event'=>Setting::get('WEB_NAME').' '.Setting::get('SEATING_YEAR'), 'name' => ($user ? LANMS\User::getFullnameByID($user->id) : '______________________________________________________'), 'birthdate' => ($user ? $user->birthdate : '__________________'), 'location'=>LANMS\Info::getContent('where').', '.LANMS\Info::getContent('when')]) !!}</p>
+				<p>{!! __('pdf.consentform.myrelationship') !!}<br>______________________________________________________________________</p>
+				<p>{!! __('pdf.consentform.contact') !!}:</p>
+				<p>{{ __('global.fullname') }}: ____________________________________________________________________<br>{{ __('global.phone') }}: _________________________________<br>{{ __('global.email') }}: _________________________________</p>
+				<p>{{ __('pdf.consentform.icanbecontacted') }}</p>
 			</div>
 		</div>
 		<div class="row">
-			<p>{!! trans('pdf.consentform.filledoutbycaregiver') !!}:</p>
+			<p>{!! __('pdf.consentform.filledoutbycaregiver') !!}:</p>
 			<div class="col-md-6" style="float: left;">
-				<p>{{ trans('pdf.consentform.placeanddate') }}:<br><br>_________________________________________________</p>
+				<p>{{ __('pdf.consentform.placeanddate') }}:<br><br>_________________________________________________</p>
 			</div>
 			<div class="col-md-6" style="float: right;">
-				<p>{{ trans('pdf.consentform.signature') }}:<br><br>_________________________________________________</p>
+				<p>{{ __('pdf.consentform.signature') }}:<br><br>_________________________________________________</p>
 			</div>
 		</div>
 		<div class="row" style="margin-top:10px;padding-top:10px;border-top: 1px solid #eee">
-			<p>{!! trans('pdf.consentform.filledoutbyorganizers') !!}:</p>
+			<p>{!! __('pdf.consentform.filledoutbyorganizers') !!}:</p>
 			<div class="col-md-6" style="float: left;">
-				<p>{{ trans('pdf.consentform.signature') }}:<br><br>_________________________________________________</p>
+				<p>{{ __('pdf.consentform.signature') }}:<br><br>_________________________________________________</p>
 			</div>
 		</div>
 	</body>

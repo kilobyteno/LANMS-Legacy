@@ -52,7 +52,7 @@
 				<table>
 					<tr>
 						<td align="center">
-							<h4><small><em>{{ trans('email.youreceived') }}</em></small><br><a href="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}/">{{ Setting::get('WEB_DOMAIN') }}</a></h4>
+							<h4><small><em>{{ __('email.youreceived') }}</em></small><br><a href="{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}/">{{ Setting::get('WEB_DOMAIN') }}</a></h4>
 						</td>
 					</tr>
 				</table>

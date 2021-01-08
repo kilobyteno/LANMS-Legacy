@@ -40,7 +40,7 @@ class CardController extends Controller
     {
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
         return view('account.billing.card.create');
     }
@@ -55,7 +55,7 @@ class CardController extends Controller
     {
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
-                                ->with('message', trans('user.account.billing.alert.noaddress'));
+                                ->with('message', __('user.account.billing.alert.noaddress'));
         }
 
         $stripe_customer = Sentinel::getUser()->stripe_customer;
@@ -87,7 +87,7 @@ class CardController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
-                                ->with('message', trans('seating.alert.carderror').': '.$message);
+                                ->with('message', __('seating.alert.carderror').': '.$message);
         }
 
         try {
@@ -103,7 +103,7 @@ class CardController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
-                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+                                ->with('message', $message.'. '.__('seating.alert.pleasetryagain'));
         } catch (ServerErrorException $e) {
             // Get the status code
             $code = $e->getCode();
@@ -115,11 +115,11 @@ class CardController extends Controller
             $type = $e->getErrorType();
 
             return Redirect::route('account-billing-card-create')->with('messagetype', 'danger')
-                                ->with('message', $message.'. '.trans('seating.alert.pleasetryagain'));
+                                ->with('message', $message.'. '.__('seating.alert.pleasetryagain'));
         }
 
         return Redirect::route('account-billing-card')->with('messagetype', 'success')
-                                ->with('message', trans('user.account.billing.card.alert.added'));
+                                ->with('message', __('user.account.billing.card.alert.added'));
     }
 
     /**
@@ -169,6 +169,6 @@ class CardController extends Controller
 
         $cards = Stripe::cards()->delete($stripe_customer, $id);
         return Redirect::route('account-billing-card')->with('messagetype', 'success')
-                            ->with('message', trans('user.account.billing.card.alert.deleted'));
+                            ->with('message', __('user.account.billing.card.alert.deleted'));
     }
 }

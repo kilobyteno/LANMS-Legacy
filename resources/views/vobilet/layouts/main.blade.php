@@ -70,8 +70,8 @@
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
 									<div class="d-none d-md-flex">
-										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin.button') }}</a>
-										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('auth.signin.button') }}</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ __('auth.signup.button') }}</a>
 									</div>
 								@else
 									<div class="dropdown d-none d-md-flex">
@@ -83,7 +83,7 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow notifications">
 											@if(Sentinel::getUser()->unreadNotifications->count() > 1)
-												<p class="text-center m-3"><a href="{{ route('user-notifications-dismissall') }}" class="btn btn-info btn-sm">{{ trans('global.notification.dismissall') }}</a></p>
+												<p class="text-center m-3"><a href="{{ route('user-notifications-dismissall') }}" class="btn btn-info btn-sm">{{ __('global.notification.dismissall') }}</a></p>
 												<div class="dropdown-divider"></div>
 											@endif
 											@foreach (Sentinel::getUser()->unreadNotifications->take(5) as $notification)
@@ -93,49 +93,49 @@
 															<i class="fas fa-exclamation"></i>
 														</div>
 														<div class="message">
-															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+															<strong>{{ __('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['date' => ucfirst(\Carbon::parse($notification->data['due_date'])->isoFormat('LL')), 'amount' => moneyFormat(floatval($notification->data['amount_due']/100), strtoupper($notification->data['currency']))]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ __('global.notification.dismiss') }}</button></div>
 														</div>
 													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpires')
 														<div class="notifyimg bg-warning">
 															<i class="fas fa-chair"></i>
 														</div>
 														<div class="message">
-															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+															<strong>{{ __('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ __('global.notification.dismiss') }}</button></div>
 														</div>
 													@elseif($notification->type === 'LANMS\Notifications\SeatReservationExpired')
 														<div class="notifyimg bg-danger">
 															<i class="fas fa-chair"></i>
 														</div>
 														<div class="message">
-															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+															<strong>{{ __('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['seatname' => strtoupper($notification->data['id'])]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ __('global.notification.dismiss') }}</button></div>
 														</div>
 													@elseif($notification->type === 'LANMS\Notifications\CompoTeamAdded' || $notification->type === 'LANMS\Notifications\CompoTeamRemoved')
 														<div class="notifyimg bg-info">
 															<i class="fas fa-user-shield"></i>
 														</div>
 														<div class="message">
-															<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}</strong>
-															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ trans('global.notification.dismiss') }}</button></div>
+															<strong>{{ __('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1)), ['team' => $notification->data['teamname'], 'user' => $notification->data['user']]) }}</strong>
+															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}<button class="btn btn-secondary btn-sm float-right" onclick="notificationDismiss('{{ route('user-notification-dismiss', $notification->id) }}')">{{ __('global.notification.dismiss') }}</button></div>
 														</div>
 													@else
 														<div class="notifyimg bg-info">
 															<i class="fas fa-info"></i>
 														</div>
 														<div>
-														<strong>{{ trans('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}</strong>
+														<strong>{{ __('global.notification.'.strtolower(substr(strrchr($notification->type, '\\'), 1))) }}</strong>
 															<div class="small text-muted">{{ $notification->created_at->diffForHumans() }}</div>
 														</div>
 													@endif
 												</a>
 											@endforeach
 											@if(Sentinel::getUser()->unreadNotifications->count() === 0)
-												<p class="dropdown-item text-center text-muted-dark m-0">{{ trans('global.notification.nothing') }}</p>
+												<p class="dropdown-item text-center text-muted-dark m-0">{{ __('global.notification.nothing') }}</p>
 											@endif
 											<div class="dropdown-divider"></div>
-											<a href="{{ route('user-notifications') }}" class="dropdown-item text-center text-muted-dark">{{ trans('global.notification.viewall') }}</a>
+											<a href="{{ route('user-notifications') }}" class="dropdown-item text-center text-muted-dark">{{ __('global.notification.viewall') }}</a>
 										</div>
 									</div>
 									<div class="dropdown">
@@ -148,23 +148,23 @@
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											@if(Sentinel::hasAccess('admin'))
 												<a class="dropdown-item" href="{{ route('admin') }}">
-													<i class="fa fa-user-secret"></i> {{ trans('user.adminpanel') }}
+													<i class="fa fa-user-secret"></i> {{ __('user.adminpanel') }}
 												</a>
 												<div class="dropdown-divider"></div>
 											@endif
 											<a class="dropdown-item" href="{{ route('members') }}">
-												<i class="fas fa-users"></i> {{ trans('header.members') }}
+												<i class="fas fa-users"></i> {{ __('header.members') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
+												<i class="fas fa-id-card"></i> {{ __('user.account.title') }}
 											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
-												<i class="fas fa-user-circle"></i> {{ trans('user.profile.title') }}
+												<i class="fas fa-user-circle"></i> {{ __('user.profile.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
-												<i class="fas fa-sign-out-alt"></i> {{ trans('auth.signout') }}
+												<i class="fas fa-sign-out-alt"></i> {{ __('auth.signout') }}
 											</a>
 										</div>
 									</div>
@@ -184,24 +184,24 @@
 									@if(Sentinel::Guest())
 										<div class="d-block d-sm-none">
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin.button') }}</a>
+												<a class="nav-link" href="{{ route('account-signin') }}"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('auth.signin.button') }}</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
+												<a class="nav-link" href="{{ route('account-signup') }}"><i class="fas fa-pencil-alt mr-2"></i>{{ __('auth.signup.button') }}</a>
 											</li>
 										</div>
 									@endif
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ trans('header.home') }}</a>
+										<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ __('header.home') }}</a>
 									</li>
 									@if(\LANMS\Page::forMenu()->count() > 0)
 										<li class="nav-item">
-											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ trans('header.information') }}</a>
+											<a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fas fa-info"></i> {{ __('header.information') }}</a>
 											<div class="dropdown-menu dropdown-menu-arrow">
-												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ trans('header.news') }}</a>
-												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('header.tickets') }}</a>
+												<a class="dropdown-item @if(Request::is('news*')){{'active'}} @endif" href="{{ route('news') }}"><i class="far fa-newspaper"></i> {{ __('header.news') }}</a>
+												<a class="dropdown-item @if(Request::is('tickets*')){{'active'}} @endif" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ __('header.tickets') }}</a>
 												@if(Setting::get('HEADER_INFO_CONSENT_FORM'))
-													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ trans('global.download') .' '. trans('seating.reservation.consentform.title') }}</a>
+													<a class="dropdown-item @if(Request::is('consentform*')){{'active'}} @endif" href="{{ route('consentform') }}"><i class="fas fa-user-tie"></i> {{ __('global.download') .' '. __('seating.reservation.consentform.title') }}</a>
 												@endif
 												<div class="dropdown-divider"></div>
 												@foreach(\LANMS\Page::forMenu() as $page)
@@ -211,19 +211,19 @@
 										</li>
 									@endif
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ trans('header.schedule') }}</a>
+										<a class="nav-link @if(Request::is('schedule')){{'active'}} @endif" href="{{ route('schedule') }}"><i class="fas fa-calendar-week"></i> {{ __('header.schedule') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('compo*') || Request::is('user/compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ trans('header.compo') }}</a>
+										<a class="nav-link @if(Request::is('compo*') || Request::is('user/compo*')){{'active'}} @endif" href="{{ route('compo') }}"><i class="fas fa-compress-arrows-alt"></i> {{ __('header.compo') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ trans('header.seating') }}</a>
+										<a class="nav-link @if(Request::is('user/seating*')){{'active'}} @endif" href="{{ route('seating') }}"><i class="fas fa-chair"></i> {{ __('header.seating') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fas fa-crown"></i> {{ trans('header.crew') }}</a>
+										<a class="nav-link @if(Request::is('crew')){{'active'}} @endif" href="{{ route('crew') }}"><i class="fas fa-crown"></i> {{ __('header.crew') }}</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link @if(Request::is('sponsor')){{'active'}} @endif" href="{{ route('sponsor') }}"><i class="fas fa-money-check-alt"></i> {{ trans('header.sponsor') }}</a>
+										<a class="nav-link @if(Request::is('sponsor')){{'active'}} @endif" href="{{ route('sponsor') }}"><i class="fas fa-money-check-alt"></i> {{ __('header.sponsor') }}</a>
 									</li>
 								</ul>
 							</div>
@@ -233,11 +233,11 @@
 				<div class="my-3 my-md-5">
 					<div class="container">
 						@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
+							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
 						@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
-							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
+							<div class="alert alert-danger" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
 							</div>
 						@endif
 
@@ -261,11 +261,11 @@
 			<footer class="footer br-bl-7 br-br-7">
 				<div class="container">
 					@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
+						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Unlicensed version of this software! The system administrator needs to update the license.</div>
 					@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
 					@elseif(Setting::get('APP_LICENSE_STATUS') == "Suspended")
-						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
+						<div class="alert alert-danger text-center" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> License has been suspended for this software!</strong>
 						</div>
 					@endif
 					@if(count(LANMS\Sponsor::thisYear()->get()) > 0)
@@ -297,7 +297,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 text-right privacy"> <a href="{{ url('privacy') }}" class="btn btn-link">{{ trans('footer.privacypolicy') }}</a> <a href="{{ url('tos') }}" class="btn btn-link">{{ trans('footer.termsofservice') }}</a></div>
+						<div class="col-lg-6 col-md-6 text-right privacy"> <a href="{{ url('privacy') }}" class="btn btn-link">{{ __('footer.privacypolicy') }}</a> <a href="{{ url('tos') }}" class="btn btn-link">{{ __('footer.termsofservice') }}</a></div>
 					</div>
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
@@ -308,7 +308,7 @@
 									<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
 									<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
 										@foreach(array_flip(config('app.locales')) as $lang)
-											<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
+											<li><a href="{{ route('locale', $lang) }}">{{ __('language.'.$lang) }}</a></li>
 										@endforeach
 									</ul>
 								</div>
@@ -316,12 +316,12 @@
 									<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
 								@endif
 							</div>
-							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
+							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
 							@if(Config::get('app.debug'))
-								<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
+								<b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
 							@endif
 							@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
-								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
+								<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('footer.resetdbandsettings')) }}</a></b>
 							@endif 
 						</div>
 					</div>
@@ -360,9 +360,9 @@
 			    }
 			  },
 			  "content": {
-			    "message": "{{ trans('global.cookieconsent.message') }}",
-			    "dismiss": "{{ trans('global.cookieconsent.dismiss') }}",
-			    "link": "{{ trans('global.cookieconsent.link') }}",
+			    "message": "{{ __('global.cookieconsent.message') }}",
+			    "dismiss": "{{ __('global.cookieconsent.dismiss') }}",
+			    "link": "{{ __('global.cookieconsent.link') }}",
 			    "href": "{{ url('/privacy') }}"
 			  }
 			})});
@@ -433,7 +433,7 @@
 					fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 			</script>
-			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_MESSENGER_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ trans('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ trans('global.facebookmessenger.logged_out_greeting') }}"></div>
+			<div class="fb-customerchat" page_id="{{ Setting::get('FACEBOOK_MESSENGER_PAGE_ID') }}" theme_color="#0061da" logged_in_greeting="{{ __('global.facebookmessenger.logged_in_greeting') }}" logged_out_greeting="{{ __('global.facebookmessenger.logged_out_greeting') }}"></div>
 		@endif
 
 	</body>

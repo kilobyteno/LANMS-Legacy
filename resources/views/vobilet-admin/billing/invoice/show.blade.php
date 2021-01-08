@@ -1,15 +1,15 @@
 @extends('layouts.main')
-@section('title', trans('user.account.billing.invoice.title').' #'.$invoice['number'])
+@section('title', __('user.account.billing.invoice.title').' #'.$invoice['number'])
 @section('content')
 
 <div class="container">
     <div class="page-header d-print-none">
-        <h4 class="page-title">{{ trans('user.account.billing.invoice.title') }} #{{ $invoice['number'] }}</h4>
+        <h4 class="page-title">{{ __('user.account.billing.invoice.title') }} #{{ $invoice['number'] }}</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 	        <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-	        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-        	<li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
+	        <li class="breadcrumb-item">{{ __('user.account.billing.title') }}</li>
+        	<li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ __('user.account.billing.invoice.title') }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">#{{ $invoice['number'] }}</li>
         </ol>
     </div>
@@ -19,16 +19,16 @@
         	@if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
 				<div class="alert alert-info" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ trans('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
+					<i class="fas fa-info mr-2" aria-hidden="true"></i> {{ __('user.account.billing.invoice.alert.scheduled', ['time' => \Carbon::parse($invoice['date'])->addHours(1)->diffForHumans()]) }}
 				</div>
 			@endif
 
         	<div class="card">
         		<div class="card-header @if($invoice['status']=='draft') bg-info @elseif($invoice['status']=='paid') bg-success text-white @elseif($invoice['status']=='void' || $invoice['status']=='uncollectible') bg-danger text-white @elseif($invoice['status']=='open') bg-warning text-white @endif">
-					<h3 class="card-title">{{ trans('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ trans('user.account.billing.invoice.status.scheduled') }}@else{{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
+					<h3 class="card-title">{{ __('global.status') }}: @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true){{ __('user.account.billing.invoice.status.scheduled') }}@else{{ __('user.account.billing.invoice.status.'.$invoice['status']) }}@endif</h3>
 					<div class="card-options">
 						@if(Sentinel::hasAccess('admin.billing.create') && $invoice['status'] == 'draft')
-                            <a href="{{ route('admin-billing-invoice-finalize', $invoice['id']) }}" class="btn btn-light btn-sm"><i class="fas fa-paper-plane mr-2"></i>{{ trans('global.send') }}</a>
+                            <a href="{{ route('admin-billing-invoice-finalize', $invoice['id']) }}" class="btn btn-light btn-sm"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.send') }}</a>
                         @endif
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 							</address>
 						</div>
 						<div class="col-lg-6 text-right">
-							<p class="h3">{{ trans('user.account.billing.invoice.invoiceto') }}</p>
+							<p class="h3">{{ __('user.account.billing.invoice.invoiceto') }}</p>
 							<address>
 								@if($user)
 									{{ $user->firstname.' '.$user->lastname }}<br>
@@ -62,9 +62,9 @@
 					</div>
 					
 					<div>
-						<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} #:</span> {{ $invoice['number'] }}</p>
-						<p class="mb-1"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</p>
-						<p class="mb-5"><span class="font-weight-semibold">{{ trans('global.payment.duedate') }}:</span> {{ \Carbon::parse($invoice['due_date'])->isoFormat('LL') }}</p>
+						<p class="mb-1 mt-5"><span class="font-weight-semibold">{{ __('user.account.billing.invoice.title') }} #:</span> {{ $invoice['number'] }}</p>
+						<p class="mb-1"><span class="font-weight-semibold">{{ __('user.account.billing.invoice.title') }} {{ __('global.date') }}:</span> {{ ucfirst(\Carbon::parse($invoice['date'])->isoFormat('LLLL')) }}</p>
+						<p class="mb-5"><span class="font-weight-semibold">{{ __('global.payment.duedate') }}:</span> {{ \Carbon::parse($invoice['due_date'])->isoFormat('LL') }}</p>
 						@if($invoice['custom_fields'] )
 							@foreach($invoice['custom_fields'] as $customfield)
 								<p class="mb-1"><span class="font-weight-semibold">{{ $customfield['name'] }}:</span> {{ $customfield['value'] }}</p>
@@ -79,10 +79,10 @@
 							<tbody>
 								<tr class="">
 									<th class="text-center" style="width: 5%">#</th>
-									<th>{{ trans('user.account.billing.invoice.product') }}</th>
-									<th class="text-center" style="width: 5%">{{ trans('user.account.billing.invoice.quantity') }}</th>
-									<th class="text-right" style="width: 10%">{{ trans('user.account.billing.invoice.unitprice') }}</th>
-									<th class="text-right" style="width: 10%">{{ trans('user.account.billing.invoice.amount') }}</th>
+									<th>{{ __('user.account.billing.invoice.product') }}</th>
+									<th class="text-center" style="width: 5%">{{ __('user.account.billing.invoice.quantity') }}</th>
+									<th class="text-right" style="width: 10%">{{ __('user.account.billing.invoice.unitprice') }}</th>
+									<th class="text-right" style="width: 10%">{{ __('user.account.billing.invoice.amount') }}</th>
 								</tr>
 								@foreach($invoice['lines']['data'] as $line)
 									<tr>
@@ -94,43 +94,43 @@
 									</tr>
 								@endforeach
 								<tr>
-									<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.subtotal') }}</td>
+									<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.subtotal') }}</td>
 									<td class="text-right">{{ moneyFormat(floatval($invoice['subtotal']/100), strtoupper($invoice['currency'])) }}</td>
 								</tr>
 								@if($invoice['discount'])
 									<tr>
-										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.discount') }}: {{ $invoice['discount']['coupon']['name'] }} ({{ $invoice['discount']['coupon']['percent_off'] }}%)</td>
+										<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.discount') }}: {{ $invoice['discount']['coupon']['name'] }} ({{ $invoice['discount']['coupon']['percent_off'] }}%)</td>
 										<td class="text-right">{{ moneyFormat(floatval(($invoice['subtotal']*($invoice['discount']['coupon']['percent_off']/100))/100), strtoupper($invoice['currency'])) }}</td>
 									</tr>
 								@endif
 								@if($invoice['tax_percent'] != 0)
 									<tr>
-										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxrate') }}</td>
+										<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxrate') }}</td>
 										<td class="text-right">{{ $invoice['tax_percent'] ?? 0 }}%</td>
 									</tr>
 									<tr>
-										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxdue') }}</td>
+										<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxdue') }}</td>
 										<td class="text-right">{{ moneyFormat(floatval($invoice['tax']/100), strtoupper($invoice['currency'])) }}</td>
 									</tr>
 								@endif
 								<tr>
-									<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ trans('user.account.billing.invoice.totaldue') }}</td>
+									<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ __('user.account.billing.invoice.totaldue') }}</td>
 									<td class="font-weight-bold text-right">{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
 								</tr>
 								@if($invoice['status']!='draft')
 									<tr>
-										<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.amountpaid') }}</td>
+										<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.amountpaid') }}</td>
 										<td class="text-right">{{ moneyFormat(floatval($invoice['amount_paid']/100), strtoupper($invoice['currency'])) }}</td>
 									</tr>
 									@if(!$invoice['paid'])
 										<tr>
-											<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.amountremaining') }}</td>
+											<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.amountremaining') }}</td>
 											<td class="text-right">{{ moneyFormat(floatval($invoice['amount_remaining']/100), strtoupper($invoice['currency'])) }}</td>
 										</tr>
 									@endif
 									<tr class="d-print-none">
 										<td colspan="5" class="text-right">
-											<button type="button" class="btn btn-secondary" onclick="javascript:window.print();"><i class="fas fa-print"></i> {{ trans('user.account.billing.invoice.printinvoice') }}</button>
+											<button type="button" class="btn btn-secondary" onclick="javascript:window.print();"><i class="fas fa-print"></i> {{ __('user.account.billing.invoice.printinvoice') }}</button>
 										</td>
 									</tr>
 								@endif
@@ -149,7 +149,7 @@
 						<tbody>
 							@foreach($events as $event)
 								<tr>
-									<td>{{ trans('user.account.billing.invoice.event.'.$event['type']) }}</td>
+									<td>{{ __('user.account.billing.invoice.event.'.$event['type']) }}</td>
 									<td width="10%" class="text-muted">{{ \Carbon::parse($event['created'])->isoFormat('LLLL') }}</td>
 								</tr>
 							@endforeach
