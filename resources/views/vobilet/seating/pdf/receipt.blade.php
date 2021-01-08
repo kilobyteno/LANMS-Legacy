@@ -34,8 +34,8 @@
                                 <img src="{{ Setting::get('WEB_LOGO_DARK') }}" style="width:100%; max-width:300px;">
                             </td>
                             <td>
-                                {{ trans('pdf.receipt.reservationnumber') }}: {{ $payment->reservation->id }}<br>
-                                {{ trans('global.date') }}: {{ ucfirst(\Carbon::parse($payment->reservation->created_at)->isoFormat('LLLL')) }}<br>
+                                {{ __('pdf.receipt.reservationnumber') }}: {{ $payment->reservation->id }}<br>
+                                {{ __('global.date') }}: {{ ucfirst(\Carbon::parse($payment->reservation->created_at)->isoFormat('LLLL')) }}<br>
                             </td>
                         </tr>
                     </table>
@@ -62,24 +62,24 @@
                 </td>
             </tr>
             <tr class="heading">
-                <td>{{ trans('pdf.receipt.paymentmethod') }}</td>
-                <td>{{ trans('pdf.receipt.paymentinfo') }}</td>
+                <td>{{ __('pdf.receipt.paymentmethod') }}</td>
+                <td>{{ __('pdf.receipt.paymentinfo') }}</td>
             </tr>
             <tr class="details">
-                <td>{{ trans('pdf.receipt.card') }}</td>
+                <td>{{ __('pdf.receipt.card') }}</td>
                 <td>#{{ $payment->id }} &middot; {{ ucfirst(\Carbon::parse($payment->created_at)->isoFormat('LLLL')) }}</td>
             </tr>
             <tr class="heading">
-                <td>{{ trans('pdf.receipt.item') }}</td>
-                <td>{{ trans('pdf.receipt.price') }}</td>
+                <td>{{ __('pdf.receipt.item') }}</td>
+                <td>{{ __('pdf.receipt.price') }}</td>
             </tr>
             <tr class="item last">
-                <td>{{ trans('pdf.receipt.ticket') }} {{ $payment->reservation->year }} - {{ $payment->reservation->seat->name }}</td>
+                <td>{{ __('pdf.receipt.ticket') }} {{ $payment->reservation->year }} - {{ $payment->reservation->seat->name }}</td>
                 <td>{{ moneyFormat(floatval($charge['amount']/100), strtoupper($charge['currency'])) }}</td>
             </tr>
             <tr class="total">
                 <td></td>
-                <td>{{ trans('pdf.receipt.total') }}: {{ moneyFormat(substr($charge['amount'], 0, -2), strtoupper($charge['currency'])) }}</td>
+                <td>{{ __('pdf.receipt.total') }}: {{ moneyFormat(substr($charge['amount'], 0, -2), strtoupper($charge['currency'])) }}</td>
             </tr>
         </table>
     </div>

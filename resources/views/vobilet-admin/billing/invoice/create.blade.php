@@ -7,8 +7,8 @@
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-        <li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ trans('user.account.billing.invoice.title') }}</a></li>
+        <li class="breadcrumb-item">{{ __('user.account.billing.title') }}</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin-billing-invoice') }}">{{ __('user.account.billing.invoice.title') }}</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Create Invoice</li>
 	</ol>
 </div>
@@ -33,7 +33,7 @@
 				</div>
 				
 				<div>
-					<p class="mb-1 mt-5 mb-5"><span class="font-weight-semibold">{{ trans('user.account.billing.invoice.title') }} {{ trans('global.date') }}:</span> {{ ucfirst(\Carbon::now()->isoFormat('LLLL')) }}</p>
+					<p class="mb-1 mt-5 mb-5"><span class="font-weight-semibold">{{ __('user.account.billing.invoice.title') }} {{ __('global.date') }}:</span> {{ ucfirst(\Carbon::now()->isoFormat('LLLL')) }}</p>
 					<p class="mb-2">
 						<button type="button" id="add_row" class="btn btn-outline-success d-inline">Add Row</button>
 						<button type="button" id="delete_row" class="btn btn-outline-danger d-inline">Delete Row</button>
@@ -44,10 +44,10 @@
 						<tbody>
 							<tr class="">
 								<th class="text-center" style="width: 5%">#</th>
-								<th>{{ trans('user.account.billing.invoice.product') }}</th>
-								<th class="text-center" style="width: 10%">{{ trans('user.account.billing.invoice.quantity') }}</th>
-								<th class="text-right" style="width: 15%">{{ trans('user.account.billing.invoice.unitprice') }}</th>
-								<th class="text-right" style="width: 20%">{{ trans('user.account.billing.invoice.amount') }}</th>
+								<th>{{ __('user.account.billing.invoice.product') }}</th>
+								<th class="text-center" style="width: 10%">{{ __('user.account.billing.invoice.quantity') }}</th>
+								<th class="text-right" style="width: 15%">{{ __('user.account.billing.invoice.unitprice') }}</th>
+								<th class="text-right" style="width: 20%">{{ __('user.account.billing.invoice.amount') }}</th>
 							</tr>
 
 							<tr id="addr0">
@@ -68,7 +68,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.subtotal') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.subtotal') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="sub_total" placeholder="0.00" class="form-control" id="sub_total" readonly />
@@ -79,7 +79,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxrate') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxrate') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 						                <input type="number" class="form-control" name="tax_percent" id="tax" placeholder="0" min="0" max="100" value="0">
@@ -90,7 +90,7 @@
 						       	</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-w600 text-right">{{ trans('user.account.billing.invoice.taxdue') }}</td>
+								<td colspan="4" class="font-w600 text-right">{{ __('user.account.billing.invoice.taxdue') }}</td>
 								<td class="text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="tax_amount" id="tax_amount" placeholder="0.00" class="form-control" readonly />
@@ -101,7 +101,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ trans('user.account.billing.invoice.totaldue') }}</td>
+								<td colspan="4" class="font-weight-bold text-uppercase text-right">{{ __('user.account.billing.invoice.totaldue') }}</td>
 								<td class="font-weight-bold text-right">
 									<div class="input-group mb-2 mb-sm-0">
 										<input type="text" name="total_amount" id="total_amount" placeholder="0.00" class="form-control" readonly />
@@ -121,7 +121,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="form-group">
-					<label class="form-label">{{ trans('user.account.billing.invoice.invoiceto') }}:</label>
+					<label class="form-label">{{ __('user.account.billing.invoice.invoiceto') }}:</label>
 					<select name="user_id" class="select2" required="required">
 						<option value="">--- Please Select ---</option>
 						@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
@@ -149,7 +149,7 @@
 			</div>
 			<div class="card-footer">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<button class="btn btn-success" type="submit"><i class="fas fa-save mr-2"></i>{{ trans('global.savechanges') }}</button>
+				<button class="btn btn-success" type="submit"><i class="fas fa-save mr-2"></i>{{ __('global.savechanges') }}</button>
 			</div>
 		</div>
 	</div>

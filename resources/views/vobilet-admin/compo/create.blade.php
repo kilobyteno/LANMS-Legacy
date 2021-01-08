@@ -99,7 +99,7 @@
 										<div class="form-group">
 											<label class="form-label">Rules Page:</label>
 											<select name="page_id" id="page_id" class="select2 {{ ($errors->has('page_id')) ? 'is-invalid state-invalid' : '' }}">
-												<option value="">--- {{ trans('global.pleaseselect') }} ---</option>
+												<option value="">--- {{ __('global.pleaseselect') }} ---</option>
 												@foreach(\LANMS\Page::all() as $page)
 													<option value="{{ $page->id }}" {{ (old('page_id') == $page->id) ? 'selected' : '' }}>{{ $page->title }}</option>
 												@endforeach

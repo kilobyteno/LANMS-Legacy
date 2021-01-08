@@ -43,10 +43,10 @@ class SeatReservationExpired extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(trans('mail.reservation.expired.title'))
-                    ->line(trans('mail.reservation.expired.title'))
-                    ->line(trans('mail.reservation.expired.desc', ['seatname' => $this->route_id]))
-                    ->action(trans('global.view'), route($this->route, $this->route_id));
+                    ->subject(__('mail.reservation.expired.title'))
+                    ->line(__('mail.reservation.expired.title'))
+                    ->line(__('mail.reservation.expired.desc', ['seatname' => $this->route_id]))
+                    ->action(__('global.view'), route($this->route, $this->route_id));
     }
 
     /**

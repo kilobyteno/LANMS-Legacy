@@ -1,20 +1,20 @@
 @extends('layouts.main')
-@section('title', trans('header.tickets'))
+@section('title', __('header.tickets'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.tickets') }}</h4>
+		<h4 class="page-title">{{ __('header.tickets') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.tickets') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ __('header.tickets') }}</li>
 		</ol>
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-lg-12 col-sm-12">
 			<div class="row shop-dec">
 				@if(!$ticket_types->count())
-					<div class="alert alert-info"><i class="fas fa-info mr-2" aria-hidden="true"></i>{{ trans('pages.tickets.none') }}</div>
+					<div class="alert alert-info"><i class="fas fa-info mr-2" aria-hidden="true"></i>{{ __('pages.tickets.none') }}</div>
 				@endif
 				@foreach($ticket_types as $type)
 					<div class="col-lg-6">
@@ -33,7 +33,7 @@
 													<a class="card-title">{{ $type->name }}</a>
 												</div>
 												<div class="cardprice">
-													<span>{{ $type->price == 0 ? trans('pages.tickets.free') : moneyFormat($type->price, 'NOK') }}</span>
+													<span>{{ $type->price == 0 ? __('pages.tickets.free') : moneyFormat($type->price, 'NOK') }}</span>
 												</div>
 											</div>
 											<div class="card-body p-4">{!! $type->description !!}</div>

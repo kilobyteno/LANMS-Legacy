@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', trans('header.sponsor'))
+@section('title', __('header.sponsor'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.sponsor') }}</h4>
+		<h4 class="page-title">{{ __('header.sponsor') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.sponsor') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ __('header.sponsor') }}</li>
 		</ol>
 	</div>
 	<div class="row">
@@ -25,7 +25,7 @@
 			@endforeach
 		@else
 			<div class="col-md-12 col-lg-12 col-sm-12">
-				<p>{{ trans('global.nodata') }}</p>
+				<p>{{ __('global.nodata') }}</p>
 			</div>
 		@endif
 	</div>

@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'LANMS\Model' => 'LANMS\Policies\ModelPolicy',
+        //'LANMS\Model' => 'LANMS\Policies\ModelPolicy',
     ];
 
     /**

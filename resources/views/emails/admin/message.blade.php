@@ -2,7 +2,7 @@
 @section('subject', $subject)
 @section('content') 
 
-<p>{{ trans('email.hello', ['firstname' => $firstname]) }}</p>
+<p>{{ __('email.hello', ['firstname' => $firstname]) }}</p>
 {!! $content !!}
 
 @stop

@@ -30,22 +30,22 @@ class CompoSignUpController extends Controller
         if (\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.alreadysignedup'));
+                ->with('message', __('compo.signup.alert.alreadysignedup'));
         }
         if (\Carbon\Carbon::now() < $compo->first_sign_up_at) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.firstsignupbefore'));
+                ->with('message', __('compo.signup.alert.firstsignupbefore'));
         }
         if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.lastsignuppast'));
+                ->with('message', __('compo.signup.alert.lastsignuppast'));
         }
         if ($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.maxsignups'));
+                ->with('message', __('compo.signup.alert.maxsignups'));
         }
         return view('compo.signup.show')->withCompo($compo);
     }
@@ -62,25 +62,25 @@ class CompoSignUpController extends Controller
         if (\Sentinel::check()->composignups()->where('compo_id', $compo->id)->first()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.alreadysignedup'));
+                ->with('message', __('compo.signup.alert.alreadysignedup'));
         }
 
         if (\Carbon\Carbon::now() < $compo->first_sign_up_at) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.firstsignupbefore'));
+                ->with('message', __('compo.signup.alert.firstsignupbefore'));
         }
 
         if ($compo->last_sign_up_at < \Carbon\Carbon::now()) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.lastsignuppast'));
+                ->with('message', __('compo.signup.alert.lastsignuppast'));
         }
 
         if ($compo->max_signups && $compo->signupsThisYear->count() >= $compo->max_signups) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.maxsignups'));
+                ->with('message', __('compo.signup.alert.maxsignups'));
         }
 
         if ($compo->signup_type == 1) {
@@ -95,7 +95,7 @@ class CompoSignUpController extends Controller
             if ($compo->signup_size != $players) {
                 return \Redirect::route('compo-show', $compo->slug)
                     ->with('messagetype', 'warning')
-                    ->with('message', trans('compo.signup.alert.signupsize'));
+                    ->with('message', __('compo.signup.alert.signupsize'));
             }
         } else {
             $request->validate([
@@ -165,7 +165,7 @@ class CompoSignUpController extends Controller
         if (\Carbon\Carbon::now() > $compo->start_at) {
             return \Redirect::route('compo-show', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.signup.alert.alreadystarted'));
+                ->with('message', __('compo.signup.alert.alreadystarted'));
         }
 
         $team_id = null;

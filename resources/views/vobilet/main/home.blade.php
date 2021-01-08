@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', trans('header.home'))
+@section('title', __('header.home'))
 @section('content')
 
 <div class="container">
@@ -13,7 +13,7 @@
 							<a href="{{ route('news-category-show', $article->category->slug) }}" class="badge badge-light"><i class="fas fa-tag mr-2"></i>{{ $article->category->name }}</a>
 							@if(Sentinel::check())
 								@if(Sentinel::hasAccess('admin.news.update'))
-									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
+									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ __('global.edit') }}</a>
 								@endif
 							@endif
 						</div>
@@ -34,12 +34,12 @@
 		<div class="col-md-12 col-lg-4 col-sm-12">
 			<div class="card">
 				<div class="card-header">
-					<h2 class="card-title">{{ trans('pages.home.info') }}</h2>
+					<h2 class="card-title">{{ __('pages.home.info') }}</h2>
 				</div>
 				<div class="card-body">
-					<p><b>{{ trans('pages.home.where') }}: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
-					<p><b>{{ trans('pages.home.when') }}: </b> {{ LANMS\Info::getContent('when') }}</p>
-					<p><b>{{ trans('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }} <small><a class="float-right" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ trans('pages.home.moreinfo') }}</a></small></p>
+					<p><b>{{ __('pages.home.where') }}: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
+					<p><b>{{ __('pages.home.when') }}: </b> {{ LANMS\Info::getContent('when') }}</p>
+					<p><b>{{ __('pages.home.price') }}: </b> {{ LANMS\Info::getContent('price') }} <small><a class="float-right" href="{{ route('tickets') }}"><i class="fas fa-ticket-alt"></i> {{ __('pages.home.moreinfo') }}</a></small></p>
 				</div>
 			</div>
 			@if(\LANMS\Info::where('name', 'social_discord_server_id')->where('content', '<>', '')->first())

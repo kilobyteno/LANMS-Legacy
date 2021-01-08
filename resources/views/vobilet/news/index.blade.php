@@ -1,13 +1,13 @@
 @extends('layouts.main')
-@section('title', trans('header.news'))
+@section('title', __('header.news'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h4 class="page-title">{{ trans('header.news') }}</h4>
+		<h4 class="page-title">{{ __('header.news') }}</h4>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.news') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ __('header.news') }}</li>
 		</ol>
 	</div>
 	<div class="row">
@@ -20,7 +20,7 @@
 							<a href="{{ route('news-category-show', $article->category->slug) }}" class="badge badge-light"><i class="fas fa-tag mr-2"></i>{{ $article->category->name }}</a>
 							@if(Sentinel::check())
 								@if(Sentinel::hasAccess('admin.news.update'))
-									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>
+									<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-warning btn-sm ml-2"><i class="fas fa-edit mr-2"></i>{{ __('global.edit') }}</a>
 								@endif
 							@endif
 						</div>

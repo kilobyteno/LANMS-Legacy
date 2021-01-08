@@ -177,7 +177,7 @@ class UserController extends Controller
         $user = \User::withTrashed()->find($id);
         if (is_null($user)) {
             return Redirect::route('admin-users')->with('messagetype', 'danger')
-                                ->with('message', trans('auth.alert.usernotfound'));
+                                ->with('message', __('auth.alert.usernotfound'));
         }
 
         $activation = \Activation::exists($user);
@@ -197,12 +197,12 @@ class UserController extends Controller
                     'firstname' => $user->firstname
                 ),
                 function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.activate.title'));
+                    $message->to($user->email, $user->firstname)->subject(__('email.auth.activate.title'));
                 }
             );
         } catch (\Swift_TransportException $e) {
             return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
-                    ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
+                    ->with('message', __('auth.alert.emailfailure').' Error: '.$e->getMessage());
         }
 
         return Redirect::route('admin-users')->with('messagetype', 'success')
@@ -214,7 +214,7 @@ class UserController extends Controller
         $user = \User::withTrashed()->find($id);
         if (is_null($user)) {
             return Redirect::route('admin-users')->with('messagetype', 'error')
-                                    ->with('message', trans('auth.alert.usernotfound'));
+                                    ->with('message', __('auth.alert.usernotfound'));
         }
 
         $actex = \Activation::exists($user);
@@ -246,12 +246,12 @@ class UserController extends Controller
                     'username' => $user->username,
                 ),
                 function ($message) use ($user) {
-                    $message->to($user->email, $user->firstname)->subject(trans('email.auth.forgotpassword.title'));
+                    $message->to($user->email, $user->firstname)->subject(__('email.auth.forgotpassword.title'));
                 }
             );
         } catch (\Swift_TransportException $e) {
             return Redirect::route('admin-user-edit', $id)->with('messagetype', 'warning')
-                                ->with('message', trans('auth.alert.emailfailure').' Error: '.$e->getMessage());
+                                ->with('message', __('auth.alert.emailfailure').' Error: '.$e->getMessage());
         }
         
         return Redirect::route('admin-user-edit', $id)->with('messagetype', 'success')

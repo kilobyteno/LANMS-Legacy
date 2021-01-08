@@ -30,7 +30,7 @@ class TwoFactorAuthController extends Controller
             if ($res->bodyvar("success")) {
                 session(['isVerified' => true]);
                 return redirect()->route('account')->with('messagetype', 'success')
-                                            ->with('message', trans('auth.alert.loggedin'));
+                                            ->with('message', __('auth.alert.loggedin'));
             }
             return back()->with(['error' => $res->errors()->message]);
         } catch (\Throwable $th) {
