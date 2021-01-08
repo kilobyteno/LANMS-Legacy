@@ -33,7 +33,7 @@
 													<a class="card-title">{{ $type->name }}</a>
 												</div>
 												<div class="cardprice">
-													<span>{{ $type->price == 0 ? __('pages.tickets.free') : moneyFormat($type->price, 'NOK') }}</span>
+													<span>{{ $type->price == 0 ? __('pages.tickets.free') : moneyFormat($type->price, Setting::get('MAIN_CURRENCY')) }}</span>
 												</div>
 											</div>
 											<div class="card-body p-4">{!! $type->description !!}</div>
