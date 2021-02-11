@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', trans('user.account.billing.invoice.title'))
+@section('title', __('user.account.billing.invoice.title'))
 @section('content')
 
 <div class="page-header">
-    <h4 class="page-title">{{ trans('user.account.billing.invoice.title') }} <a class="btn btn-sm btn-success ml-2" href="{{ route('admin-billing-invoice-create') }}"><i class="fa fa-plus"></i> {{ trans('global.add') }}</a></h4>
+    <h4 class="page-title">{{ __('user.account.billing.invoice.title') }} <a class="btn btn-sm btn-success ml-2" href="{{ route('admin-billing-invoice-create') }}"><i class="fa fa-plus"></i> {{ __('global.add') }}</a></h4>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
         <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
-        <li class="breadcrumb-item">{{ trans('user.account.billing.title') }}</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ trans('user.account.billing.invoice.title') }}</li>
+        <li class="breadcrumb-item">{{ __('user.account.billing.title') }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ __('user.account.billing.invoice.title') }}</li>
     </ol>
 </div>
 
@@ -27,20 +27,20 @@
         <div class="card">
             @if(count($invoices) == 0)
                 <div class="card-body">
-                    <p><em>{{ trans('global.nodata') }}</em></p>
+                    <p><em>{{ __('global.nodata') }}</em></p>
                 </div>
             @else
                 <div class="card-body">
                     <table class="table table-striped table-bordered dataTable no-footer" id="table-1">
                         <thead>
-                            <th>{{ trans('user.account.billing.invoice.title') }} #</th>
+                            <th>{{ __('user.account.billing.invoice.title') }} #</th>
                             <th>User</th>
-                            <th>{{ trans('global.date') }}</th>
-                            <th>{{ trans('global.payment.amount') }}</th>
-                            <th>{{ trans('global.payment.duedate') }}</th>
-                            <th>{{ trans('global.payment.paid') }}</th>
-                            <th>{{ trans('global.status') }}</th>
-                            <th>{{ trans('global.details') }}</th>
+                            <th>{{ __('global.date') }}</th>
+                            <th>{{ __('global.payment.amount') }}</th>
+                            <th>{{ __('global.payment.duedate') }}</th>
+                            <th>{{ __('global.payment.paid') }}</th>
+                            <th>{{ __('global.status') }}</th>
+                            <th>{{ __('global.details') }}</th>
                         </thead>
                         <tbody>
                             @foreach($invoices as $invoice)
@@ -51,19 +51,19 @@
                                     <td>{{ \Carbon::parse($invoice['date'])->toDateTimeString() }}</td>
                                     <td>{{ moneyFormat(floatval($invoice['total']/100), strtoupper($invoice['currency'])) }}</td>
                                     <td>@if(\Carbon::parse($invoice['due_date'])->isPast() && $invoice['status'] != 'void' && !$invoice['paid'])<span class="text-danger font-weight-bold">{{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}</span> @else {{ \Carbon::parse($invoice['due_date'])->toDateTimeString() }}@endif</td>
-                                    <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? trans('global.yes') : trans('global.no')) }}@endif</td>
+                                    <td>@if($invoice['status']=='draft') - @else{{ ($invoice['paid'] ? __('global.yes') : __('global.no')) }}@endif</td>
                                     <td>
                                         @if($invoice['status'] == 'draft' && $invoice['auto_advance'] == true)
-                                            {{ trans('user.account.billing.invoice.status.scheduled') }}
+                                            {{ __('user.account.billing.invoice.status.scheduled') }}
                                         @else
-                                            {{ trans('user.account.billing.invoice.status.'.$invoice['status']) }}
+                                            {{ __('user.account.billing.invoice.status.'.$invoice['status']) }}
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin-billing-invoice-show', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>{{ trans('global.view') }}</a>
-                                        @if($invoice['status'] == 'draft')<a href="{{ route('admin-billing-invoice-edit', $invoice['id']) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>{{ trans('global.edit') }}</a>@endif
+                                        <a href="{{ route('admin-billing-invoice-show', $invoice['id']) }}" class="btn btn-info btn-sm"><i class="fas fa-eye mr-2"></i>{{ __('global.view') }}</a>
+                                        @if($invoice['status'] == 'draft')<a href="{{ route('admin-billing-invoice-edit', $invoice['id']) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit mr-2"></i>{{ __('global.edit') }}</a>@endif
                                         @if(Sentinel::hasAccess('admin.billing.destroy') && $invoice['status'] == 'draft')
-                                            <a href="javascript:;" onclick="jQuery('#invoice-destroy-{{ $invoice['id'] }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>{{ trans('global.delete') }}</a>
+                                            <a href="javascript:;" onclick="jQuery('#invoice-destroy-{{ $invoice['id'] }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>{{ __('global.delete') }}</a>
                                         @endif
                                     </td>
                                 </tr>

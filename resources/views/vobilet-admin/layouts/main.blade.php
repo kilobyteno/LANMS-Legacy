@@ -83,8 +83,8 @@
 							<div class="d-flex order-lg-2 ml-auto">
 								@if(Sentinel::Guest())
 									<div class="d-none d-md-flex">
-										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ trans('auth.signin.button') }}</a>
-										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ trans('auth.signup.button') }}</a>
+										<a href="{{ route('account-signin') }}" class="nav-link btn btn-sm btn-outline-primary mr-2"><i class="fas fa-sign-in-alt mr-2"></i>{{ __('auth.signin.button') }}</a>
+										<a href="{{ route('account-signup') }}" class="nav-link btn btn-sm btn-outline-secondary"><i class="fas fa-pencil-alt mr-2"></i>{{ __('auth.signup.button') }}</a>
 									</div>
 								@else
 									<div class="dropdown">
@@ -96,14 +96,14 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item" href="{{ route('account') }}">
-												<i class="fas fa-id-card"></i> {{ trans('user.account.title') }}
+												<i class="fas fa-id-card"></i> {{ __('user.account.title') }}
 											</a>
 											<a class="dropdown-item" href="{{ route('user-profile', Sentinel::getUser()->username) }}">
-												<i class="fas fa-user-circle"></i> {{ trans('user.profile.title') }}
+												<i class="fas fa-user-circle"></i> {{ __('user.profile.title') }}
 											</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" href="{{ route('logout') }}">
-												<i class="fas fa-sign-out-alt"></i> {{ trans('auth.signout') }}
+												<i class="fas fa-sign-out-alt"></i> {{ __('auth.signout') }}
 											</a>
 										</div>
 									</div>
@@ -207,9 +207,9 @@
 						<div style="min-height:80vh">
 							
 							@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
-								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License page</a>.</div>
+								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License page</a>.</div>
 							@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
-								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(trans('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
+								<div class="alert alert-danger mt-5" role="alert"><i class="far fa-frown mr-1"></i> <strong>{{ mb_strtoupper(__('global.alert.important')) }}!</strong> Your license has expired! Please contact your provider.</div>
 							@endif
 
 							@component('layouts.alert-session') @endcomponent
@@ -237,7 +237,7 @@
 											<button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}<span class="caret"></span></button>
 											<ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
 												@foreach(array_flip(config('app.locales')) as $lang)
-													<li><a href="{{ route('locale', $lang) }}">{{ trans('language.'.$lang) }}</a></li>
+													<li><a href="{{ route('locale', $lang) }}">{{ __('language.'.$lang) }}</a></li>
 												@endforeach
 											</ul>
 										</div>
@@ -245,7 +245,7 @@
 											<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
 										@endif
 									</div>
-									<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ trans('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
+									<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://infihex.com/" target="_blank">Infihex</a></p>
 									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
 										<div class="alert alert-danger text-uppercase" role="alert">
 											<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>
@@ -260,10 +260,10 @@
 										</div>
 									@endif
 									@if(Config::get('app.debug'))
-										<b><span class="text-danger">{{ mb_strtoupper(trans('footer.debugmode')) }}</span></b>
+										<b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
 									@endif
 									@if(Config::get('app.debug') && Setting::get('APP_SHOW_RESETDB'))
-										<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(trans('footer.resetdbandsettings')) }}</a></b>
+										<b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('footer.resetdbandsettings')) }}</a></b>
 									@endif 
 								</div>
 							</div>

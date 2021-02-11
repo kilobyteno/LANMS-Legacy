@@ -1,6 +1,9 @@
 <?php
 
+use Carbon\Carbon;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class UserTableSeeder extends Seeder
 {
@@ -13,9 +16,9 @@ class UserTableSeeder extends Seeder
             'lastname'      => 'SADMIN',
             'username'      => 'sadmin',
             'referral_code' => str_random(15),
-            'last_activity' => \Carbon\Carbon::now(),
+            'last_activity' => Carbon::now(),
         ]);
-        if (Config::get('app.debug')) {
+        if (env('app.debug')) {
             Sentinel::registerAndActivate([
                 'email'         => 'test2@infihex.com',
                 'password'      => '12345678', // Den hash'r automatisk
@@ -23,7 +26,7 @@ class UserTableSeeder extends Seeder
                 'lastname'      => 'ADMIN',
                 'username'      => 'admin',
                 'referral_code' => str_random(15),
-                'last_activity' => \Carbon\Carbon::now(),
+                'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
                 'email'         => 'test3@infihex.com',
@@ -32,7 +35,7 @@ class UserTableSeeder extends Seeder
                 'lastname'      => 'MOD',
                 'username'      => 'mod',
                 'referral_code' => str_random(15),
-                'last_activity' => \Carbon\Carbon::now(),
+                'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
                 'email'         => 'test4@infihex.com',
@@ -41,7 +44,7 @@ class UserTableSeeder extends Seeder
                 'lastname'      => 'USER',
                 'username'      => 'user',
                 'referral_code' => str_random(15),
-                'last_activity' => \Carbon\Carbon::now(),
+                'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
                 'email'         => 'test5@infihex.com',
@@ -50,7 +53,7 @@ class UserTableSeeder extends Seeder
                 'lastname'      => 'USER2',
                 'username'      => 'user2',
                 'referral_code' => str_random(15),
-                'last_activity' => \Carbon\Carbon::now(),
+                'last_activity' => Carbon::now(),
             ]);
         }
 
@@ -60,7 +63,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Super Administrators',
             'slug' => 'superadmin',
         ]);
-        if (Config::get('app.debug')) {
+        if (env('app.debug')) {
             $role = Sentinel::getRoleRepository()->createModel()->create([
                 'name' => 'Administrators',
                 'slug' => 'admin',
@@ -76,7 +79,7 @@ class UserTableSeeder extends Seeder
         $role = Sentinel::findRoleByName('Super Administrators');
         $role->users()->attach($user);
 
-        if (Config::get('app.debug')) {
+        if (env('app.debug')) {
             $user = Sentinel::findById(2);
             $role = Sentinel::findRoleByName('Administrators');
             $role->users()->attach($user);
@@ -182,7 +185,7 @@ class UserTableSeeder extends Seeder
 
         $role->save();
 
-        if (Config::get('app.debug')) {
+        if (env('app.debug')) {
             $role = Sentinel::findRoleByName('Administrators');
 
             $role->addPermission('admin');//admin panel access

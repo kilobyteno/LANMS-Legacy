@@ -49,12 +49,12 @@ class CompoTeamController extends Controller
         if ($array_not_unique === true || in_array(\Sentinel::check()->id, $players)) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.notunique'));
+                ->with('message', __('compo.team.alert.notunique'));
         }
         if (count($players) == 0) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.moreplayers'));
+                ->with('message', __('compo.team.alert.moreplayers'));
         }
         $creator = \Sentinel::getUser();
         $team = \LANMS\CompoTeam::create([
@@ -69,7 +69,7 @@ class CompoTeamController extends Controller
 
         return \Redirect::route('compo-team')
                 ->with('messagetype', 'success')
-                ->with('message', trans('compo.team.alert.created'));
+                ->with('message', __('compo.team.alert.created'));
     }
 
     /**
@@ -109,7 +109,7 @@ class CompoTeamController extends Controller
         if ($team->composignupsThisYear()->count() > 0) {
             return \Redirect::route('compo-team', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.cantdelete'));
+                ->with('message', __('compo.team.alert.cantdelete'));
         }
         $team->update([
             'name' => $request->get('name'),
@@ -119,12 +119,12 @@ class CompoTeamController extends Controller
         if ($array_not_unique === true || in_array(\Sentinel::check()->id, $players)) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.notunique'));
+                ->with('message', __('compo.team.alert.notunique'));
         }
         if (count($players) == 0) {
             return \Redirect::back()
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.moreplayers'));
+                ->with('message', __('compo.team.alert.moreplayers'));
         }
 
         $new = $players;
@@ -146,7 +146,7 @@ class CompoTeamController extends Controller
 
         return \Redirect::route('compo-team')
                 ->with('messagetype', 'success')
-                ->with('message', trans('compo.team.alert.updated'));
+                ->with('message', __('compo.team.alert.updated'));
     }
 
     /**
@@ -161,13 +161,13 @@ class CompoTeamController extends Controller
         if ($team->composignupsThisYear()->count() > 0) {
             return \Redirect::route('compo-team', $compo->slug)
                 ->with('messagetype', 'warning')
-                ->with('message', trans('compo.team.alert.cantdelete'));
+                ->with('message', __('compo.team.alert.cantdelete'));
         }
         if ($team->user_id === \Sentinel::check()->id) {
             $team->delete();
-            return \Redirect::route('compo-team')->with('messagetype', 'success')->with('message', trans('compo.team.alert.deleted'));
+            return \Redirect::route('compo-team')->with('messagetype', 'success')->with('message', __('compo.team.alert.deleted'));
         } else {
-            return \Redirect::route('compo-team')->with('messagetype', 'warning')->with('message', trans('global.noaccess'));
+            return \Redirect::route('compo-team')->with('messagetype', 'warning')->with('message', __('global.noaccess'));
         }
     }
 }

@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', trans('header.members'))
+@section('title', __('header.members'))
 @section('content')
 
 <div class="container">
 	<div class="page-header">
-		<h1 class="page-title">{{ trans('header.members') }}</h1>
+		<h1 class="page-title">{{ __('header.members') }}</h1>
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ trans('header.home') }}</a></li>
-			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ trans('user.account.title') }}</a></li>
-			<li class="breadcrumb-item active" aria-current="page">{{ trans('header.members') }}</li>
+			<li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('header.home') }}</a></li>
+			<li class="breadcrumb-item"><a href="{{ route('account') }}">{{ __('user.account.title') }}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ __('header.members') }}</li>
 		</ol>
 	</div>
 	<div class="row row-cards">
@@ -16,18 +16,18 @@
 			<form class="card" method="post" action="{{ route('members-search') }}">
 				<div class="card-body">
 					<div class="form-group">
-						<div class="form-label">{{ trans('pages.members.search.title') }}</div>
-						<input type="text" class="form-control" name="search" placeholder="{{ trans('pages.members.search.placeholder') }}">
+						<div class="form-label">{{ __('pages.members.search.title') }}</div>
+						<input type="text" class="form-control" name="search" placeholder="{{ __('pages.members.search.placeholder') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</div>
 				</div>
 				<div class="card-footer text-right">
-					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> {{ trans('pages.members.search.button') }}</button>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> {{ __('pages.members.search.button') }}</button>
 				</div>
 			</form>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('pages.members.newest.title') }}</h3>
+					<h3 class="card-title">{{ __('pages.members.newest.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -51,7 +51,7 @@
 			</div>
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">{{ trans('pages.members.lastonline.title') }}</h3>
+					<h3 class="card-title">{{ __('pages.members.lastonline.title') }}</h3>
 				</div>
 				<div class="card-body o-auto" style="height: 15rem">
 					<ul class="list-unstyled list-separated">
@@ -81,10 +81,10 @@
 						<tbody>
 							<tr>
 								<th class="w-1"></th>
-								<th>{{ trans('pages.members.table.username') }}</th>
-								<th>{{ trans('pages.members.table.name') }}</th>
-								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.joined') }}</th>
-								<th class="d-none d-sm-table-cell">{{ trans('pages.members.table.lastseen') }}</th>
+								<th>{{ __('pages.members.table.username') }}</th>
+								<th>{{ __('pages.members.table.name') }}</th>
+								<th class="d-none d-sm-table-cell">{{ __('pages.members.table.joined') }}</th>
+								<th class="d-none d-sm-table-cell">{{ __('pages.members.table.lastseen') }}</th>
 							</tr>
 						@foreach($members as $member)
 							<tr>
@@ -99,7 +99,7 @@
 					</table>
 				</div>
 			</div>
-			<p class="text-muted">{{ trans('pages.members.table.showing', ['pluck' => $members->count(), 'total' => $totalmembers->count()]) }}</p>
+			<p class="text-muted">{{ __('pages.members.table.showing', ['pluck' => $members->count(), 'total' => $totalmembers->count()]) }}</p>
 			{!! $members->render() !!}
 		</div>
 	</div>

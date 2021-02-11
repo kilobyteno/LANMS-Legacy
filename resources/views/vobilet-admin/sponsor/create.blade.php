@@ -75,7 +75,7 @@
 									<label class="text-muted">This logo should be of lighter colors and work on dark background.</label>
 									<div class="custom-file">
 										<input type="file" class="custom-file-input" name="image_light" accept="image/*">
-										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+										<label class="custom-file-label">{{ __('global.choosefile') }}</label>
 									</div>
 									@if($errors->has('image_light'))
 										<p class="text-danger">{{ $errors->first('image_light') }}</p>
@@ -91,7 +91,7 @@
 									<label class="text-muted">This logo should be of darker colors and work on light background.</label>
 									<div class="custom-file">
 										<input type="file" class="custom-file-input" name="image_dark" accept="image/*">
-										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+										<label class="custom-file-label">{{ __('global.choosefile') }}</label>
 									</div>
 									@if($errors->has('image_dark'))
 										<p class="text-danger">{{ $errors->first('image_dark') }}</p>

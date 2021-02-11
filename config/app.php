@@ -172,7 +172,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        TomLingham\Searchy\SearchyServiceProvider::class,
+        //TomLingham\Searchy\SearchyServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
@@ -261,7 +261,7 @@ return [
         'DNS2D'         => Milon\Barcode\Facades\DNS2DFacade::class,
         'Sentry'        => Sentry\Laravel\Facade::class,
         'Carbon'        => 'Carbon\Carbon',
-        'Searchy'       => TomLingham\Searchy\Facades\Searchy::class,
+        //'Searchy'       => TomLingham\Searchy\Facades\Searchy::class,
         'PDF'           => Barryvdh\DomPDF\Facade::class,
     ],
 

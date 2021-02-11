@@ -2,11 +2,12 @@
 
 namespace LANMS\Http\Controllers\Admin\Seating;
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use LANMS\Http\Controllers\Controller;
 use LANMS\TicketType;
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use LANMS\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class TicketTypeController extends Controller
 {
@@ -52,6 +53,7 @@ class TicketTypeController extends Controller
             'name' => 'required|max:255',
             'price' => 'required|integer',
             'color' => 'required|regex:/[a-zA-Z0-9]{6}/',
+            'image' => 'image|max:25000',
             'description' => '',
             'active' => '',
         ]);
@@ -61,6 +63,7 @@ class TicketTypeController extends Controller
             $active = true;
         }
 
+        
         $tickettype = new TicketType;
         $tickettype->name = $request->name;
         $tickettype->slug = str_slug($request->name);
@@ -72,7 +75,18 @@ class TicketTypeController extends Controller
         $tickettype->author_id = Sentinel::getUser()->id;
 
         $tickettype->save();
+        
+        if (!is_null($request->image)) {
+            $image = $request->file('image');
+            $filename = $tickettype->id . '.' . $image->getClientOriginalExtension();
+            $path = public_path() . '/images/tickettype/' . $filename;
+            $webpath = '/images/tickettype/' . $filename;
+            Image::make($image->getRealPath())->fit(115)->save($path);
+            $tickettype->image = $webpath;
+        }
 
+        $tickettype->save();
+        
         return Redirect::route('admin-seating-tickettypes')
                         ->with('messagetype', 'success')
                         ->with('message', 'The ticket type has now been created!');
@@ -123,6 +137,7 @@ class TicketTypeController extends Controller
             'name' => 'required|max:255',
             'price' => 'required|integer',
             'color' => 'required|regex:/[a-zA-Z0-9]{6}/',
+            'image' => 'nullable|image|max:25000',
             'description' => '',
             'active' => '',
         ]);
@@ -141,6 +156,15 @@ class TicketTypeController extends Controller
         $tickettype->active = $active;
         $tickettype->editor_id = Sentinel::getUser()->id;
         $tickettype->author_id = Sentinel::getUser()->id;
+
+        if (!is_null($request->image)) {
+            $image = $request->file('image');
+            $filename = $tickettype->id . '.' . $image->getClientOriginalExtension();
+            $path = public_path() . '/images/tickettype/' . $filename;
+            $webpath = '/images/tickettype/' . $filename;
+            Image::make($image->getRealPath())->fit(115)->save($path);
+            $tickettype->image = $webpath;
+        }
 
         $tickettype->save();
 

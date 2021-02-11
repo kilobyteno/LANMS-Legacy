@@ -20,6 +20,55 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2111" aria-expanded="true">Version 21.1.1</a>
+							</h4>
+						</div>
+						<div id="2111" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-491'>LANMS-491</a>] - Security Update</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2110" aria-expanded="true">Version 21.1.0</a>
+							</h4>
+						</div>
+						<div id="2110" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>New Feature</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-491'>LANMS-491</a>] - Security Update</li>
+								</ul>
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-494'>LANMS-494</a>] - Asset not found [plugins/datatable/responsive/js/datatables.responsive.min.js] in Theme [vobilet-admin]</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2027" aria-expanded="true">Version 20.2.7</a>
+							</h4>
+						</div>
+						<div id="2027" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-492'>LANMS-492</a>] - Illuminate\Database\QueryException /app/User.php in LANMS\User::scopeActive</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2026" aria-expanded="true">Version 20.2.6</a>
 							</h4>
 						</div>

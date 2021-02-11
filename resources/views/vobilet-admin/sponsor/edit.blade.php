@@ -78,7 +78,7 @@
 									</div>
 									<div class="custom-file">
 										<input type="file" class="custom-file-input" name="image_light" accept="image/*">
-										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+										<label class="custom-file-label">{{ __('global.choosefile') }}</label>
 									</div>
 									@if($errors->has('image_light'))
 										<p class="text-danger">{{ $errors->first('image_light') }}</p>
@@ -97,7 +97,7 @@
 									</div>
 									<div class="custom-file">
 										<input type="file" class="custom-file-input" name="image_dark" accept="image/*">
-										<label class="custom-file-label">{{ trans('global.choosefile') }}</label>
+										<label class="custom-file-label">{{ __('global.choosefile') }}</label>
 									</div>
 									@if($errors->has('image_dark'))
 										<p class="text-danger">{{ $errors->first('image_dark') }}</p>
