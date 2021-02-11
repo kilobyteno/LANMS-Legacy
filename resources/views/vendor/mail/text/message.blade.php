@@ -21,9 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            @lang('mail.global.youreceived')
-            {{ config('app.url') }}
-            © {{ date('Y') }} {{ config('app.name') }}. @lang('mail.global.copyright')
+            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
         @endcomponent
     @endslot
 @endcomponent
