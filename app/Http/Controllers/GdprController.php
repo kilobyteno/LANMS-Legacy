@@ -41,7 +41,7 @@ class GdprController extends Controller
     public function showTerms()
     {
         \Theme::set('vobilet');
-        return view('account.gdpr.message');
+        return response()->view('account.gdpr.message');
     }
 
     /**

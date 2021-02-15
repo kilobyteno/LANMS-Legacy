@@ -57,7 +57,7 @@ class PaymentSeatingController extends Controller
         }
         
         $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-        return view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
+        return response()->view('seating.pay')->withRows($rows)->with('currentseat', $currentseat);
     }
 
     /**

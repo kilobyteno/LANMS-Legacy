@@ -29,7 +29,7 @@ class StylingController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $files = Storage::files($this->folder_path);
-        return view('seating.styling.index')->withFiles($files);
+        return response()->view('seating.styling.index')->withFiles($files);
     }
 
     /**
@@ -43,7 +43,7 @@ class StylingController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return view('seating.styling.create');
+        return response()->view('seating.styling.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class StylingController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $file = Storage::get($this->folder_path.$id);
-        return view('seating.styling.edit')->withId($id)->withContent($file);
+        return response()->view('seating.styling.edit')->withId($id)->withContent($file);
     }
 
     /**

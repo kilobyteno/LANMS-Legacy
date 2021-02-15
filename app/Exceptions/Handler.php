@@ -62,11 +62,11 @@ class Handler extends ExceptionHandler
     {
         Theme::set('vobilet');
         if ($exception instanceof NotFoundHttpException) {
-            return view('errors.404');
+            return response()->view('errors.404');
         }
 
         if ($exception instanceof ThrottlingException) {
-            return view('errors.429')->with('message', $exception->getMessage());
+            return response()->view('errors.429')->with('message', $exception->getMessage());
         }
 
         if ($exception instanceof TokenMismatchException) {

@@ -28,7 +28,7 @@ class CardController extends Controller
         } else {
             $cards = [];
         }
-        return view('account.billing.card.index')->withCards($cards);
+        return response()->view('account.billing.card.index')->withCards($cards);
     }
 
     /**
@@ -42,7 +42,7 @@ class CardController extends Controller
             return Redirect::route('account-billing-card')->with('messagetype', 'warning')
                                 ->with('message', __('user.account.billing.alert.noaddress'));
         }
-        return view('account.billing.card.create');
+        return response()->view('account.billing.card.create');
     }
 
     /**

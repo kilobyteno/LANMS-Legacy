@@ -47,7 +47,7 @@ class CompoSignUpController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', __('compo.signup.alert.maxsignups'));
         }
-        return view('compo.signup.show')->withCompo($compo);
+        return response()->view('compo.signup.show')->withCompo($compo);
     }
 
     /**

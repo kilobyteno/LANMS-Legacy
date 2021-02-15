@@ -57,7 +57,7 @@ if (Config::get('app.debug')) {
     });
     Route::get('/pdf', function () {
         \Theme::set('vobilet');
-        return view('seating.pdf.consentform');
+        return response()->view('seating.pdf.consentform');
     });
 }
 

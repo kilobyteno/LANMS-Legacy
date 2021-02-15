@@ -35,7 +35,7 @@ class SMSController extends Controller
         } catch (RestException $e) {
             return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
         }
-        return view('sms.index')->withMessages($messages);
+        return response()->view('sms.index')->withMessages($messages);
     }
 
     /**
@@ -46,7 +46,7 @@ class SMSController extends Controller
     public function create()
     {
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.create']), 403);
-        return view('sms.create');
+        return response()->view('sms.create');
     }
 
     /**

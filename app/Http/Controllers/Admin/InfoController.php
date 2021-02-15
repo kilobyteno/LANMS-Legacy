@@ -22,7 +22,7 @@ class InfoController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.info.*'])) {
             $info = Info::all();
-            return view('info.index')
+            return response()->view('info.index')
                         ->with('allinfo', $info);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -40,7 +40,7 @@ class InfoController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.info.update'])) {
             $info = Info::find($id);
-            return view('info.edit')->withInfo($info);
+            return response()->view('info.edit')->withInfo($info);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

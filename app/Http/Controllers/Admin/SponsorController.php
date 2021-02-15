@@ -22,7 +22,7 @@ class SponsorController extends Controller
     public function index()
     {
         $sponsors = Sponsor::thisYear()->get();
-        return view('sponsor.index')->with('sponsors', $sponsors);
+        return response()->view('sponsor.index')->with('sponsors', $sponsors);
     }
 
     /**
@@ -37,7 +37,7 @@ class SponsorController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $sponsors = Sponsor::twoLastYears()->withTrashed()->orderBy('year', 'DESC')->get();
-        return view('sponsor.index')->with('sponsors', $sponsors);
+        return response()->view('sponsor.index')->with('sponsors', $sponsors);
     }
 
     /**
@@ -51,7 +51,7 @@ class SponsorController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return view('sponsor.create');
+        return response()->view('sponsor.create');
     }
 
     /**
@@ -124,7 +124,7 @@ class SponsorController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $sponsor = Sponsor::find($id);
-        return view('sponsor.edit')->withSponsor($sponsor);
+        return response()->view('sponsor.edit')->withSponsor($sponsor);
     }
 
     /**

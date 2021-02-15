@@ -32,7 +32,7 @@ class ReservationController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.reservation.*'])) {
             $reservations   = SeatReservation::thisYear()->get();
             $rows           = SeatRows::orderBy('sort_order', 'asc')->get();
-            return view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
+            return response()->view('seating.reservation.index')->withRows($rows)->withReservations($reservations);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -104,7 +104,7 @@ class ReservationController extends Controller
                                     ->with('message', 'Could not find seat.');
             }
             $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-            return view('seating.reservation.show')->with('seat', $seat);
+            return response()->view('seating.reservation.show')->with('seat', $seat);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -205,7 +205,7 @@ class ReservationController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.reservation.update'])) {
             $reservation = SeatReservation::find($id);
-            return view('seating.reservation.edit')->withReservation($reservation);
+            return response()->view('seating.reservation.edit')->withReservation($reservation);
         } else {
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
