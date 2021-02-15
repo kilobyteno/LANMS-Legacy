@@ -36,7 +36,7 @@ class PagesController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.pages.*'])) {
             $pages = Page::withTrashed()->get();
-            return view('pages.index')
+            return response()->view('pages.index')
                         ->withPages($pages);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -52,7 +52,7 @@ class PagesController extends Controller
     public function create()
     {
         if (Sentinel::getUser()->hasAccess(['admin.pages.create'])) {
-            return view('pages.create');
+            return response()->view('pages.create');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -122,7 +122,7 @@ class PagesController extends Controller
         if ($page == null) {
             abort(404);
         }
-        return view('main.page')->withPage($page);
+        return response()->view('main.page')->withPage($page);
     }
 
     /**
@@ -135,7 +135,7 @@ class PagesController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.pages.update'])) {
             $page = Page::find($id);
-            return view('pages.edit')->withPage($page);
+            return response()->view('pages.edit')->withPage($page);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

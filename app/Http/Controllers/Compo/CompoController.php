@@ -18,7 +18,7 @@ class CompoController extends Controller
     public function index()
     {
         $compos = Compo::thisYear()->get();
-        return view('compo.index')->with('compos', $compos);
+        return response()->view('compo.index')->with('compos', $compos);
     }
 
     /**
@@ -29,7 +29,7 @@ class CompoController extends Controller
     public function previous()
     {
         $compos = Compo::lastYear()->orderBy('year', 'DESC')->orderBy('end_at', 'DESC')->paginate(6);
-        return view('compo.previous')->with('compos', $compos);
+        return response()->view('compo.previous')->with('compos', $compos);
     }
 
     /**
@@ -44,7 +44,7 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $compos = Compo::withTrashed()->get();
-        return view('compo.index')->with('compos', $compos);
+        return response()->view('compo.index')->with('compos', $compos);
     }
 
     /**
@@ -58,7 +58,7 @@ class CompoController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return view('compo.create');
+        return response()->view('compo.create');
     }
 
     /**
@@ -184,7 +184,7 @@ class CompoController extends Controller
     public function show($slug)
     {
         $compo = Compo::where('slug', '=', $slug)->first();
-        return view('compo.show')->withCompo($compo);
+        return response()->view('compo.show')->withCompo($compo);
     }
 
     /**
@@ -200,7 +200,7 @@ class CompoController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $compo = Compo::find($id);
-        return view('compo.edit')->withCompo($compo);
+        return response()->view('compo.edit')->withCompo($compo);
     }
 
     /**

@@ -17,7 +17,7 @@ class TwoFactorAuthController extends Controller
 
     public function index()
     {
-        return view('auth.2fa-verify');
+        return response()->view('auth.2fa-verify');
     }
 
     public function verify(Request $request)

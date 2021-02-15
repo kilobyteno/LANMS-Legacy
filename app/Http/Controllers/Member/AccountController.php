@@ -30,7 +30,7 @@ class AccountController extends Controller
 
         $news = News::isPublished()->get()->take(3);
 
-        return view('account.dashboard')
+        return response()->view('account.dashboard')
                     ->with($userarray)
                     ->withNews($news);
     }
@@ -39,18 +39,18 @@ class AccountController extends Controller
     {
         $authuser = Sentinel::getUser();
         $birthday_last_changed = Activity::where('properties', 'LIKE', '%"birthdate":%')->where('subject_type', 'LANMS\User')->where('subject_id', $authuser->id)->orderBy('created_at', 'DESC')->first();
-        return view('account.identity')->with($authuser->toArray())->with('blc', $birthday_last_changed->created_at);
+        return response()->view('account.identity')->with($authuser->toArray())->with('blc', $birthday_last_changed->created_at);
     }
 
     public function getAccount()
     {
-        return view('account.index');
+        return response()->view('account.index');
     }
 
     public function getEditProfile()
     {
         $authuser = Sentinel::getUser();
-        return view('account.edit-profile')->with($authuser->toArray());
+        return response()->view('account.edit-profile')->with($authuser->toArray());
     }
 
     public function postEditProfile(Request $request)
@@ -155,7 +155,7 @@ class AccountController extends Controller
 
     public function getChangePassword()
     {
-        return view('account.changepassword');
+        return response()->view('account.changepassword');
     }
 
     public function postChangePassword(PasswordRequest $request)
@@ -194,7 +194,7 @@ class AccountController extends Controller
     public function getChangeImages()
     {
         $authuser = Sentinel::getUser();
-        return view('account.changeimages')->with($authuser->toArray());
+        return response()->view('account.changeimages')->with($authuser->toArray());
     }
 
     public function postChangeProfileImage(ProfileImageRequest $request)
@@ -275,12 +275,12 @@ class AccountController extends Controller
 
     public function getGDPRDownload()
     {
-        return view('account.gdpr.download');
+        return response()->view('account.gdpr.download');
     }
 
     public function getGDPRDelete()
     {
-        return view('account.gdpr.delete');
+        return response()->view('account.gdpr.delete');
     }
 
     public function postGDPRDelete(DeleteAccountRequest $request)

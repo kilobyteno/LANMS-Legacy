@@ -36,7 +36,7 @@ class CrewSkillController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.*'])) {
             $skills = CrewSkill::all();
-            return view('crew.skill.index')
+            return response()->view('crew.skill.index')
                         ->withSkills($skills);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -52,7 +52,7 @@ class CrewSkillController extends Controller
     public function create()
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.create'])) {
-            return view('crew.skill.create');
+            return response()->view('crew.skill.create');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -119,7 +119,7 @@ class CrewSkillController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-skill.update'])) {
             $crewskill = CrewSkill::find($id);
-            return view('crew.skill.edit')->withSkill($crewskill);
+            return response()->view('crew.skill.edit')->withSkill($crewskill);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

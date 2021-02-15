@@ -30,7 +30,7 @@ class CheckinController extends Controller
             $ticketsnoncheckedin    = SeatTicket::noCheckin()->thisYear()->get();
             $reservedcount          = SeatReservation::thisYear()->count();
 
-            return view('seating.checkin.index')->withCheckins($checkins)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
+            return response()->view('seating.checkin.index')->withCheckins($checkins)->withNoncheckedin($ticketsnoncheckedin)->with('reservedcount', $reservedcount);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -105,7 +105,7 @@ class CheckinController extends Controller
                 return Redirect::route('admin-seating-checkin')->with('messagetype', 'warning')
                                 ->with('message', 'This ticket has already been checked in!');
             }
-            return view('seating.checkin.show')->withTicket($ticket);
+            return response()->view('seating.checkin.show')->withTicket($ticket);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

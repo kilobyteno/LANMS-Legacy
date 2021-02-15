@@ -21,7 +21,7 @@ class LicenseController extends Controller
     public function index()
     {
         if (Sentinel::getUser()->hasAccess(['admin.license.*'])) {
-            return view('license.index');
+            return response()->view('license.index');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
