@@ -27,7 +27,7 @@ class RowsController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $rows = SeatRows::withTrashed()->orderBy('sort_order', 'asc')->get();
-        return response()->view('seating.rows.index')->with('allrows', $rows);
+        return view('seating.rows.index')->with('allrows', $rows);
     }
 
     /**
@@ -42,7 +42,7 @@ class RowsController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $ticket_types = TicketType::all();
-        return response()->view('seating.rows.create', ['ticket_types' => $ticket_types]);
+        return view('seating.rows.create', ['ticket_types' => $ticket_types]);
     }
 
     /**
@@ -92,7 +92,7 @@ class RowsController extends Controller
         }
         $row = SeatRows::withTrashed()->find($id);
         $ticket_types = TicketType::all();
-        return response()->view('seating.rows.edit', ['row' => $row, 'ticket_types' => $ticket_types]);
+        return view('seating.rows.edit', ['row' => $row, 'ticket_types' => $ticket_types]);
     }
 
     /**

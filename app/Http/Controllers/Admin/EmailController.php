@@ -26,7 +26,7 @@ class EmailController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $emails = Email::all();
-        return response()->view('emails.index')->withEmails($emails);
+        return view('emails.index')->withEmails($emails);
     }
 
     /**
@@ -40,7 +40,7 @@ class EmailController extends Controller
             return Redirect::route('admin')->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return response()->view('emails.create');
+        return view('emails.create');
     }
 
     /**
@@ -167,7 +167,7 @@ class EmailController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $email = Email::find($id);
-        return response()->view('emails.show')->withEmail($email);
+        return view('emails.show')->withEmail($email);
     }
 
     /**

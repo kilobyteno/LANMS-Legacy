@@ -34,7 +34,7 @@ class NewsCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.*'])) {
             $newscategories = NewsCategory::all();
-            return response()->view('news.category.index')
+            return view('news.category.index')
                         ->withCategories($newscategories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -50,7 +50,7 @@ class NewsCategoryController extends Controller
     public function create()
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.create'])) {
-            return response()->view('news.category.create');
+            return view('news.category.create');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -109,7 +109,7 @@ class NewsCategoryController extends Controller
         $category = NewsCategory::find($nc->id);
         $articles = News::where('category_id', $nc->id)->paginate(5);
         abort_unless($category, 404);
-        return response()->view('news.category.show')->withCategory($category)->withArticles($articles);
+        return view('news.category.show')->withCategory($category)->withArticles($articles);
     }
 
     /**
@@ -122,7 +122,7 @@ class NewsCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.newscategory.update'])) {
             $newscategory = NewsCategory::find($id);
-            return response()->view('news.category.edit')->withCategory($newscategory);
+            return view('news.category.edit')->withCategory($newscategory);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

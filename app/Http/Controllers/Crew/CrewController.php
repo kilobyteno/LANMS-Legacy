@@ -25,7 +25,7 @@ class CrewController extends Controller
     public function index()
     {
         $crewcategories = CrewCategory::where('active', '=', 1)->get();
-        return response()->view('crew.index')->with('crewcategories', $crewcategories);
+        return view('crew.index')->with('crewcategories', $crewcategories);
     }
 
     /**
@@ -37,7 +37,7 @@ class CrewController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.*'])) {
             $crewassignment = Crew::thisYear()->get();
-            return response()->view('crew.index')
+            return view('crew.index')
                         ->with('crewassignment', $crewassignment);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -60,7 +60,7 @@ class CrewController extends Controller
                     $users->forget($key);
                 }
             }
-            return response()->view('crew.create')->withUsers($users);
+            return view('crew.create')->withUsers($users);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -127,7 +127,7 @@ class CrewController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew.update'])) {
             $crew = Crew::find($id);
-            return response()->view('crew.edit')->withCrew($crew);
+            return view('crew.edit')->withCrew($crew);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

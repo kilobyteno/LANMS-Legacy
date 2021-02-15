@@ -22,7 +22,7 @@ class RecoverController extends Controller
 
     public function getForgotPassword()
     {
-        return response()->view('auth.forgot-password');
+        return view('auth.forgot-password');
     }
 
     public function postForgotPassword(ForgotPasswordRequest $request)
@@ -95,7 +95,7 @@ class RecoverController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', __('auth.reset.alert.noreminder'));
         } else {
-            return response()->view('auth.reset-password')->with('resetpassword_code', $resetpassword_code);
+            return view('auth.reset-password')->with('resetpassword_code', $resetpassword_code);
         }
     }
 
@@ -135,7 +135,7 @@ class RecoverController extends Controller
 
     public function getResendVerification()
     {
-        return response()->view('auth.resendverification');
+        return view('auth.resendverification');
     }
 
     public function postResendVerification(ResendVerificationRequest $request)

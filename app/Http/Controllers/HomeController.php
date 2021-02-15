@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $news = News::isPublished()->get()->take(5);
-        return response()->view('main.home')->withNews($news);
+        return view('main.home')->withNews($news);
     }
 
     public function locale($locale)
@@ -45,12 +45,12 @@ class HomeController extends Controller
 
     public function schedule()
     {
-        return response()->view('main.schedule');
+        return view('main.schedule');
     }
 
     public function tickets()
     {
         $ticket_types = TicketType::where('active', true)->orderBy('price', 'asc')->get();
-        return response()->view('main.tickets', ['ticket_types' => $ticket_types]);
+        return view('main.tickets', ['ticket_types' => $ticket_types]);
     }
 }

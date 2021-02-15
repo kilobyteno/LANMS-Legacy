@@ -25,7 +25,7 @@ class VisitorController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
             $visitors = Visitor::thisYear()->get();
-            return response()->view('seating.visitor.index')->withVisitors($visitors);
+            return view('seating.visitor.index')->withVisitors($visitors);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

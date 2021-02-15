@@ -29,7 +29,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::isPublished()->paginate(5);
-        return response()->view('news.index')
+        return view('news.index')
                     ->withNews($news);
     }
 
@@ -42,7 +42,7 @@ class NewsController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.news.*'])) {
             $news = News::all();
-            return response()->view('news.index')->withNews($news);
+            return view('news.index')->withNews($news);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -58,7 +58,7 @@ class NewsController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.news.create'])) {
             $categories = NewsCategory::all();
-            return response()->view('news.create')->withCategories($categories);
+            return view('news.create')->withCategories($categories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -145,7 +145,7 @@ class NewsController extends Controller
         $article = News::where('slug', '=', $id)->first();
         abort_unless($article, 404);
 
-        return response()->view('news.article')->withArticle($article);
+        return view('news.article')->withArticle($article);
     }
 
     /**
@@ -159,7 +159,7 @@ class NewsController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.news.update'])) {
             $article = News::find($id);
             $categories = NewsCategory::all();
-            return response()->view('news.edit')->withArticle($article)->withCategories($categories);
+            return view('news.edit')->withArticle($article)->withCategories($categories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
