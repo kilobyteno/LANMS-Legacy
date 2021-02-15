@@ -13,14 +13,14 @@ class BillingController extends Controller
     {
         $payment = \LANMS\SeatPayment::find($id);
         $charge = \Stripe::charges()->find($payment->stripecharge);
-        return view('seating.pdf.receipt')->with('payment', $payment)->with('charge', $charge);
+        return response()->view('seating.pdf.receipt')->with('payment', $payment)->with('charge', $charge);
         //return \PDF::loadView('seating.pdf.receipt')->stream();
     }
 
     public function getPayments()
     {
         $payments = Sentinel::getUser()->seatpayments;
-        return view('account.billing.payments')->with('payments', $payments);
+        return response()->view('account.billing.payments')->with('payments', $payments);
     }
 
     public function getPayment($id)
@@ -36,7 +36,7 @@ class BillingController extends Controller
         } elseif ($charge['payment_method_details']) {
             $card = $charge['payment_method_details']['card'];
         }
-        return view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge)->with('card', $card);
+        return response()->view('account.billing.payment')->with('seatpayment', $seatpayment)->with('charge', $charge)->with('card', $card);
     }
 
     public function getCharges()
@@ -50,6 +50,6 @@ class BillingController extends Controller
             $charges    = [];
         }
         
-        return view('account.billing.charges')->with('charges', $charges);
+        return response()->view('account.billing.charges')->with('charges', $charges);
     }
 }

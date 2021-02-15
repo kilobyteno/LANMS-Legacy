@@ -28,7 +28,7 @@ class InvoiceController extends Controller
         } else {
             $invoices = [];
         }
-        return view('account.billing.invoice.index')->withInvoices($invoices);
+        return response()->view('account.billing.invoice.index')->withInvoices($invoices);
     }
 
     /**
@@ -45,7 +45,7 @@ class InvoiceController extends Controller
         }
         $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
-        return view('account.billing.invoice.view')->withInvoice($invoice);
+        return response()->view('account.billing.invoice.view')->withInvoice($invoice);
     }
 
     /**
@@ -65,7 +65,7 @@ class InvoiceController extends Controller
         if ($invoice['paid'] == true) {
             abort(403);
         }
-        return view('account.billing.invoice.pay')->withInvoice($invoice);
+        return response()->view('account.billing.invoice.pay')->withInvoice($invoice);
     }
 
     /**
@@ -130,7 +130,7 @@ class InvoiceController extends Controller
     public function admin()
     {
         $invoices = Stripe::invoices()->all(array('limit' => 100));
-        return view('billing.invoice.index')->withInvoices($invoices['data']);
+        return response()->view('billing.invoice.index')->withInvoices($invoices['data']);
     }
     
     /**
@@ -144,7 +144,7 @@ class InvoiceController extends Controller
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
         }
-        return view('billing.invoice.create');
+        return response()->view('billing.invoice.create');
     }
 
     /**
@@ -229,7 +229,7 @@ class InvoiceController extends Controller
                                 ->with('message', $message);
         }
         $user = User::where('stripe_customer', $invoice['customer'])->first();
-        return view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
+        return response()->view('billing.invoice.show')->withInvoice($invoice)->withUser($user)->withEvents($events);
     }
 
     /**
@@ -247,7 +247,7 @@ class InvoiceController extends Controller
                                 ->with('message', 'You can\'t edit this invoice after it has been sent.');
         }
         $user = User::where('stripe_customer', $invoice['customer'])->first();
-        return view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
+        return response()->view('billing.invoice.edit')->withInvoice($invoice)->withUser($user);
     }
 
     /**

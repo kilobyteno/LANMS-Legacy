@@ -25,7 +25,7 @@ class SettingsController extends Controller
         }
         $ignored = array("APP_LICENSE_KEY", "APP_LICENSE_LOCAL_KEY", "APP_LICENSE_STATUS", "APP_LICENSE_STATUS_DESC", "APP_NAME", "APP_VERSION", "APP_VERSION_TYPE", "APP_URL", "APP_SHOW_RESETDB", "APP_LICENSE_INFO_NAME", "APP_LICENSE_INFO_COMPANY", "APP_LICENSE_INFO_EMAIL", "APP_LICENSE_INFO_PRODUCTNAME", "APP_LICENSE_INFO_REGDATE", "APP_LICENSE_INFO_NEXTDUE", "APP_LICENSE_INFO_CYCLE", "APP_LICENSE_LAST_CHECKED", "APP_SCHEDULE_LAST_RUN");
         $settings = AppSetting::all()->except($ignored);
-        return view('settings.index')->withSettings($settings);
+        return response()->view('settings.index')->withSettings($settings);
     }
 
     /**
@@ -41,7 +41,7 @@ class SettingsController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $value = Setting::get($id);
-        return view('settings.edit')->withKey($id)->withValue($value);
+        return response()->view('settings.edit')->withKey($id)->withValue($value);
     }
 
     /**

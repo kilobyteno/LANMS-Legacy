@@ -24,7 +24,7 @@ class AuthController extends Controller
 {
     public function getSignIn()
     {
-        return view('auth.signin');
+        return response()->view('auth.signin');
     }
 
     public function postSignIn(SignInRequest $request)
@@ -116,7 +116,7 @@ class AuthController extends Controller
 
     public function getSignUp()
     {
-        return view('auth.signup');
+        return response()->view('auth.signup');
     }
 
     public function postSignUp(SignUpRequest $request)
@@ -220,7 +220,7 @@ class AuthController extends Controller
                 ->with('messagetype', 'warning')
                 ->with('message', __('auth.alert.activationfailure'));
         } else {
-            return view('auth.activate')->with('activation_code', $activation_code);
+            return response()->view('auth.activate')->with('activation_code', $activation_code);
         }
     }
 

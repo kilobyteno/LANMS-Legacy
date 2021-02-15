@@ -25,7 +25,7 @@ class BrokenBandController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.checkin.*'])) {
             $brokenbands = BrokenBand::thisYear()->get();
-            return view('seating.brokenband.index')->withBrokenbands($brokenbands);
+            return response()->view('seating.brokenband.index')->withBrokenbands($brokenbands);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -100,7 +100,7 @@ class BrokenBandController extends Controller
                 return Redirect::route('admin-seating-brokenband')->with('messagetype', 'warning')
                                 ->with('message', 'Band not found on any checkins!');
             }
-            return view('seating.brokenband.show')->withCheckin($checkin);
+            return response()->view('seating.brokenband.show')->withCheckin($checkin);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

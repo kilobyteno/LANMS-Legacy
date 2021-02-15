@@ -19,7 +19,7 @@ class MemberController extends Controller
         $onlinestatus = User::getOnlineStatus($theuser->id);
         $userarray = $theuser->toArray();
         $userarray['onlinestatus'] = $onlinestatus;
-        return view('members.profile')->with($userarray);
+        return response()->view('members.profile')->with($userarray);
     }
 
     public function index()
@@ -29,7 +29,7 @@ class MemberController extends Controller
         $newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         $onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         
-        return view('members.index')
+        return response()->view('members.index')
                 ->with('members', $members)
                 ->with('totalmembers', $totalmembers)
                 ->with('newestmembers', $newestmembers)
@@ -52,7 +52,7 @@ class MemberController extends Controller
         $newestmembers = User::orderBy('created_at', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         $onlinemembers = User::orderBy('last_activity', 'desc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->take(10)->get();
         
-        return view('members.search')
+        return response()->view('members.search')
                 ->with('query', $request->search)
                 ->with('searchResults', $searchResults)
                 ->with('newestmembers', $newestmembers)
