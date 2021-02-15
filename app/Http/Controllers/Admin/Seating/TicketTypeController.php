@@ -23,7 +23,7 @@ class TicketTypeController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $ticket_types = TicketType::withTrashed()->get();
-        return response()->view('seating.tickettype.index', ['ticket_types' => $ticket_types]);
+        return view('seating.tickettype.index', ['ticket_types' => $ticket_types]);
     }
 
     /**
@@ -37,7 +37,7 @@ class TicketTypeController extends Controller
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
         }
-        return response()->view('seating.tickettype.create');
+        return view('seating.tickettype.create');
     }
 
     /**
@@ -116,7 +116,7 @@ class TicketTypeController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $tickettype = TicketType::withTrashed()->find($id);
-        return response()->view('seating.tickettype.edit', ['tickettype' => $tickettype]);
+        return view('seating.tickettype.edit', ['tickettype' => $tickettype]);
     }
 
     /**

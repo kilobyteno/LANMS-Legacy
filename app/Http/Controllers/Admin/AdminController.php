@@ -12,17 +12,17 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return response()->view('dashboard');
+        return view('dashboard');
     }
 
     public function whatsnew()
     {
-        return response()->view('whatsnew');
+        return view('whatsnew');
     }
 
     public function systeminfo()
     {
-        return response()->view('systeminfo');
+        return view('systeminfo');
     }
 
     public function activity()
@@ -45,6 +45,6 @@ class AdminController extends Controller
                 $activity->newvalue = null;
             }
         }
-        return response()->view('activity')->withActivities($activities);
+        return view('activity')->withActivities($activities);
     }
 }

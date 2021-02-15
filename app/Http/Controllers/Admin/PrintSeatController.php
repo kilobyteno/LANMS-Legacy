@@ -25,7 +25,7 @@ class PrintSeatController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.print.*'])) {
             $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-            return response()->view('seating.print.index')->withRows($rows);
+            return view('seating.print.index')->withRows($rows);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

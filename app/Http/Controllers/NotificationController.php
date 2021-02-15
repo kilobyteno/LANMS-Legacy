@@ -17,7 +17,7 @@ class NotificationController extends Controller
     public function show()
     {
         $notifications = Sentinel::getUser()->notifications()->paginate(15);
-        return response()->view('account.notifications')->withNotifications($notifications);
+        return view('account.notifications')->withNotifications($notifications);
     }
     
     /**
