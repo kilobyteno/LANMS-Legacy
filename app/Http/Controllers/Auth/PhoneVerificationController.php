@@ -39,7 +39,7 @@ class PhoneVerificationController extends Controller
         try {
             $response = $this->authyApi->phoneVerificationStart(Sentinel::getUser()->phone, \libphonenumber\PhoneNumberUtil::getInstance()->getCountryCodeForRegion(strtoupper(Sentinel::getUser()->phone_country)), 'sms');
             if ($response->ok()) {
-                return response()->view('account.verifyphone');
+                return view('account.verifyphone');
             } else {
                 return Redirect::route('user-profile-edit', Sentinel::getUser()->username)
                         ->with('messagetype', 'danger')

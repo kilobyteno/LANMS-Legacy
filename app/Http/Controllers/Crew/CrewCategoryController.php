@@ -36,7 +36,7 @@ class CrewCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.*'])) {
             $crewcategories = CrewCategory::all();
-            return response()->view('crew.category.index')
+            return view('crew.category.index')
                         ->withCategories($crewcategories);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -52,7 +52,7 @@ class CrewCategoryController extends Controller
     public function create()
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.create'])) {
-            return response()->view('crew.category.create');
+            return view('crew.category.create');
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');
@@ -119,7 +119,7 @@ class CrewCategoryController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.crew-category.update'])) {
             $crewcategory = CrewCategory::withTrashed()->find($id);
-            return response()->view('crew.category.edit')->withCategory($crewcategory);
+            return view('crew.category.edit')->withCategory($crewcategory);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

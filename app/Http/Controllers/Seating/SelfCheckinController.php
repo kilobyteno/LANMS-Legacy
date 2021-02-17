@@ -24,7 +24,7 @@ class SelfCheckinController extends Controller
      */
     public function index()
     {
-        return response()->view('seating.checkin.index');
+        return view('seating.checkin.index');
     }
 
     /**
@@ -76,7 +76,7 @@ class SelfCheckinController extends Controller
                                 ->with('message', __('seating.checkin.alert.alreadycheckedin'));
         }
 
-        return response()->view('seating.checkin.show')->withTicket($ticket);
+        return view('seating.checkin.show')->withTicket($ticket);
     }
 
     /**

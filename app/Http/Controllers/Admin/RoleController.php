@@ -24,7 +24,7 @@ class RoleController extends Controller
                                 ->with('message', 'You do not have access to this page!');
         }
         $roles = EloquentRole::all();
-        return response()->view('user.role.index')->with('roles', $roles);
+        return view('user.role.index')->with('roles', $roles);
     }
 
     /**
@@ -40,7 +40,7 @@ class RoleController extends Controller
         }
         $role = Sentinel::findRoleBySlug('default');
         abort_unless($role, 501);
-        return response()->view('user.role.create')->with('role', $role);
+        return view('user.role.create')->with('role', $role);
     }
 
     /**
@@ -101,7 +101,7 @@ class RoleController extends Controller
         }
         $role = Sentinel::findRoleBySlug($id);
         abort_unless($role, 404);
-        return response()->view('user.role.edit')->with('role', $role);
+        return view('user.role.edit')->with('role', $role);
     }
 
     /**

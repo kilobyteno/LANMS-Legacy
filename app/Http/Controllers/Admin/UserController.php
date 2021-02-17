@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         if (Sentinel::getUser()->hasAccess(['admin.users.*'])) {
             $users = User::withTrashed()->get();
-            return response()->view('user.index')
+            return view('user.index')
                         ->with('users', $users);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
@@ -63,7 +63,7 @@ class UserController extends Controller
         if (Sentinel::getUser()->hasAccess(['admin.users.update'])) {
             $user = User::withTrashed()->find($id);
             $roles = EloquentRole::where('name', '<>', 'Default')->get();
-            return response()->view('user.edit')->withUser($user)->withRoles($roles);
+            return view('user.edit')->withUser($user)->withRoles($roles);
         } else {
             return Redirect::back()->with('messagetype', 'warning')
                                 ->with('message', 'You do not have access to this page!');

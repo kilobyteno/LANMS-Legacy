@@ -30,7 +30,7 @@ class ReserveSeatingController extends Controller
         $rows = SeatRows::orderBy('sort_order', 'asc')->get();
         $reservations = Sentinel::getUser()->reservationsThisYear;
         $ownreservations = Sentinel::getUser()->ownReservationsThisYear;
-        return response()->view('seating.index')
+        return view('seating.index')
                 ->withRows($rows)
                 ->with('reservations', $reservations)
                 ->with('ownreservations', $ownreservations);
@@ -50,7 +50,7 @@ class ReserveSeatingController extends Controller
                                 ->with('message', __('seating.alert.seatnotfound'));
         }
         $rows = SeatRows::orderBy('sort_order', 'asc')->get();
-        return response()->view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
+        return view('seating.show')->withRows($rows)->with('currentseat', $currentseat);
     }
 
     /**
@@ -190,7 +190,7 @@ class ReserveSeatingController extends Controller
             return Redirect::route('seating')->with('messagetype', 'warning')
                                 ->with('message', __('seating.reservation.alert.ticketnoaccess'));
         }
-        return response()->view('seating.ticket')->with('reservation', $reservation);
+        return view('seating.ticket')->with('reservation', $reservation);
     }
 
     public function consentform()

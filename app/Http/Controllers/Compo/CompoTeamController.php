@@ -21,7 +21,7 @@ class CompoTeamController extends Controller
     public function index()
     {
         $teams = \LANMS\CompoTeam::where('user_id', \Sentinel::check()->id)->get();
-        return response()->view('compo.team.index')->with('teams', $teams);
+        return view('compo.team.index')->with('teams', $teams);
     }
 
     /**
@@ -32,7 +32,7 @@ class CompoTeamController extends Controller
     public function create()
     {
         $users = User::active()->except(\Sentinel::getUser()->id);
-        return response()->view('compo.team.create')->with('users', $users);
+        return view('compo.team.create')->with('users', $users);
     }
 
     /**
@@ -93,7 +93,7 @@ class CompoTeamController extends Controller
     {
         $team = \LANMS\CompoTeam::find($id);
         $users = User::active()->except(\Sentinel::getUser()->id);
-        return response()->view('compo.team.edit')->with('team', $team)->with('users', $users);
+        return view('compo.team.edit')->with('team', $team)->with('users', $users);
     }
 
     /**
