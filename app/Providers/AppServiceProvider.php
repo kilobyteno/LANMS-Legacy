@@ -1,8 +1,11 @@
 <?php namespace LANMS\Providers;
 
+use Illuminate\Support\Facades\URL;
+use Illuminate\Pagination\Paginator;
+use LANMS\Observers\ActivityObserver;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Activitylog\Models\Activity;
-use LANMS\Observers\ActivityObserver;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -15,15 +18,17 @@ class AppServiceProvider extends ServiceProvider {
 	{
 
 		// https://laravel-news.com/laravel-5-4-key-too-long-error
-		\Schema::defaultStringLength(191);
+		Schema::defaultStringLength(191);
 
-		if(\Schema::hasTable('settings')) {
+		if(Schema::hasTable('settings')) {
 			if (\Setting::get('WEB_PROTOCOL') == 'https') {
-				\URL::forceScheme('https');
+				URL::forceScheme('https');
 			}
 		}
 
 		Activity::observe(ActivityObserver::class);
+
+		Paginator::useBootstrap();
 
 	}
 

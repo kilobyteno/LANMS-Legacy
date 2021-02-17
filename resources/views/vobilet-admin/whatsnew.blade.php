@@ -20,6 +20,25 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2112" aria-expanded="true">Version 21.1.2</a>
+							</h4>
+						</div>
+						<div id="2112" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li><strong>#18</strong> - Undefined variable: errors (View: /vobilet/layouts/main.blade.php)</li>
+									<li><strong>#15</strong> - Call to a member function setCookie() on null</li>
+									<li><strong>#13</strong> - View::send does not exist</li>
+								</ul>
+								<h4>Notice</h4>
+								<p>Bugs cannot be reported directly in the issue tracker anymore, we switched to Github. Got a issue, feature request or bug report? Contact us directly.</p>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2111" aria-expanded="true">Version 21.1.1</a>
 							</h4>
 						</div>

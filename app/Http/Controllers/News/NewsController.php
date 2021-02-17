@@ -29,8 +29,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::isPublished()->paginate(5);
-        return view('news.index')
-                    ->withNews($news);
+        return view('news.index')->withNews($news);
     }
 
     /**

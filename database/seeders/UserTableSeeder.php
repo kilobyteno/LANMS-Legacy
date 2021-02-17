@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Carbon\Carbon;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Database\Seeder;

@@ -3,6 +3,7 @@
 namespace LANMS\Http\Middleware;
 
 use Closure;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 //use Illuminate\Support\Facades\Auth;
 
 class RedirectIfUnansweredTerms
@@ -16,8 +17,8 @@ class RedirectIfUnansweredTerms
      */
     public function handle($request, Closure $next)
     {
-        if (\Sentinel::getUser()->accepted_gdpr === null or \Sentinel::getUser()->accepted_gdpr === 0) {
-            return \Redirect::route('gdpr-terms');
+        if (Sentinel::getUser()->accepted_gdpr === null or Sentinel::getUser()->accepted_gdpr === 0) {
+            return redirect()->route('gdpr-terms');
         }
 
         return $next($request);
