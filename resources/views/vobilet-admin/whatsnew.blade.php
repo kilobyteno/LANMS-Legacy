@@ -20,6 +20,30 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2113" aria-expanded="true">Version 21.1.3</a>
+							</h4>
+						</div>
+						<div id="2113" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<h4>Bug</h4>
+								<ul>
+									<li><strong>#19</strong> - UnexpectedValueException /app/Exceptions/Handler.php in LANMS\Exceptions\Handler::report</li>
+									<li><strong>#15</strong> - Call to a member function setCookie() on null</li>
+									<li><strong>#13</strong> - View::send does not exist</li>
+								</ul>
+								<h4>Other</h4>
+								<ul>
+									<li>- Added missing 419 error page</li>
+									<li>- Updated 503 (maintenance mode) error page</li>
+									<li>- Updated maintenance mode class</li>
+									<li>- Other minor code improvements</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2112" aria-expanded="true">Version 21.1.2</a>
 							</h4>
 						</div>
