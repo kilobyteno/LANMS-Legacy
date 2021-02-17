@@ -119,9 +119,7 @@ class PagesController extends Controller
     public function show($slug)
     {
         $page = Page::where('slug', '=', $slug)->first();
-        if ($page == null) {
-            abort(404);
-        }
+        abort_unless($page, 404);
         return view('main.page')->withPage($page);
     }
 

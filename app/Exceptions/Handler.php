@@ -4,11 +4,7 @@ namespace LANMS\Exceptions;
 
 use Throwable;
 use Igaster\LaravelTheme\Facades\Theme;
-use Illuminate\Session\TokenMismatchException;
-use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +30,18 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Register the exception handling callbacks for the application.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->reportable(function (Throwable $e) {
+            //
+        });
+    }
+
+    /**
      * Report or log an exception.
      *
      * @param  \Throwable  $exception
@@ -53,36 +61,14 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param  \Throwable  $e
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $e)
     {
-        Theme::set('vobilet');
-        if ($exception instanceof NotFoundHttpException) {
-            return view('errors.404');
-        }
-
-        if ($exception instanceof ThrottlingException) {
-            return view('errors.429')->with('message', $exception->getMessage());
-        }
-
-        if ($exception instanceof TokenMismatchException) {
-            //Redirect to login form if session expires
-            return redirect()->back()
-                        ->with('messagetype', 'danger')
-                        ->with('message', 'Validation Token has expired. Please try again!');
-        }
-
-        // Convert all non-http exceptions to a proper 500 http exception
-        // if we don't do this exceptions are shown as a default template
-        // instead of our own view in resources/views/errors/500.blade.php
-        if (!config('app.debug') && $this->shouldReport($exception) && !$this->isHttpException($exception)) {
-            $exception = new HttpException(500, 'Whoops!');
-        }
-
-        return parent::render($request, $exception);
+        Theme::set('vobilet'); // Set theme of errors
+        return parent::render($request, $e);
     }
 }

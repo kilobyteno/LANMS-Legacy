@@ -50,6 +50,10 @@ return [
             'title' => 'Side ikke funnet',
             'desc' => 'Virker som om denne siden ikke eksisterer.',
         ),
+        '419' => array(
+            'title' => 'Siden er utløpt',
+            'desc' => 'Det virker som om du har ventet for lenge, prøv å oppdater siden.',
+        ),
         '429' => array(
             'title' => 'For mange forespørsler',
             'desc' => 'Det virker som om du har sendt for mange forespørsler på en gitt tid.',
@@ -57,6 +61,10 @@ return [
         '500' => array(
             'title' => 'Server Feil',
             'desc' => 'Ser ut som om vi har noen serverproblemer.',
+        ),
+        '503' => array(
+            'title' => 'Vedlikeholdsmodus',
+            'desc' => 'Vi er straks tilbake.',
         ),
     ),
 

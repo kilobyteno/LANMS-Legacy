@@ -50,6 +50,10 @@ return [
             'title' => 'Page Not Found',
             'desc' => 'Seems like this page does not exist.',
         ),
+        '419' => array(
+            'title' => 'Page Expired',
+            'desc' => 'It seems like you have waited to long, try refreshing.',
+        ),
         '429' => array(
             'title' => 'Too Many Requests',
             'desc' => 'It seems like you have sent too many requests in a given amount of time.',
@@ -57,6 +61,10 @@ return [
         '500' => array(
             'title' => 'Server Error',
             'desc' => 'Looks like we\'re having some server issues.',
+        ),
+        '503' => array(
+            'title' => 'Maintenance Mode',
+            'desc' => 'We\'ll be right back.',
         ),
     ),
 
