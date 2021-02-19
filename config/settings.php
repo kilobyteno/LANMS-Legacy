@@ -1,17 +1,73 @@
 <?php
-return array(
-	// which type of store to use.
-	// valid options: 'json', 'database'
-	'store' => 'database',
 
-	// if the json store is used, give the full path to the .json file
-	// that the store writes to.
+return [
+	/*
+	|--------------------------------------------------------------------------
+	| Default Settings Store
+	|--------------------------------------------------------------------------
+	|
+	| This option controls the default settings store that gets used while
+	| using this settings library.
+	|
+	| Supported: "json", "database"
+	|
+	*/
+	'store' => 'json',
+
+	/*
+	|--------------------------------------------------------------------------
+	| JSON Store
+	|--------------------------------------------------------------------------
+	|
+	| If the store is set to "json", settings are stored in the defined
+	| file path in JSON format. Use full path to file.
+	|
+	*/
 	'path' => storage_path().'/settings.json',
 
-	// if the database store is used, set the name of the table used..
-	'table' => 'settings',
-
-	// If the database store is used, you can set which connection to use. if
-	// set to null, the default connection will be used.
+	/*
+	|--------------------------------------------------------------------------
+	| Database Store
+	|--------------------------------------------------------------------------
+	|
+	| The settings are stored in the defined file path in JSON format.
+	| Use full path to JSON file.
+	|
+	*/
+	// If set to null, the default connection will be used.
 	'connection' => null,
-);
+	// Name of the table used.
+	'table' => 'settings',
+	// If you want to use custom column names in database store you could
+	// set them in this configuration
+	'keyColumn' => 'key',
+	'valueColumn' => 'value',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache settings
+    |--------------------------------------------------------------------------
+    |
+    | If you want all setting calls to go through Laravel's cache system.
+    |
+    */
+	'enableCache' => false,
+	// Whether to reset the cache when changing a setting.
+	'forgetCacheByWrite' => true,
+	// TTL in seconds.
+	'cacheTtl' => 15,
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Default Settings
+    |--------------------------------------------------------------------------
+    |
+    | Define all default settings that will be used before any settings are set,
+    | this avoids all settings being set to false to begin with and avoids
+    | hardcoding the same defaults in all 'Settings::get()' calls
+    |
+    */
+    'defaults' => [
+        'foo' => 'bar',
+    ]
+];
