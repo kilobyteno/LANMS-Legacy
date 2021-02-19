@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider {
 
 		// https://laravel-news.com/laravel-5-4-key-too-long-error
 		Schema::defaultStringLength(191);
-
+		
 		if(Schema::hasTable('settings')) {
-			if (\Setting::get('WEB_PROTOCOL') == 'https') {
+			if (setting('WEB_PROTOCOL') == 'https') {
 				URL::forceScheme('https');
 			}
 		}
