@@ -4,7 +4,7 @@ namespace LANMS\Http\Middleware;
 
 use Closure;
 
-use anlutro\LaravelSettings\Facade as Setting;
+use Illuminate\Support\Facades\Schema;
 
 class HttpsProtocol
 {
@@ -18,8 +18,8 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (\Schema::hasTable('settings')) {
-            if (!$request->secure() && Setting::get('WEB_PROTOCOL') === 'https') {
+        if (Schema::hasTable('settings')) {
+            if (!$request->secure() && setting('WEB_PROTOCOL') == 'https') {
                 return redirect()->secure($request->getRequestUri());
             }
         }
