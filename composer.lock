@@ -435,16 +435,16 @@
         },
         {
             "name": "cartalyst/stripe",
-            "version": "v2.4.3",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/stripe.git",
-                "reference": "09f8e16ad8db473ec876a2c7f813f975ebb3ba4c"
+                "reference": "f07e9f35effa5fe7aa27e0f7a87dce52e37b8fdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/09f8e16ad8db473ec876a2c7f813f975ebb3ba4c",
-                "reference": "09f8e16ad8db473ec876a2c7f813f975ebb3ba4c",
+                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/f07e9f35effa5fe7aa27e0f7a87dce52e37b8fdf",
+                "reference": "f07e9f35effa5fe7aa27e0f7a87dce52e37b8fdf",
                 "shasum": ""
             },
             "require": {
@@ -486,9 +486,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cartalyst/stripe/issues",
-                "source": "https://github.com/cartalyst/stripe/tree/v2.4.3"
+                "source": "https://github.com/cartalyst/stripe/tree/v2.4.4"
             },
-            "time": "2021-01-31T19:07:01+00:00"
+            "time": "2021-02-18T12:04:45+00:00"
         },
         {
             "name": "cartalyst/stripe-laravel",
@@ -4146,16 +4146,16 @@
         },
         {
             "name": "nyholm/psr7",
-            "version": "1.3.2",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nyholm/psr7.git",
-                "reference": "a272953743c454ac4af9626634daaf5ab3ce1173"
+                "reference": "23ae1f00fbc6a886cbe3062ca682391b9cc7c37b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/a272953743c454ac4af9626634daaf5ab3ce1173",
-                "reference": "a272953743c454ac4af9626634daaf5ab3ce1173",
+                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/23ae1f00fbc6a886cbe3062ca682391b9cc7c37b",
+                "reference": "23ae1f00fbc6a886cbe3062ca682391b9cc7c37b",
                 "shasum": ""
             },
             "require": {
@@ -4177,7 +4177,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -4207,7 +4207,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Nyholm/psr7/issues",
-                "source": "https://github.com/Nyholm/psr7/tree/1.3.2"
+                "source": "https://github.com/Nyholm/psr7/tree/1.4.0"
             },
             "funding": [
                 {
@@ -4219,7 +4219,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-14T17:35:34+00:00"
+            "time": "2021-02-18T15:41:32+00:00"
         },
         {
             "name": "opis/closure",
@@ -7600,16 +7600,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "3.1.4",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "5ff718099ac0050385c562b7c1da88dd215c48f9"
+                "reference": "62f6897e1e577de39b366b5c84e19a453da36016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/5ff718099ac0050385c562b7c1da88dd215c48f9",
-                "reference": "5ff718099ac0050385c562b7c1da88dd215c48f9",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/62f6897e1e577de39b366b5c84e19a453da36016",
+                "reference": "62f6897e1e577de39b366b5c84e19a453da36016",
                 "shasum": ""
             },
             "require": {
@@ -7688,7 +7688,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/3.1.4"
+                "source": "https://github.com/getsentry/sentry-php/tree/3.1.5"
             },
             "funding": [
                 {
@@ -7700,7 +7700,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-02T08:56:03+00:00"
+            "time": "2021-02-18T13:34:31+00:00"
         },
         {
             "name": "sentry/sentry-laravel",
