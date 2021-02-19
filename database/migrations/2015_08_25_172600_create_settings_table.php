@@ -9,11 +9,7 @@ class CreateSettingsTable extends Migration
 {
 	public function __construct()
 	{
-		if (version_compare(Application::VERSION, '5.0', '>=')) {
-			$this->tablename = Config::get('settings.table');
-		} else {
-			$this->tablename = Config::get('anlutro/l4-settings::table');
-		}
+		$this->tablename = Config::get('settings.table');
 	}
 
 	/**
