@@ -38,6 +38,6 @@ class Info extends Model
     public function scopeGetContent($query, $name)
     {
         $info = $query->where('name', '=', $name)->first();
-        return $info->content;
+        return $info->content ?? '';
     }
 }
