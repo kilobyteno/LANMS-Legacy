@@ -46,6 +46,9 @@ class Update extends Command
         $this->info('Migrating...');
         Artisan::call('migrate --force');
 
+        $this->info('SettingsTableSeeder...');
+        Artisan::call('db:seed --class=SettingsTableSeeder');
+
         $this->info('Fixing last_activity issues...');
         Artisan::call('lanms:fla');
 
@@ -77,6 +80,7 @@ class Update extends Command
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
+
         $this->info('Done.');
     }
 }
