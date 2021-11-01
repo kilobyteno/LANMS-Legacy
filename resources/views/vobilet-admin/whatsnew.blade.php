@@ -86,7 +86,7 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-491'>LANMS-491</a>] - Security Update</li>
+									<li>[LANMS-491] - Security Update</li>
 								</ul>
 							</div>
 						</div>
@@ -101,11 +101,11 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-491'>LANMS-491</a>] - Security Update</li>
+									<li>[LANMS-491] - Security Update</li>
 								</ul>
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-494'>LANMS-494</a>] - Asset not found [plugins/datatable/responsive/js/datatables.responsive.min.js] in Theme [vobilet-admin]</li>
+									<li>[LANMS-494] - Asset not found [plugins/datatable/responsive/js/datatables.responsive.min.js] in Theme [vobilet-admin]</li>
 								</ul>
 							</div>
 						</div>
@@ -120,7 +120,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-492'>LANMS-492</a>] - Illuminate\Database\QueryException /app/User.php in LANMS\User::scopeActive</li>
+									<li>[LANMS-492] - Illuminate\Database\QueryException /app/User.php in LANMS\User::scopeActive</li>
 								</ul>
 							</div>
 						</div>
@@ -135,13 +135,13 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-483'>LANMS-483</a>] - Add test email function in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-490'>LANMS-490</a>] - Check when schedule last ran</li>
+									<li>[LANMS-483] - Add test email function in admin panel</li>
+									<li>[LANMS-490] - Check when schedule last ran</li>
 								</ul>
 									
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-487'>LANMS-487</a>] - Update birthday validation</li>
+									<li>[LANMS-487] - Update birthday validation</li>
 								</ul>
 							</div>
 						</div>
@@ -156,21 +156,21 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-479'>LANMS-479</a>] - &#39;Whats new&#39; has features from newer versions</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-481'>LANMS-481</a>] - Numbers on error pages are not readable when in dark mode</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-482'>LANMS-482</a>] - Twilio\Exceptions\ConfigurationException admin-sms</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-485'>LANMS-485</a>] - Cartalyst\Stripe\Exception\NotFoundException admin</li>
+									<li>[LANMS-479] - &#39;Whats new&#39; has features from newer versions</li>
+									<li>[LANMS-481] - Numbers on error pages are not readable when in dark mode</li>
+									<li>[LANMS-482] - Twilio\Exceptions\ConfigurationException admin-sms</li>
+									<li>[LANMS-485] - Cartalyst\Stripe\Exception\NotFoundException admin</li>
 								</ul>
 									
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-484'>LANMS-484</a>] - Add license last checked</li>
+									<li>[LANMS-484] - Add license last checked</li>
 								</ul>
 									
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-416'>LANMS-416</a>] - Clean up old address entries, translations and functions</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-486'>LANMS-486</a>] - Tone down the unlicenced front end</li>
+									<li>[LANMS-416] - Clean up old address entries, translations and functions</li>
+									<li>[LANMS-486] - Tone down the unlicenced front end</li>
 								</ul>
 							</div>
 						</div>
@@ -185,20 +185,20 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-473'>LANMS-473</a>] - ErrorException admin-sms-create fatal SQLSTATE[HY000]: General error: 1525 Incorrect TIMESTAMP value</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-474'>LANMS-474</a>] - Sidebar in admin panel expands outside screen on mobile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-475'>LANMS-475</a>] - ErrorException account-billing-card-store</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-477'>LANMS-477</a>] - Trying to get property &#39;id&#39; of non-object (View: /admin/crew/index.blade.php)</li>
+									<li>[LANMS-473] - ErrorException admin-sms-create fatal SQLSTATE[HY000]: General error: 1525 Incorrect TIMESTAMP value</li>
+									<li>[LANMS-474] - Sidebar in admin panel expands outside screen on mobile</li>
+									<li>[LANMS-475] - ErrorException account-billing-card-store</li>
+									<li>[LANMS-477] - Trying to get property &#39;id&#39; of non-object (View: /admin/crew/index.blade.php)</li>
 								</ul>
 
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-310'>LANMS-310</a>] - 2FA via Twilio</li>
+									<li>[LANMS-310] - 2FA via Twilio</li>
 								</ul>
 								
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-478'>LANMS-478</a>] - Message when no ticket types</li>
+									<li>[LANMS-478] - Message when no ticket types</li>
 								</ul>
 							</div>
 						</div>
@@ -213,23 +213,23 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-465'>LANMS-465</a>] - SQLSTATE[HY000]: General error: 1525 Incorrect TIMESTAMP value</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-466'>LANMS-466</a>] - Dashboard cards have scrollbar</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-467'>LANMS-467</a>] - Uncaught Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [609] second(s).</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-469'>LANMS-469</a>] - ErrorException consentform: Trying to access array offset on value of type null</li>
+									<li>[LANMS-465] - SQLSTATE[HY000]: General error: 1525 Incorrect TIMESTAMP value</li>
+									<li>[LANMS-466] - Dashboard cards have scrollbar</li>
+									<li>[LANMS-467] - Uncaught Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [609] second(s).</li>
+									<li>[LANMS-469] - ErrorException consentform: Trying to access array offset on value of type null</li>
 									</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-431'>LANMS-431</a>] - ID - Identification-page</li>
+									<li>[LANMS-431] - ID - Identification-page</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-468'>LANMS-468</a>] - Add user verifications in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-470'>LANMS-470</a>] - Change sorting on prev compos</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-471'>LANMS-471</a>] - Hide &quot;needs more attendees&quot; after finished for compos</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-472'>LANMS-472</a>] - Add system time to &quot;System Info&quot;</li>
+									<li>[LANMS-468] - Add user verifications in admin panel</li>
+									<li>[LANMS-470] - Change sorting on prev compos</li>
+									<li>[LANMS-471] - Hide &quot;needs more attendees&quot; after finished for compos</li>
+									<li>[LANMS-472] - Add system time to &quot;System Info&quot;</li>
 								</ul>
 							</div>
 						</div>
@@ -244,29 +244,29 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-456'>LANMS-456</a>] - Default role is missing sms permission</li>
+									<li>[LANMS-456] - Default role is missing sms permission</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-445'>LANMS-445</a>] - Allow users to change username</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-452'>LANMS-452</a>] - Add previous compos page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-461'>LANMS-461</a>] - Add restore &amp; duplicate to compos</li>
+									<li>[LANMS-445] - Allow users to change username</li>
+									<li>[LANMS-452] - Add previous compos page</li>
+									<li>[LANMS-461] - Add restore &amp; duplicate to compos</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-455'>LANMS-455</a>] - Test and check the admin panel on mobile</li>
+									<li>[LANMS-455] - Test and check the admin panel on mobile</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-359'>LANMS-359</a>] - Add possibility to add winners for compos</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-457'>LANMS-457</a>] - Add view buttons to compo in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-458'>LANMS-458</a>] - Add address fields to users in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-460'>LANMS-460</a>] - Show previous compos in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-462'>LANMS-462</a>] - Show signups for compos for admins</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-464'>LANMS-464</a>] - Add more info to the license page</li>
+									<li>[LANMS-359] - Add possibility to add winners for compos</li>
+									<li>[LANMS-457] - Add view buttons to compo in admin panel</li>
+									<li>[LANMS-458] - Add address fields to users in admin panel</li>
+									<li>[LANMS-460] - Show previous compos in admin panel</li>
+									<li>[LANMS-462] - Show signups for compos for admins</li>
+									<li>[LANMS-464] - Add more info to the license page</li>
 								</ul>
 							</div>
 						</div>
@@ -281,19 +281,19 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-448'>LANMS-448</a>] - Row sorting on print page does not work</li>
+									<li>[LANMS-448] - Row sorting on print page does not work</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-450'>LANMS-450</a>] - Add age to edit user admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-451'>LANMS-451</a>] - Add match to toornament in compo</li>
+									<li>[LANMS-450] - Add age to edit user admin panel</li>
+									<li>[LANMS-451] - Add match to toornament in compo</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-372'>LANMS-372</a>] - Merge stripecust and user</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-453'>LANMS-453</a>] - Remove sponsors from widget sidebar</li>
+									<li>[LANMS-372] - Merge stripecust and user</li>
+									<li>[LANMS-453] - Remove sponsors from widget sidebar</li>
 								</ul>
 							</div>
 						</div>
@@ -308,49 +308,49 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-249'>LANMS-249</a>] - Remember me-function does not appear to work</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-420'>LANMS-420</a>] - Another user reserved seat; cannot pay</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-423'>LANMS-423</a>] - Missing card info on Charges-page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-425'>LANMS-425</a>] - When editing page; &quot;Show in menu&quot; is checked by the &quot;active&quot; option</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-430'>LANMS-430</a>] - When editing sponsor and not editing image, image dissapears when saving</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-433'>LANMS-433</a>] - Reservation emails does not show name for website</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-440'>LANMS-440</a>] - Invoice notifications spammed every hour</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-442'>LANMS-442</a>] - Edit profile should remember last input if validation fails</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-443'>LANMS-443</a>] - Phone Country does not save when editing user in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-444'>LANMS-444</a>] - When clicking view on a reservation it shows the reservation page</li>
+									<li>[LANMS-249] - Remember me-function does not appear to work</li>
+									<li>[LANMS-420] - Another user reserved seat; cannot pay</li>
+									<li>[LANMS-423] - Missing card info on Charges-page</li>
+									<li>[LANMS-425] - When editing page; &quot;Show in menu&quot; is checked by the &quot;active&quot; option</li>
+									<li>[LANMS-430] - When editing sponsor and not editing image, image dissapears when saving</li>
+									<li>[LANMS-433] - Reservation emails does not show name for website</li>
+									<li>[LANMS-440] - Invoice notifications spammed every hour</li>
+									<li>[LANMS-442] - Edit profile should remember last input if validation fails</li>
+									<li>[LANMS-443] - Phone Country does not save when editing user in admin panel</li>
+									<li>[LANMS-444] - When clicking view on a reservation it shows the reservation page</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-214'>LANMS-214</a>] - Create a own ticket system, with several types of tickets</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-301'>LANMS-301</a>] - Twilio SMS Integration</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-328'>LANMS-328</a>] - Self Check-in</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-421'>LANMS-421</a>] - Add Grasrotandelen widget</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-422'>LANMS-422</a>] - Add delete/void function to invoices</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-432'>LANMS-432</a>] - Add reserved statuses widgets to admin dashboard</li>
+									<li>[LANMS-214] - Create a own ticket system, with several types of tickets</li>
+									<li>[LANMS-301] - Twilio SMS Integration</li>
+									<li>[LANMS-328] - Self Check-in</li>
+									<li>[LANMS-421] - Add Grasrotandelen widget</li>
+									<li>[LANMS-422] - Add delete/void function to invoices</li>
+									<li>[LANMS-432] - Add reserved statuses widgets to admin dashboard</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-319'>LANMS-319</a>] - Update Sentry SDK</li>
+									<li>[LANMS-319] - Update Sentry SDK</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-311'>LANMS-311</a>] - Phone verification via Twilio</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-313'>LANMS-313</a>] - Sort menu in admin </li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-373'>LANMS-373</a>] - Create one setting for all currency</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-409'>LANMS-409</a>] - Renaming a row should reflect on seats</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-415'>LANMS-415</a>] - Merge address into user, only one address per user</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-418'>LANMS-418</a>] - Add &quot;Send&quot; to invoices</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-424'>LANMS-424</a>] - Sort pages by the alphabet in the menu</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-426'>LANMS-426</a>] - Remove &quot;User&quot;/&quot;Dashboard&quot;-page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-427'>LANMS-427</a>] - Admin: Allow more than one reservation on one user</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-428'>LANMS-428</a>] - Enable days for google calendar</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-429'>LANMS-429</a>] - Add support for Toornament in compos</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-434'>LANMS-434</a>] - Remove old settings</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-437'>LANMS-437</a>] - Show deleted pages and add restore</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-441'>LANMS-441</a>] - Make pdf files download instead of stream</li>
+									<li>[LANMS-311] - Phone verification via Twilio</li>
+									<li>[LANMS-313] - Sort menu in admin </li>
+									<li>[LANMS-373] - Create one setting for all currency</li>
+									<li>[LANMS-409] - Renaming a row should reflect on seats</li>
+									<li>[LANMS-415] - Merge address into user, only one address per user</li>
+									<li>[LANMS-418] - Add &quot;Send&quot; to invoices</li>
+									<li>[LANMS-424] - Sort pages by the alphabet in the menu</li>
+									<li>[LANMS-426] - Remove &quot;User&quot;/&quot;Dashboard&quot;-page</li>
+									<li>[LANMS-427] - Admin: Allow more than one reservation on one user</li>
+									<li>[LANMS-428] - Enable days for google calendar</li>
+									<li>[LANMS-429] - Add support for Toornament in compos</li>
+									<li>[LANMS-434] - Remove old settings</li>
+									<li>[LANMS-437] - Show deleted pages and add restore</li>
+									<li>[LANMS-441] - Make pdf files download instead of stream</li>
 								</ul>
 							</div>
 						</div>
@@ -365,8 +365,8 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-417'>LANMS-417</a>] - Seatmap in admin panel does not have sort order for rows</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-419'>LANMS-419</a>] - User gets notifications on voided invoices</li>
+									<li>[LANMS-417] - Seatmap in admin panel does not have sort order for rows</li>
+									<li>[LANMS-419] - User gets notifications on voided invoices</li>
 								</ul>
 							</div>
 						</div>
@@ -381,17 +381,17 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-406'>LANMS-406</a>] - Cartalyst\Stripe\Exception\InvalidRequestException: Your card does not support this type of purchase.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-407'>LANMS-407</a>] - User cannot reserve seat when a invoice is voided</li>
+									<li>[LANMS-406] - Cartalyst\Stripe\Exception\InvalidRequestException: Your card does not support this type of purchase.</li>
+									<li>[LANMS-407] - User cannot reserve seat when a invoice is voided</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-408'>LANMS-408</a>] - Add sort order to rows in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-410'>LANMS-410</a>] - No red unpaid text on voided invoices</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-411'>LANMS-411</a>] - Allow signed integers for invoices</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-412'>LANMS-412</a>] - Send names to stripe</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-414'>LANMS-414</a>] - Add &quot;Reservations left&quot; in seating</li>
+									<li>[LANMS-408] - Add sort order to rows in admin panel</li>
+									<li>[LANMS-410] - No red unpaid text on voided invoices</li>
+									<li>[LANMS-411] - Allow signed integers for invoices</li>
+									<li>[LANMS-412] - Send names to stripe</li>
+									<li>[LANMS-414] - Add &quot;Reservations left&quot; in seating</li>
 								</ul>
 							</div>
 						</div>
@@ -406,18 +406,18 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-403'>LANMS-403</a>] - Missing translation for invoice</li>
+									<li>[LANMS-403] - Missing translation for invoice</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 									<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-399'>LANMS-399</a>] - Add first signup time to compo</li>
+									<li>[LANMS-399] - Add first signup time to compo</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-401'>LANMS-401</a>] - Add preferred clothing size to users</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-402'>LANMS-402</a>] - Add allow entrance payment to ticket types</li>
+									<li>[LANMS-401] - Add preferred clothing size to users</li>
+									<li>[LANMS-402] - Add allow entrance payment to ticket types</li>
 								</ul>
 							</div>
 						</div>
@@ -432,17 +432,17 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-397'>LANMS-397</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught InvalidArgumentException: Route [home] not defined.</li>
+									<li>[LANMS-397] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught InvalidArgumentException: Route [home] not defined.</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-398'>LANMS-398</a>] - Add types of tickets
+									<li>[LANMS-398] - Add types of tickets
 </li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-400'>LANMS-400</a>] - Change consent form age
+									<li>[LANMS-400] - Change consent form age
 </li>
 								</ul>
 							</div>
@@ -458,16 +458,16 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-396'>LANMS-396</a>] - ErrorException: Call to a member function composignups() on null</li>
+									<li>[LANMS-396] - ErrorException: Call to a member function composignups() on null</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-308'>LANMS-308</a>] - Compo: Cancel Signup</li>
+									<li>[LANMS-308] - Compo: Cancel Signup</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-281'>LANMS-281</a>] - Add max/min signups for compo</li>
+									<li>[LANMS-281] - Add max/min signups for compo</li>
 								</ul>
 							</div>
 						</div>
@@ -482,26 +482,26 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-383'>LANMS-383</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Console\Commands\DB&#39; not found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-384'>LANMS-384</a>] - ErrorException: Undefined variable: webpath_light</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-385'>LANMS-385</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Notifications\InvoiceUnPaid&#39; not found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-386'>LANMS-386</a>] - Cannot reserve seat in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-387'>LANMS-387</a>] - Cannot reserve seat from frontend</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-391'>LANMS-391</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function routeNotificationFor() on string</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-394'>LANMS-394</a>] - Change payment button is not showing</li>
+									<li>[LANMS-383] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Console\Commands\DB&#39; not found</li>
+									<li>[LANMS-384] - ErrorException: Undefined variable: webpath_light</li>
+									<li>[LANMS-385] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;LANMS\Notifications\InvoiceUnPaid&#39; not found</li>
+									<li>[LANMS-386] - Cannot reserve seat in admin panel</li>
+									<li>[LANMS-387] - Cannot reserve seat from frontend</li>
+									<li>[LANMS-391] - Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function routeNotificationFor() on string</li>
+									<li>[LANMS-394] - Change payment button is not showing</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-390'>LANMS-390</a>] - User API-endpoint with tickets, and more</li>
+									<li>[LANMS-390] - User API-endpoint with tickets, and more</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-381'>LANMS-381</a>] - Improve card design for articles</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-382'>LANMS-382</a>] - Improve design on all admin pages</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-388'>LANMS-388</a>] - Add logging to seat ticket and reservation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-392'>LANMS-392</a>] - Update print seat pdf</li>
+									<li>[LANMS-381] - Improve card design for articles</li>
+									<li>[LANMS-382] - Improve design on all admin pages</li>
+									<li>[LANMS-388] - Add logging to seat ticket and reservation</li>
+									<li>[LANMS-392] - Update print seat pdf</li>
 								</ul>
 							</div>
 						</div>
@@ -516,42 +516,42 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-349'>LANMS-349</a>] - Mass emails does not render HTML</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-350'>LANMS-350</a>] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-351'>LANMS-351</a>] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-361'>LANMS-361</a>] - ErrorException: Notice: Trying to get property &#39;name&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-363'>LANMS-363</a>] - Cartalyst\Stripe\Exception\MissingParameterException</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-364'>LANMS-364</a>] - You cannot use the test ID &#39;pm_card_visa&#39; in livemode</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-367'>LANMS-367</a>] - Light logo is shown on ticket (white bg)</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-375'>LANMS-375</a>] - ErrorException: Trying to get property &#39;id&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-376'>LANMS-376</a>] - ErrorException: Notice: Trying to get property &#39;id&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-379'>LANMS-379</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card was declined.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-380'>LANMS-380</a>] - ErrorException: Trying to get property &#39;theme&#39; of non-object</li>
+									<li>[LANMS-349] - Mass emails does not render HTML</li>
+									<li>[LANMS-350] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
+									<li>[LANMS-351] - ErrorException: Trying to get property &#39;firstname&#39; of non-object</li>
+									<li>[LANMS-361] - ErrorException: Notice: Trying to get property &#39;name&#39; of non-object</li>
+									<li>[LANMS-363] - Cartalyst\Stripe\Exception\MissingParameterException</li>
+									<li>[LANMS-364] - You cannot use the test ID &#39;pm_card_visa&#39; in livemode</li>
+									<li>[LANMS-367] - Light logo is shown on ticket (white bg)</li>
+									<li>[LANMS-375] - ErrorException: Trying to get property &#39;id&#39; of non-object</li>
+									<li>[LANMS-376] - ErrorException: Notice: Trying to get property &#39;id&#39; of non-object</li>
+									<li>[LANMS-379] - Cartalyst\Stripe\Exception\CardErrorException: Your card was declined.</li>
+									<li>[LANMS-380] - ErrorException: Trying to get property &#39;theme&#39; of non-object</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-360'>LANMS-360</a>] - Notification system</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-369'>LANMS-369</a>] - Add support for dark and light images for sponsors</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-370'>LANMS-370</a>] - Add a easy way to toggle dark/light theme</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-371'>LANMS-371</a>] - Show sponsors from past year with dupe btn</li>
+									<li>[LANMS-360] - Notification system</li>
+									<li>[LANMS-369] - Add support for dark and light images for sponsors</li>
+									<li>[LANMS-370] - Add a easy way to toggle dark/light theme</li>
+									<li>[LANMS-371] - Show sponsors from past year with dupe btn</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-344'>LANMS-344</a>] - Add prize pool to compo</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-346'>LANMS-346</a>] - Add automatic version update</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-347'>LANMS-347</a>] - Improvements on license checking</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-348'>LANMS-348</a>] - Refresh permissions should set permission to true for superadmin role</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-352'>LANMS-352</a>] - Add &quot;please wait&quot; on mass-email</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-355'>LANMS-355</a>] - Add validation for admin input to compo</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-357'>LANMS-357</a>] - User should not be able to delete or edit team if signed up to a compo</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-358'>LANMS-358</a>] - Unpaid invoices: Notification &amp; Reservations</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-362'>LANMS-362</a>] - Show deleted and add restore for rows and seats</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-365'>LANMS-365</a>] - Add description to settings</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-374'>LANMS-374</a>] - Improve address translation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-377'>LANMS-377</a>] - Add setting for disabling consent form in header</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-378'>LANMS-378</a>] - Change the text on consent form about age restrictions</li>
+									<li>[LANMS-344] - Add prize pool to compo</li>
+									<li>[LANMS-346] - Add automatic version update</li>
+									<li>[LANMS-347] - Improvements on license checking</li>
+									<li>[LANMS-348] - Refresh permissions should set permission to true for superadmin role</li>
+									<li>[LANMS-352] - Add &quot;please wait&quot; on mass-email</li>
+									<li>[LANMS-355] - Add validation for admin input to compo</li>
+									<li>[LANMS-357] - User should not be able to delete or edit team if signed up to a compo</li>
+									<li>[LANMS-358] - Unpaid invoices: Notification &amp; Reservations</li>
+									<li>[LANMS-362] - Show deleted and add restore for rows and seats</li>
+									<li>[LANMS-365] - Add description to settings</li>
+									<li>[LANMS-374] - Improve address translation</li>
+									<li>[LANMS-377] - Add setting for disabling consent form in header</li>
+									<li>[LANMS-378] - Change the text on consent form about age restrictions</li>
 								</ul>
 							</div>
 						</div>
@@ -566,23 +566,23 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-336">LANMS-336</a>] - Send emails to users from admin panel</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-337">LANMS-337</a>] - System Info</li>
+									<li>[LANMS-336] - Send emails to users from admin panel</li>
+									<li>[LANMS-337] - System Info</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-342">LANMS-342</a>] - Update Sentry to version 1.3.0</li>
+									<li>[LANMS-342] - Update Sentry to version 1.3.0</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-333">LANMS-333</a>] - Implement news categories</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-338">LANMS-338</a>] - Add description to info items</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-339">LANMS-339</a>] - User already added to crew should not be listed on create crew page</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-340">LANMS-340</a>] - Add command to refresh permissions for roles</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-341">LANMS-341</a>] - Add warnings for env setting</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-345">LANMS-345</a>] - Add update command</li>
+									<li>[LANMS-333] - Implement news categories</li>
+									<li>[LANMS-338] - Add description to info items</li>
+									<li>[LANMS-339] - User already added to crew should not be listed on create crew page</li>
+									<li>[LANMS-340] - Add command to refresh permissions for roles</li>
+									<li>[LANMS-341] - Add warnings for env setting</li>
+									<li>[LANMS-345] - Add update command</li>
 								</ul>
 							</div>
 						</div>
@@ -597,21 +597,21 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-329">LANMS-329</a>] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-335">LANMS-335</a>] - Update translation for profile</li>
+									<li>[LANMS-329] - General error: Field &#39;about&#39; doesn&#39;t have a default value</li>
+									<li>[LANMS-335] - Update translation for profile</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-272">LANMS-272</a>] - Add possibility to edit permissions for users</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-320">LANMS-320</a>] - Custom seating CSS from admin panel</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-321">LANMS-321</a>] - Add Stripe PaymentIntent (SCA)</li>
+									<li>[LANMS-272] - Add possibility to edit permissions for users</li>
+									<li>[LANMS-320] - Custom seating CSS from admin panel</li>
+									<li>[LANMS-321] - Add Stripe PaymentIntent (SCA)</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-323">LANMS-323</a>] - Update to L5.8</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-326">LANMS-326</a>] - Crew Skill Badge view in admin panel</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-327">LANMS-327</a>] - Improve dashboard design</li>
+									<li>[LANMS-323] - Update to L5.8</li>
+									<li>[LANMS-326] - Crew Skill Badge view in admin panel</li>
+									<li>[LANMS-327] - Improve dashboard design</li>
 								</ul>
 							</div>
 						</div>
@@ -626,27 +626,27 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-140">LANMS-140</a>] - InvalidArgumentException: Malformed UTF-8 characters, possibly incorrectly encoded</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-305">LANMS-305</a>] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-312">LANMS-312</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-316">LANMS-316</a>] - News article does not throw 404 when article does not exist</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-322">LANMS-322</a>] - Reserving a seat is not working</li>
+									<li>[LANMS-140] - InvalidArgumentException: Malformed UTF-8 characters, possibly incorrectly encoded</li>
+									<li>[LANMS-305] - ErrorException: Warning: unlink(/home/downlinkdg/repositories/lanms/storage/framework/down): No such file or dire...</li>
+									<li>[LANMS-312] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[LANMS-316] - News article does not throw 404 when article does not exist</li>
+									<li>[LANMS-322] - Reserving a seat is not working</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-273">LANMS-273</a>] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-288">LANMS-288</a>] - Reset password for user via admin panel</li>
+									<li>[LANMS-273] - Rows; &quot;Create X amount of seats&quot; when creating a row</li>
+									<li>[LANMS-288] - Reset password for user via admin panel</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-240">LANMS-240</a>] - Add logging to more than just users</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-280">LANMS-280</a>] - Seatmap in checkin, with own colors for checked in seats</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-283">LANMS-283</a>] - Blank consent form more easily available</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-284">LANMS-284</a>] - Compo to be moved to public</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-306">LANMS-306</a>] - Add more user info in the adminpanel</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-307">LANMS-307</a>] - Resend activation email for user via admin panel</li>
-									<li>[<a href="https://infihex.atlassian.net/browse/LANMS-309">LANMS-309</a>] - Add cleanup command for activity log</li>
+									<li>[LANMS-240] - Add logging to more than just users</li>
+									<li>[LANMS-280] - Seatmap in checkin, with own colors for checked in seats</li>
+									<li>[LANMS-283] - Blank consent form more easily available</li>
+									<li>[LANMS-284] - Compo to be moved to public</li>
+									<li>[LANMS-306] - Add more user info in the adminpanel</li>
+									<li>[LANMS-307] - Resend activation email for user via admin panel</li>
+									<li>[LANMS-309] - Add cleanup command for activity log</li>
 								</ul>
 							</div>
 						</div>
@@ -662,30 +662,30 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-278'>LANMS-278</a>] - Email title not translated</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-282'>LANMS-282</a>] - Sometimes tickets gets 1970 year</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-285'>LANMS-285</a>] - Admin page for sponsors shows sponsors for prev year</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-290'>LANMS-290</a>] - Sponsors show all on admin page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-294'>LANMS-294</a>] - Changing users phone, language or theme does not save</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-318'>LANMS-318</a>] - InvalidArgumentException: A two digit month could not be found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-325'>LANMS-325</a>] - InvalidArgumentException: Trailing data</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-330'>LANMS-330</a>] - InvalidArgumentException: Data missing</li>
+									<li>[LANMS-278] - Email title not translated</li>
+									<li>[LANMS-282] - Sometimes tickets gets 1970 year</li>
+									<li>[LANMS-285] - Admin page for sponsors shows sponsors for prev year</li>
+									<li>[LANMS-290] - Sponsors show all on admin page</li>
+									<li>[LANMS-294] - Changing users phone, language or theme does not save</li>
+									<li>[LANMS-318] - InvalidArgumentException: A two digit month could not be found</li>
+									<li>[LANMS-325] - InvalidArgumentException: Trailing data</li>
+									<li>[LANMS-330] - InvalidArgumentException: Data missing</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-289'>LANMS-289</a>] - Invoice system</li>
+									<li>[LANMS-289] - Invoice system</li>
 								</ul>
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-279'>LANMS-279</a>] - Add addresses to users in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-292'>LANMS-292</a>] - Add anonymized badge to users in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-293'>LANMS-293</a>] - Make address2-field required</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-295'>LANMS-295</a>] - Add about-field to user in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-296'>LANMS-296</a>] - Improve order of tables in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-297'>LANMS-297</a>] - Implement Stripe Cards</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-300'>LANMS-300</a>] - Update the browser icon</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-304'>LANMS-304</a>] - Change dates in admin panel for table sorting</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-331'>LANMS-331</a>] - Allow spaces in names</li>
+									<li>[LANMS-279] - Add addresses to users in admin panel</li>
+									<li>[LANMS-292] - Add anonymized badge to users in admin panel</li>
+									<li>[LANMS-293] - Make address2-field required</li>
+									<li>[LANMS-295] - Add about-field to user in admin panel</li>
+									<li>[LANMS-296] - Improve order of tables in admin panel</li>
+									<li>[LANMS-297] - Implement Stripe Cards</li>
+									<li>[LANMS-300] - Update the browser icon</li>
+									<li>[LANMS-304] - Change dates in admin panel for table sorting</li>
+									<li>[LANMS-331] - Allow spaces in names</li>
 								</ul>
 							</div>
 						</div>
@@ -701,24 +701,24 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-247'>LANMS-247</a>] - Reserved status is not translated</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-248'>LANMS-248</a>] - Charge status from Stripe is not translated</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-269'>LANMS-269</a>] - Alert showing html in seating</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-271'>LANMS-271</a>] - Select2 has dark theme</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-274'>LANMS-274</a>] - Referral count does not show correctly</li>
+									<li>[LANMS-247] - Reserved status is not translated</li>
+									<li>[LANMS-248] - Charge status from Stripe is not translated</li>
+									<li>[LANMS-269] - Alert showing html in seating</li>
+									<li>[LANMS-271] - Select2 has dark theme</li>
+									<li>[LANMS-274] - Referral count does not show correctly</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-13'>LANMS-13</a>] - Create Team System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-18'>LANMS-18</a>] - Create Compo System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-270'>LANMS-270</a>] - Add a own sponsor page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-275'>LANMS-275</a>] - Compo Signup System</li>
+									<li>[LANMS-13] - Create Team System</li>
+									<li>[LANMS-18] - Create Compo System</li>
+									<li>[LANMS-270] - Add a own sponsor page</li>
+									<li>[LANMS-275] - Compo Signup System</li>
 								</ul>
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-254'>LANMS-254</a>] - Add &quot;admin buttons&quot; on news, pages etc</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-265'>LANMS-265</a>] - Autocomplete fields should be easier to use</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-267'>LANMS-267</a>] - Improve design of license page</li>
+									<li>[LANMS-254] - Add &quot;admin buttons&quot; on news, pages etc</li>
+									<li>[LANMS-265] - Autocomplete fields should be easier to use</li>
+									<li>[LANMS-267] - Improve design of license page</li>
 								</ul>
 							</div>
 						</div>
@@ -734,30 +734,30 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-251'>LANMS-251</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-252'>LANMS-252</a>] - Posting news to social media generates wrong link
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-261'>LANMS-261</a>] - If no birthdate is filled, it throws an error
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-262'>LANMS-262</a>] - Slugs isn&#39;t always created or updated
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-263'>LANMS-263</a>] - Seatmap is not sizing correctly
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-264'>LANMS-264</a>] - User can change payment after expiry
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-266'>LANMS-266</a>] - Phone is not being saved on signup page</li>
+									<li>[LANMS-251] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found
+									<li>[LANMS-252] - Posting news to social media generates wrong link
+									<li>[LANMS-261] - If no birthdate is filled, it throws an error
+									<li>[LANMS-262] - Slugs isn&#39;t always created or updated
+									<li>[LANMS-263] - Seatmap is not sizing correctly
+									<li>[LANMS-264] - User can change payment after expiry
+									<li>[LANMS-266] - Phone is not being saved on signup page</li>
 								</ul>
 
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-257'>LANMS-257</a>] - Delete old themes and files
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-258'>LANMS-258</a>] - Change agreement when reserving
+									<li>[LANMS-257] - Delete old themes and files
+									<li>[LANMS-258] - Change agreement when reserving
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-190'>LANMS-190</a>] - Update the Admin UI
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-238'>LANMS-238</a>] - Improve the check-in process for the person checking in attendees
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-250'>LANMS-250</a>] - Add chevron/caret down to user over menu
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-255'>LANMS-255</a>] - Improve crew and skill attachment
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-256'>LANMS-256</a>] - Change from label to class in crew skill
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-259'>LANMS-259</a>] - Add theme selection for users
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-260'>LANMS-260</a>] - Sort info pages on title
+									<li>[LANMS-190] - Update the Admin UI
+									<li>[LANMS-238] - Improve the check-in process for the person checking in attendees
+									<li>[LANMS-250] - Add chevron/caret down to user over menu
+									<li>[LANMS-255] - Improve crew and skill attachment
+									<li>[LANMS-256] - Change from label to class in crew skill
+									<li>[LANMS-259] - Add theme selection for users
+									<li>[LANMS-260] - Sort info pages on title
 								</ul>
 							</div>
 						</div>
@@ -773,29 +773,29 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-217'>LANMS-217</a>] - Chosen file does not appear in input field</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-221'>LANMS-221</a>] - Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-222'>LANMS-222</a>] - ErrorException: Route [home] not defined. (View: /home/downlinkdg/repositories/lanms/resources/views/vobilet/erro...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-223'>LANMS-223</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-241'>LANMS-241</a>] - Non-active, deleted, etc users is in ajax calls</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-242'>LANMS-242</a>] - AJAX is available without being logged in</li>
+									<li>[LANMS-217] - Chosen file does not appear in input field</li>
+									<li>[LANMS-221] - Illuminate\Database\QueryException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry</li>
+									<li>[LANMS-222] - ErrorException: Route [home] not defined. (View: /home/downlinkdg/repositories/lanms/resources/views/vobilet/erro...</li>
+									<li>[LANMS-223] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[LANMS-241] - Non-active, deleted, etc users is in ajax calls</li>
+									<li>[LANMS-242] - AJAX is available without being logged in</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-211'>LANMS-211</a>] - Add Translation Support</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-219'>LANMS-219</a>] - Add calendar/schedule system</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-244'>LANMS-244</a>] - Add Discord widget</li>
+									<li>[LANMS-211] - Add Translation Support</li>
+									<li>[LANMS-219] - Add calendar/schedule system</li>
+									<li>[LANMS-244] - Add Discord widget</li>
 								</ul>
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-216'>LANMS-216</a>] - Add Norwegian translation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-218'>LANMS-218</a>] - Update time/date formatting to use Carbon</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-226'>LANMS-226</a>] - Add phone number to users</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-227'>LANMS-227</a>] - Add last activity to members list</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-232'>LANMS-232</a>] - GDPR: Users with no activity for the last 3 years will be anonymized</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-235'>LANMS-235</a>] - Add user preference on language</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-239'>LANMS-239</a>] - Improve user input with old on profile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-243'>LANMS-243</a>] - Add discord link to footer</li>
+									<li>[LANMS-216] - Add Norwegian translation</li>
+									<li>[LANMS-218] - Update time/date formatting to use Carbon</li>
+									<li>[LANMS-226] - Add phone number to users</li>
+									<li>[LANMS-227] - Add last activity to members list</li>
+									<li>[LANMS-232] - GDPR: Users with no activity for the last 3 years will be anonymized</li>
+									<li>[LANMS-235] - Add user preference on language</li>
+									<li>[LANMS-239] - Improve user input with old on profile</li>
+									<li>[LANMS-243] - Add discord link to footer</li>
 								</ul>
 							</div>
 						</div>
@@ -811,7 +811,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-245'>LANMS-245</a>] - Exception: DateTime::__construct(): Failed to parse time string (2004-28-05) at position 6 (8): Unexpected c...</li>
+									<li>[LANMS-245] - Exception: DateTime::__construct(): Failed to parse time string (2004-28-05) at position 6 (8): Unexpected c...</li>
 								</ul>
 							</div>
 						</div>
@@ -827,14 +827,14 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-229'>LANMS-229</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-231'>LANMS-231</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-236'>LANMS-236</a>] - Searching users does not work anymore</li>
+									<li>[LANMS-229] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[LANMS-231] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[LANMS-236] - Searching users does not work anymore</li>
 								</ul>    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-230'>LANMS-230</a>] - Allow admins to view ticket</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-237'>LANMS-237</a>] - Add age check on birthdate fields</li>
+									<li>[LANMS-230] - Allow admins to view ticket</li>
+									<li>[LANMS-237] - Add age check on birthdate fields</li>
 								</ul>
 							</div>
 						</div>
@@ -850,13 +850,13 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-193'>LANMS-193</a>] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;App\User&#39; not found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-215'>LANMS-215</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
+									<li>[LANMS-193] - Symfony\Component\Debug\Exception\FatalThrowableError: Class &#39;App\User&#39; not found</li>
+									<li>[LANMS-215] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-196'>LANMS-196</a>] - Post to social medias when posting news</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-212'>LANMS-212</a>] - Command for deleting non-activated users</li>
+									<li>[LANMS-196] - Post to social medias when posting news</li>
+									<li>[LANMS-212] - Command for deleting non-activated users</li>
 								</ul>
 							</div>
 						</div>
@@ -872,30 +872,30 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-191'>LANMS-191</a>] - ErrorException: Trying to get property of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-192'>LANMS-192</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-194'>LANMS-194</a>] - InvalidArgumentException: Route [account-recover] not defined.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-197'>LANMS-197</a>] - Randomly showing &quot;Could not find seat&quot; in seating</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-198'>LANMS-198</a>] - Some users can see other users charges</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-199'>LANMS-199</a>] - ErrorException: Missing required parameters for [Route: user-profile] [URI: user/profile/{username}]. (View: /hom...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-201'>LANMS-201</a>] - Crew Skills is showing wrongly</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-207'>LANMS-207</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-210'>LANMS-210</a>] - ErrorException: Undefined index: old</li>
+									<li>[LANMS-191] - ErrorException: Trying to get property of non-object</li>
+									<li>[LANMS-192] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
+									<li>[LANMS-194] - InvalidArgumentException: Route [account-recover] not defined.</li>
+									<li>[LANMS-197] - Randomly showing &quot;Could not find seat&quot; in seating</li>
+									<li>[LANMS-198] - Some users can see other users charges</li>
+									<li>[LANMS-199] - ErrorException: Missing required parameters for [Route: user-profile] [URI: user/profile/{username}]. (View: /hom...</li>
+									<li>[LANMS-201] - Crew Skills is showing wrongly</li>
+									<li>[LANMS-207] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
+									<li>[LANMS-210] - ErrorException: Undefined index: old</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-205'>LANMS-205</a>] - Add support for Facebook Messenger</li>
+									<li>[LANMS-205] - Add support for Facebook Messenger</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-195'>LANMS-195</a>] - Capture User in Sentry</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-202'>LANMS-202</a>] - Sort order for Sponsors</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-203'>LANMS-203</a>] - Rework the header on mobile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-206'>LANMS-206</a>] - Add error pages to user UI</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-209'>LANMS-209</a>] - Pizza badge</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-213'>LANMS-213</a>] - Lastname cant contain spaces, it should be possible</li>
+									<li>[LANMS-195] - Capture User in Sentry</li>
+									<li>[LANMS-202] - Sort order for Sponsors</li>
+									<li>[LANMS-203] - Rework the header on mobile</li>
+									<li>[LANMS-206] - Add error pages to user UI</li>
+									<li>[LANMS-209] - Pizza badge</li>
+									<li>[LANMS-213] - Lastname cant contain spaces, it should be possible</li>
 								</ul>
 							</div>
 						</div>
@@ -911,40 +911,40 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-155'>LANMS-155</a>] - Illuminate\Http\Exceptions\PostTooLargeException</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-174'>LANMS-174</a>] - When user has been on the login page for a while; the token expires</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-176'>LANMS-176</a>] - SignedInNotSupported Error from Google Maps API</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-178'>LANMS-178</a>] - Undefined variable: currentseat</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-179'>LANMS-179</a>] - Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-186'>LANMS-186</a>] - Trying to get property &#39;username&#39; of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-188'>LANMS-188</a>] - When searching for users it shows inactive users</li>
+									<li>[LANMS-155] - Illuminate\Http\Exceptions\PostTooLargeException</li>
+									<li>[LANMS-174] - When user has been on the login page for a while; the token expires</li>
+									<li>[LANMS-176] - SignedInNotSupported Error from Google Maps API</li>
+									<li>[LANMS-178] - Undefined variable: currentseat</li>
+									<li>[LANMS-179] - Class &#39;Vsmoraes\Pdf\PdfFacade&#39; not found</li>
+									<li>[LANMS-186] - Trying to get property &#39;username&#39; of non-object</li>
+									<li>[LANMS-188] - When searching for users it shows inactive users</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-19'>LANMS-19</a>] - User administration</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-24'>LANMS-24</a>] - Receipt for ticket</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-88'>LANMS-88</a>] - Add system for rows and seats</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-158'>LANMS-158</a>] - Let users see payments and charges made</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-164'>LANMS-164</a>] - A list of reservations made</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-175'>LANMS-175</a>] - Add activity logging</li>
+									<li>[LANMS-19] - User administration</li>
+									<li>[LANMS-24] - Receipt for ticket</li>
+									<li>[LANMS-88] - Add system for rows and seats</li>
+									<li>[LANMS-111] - License Checker</li>
+									<li>[LANMS-158] - Let users see payments and charges made</li>
+									<li>[LANMS-164] - A list of reservations made</li>
+									<li>[LANMS-175] - Add activity logging</li>
 								</ul>
 
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-71'>LANMS-71</a>] - Admin should be able to set payment to entrance for temp reserved seats</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-159'>LANMS-159</a>] - Cleanup routes for user/account</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-161'>LANMS-161</a>] - New account and dashboard pages</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-162'>LANMS-162</a>] - New design improvement for save buttons</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-163'>LANMS-163</a>] - Add a interactive card for payments</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-173'>LANMS-173</a>] - GDPR: Cookie Notice</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-180'>LANMS-180</a>] - GDPR: Users can easily request deletion of their personal data</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-181'>LANMS-181</a>] - GDPR: If you process children&#39;s personal data, verify their age and ask consent from their legal guardian</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-182'>LANMS-182</a>] - GDPR: Add a General Privacy Policy</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-183'>LANMS-183</a>] - GDPR: Add a General Terms and Conditions</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-184'>LANMS-184</a>] - Update the user UI</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-185'>LANMS-185</a>] - GDPR: Users can easily download their personal data</li>
+									<li>[LANMS-71] - Admin should be able to set payment to entrance for temp reserved seats</li>
+									<li>[LANMS-159] - Cleanup routes for user/account</li>
+									<li>[LANMS-161] - New account and dashboard pages</li>
+									<li>[LANMS-162] - New design improvement for save buttons</li>
+									<li>[LANMS-163] - Add a interactive card for payments</li>
+									<li>[LANMS-173] - GDPR: Cookie Notice</li>
+									<li>[LANMS-180] - GDPR: Users can easily request deletion of their personal data</li>
+									<li>[LANMS-181] - GDPR: If you process children&#39;s personal data, verify their age and ask consent from their legal guardian</li>
+									<li>[LANMS-182] - GDPR: Add a General Privacy Policy</li>
+									<li>[LANMS-183] - GDPR: Add a General Terms and Conditions</li>
+									<li>[LANMS-184] - Update the user UI</li>
+									<li>[LANMS-185] - GDPR: Users can easily download their personal data</li>
 								</ul>
 							</div>
 						</div>
@@ -960,13 +960,13 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-160'>LANMS-160</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card&#39;s security code is incorrect.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-167'>LANMS-167</a>] - DOMPDF_Exception: No block-level parent found.  Not good.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-168'>LANMS-168</a>] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [7...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-169'>LANMS-169</a>] - ErrorException: Trying to get property of non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-170'>LANMS-170</a>] - ErrorException: Undefined variable: currentseat</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-171'>LANMS-171</a>] - ErrorException: Undefined variable: currentseat</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-172'>LANMS-172</a>] - ErrorException: Undefined variable: currentseat</li>
+									<li>[LANMS-160] - Cartalyst\Stripe\Exception\CardErrorException: Your card&#39;s security code is incorrect.</li>
+									<li>[LANMS-167] - DOMPDF_Exception: No block-level parent found.  Not good.</li>
+									<li>[LANMS-168] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [7...</li>
+									<li>[LANMS-169] - ErrorException: Trying to get property of non-object</li>
+									<li>[LANMS-170] - ErrorException: Undefined variable: currentseat</li>
+									<li>[LANMS-171] - ErrorException: Undefined variable: currentseat</li>
+									<li>[LANMS-172] - ErrorException: Undefined variable: currentseat</li>
 								</ul>
 							</div>
 						</div>
@@ -982,16 +982,16 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-154'>LANMS-154</a>] - User could not change the payment</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-156'>LANMS-156</a>] - Payment takes &quot;Default Card&quot; and not the card that was entered</li>
+									<li>[LANMS-154] - User could not change the payment</li>
+									<li>[LANMS-156] - Payment takes &quot;Default Card&quot; and not the card that was entered</li>
 								</ul>
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
+									<li>[LANMS-111] - License Checker</li>
 								</ul>
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-157'>LANMS-157</a>] - Reserve seat in admin panel has wrong name format</li>
+									<li>[LANMS-157] - Reserve seat in admin panel has wrong name format</li>
 								</ul>
 							</div>
 						</div>
@@ -1007,7 +1007,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-153'>LANMS-153</a>] - Pages does not appear in menu anymore</li>
+									<li>[LANMS-153] - Pages does not appear in menu anymore</li>
 								</ul>
 							</div>
 						</div>
@@ -1023,8 +1023,8 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-151'>LANMS-151</a>] - Payment does not proceed</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-152'>LANMS-152</a>] - Payment: ErrorException: Trying to get property of non-object</li>
+									<li>[LANMS-151] - Payment does not proceed</li>
+									<li>[LANMS-152] - Payment: ErrorException: Trying to get property of non-object</li>
 								</ul>
 							</div>
 						</div>
@@ -1040,15 +1040,15 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-144'>LANMS-144</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+									<li>[LANMS-144] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-87'>LANMS-87</a>] - Timeline for profile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-116'>LANMS-116</a>] - &quot;Pay now&quot;-button should have a loading animation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-147'>LANMS-147</a>] - Names should be able contain norwegian letters</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-148'>LANMS-148</a>] - https setting is not enforcing https</li>
+									<li>[LANMS-87] - Timeline for profile</li>
+									<li>[LANMS-116] - &quot;Pay now&quot;-button should have a loading animation</li>
+									<li>[LANMS-147] - Names should be able contain norwegian letters</li>
+									<li>[LANMS-148] - https setting is not enforcing https</li>
 								</ul>
 							</div>
 						</div>
@@ -1064,22 +1064,22 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-97'>LANMS-97</a>] - Email logo needs fixing</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-134'>LANMS-134</a>] - UnexpectedValueException: The Response content must be a string or object implementing __toString(), &quot;boolean&quot; given.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-142'>LANMS-142</a>] - Swift_TransportException: Connection could not be established with host mani.infihex.com [ #0]</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-144'>LANMS-144</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-145'>LANMS-145</a>] - ErrorException: Argument 1 passed to Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete() must i...</li>
+									<li>[LANMS-97] - Email logo needs fixing</li>
+									<li>[LANMS-134] - UnexpectedValueException: The Response content must be a string or object implementing __toString(), &quot;boolean&quot; given.</li>
+									<li>[LANMS-142] - Swift_TransportException: Connection could not be established with host mani.infihex.com [ #0]</li>
+									<li>[LANMS-144] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+									<li>[LANMS-145] - ErrorException: Argument 1 passed to Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete() must i...</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-146'>LANMS-146</a>] - Remove &quot;Featured Image&quot; from news until it is implemented</li>
+									<li>[LANMS-146] - Remove &quot;Featured Image&quot; from news until it is implemented</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-141'>LANMS-141</a>] - User must have an birthday</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-143'>LANMS-143</a>] - Gender equality</li>
+									<li>[LANMS-141] - User must have an birthday</li>
+									<li>[LANMS-143] - Gender equality</li>
 								</ul>
 							</div>
 						</div>
@@ -1095,51 +1095,51 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-108'>LANMS-108</a>] - ErrorException: Trying to get property of non-object (View: /lanms2/resources/views/neon-admin/seating/checkin/index.blade.php)</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-109'>LANMS-109</a>] - Ticket should not be deleted if user has checked in</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-113'>LANMS-113</a>] - One address, no primary</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-125'>LANMS-125</a>] - Other users can reserve seats on a user with a seat reserved</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-127'>LANMS-127</a>] - Reminder email for seat reservations does not send at 24 hours</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-131'>LANMS-131</a>] - Wrong format of names in seating</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-132'>LANMS-132</a>] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-133'>LANMS-133</a>] - InvalidArgumentException: View [errors.500] not found.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-135'>LANMS-135</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught exception &#39;BadMethodCallException&#39; with message &#39;Method Cartalyst\Sentinel\Sentinel::has...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-136'>LANMS-136</a>] - Redirected to seating when i try to go to broken bands</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-138'>LANMS-138</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Class &#39;LANMS\Exceptions\HttpException&#39; not found</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-139'>LANMS-139</a>] - File-input covers the whole page</li>
+									<li>[LANMS-108] - ErrorException: Trying to get property of non-object (View: /lanms2/resources/views/neon-admin/seating/checkin/index.blade.php)</li>
+									<li>[LANMS-109] - Ticket should not be deleted if user has checked in</li>
+									<li>[LANMS-113] - One address, no primary</li>
+									<li>[LANMS-125] - Other users can reserve seats on a user with a seat reserved</li>
+									<li>[LANMS-127] - Reminder email for seat reservations does not send at 24 hours</li>
+									<li>[LANMS-131] - Wrong format of names in seating</li>
+									<li>[LANMS-132] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
+									<li>[LANMS-133] - InvalidArgumentException: View [errors.500] not found.</li>
+									<li>[LANMS-135] - Symfony\Component\Debug\Exception\FatalErrorException: Uncaught exception &#39;BadMethodCallException&#39; with message &#39;Method Cartalyst\Sentinel\Sentinel::has...</li>
+									<li>[LANMS-136] - Redirected to seating when i try to go to broken bands</li>
+									<li>[LANMS-138] - Symfony\Component\Debug\Exception\FatalErrorException: Class &#39;LANMS\Exceptions\HttpException&#39; not found</li>
+									<li>[LANMS-139] - File-input covers the whole page</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-6'>LANMS-6</a>] - Create Sponsor System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-70'>LANMS-70</a>] - Reserve seats from admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-77'>LANMS-77</a>] - &quot;Broken band&quot; page</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-80'>LANMS-80</a>] - Crew system, with skills attached</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-85'>LANMS-85</a>] - Info system</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-111'>LANMS-111</a>] - License Checker</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-119'>LANMS-119</a>] - Samtykkeskjema på nett</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-128'>LANMS-128</a>] - Add &quot;What&#39;s new?&quot; view</li>
+									<li>[LANMS-6] - Create Sponsor System</li>
+									<li>[LANMS-70] - Reserve seats from admin panel</li>
+									<li>[LANMS-77] - &quot;Broken band&quot; page</li>
+									<li>[LANMS-80] - Crew system, with skills attached</li>
+									<li>[LANMS-85] - Info system</li>
+									<li>[LANMS-111] - License Checker</li>
+									<li>[LANMS-119] - Samtykkeskjema på nett</li>
+									<li>[LANMS-128] - Add &quot;What&#39;s new?&quot; view</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-110'>LANMS-110</a>] - Upgrade Laravel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-123'>LANMS-123</a>] - Move &quot;Print&quot; under seating</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-124'>LANMS-124</a>] - Move settings, logs &amp; license under &quot;System&quot;</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-129'>LANMS-129</a>] - Move Logs into the admin panel design</li>
+									<li>[LANMS-110] - Upgrade Laravel</li>
+									<li>[LANMS-123] - Move &quot;Print&quot; under seating</li>
+									<li>[LANMS-124] - Move settings, logs &amp; license under &quot;System&quot;</li>
+									<li>[LANMS-129] - Move Logs into the admin panel design</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-61'>LANMS-61</a>] - Add Seatmap for seating in admin panel</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-75'>LANMS-75</a>] - Search for members userend</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-87'>LANMS-87</a>] - Timeline for profile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-91'>LANMS-91</a>] - Admin Dashboard</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-101'>LANMS-101</a>] - Add ticket view for admin</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-104'>LANMS-104</a>] - Resend verification email</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-116'>LANMS-116</a>] - &quot;Pay now&quot;-button should have a loading animation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-120'>LANMS-120</a>] - Remove 12yo requirement</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-126'>LANMS-126</a>] - Convert old cron_jobs to commands</li>
+									<li>[LANMS-61] - Add Seatmap for seating in admin panel</li>
+									<li>[LANMS-75] - Search for members userend</li>
+									<li>[LANMS-87] - Timeline for profile</li>
+									<li>[LANMS-91] - Admin Dashboard</li>
+									<li>[LANMS-101] - Add ticket view for admin</li>
+									<li>[LANMS-104] - Resend verification email</li>
+									<li>[LANMS-116] - &quot;Pay now&quot;-button should have a loading animation</li>
+									<li>[LANMS-120] - Remove 12yo requirement</li>
+									<li>[LANMS-126] - Convert old cron_jobs to commands</li>
 								</ul>
 							</div>
 						</div>
@@ -1155,19 +1155,19 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-97'>LANMS-97</a>] - Email logo needs fixing</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-98'>LANMS-98</a>] - Date field on mobile can be buggy</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-102'>LANMS-102</a>] - Kommer det opp &quot;you cant view this ticket&quot;</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-103'>LANMS-103</a>] - Design does not work on iPhone</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-105'>LANMS-105</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-106'>LANMS-106</a>] - Illuminate\Session\TokenMismatchException</li>
+									<li>[LANMS-97] - Email logo needs fixing</li>
+									<li>[LANMS-98] - Date field on mobile can be buggy</li>
+									<li>[LANMS-102] - Kommer det opp &quot;you cant view this ticket&quot;</li>
+									<li>[LANMS-103] - Design does not work on iPhone</li>
+									<li>[LANMS-105] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
+									<li>[LANMS-106] - Illuminate\Session\TokenMismatchException</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-99'>LANMS-99</a>] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-100'>LANMS-100</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card number is incorrect.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-107'>LANMS-107</a>] - You should be able to see seatmap when closed</li>
+									<li>[LANMS-99] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
+									<li>[LANMS-100] - Cartalyst\Stripe\Exception\CardErrorException: Your card number is incorrect.</li>
+									<li>[LANMS-107] - You should be able to see seatmap when closed</li>
 								</ul>
 							</div>
 						</div>
@@ -1183,18 +1183,18 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-98'>LANMS-98</a>] - Date field on mobile can be buggy</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-102'>LANMS-102</a>] - Kommer det opp &quot;you cant view this ticket&quot;</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-103'>LANMS-103</a>] - Design does not work on iPhone</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-105'>LANMS-105</a>] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-106'>LANMS-106</a>] - Illuminate\Session\TokenMismatchException</li>
+									<li>[LANMS-98] - Date field on mobile can be buggy</li>
+									<li>[LANMS-102] - Kommer det opp &quot;you cant view this ticket&quot;</li>
+									<li>[LANMS-103] - Design does not work on iPhone</li>
+									<li>[LANMS-105] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
+									<li>[LANMS-106] - Illuminate\Session\TokenMismatchException</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-99'>LANMS-99</a>] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-100'>LANMS-100</a>] - Cartalyst\Stripe\Exception\CardErrorException: Your card number is incorrect.</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-107'>LANMS-107</a>] - You should be able to see seatmap when closed</li>
+									<li>[LANMS-99] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
+									<li>[LANMS-100] - Cartalyst\Stripe\Exception\CardErrorException: Your card number is incorrect.</li>
+									<li>[LANMS-107] - You should be able to see seatmap when closed</li>
 								</ul>
 							</div>
 						</div>
@@ -1210,12 +1210,12 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-54'>LANMS-54</a>] - Members page should not show non active users</li>
+									<li>[LANMS-54] - Members page should not show non active users</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-76'>LANMS-76</a>] - List for non-checkedin reservations</li>
+									<li>[LANMS-76] - List for non-checkedin reservations</li>
 								</ul>
 							</div>
 						</div>
@@ -1231,13 +1231,13 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-74'>LANMS-74</a>] - Ticket ID on reservation table</li>
+									<li>[LANMS-74] - Ticket ID on reservation table</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-81'>LANMS-81</a>] - Add setting for disabling login for users</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-82'>LANMS-82</a>] - Need to hide seating from menu</li>
+									<li>[LANMS-81] - Add setting for disabling login for users</li>
+									<li>[LANMS-82] - Need to hide seating from menu</li>
 								</ul>
 							</div>
 						</div>
@@ -1253,7 +1253,7 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-72'>LANMS-72</a>] - Print outs for seats in admin panel</li>
+									<li>[LANMS-72] - Print outs for seats in admin panel</li>
 								</ul>
 							</div>
 						</div>
@@ -1269,7 +1269,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-69'>LANMS-69</a>] - Reservation count for api is counting crew seats</li>
+									<li>[LANMS-69] - Reservation count for api is counting crew seats</li>
 								</ul>
 							</div>
 						</div>
@@ -1285,7 +1285,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-68'>LANMS-68</a>] - Seating info, cant download ticket when closed and more</li>
+									<li>[LANMS-68] - Seating info, cant download ticket when closed and more</li>
 								</ul>
 							</div>
 						</div>
@@ -1301,23 +1301,23 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-64'>LANMS-64</a>] - All Users have 30 reserved seats</li>
+									<li>[LANMS-64] - All Users have 30 reserved seats</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-65'>LANMS-65</a>] - Check-in</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-67'>LANMS-67</a>] - Output data in JSON</li>
+									<li>[LANMS-65] - Check-in</li>
+									<li>[LANMS-67] - Output data in JSON</li>
 								</ul>
 								
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-61'>LANMS-61</a>] - Add Seatmap for seating in admin panel</li>
+									<li>[LANMS-61] - Add Seatmap for seating in admin panel</li>
 								</ul>
 								    
 								<h4>Sub-task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-66'>LANMS-66</a>] - Visitor check-in</li>
+									<li>[LANMS-66] - Visitor check-in</li>
 								</ul>
 							</div>
 						</div>
@@ -1333,7 +1333,7 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-63'>LANMS-63</a>] - Google Analytics</li>
+									<li>[LANMS-63] - Google Analytics</li>
 								</ul>
 							</div>
 						</div>
@@ -1349,7 +1349,7 @@
 							<div class="panel-body">
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-62'>LANMS-62</a>] - Delete reservations in admin panel</li>
+									<li>[LANMS-62] - Delete reservations in admin panel</li>
 								</ul>
 							</div>
 						</div>
@@ -1365,7 +1365,7 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-41'>LANMS-41</a>] - User registration/login problems in all browsers</li>
+									<li>[LANMS-41] - User registration/login problems in all browsers</li>
 								</ul>
 							</div>
 						</div>
@@ -1381,24 +1381,24 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-36'>LANMS-36</a>] - Capital letters does not work in email on registration</li>
+									<li>[LANMS-36] - Capital letters does not work in email on registration</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-55'>LANMS-55</a>] - Admin panel: Change reservations</li>
+									<li>[LANMS-55] - Admin panel: Change reservations</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-56'>LANMS-56</a>] - Create ENV setting for stripe key</li>
+									<li>[LANMS-56] - Create ENV setting for stripe key</li>
 								</ul>
 								    
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-53'>LANMS-53</a>] - Update seat info about user</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-58'>LANMS-58</a>] - Add more info about rules for reservation</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-59'>LANMS-59</a>] - Frontend needs css improvements</li>
+									<li>[LANMS-53] - Update seat info about user</li>
+									<li>[LANMS-58] - Add more info about rules for reservation</li>
+									<li>[LANMS-59] - Frontend needs css improvements</li>
 								</ul>
 							</div>
 						</div>
@@ -1414,22 +1414,22 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-29'>LANMS-29</a>] - Missing Assets</li>
+									<li>[LANMS-29] - Missing Assets</li>
 								</ul>
 								    
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-42'>LANMS-42</a>] - User should be able remove reservation if selected pay at entrance</li>
+									<li>[LANMS-42] - User should be able remove reservation if selected pay at entrance</li>
 								</ul>
 								    
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-37'>LANMS-37</a>] - Change mail settings for prod</li>
+									<li>[LANMS-37] - Change mail settings for prod</li>
 								</ul>
 								   
 								<h4>Improvement</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-52'>LANMS-52</a>] - Users should be able to see seats reserved to them</li>
+									<li>[LANMS-52] - Users should be able to see seats reserved to them</li>
 								</ul>
 							</div>
 						</div>
@@ -1445,51 +1445,51 @@
 							<div class="panel-body">
 								<h4>Bug</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-14'>LANMS-14</a>] - User::hasAdminAccess-Scope does not work</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-21'>LANMS-21</a>] - News bug</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-22'>LANMS-22</a>] - Deleting primary adress does not set another primary</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-25'>LANMS-25</a>] - Profilepicturesmall does not save in db on upload</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-26'>LANMS-26</a>] - Fix userdetails request</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-30'>LANMS-30</a>] - Can&#39;t have spaces in address</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-32'>LANMS-32</a>] - Some dates does not work on registration (some browsers)</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-33'>LANMS-33</a>] - Addres cant understand special caracters like æøå</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-35'>LANMS-35</a>] - News and Article pages throw 500</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-38'>LANMS-38</a>] - On registration if email exists it gives 500</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-39'>LANMS-39</a>] - Wrong username in activation screen makes it not work</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-40'>LANMS-40</a>] - 2 Feil på &quot;Add address</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-44'>LANMS-44</a>] - Logout button gone on mobile</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-45'>LANMS-45</a>] - All users 46 years old</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-46'>LANMS-46</a>] - Location wrong</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-47'>LANMS-47</a>] - Admin Page-siden getUsernameByID needs to be removed</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-48'>LANMS-48</a>] - Refferal link does not work</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-49'>LANMS-49</a>] - Adressbook create does not rember input</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-50'>LANMS-50</a>] - Chrome says &quot;Please enter a valid date.&quot; when date is valid</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-51'>LANMS-51</a>] - Fix birthdate in db and templates</li>
+									<li>[LANMS-14] - User::hasAdminAccess-Scope does not work</li>
+									<li>[LANMS-21] - News bug</li>
+									<li>[LANMS-22] - Deleting primary adress does not set another primary</li>
+									<li>[LANMS-25] - Profilepicturesmall does not save in db on upload</li>
+									<li>[LANMS-26] - Fix userdetails request</li>
+									<li>[LANMS-30] - Can&#39;t have spaces in address</li>
+									<li>[LANMS-32] - Some dates does not work on registration (some browsers)</li>
+									<li>[LANMS-33] - Addres cant understand special caracters like æøå</li>
+									<li>[LANMS-35] - News and Article pages throw 500</li>
+									<li>[LANMS-38] - On registration if email exists it gives 500</li>
+									<li>[LANMS-39] - Wrong username in activation screen makes it not work</li>
+									<li>[LANMS-40] - 2 Feil på &quot;Add address</li>
+									<li>[LANMS-44] - Logout button gone on mobile</li>
+									<li>[LANMS-45] - All users 46 years old</li>
+									<li>[LANMS-46] - Location wrong</li>
+									<li>[LANMS-47] - Admin Page-siden getUsernameByID needs to be removed</li>
+									<li>[LANMS-48] - Refferal link does not work</li>
+									<li>[LANMS-49] - Adressbook create does not rember input</li>
+									<li>[LANMS-50] - Chrome says &quot;Please enter a valid date.&quot; when date is valid</li>
+									<li>[LANMS-51] - Fix birthdate in db and templates</li>
 								</ul>
 
 								<h4>New Feature</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-2'>LANMS-2</a>] - Implement Frontend Design</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-3'>LANMS-3</a>] - Create Page System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-5'>LANMS-5</a>] - Create Seating System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-7'>LANMS-7</a>] - Create Addressbook for users</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-9'>LANMS-9</a>] - &quot;Now&quot;-button in Publish setting on news admin</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-10'>LANMS-10</a>] - Add unique ID for each user (random generated)</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-11'>LANMS-11</a>] - Migration from 1.0</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-15'>LANMS-15</a>] - Autocomplete Address</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-16'>LANMS-16</a>] - Ajax Usernames</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-17'>LANMS-17</a>] - Create Referral System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-28'>LANMS-28</a>] - Error Emails to Dev</li>
+									<li>[LANMS-2] - Implement Frontend Design</li>
+									<li>[LANMS-3] - Create Page System</li>
+									<li>[LANMS-5] - Create Seating System</li>
+									<li>[LANMS-7] - Create Addressbook for users</li>
+									<li>[LANMS-9] - &quot;Now&quot;-button in Publish setting on news admin</li>
+									<li>[LANMS-10] - Add unique ID for each user (random generated)</li>
+									<li>[LANMS-11] - Migration from 1.0</li>
+									<li>[LANMS-15] - Autocomplete Address</li>
+									<li>[LANMS-16] - Ajax Usernames</li>
+									<li>[LANMS-17] - Create Referral System</li>
+									<li>[LANMS-28] - Error Emails to Dev</li>
 								</ul>
 
 								<h4>Task</h4>
 								<ul>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-4'>LANMS-4</a>] - Finish Settings System</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-20'>LANMS-20</a>] - Add error messages to form admin</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-27'>LANMS-27</a>] - Add relationships for author and news</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-31'>LANMS-31</a>] - Check thru DB changes from 1.0 to 2.0</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-34'>LANMS-34</a>] - Terms of Service &amp; Privacy Policy</li>
-									<li>[<a href='https://infihex.atlassian.net/browse/LANMS-43'>LANMS-43</a>] - Update and test email templates</li>
+									<li>[LANMS-4] - Finish Settings System</li>
+									<li>[LANMS-20] - Add error messages to form admin</li>
+									<li>[LANMS-27] - Add relationships for author and news</li>
+									<li>[LANMS-31] - Check thru DB changes from 1.0 to 2.0</li>
+									<li>[LANMS-34] - Terms of Service &amp; Privacy Policy</li>
+									<li>[LANMS-43] - Update and test email templates</li>
 								</ul>
 							</div>
 						</div>
