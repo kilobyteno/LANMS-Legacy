@@ -42,7 +42,7 @@ class CheckLicense extends Command
     {
         function checkLicense($licensekey, $localkey = '')
         {
-            $whmcsurl = 'https://my.infihex.com/';
+            $whmcsurl = 'https://portal.infihex.no/';
             $licensing_secret_key = 'InfihexLANMS';
             $localkeydays = 1; // The number of days to wait between performing remote license checks
             $allowcheckfaildays = 3; // The number of days to allow failover for after local key expiry
