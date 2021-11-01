@@ -49,7 +49,7 @@
 			@endif
 			@if(Setting::get('MAIN_ENABLE_GRASROTANDELEN_WIDGET') && Setting::get('MAIN_ORGNR'))
 				<div class="justify-content-center text-center mb-4">
-					<iframe frameborder="0" scrolling="no" src="https://www.norsk-tipping.no/grasrotandelen/stats-iframe?title=lowercase#receiver={{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 500px; height: auto;" class="rounded"></iframe>
+					<iframe frameborder="0" scrolling="yes" src="https://www.norsk-tipping.no/grasrotandelen/statistikk/iframe/{{ Setting::get('MAIN_ORGNR') }}" style="width: 100%; min-height: 600px; height: auto;" class="rounded"> </iframe>
 				</div>
 			@endif
 		</div>
