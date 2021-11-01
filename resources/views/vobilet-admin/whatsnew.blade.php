@@ -20,6 +20,22 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#releasenotes" href="#2114" aria-expanded="true">Version 21.1.4</a>
+							</h4>
+						</div>
+						<div id="2114" class="panel-collapse collapse" aria-expanded="true">
+							<div class="panel-body">
+								<ul>
+									<li>- Updated license checker url</li>
+									<li>- Updated dependencies</li>
+									<li>- Updated checks for https</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#releasenotes" href="#2113" aria-expanded="true">Version 21.1.3</a>
 							</h4>
 						</div>
