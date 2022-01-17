@@ -14,7 +14,7 @@ class UpdateSponsorTable extends Migration
     public function up()
     {
         Schema::table('sponsors', function ($table) {
-            $table->integer('sort_order')->after('year');
+            $table->integer('sort_order')->default(0)->after('year');
         });
     }
 
