@@ -14,7 +14,7 @@ class UpdateUsersTableWithAbout extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->string('about');
+            $table->string('about')->nullable();
         });
     }
 
