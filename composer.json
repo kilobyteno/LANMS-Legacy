@@ -7,20 +7,20 @@
     "authors": [
         {
             "name": "Daniel S. Billing",
-            "email": "daniel@infihex.com",
+            "email": "daniel@infihex.no",
             "homepage": "https://dsbilling.no",
-            "role": "Senior Developer"
+            "role": "Fullstack Developer"
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
-        "authy/php": "4.0.0-rc1",
+        "authy/php": "4.0.0-rc2",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "binarycabin/laravel-uuid": "^1.0",
         "cartalyst/sentinel": "^5.0",
         "cartalyst/stripe": "~2.0",
-        "cartalyst/stripe-laravel": "13.0.*",
+        "cartalyst/stripe-laravel": "^13.0.0",
         "dialect/laravel-gdpr-compliance": "^1.4",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.4",
@@ -35,7 +35,7 @@
         "laravel/passport": "^10.0.0",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
-        "matriphe/larinfo": "^2.2",
+        "matriphe/larinfo": "^3.0",
         "milon/barcode": "^8.0",
         "nesbot/carbon": "^2.16",
         "propaganistas/laravel-phone": "^4.1",

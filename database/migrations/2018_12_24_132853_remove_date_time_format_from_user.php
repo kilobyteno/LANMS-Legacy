@@ -14,8 +14,7 @@ class RemoveDateTimeFormatFromUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('userdateformat');
-            $table->dropColumn('usertimeformat');
+            $table->dropColumn(['userdateformat','usertimeformat']);
         });
     }
 

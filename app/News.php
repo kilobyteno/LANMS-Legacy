@@ -50,7 +50,7 @@ class News extends Model
 
     public function scopeIsPublished($query)
     {
-        return $query->where('published_at', '<', DB::raw('now()'))->orderBy('published_at', 'desc');
+        return $query->where('published_at', '<', now())->orderBy('published_at', 'desc');
     }
 
     public function scopeIsActive($query)

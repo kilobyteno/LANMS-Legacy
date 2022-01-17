@@ -17,17 +17,19 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call('UserTableSeeder');
-        $this->call('NewsSeeder');
-        $this->call('SettingsTableSeeder');
-        $this->call('SeatsTableSeeder');
-        $this->call('SeatRowsTableSeeder');
-        $this->call('SeatReservationStatusesTableSeeder');
-        $this->call('PagesTableSeeder');
-        $this->call('CrewTableSeeder');
-        $this->call('InfoTableSeeder');
-        $this->call('CompoTableSeeder');
-        $this->call('EmailTableSeeder');
-        $this->call('TicketTypeTableSeeder');
+        $this->call([
+            UserTableSeeder::class,
+            NewsTableSeeder::class,
+            SettingsTableSeeder::class,
+            SeatsTableSeeder::class,
+            SeatRowsTableSeeder::class,
+            SeatReservationStatusesTableSeeder::class,
+            PagesTableSeeder::class,
+            CrewTableSeeder::class,
+            InfoTableSeeder::class,
+            CompoTableSeeder::class,
+            EmailTableSeeder::class,
+            TicketTypeTableSeeder::class,
+        ]);
     }
 }
