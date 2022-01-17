@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use LANMS\News;
 use LANMS\NewsCategory;
 
-class NewsSeeder extends Seeder
+class NewsTableSeeder extends Seeder
 {
     public function run()
     {
