@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
         "authy/php": "4.0.0-rc2",
         "barryvdh/laravel-dompdf": "^0.8.6",
