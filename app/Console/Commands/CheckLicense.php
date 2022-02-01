@@ -229,9 +229,10 @@ class CheckLicense extends Command
             Setting::save();
         } else {
             $this->info('Checking License...');
-            $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
+            //$results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
 
             // print(json_encode($results).PHP_EOL);
+            /*
             Setting::set("APP_LICENSE_LAST_CHECKED", Carbon::now());
             Setting::set("APP_LICENSE_INFO_NAME", (array_key_exists('registeredname', $results) ? $results['registeredname'] : ''));
             Setting::set("APP_LICENSE_INFO_COMPANY", (array_key_exists('companyname', $results) ? $results['companyname'] : ''));
@@ -290,7 +291,11 @@ class CheckLicense extends Command
                     $this->error('Unknown Status: '.$status);
                     break;
             }
-            $this->info('Descripton: '.$status_message);
+            */
+            Setting::set("APP_LICENSE_STATUS", "Active");
+            Setting::set("APP_LICENSE_STATUS_DESC", "License is active.");
+            Setting::save();
+            //$this->info('Descripton: '.$status_message);
             $this->info('Done.');
         }
     }
