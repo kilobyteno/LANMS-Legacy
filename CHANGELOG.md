@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.1.2 - 2022-02-01
+
+## What's Changed
+
+- Add plausible by @DanielRTRD in https://github.com/kilobyteno/LANMS-SAAS/pull/64
+- Change company name by @DanielRTRD in https://github.com/kilobyteno/LANMS-SAAS/pull/63
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.1.1...22.1.2
+
 ## 22.1.1 - 2022-01-17
 
 ## What's Changed
