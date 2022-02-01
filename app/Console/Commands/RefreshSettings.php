@@ -163,7 +163,7 @@ class RefreshSettings extends Command
             'SEATING_SHOW_MAP' => 'Set this to "0" (without quotes) to disable users from seeing the seatmap. If it is set to "1" (without quotes) users will be see the seatmap.',
             'SEATING_YEAR' => 'Integer only. Set this to the year of the event.',
             'SEATING_SELF_CHECKIN_OPEN' => 'Set this to "0" (without quotes) to disable users from seeing and using the self-checkin. If it is set to "1" (without quotes) it will be enabled.',
-            'WEB_COPYRIGHT' => 'String only. Example: 2015-2019 Infihex',
+            'WEB_COPYRIGHT' => 'String only. Example: 2015-2022 Kilobyte AS',
             'WEB_DOMAIN' => 'String only. This would be the domain your website is hosted on. Example: lanms.kilobyte.no',
             'WEB_LOGO_LIGHT' => 'Path to your light logo, used for dark backgrounds.',
             'WEB_LOGO_DARK' => 'Path to your dark logo, used for light backgrounds.',

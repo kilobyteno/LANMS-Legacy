@@ -21,7 +21,7 @@ class CheckLicense extends Command
      *
      * @var string
      */
-    protected $description = 'This will check the license data towards Infihex\'s servers.';
+    protected $description = 'This will check the license data towards Kilobyte AS\'s servers.';
 
     /**
      * Create a new command instance.

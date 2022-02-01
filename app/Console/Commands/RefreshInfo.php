@@ -41,7 +41,7 @@ class RefreshInfo extends Command
         $infos = Info::all();
         $descriptions = array(
             'when' => 'Add simple view of when the event is happening. For example "21. Dec - 24. Dec 2020".',
-            'where' => 'Add name of the venue or location. For example "Infihex Arena".',
+            'where' => 'Add name of the venue or location. For example "Kilobyte Arena".',
             'where_url' => 'Add Google Maps URL to the event location. Preferably a Google short URL.',
             'price' => 'This is not used for Stripe, it is just for a simple view. For example "300kr".',
             'price_alt' => 'If you have a increased price for the entrance. This is not used for Stripe, it is just for a simple view. For example "350kr".',
