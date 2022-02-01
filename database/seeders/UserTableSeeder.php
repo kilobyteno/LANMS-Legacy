@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         Sentinel::registerAndActivate([
-            'email'         => 'test@infihex.com',
+            'email'         => 'test@kilobyte.no',
             'password'      => '12345678', // Den hash'r automatisk
             'firstname'     => 'Daniel',
             'lastname'      => 'SADMIN',
@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
         ]);
         if (env('app.debug')) {
             Sentinel::registerAndActivate([
-                'email'         => 'test2@infihex.com',
+                'email'         => 'test2@kilobyte.no',
                 'password'      => '12345678', // Den hash'r automatisk
                 'firstname'     => 'John',
                 'lastname'      => 'ADMIN',
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
                 'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
-                'email'         => 'test3@infihex.com',
+                'email'         => 'test3@kilobyte.no',
                 'password'      => '12345678', // Den hash'r automatisk
                 'firstname'     => 'John',
                 'lastname'      => 'MOD',
@@ -40,7 +40,7 @@ class UserTableSeeder extends Seeder
                 'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
-                'email'         => 'test4@infihex.com',
+                'email'         => 'test4@kilobyte.no',
                 'password'      => '12345678', // Den hash'r automatisk
                 'firstname'     => 'John',
                 'lastname'      => 'USER',
@@ -49,7 +49,7 @@ class UserTableSeeder extends Seeder
                 'last_activity' => Carbon::now(),
             ]);
             Sentinel::registerAndActivate([
-                'email'         => 'test5@infihex.com',
+                'email'         => 'test5@kilobyte.no',
                 'password'      => '12345678', // Den hash'r automatisk
                 'firstname'     => 'John',
                 'lastname'      => 'USER2',
