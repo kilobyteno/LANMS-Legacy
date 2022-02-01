@@ -24,7 +24,7 @@ class InfoTableSeeder extends Seeder
 
         Info::create([
             'name'      => 'where',
-            'content'   => 'Infihex Arena',
+            'content'   => 'Kilobyte Arena',
             'author_id' => 1,
             'editor_id' => 1,
         ]);
