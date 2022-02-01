@@ -1066,7 +1066,7 @@
 								<ul>
 									<li>[LANMS-97] - Email logo needs fixing</li>
 									<li>[LANMS-134] - UnexpectedValueException: The Response content must be a string or object implementing __toString(), &quot;boolean&quot; given.</li>
-									<li>[LANMS-142] - Swift_TransportException: Connection could not be established with host mani.infihex.com [ #0]</li>
+									<li>[LANMS-142] - Swift_TransportException: Connection could not be established with host [ #0]</li>
 									<li>[LANMS-144] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
 									<li>[LANMS-145] - ErrorException: Argument 1 passed to Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete() must i...</li>
 								</ul>

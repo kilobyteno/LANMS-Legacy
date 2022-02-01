@@ -21,7 +21,7 @@ class CheckLicense extends Command
      *
      * @var string
      */
-    protected $description = 'This will check the license data towards Infihex\'s servers.';
+    protected $description = 'This will check the license data towards Kilobyte AS\'s servers.';
 
     /**
      * Create a new command instance.
@@ -42,7 +42,7 @@ class CheckLicense extends Command
     {
         function checkLicense($licensekey, $localkey = '')
         {
-            $whmcsurl = 'https://portal.infihex.no/';
+            $whmcsurl = 'https://portal.kilobyte.no/';
             $licensing_secret_key = 'InfihexLANMS';
             $localkeydays = 1; // The number of days to wait between performing remote license checks
             $allowcheckfaildays = 3; // The number of days to allow failover for after local key expiry
@@ -229,9 +229,10 @@ class CheckLicense extends Command
             Setting::save();
         } else {
             $this->info('Checking License...');
-            $results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
+            //$results = checkLicense($app_licensekey, $app_localkey); // Validate the license key information
 
             // print(json_encode($results).PHP_EOL);
+            /*
             Setting::set("APP_LICENSE_LAST_CHECKED", Carbon::now());
             Setting::set("APP_LICENSE_INFO_NAME", (array_key_exists('registeredname', $results) ? $results['registeredname'] : ''));
             Setting::set("APP_LICENSE_INFO_COMPANY", (array_key_exists('companyname', $results) ? $results['companyname'] : ''));
@@ -290,7 +291,11 @@ class CheckLicense extends Command
                     $this->error('Unknown Status: '.$status);
                     break;
             }
-            $this->info('Descripton: '.$status_message);
+            */
+            Setting::set("APP_LICENSE_STATUS", "Active");
+            Setting::set("APP_LICENSE_STATUS_DESC", "License is active.");
+            Setting::save();
+            //$this->info('Descripton: '.$status_message);
             $this->info('Done.');
         }
     }

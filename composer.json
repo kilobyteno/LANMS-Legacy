@@ -1,5 +1,5 @@
 {
-    "name": "infihex/lanms",
+    "name": "kilobyteno/lanms",
     "description": "LAN-party Managment System",
     "keywords": [],
     "license": "CC-BY-NC-ND-4.0",
@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Daniel S. Billing",
-            "email": "daniel@infihex.no",
+            "email": "daniel@kilobyte.no",
             "homepage": "https://dsbilling.no",
             "role": "Fullstack Developer"
         }
