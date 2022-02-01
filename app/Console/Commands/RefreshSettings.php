@@ -167,7 +167,7 @@ class RefreshSettings extends Command
             'WEB_DOMAIN' => 'String only. This would be the domain your website is hosted on. Example: lanms.kilobyte.no',
             'WEB_LOGO_LIGHT' => 'Path to your light logo, used for dark backgrounds.',
             'WEB_LOGO_DARK' => 'Path to your dark logo, used for light backgrounds.',
-            'WEB_NAME' => 'Name of your website. Example: InfihexLAN',
+            'WEB_NAME' => 'Name of your website. Example: KilobyteLAN',
             'WEB_PORT' => 'Integer only. Do not edit this unless you run your server on a specific port.',
             'WEB_PROTOCOL' => 'String only. Only enter "http" (without quotes) or "https" (without quotes).',
             'HEADER_INFO_CONSENT_FORM' => 'Set this to "0" (without quotes) to remove consent form from header. If it is set to "1" (without quotes) consent form will be visible.',
