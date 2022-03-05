@@ -14,7 +14,6 @@
 		<div class="col-lg-12">
 			<div class="display-1 mb-5">419</div>
 			<h1>{{ __('pages.errors.419.desc') }}</h1>
-			<p class="text-muted">{{ $message }}</p>
 			<p><a class="btn btn-primary mt-10" href="{{ url('/') }}"><i class="fas fa-arrow-left"></i> {{ __('pages.errors.button') }}</a></p>
 		</div>		
 	</div>
