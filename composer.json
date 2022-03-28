@@ -21,6 +21,7 @@
         "cartalyst/sentinel": "^5.0",
         "cartalyst/stripe": "~2.0",
         "cartalyst/stripe-laravel": "^13.0.0",
+        "coconutcraig/laravel-postmark": "^2.0",
         "dialect/laravel-gdpr-compliance": "^1.4",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.4",
