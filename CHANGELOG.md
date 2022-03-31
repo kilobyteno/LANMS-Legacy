@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.1.4 - 2022-03-31
+
+## What's Changed
+
+- Bump guzzlehttp/psr7 from 2.1.0 to 2.2.1 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/66
+- Postmark mailer by @DanielRTRD in https://github.com/kilobyteno/LANMS-SAAS/pull/65
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.1.3...22.1.4
+
 ## 22.1.3 - 2022-03-05
 
 - Fixed 419 message error
