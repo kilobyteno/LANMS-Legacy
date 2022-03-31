@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.1.3 - 2022-03-05
+
+- Fixed 419 message error
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.1.2...22.1.3
+
 ## 22.1.2 - 2022-02-01
 
 ## What's Changed
