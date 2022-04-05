@@ -50,7 +50,6 @@ class SettingsTableSeeder extends Seeder
         Setting::set('LOGIN_ENABLED', true);
 
         Setting::set('GOOGLE_MAPS_API_KEY', '');
-        Setting::set('GOOGLE_ANALYTICS_TRACKING_ID', '');
         Setting::set('GOOGLE_CALENDAR_API_KEY', '');
         Setting::set('GOOGLE_CALENDAR_ID', '');
         Setting::set('GOOGLE_CALENDAR_START_DATE', '1970-01-30');

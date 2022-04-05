@@ -141,6 +141,11 @@ class RefreshSettings extends Command
             $this->info('Renmamed SEATING_SEAT_PRICE_CURRENCY to MAIN_CURRENCY');
         }
 
+        if (Setting::has('GOOGLE_ANALYTICS_TRACKING_ID')) {
+            Setting::forget('GOOGLE_ANALYTICS_TRACKING_ID');
+            $this->info('Removed GOOGLE_ANALYTICS_TRACKING_ID');
+        }
+
         Setting::save();
 
         // Add description to settings
@@ -150,7 +155,6 @@ class RefreshSettings extends Command
             'MAIN_ENABLE_GRASROTANDELEN_WIDGET' => 'Set this to "0" (without quotes) to disable Grasrotandelen on the homepage. If it is set to "1" (without quotes) Grasrotandelen will be visible on the homepage.',
             'FACEBOOK_MESSENGER_APP_ID' => 'This is used for the messenger integration for users. Create an app on <a target="_blank" href="https://developers.facebook.com/">https://developers.facebook.com/</a> and paste its ID here. Example: 1234567890123456',
             'FACEBOOK_MESSENGER_PAGE_ID' => 'This is used for the messenger integration for users. This is the ID not the URL of the page. You will find it under "about" on the bottom on your page. Example: 1234567890123456',
-            'GOOGLE_ANALYTICS_TRACKING_ID' => 'This is used for tracking traffic on your website. Example: UA-12345678-0',
             'GOOGLE_CALENDAR_API_KEY' => 'Please refer to <a target="_blank" href="https://portal.kilobyte.no/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_ID' => 'Please refer to <a target="_blank" href="https://portal.kilobyte.no/knowledgebase/7/Google-Calendar-Integration.html">this guide</a>.',
             'GOOGLE_CALENDAR_START_DATE' => 'This will be the date you want the calendar to start. Example: 1970-01-30',
