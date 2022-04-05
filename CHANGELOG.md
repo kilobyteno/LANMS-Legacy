@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.2.2 - 2022-04-05
+
+## What's Changed
+
+- Removed Google Analytics
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.2.1...22.2.2
+
 ## 22.2.1 - 2022-04-04
 
 ## What's Changed
