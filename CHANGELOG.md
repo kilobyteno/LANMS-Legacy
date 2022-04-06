@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.2.3 - 2022-04-06
+
+## What's Changed
+
+- Updated dependencies
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.2.2...22.2.3
+
 ## 22.2.2 - 2022-04-05
 
 ## What's Changed
