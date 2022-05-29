@@ -68,7 +68,7 @@
 					<div class="container">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								@if(Setting::get('WEB_LOGO_DARK') || Setting::get('WEB_LOGO_DARK'))
+								@if(Setting::get('WEB_LOGO_DARK') || Setting::get('WEB_LOGO_LIGHT'))
 									<img src="@if(Sentinel::check()){{ Sentinel::getUser()->theme=='dark' ? Setting::get('WEB_LOGO_LIGHT') : Setting::get('WEB_LOGO_DARK') }} @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 								@else
 									<h1>{{ Setting::get('WEB_NAME') ?? config('app.name', 'LANMS') }}</h1>
