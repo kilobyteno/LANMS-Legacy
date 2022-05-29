@@ -71,7 +71,7 @@
 								@if(Setting::get('WEB_LOGO_DARK') || Setting::get('WEB_LOGO_DARK'))
 									<img src="@if(Sentinel::check()){{ Sentinel::getUser()->theme=='dark' ? Setting::get('WEB_LOGO_LIGHT') : Setting::get('WEB_LOGO_DARK') }} @else {{ Setting::get('WEB_LOGO_DARK') }}@endif" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
 								@else
-									<h1>{{ config('app.name', 'LANMS') }}</h1>
+									<h1>{{ Setting::get('WEB_NAME') ?? config('app.name', 'LANMS') }}</h1>
 								@endif
 							</a>
 							<div class="d-flex order-lg-2 ml-auto">
