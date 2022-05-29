@@ -323,7 +323,7 @@
 									<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
 								@endif
 							</div>
-							<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://kilobyte.no/" target="_blank">Kilobyte AS</a></p>
+							<p class="mt-2"><a href="http://lanms.net/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://kilobyte.no/" target="_blank">Kilobyte AS</a></p>
 							@if(Config::get('app.debug'))
 								<b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
 							@endif

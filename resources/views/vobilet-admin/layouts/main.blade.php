@@ -245,7 +245,7 @@
 											<a class="btn btn-secondary btn-sm" href="{{ route('theme') }}"><i class="fas fa-adjust"></i></a>
 										@endif
 									</div>
-									<p class="mt-2"><a href="http://lanms.xyz/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://kilobyte.no/" target="_blank">Kilobyte AS</a></p>
+									<p class="mt-2"><a href="http://lanms.net/" target="_blank">{{ Setting::get('APP_NAME') }}</a> <a href="{{ Setting::get('APP_URL') }}">{{ Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> {{ __('global.by') }} <a href="https://kilobyte.no/" target="_blank">Kilobyte AS</a></p>
 									@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
 										<div class="alert alert-danger text-uppercase" role="alert">
 											<strong><i class="far fa-frown mr-2"></i>Unlicensed version of this software!</strong>

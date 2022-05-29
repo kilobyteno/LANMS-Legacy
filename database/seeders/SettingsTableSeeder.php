@@ -16,7 +16,7 @@ class SettingsTableSeeder extends Seeder
         }
         Setting::set('APP_NAME', 'LANMS');
         Setting::set('APP_VERSION', '');
-        Setting::set('APP_URL', 'http://lanms.xyz/');
+        Setting::set('APP_URL', 'http://lanms.net/');
         Setting::set('APP_LICENSE_STATUS', '');
         Setting::set('APP_LICENSE_STATUS_DESC', '');
         Setting::set('APP_LICENSE_LOCAL_KEY', '');
