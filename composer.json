@@ -1,8 +1,8 @@
 {
-    "name": "kilobyteno/lanms",
-    "description": "LAN-party Managment System",
+    "name": "kilobyteno/lanms-saas",
+    "description": "LAN-party Management System",
     "keywords": [],
-    "license": "CC-BY-NC-ND-4.0",
+    "license": "proprietary",
     "type": "project",
     "authors": [
         {
