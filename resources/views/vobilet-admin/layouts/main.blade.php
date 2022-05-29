@@ -77,7 +77,11 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="{{ route('home') }}">
-								<img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}">
+								@if(Setting::get('WEB_LOGO_DARK') || Setting::get('WEB_LOGO_LIGHT'))
+									<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="header-brand-img" alt="{{ Setting::get('WEB_NAME') }}"></a>
+								@else
+									<h1 class="text-white">{{ Setting::get('WEB_NAME') ?? config('app.name', 'LANMS') }}</h1>
+								@endif
 							</a>
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"><i class="fas fa-bars"></i></a>
 							<div class="d-flex order-lg-2 ml-auto">
