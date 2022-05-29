@@ -7,7 +7,11 @@
 	<div class="row">
 		<div class="col col-login mx-auto">
 			<div class="text-center mb-6">
-				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="h-6" alt="{{ Setting::get('WEB_NAME') }}"></a>
+				@if(Setting::get('WEB_LOGO_DARK') || Setting::get('WEB_LOGO_LIGHT'))
+					<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO_LIGHT') }}" class="h-6" alt="{{ Setting::get('WEB_NAME') }}"></a>
+				@else
+					<h1 class="text-white">{{ Setting::get('WEB_NAME') ?? config('app.name', 'LANMS') }}</h1>
+				@endif
 			</div>
 			<form class="card" role="form" method="post" action="{{ route('account-signin-post') }}">
 				<div class="card-body p-6">
