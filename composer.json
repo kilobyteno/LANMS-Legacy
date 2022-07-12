@@ -16,7 +16,7 @@
         "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
         "authy/php": "4.0.0-rc2",
-        "barryvdh/laravel-dompdf": "^0.9.0",
+        "barryvdh/laravel-dompdf": "^2.0.0",
         "binarycabin/laravel-uuid": "^1.0",
         "cartalyst/sentinel": "^5.0",
         "cartalyst/stripe": "~2.0",
