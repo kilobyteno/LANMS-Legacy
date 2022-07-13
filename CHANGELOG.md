@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 22.3.1 - 2022-07-13
+
+### What's Changed
+
+- Bump guzzlehttp/guzzle from 7.4.4 to 7.4.5 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/71
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.2.4...22.3.1
+
 ## 22.2.4 - 2022-06-16
 
 ### What's Changed
