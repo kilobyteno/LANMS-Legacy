@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 23.1.1 - 2023-02-07
+
+### What's Changed
+
+- Bump symfony/http-kernel from 5.4.13 to 5.4.20 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/72
+- Bump dompdf/dompdf from 2.0.1 to 2.0.2 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/73
+- Bump dompdf/dompdf from 2.0.2 to 2.0.3 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/74
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/22.4.1...23.1.1
+
 ## 22.4.1 - 2022-09-30
 
 ### What's Changed
