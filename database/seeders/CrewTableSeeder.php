@@ -61,22 +61,24 @@ class CrewTableSeeder extends Seeder  {
             'year'          => date('Y'),
         ]);
 
-        Crew::create([
-            'user_id'       => 2,
-            'category_id'   => 2,
-            'author_id'     => 1,
-            'editor_id'     => 1,
-            'year'          => date('Y'),
-        ]);
+        if(env('APP_DEBUG')) {
+            Crew::create([
+                'user_id'       => 2,
+                'category_id'   => 2,
+                'author_id'     => 1,
+                'editor_id'     => 1,
+                'year'          => date('Y'),
+            ]);
 
-        Crew::create([
-            'user_id'       => 3,
-            'category_id'   => 2,
-            'author_id'     => 1,
-            'editor_id'     => 1,
-            'year'          => date('Y'),
-        ]);
+            Crew::create([
+                'user_id'       => 3,
+                'category_id'   => 2,
+                'author_id'     => 1,
+                'editor_id'     => 1,
+                'year'          => date('Y'),
+            ]);
+        }
 
     }
-    
+
 }
