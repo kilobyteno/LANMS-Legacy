@@ -33,12 +33,12 @@
 		</div>
 	@endif
 
-	@if(!env('MAIL_DRIVER') || !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION') || !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS'))
+	@if(!env('MAIL_DRIVER')|| !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS') || env('MAIL_DRIVER') == 'smtp' && !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">
 				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
 				<hr class="message-inner-separator">
-				<p>One or more mail keys in the environment file. Users will not be able get emails from this application!</p>
+				<p>One or more mail keys in the environment file. Users will not be able to get emails from this application!</p>
 			</div>
 		</div>
 	@endif
@@ -59,7 +59,7 @@
 			<div class="alert alert-warning">
 				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Missing environment value</strong>
 				<hr class="message-inner-separator">
-				<p>You are missing the Authy keys in the environment file. Users will not be able to setup two factor authentication!</p>
+				<p>You are missing the Authy keys in the environment file. Users will not be able to set up two-factor authentication!</p>
 			</div>
 		</div>
 	@endif
@@ -67,7 +67,7 @@
 	@if(env('APP_ENV') != 'production')
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-info">
-				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environement Information</strong>
+				<strong class="text-uppercase"><i class="fa fa-exclamation mr-2" aria-hidden="true"></i> Environment Information</strong>
 				<hr class="message-inner-separator">
 				<p>You have set '{{ env('APP_ENV') }}' as the environment in the environment file. Make sure this is correct.</p>
 			</div>
