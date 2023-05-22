@@ -181,11 +181,14 @@ class UserController extends Controller
         }
 
         $activation = \Activation::exists($user);
-        $actco = \Activation::completed($user);
+        $completed = \Activation::completed($user);
         if (!$activation) {
             $activation = \Activation::create($user);
-        } elseif ($activation && !$actco) {
+        } elseif (!$completed) {
             $activation = \Activation::exists($user);
+        } else {
+            return Redirect::route('admin-users')->with('messagetype', 'success')
+                                ->with('message', __('auth.alert.alreadyactivated'));
         }
         $activation_code = $activation->code;
 
