@@ -33,7 +33,7 @@
 		</div>
 	@endif
 
-	@if(!env('MAIL_DRIVER')|| !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS') || env('MAIL_DRIVER') == 'smtp' && !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION'))
+	@if(!env('MAIL_DRIVER')|| !env('MAIL_FROM_NAME') || !env('MAIL_FROM_ADDRESS'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 			<div class="alert alert-danger">
 				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
@@ -43,6 +43,15 @@
 		</div>
 	@endif
 
+	@if(env('MAIL_DRIVER') == 'smtp' && !env('MAIL_HOST') || !env('MAIL_PORT') || !env('MAIL_USERNAME') || !env('MAIL_PASSWORD') || !env('MAIL_ENCRYPTION'))
+		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+			<div class="alert alert-danger">
+				<strong class="text-uppercase"><i class="far fa-frown mr-2" aria-hidden="true"></i> Missing critical environment value</strong>
+				<hr class="message-inner-separator">
+				<p>Missing keys for sending emails through SMTP. Users will not be able to get emails from this application!</p>
+			</div>
+		</div>
+	@endif
 	
 	@if(!env('TWILIO_SID') || !env('TWILIO_TOKEN') || !env('TWILIO_FROM'))
 		<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
