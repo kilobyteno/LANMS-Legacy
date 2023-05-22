@@ -65,7 +65,7 @@
 								</div>
 								<input type="text" class="form-control input-lg" placeholder="Icon" value="{{ (old('icon')) ? old('icon') : 'fas fa-user' }}" name="icon">
 							</div>
-							<p>Icons can be found here: <a href="http://fontawesome.io/icons/" target="_blank">fontawesome.io/icons</a></p>
+							<p>Icons can be found here: <a href="https://fontawesome.com/v5/search" target="_blank">fontawesome.com/v5/search</a></p>
 							@if($errors->has('icon'))
 								<p class="text-danger">{{ $errors->first('icon') }}</p>
 							@endif
