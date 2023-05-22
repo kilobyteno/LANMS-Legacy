@@ -180,14 +180,14 @@ class UserController extends Controller
                                 ->with('message', __('auth.alert.usernotfound'));
         }
 
-        $activation = \Activation::exists($user);
-        $completed = \Activation::completed($user);
+        // Check the activations table for the user_id
+        $activation = \Activation::where('user_id', '=', $user->id)->first();
         if (!$activation) {
+            // Create an activation record
             $activation = \Activation::create($user);
-        } elseif (!$completed) {
-            $activation = \Activation::exists($user);
-        } else {
-            return Redirect::route('admin-users')->with('messagetype', 'success')
+        }
+        if ($activation->completed == 1) {
+            return Redirect::route('admin-users')->with('messagetype', 'warning')
                                 ->with('message', __('auth.alert.alreadyactivated'));
         }
         $activation_code = $activation->code;
