@@ -42,6 +42,10 @@ class UpdateNotifications extends Command
      */
     public function handle()
     {
+        if(!env('STRIPE_API_KEY')) {
+            $this->info('Stripe API key not set. Aborting.');
+            return 0;
+        }
         foreach (User::active() as $user) {
             if ($user->stripe_customer) {
                 $invoices = Stripe::invoices()->all(array('customer' => $user->stripe_customer, 'limit' => 100));
