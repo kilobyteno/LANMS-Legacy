@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 23.2.1 - 2023-05-29
+
+### What's Changed
+
+- Bump phpseclib/phpseclib from 3.0.16 to 3.0.19 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/75
+- Bump guzzlehttp/psr7 from 2.4.1 to 2.5.0 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/76
+- Bump nyholm/psr7 from 1.5.1 to 1.7.0 by @dependabot in https://github.com/kilobyteno/LANMS-SAAS/pull/77
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-SAAS/compare/23.1.1...23.2.1
+
 ## 23.1.1 - 2023-02-07
 
 ### What's Changed
