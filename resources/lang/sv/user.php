@@ -34,7 +34,7 @@ return [
             ),
             'editprofile' => 'Redigera profil',
             'images' => 'Byt profilbild',
-            'password' => '',
+            'password' => 'Byt lösenord',
         ),
         'personaldata' => array(
             'title' => 'Dina uppgifter',
