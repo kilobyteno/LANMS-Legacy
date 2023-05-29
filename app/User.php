@@ -173,31 +173,33 @@ class User extends Model implements HasLocalePreference, PermissibleInterface, P
                 $model->uuid = (string) Uuid::generate(4);
             }
 
-            $sc = StripeCustomer::where('user_id', $model->id)->first();
-            if ($sc && !$model->stripe_customer) {
-                $stripe_customer = $sc->cus;
-                $model->stripe_customer = $stripe_customer;
-                $sc->delete();
-            } elseif (!$sc && !$model->stripe_customer) {
-                $customer = Stripe::customers()->create([
-                    'email' => $model->email,
-                    'name' => $model->firstname.' '.$model->lastname,
-                ]);
-                $stripe_customer = $customer['id'];
-                $model->stripe_customer = $stripe_customer;
-            } else {
-                try {
-                    Stripe::customers()->update($model->stripe_customer, [
-                        'email' => $model->email,
-                        'name' => $model->firstname.' '.$model->lastname,
-                    ]);
-                } catch (NotFoundException $e) {
+            if (env('STRIPE_API_KEY')) {
+                $sc = StripeCustomer::where('user_id', $model->id)->first();
+                if ($sc && !$model->stripe_customer) {
+                    $stripe_customer = $sc->cus;
+                    $model->stripe_customer = $stripe_customer;
+                    $sc->delete();
+                } elseif (!$sc && !$model->stripe_customer) {
                     $customer = Stripe::customers()->create([
                         'email' => $model->email,
                         'name' => $model->firstname.' '.$model->lastname,
                     ]);
                     $stripe_customer = $customer['id'];
                     $model->stripe_customer = $stripe_customer;
+                } else {
+                    try {
+                        Stripe::customers()->update($model->stripe_customer, [
+                            'email' => $model->email,
+                            'name' => $model->firstname.' '.$model->lastname,
+                        ]);
+                    } catch (NotFoundException $e) {
+                        $customer = Stripe::customers()->create([
+                            'email' => $model->email,
+                            'name' => $model->firstname.' '.$model->lastname,
+                        ]);
+                        $stripe_customer = $customer['id'];
+                        $model->stripe_customer = $stripe_customer;
+                    }
                 }
             }
         });
