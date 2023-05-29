@@ -158,13 +158,15 @@ class User extends Model implements HasLocalePreference, PermissibleInterface, P
         self::creating(function ($model) {
             $model->uuid = (string) Uuid::generate(4);
 
-            if (!$model->stripe_customer) {
-                $customer = Stripe::customers()->create([
-                    'email' => $model->email,
-                    'name' => $model->firstname.' '.$model->lastname,
-                ]);
-                $stripe_customer = $customer['id'];
-                $model->stripe_customer = $stripe_customer;
+            if(env('STRIPE_API_KEY')) {
+                if (!$model->stripe_customer) {
+                    $customer = Stripe::customers()->create([
+                        'email' => $model->email,
+                        'name' => $model->firstname.' '.$model->lastname,
+                    ]);
+                    $stripe_customer = $customer['id'];
+                    $model->stripe_customer = $stripe_customer;
+                }
             }
         });
 
