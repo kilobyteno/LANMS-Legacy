@@ -78,6 +78,7 @@ class AccountController extends Controller
             'address_city' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
             'address_county' => 'nullable|regex:/^[A-Za-z \Wæøå]+$/',
             'address_country' => 'nullable|alpha',
+            'password' => 'required',
         ]);
 
         $credentials = [
