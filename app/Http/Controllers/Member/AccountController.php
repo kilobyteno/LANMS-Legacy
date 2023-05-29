@@ -131,16 +131,18 @@ class AccountController extends Controller
 
         $updateuser = Sentinel::update($user, $info);
 
-        if ($user->stripecustomer) {
-            \Stripe::customers()->update($user->stripecustomer->cus, [
-                'email' => $user->email,
-                'name' => $info['firstname'].' '.$info['lastname'],
-            ]);
-        } else {
-            \Stripe::customers()->create([
-                'email' => $user->email,
-                'name' => $info['firstname'].' '.$info['lastname'],
-            ]);
+        if (env('STRIPE_API_KEY')) {
+            if ($user->stripecustomer) {
+                \Stripe::customers()->update($user->stripecustomer->cus, [
+                    'email' => $user->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            } else {
+                \Stripe::customers()->create([
+                    'email' => $user->email,
+                    'name' => $info['firstname'].' '.$info['lastname'],
+                ]);
+            }
         }
 
         if ($updateuser) {
