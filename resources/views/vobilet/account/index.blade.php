@@ -93,26 +93,28 @@
 							</table>
 						</div>
 					</div>
-					<div class="card">
-						<div class="card-header">
-							<h2 class="card-title">{{ __('user.account.billing.title') }}</h2>
+					@if(env('STRIPE_API_KEY'))
+						<div class="card">
+							<div class="card-header">
+								<h2 class="card-title">{{ __('user.account.billing.title') }}</h2>
+							</div>
+							<div class="">
+								<table class="table card-table">
+									<tbody>
+										<tr class="border-bottom">
+											<td><a href="{{ route('account-billing-card') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ __('user.account.billing.card.title') }}</a></td>
+										</tr>
+										<tr class="border-bottom">
+											<td><a href="{{ route('account-billing-invoice') }}" class="text-inherit"><i class="fas fa-file-invoice"></i> {{ __('user.account.billing.invoice.title') }}</a></td>
+										</tr>
+										<tr class="border-bottom">
+											<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fas fa-exchange-alt"></i> {{ __('user.account.billing.charges.title') }}</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
-						<div class="">
-							<table class="table card-table">
-								<tbody>
-									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-card') }}" class="text-inherit"><i class="fa fa-credit-card"></i> {{ __('user.account.billing.card.title') }}</a></td>
-									</tr>
-									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-invoice') }}" class="text-inherit"><i class="fas fa-file-invoice"></i> {{ __('user.account.billing.invoice.title') }}</a></td>
-									</tr>
-									<tr class="border-bottom">
-										<td><a href="{{ route('account-billing-charges') }}" class="text-inherit"><i class="fas fa-exchange-alt"></i> {{ __('user.account.billing.charges.title') }}</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+					@endif
 				</div>
 				<div class="col-md-4">
 					@if(Setting::get('REFERRAL_ACTIVE'))
