@@ -77,7 +77,7 @@ return [
     */
 
     'locale' => env('APP_LANGUAGE', 'en'),
-    'locales' => ['en' => 'English', 'nb' => 'Norsk'],
+    'locales' => ['en' => 'English', 'nb' => 'Norsk', 'sv' => 'Svenska'],
     'themes' => ['light' => 'Light', 'default' => 'Default', 'dark' => 'Dark'],
 
     /*
