@@ -11,6 +11,6 @@ return [
     'information' => 'Information',
     'tickets' => 'Biljetter',
     'sponsor' => 'Sponsorer',
-    'compo' => 'Tävling',
+    'compo' => 'Turneringar',
 
 ];
