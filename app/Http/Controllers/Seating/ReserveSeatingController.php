@@ -64,6 +64,10 @@ class ReserveSeatingController extends Controller
         $seat = Seats::where('slug', $slug)->first();
         $reservedforid = $request->get('reservedfor');
         $reservedfor = Sentinel::findById($reservedforid);
+        if (!$reservedfor) {
+            return Redirect::route('seating')->with('messagetype', 'warning')
+                                ->with('message', __('seating.reservation.aler.reservedforusernotfound'));
+        }
 
         if (is_null($seat)) {
             return Redirect::route('seating')->with('messagetype', 'warning')
