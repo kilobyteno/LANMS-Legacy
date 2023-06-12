@@ -4,21 +4,21 @@ return [
 
     'global' => array(
         'hello' => 'Hej!',
-        'whoops' => 'Whoops!',
+        'whoops' => 'Hoppsan!',
         'regards' => 'Hälsningar',
-        'trouble' => 'Har du problem att trycka på \":actionText\" knappen, kopiera och klistra in webbadressen nedan i din webbläsare: [:actionURL](:actionURL)',
-        'youreceived' => 'Du har fått detta e-post meddelande för att du är registrerad på:',
-        'copyright' => 'Alla rättigheter förbehållna.',
+        'trouble' => 'Har du har problem med att klicka på knappen: \":actionText\", kopiera och klistra in länken nedan i din webbläsare: [:actionURL](:actionURL)',
+        'youreceived' => 'Du har mottagit detta e-postmeddelande eftersom du är registrerad på:',
+        'copyright' => 'Med ensamrätt.',
     ),
 
     'reservation' => array(
         'expired' => array(
-            'title' => 'Reservering borttagen!',
-            'desc' => 'Din bokning för platsen :seatname har blivit borttagen, detta eftersom du inte slutfört bokningen.'
+            'title' => 'Bokningen har tagits bort!',
+            'desc' => 'Din bokning för platsen :seatname har tagits bort, eftersom du inte har slutfört bokningen inom reservationsperioden.'
         ),
         'expires' => array(
-            'title' => 'Du kommer snart att förlora din bokning!',
-            'desc' => 'Din bokning för platsen :seatname försvinner inom 24 timmar om du inte slutför bokningen.',
+            'title' => 'Din bokning kommer att tas bort snart!',
+            'desc' => 'Din bokning för platsen :seatname kommer att tas bort om 24 timmar om du inte slutför bokningen snarast.',
         ),
     ),
 ];

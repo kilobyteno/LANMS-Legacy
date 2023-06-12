@@ -5,7 +5,7 @@ return [
     'privacypolicy' => 'Integritetspolicy',
     'termsofservice' => 'Användarvillkor',
     'by' => 'av',
-    'debugmode' => 'Debug läge',
-    'resetdbandsettings' => 'Återställ databas och inställningar!',
+    'debugmode' => 'Felsökningsläge',
+    'resetdbandsettings' => 'Återställ databas och inställningar',
 
 ];

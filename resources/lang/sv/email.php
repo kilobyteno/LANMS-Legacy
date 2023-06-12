@@ -2,7 +2,7 @@
 
 return [
 
-    'youreceived' => 'Du har fått detta mail för att du registrerat dig på:',
+    'youreceived' => 'Du har fått detta mejl eftersom du har registrerat dig på:',
 
     'hello' => 'Hej :firstname!',
 
@@ -14,9 +14,9 @@ return [
         ),
         'forgotpassword' => array(
             'title' => 'Glömt lösenord',
-            'desc' => 'Det ser ut som att du har glömt ditt lösenord. Använd länken nedan för att skapa ett nytt. Har du inte bett om detta mail? Då kan ignorera detta.',
-            'url' => 'Reset Password URL',
-            'questions' => 'Skulle du har några frågor går det bra att kontakta oss!',
+            'desc' => 'Det verkar som att du har begärt återställning av ditt lösenord. Använd länken nedan för att skapa ett nytt lösenord till ditt konto. Om du inte gjort denna förfrågan kan du ignorera det.',
+            'url' => 'Länk för återställning av lösenord',
+            'questions' => 'Om du har några frågor kan du kontakta oss!',
         ),
 
     ),

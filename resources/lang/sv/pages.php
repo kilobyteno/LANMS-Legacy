@@ -4,7 +4,7 @@ return [
 
     'home' => array(
         'info' => 'Information',
-        'where' => 'Vart',
+        'where' => 'Var',
         'when' => 'När',
         'price' => 'Kostnad',
         'moreinfo' => 'Mer information',
@@ -12,13 +12,13 @@ return [
 
     'members' => array(
         'search' => array(
-            'title' => 'Sök medlem',
+            'title' => 'Sök medlemmar',
             'placeholder' => 'Användarnamn eller namn',
             'button' => 'Sök',
             'results' => 'resultat', //lowercase
         ),
         'newest' => array(
-            'title' => 'Nyaste medlemmen',
+            'title' => 'Senaste medlemmarna',
         ),
         'lastonline' => array(
             'title' => 'Senast online',
@@ -27,50 +27,50 @@ return [
             'username' => 'Användarnamn',
             'name' => 'Namn',
             'joined' => 'Gick med',
-            'lastseen' => 'Last Seen',
-            'showing' => 'Visar :pluck av :total alla medlemmar',
+            'lastseen' => 'Senast sedd',
+            'showing' => 'Visar :pluck av totalt :total medlemmar',
         ),
     ),
 
     'errors' => array(
-        'button' => 'Tillbaka hem',
+        'button' => 'Tillbaka till startsidan',
         'default' => array(
-            'title' => 'Nu har du kommit vilse..',
-            'desc' => 'Denna sida existerar inte. Tror du att det är fel? Kontakta oss.',
+            'title' => 'Okänt',
+            'desc' => 'Något okänt har inträffat.',
         ),
         '401' => array(
             'title' => 'Obehörig',
-            'desc' => 'Du har inte behörigheten att se denna sida.',
+            'desc' => 'Autentisering krävs och har misslyckats eller har ännu inte tillhandahållits.',
         ),
         '403' => array(
-            'title' => 'Förbjuden',
-            'desc' => 'Sorry, du har inte rätt behörighet att se denna sida.',
+            'title' => 'Saknar behörighet!',
+            'desc' => 'Du saknar behörighet för att komma åt denna sida.',
         ),
         '404' => array(
-            'title' => 'Sidan hittades inte',
+            'title' => 'Sidan kunde inte hittas',
             'desc' => 'Det verkar som att denna sida inte finns.',
         ),
         '419' => array(
-            'title' => 'Sidan har löpt ut',
-            'desc' => 'Det verkar som att du väntat för länge, ladda om sidan.',
+            'title' => 'Sidan har gått ut',
+            'desc' => 'Det verkar som att du har väntat för länge, uppdatera och försök igen!',
         ),
         '429' => array(
             'title' => 'För många förfrågningar',
-            'desc' => 'Du har skickat för många förfrågningar på för kort tid. Försök igen senare.',
+            'desc' => 'Det verkar som att du har skickat för många förfrågningar inom en given tidsperiod.',
         ),
         '500' => array(
             'title' => 'Serverfel',
-            'desc' => 'Det ser ut som att vi har problem med servern. Försök igen senare',
+            'desc' => 'Det verkar som att vi har problem med servern. Prova gärna igen senare.',
         ),
         '503' => array(
             'title' => 'Underhållsläge',
-            'desc' => 'Vi är strax tillbaka.',
+            'desc' => 'Vi är snart tillbaka.',
         ),
     ),
 
     'tickets' => array(
         'free' => 'Gratis',
-        'none' => 'Vi har inte några biljetter tillgängliga ännu.',
+        'none' => 'Vi har ännu inga tillgängliga biljetter.',
     ),
 
 ];

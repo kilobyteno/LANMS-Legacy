@@ -3,44 +3,44 @@
 return [
 
     'receipt' => array(
-        'reservationnumber' => 'Reservation #',
-        'paymentmethod' => 'Payment Method',
-        'paymentinfo' => 'Payment Info',
-        'card' => 'Credit Card',
-        'item' => 'Item',
-        'price' => 'Price',
-        'ticket' => 'Ticket',
-        'total' => 'Total',
+        'reservationnumber' => 'Bokningsnummer',
+        'paymentmethod' => 'Betalningsmetod',
+        'paymentinfo' => 'Betalningsinformation',
+        'card' => 'Kreditkort',
+        'item' => 'Artikel',
+        'price' => 'Pris',
+        'ticket' => 'Biljett',
+        'total' => 'Totalt',
     ),
 
     'ticket' => array(
-        'title' => 'Ticket',
-        'desc' => 'Detta är din biljett, för en plats, du kan behöva visa upp den på evenemanget. Kom ihåg att det är en biljett per plats! Det är också viktigt att du tar med dig giltig legitimation om vi behöver styrka din identitet. Om du behöver ett samtyckesformulär, kom ihåg att ta med det också.',
-        'moreinfo' => 'För mer information, besök vår hemsida.',
+        'title' => 'Biljett',
+        'desc' => 'Detta är din biljett för en plats. Ta med den till evenemanget. Kom ihåg att det är EN biljett per plats!',
+        'moreinfo' => 'För mer information, besök vår webbplats',
         'paymentinfo' => 'Betalningsinformation',
         'yourseat' => 'Din plats',
     ),
 
     'consentform' => array(
-        'title' => 'Samtyckesformulär',
-        'desc' => 'Alla deltagare under 10 år måste ha med sig ett skriftligt tillstånd från vårdnadshavaren för att delta i evenemanget. Minderåriga deltagare som inte har tillstånd tvingas vi tyvärr avböja entre. Åldersgränsen för att delta i evenemanget är till för att respekteras och följas. För mer information om åldersgränsen se vår hemsida.',
-        'organizerswantright' => 'Arrangörerna vill ha rätt',
-        'organizerswantrightpoints' => '<li>Att publicera foto/video av deltagare på evenemangets hemsida/sociala medier. Till exempel när deltagaren kommit på pallplacering i tävlingar och/eller när de kommer med på översiktsbilder av evenemanget.</li>
-                    <li>För att endast ha giltighet på detta samtyckesformulär för den vecka evenemanget äger rum</li>',
+        'title' => 'Tillståndsformulär',
+        'desc' => 'Alla deltagare under 10 års ålder måste ha med sig skriftligt tillstånd från vårdnadshavaren för att delta i evenemanget. Minderåriga deltagare som inte har tillstånd kommer tyvärr inte att få komma in. Åldersgränsen för evenemanget ska respekteras och följas. För mer information om åldersgränsen, besök vår webbplats.',
+        'organizerswantright' => 'Arrangörerna har rätt att',
+        'organizerswantrightpoints' => '<li>Publicera foto/video av deltagaren på evenemangets webbplats/sociala medier. När t.ex. deltagaren har kommit in på pallplacering i tävlingar och/eller syns på översiktsbilder av evenemanget.</li>
+                    <li>Att detta tillståndsformulär endast gäller för veckan då evenemanget äger rum.</li>',
         'shouldalsobementioned' => 'Det bör också nämnas att arrangörerna',
-        'shouldalsobementionedpoints' => '<li>Kommer inte ta bilder på lättklädda barn.</li>
-                    <li>Kommer göra sitt bästa för att bilderna som publiceras på nätet ska presenteras i en kvalitet som gör det oattraktivt för andra att manipulera dem eller använda dem i andra sammanhang.</li>
-                    <li>Kommer alltid be om tillåtelse att använda bilder på barnen i journalistiska syften.</li>
-                    <li>Kommer inte att ge digitala fotokopior av bilder utan särskilt medgivande från vårdnadshavare.</li>',
-        'moreinfo' => 'Vi har samlat information till vårdnadshavare på vår hemsida: <br><strong><em>:url</em></strong>',
-        'permission' => 'Tillåtelse att närvara på :event',
-        'permissiondesc' => 'Med denna tillåtelse ger jag <em>:name</em> född <em>:birthdate</em> tillåtelse att närvara på ":event" på platsen :location. Jag, som vårdnadshavare ger även tillåtelse till organisatören gällande ovan punkter..',
-        'myrelationship' => 'Min relation till deltagaren (seen below); <strong><em>Mamma</em></strong>, <strong><em>Pappa</em></strong> or <strong><em>Annat</em></strong> (specificera nedan).',
-        'contact' => 'Kontaktuppgifter till vårdnadshavare, om nödvändigt',
-        'icanbecontacted' => 'Jag kan bli nådd 24 timmar om dygnet och ger organisatören tillåtelse att kontakta mig vid akuta händelser samt för att validera detta kontrakt.',
-        'filledoutbycaregiver' => 'Skrivs under av <strong>vårdnadshavare</strong>',
-        'filledoutbyorganizers' => 'Skriv under av <em>organisatören</em>',
-        'placeanddate' => 'Datum och plats',
+        'shouldalsobementionedpoints' => '<li>Kommer inte att ta bilder av barnen när de är lättklädda.</li>
+                    <li>Vill göra sitt bästa för att säkerställa att de publicerade bilderna online presenteras i en kvalitet som gör det oattraktivt för andra att manipulera dem eller använda dem i andra sammanhang.</li>
+                    <li>Kommer alltid att be om specifikt samtycke från vårdnadshavaren om bilder på barnen ska tas i journalistiskt syfte.</li>
+                    <li>Kommer inte att släppa digitala fotokopior av barnet utan det specifika samtycket från vårdnadshavaren.</li>',
+        'moreinfo' => 'Vi har samlat information för vårdnadshavaren på vår webbplats: <br><strong><em>:url</em></strong>',
+        'permission' => 'Tillstånd att delta i :event',
+        'permissiondesc' => 'Med detta tillstånd ger jag, vårdnadshavaren, <em>:name</em> född den <em>:birthdate</em> rätt att delta i evenemanget ":event" i :location. Jag ger härmed arrangörerna tillstånd enligt ovanstående punkter.',
+        'myrelationship' => 'Min relation till deltagaren (se nedan); <strong><em>Mamma</em></strong>, <strong><em>Pappa</em></strong> eller <strong><em>Annan vårdnadshavare</em></strong> (ange nedan).',
+        'contact' => 'Kontaktuppgifter till vårdnadshavare, vid behov (<strong>skriv tydligt</strong>)',
+        'icanbecontacted' => 'Jag kan nås per telefon dygnet runt om en nödsituation skulle uppstå och jag förstår att arrangören kan ringa för att verifiera giltigheten av detta tillstånd.',
+        'filledoutbycaregiver' => 'Att fyllas i av <strong>vårdnadshavare</strong>',
+        'filledoutbyorganizers' => 'Att fyllas i av <em>arrangörer</em>',
+        'placeanddate' => 'Plats och datum',
         'signature' => 'Signatur',
     ),
 
