@@ -45,75 +45,76 @@
 					@if($currentseat->tickettype->allow_entrance_payment)
 						<a class="btn btn-info btn-lg btn-block" href="{{ route('seating-paylater', $currentseat->slug) }}">{{ __('seating.pay.entrancebutton') }}</a>
 						<p class="text-center text-muted"><small><em>{!! __('seating.pay.entrancedesc') !!}</em></small></p>
-
-						<br>
-						<h4 class="text-center text-muted"><em>~ {{ __('seating.pay.or') }} ~</em></h4>
-						<br>
 					@else
 						<div class="alert alert-warning mb-5" role="alert"><i class="fas fa-info mr-2" aria-hidden="true"></i> {{ __('seating.alert.entrancepaymentnotallowed') }}</div>
 					@endif
 
-					<div class="card-wrapper" style="margin-bottom: 10px"></div>
-					<div class="card mt-5">
-						<div class="card-body">
-							<form role="form" id="payment-form" method="post" action="{{ route('seating-charge', $currentseat->slug) }}">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group @if($errors->has('number')) has-error @endif">
-											<label for="number">{{ __('seating.pay.card.number') }}</label>
-											<div class="input-group">
-												<input type="tel" class="form-control" name="number" placeholder="0000 0000 0000 0000" required autofocus value="{{ (old('number')) ? old('number') : '' }}" autocomplete="off" />
-												<div class="input-group-append">
-													<span class="input-group-text" id="basic-addon2"><i class="fa fa-credit-card"></i></span>
+					@if($currentseat->tickettype->price != 0)
+						<br>
+						<h4 class="text-center text-muted"><em>~ {{ __('seating.pay.or') }} ~</em></h4>
+						<br>
+						<div class="card-wrapper" style="margin-bottom: 10px"></div>
+						<div class="card mt-5">
+							<div class="card-body">
+								<form role="form" id="payment-form" method="post" action="{{ route('seating-charge', $currentseat->slug) }}">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group @if($errors->has('number')) has-error @endif">
+												<label for="number">{{ __('seating.pay.card.number') }}</label>
+												<div class="input-group">
+													<input type="tel" class="form-control" name="number" placeholder="0000 0000 0000 0000" required autofocus value="{{ (old('number')) ? old('number') : '' }}" autocomplete="off" />
+													<div class="input-group-append">
+														<span class="input-group-text" id="basic-addon2"><i class="fa fa-credit-card"></i></span>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<div class="form-group @if($errors->has('expiryMonth')) has-error @endif">
-											<label for="expiryMonth">{{ __('seating.pay.card.expmonth') }}</label>
-											<input type="tel" class="form-control" name="expiryMonth" placeholder="MM" required value="{{ (old('expiryMonth')) ? old('expiryMonth') : '' }}" autocomplete="off" />
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group @if($errors->has('expiryMonth')) has-error @endif">
+												<label for="expiryMonth">{{ __('seating.pay.card.expmonth') }}</label>
+												<input type="tel" class="form-control" name="expiryMonth" placeholder="MM" required value="{{ (old('expiryMonth')) ? old('expiryMonth') : '' }}" autocomplete="off" />
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group @if($errors->has('expiryYear')) has-error @endif">
+												<label for="expiryYear">{{ __('seating.pay.card.expyear') }}</label>
+												<input type="tel" class="form-control" name="expiryYear" placeholder="YY" required value="{{ (old('expiryYear')) ? old('expiryYear') : '' }}" autocomplete="off" />
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group @if($errors->has('cvc')) has-error @endif">
+												<label for="cvc">{{ __('seating.pay.card.cvc') }}</label>
+												<input type="tel" class="form-control" name="cvc" placeholder="CVC" required value="{{ (old('cvc')) ? old('cvc') : '' }}" autocomplete="off" />
+											</div>
 										</div>
 									</div>
-									<div class="col-md-4">
-										<div class="form-group @if($errors->has('expiryYear')) has-error @endif">
-											<label for="expiryYear">{{ __('seating.pay.card.expyear') }}</label>
-											<input type="tel" class="form-control" name="expiryYear" placeholder="YY" required value="{{ (old('expiryYear')) ? old('expiryYear') : '' }}" autocomplete="off" />
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group @if($errors->has('name')) has-error @endif">
+												<label for="name">{{ __('seating.pay.card.name') }}</label>
+												<input type="text" class="form-control" name="name" placeholder="John Doe" required value="{{ (old('name')) ? old('name') : '' }}" autocomplete="off" />
+											</div>
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class="fas fa-shopping-cart"></i> {{ __('seating.pay.button') }}</button>
+											<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">
+												<i class="fas fa-spinner fa-spin"></i> {{ __('seating.pay.processing') }}
+											</div>
 										</div>
 									</div>
-									<div class="col-md-4">
-										<div class="form-group @if($errors->has('cvc')) has-error @endif">
-											<label for="cvc">{{ __('seating.pay.card.cvc') }}</label>
-											<input type="tel" class="form-control" name="cvc" placeholder="CVC" required value="{{ (old('cvc')) ? old('cvc') : '' }}" autocomplete="off" />
+									@if(count($errors->all()) > 0)
+										<div class="alert alert-danger">
+											@foreach ($errors->all() as $error)
+												{{ $error }}<br>
+											@endforeach
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group @if($errors->has('name')) has-error @endif">
-											<label for="name">{{ __('seating.pay.card.name') }}</label>
-											<input type="text" class="form-control" name="name" placeholder="John Doe" required value="{{ (old('name')) ? old('name') : '' }}" autocomplete="off" />
-										</div>
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<button class="btn btn-success btn-lg btn-block" type="submit" id="pay"><i class="fas fa-shopping-cart"></i> {{ __('seating.pay.button') }}</button>
-										<div class="alert alert-info d-none" id="processing" style="margin-top: 5px">
-											<i class="fas fa-spinner fa-spin"></i> {{ __('seating.pay.processing') }}
-										</div>
-									</div>
-								</div>
-								@if(count($errors->all()) > 0)
-									<div class="alert alert-danger">
-										@foreach ($errors->all() as $error)
-											{{ $error }}<br>
-										@endforeach
-									</div>
-								@endif
-							</form>
+									@endif
+								</form>
+							</div>
 						</div>
-					</div>
-					<!-- CREDIT CARD FORM ENDS HERE -->
+						<!-- CREDIT CARD FORM ENDS HERE -->
+					@endif
 				</div>
 			</div>
 
