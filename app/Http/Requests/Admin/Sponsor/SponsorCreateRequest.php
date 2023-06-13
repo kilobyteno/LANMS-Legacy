@@ -10,11 +10,11 @@ class SponsorCreateRequest extends FormRequest
     {
         return [
             'name'          => 'required',
-            'url'           => '',
-            'description'   => '',
+            'url'           => 'max:255|nullable',
+            'description'   => 'max:255|nullable',
             'sort_order'    => 'required|integer',
-            'image_light'   => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'image_dark'    => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image_light'   => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image_dark'    => 'required|image|mimes:jpeg,png,jpg,gif',
         ];
     }
     
