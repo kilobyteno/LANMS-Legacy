@@ -136,7 +136,7 @@
 								<label class="form-label">{{ __('seating.show.reservedfor') }}</label>
 								<select name="reservedfor" class="select2">
 									<option value="0">-- {{ __('global.pleaseselect') }} --</option>
-									@foreach(User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+									@foreach(User::orderBy('lastname', 'asc')->whereNotNull('last_activity')->where('isAnonymized', '0')->get() as $user)
 										<option value="{{ $user->id }}" {{ ($user->id == Sentinel::getUser()->id) ? 'selected' : '' }} >{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 									@endforeach
 								</select>
