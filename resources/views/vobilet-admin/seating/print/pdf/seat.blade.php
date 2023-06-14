@@ -27,12 +27,12 @@
 			<h2>@if($seat->reservationsThisYear()->first() <> null){{ $seat->reservationsThisYear()->first()->reservedfor->firstname.' '.$seat->reservationsThisYear()->first()->reservedfor->lastname }}<br><small>{{ $seat->reservationsThisYear()->first()->reservedfor->username }}</small>@endif</h2>
 			<br><br>
 			<p>
-				<strong>Politi:</strong> 02800 (Nød: 112)<br>
-				<strong>Ambulanse:</strong> 06200 (Nød: 113)<br>
-				<strong>Brannvesenet:</strong> 610 50 500 (Nød: 110)
+				<strong>{{ __('pdf.seat.police') }}:</strong> {{ __('pdf.seat.police_phone') }}<br>
+				<strong>{{ __('pdf.seat.ambulance') }}:</strong> {{ __('pdf.seat.ambulance_phone') }}<br>
+				<strong>{{ __('pdf.seat.fire') }}:</strong> {{ __('pdf.seat.fire_phone') }}
 			</p>
 			<br><br>
-			<p>For mer informasjon sjekk vår nettside: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
+			<p>{{ __('pdf.seat.more_info') }}: <strong>{{ Setting::get('WEB_PROTOCOL') }}://{{ Setting::get('WEB_DOMAIN') }}@if(Setting::get('WEB_PORT') <> 80){{ ':'.Setting::get('WEB_PORT') }}@endif/</strong></p>
 			<br>
 		</div>
 	</body>

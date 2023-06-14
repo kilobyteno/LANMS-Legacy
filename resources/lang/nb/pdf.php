@@ -44,4 +44,14 @@ return [
         'signature' => 'Signatur',
     ),
 
+    'seat' => array(
+        'police' => 'Politi',
+        'ambulance' => 'Ambulanse',
+        'fire' => 'Brannvesen',
+        'police_phone' => '02800 (Nød: 112)',
+        'ambulance_phone' => '06200 (Nød: 113)',
+        'fire_phone' => '610 50 500 (Nød: 110)',
+        'more_info' => 'For mer informasjon sjekk vår nettside',
+    ),
+
 ];
