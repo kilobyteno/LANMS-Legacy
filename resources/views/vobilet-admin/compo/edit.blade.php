@@ -430,6 +430,9 @@
 				<div class="card-title">
 					Signups
 				</div>
+				<div class="card-options">
+					<a class="btn btn-sm btn-success" href="{{ route('admin-compo-signup', $compo->id) }}"><i class="fas fa-plus mr-2"></i> Signup an attendee</a>
+				</div>
 			</div>
 			<div class="card-body">
 				@foreach($compo->signupsthisYear as $signup)
@@ -442,7 +445,16 @@
 							@endforeach
 						</div>
 					@elseif(!$signup->team_id && $signup->user_id)
-						<div class="col-lg-3 mb-4">{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}</div>
+						<div class="col-lg-3 mb-4">
+							<div class="font-weight-bold">
+								{{ \LANMS\User::getFullnameAndNicknameByID($signup->user_id) }}
+								<form action="{{ route('admin-compo-signup-destroy', ['id' => $signup->compo->id, 'signup_id' => $signup->id]) }}" method="POST">
+									<input type="hidden" name="_method" value="DELETE">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+								</form>
+							</div>
+						</div>
 					@endif
 				@endforeach
 			</div>

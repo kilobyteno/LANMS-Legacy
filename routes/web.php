@@ -880,6 +880,18 @@ Route::group([
                     'as' => 'admin-compo-duplicate',
                     'uses' => 'Compo\CompoController@duplicate'
                 ]);
+                Route::get('/{id}/signup', [
+                    'as' => 'admin-compo-signup',
+                    'uses' => 'Admin\CompoAdminSignUpController@create'
+                ]);
+                Route::post('/{id}/signup/store', [
+                    'as' => 'admin-compo-signup-store',
+                    'uses' => 'Admin\CompoAdminSignUpController@store'
+                ]);
+                Route::delete('/{id}/signup/destroy/{signup_id}', [
+                    'as' => 'admin-compo-signup-destroy',
+                    'uses' => 'Admin\CompoAdminSignUpController@destroy'
+                ]);
             });
         Route::group([
             'prefix' => 'pages'

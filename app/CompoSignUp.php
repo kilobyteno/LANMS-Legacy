@@ -37,6 +37,11 @@ class CompoSignUp extends Model
         return $this->hasOne('\LANMS\CompoTeam', 'id', 'team_id');
     }
 
+    public function compo()
+    {
+        return $this->hasOne('\LANMS\Compo', 'id', 'compo_id');
+    }
+
     public function scopeThisYear($query)
     {
         return $query->where('year', '=', \Setting::get('SEATING_YEAR'));
