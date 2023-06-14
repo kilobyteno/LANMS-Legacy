@@ -45,13 +45,13 @@ return [
     ),
 
     'seat' => array(
-        'police' => 'Police',
-        'ambulance' => 'Ambulance',
-        'fire' => 'Fire',
-        'police_phone' => '02800 (Nød: 112)',
-        'ambulance_phone' => '06200 (Nød: 113)',
-        'fire_phone' => '610 50 500 (Nød: 110)',
-        'more_info' => 'For more information, go to our website',
+        'police' => 'Polis',
+        'ambulance' => 'Ambulans',
+        'fire' => 'Räddningstjänst',
+        'police_phone' => '112',
+        'ambulance_phone' => '112',
+        'fire_phone' => '112',
+        'more_info' => 'För mer information, besök vår hemsida',
     ),
 
 ];
