@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label class="form-label">Reserved for:</label>
 						<select name="reservedfor" class="select2">
-							@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+							@foreach(\User::orderBy('lastname', 'asc')->whereNotNull('last_activity')->where('isAnonymized', '0')->get() as $user)
 								<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 							@endforeach
 						</select>

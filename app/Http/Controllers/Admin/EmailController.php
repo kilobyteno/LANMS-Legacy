@@ -117,7 +117,7 @@ class EmailController extends Controller
             $bulk = $request->bulk;
             $users = null;
             if ($bulk == 1) { // ALL ACTIVE USERS
-                $users = User::where('last_activity', '<>', '')->where('isAnonymized', '0')->get();
+                $users = User::whereNotNull('last_activity')->where('isAnonymized', '0')->get();
             } elseif ($bulk == 2) { // ALL USERS WITH A TICKET FOR THIS EVENT
                 $users = SeatTicket::thisYear()->with('user')->get()->pluck('user')->flatten();
                 $users = $users->where('isAnonymized', '0')->unique();

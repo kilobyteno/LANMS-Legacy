@@ -124,7 +124,7 @@
 					<label class="form-label">{{ __('user.account.billing.invoice.invoiceto') }}:</label>
 					<select name="user_id" class="select2" required="required">
 						<option value="">--- Please Select ---</option>
-						@foreach(\User::orderBy('lastname', 'asc')->where('last_activity', '<>', '')->where('isAnonymized', '0')->get() as $user)
+						@foreach(\User::orderBy('lastname', 'asc')->whereNotNull('last_activity')->where('isAnonymized', '0')->get() as $user)
 							<option value="{{ $user->id }}">{{ User::getFullnameAndNicknameByID($user->id) }}</option>
 						@endforeach
 					</select>
