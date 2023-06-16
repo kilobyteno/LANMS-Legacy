@@ -160,7 +160,7 @@ return [
         ),
         'activity' => array(
             'title' => 'Aktivitet',
-            'reservedaseatfor' => 'Reserverade en plats för <strong>:Namn</strong>',
+            'reservedaseatfor' => 'Reserverade en plats för <strong>:name</strong>',
         ),
         'edit' => array(
             'title' => 'Redigera profil',
