@@ -150,16 +150,17 @@ class RecoverController extends Controller
             return Redirect::route('account-resendverification')->with('messagetype', 'danger')
                                 ->with('message', __('auth.resend.alert.usernotfound'));
         } else {
-            $activation = \Activation::exists($user);
+            $actex = \Activation::exists($user);
+            $actco = \Activation::completed($user);
 
-            if ($activation == null) {
+            if (!$actex) {
                 return Redirect::route('account-resendverification')->with('messagetype', 'warning')
                                 ->with('message', __('auth.resend.alert.noactivations'));
-            } elseif ($activation->completed == true) {
+            } elseif ($actco) {
                 return Redirect::route('account-resendverification')->with('messagetype', 'info')
                                 ->with('message', __('auth.resend.alert.activationcompleted'));
             } else {
-                \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation->code), 'firstname' => $user->firstname), function ($message) use ($user) {
+                \Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $actex->code), 'firstname' => $user->firstname), function ($message) use ($user) {
                     $message->to($user->email, $user->firstname)->subject(__('email.activate.title'));
                 });
 
