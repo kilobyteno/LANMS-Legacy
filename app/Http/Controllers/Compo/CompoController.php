@@ -184,6 +184,7 @@ class CompoController extends Controller
     public function show($slug)
     {
         $compo = Compo::where('slug', '=', $slug)->first();
+        abort_if(!$compo, 404);
         return view('compo.show')->withCompo($compo);
     }
 
