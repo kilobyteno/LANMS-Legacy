@@ -20,6 +20,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        abort_if(!config('services.stripe.key'), 403);
         $stripe_customer = Sentinel::getUser()->stripe_customer;
 
         if ($stripe_customer) {
@@ -39,6 +40,7 @@ class InvoiceController extends Controller
      */
     public function view($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', __('user.account.billing.alert.noaddress'));
@@ -56,6 +58,7 @@ class InvoiceController extends Controller
      */
     public function pay($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', __('user.account.billing.alert.noaddress'));
@@ -76,6 +79,7 @@ class InvoiceController extends Controller
      */
     public function charge($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         if (!Sentinel::getUser()->hasAddress()) {
             return Redirect::route('account-billing-invoice')->with('messagetype', 'warning')
                                 ->with('message', __('user.account.billing.alert.noaddress'));
@@ -129,6 +133,7 @@ class InvoiceController extends Controller
      */
     public function admin()
     {
+        abort_if(!config('services.stripe.key'), 403);
         $invoices = Stripe::invoices()->all(array('limit' => 100));
         return view('billing.invoice.index')->withInvoices($invoices['data']);
     }
@@ -140,6 +145,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        abort_if(!config('services.stripe.key'), 403);
         if (!Info::getContent('address_city') || !Info::getContent('address_country') || !Info::getContent('address_county') || !Info::getContent('address_postal_code') || !Info::getContent('address_street')) {
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
@@ -155,6 +161,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(!config('services.stripe.key'), 403);
         if (!Info::getContent('address_city') || !Info::getContent('address_country') || !Info::getContent('address_county') || !Info::getContent('address_postal_code') || !Info::getContent('address_street')) {
             return Redirect::route('admin-billing-invoice')->with('messagetype', 'danger')
                                 ->with('message', 'One or more address fields in Info is missing. You need this to be able to send invoices! <a href="'.route("admin-info").'" class="alert-link">Click here to fix it!</a>');
@@ -211,6 +218,7 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         try {
             $invoice = Stripe::invoices()->find($id);
             $events = Stripe::events()->all(['object_id' => $id]);
@@ -240,6 +248,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         $invoice = Stripe::invoices()->find($id);
         abort_unless($invoice, 404);
         if ($invoice['status'] != 'draft') {
@@ -259,6 +268,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         $user = User::find($request->get('user_id'));
         if (!$user) {
             return Redirect::route('admin-billing-invoice-create')->with('messagetype', 'warning')
@@ -348,6 +358,7 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         \Stripe::invoices()->delete($id);
         return Redirect::route('admin-billing-invoice')->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been voided.');
@@ -355,6 +366,7 @@ class InvoiceController extends Controller
 
     public function finalize($id)
     {
+        abort_if(!config('services.stripe.key'), 403);
         \Stripe::invoices()->finalize($id);
         return Redirect::route('admin-billing-invoice-show', $id)->with('messagetype', 'success')
                                 ->with('message', 'Invoice has been finalized and sent.');
