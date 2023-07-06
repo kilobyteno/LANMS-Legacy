@@ -31,7 +31,7 @@ return [
 
     'stripe' => [
         'model' => LANMS\User::class,
-        'key' => env('STRIPE_KEY'),
+        'key' => env('STRIPE_API_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 
