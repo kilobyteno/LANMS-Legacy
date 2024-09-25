@@ -1,15 +1,15 @@
 {
-    "name": "kilobyteno/lanms-saas",
+    "name": "kilobyteno/lanms-legacy",
     "description": "LAN-party Management System",
     "keywords": [],
-    "license": "proprietary",
+    "license": "apache-2.0",
     "type": "project",
     "authors": [
         {
             "name": "Daniel S. Billing",
             "email": "daniel@kilobyte.no",
             "homepage": "https://dsbilling.no",
-            "role": "Fullstack Developer"
+            "role": "Developer"
         }
     ],
     "require": {
