@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## 24.3.1 - 2024-09-25
+
+### What's Changed
+
+* Bump league/oauth2-server from 8.3.5 to 8.5.3 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/80
+* Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/81
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/82
+* Bump phpseclib/phpseclib from 3.0.19 to 3.0.34 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/83
+* Bump phenx/php-svg-lib from 0.5.0 to 0.5.1 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/84
+* Bump dompdf/dompdf from 2.0.3 to 2.0.4 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/85
+* Bump actions/cache from 3 to 4 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/86
+* Bump phenx/php-svg-lib from 0.5.1 to 0.5.2 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/87
+* Bump phpseclib/phpseclib from 3.0.34 to 3.0.37 by @dependabot in https://github.com/kilobyteno/LANMS-Legacy/pull/88
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-Legacy/compare/23.2.1...24.3.1
+
 ## 23.2.1 - 2023-05-29
 
 ### What's Changed
