@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', 'Atendee Check-in - Admin')
+@section('title', 'Attendee Check-in - Admin')
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Show Atendee Check-in</h4>
+	<h4 class="page-title">Show Attendee Check-in</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item">Seating</li>
-		<li class="breadcrumb-item"><a href="{{ route('admin-seating-checkin') }}">Atendee Check-in</a></li>
+		<li class="breadcrumb-item"><a href="{{ route('admin-seating-checkin') }}">Attendee Check-in</a></li>
 		<li class="breadcrumb-item active" aria-current="page">Show</li>
 	</ol>
 </div>
@@ -25,19 +25,19 @@
 								<div class="col-sm-3">
 									<label class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="idcheck">
-										<span class="custom-control-label">I have checked the ID of the atendee</span>
+										<span class="custom-control-label">I have checked the ID of the attendee</span>
 									</label>
 								</div>
 								<div class="col-sm-3">
 									@if($ticket->user->age() < 15)
-										<div class="form-label text-danger">Antendee needs to have a consent form in paper form:</div>
+										<div class="form-label text-danger">Attendee needs to have a consent form in paper form:</div>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="consentform">
-											<span class="custom-control-label">Atendee has shown consent form and we have signed it</span>
+											<span class="custom-control-label">Attendee has shown consent form and we have signed it</span>
 										</label>
 										<p>If needed; check the permission from the parents by calling.</p>
 									@else
-										<div class="form-label text-success">Antendee does not need a consent form</div>
+										<div class="form-label text-success">Attendee does not need a consent form</div>
 										<input type="checkbox" style="display: none;" id="consentform" checked>
 									@endif
 								</div>
@@ -45,10 +45,10 @@
 									@if(is_null($ticket->reservation->payment))
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="paid">
-											<span class="custom-control-label">Atendee has paid the total amount</span>
+											<span class="custom-control-label">Attendee has paid the total amount</span>
 										</label>
 									@else
-										<div class="form-label text-success">Antendee has nothing to pay</div>
+										<div class="form-label text-success">Attendee has nothing to pay</div>
 										<input type="checkbox" style="display: none;" id="paid" checked>
 									@endif
 								</div>
@@ -146,7 +146,7 @@
 			</div>
 
 			<div class="col-md-4 text-center">
-				
+
 			</div>
 
 		</div>

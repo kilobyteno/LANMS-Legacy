@@ -78,7 +78,7 @@ class CheckinController extends Controller
 
             if ($ticket->save()) {
                 return Redirect::route('admin-seating-checkin')->with('messagetype', 'success')
-                                ->with('message', 'The atendee has been checked in!');
+                                ->with('message', 'The attendee has been checked in!');
             }
         } else {
             return Redirect::back()->with('messagetype', 'warning')

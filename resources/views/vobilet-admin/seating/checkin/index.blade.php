@@ -1,14 +1,14 @@
 @extends('layouts.main')
-@section('title', 'Atendee Check-in - Admin')
+@section('title', 'Attendee Check-in - Admin')
 @section('content')
 
 <div class="page-header">
-	<h4 class="page-title">Atendee Check-in</h4>
+	<h4 class="page-title">Attendee Check-in</h4>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 		<li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
 		<li class="breadcrumb-item">Seating</li>
-		<li class="breadcrumb-item active" aria-current="page">Atendee Check-in</li>
+		<li class="breadcrumb-item active" aria-current="page">Attendee Check-in</li>
 	</ol>
 </div>
 
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-xl-4">
-				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Atendees has checked-in</small></h1>
+				<h1 class="text-center">{{ Checkin::thisYear()->count() }}<small>/{{ $reservedcount }}</small><br><small>Attendees has checked-in</small></h1>
 				<hr>
 				<div class="row">
 					@foreach($checkins as $checkin)
