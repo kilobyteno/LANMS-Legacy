@@ -216,7 +216,7 @@ Route::group([
             'as' => 'account-identity' ,
             'uses' => 'Member\AccountController@getIdentity'
         ]);
-        
+
         Route::get('/2fa/activate', [
             'as' => 'account-2fa-activate' ,
             'uses' => 'Auth\TwoFactorAuthController@activate'
@@ -1143,6 +1143,18 @@ Route::group([
                 Route::get('/info', [
                     'as' => 'admin-systeminfo' ,
                     'uses' => 'Admin\AdminController@systeminfo'
+                ]);
+                Route::get('/logo', [
+                    'as' => 'admin-logo' ,
+                    'uses' => 'Admin\AdminController@logo'
+                ]);
+                Route::post('/logo/dark', [
+                    'as' => 'admin-logo-dark' ,
+                    'uses' => 'Admin\AdminController@logo_dark'
+                ]);
+                Route::post('/logo/light', [
+                    'as' => 'admin-logo-light' ,
+                    'uses' => 'Admin\AdminController@logo_light'
                 ]);
                 Route::group([
                     'prefix' => 'license'

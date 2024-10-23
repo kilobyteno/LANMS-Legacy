@@ -25,6 +25,39 @@ class AdminController extends Controller
         return view('systeminfo');
     }
 
+    public function logo()
+    {
+        return view('logo');
+    }
+
+    public function logo_dark()
+    {
+        $request = request();
+        $this->validate($request, [
+            'logo_dark' => 'required|image|mimes:png|max:2048',
+        ]);
+        $logo = $request->file('logo_dark');
+        $logo->move(public_path('images'), 'logo_dark.png');
+        \Setting::set('WEB_LOGO_DARK', '/images/logo_dark.png');
+        \Setting::save();
+        return Redirect::back()->with('messagetype', 'success')
+                            ->with('message', 'Logo updated successfully!');
+    }
+
+    public function logo_light()
+    {
+        $request = request();
+        $this->validate($request, [
+            'logo_light' => 'required|image|mimes:png|max:2048',
+        ]);
+        $logo = $request->file('logo_light');
+        $logo->move(public_path('images'), 'logo_light.png');
+        \Setting::set('WEB_LOGO_LIGHT', '/images/logo_light.png');
+        \Setting::save();
+        return Redirect::back()->with('messagetype', 'success')
+                            ->with('message', 'Logo updated successfully!');
+    }
+
     public function activity()
     {
         if (!Sentinel::getUser()->hasAccess(['admin.*'])) {
