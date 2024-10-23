@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 24.3.2 - 2024-10-23
+
+**Full Changelog**: https://github.com/kilobyteno/LANMS-Legacy/compare/24.3.1...24.3.2
+
 ## 24.3.1 - 2024-09-25
 
 ### What's Changed
