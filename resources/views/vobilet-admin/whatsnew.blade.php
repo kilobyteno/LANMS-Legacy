@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title', 'What\'s New? - Admin')
-   
+
 @section('content')
 
 <div class="page-header">
@@ -16,6 +16,11 @@
 	<div class="col-md-12 col-lg-12">
 		<div class="card">
 			<div class="card-body">
+
+                <div class="alert alert-info">
+                    <strong>Important!</strong> Check <a href="https://github.com/kilobyteno/lanms-legacy">Github</a> for the latest release notes. Older versions are listed here.
+                </div>
+
 				<div class="panel-group" id="releasenotes">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -138,7 +143,7 @@
 									<li>[LANMS-483] - Add test email function in admin panel</li>
 									<li>[LANMS-490] - Check when schedule last ran</li>
 								</ul>
-									
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-487] - Update birthday validation</li>
@@ -161,12 +166,12 @@
 									<li>[LANMS-482] - Twilio\Exceptions\ConfigurationException admin-sms</li>
 									<li>[LANMS-485] - Cartalyst\Stripe\Exception\NotFoundException admin</li>
 								</ul>
-									
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-484] - Add license last checked</li>
 								</ul>
-									
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-416] - Clean up old address entries, translations and functions</li>
@@ -195,7 +200,7 @@
 								<ul>
 									<li>[LANMS-310] - 2FA via Twilio</li>
 								</ul>
-								
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-478] - Message when no ticket types</li>
@@ -218,7 +223,7 @@
 									<li>[LANMS-467] - Uncaught Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [609] second(s).</li>
 									<li>[LANMS-469] - ErrorException consentform: Trying to access array offset on value of type null</li>
 									</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-431] - ID - Identification-page</li>
@@ -246,19 +251,19 @@
 								<ul>
 									<li>[LANMS-456] - Default role is missing sms permission</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-445] - Allow users to change username</li>
 									<li>[LANMS-452] - Add previous compos page</li>
 									<li>[LANMS-461] - Add restore &amp; duplicate to compos</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-455] - Test and check the admin panel on mobile</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-359] - Add possibility to add winners for compos</li>
@@ -283,7 +288,7 @@
 								<ul>
 									<li>[LANMS-448] - Row sorting on print page does not work</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-450] - Add age to edit user admin panel</li>
@@ -319,7 +324,7 @@
 									<li>[LANMS-443] - Phone Country does not save when editing user in admin panel</li>
 									<li>[LANMS-444] - When clicking view on a reservation it shows the reservation page</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-214] - Create a own ticket system, with several types of tickets</li>
@@ -329,12 +334,12 @@
 									<li>[LANMS-422] - Add delete/void function to invoices</li>
 									<li>[LANMS-432] - Add reserved statuses widgets to admin dashboard</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-319] - Update Sentry SDK</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-311] - Phone verification via Twilio</li>
@@ -384,7 +389,7 @@
 									<li>[LANMS-406] - Cartalyst\Stripe\Exception\InvalidRequestException: Your card does not support this type of purchase.</li>
 									<li>[LANMS-407] - User cannot reserve seat when a invoice is voided</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-408] - Add sort order to rows in admin panel</li>
@@ -408,7 +413,7 @@
 								<ul>
 									<li>[LANMS-403] - Missing translation for invoice</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 									<ul>
 									<li>[LANMS-399] - Add first signup time to compo</li>
@@ -439,7 +444,7 @@
 									<li>[LANMS-398] - Add types of tickets
 </li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-400] - Change consent form age
@@ -464,7 +469,7 @@
 								<ul>
 									<li>[LANMS-308] - Compo: Cancel Signup</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-281] - Add max/min signups for compo</li>
@@ -490,7 +495,7 @@
 									<li>[LANMS-391] - Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function routeNotificationFor() on string</li>
 									<li>[LANMS-394] - Change payment button is not showing</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-390] - User API-endpoint with tickets, and more</li>
@@ -528,7 +533,7 @@
 									<li>[LANMS-379] - Cartalyst\Stripe\Exception\CardErrorException: Your card was declined.</li>
 									<li>[LANMS-380] - ErrorException: Trying to get property &#39;theme&#39; of non-object</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-360] - Notification system</li>
@@ -569,12 +574,12 @@
 									<li>[LANMS-336] - Send emails to users from admin panel</li>
 									<li>[LANMS-337] - System Info</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-342] - Update Sentry to version 1.3.0</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-333] - Implement news categories</li>
@@ -748,7 +753,7 @@
 									<li>[LANMS-257] - Delete old themes and files
 									<li>[LANMS-258] - Change agreement when reserving
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-190] - Update the Admin UI
@@ -830,7 +835,7 @@
 									<li>[LANMS-229] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 									<li>[LANMS-231] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/v...</li>
 									<li>[LANMS-236] - Searching users does not work anymore</li>
-								</ul>    
+								</ul>
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-230] - Allow admins to view ticket</li>
@@ -882,7 +887,7 @@
 									<li>[LANMS-207] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/repositories/lanms/resources/views/n...</li>
 									<li>[LANMS-210] - ErrorException: Undefined index: old</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-205] - Add support for Facebook Messenger</li>
@@ -919,7 +924,7 @@
 									<li>[LANMS-186] - Trying to get property &#39;username&#39; of non-object</li>
 									<li>[LANMS-188] - When searching for users it shows inactive users</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-19] - User administration</li>
@@ -1042,7 +1047,7 @@
 								<ul>
 									<li>[LANMS-144] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-87] - Timeline for profile</li>
@@ -1070,12 +1075,12 @@
 									<li>[LANMS-144] - ErrorException: Trying to get property of non-object (View: /home/downlinkdg/public_html/resources/views/neon-adm...</li>
 									<li>[LANMS-145] - ErrorException: Argument 1 passed to Cartalyst\Sentinel\Reminders\IlluminateReminderRepository::complete() must i...</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-146] - Remove &quot;Featured Image&quot; from news until it is implemented</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-141] - User must have an birthday</li>
@@ -1108,7 +1113,7 @@
 									<li>[LANMS-138] - Symfony\Component\Debug\Exception\FatalErrorException: Class &#39;LANMS\Exceptions\HttpException&#39; not found</li>
 									<li>[LANMS-139] - File-input covers the whole page</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-6] - Create Sponsor System</li>
@@ -1120,7 +1125,7 @@
 									<li>[LANMS-119] - Samtykkeskjema på nett</li>
 									<li>[LANMS-128] - Add &quot;What&#39;s new?&quot; view</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-110] - Upgrade Laravel</li>
@@ -1128,7 +1133,7 @@
 									<li>[LANMS-124] - Move settings, logs &amp; license under &quot;System&quot;</li>
 									<li>[LANMS-129] - Move Logs into the admin panel design</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-61] - Add Seatmap for seating in admin panel</li>
@@ -1162,7 +1167,7 @@
 									<li>[LANMS-105] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
 									<li>[LANMS-106] - Illuminate\Session\TokenMismatchException</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-99] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
@@ -1189,7 +1194,7 @@
 									<li>[LANMS-105] - Symfony\Component\Debug\Exception\FatalErrorException: Call to a member function inRole() on a non-object</li>
 									<li>[LANMS-106] - Illuminate\Session\TokenMismatchException</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-99] - Cartalyst\Sentinel\Checkpoints\ThrottlingException: Suspicious activity has occured on your IP address and you have been denied access for another [2...</li>
@@ -1212,7 +1217,7 @@
 								<ul>
 									<li>[LANMS-54] - Members page should not show non active users</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-76] - List for non-checkedin reservations</li>
@@ -1233,7 +1238,7 @@
 								<ul>
 									<li>[LANMS-74] - Ticket ID on reservation table</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-81] - Add setting for disabling login for users</li>
@@ -1303,18 +1308,18 @@
 								<ul>
 									<li>[LANMS-64] - All Users have 30 reserved seats</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-65] - Check-in</li>
 									<li>[LANMS-67] - Output data in JSON</li>
 								</ul>
-								
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-61] - Add Seatmap for seating in admin panel</li>
 								</ul>
-								    
+
 								<h4>Sub-task</h4>
 								<ul>
 									<li>[LANMS-66] - Visitor check-in</li>
@@ -1383,17 +1388,17 @@
 								<ul>
 									<li>[LANMS-36] - Capital letters does not work in email on registration</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-55] - Admin panel: Change reservations</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-56] - Create ENV setting for stripe key</li>
 								</ul>
-								    
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-53] - Update seat info about user</li>
@@ -1416,17 +1421,17 @@
 								<ul>
 									<li>[LANMS-29] - Missing Assets</li>
 								</ul>
-								    
+
 								<h4>New Feature</h4>
 								<ul>
 									<li>[LANMS-42] - User should be able remove reservation if selected pay at entrance</li>
 								</ul>
-								    
+
 								<h4>Task</h4>
 								<ul>
 									<li>[LANMS-37] - Change mail settings for prod</li>
 								</ul>
-								   
+
 								<h4>Improvement</h4>
 								<ul>
 									<li>[LANMS-52] - Users should be able to see seats reserved to them</li>
