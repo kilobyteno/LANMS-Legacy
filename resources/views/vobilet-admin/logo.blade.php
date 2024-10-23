@@ -22,7 +22,7 @@
 
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label class="form-control-label">Dark Logo</label>
+							<label class="form-control-label">Dark logo on light background</label>
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" name="logo_dark">
 								<label class="custom-file-label">{{ __('global.choosefile') }}</label>
@@ -54,7 +54,7 @@
 
 					<div class="col-sm-3">
 						<div class="form-group">
-							<label class="form-control-label">Light Logo</label>
+							<label class="form-control-label">Light logo on dark background</label>
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" name="logo_light">
 								<label class="custom-file-label">{{ __('global.choosefile') }}</label>
