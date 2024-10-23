@@ -34,7 +34,7 @@
 					</div>
 
                     <div class="col-sm-3 bg-white">
-                        <p>Current logo</p>
+                        <p class="text-dark">Current logo</p>
                         <img src="{{ asset(Setting::get("WEB_LOGO_DARK")) }}" class="img-fluid" />
                     </div>
 
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 
-                    <div class="col-sm-3 bg-azure-darker">
+                    <div class="col-sm-3 bg-gray-dark">
                         <p class="text-white">Current logo</p>
                         <img src="{{ asset(Setting::get("WEB_LOGO_LIGHT")) }}" class="img-fluid" />
                     </div>
