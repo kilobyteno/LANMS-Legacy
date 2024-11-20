@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\CheckLicense::class,
+        //Commands\CheckLicense::class,
         Commands\DeleteExpiredSeatReservation::class,
         Commands\CleanUpActivity::class,
         \Dialect\Gdpr\Commands\AnonymizeInactiveUsers::class,
@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('lanms:checkschedule')->everyMinute();
-        $schedule->command('lanms:checklicense')->twiceDaily(1, 13);
+        //$schedule->command('lanms:checklicense')->twiceDaily(1, 13);
         $schedule->command('lanms:desr')->hourly();
         $schedule->command('lanms:dnau')->daily();
         $schedule->command('gdpr:anonymizeInactiveUsers')->daily();
