@@ -68,9 +68,9 @@ class Update extends Command
 
         $this->info('Checking if birthdates is valid...');
         Artisan::call('lanms:checkbirthdate');
-        
-        $this->info('Checking license...');
-        Artisan::call('lanms:checklicense');
+
+        //$this->info('Checking license...');
+        //Artisan::call('lanms:checklicense');
 
         $this->info('Creating the symbolic link...');
         Artisan::call('storage:link');

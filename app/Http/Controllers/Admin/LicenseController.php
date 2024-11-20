@@ -31,7 +31,7 @@ class LicenseController extends Controller
     public function check()
     {
         if (Sentinel::getUser()->hasAccess(['admin.license.*'])) {
-            \Artisan::call('lanms:checklicense');
+            //\Artisan::call('lanms:checklicense');
             return Redirect::route('admin-license')->with('messagetype', 'success')
                                 ->with('message', 'License status updated!');
         } else {
@@ -50,7 +50,7 @@ class LicenseController extends Controller
             }
             \Setting::set('APP_LICENSE_KEY', $licensekey);
             \Setting::save();
-            \Artisan::call('lanms:checklicense');
+            //\Artisan::call('lanms:checklicense');
             return Redirect::route('admin-license')->with('messagetype', 'success')
                                 ->with('message', 'License key and status updated!');
         } else {
