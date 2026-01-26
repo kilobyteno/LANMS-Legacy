@@ -200,7 +200,7 @@ Route::group([
             'uses' => 'Auth\TwoFactorAuthController@index',
         ]);
         Route::post('/2fa/verify', [
-            'as' => 'account-2fa-verify' ,
+            'as' => 'account-2fa-verify-post' ,
             'uses' => 'Auth\TwoFactorAuthController@verify',
         ]);
     });

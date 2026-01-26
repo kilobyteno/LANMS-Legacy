@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form class="card" action="{{ route('account-2fa-verify') }}" method="post">
+            <form class="card" action="{{ route('account-2fa-verify-post') }}" method="post">
                 <div class="card-header">
                     <h3 class="card-title">{{ __('user.profile.edit.settings.2fa.title') }}</h3>
                 </div>
