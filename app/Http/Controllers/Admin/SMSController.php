@@ -14,10 +14,28 @@ use Validator;
 
 class SMSController extends Controller
 {
+    protected $twilioClient = null;
+
     public function __construct()
     {
         $this->middleware('checktwilioenv');
-        $this->twilio = new TwilioClient(env('TWILIO_SID'), env('TWILIO_TOKEN'));
+    }
+
+    /**
+     * Get the Twilio client instance (lazy-loaded)
+     *
+     * @return TwilioClient
+     */
+    protected function getTwilioClient()
+    {
+        if ($this->twilioClient === null) {
+            $sid = env('TWILIO_SID');
+            $token = env('TWILIO_TOKEN');
+            if ($sid && $token) {
+                $this->twilioClient = new TwilioClient($sid, $token);
+            }
+        }
+        return $this->twilioClient;
     }
 
     /**
@@ -29,7 +47,7 @@ class SMSController extends Controller
     {
         abort_unless(Sentinel::getUser()->hasAccess(['admin.sms.*']), 403);
         try {
-            $messages = $this->twilio->messages->read();
+            $messages = $this->getTwilioClient()->messages->read();
         } catch (ConfigurationException $e) {
             return Redirect::route('admin')->with('messagetype', 'danger')->with('message', "Twilio Error: ".$e->getMessage());
         } catch (RestException $e) {
@@ -66,10 +84,10 @@ class SMSController extends Controller
         }
         try {
             $user = User::find($request->input('user_id'));
-            $lookup = $this->twilio->lookups->v1->phoneNumbers($user->phone)->fetch(array("countryCode" => $user->phone_country));
+            $lookup = $this->getTwilioClient()->lookups->v1->phoneNumbers($user->phone)->fetch(array("countryCode" => $user->phone_country));
             $number = $lookup->phoneNumber;
             $message = $request->input('message');
-            $this->twilio->messages->create(
+            $this->getTwilioClient()->messages->create(
                 $number,
                 [
                     'from' => env('TWILIO_FROM'),
