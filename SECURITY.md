@@ -6,7 +6,7 @@ We take the security of our users and their data very seriously. If you believe 
 
 | Version | Bug fixes          | Security fixes     | Status |
 |---------|--------------------|--------------------|--------|
-| 2.0     | :x:                | :white_check_mark: | SEC    |
+| 2.0     | :x:                | :x:                | EOL    |
 | 1.0     | :x:                | :x:                | EOL    |
 
 
